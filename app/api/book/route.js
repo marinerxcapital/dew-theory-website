@@ -1,82 +1,103 @@
 import { NextResponse } from 'next/server';
-import { getService } from '@/lib/services';
-import { mutateStore, trackEvent } from '@/lib/store';
+import { validateBookingRequest, buildAppointment } from '@/lib/booking';
+import { SERVICES } from '@/lib/services';
+import { mutateStore, readStore, trackEvent } from '@/lib/store';
+
+function jsonError(payload, status = 400) {
+  return NextResponse.json(
+    {
+      error: payload.error || 'Booking failed',
+      code: payload.code || 'booking_error',
+      ...(payload.field ? { field: payload.field } : {})
+    },
+    { status }
+  );
+}
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const service = getService(body.service_id);
-    if (!service) {
-      return NextResponse.json({ error: 'Unknown service' }, { status: 400 });
-    }
-    if (!body.start_time) {
-      return NextResponse.json({ error: 'Select a time' }, { status: 400 });
-    }
-    const start = new Date(body.start_time);
-    if (Number.isNaN(start.getTime()) || start.getTime() <= Date.now()) {
-      return NextResponse.json({ error: 'Choose a future time' }, { status: 400 });
-    }
-    const customer = body.customer || {};
-    const name = String(customer.name || '').trim().slice(0, 200);
-    const email = String(customer.email || '').trim().slice(0, 320);
-    if (!name || !email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Name and valid email required' }, { status: 400 });
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return jsonError({ error: 'Invalid JSON body', code: 'invalid_json' }, 400);
     }
 
-    // Idempotency-ish: reject duplicate open booking same service + start + email
-    const store = mutateStore((s) => s);
-    const dup = store.appointments.find(
-      (a) =>
-        a.service_id === service.id &&
-        a.start_time === body.start_time &&
-        a.customer?.email?.toLowerCase() === email.toLowerCase() &&
-        a.status === 'confirmed'
-    );
-    if (dup) {
+    const appointments = readStore().appointments || [];
+    const result = validateBookingRequest(body, SERVICES, appointments);
+
+    if (!result.ok) {
+      return jsonError(result, result.status || 400);
+    }
+
+    if (result.duplicate) {
       return NextResponse.json({
-        appointment_id: dup.id,
-        appointment: dup,
-        duplicate: true
+        appointment_id: result.appointment.id,
+        appointment: result.appointment,
+        duplicate: true,
+        code: 'booking_duplicate'
       });
     }
 
-    const appointmentId = `apt_${Date.now()}`;
-    const appointment = {
-      id: appointmentId,
-      service_id: service.id,
-      service_name: service.name,
-      start_time: body.start_time,
-      duration_minutes: service.duration_minutes,
-      price: service.price,
-      status: 'confirmed',
-      customer: {
-        name,
-        email,
-        phone: String(customer.phone || '').slice(0, 40),
-        notes: String(customer.notes || '').slice(0, 2000)
-      },
-      calendar_event_id: null,
-      created_at: new Date().toISOString()
-    };
+    const appointment = buildAppointment({
+      service: result.service,
+      start_time: result.start_time,
+      customer: result.customer
+    });
 
+    // Atomic re-check + insert to prevent race double-book
+    let conflict = null;
     mutateStore((s) => {
+      const taken = (s.appointments || []).find((a) => {
+        if (a.status !== 'confirmed' && a.status !== 'pending') return false;
+        try {
+          return new Date(a.start_time).toISOString() === result.start_time;
+        } catch {
+          return a.start_time === result.start_time;
+        }
+      });
+      if (taken) {
+        if (taken.customer?.email?.toLowerCase() === result.customer.email) {
+          conflict = { type: 'duplicate', appointment: taken };
+        } else {
+          conflict = { type: 'taken' };
+        }
+        return s;
+      }
+      s.appointments = s.appointments || [];
       s.appointments.unshift(appointment);
       return s;
     });
 
+    if (conflict?.type === 'taken') {
+      return jsonError(
+        { error: 'That time is no longer available', code: 'slot_taken' },
+        409
+      );
+    }
+    if (conflict?.type === 'duplicate') {
+      return NextResponse.json({
+        appointment_id: conflict.appointment.id,
+        appointment: conflict.appointment,
+        duplicate: true,
+        code: 'booking_duplicate'
+      });
+    }
+
     trackEvent('booking_confirmed', {
-      appointment_id: appointmentId,
-      service_id: service.id
+      appointment_id: appointment.id,
+      service_id: appointment.service_id
     });
 
-    // Optional: send confirmation email when transactional email is wired
-    // Optional: create Google Calendar event when GOOGLE_CALENDAR credentials exist
-
-    return NextResponse.json({ appointment_id: appointmentId, appointment });
+    return NextResponse.json({
+      appointment_id: appointment.id,
+      appointment,
+      code: 'booking_confirmed'
+    });
   } catch (err) {
-    return NextResponse.json(
-      { error: err.message || 'Booking failed' },
-      { status: 500 }
+    return jsonError(
+      { error: err.message || 'Booking failed', code: 'booking_internal' },
+      500
     );
   }
 }
