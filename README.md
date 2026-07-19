@@ -25,10 +25,15 @@ npm run start
 - Defaults: `admin@dewtheory.local` / `dew-admin-dev` (override in `.env.local` — see `.env.example`)
 - Promo code seed: `DEW15` (15% placeholder — not a confirmed client rate)
 
-### Checkout without Stripe keys
+### Checkout (mock vs Stripe)
 
-Orders are recorded to `data/runtime/store.json` (gitignored). With `STRIPE_SECRET_KEY`,
-Checkout Sessions are created instead.
+| Keys | Behavior |
+|---|---|
+| No `STRIPE_SECRET_KEY` | **Mock** — order saved as paid, confirmation via `?order=` |
+| `STRIPE_SECRET_KEY` set | **Stripe Checkout** — redirect; success uses `?session_id=` |
+
+Webhook (paid → order status): `POST /api/webhooks/stripe` needs `STRIPE_WEBHOOK_SECRET`.  
+Full notes: [`docs/STRIPE.md`](docs/STRIPE.md). Env template: [`ENV.md`](ENV.md).
 
 ## Design tokens
 

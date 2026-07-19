@@ -8,6 +8,7 @@ import {
 } from '@/lib/checkout';
 import { resolveDiscountCode } from '@/lib/discounts';
 import { getProducts } from '@/lib/products-server';
+import { buildSessionMetadata } from '@/lib/stripe-orders';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
 
 function jsonError(payload, status = 400) {
@@ -120,18 +121,23 @@ export async function POST(request) {
         });
       }
 
+      // Pre-generate order id so metadata carries it into Stripe + webhooks
+      const orderId = `ord_${Date.now()}`;
+
       const sessionParams = {
         mode: 'payment',
         line_items,
         success_url: `${origin}/cart/confirmation?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/cart`,
         customer_email: customer.email,
-        metadata: {
-          discount_code: totals.discount_code || '',
-          subtotal: String(totals.subtotal),
-          shipping_fee: String(totals.shipping_fee),
-          idempotency_key: idempotencyKey || ''
-        },
+        client_reference_id: orderId,
+        metadata: buildSessionMetadata({
+          orderId,
+          customer,
+          items,
+          totals,
+          idempotencyKey
+        }),
         shipping_address_collection: { allowed_countries: ['US', 'CA'] }
       };
 
@@ -157,7 +163,6 @@ export async function POST(request) {
         idempotencyKey ? { idempotencyKey: `dew_checkout_${idempotencyKey}` } : undefined
       );
 
-      const orderId = `ord_${Date.now()}`;
       mutateStore((s) => {
         s.orders.unshift({
           id: orderId,
@@ -178,11 +183,14 @@ export async function POST(request) {
         url: session.url,
         order_id: orderId,
         code: 'checkout_session_created',
+        mode: 'stripe',
         totals
       });
     }
 
-    // Local mock checkout (no Stripe keys)
+    // ── Local mock path (no STRIPE_SECRET_KEY) ──────────────────────────
+    // Orders are written as paid immediately. No redirect to Stripe.
+    // Webhooks are not used. Documented in docs/STRIPE.md.
     const orderId = `ord_${Date.now()}`;
     mutateStore((s) => {
       s.orders.unshift({
@@ -193,7 +201,9 @@ export async function POST(request) {
         ...totals,
         status: 'paid',
         shipping_address,
-        created_at: new Date().toISOString()
+        paid_at: new Date().toISOString(),
+        created_at: new Date().toISOString(),
+        source: 'mock_checkout'
       });
       if (discountCode) {
         const d = s.discount_codes.find((c) => c.id === discountCode.id);
@@ -201,11 +211,12 @@ export async function POST(request) {
       }
       return s;
     });
-    trackEvent('checkout_completed', { order_id: orderId });
+    trackEvent('checkout_completed', { order_id: orderId, mode: 'mock' });
 
     return NextResponse.json({
       order_id: orderId,
       mock: true,
+      mode: 'mock',
       code: 'checkout_mock_paid',
       totals
     });

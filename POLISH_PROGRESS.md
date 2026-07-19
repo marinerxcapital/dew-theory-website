@@ -26,7 +26,7 @@ Interval: 30m
 | E1 | done | checkout validateAndPriceItems; unknown SKU/OOS reject; catalog re-price; Idempotency-Key; error code shapes | 2026-07-19T14:55:00Z |
 | E2 | done | node:test shipping matrix — $7/<$49, free@$49, pre vs post basis, promo×ship; npm test 18 pass | 2026-07-19T16:50:00Z |
 | E3 | done | resolveDiscountCode pure + tests: %/fixed/expired/max_uses/inactive/case; npm test 39 pass | 2026-07-19T17:20:00Z |
-| E4 | pending | | |
+| E4 | done | Stripe webhook /api/webhooks/stripe; full session metadata; markOrderPaidFromSession; docs/STRIPE.md mock path | 2026-07-19T17:50:00Z |
 | E5 | pending | | |
 | F1 | pending | | |
 | F2 | pending | | |
