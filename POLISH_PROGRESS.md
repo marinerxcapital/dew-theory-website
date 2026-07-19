@@ -8,7 +8,7 @@ Interval: 30m
 |----|--------|------|---------|
 | A1 | done | npm install ok; `npm run build` pass (39 routes); no lint/type errors. 2 vulns deferred to A3 | 2026-07-19T06:17:30Z |
 | A2 | done | middleware admin gate; prod rejects default password/session secret; origin CSRF on mutations; rate limit 10/15m; timing-safe compare; no dev creds in prod UI | 2026-07-19T06:48:00Z |
-| A3 | pending | | |
+| A3 | done | next 15.5.20 + react 19.2.7 + postcss 8.5.19/overrides; npm audit 0 vulns; build pass; see DEPENDENCY_AUDIT.md | 2026-07-19T07:24:00Z |
 | B1 | pending | | |
 | B2 | pending | | |
 | B3 | pending | | |
