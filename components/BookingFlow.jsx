@@ -4,26 +4,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import { SERVICES, formatDuration, formatServicePrice } from '@/lib/services';
-
-/** Mock availability next 14 days (Mon–Sat). Replace with Google Calendar adapter. */
-function buildSlots() {
-  const slots = [];
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
-  for (let d = 1; d <= 14; d++) {
-    const day = new Date(start);
-    day.setDate(start.getDate() + d);
-    if (day.getDay() === 0) continue;
-    for (const h of [10, 11, 13, 14, 15, 16]) {
-      const t = new Date(day);
-      t.setHours(h, 0, 0, 0);
-      if (t.getTime() > Date.now()) slots.push(t.toISOString());
-    }
-  }
-  return slots;
-}
-
-const ALL_SLOTS = buildSlots();
+import {
+  MockAvailabilityAdapter,
+  groupSlotsByDay
+} from '@/lib/availability';
 
 function track(type, payload = {}) {
   fetch('/api/events', {
@@ -51,6 +35,9 @@ export default function BookingFlow({
   const [error, setError] = useState('');
   const [appointmentId, setAppointmentId] = useState(null);
   const [showInvalidNotice, setShowInvalidNotice] = useState(invalidServiceQuery);
+  const [openSlots, setOpenSlots] = useState([]);
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [slotSource, setSlotSource] = useState('mock');
   const submitting = useRef(false);
   const started = useRef(false);
 
@@ -74,20 +61,45 @@ export default function BookingFlow({
     }
   }, [step, service]);
 
-  const slotsByDay = useMemo(() => {
-    const map = new Map();
-    for (const iso of ALL_SLOTS) {
-      const d = new Date(iso);
-      const key = d.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric'
-      });
-      if (!map.has(key)) map.set(key, []);
-      map.get(key).push(iso);
-    }
-    return map;
-  }, []);
+  // Load bookable slots via availability adapter (API filters booked; client falls back to mock)
+  useEffect(() => {
+    if (step !== 2 || !serviceId) return undefined;
+    let cancelled = false;
+    setSlotsLoading(true);
+    setOpenSlots([]);
+
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/availability?service_id=${encodeURIComponent(serviceId)}`
+        );
+        const data = await res.json();
+        if (cancelled) return;
+        if (res.ok && Array.isArray(data.slots)) {
+          setOpenSlots(data.slots);
+          setSlotSource(data.source || 'mock');
+          return;
+        }
+        throw new Error(data.error || 'availability failed');
+      } catch {
+        if (cancelled) return;
+        const adapter = new MockAvailabilityAdapter();
+        const slots = await adapter.listOpenSlots({ serviceId });
+        if (!cancelled) {
+          setOpenSlots(slots);
+          setSlotSource(adapter.getSource());
+        }
+      } finally {
+        if (!cancelled) setSlotsLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [step, serviceId]);
+
+  const slotsByDay = useMemo(() => groupSlotsByDay(openSlots), [openSlots]);
 
   function selectService(id) {
     setServiceId(id);
@@ -217,8 +229,8 @@ export default function BookingFlow({
           data-reveal
           className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
         >
-          Service, then time, then your details. Availability is a working schedule until Google
-          Calendar is connected.
+          Service, then time, then your details. Times come from the availability adapter
+          (mock schedule until Google Calendar credentials are connected).
         </p>
       </div>
 
@@ -285,12 +297,19 @@ export default function BookingFlow({
             {formatDuration(service.duration_minutes)} · {formatServicePrice(service.price)}
           </p>
 
-          {slotsByDay.size === 0 ? (
+          {slotsLoading ? (
+            <p className="mt-10 font-body text-sm font-light text-charcoal/70">
+              Loading open times…
+            </p>
+          ) : slotsByDay.size === 0 ? (
             <p className="mt-10 font-body text-sm font-light text-charcoal/70">
               No open slots in the next two weeks. Write us on the contact form.
             </p>
           ) : (
             <div className="mt-10 space-y-10">
+              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                Source · {slotSource}
+              </p>
               {[...slotsByDay.entries()].map(([day, times]) => (
                 <div key={day}>
                   <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">

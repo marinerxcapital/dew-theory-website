@@ -29,7 +29,7 @@ Interval: 30m
 | E4 | done | Stripe webhook /api/webhooks/stripe; full session metadata; markOrderPaidFromSession; docs/STRIPE.md mock path | 2026-07-19T17:50:00Z |
 | E5 | done | order-path offline tests + scripts/smoke-checkout.mjs; docs/ORDER_PATH.md; npm test 43 pass | 2026-07-19T18:20:00Z |
 | F1 | done | lib/booking validate: service/past/slot_taken/sanitize; atomic insert; booking tests 14; npm test 57 | 2026-07-19T18:50:00Z |
-| F2 | pending | | |
+| F2 | done | lib/availability.js Mock+Google stub; GET /api/availability; BookingFlow loads API; excludeBookedSlots; tests; npm test 65 | 2026-07-19T19:20:00Z |
 | F3 | pending | | |
 | G1 | pending | | |
 | G2 | pending | | |
