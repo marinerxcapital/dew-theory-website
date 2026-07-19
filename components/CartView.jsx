@@ -112,15 +112,25 @@ export default function CartView() {
 
   if (items.length === 0) {
     return (
-      <section className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10">
-        <Rule left="Cart" right="Empty" />
-        <h1 className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] font-normal leading-[1.02] text-graphite">
+      <section
+        className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10"
+        data-reveal-group="cart-empty"
+      >
+        <Rule left="Cart" right="Empty" data-reveal />
+        <h1
+          data-reveal
+          className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] font-normal leading-[1.02] text-graphite"
+        >
           Nothing here yet
         </h1>
-        <p className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75">
+        <p
+          data-reveal
+          className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
+        >
           The collection is eight products — start with a cleanser or the mask if your barrier is dry.
         </p>
         <Link
+          data-reveal
           href="/shop"
           className="sweep mt-10 inline-block border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
         >
@@ -132,16 +142,29 @@ export default function CartView() {
 
   return (
     <section className="mx-auto max-w-shell px-5 py-24 sm:px-6 sm:py-28 lg:px-10 lg:py-32">
-      <Rule left="Cart" right={`${items.reduce((n, i) => n + i.quantity, 0)} items`} />
-      <h1 className="mt-8 font-display text-[clamp(2.2rem,7vw,4rem)] font-normal leading-[1.02] text-graphite">
-        Your bag
-      </h1>
+      <div data-reveal-group="cart-head">
+        <Rule
+          left="Cart"
+          right={`${items.reduce((n, i) => n + i.quantity, 0)} items`}
+          data-reveal
+        />
+        <h1
+          data-reveal
+          className="mt-8 font-display text-[clamp(2.2rem,7vw,4rem)] font-normal leading-[1.02] text-graphite"
+        >
+          Your bag
+        </h1>
+      </div>
 
-      <div className="mt-10 grid gap-10 sm:mt-14 lg:mt-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+      <div
+        className="mt-10 grid gap-10 sm:mt-14 lg:mt-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16"
+        data-reveal-group="cart-body"
+      >
         <ul className="order-last min-w-0 divide-y divide-chrome/20 border-y border-chrome/20 lg:order-first">
           {items.map((item) => (
             <li
               key={`${item.product_id}-${item.variant || ''}`}
+              data-reveal
               className="grid gap-4 py-6 sm:grid-cols-[1fr_auto] sm:items-center sm:py-8"
             >
               <div className="min-w-0">
@@ -189,7 +212,10 @@ export default function CartView() {
         </ul>
 
         {/* Summary first on mobile so totals stay reachable; sticky under nav on desktop */}
-        <aside className="glass-1 order-first h-fit p-6 sm:p-8 lg:order-last lg:sticky lg:top-24">
+        <aside
+          data-reveal
+          className="glass-1 order-first h-fit p-6 sm:p-8 lg:order-last lg:sticky lg:top-24"
+        >
           <h2 className="font-display text-2xl font-normal text-graphite">Summary</h2>
 
           <dl className="mt-8 space-y-3 font-body text-sm font-light text-charcoal/80">

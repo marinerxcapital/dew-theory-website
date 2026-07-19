@@ -121,14 +121,22 @@ export default function BookingFlow({ initialServiceId = null }) {
 
   return (
     <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
-      <Rule left="Book" right={`Step ${step} of 3`} />
-      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.05] text-graphite">
-        Book a facial
-      </h1>
-      <p className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75">
-        Select a service, choose a time, and leave your details. Live availability will mirror
-        Emily&apos;s Google Calendar once credentials are set.
-      </p>
+      <div data-reveal-group="book-head">
+        <Rule left="Book" right={`Step ${step} of 3`} data-reveal />
+        <h1
+          data-reveal
+          className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.05] text-graphite"
+        >
+          Book a facial
+        </h1>
+        <p
+          data-reveal
+          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+        >
+          Select a service, choose a time, and leave your details. Live availability will mirror
+          Emily&apos;s Google Calendar once credentials are set.
+        </p>
+      </div>
 
       {/* Step 1 — service */}
       {step === 1 && (

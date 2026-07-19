@@ -14,7 +14,7 @@ Interval: 30m
 | B3 | done | AmbientField ice/lavender/blush orbs + mesh; glass-1/2 more translucent blur; nav frosted reads ambient | 2026-07-19T08:55:00Z |
 | B4 | done | focus-visible ice+graphite ring; skip links storefront+admin; main tabIndex=-1; mobile Esc/focus; shop tab arrows | 2026-07-19T09:25:00Z |
 | B5 | done | overflow-x clip; cart summary first+sticky; admin cards/table dual layout; hero/shop/rule mobile fixes | 2026-07-19T09:55:00Z |
-| C1 | pending | | |
+| C1 | done | MotionRoot gsap.context + kill on route; admin skip; reveal on cart/contact/book/pdp; frost threshold by path | 2026-07-19T10:25:00Z |
 | C2 | pending | | |
 | C3 | pending | | |
 | D1 | pending | | |

@@ -26,7 +26,7 @@ export default function ProductDetailPage({ params }) {
 
   return (
     <article className="mx-auto max-w-shell px-6 py-32 lg:px-10">
-      <nav aria-label="Breadcrumb" className="mb-10">
+      <nav aria-label="Breadcrumb" className="mb-10" data-reveal>
         <ol className="flex flex-wrap items-center gap-2 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
           <li>
             <Link href="/shop" className="hover:text-charcoal">
@@ -40,10 +40,14 @@ export default function ProductDetailPage({ params }) {
         </ol>
       </nav>
 
-      <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
-        <div className="iridescent aspect-[4/5] w-full rounded-[2px]" aria-hidden="true" />
+      <div className="grid gap-14 lg:grid-cols-2 lg:items-start" data-reveal-group="pdp">
+        <div
+          data-reveal
+          className="iridescent aspect-[4/5] w-full rounded-[2px]"
+          aria-hidden="true"
+        />
 
-        <div>
+        <div data-reveal>
           <Rule left={product.category} right={product.size || 'Size TBD'} />
           <h1 className="mt-8 font-display text-[clamp(2.2rem,4.5vw,3.4rem)] font-normal leading-tight text-graphite">
             {product.name}
