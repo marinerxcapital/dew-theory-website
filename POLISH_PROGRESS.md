@@ -23,7 +23,7 @@ Interval: 30m
 | D4 | done | cart qty 0/max20; sanitize missing SKUs; free-ship progress; promo clear; Stripe session_id confirm + clear bag | 2026-07-19T13:25:00Z |
 | D5 | done | brand-voice copy on about/services/studio/membership/contact + footer; facts still OPEN_ITEMS | 2026-07-19T13:55:00Z |
 | D6 | done | invalid ?service= notice; double-submit guard; funnel events; deposit placeholder; past slots filtered; dup booking | 2026-07-19T14:25:00Z |
-| E1 | pending | | |
+| E1 | done | checkout validateAndPriceItems; unknown SKU/OOS reject; catalog re-price; Idempotency-Key; error code shapes | 2026-07-19T14:55:00Z |
 | E2 | pending | | |
 | E3 | pending | | |
 | E4 | pending | | |

@@ -104,12 +104,21 @@ export default function CartView() {
     }
     setCheckoutLoading(true);
     try {
+      const idempotencyKey =
+        typeof crypto !== 'undefined' && crypto.randomUUID
+          ? crypto.randomUUID()
+          : `chk_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+
       const res = await fetch('/api/checkout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': idempotencyKey
+        },
         body: JSON.stringify({
           items,
           discount_code: discountCode?.code || null,
+          idempotency_key: idempotencyKey,
           customer: {
             name: guest.name,
             email: guest.email,
@@ -126,7 +135,11 @@ export default function CartView() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setCheckoutError(data.error || 'Checkout failed');
+        const detail =
+          Array.isArray(data.details) && data.details[0]?.error
+            ? data.details[0].error
+            : null;
+        setCheckoutError(detail || data.error || 'Checkout failed');
         return;
       }
       if (data.url) {
