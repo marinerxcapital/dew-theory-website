@@ -88,7 +88,7 @@ export default function BookingFlow({ initialServiceId = null }) {
     return (
       <section className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10">
         <Rule left="Booked" right="Confirmed" />
-        <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] leading-[1.05] text-graphite">
+        <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.05] text-graphite">
           You&apos;re on the calendar
         </h1>
         <p className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75">
@@ -122,7 +122,7 @@ export default function BookingFlow({ initialServiceId = null }) {
   return (
     <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
       <Rule left="Book" right={`Step ${step} of 3`} />
-      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] leading-[1.05] text-graphite">
+      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.05] text-graphite">
         Book a facial
       </h1>
       <p className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75">
@@ -144,7 +144,7 @@ export default function BookingFlow({ initialServiceId = null }) {
                 }}
                 className="sweep glass-1 flex h-full w-full flex-col p-8 text-left transition-transform hover:-translate-y-1"
               >
-                <h2 className="font-display text-xl text-graphite">{s.name}</h2>
+                <h2 className="font-display text-xl font-normal text-graphite">{s.name}</h2>
                 <Rule
                   left={formatDuration(s.duration_minutes)}
                   right={formatServicePrice(s.price)}
@@ -169,7 +169,7 @@ export default function BookingFlow({ initialServiceId = null }) {
           >
             ← Change service
           </button>
-          <p className="mt-4 font-display text-2xl text-graphite">{service.name}</p>
+          <p className="mt-4 font-display text-2xl font-normal text-graphite">{service.name}</p>
           <div className="mt-10 space-y-10">
             {[...slotsByDay.entries()].map(([day, times]) => (
               <div key={day}>

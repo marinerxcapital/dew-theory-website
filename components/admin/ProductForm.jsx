@@ -95,7 +95,7 @@ export default function ProductForm({ product = null }) {
                   .replace(/[^a-z0-9-]/g, '-')
               )
             }
-            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           />
         </div>
       )}
@@ -114,7 +114,7 @@ export default function ProductForm({ product = null }) {
             required={key === 'name'}
             value={form[key]}
             onChange={(e) => setField(key, e.target.value)}
-            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           />
         </div>
       ))}
@@ -130,7 +130,7 @@ export default function ProductForm({ product = null }) {
             required
             value={form.wholesale_price}
             onChange={(e) => setField('wholesale_price', e.target.value)}
-            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           />
         </div>
         <div>
@@ -143,7 +143,7 @@ export default function ProductForm({ product = null }) {
             required
             value={form.retail_price}
             onChange={(e) => setField('retail_price', e.target.value)}
-            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           />
         </div>
       </div>
@@ -156,7 +156,7 @@ export default function ProductForm({ product = null }) {
           <select
             value={form.category}
             onChange={(e) => setField('category', e.target.value)}
-            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -172,7 +172,7 @@ export default function ProductForm({ product = null }) {
           <select
             value={form.stock_status}
             onChange={(e) => setField('stock_status', e.target.value)}
-            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           >
             {STOCK.map((s) => (
               <option key={s} value={s}>
@@ -184,7 +184,7 @@ export default function ProductForm({ product = null }) {
       </div>
 
       {error && (
-        <p className="font-body text-xs text-charcoal/70" role="alert">
+        <p className="font-body text-xs font-light text-charcoal/70" role="alert">
           {error}
         </p>
       )}

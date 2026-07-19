@@ -9,7 +9,7 @@ export default function ConfirmationPage({ searchParams }) {
   return (
     <section className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10">
       <Rule left="Checkout" right="Confirmed" />
-      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] leading-[1.05] text-graphite">
+      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.05] text-graphite">
         Thank you
       </h1>
       <p className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75">

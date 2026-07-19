@@ -114,7 +114,7 @@ export default function CartView() {
     return (
       <section className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10">
         <Rule left="Cart" right="Empty" />
-        <h1 className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] leading-[1.02] text-graphite">
+        <h1 className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] font-normal leading-[1.02] text-graphite">
           Nothing here yet
         </h1>
         <p className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75">
@@ -133,7 +133,7 @@ export default function CartView() {
   return (
     <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
       <Rule left="Cart" right={`${items.reduce((n, i) => n + i.quantity, 0)} items`} />
-      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] leading-[1.02] text-graphite">
+      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.02] text-graphite">
         Your bag
       </h1>
 
@@ -147,7 +147,7 @@ export default function CartView() {
               <div>
                 <Link
                   href={`/shop/${item.product_id}`}
-                  className="font-display text-xl text-graphite hover:underline"
+                  className="font-display text-xl font-normal text-graphite hover:underline"
                 >
                   {item.name}
                 </Link>
@@ -188,7 +188,7 @@ export default function CartView() {
         </ul>
 
         <aside className="glass-1 h-fit p-8 lg:sticky lg:top-28">
-          <h2 className="font-display text-2xl text-graphite">Summary</h2>
+          <h2 className="font-display text-2xl font-normal text-graphite">Summary</h2>
 
           <dl className="mt-8 space-y-3 font-body text-sm font-light text-charcoal/80">
             <div className="flex justify-between">
@@ -207,7 +207,7 @@ export default function CartView() {
                 {totals.shipping_fee === 0 ? 'Free' : formatMoney(totals.shipping_fee)}
               </dd>
             </div>
-            <div className="flex justify-between border-t border-chrome/20 pt-4 font-label text-[0.7rem] uppercase tracking-lockup text-graphite">
+            <div className="flex justify-between border-t border-chrome/20 pt-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-graphite">
               <dt>Total</dt>
               <dd>{formatMoney(totals.total)}</dd>
             </div>
@@ -244,7 +244,7 @@ export default function CartView() {
               <button
                 type="button"
                 onClick={clearPromo}
-                className="mt-2 font-label text-[0.6rem] uppercase tracking-lockup text-chrome hover:text-charcoal"
+                className="mt-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
               >
                 Remove {discountCode.code}
               </button>

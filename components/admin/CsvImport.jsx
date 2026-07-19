@@ -174,14 +174,14 @@ export default function CsvImport() {
   return (
     <div className="space-y-10">
       <div className="glass-1 p-6">
-        <label className="font-label text-[0.62rem] uppercase tracking-lockup text-chrome">
+        <label className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
           Upload CSV
         </label>
         <input
           type="file"
           accept=".csv,text/csv"
           onChange={onFile}
-          className="mt-3 block w-full font-body text-sm"
+          className="mt-3 block w-full font-body text-sm font-light"
         />
         <p className="mt-3 font-body text-xs font-light text-charcoal/55">
           Expected columns (flexible names): name, category, size, wholesale_price, description,
@@ -191,18 +191,18 @@ export default function CsvImport() {
 
       {headers.length > 0 && (
         <div>
-          <h2 className="font-display text-xl text-graphite">Column mapping</h2>
-          <p className="mt-1 font-body text-xs text-charcoal/60">{mapped} fields mapped</p>
+          <h2 className="font-display text-xl font-normal text-graphite">Column mapping</h2>
+          <p className="mt-1 font-body text-xs font-light text-charcoal/60">{mapped} fields mapped</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {TARGET_FIELDS.map((field) => (
               <div key={field}>
-                <label className="font-label text-[0.6rem] uppercase tracking-lockup text-chrome">
+                <label className="font-label text-[0.6rem] font-light uppercase tracking-lockup text-chrome">
                   {field}
                 </label>
                 <select
                   value={map[field] || ''}
                   onChange={(e) => updateMap(field, e.target.value)}
-                  className="mt-1 w-full border border-chrome/30 bg-pearl/90 px-2 py-2 font-body text-sm"
+                  className="mt-1 w-full border border-chrome/30 bg-pearl/90 px-2 py-2 font-body text-sm font-light"
                 >
                   <option value="">— skip —</option>
                   {headers.map((h) => (
@@ -219,11 +219,11 @@ export default function CsvImport() {
 
       {preview.length > 0 && (
         <div>
-          <h2 className="font-display text-xl text-graphite">Review ({preview.length} rows)</h2>
+          <h2 className="font-display text-xl font-normal text-graphite">Review ({preview.length} rows)</h2>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
-                <tr className="border-b border-chrome/25 font-label text-[0.6rem] uppercase tracking-lockup text-chrome">
+                <tr className="border-b border-chrome/25 font-label text-[0.6rem] font-light uppercase tracking-lockup text-chrome">
                   <th className="py-2 pr-3">Name</th>
                   <th className="py-2 pr-3">Category</th>
                   <th className="py-2 pr-3">Wholesale</th>
@@ -256,7 +256,7 @@ export default function CsvImport() {
             type="button"
             onClick={commit}
             disabled={loading}
-            className="mt-6 border border-graphite bg-graphite px-8 py-3 font-label text-[0.66rem] uppercase tracking-lockup text-pearl disabled:opacity-60"
+            className="mt-6 border border-graphite bg-graphite px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
           >
             {loading ? 'Importing…' : 'Confirm import'}
           </button>
@@ -264,12 +264,12 @@ export default function CsvImport() {
       )}
 
       {error && (
-        <p className="font-body text-sm text-charcoal/70" role="alert">
+        <p className="font-body text-sm font-light text-charcoal/70" role="alert">
           {error}
         </p>
       )}
       {result && (
-        <p className="font-body text-sm text-charcoal/75">
+        <p className="font-body text-sm font-light text-charcoal/75">
           Imported {result.created} new, updated {result.updated} existing products.
         </p>
       )}

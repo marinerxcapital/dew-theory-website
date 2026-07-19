@@ -13,7 +13,7 @@ export default function MembershipPage() {
         <Rule left="Membership" right="Coming into focus" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.05] text-graphite"
+          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
         >
           Stay in the plan
         </h1>
@@ -56,7 +56,7 @@ export default function MembershipPage() {
           }
         ].map((card) => (
           <article key={card.name} data-reveal className="glass-1 flex flex-col p-8">
-            <h2 className="font-display text-xl text-graphite">{card.name}</h2>
+            <h2 className="font-display text-xl font-normal text-graphite">{card.name}</h2>
             <ul className="mt-6 flex-1 space-y-3">
               {card.points.map((p) => (
                 <li
@@ -72,7 +72,7 @@ export default function MembershipPage() {
       </div>
 
       <div className="mt-16 max-w-lg">
-        <h2 className="font-display text-2xl text-graphite">Interest list</h2>
+        <h2 className="font-display text-2xl font-normal text-graphite">Interest list</h2>
         <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/70">
           Leave a note on the contact form if you want to hear when membership opens — no fake
           checkout, no invented monthly price.

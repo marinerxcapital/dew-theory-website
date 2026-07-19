@@ -23,7 +23,7 @@ export default function AboutPage() {
             <Rule left="Aesthetician" right="Licensed" data-reveal />
             <h1
               data-reveal
-              className="mt-8 font-display text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.05] text-graphite"
+              className="mt-8 font-display text-[clamp(2.4rem,5.5vw,4rem)] font-normal leading-[1.05] text-graphite"
             >
               Emily Mitchener
             </h1>
@@ -60,7 +60,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-shell px-6 py-24 lg:px-10" data-reveal-group="philosophy">
           <h2
             data-reveal
-            className="font-display text-[clamp(1.8rem,3.8vw,2.6rem)] text-graphite"
+            className="font-display text-[clamp(1.8rem,3.8vw,2.6rem)] font-normal text-graphite"
           >
             How she works
           </h2>
@@ -80,7 +80,7 @@ export default function AboutPage() {
               }
             ].map((item) => (
               <li key={item.t} data-reveal className="glass-1 p-8">
-                <h3 className="font-display text-xl text-graphite">{item.t}</h3>
+                <h3 className="font-display text-xl font-normal text-graphite">{item.t}</h3>
                 <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/70">
                   {item.d}
                 </p>
@@ -94,7 +94,7 @@ export default function AboutPage() {
         <Rule left="Credentials" right="Practice" />
         <div className="mt-10 grid gap-10 md:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl text-graphite">Licensed aesthetician</h2>
+            <h2 className="font-display text-2xl font-normal text-graphite">Licensed aesthetician</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
               {/* OPEN: exact license board / number not provided */}
               State-licensed aesthetician practicing medical-adjacent skincare with professional-grade
@@ -103,7 +103,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div>
-            <h2 className="font-display text-2xl text-graphite">Skin Script educator energy</h2>
+            <h2 className="font-display text-2xl font-normal text-graphite">Skin Script educator energy</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
               You leave knowing what each product does and when to use it — not just a bag and a
               receipt. The sequencing is the product.

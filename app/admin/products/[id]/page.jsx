@@ -10,7 +10,7 @@ export default async function EditProductPage({ params }) {
 
   return (
     <div>
-      <h1 className="font-display text-3xl text-graphite">Edit product</h1>
+      <h1 className="font-display text-3xl font-normal text-graphite">Edit product</h1>
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">{product.name}</p>
       <div className="mt-10">
         <ProductForm product={product} />

@@ -26,7 +26,7 @@ export default function AppointmentStatusForm({ appointmentId, current }) {
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="border border-chrome/30 bg-pearl/90 px-2 py-2 font-body text-xs"
+        className="border border-chrome/30 bg-pearl/90 px-2 py-2 font-body text-xs font-light"
       >
         {STATUSES.map((s) => (
           <option key={s} value={s}>
@@ -38,7 +38,7 @@ export default function AppointmentStatusForm({ appointmentId, current }) {
         type="button"
         onClick={save}
         disabled={loading}
-        className="border border-graphite/25 px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-charcoal"
+        className="border border-graphite/25 px-3 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-charcoal"
       >
         Save
       </button>

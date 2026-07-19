@@ -39,7 +39,7 @@ export default function ContactForm() {
   if (status === 'sent') {
     return (
       <div className="glass-1 p-10">
-        <h2 className="font-display text-2xl text-graphite">Message received</h2>
+        <h2 className="font-display text-2xl font-normal text-graphite">Message received</h2>
         <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
           Emily or the studio will reply to the email you left. For appointment changes, include your
           booking reference if you have one.

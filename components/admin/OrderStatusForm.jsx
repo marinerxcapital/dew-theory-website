@@ -37,14 +37,14 @@ export default function OrderStatusForm({ orderId, current }) {
 
   return (
     <form onSubmit={save} className="glass-1 p-6">
-      <h2 className="font-display text-xl text-graphite">Fulfillment status</h2>
+      <h2 className="font-display text-xl font-normal text-graphite">Fulfillment status</h2>
       <p className="mt-2 font-body text-xs font-light text-charcoal/60">
         Manual only — does not auto-order from Skin Script.
       </p>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="mt-4 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+        className="mt-4 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
       >
         {STATUSES.map((s) => (
           <option key={s} value={s}>
@@ -59,7 +59,7 @@ export default function OrderStatusForm({ orderId, current }) {
       >
         {loading ? 'Saving…' : 'Update status'}
       </button>
-      {msg && <p className="mt-2 font-body text-xs text-charcoal/60">{msg}</p>}
+      {msg && <p className="mt-2 font-body text-xs font-light text-charcoal/60">{msg}</p>}
     </form>
   );
 }

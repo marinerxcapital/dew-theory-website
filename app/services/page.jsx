@@ -18,7 +18,7 @@ export default function ServicesPage() {
         <Rule left="Services" right="In studio" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.05] text-graphite"
+          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
         >
           The treatment menu
         </h1>
@@ -37,7 +37,7 @@ export default function ServicesPage() {
           <li key={s.id} data-reveal className="border-b border-chrome/20">
             <div className="grid gap-6 py-10 md:grid-cols-[1fr_1.2fr_auto] md:items-start md:px-2">
               <div>
-                <h2 className="font-display text-2xl text-graphite">{s.name}</h2>
+                <h2 className="font-display text-2xl font-normal text-graphite">{s.name}</h2>
                 <Rule
                   left={formatDuration(s.duration_minutes)}
                   right={formatServicePrice(s.price)}
@@ -59,7 +59,7 @@ export default function ServicesPage() {
       </ul>
 
       <div className="mt-16 glass-1 p-8 md:p-10">
-        <h2 className="font-display text-xl text-graphite">Deposits & cancellations</h2>
+        <h2 className="font-display text-xl font-normal text-graphite">Deposits & cancellations</h2>
         <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
           {/* OPEN_ITEMS: deposit % and cutoff window unconfirmed */}
           Deposit percentage and cancellation cutoff are still being set. The booking flow supports a

@@ -9,7 +9,7 @@ export default async function AdminAppointmentsPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl text-graphite">Appointments</h1>
+      <h1 className="font-display text-3xl font-normal text-graphite">Appointments</h1>
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">
         Booking queue. Google Calendar event IDs appear here once OAuth is connected.
       </p>
@@ -18,7 +18,7 @@ export default async function AdminAppointmentsPage() {
         {appointments.map((a) => (
           <li key={a.id} className="grid gap-4 py-6 md:grid-cols-[1.2fr_1fr_auto] md:items-center">
             <div>
-              <p className="font-display text-lg text-graphite">{a.service_name}</p>
+              <p className="font-display text-lg font-normal text-graphite">{a.service_name}</p>
               <p className="mt-1 font-body text-sm font-light text-charcoal/70">
                 {new Date(a.start_time).toLocaleString()} · {a.duration_minutes} min ·{' '}
                 {formatMoney(a.price)}
@@ -27,7 +27,7 @@ export default async function AdminAppointmentsPage() {
                 {a.customer?.name} · {a.customer?.email} · {a.customer?.phone}
               </p>
             </div>
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-chrome">
+            <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
               {a.status}
               {a.calendar_event_id ? ` · cal ${a.calendar_event_id}` : ''}
             </p>

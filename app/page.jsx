@@ -54,7 +54,7 @@ export default function Home() {
         <div className="mx-auto max-w-shell px-6 py-24 lg:px-10" data-reveal-group="thesis">
           <p
             data-reveal
-            className="max-w-3xl font-display text-[clamp(1.6rem,3.6vw,2.75rem)] leading-[1.32] text-graphite"
+            className="max-w-3xl font-display text-[clamp(1.6rem,3.6vw,2.75rem)] font-normal leading-[1.32] text-graphite"
           >
             Most skin problems are a sequencing problem. We sell the actives that work, and the
             appointment that tells you the order to use them in.
@@ -77,7 +77,7 @@ export default function Home() {
                 {d.eyebrow}
               </p>
               <div className="mt-10">
-                <h2 className="font-display text-[clamp(2rem,4vw,2.9rem)] leading-tight text-graphite">
+                <h2 className="font-display text-[clamp(2rem,4vw,2.9rem)] font-normal leading-tight text-graphite">
                   {d.title}
                 </h2>
                 <p className="mt-4 max-w-sm font-body text-sm font-light leading-relaxed text-charcoal/75">
@@ -95,7 +95,7 @@ export default function Home() {
       {/* Featured products */}
       <section className="mx-auto max-w-shell px-6 pb-24 lg:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-[clamp(1.9rem,4vw,2.8rem)] text-graphite">
+          <h2 className="font-display text-[clamp(1.9rem,4vw,2.8rem)] font-normal text-graphite">
             Where most people start
           </h2>
           <Link
@@ -119,7 +119,7 @@ export default function Home() {
               <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
                 {p.category}
               </p>
-              <h3 className="mt-3 font-display text-xl text-graphite">{p.name}</h3>
+              <h3 className="mt-3 font-display text-xl font-normal text-graphite">{p.name}</h3>
               <p className="mt-3 flex-1 font-body text-sm font-light leading-relaxed text-charcoal/70">
                 {p.note}
               </p>
@@ -147,7 +147,7 @@ export default function Home() {
             <Rule left="Aesthetician" right="Licensed" data-reveal />
             <h2
               data-reveal
-              className="mt-8 font-display text-[clamp(2rem,4.4vw,3.2rem)] leading-tight text-graphite"
+              className="mt-8 font-display text-[clamp(2rem,4.4vw,3.2rem)] font-normal leading-tight text-graphite"
             >
               Emily Mitchener
             </h2>
@@ -172,7 +172,7 @@ export default function Home() {
 
       {/* Services preview — duration and price are a real pair, so they get the rule */}
       <section className="mx-auto max-w-shell px-6 py-24 lg:px-10">
-        <h2 className="font-display text-[clamp(1.9rem,4vw,2.8rem)] text-graphite">
+        <h2 className="font-display text-[clamp(1.9rem,4vw,2.8rem)] font-normal text-graphite">
           The treatment menu
         </h2>
 
@@ -183,7 +183,7 @@ export default function Home() {
                 href={`/book?service=${s.id}`}
                 className="sweep grid gap-4 py-8 transition-colors hover:bg-pearl/50 md:grid-cols-[1.1fr_1.4fr_auto] md:items-center md:px-4"
               >
-                <h3 className="font-display text-xl text-graphite">{s.name}</h3>
+                <h3 className="font-display text-xl font-normal text-graphite">{s.name}</h3>
                 <p className="font-body text-sm font-light leading-relaxed text-charcoal/70">
                   {s.note}
                 </p>

@@ -9,7 +9,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl text-graphite">Orders</h1>
+      <h1 className="font-display text-3xl font-normal text-graphite">Orders</h1>
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">
         Manual fulfillment — mark submitted to Skin Script after you place the wholesale order.
       </p>
@@ -41,7 +41,7 @@ export default async function AdminOrdersPage() {
                 <td className="py-4">
                   <Link
                     href={`/admin/orders/${o.id}`}
-                    className="font-label text-[0.62rem] uppercase tracking-lockup text-charcoal hover:underline"
+                    className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-charcoal hover:underline"
                   >
                     Open
                   </Link>

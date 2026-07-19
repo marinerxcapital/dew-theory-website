@@ -6,7 +6,7 @@ export default function Stub({ eyebrow, title, note }) {
   return (
     <section className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10">
       <Rule left={eyebrow} right="In progress" />
-      <h1 className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] leading-[1.02] text-graphite">
+      <h1 className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] font-normal leading-[1.02] text-graphite">
         {title}
       </h1>
       <p className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75">

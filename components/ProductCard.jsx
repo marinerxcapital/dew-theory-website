@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
         <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
           {product.category}
         </p>
-        <h3 className="mt-3 font-display text-xl text-graphite">{product.name}</h3>
+        <h3 className="mt-3 font-display text-xl font-normal text-graphite">{product.name}</h3>
         <p className="mt-3 flex-1 font-body text-sm font-light leading-relaxed text-charcoal/70">
           {product.description_short}
         </p>

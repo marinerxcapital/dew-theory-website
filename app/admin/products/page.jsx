@@ -11,7 +11,7 @@ export default async function AdminProductsPage() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl text-graphite">Products</h1>
+          <h1 className="font-display text-3xl font-normal text-graphite">Products</h1>
           <p className="mt-2 font-body text-sm font-light text-charcoal/70">
             Full CRUD. Retail auto-computes at wholesale × 2 on create/import.
           </p>
@@ -55,7 +55,7 @@ export default async function AdminProductsPage() {
                 <td className="py-4">
                   <Link
                     href={`/admin/products/${p.id}`}
-                    className="font-label text-[0.62rem] uppercase tracking-lockup text-charcoal hover:underline"
+                    className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-charcoal hover:underline"
                   >
                     Edit
                   </Link>

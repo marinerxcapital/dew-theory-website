@@ -18,6 +18,12 @@ module.exports = {
         label:   ['var(--font-label)', 'system-ui', 'sans-serif'],
         body:    ['var(--font-body)', 'system-ui', 'sans-serif']
       },
+      fontWeight: {
+        // Keep 300 as the default “light” story for labels + body
+        light: '300',
+        normal: '400',
+        medium: '500'
+      },
       letterSpacing: { lockup: '0.34em', wide2: '0.18em' },
       maxWidth: { shell: '78rem' }
     }

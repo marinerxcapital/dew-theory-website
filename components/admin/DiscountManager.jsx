@@ -58,19 +58,19 @@ export default function DiscountManager({ initial }) {
   return (
     <div className="grid gap-12 lg:grid-cols-2">
       <form onSubmit={create} className="space-y-4 glass-1 p-6">
-        <h2 className="font-display text-xl text-graphite">Create code</h2>
+        <h2 className="font-display text-xl font-normal text-graphite">Create code</h2>
         <input
           required
           placeholder="Code (e.g. DEW15)"
           value={form.code}
           onChange={(e) => setForm((f) => ({ ...f, code: e.target.value.toUpperCase() }))}
-          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm uppercase"
+          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light uppercase"
         />
         <div className="grid grid-cols-2 gap-3">
           <select
             value={form.type}
             onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
-            className="border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           >
             <option value="percentage">Percentage</option>
             <option value="fixed">Fixed $</option>
@@ -81,26 +81,26 @@ export default function DiscountManager({ initial }) {
             required
             value={form.value}
             onChange={(e) => setForm((f) => ({ ...f, value: e.target.value }))}
-            className="border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+            className="border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           />
         </div>
         <input
           placeholder="Max uses (optional)"
           value={form.max_uses}
           onChange={(e) => setForm((f) => ({ ...f, max_uses: e.target.value }))}
-          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
         />
         <input
           placeholder="Referrer customer id (optional)"
           value={form.referrer_customer_id}
           onChange={(e) => setForm((f) => ({ ...f, referrer_customer_id: e.target.value }))}
-          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
+          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
         />
         {error && <p className="text-xs text-charcoal/70">{error}</p>}
         <button
           type="submit"
           disabled={loading}
-          className="border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] uppercase tracking-lockup text-pearl"
+          className="border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl"
         >
           Create
         </button>
@@ -110,7 +110,7 @@ export default function DiscountManager({ initial }) {
         {codes.map((c) => (
           <li key={c.id} className="flex flex-wrap items-center justify-between gap-3 py-4">
             <div>
-              <p className="font-display text-lg text-graphite">{c.code}</p>
+              <p className="font-display text-lg font-normal text-graphite">{c.code}</p>
               <p className="font-body text-xs font-light text-charcoal/60">
                 {c.type === 'percentage' ? `${c.value}%` : `$${c.value}`} · used {c.uses_count}
                 {c.max_uses != null ? ` / ${c.max_uses}` : ''}
@@ -121,7 +121,7 @@ export default function DiscountManager({ initial }) {
             <button
               type="button"
               onClick={() => toggle(c.id, c.active)}
-              className="font-label text-[0.62rem] uppercase tracking-lockup text-chrome hover:text-charcoal"
+              className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
             >
               {c.active ? 'Deactivate' : 'Activate'}
             </button>

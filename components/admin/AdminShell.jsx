@@ -29,7 +29,7 @@ export default function AdminShell({ admin, children }) {
             <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
               Admin
             </p>
-            <p className="font-display text-lg text-graphite">Dew Theory</p>
+            <p className="font-display text-lg font-normal text-graphite">Dew Theory</p>
           </div>
           <p className="font-body text-xs font-light text-charcoal/60">
             {admin.name} · {admin.role}

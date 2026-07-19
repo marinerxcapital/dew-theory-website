@@ -34,7 +34,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
-      <body className="bg-pearl text-charcoal antialiased">
+      <body className="bg-pearl font-body font-light text-charcoal antialiased">
         <CartProvider>
           <MotionRoot />
           <Nav />

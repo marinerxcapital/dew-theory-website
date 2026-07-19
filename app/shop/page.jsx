@@ -14,7 +14,7 @@ export default function ShopPage() {
         <Rule left="Shop" right="Skin Script" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.05] text-graphite"
+          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
         >
           The collection
         </h1>

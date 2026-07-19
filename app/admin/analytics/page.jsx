@@ -59,7 +59,7 @@ export default async function AdminAnalyticsPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl text-graphite">Analytics</h1>
+      <h1 className="font-display text-3xl font-normal text-graphite">Analytics</h1>
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">
         From site data (Orders, Appointments, DiscountCodes, events) — not static mock UI numbers.
         Visitor traffic source needs a provider (recommended: Vercel Analytics).
@@ -72,17 +72,17 @@ export default async function AdminAnalyticsPage() {
           { label: 'Avg order value', value: formatMoney(aov) }
         ].map((c) => (
           <div key={c.label} className="glass-1 p-6">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-chrome">
+            <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
               {c.label}
             </p>
-            <p className="mt-2 font-display text-2xl text-graphite">{c.value}</p>
+            <p className="mt-2 font-display text-2xl font-normal text-graphite">{c.value}</p>
           </div>
         ))}
       </div>
 
       <div className="mt-14 grid gap-12 lg:grid-cols-2">
         <section>
-          <h2 className="font-display text-xl text-graphite">Shop funnel</h2>
+          <h2 className="font-display text-xl font-normal text-graphite">Shop funnel</h2>
           <ul className="mt-4 space-y-2">
             {shopFunnel.map((s) => (
               <li
@@ -96,7 +96,7 @@ export default async function AdminAnalyticsPage() {
           </ul>
         </section>
         <section>
-          <h2 className="font-display text-xl text-graphite">Booking funnel</h2>
+          <h2 className="font-display text-xl font-normal text-graphite">Booking funnel</h2>
           <ul className="mt-4 space-y-2">
             {bookFunnel.map((s) => (
               <li
@@ -113,7 +113,7 @@ export default async function AdminAnalyticsPage() {
 
       <div className="mt-14 grid gap-12 lg:grid-cols-2">
         <section>
-          <h2 className="font-display text-xl text-graphite">Product performance</h2>
+          <h2 className="font-display text-xl font-normal text-graphite">Product performance</h2>
           <ul className="mt-4 divide-y divide-chrome/15 border-y border-chrome/15">
             {[...byProduct.values()].map((p) => (
               <li key={p.name} className="flex justify-between py-3 font-body text-sm font-light">
@@ -129,7 +129,7 @@ export default async function AdminAnalyticsPage() {
           </ul>
         </section>
         <section>
-          <h2 className="font-display text-xl text-graphite">By category</h2>
+          <h2 className="font-display text-xl font-normal text-graphite">By category</h2>
           <ul className="mt-4 divide-y divide-chrome/15 border-y border-chrome/15">
             {[...byCategory.entries()].map(([cat, v]) => (
               <li key={cat} className="flex justify-between py-3 font-body text-sm font-light">
@@ -144,7 +144,7 @@ export default async function AdminAnalyticsPage() {
       </div>
 
       <section className="mt-14">
-        <h2 className="font-display text-xl text-graphite">Service utilization</h2>
+        <h2 className="font-display text-xl font-normal text-graphite">Service utilization</h2>
         <ul className="mt-4 divide-y divide-chrome/15 border-y border-chrome/15">
           {[...byService.entries()].map(([name, v]) => (
             <li key={name} className="flex justify-between py-3 font-body text-sm font-light">
@@ -158,7 +158,7 @@ export default async function AdminAnalyticsPage() {
       </section>
 
       <section className="mt-14">
-        <h2 className="font-display text-xl text-graphite">Discount codes</h2>
+        <h2 className="font-display text-xl font-normal text-graphite">Discount codes</h2>
         <ul className="mt-4 divide-y divide-chrome/15 border-y border-chrome/15">
           {store.discount_codes.map((d) => (
             <li key={d.id} className="flex justify-between py-3 font-body text-sm font-light">

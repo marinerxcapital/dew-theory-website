@@ -10,7 +10,7 @@ Interval: 30m
 | A2 | done | middleware admin gate; prod rejects default password/session secret; origin CSRF on mutations; rate limit 10/15m; timing-safe compare; no dev creds in prod UI | 2026-07-19T06:48:00Z |
 | A3 | done | next 15.5.20 + react 19.2.7 + postcss 8.5.19/overrides; npm audit 0 vulns; build pass; see DEPENDENCY_AUDIT.md | 2026-07-19T07:24:00Z |
 | B1 | done | CSS tokens as CSS vars; glass/nav/specular off pure #FFF; all bg-white* → pearl; no Inter/SaaS greys | 2026-07-19T07:55:00Z |
-| B2 | pending | | |
+| B2 | done | body default Karla 300; labels Jost 300 + 0.34em lockup; display Bodoni 400; form inherit; type-* utilities | 2026-07-19T08:25:00Z |
 | B3 | pending | | |
 | B4 | pending | | |
 | B5 | pending | | |

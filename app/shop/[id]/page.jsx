@@ -45,7 +45,7 @@ export default function ProductDetailPage({ params }) {
 
         <div>
           <Rule left={product.category} right={product.size || 'Size TBD'} />
-          <h1 className="mt-8 font-display text-[clamp(2.2rem,4.5vw,3.4rem)] leading-tight text-graphite">
+          <h1 className="mt-8 font-display text-[clamp(2.2rem,4.5vw,3.4rem)] font-normal leading-tight text-graphite">
             {product.name}
           </h1>
           <p className="mt-4 font-label text-lg font-light tracking-wide2 text-charcoal">
@@ -88,13 +88,13 @@ export default function ProductDetailPage({ params }) {
 
       {actives.length > 0 && (
         <section className="mt-24 border-t border-chrome/20 pt-16" data-reveal-group="actives">
-          <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.4rem)] text-graphite">
+          <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.4rem)] font-normal text-graphite">
             Key actives
           </h2>
           <ul className="mt-10 grid gap-6 md:grid-cols-2">
             {actives.map((a) => (
               <li key={a.name} data-reveal className="glass-1 p-6">
-                <p className="font-display text-lg text-graphite">{a.name}</p>
+                <p className="font-display text-lg font-normal text-graphite">{a.name}</p>
                 <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/70">
                   {a.function}
                 </p>

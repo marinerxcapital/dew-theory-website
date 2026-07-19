@@ -24,6 +24,33 @@ body {
   background: var(--color-pearl, #F4F6F7);
   color: var(--color-charcoal, #24262C);
   font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 300; /* Karla 300 — body always recedes */
+}
+
+/* Type roles — prefer these over ad-hoc weights */
+.type-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+}
+.type-label {
+  font-family: var(--font-label), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+.type-body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 300;
+}
+
+/* Form controls inherit Karla 300, not browser UI font */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {

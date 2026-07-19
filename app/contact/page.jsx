@@ -12,7 +12,7 @@ export default function ContactPage() {
       <div className="grid gap-16 lg:grid-cols-2">
         <div>
           <Rule left="Contact" right="Studio" />
-          <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] leading-[1.05] text-graphite">
+          <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.05] text-graphite">
             Write us
           </h1>
           <p className="mt-6 max-w-md font-body text-base font-light leading-relaxed text-charcoal/75">

@@ -14,7 +14,7 @@ export default function StudioPage() {
           <Rule left="Studio" right="Visit" data-reveal />
           <h1
             data-reveal
-            className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.05] text-graphite"
+            className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
           >
             The room
           </h1>
@@ -45,7 +45,7 @@ export default function StudioPage() {
       <section className="border-y border-chrome/15 bg-ivory">
         <div className="mx-auto grid max-w-shell gap-12 px-6 py-24 md:grid-cols-2 lg:px-10">
           <div>
-            <h2 className="font-display text-2xl text-graphite">Location</h2>
+            <h2 className="font-display text-2xl font-normal text-graphite">Location</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
               {/* OPEN_ITEMS: studio name and address unconfirmed */}
               Studio name and street address are still open items. Once Emily confirms, this block
@@ -56,7 +56,7 @@ export default function StudioPage() {
             </p>
           </div>
           <div>
-            <h2 className="font-display text-2xl text-graphite">Hours</h2>
+            <h2 className="font-display text-2xl font-normal text-graphite">Hours</h2>
             <ul className="mt-4 space-y-2 font-body text-sm font-light text-charcoal/75">
               {/* Placeholder hours — flag as invented */}
               <li className="flex justify-between border-b border-chrome/15 py-2">
