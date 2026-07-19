@@ -2,8 +2,9 @@ import Link from 'next/link';
 import Rule from '@/components/Rule';
 
 export const metadata = {
-  title: 'Membership — Dew Theory',
-  description: 'Dew Theory membership — terms to be confirmed before launch.'
+  title: 'Membership',
+  description:
+    'Dew Theory membership — a steady rhythm of care. Terms and tiers will publish when Emily sets them.'
 };
 
 export default function MembershipPage() {
@@ -21,10 +22,10 @@ export default function MembershipPage() {
           data-reveal
           className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
         >
-          {/* OPEN_ITEMS: membership may not launch; terms unconfirmed — do not invent pricing */}
-          Membership is on the table as a way to keep appointments and product refills in a steady
-          rhythm. Exact tiers, pricing, and perks are not published yet — Emily will set terms before
-          anyone can join.
+          {/* OPEN_ITEMS: membership may not launch; terms unconfirmed — no invented pricing */}
+          Membership is under consideration as a way to keep appointments and refills in a calm
+          rhythm. Tiers, price, and perks are not published — and will not be invented for the page.
+          Emily will set terms before anyone can join.
         </p>
       </div>
 
@@ -34,24 +35,24 @@ export default function MembershipPage() {
             name: 'What it might hold',
             points: [
               'Priority booking windows',
-              'A calm cadence of facials',
-              'Member access to restocks'
+              'A steady cadence of facials',
+              'Quiet access when restocks land'
             ]
           },
           {
             name: 'What it will not be',
             points: [
               'A hard sell at the end of a facial',
-              'A locked-in product subscription you don’t need',
-              'Terms invented to look finished'
+              'A locked subscription of products you do not need',
+              'Terms fabricated to look finished'
             ]
           },
           {
             name: 'Until then',
             points: [
               'Book facials as you need them',
-              'Shop the full Skin Script line',
-              'Join the list when terms go live'
+              'Shop the Skin Script line',
+              'Leave your name when you want the announcement'
             ]
           }
         ].map((card) => (
@@ -71,11 +72,11 @@ export default function MembershipPage() {
         ))}
       </div>
 
-      <div className="mt-16 max-w-lg">
+      <div className="mt-16 max-w-lg" data-reveal>
         <h2 className="font-display text-2xl font-normal text-graphite">Interest list</h2>
         <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/70">
-          Leave a note on the contact form if you want to hear when membership opens — no fake
-          checkout, no invented monthly price.
+          Use the contact form if you want word when membership opens — no fake checkout, no invented
+          monthly fee.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link

@@ -2,8 +2,9 @@ import Link from 'next/link';
 import Rule from '@/components/Rule';
 
 export const metadata = {
-  title: 'About Emily — Dew Theory',
-  description: 'Licensed aesthetician Emily Mitchener — the read, the plan, the actives.'
+  title: 'About Emily',
+  description:
+    'Emily Mitchener — licensed aesthetician. Barrier-first facials and Skin Script actives, sequenced for your skin that week.'
 };
 
 export default function AboutPage() {
@@ -31,19 +32,19 @@ export default function AboutPage() {
               data-reveal
               className="mt-8 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
             >
-              {/* PLACEHOLDER bio — OPEN_ITEMS.md */}
-              Emily treats skin the way a good technician treats an engine: look first, change one
-              variable at a time, and don&apos;t sell you a part you don&apos;t need. Every appointment
-              starts with a read of where your barrier actually is that week — not last month, not
-              what a product ad promised.
+              {/* PLACEHOLDER bio — OPEN_ITEMS.md: not Emily-approved copy */}
+              Emily approaches skin the way a careful technician approaches a system: look first,
+              change one variable at a time, and never sell a part you do not need. Each appointment
+              begins with a read of the barrier as it is that week — not last season, not a product
+              claim.
             </p>
             <p
               data-reveal
               className="mt-5 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
             >
-              She works exclusively with Skin Script formulations in the room and on the shelf, so
-              the actives she recommends are the same ones she uses on your face. No mystery
-              back-bar. No “trust me” kits.
+              She works with Skin Script in the treatment room and on the shelf. The actives she
+              recommends are the ones she uses on your face. No mystery back-bar. No kit built for
+              the ticket average.
             </p>
             <Link
               data-reveal
@@ -68,15 +69,15 @@ export default function AboutPage() {
             {[
               {
                 t: 'Read first',
-                d: 'Barrier status, congestion, sensitivity, and what you’ve already been putting on. The plan comes after the facts.'
+                d: 'Barrier, congestion, sensitivity, and what is already on the shelf at home. The plan follows the facts.'
               },
               {
                 t: 'One variable',
-                d: 'Change too much at once and you never know what worked. Emily sequences actives so progress is legible.'
+                d: 'Change too much at once and you never know what worked. Actives are sequenced so progress stays legible.'
               },
               {
                 t: 'Honest shelf',
-                d: 'If you don’t need it, she won’t sell it. The shop exists to continue the plan — not to empty the cart.'
+                d: 'If you do not need it, she will not sell it. The shop continues the plan — it does not empty the cart.'
               }
             ].map((item) => (
               <li key={item.t} data-reveal className="glass-1 p-8">
@@ -91,22 +92,22 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-shell px-6 py-24 lg:px-10">
-        <Rule left="Credentials" right="Practice" />
+        <Rule left="Credentials" right="Practice" data-reveal />
         <div className="mt-10 grid gap-10 md:grid-cols-2">
-          <div>
+          <div data-reveal>
             <h2 className="font-display text-2xl font-normal text-graphite">Licensed aesthetician</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
-              {/* OPEN: exact license board / number not provided */}
-              State-licensed aesthetician practicing medical-adjacent skincare with professional-grade
-              peels, extractions, and barrier-first protocols. Specific license details to be confirmed
-              before launch.
+              {/* OPEN_ITEMS: license board / number not provided */}
+              State-licensed aesthetician working in medical-adjacent skincare — peels, extractions,
+              and barrier-first protocols. Exact board and license number will be listed here once
+              confirmed for launch.
             </p>
           </div>
-          <div>
-            <h2 className="font-display text-2xl font-normal text-graphite">Skin Script educator energy</h2>
+          <div data-reveal>
+            <h2 className="font-display text-2xl font-normal text-graphite">The same actives, explained</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
-              You leave knowing what each product does and when to use it — not just a bag and a
-              receipt. The sequencing is the product.
+              You leave knowing what each product does and when to use it — not only a bag and a
+              receipt. Order of operations is the work.
             </p>
           </div>
         </div>

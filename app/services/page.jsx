@@ -7,8 +7,9 @@ import {
 } from '@/lib/services';
 
 export const metadata = {
-  title: 'Services — Dew Theory',
-  description: 'In-studio facial treatments with licensed aesthetician Emily Mitchener.'
+  title: 'Services',
+  description:
+    'In-studio facial treatments with Emily Mitchener. Barrier read first, then the right protocol for that week.'
 };
 
 export default function ServicesPage() {
@@ -27,8 +28,8 @@ export default function ServicesPage() {
           className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
         >
           {/* PLACEHOLDER menu — OPEN_ITEMS.md: names, durations, prices need Emily’s confirmation */}
-          Every appointment starts with a barrier read. Times and prices below are working placeholders
-          until Emily finalizes the live menu.
+          Every visit starts with a barrier read. Names, times, and prices below are a working draft
+          until Emily publishes the live menu — polished prose, not confirmed business facts.
         </p>
       </div>
 
@@ -60,13 +61,12 @@ export default function ServicesPage() {
         ))}
       </ul>
 
-      <div className="mt-16 glass-1 p-8 md:p-10">
-        <h2 className="font-display text-xl font-normal text-graphite">Deposits & cancellations</h2>
+      <div className="mt-16 glass-1 p-8 md:p-10" data-reveal>
+        <h2 className="font-display text-xl font-normal text-graphite">Deposits &amp; cancellations</h2>
         <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
-          {/* OPEN_ITEMS: deposit % and cutoff window unconfirmed */}
-          Deposit percentage and cancellation cutoff are still being set. The booking flow supports a
-          deposit step without hardcoding unconfirmed numbers — Emily will publish the policy before
-          live bookings open.
+          {/* OPEN_ITEMS: deposit % and cancellation cutoff unconfirmed */}
+          Deposit amount and cancellation window are not set yet. The booking flow is built to hold a
+          policy without inventing numbers — Emily will publish terms before live deposits open.
         </p>
       </div>
     </section>

@@ -50,15 +50,19 @@ Resolve before launch.
 
 ## 3. Business facts still invented (unrelated to the product catalog)
 
+Prose on About / Services / Studio / Membership / Contact was polished for brand voice in
+polish pass **D5** — elevated and minimal, not salesy. **Facts below remain unconfirmed.**
+
 | Location | What was invented |
 |---|---|
-| `app/page.jsx` → Emily band / `app/about/page.jsx` | Emily Mitchener's bio paragraphs |
+| `app/page.jsx` → Emily band / `app/about/page.jsx` | Emily Mitchener's bio paragraphs (polished draft, not approved) |
 | `app/page.jsx` → Thesis section | The brand thesis sentence |
 | `lib/services.js` + Services/Book/Home | All service names, durations, and prices — still needs Emily's actual menu |
 | `components/Footer.jsx` | The one-line brand descriptor |
 | `app/studio/page.jsx` | Working hours (Mon–Sat); address intentionally "pending" |
 | `app/contact/page.jsx` | `hello@dewtheory.studio` email — domain not confirmed |
 | About credentials block | License board/number not provided |
+| Membership page | Directional language only; no tiers or prices invented |
 
 ---
 

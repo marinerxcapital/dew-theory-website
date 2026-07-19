@@ -21,7 +21,7 @@ Interval: 30m
 | D2 | done | shop server store; hide discontinued; OOS badges; empty filter + empty catalog; category counts; force-dynamic | 2026-07-19T12:25:00Z |
 | D3 | done | variant required (no preselect); related strip; /api/events + product_view tracker; OOS/discontinued PDP; server product | 2026-07-19T12:55:00Z |
 | D4 | done | cart qty 0/max20; sanitize missing SKUs; free-ship progress; promo clear; Stripe session_id confirm + clear bag | 2026-07-19T13:25:00Z |
-| D5 | pending | | |
+| D5 | done | brand-voice copy on about/services/studio/membership/contact + footer; facts still OPEN_ITEMS | 2026-07-19T13:55:00Z |
 | D6 | pending | | |
 | E1 | pending | | |
 | E2 | pending | | |

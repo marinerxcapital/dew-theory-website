@@ -22,7 +22,8 @@ export default function Footer() {
             <p className="font-display text-3xl italic lowercase text-graphite">dew theory</p>
             <Rule left="Skin" right="Care" className="mt-4" />
             <p className="mt-6 max-w-xs font-body text-sm font-light leading-relaxed text-charcoal/70">
-              Skin Script formulations and in-studio facials, in one place.
+              {/* OPEN_ITEMS: brand descriptor still placeholder */}
+              Skin Script actives and in-studio facials — the plan and the products, together.
             </p>
           </div>
 

@@ -2,8 +2,9 @@ import Link from 'next/link';
 import Rule from '@/components/Rule';
 
 export const metadata = {
-  title: 'Studio — Dew Theory',
-  description: 'Visit the Dew Theory studio for Skin Script facials with Emily Mitchener.'
+  title: 'Studio',
+  description:
+    'The Dew Theory treatment room — quiet, clinical-calm, set up for a proper skin read.'
 };
 
 export default function StudioPage() {
@@ -22,15 +23,12 @@ export default function StudioPage() {
             data-reveal
             className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
           >
-            Quiet, clinical-calm, and set up for a proper skin read — not a spa day of noise. Studio
-            photography lands here once we have it; the iridescent fields hold the space for now.
+            Quiet and clinical-calm — built for a barrier read, not spa noise. Studio photography
+            will replace the iridescent fields when it exists; until then they hold the light.
           </p>
         </div>
 
-        <div
-          className="mt-16 grid gap-6 md:grid-cols-3"
-          data-reveal-group="studio-photos"
-        >
+        <div className="mt-16 grid gap-6 md:grid-cols-3" data-reveal-group="studio-photos">
           {[1, 2, 3].map((n) => (
             <div
               key={n}
@@ -44,21 +42,21 @@ export default function StudioPage() {
 
       <section className="border-y border-chrome/15 bg-ivory">
         <div className="mx-auto grid max-w-shell gap-12 px-6 py-24 md:grid-cols-2 lg:px-10">
-          <div>
+          <div data-reveal>
             <h2 className="font-display text-2xl font-normal text-graphite">Location</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
-              {/* OPEN_ITEMS: studio name and address unconfirmed */}
-              Studio name and street address are still open items. Once Emily confirms, this block
-              becomes the real address with a map link — no invented city or suite number.
+              {/* OPEN_ITEMS: studio name and address unconfirmed — no invented city */}
+              Street address and studio name are still open. When Emily confirms them, this block
+              becomes the real location with a map link — not a placeholder suite number.
             </p>
             <p className="mt-4 font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
               Address pending confirmation
             </p>
           </div>
-          <div>
+          <div data-reveal>
             <h2 className="font-display text-2xl font-normal text-graphite">Hours</h2>
             <ul className="mt-4 space-y-2 font-body text-sm font-light text-charcoal/75">
-              {/* Placeholder hours — flag as invented */}
+              {/* PLACEHOLDER hours — OPEN_ITEMS.md */}
               <li className="flex justify-between border-b border-chrome/15 py-2">
                 <span>Monday – Friday</span>
                 <span>10:00 – 6:00</span>
@@ -73,7 +71,7 @@ export default function StudioPage() {
               </li>
             </ul>
             <p className="mt-4 font-body text-xs font-light text-charcoal/55">
-              Hours are a working assumption until Emily confirms — see OPEN_ITEMS.md.
+              Hours are a working assumption until confirmed — not a published schedule yet.
             </p>
           </div>
         </div>
