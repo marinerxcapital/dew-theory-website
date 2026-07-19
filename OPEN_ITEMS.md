@@ -1,0 +1,127 @@
+# OPEN_ITEMS.md — Dew Theory
+
+Everything on this list is invented, assumed, or blocked. Nothing here is confirmed fact.
+Resolve before launch.
+
+---
+
+## 1. Resolved this pass (were open, now confirmed)
+
+- **Shipping.** $7 flat rate, waived at $49+ subtotal — confirmed business rule, now in
+  `DEW_THEORY_BUILD_PROMPT_ADDENDUM.md` Section 5A and the `Orders` schema.
+- **Markup formula.** Retail = wholesale × 2, confirmed against 7 of 8 client-supplied product pairs.
+  Applied to the 8th (see below) by the same formula since none was given.
+- **Product catalog.** All eight products are real, categorized per the client's own instructions
+  (`data/products.json`), with ingredients and usage researched from Skin Script's own product pages
+  and authorized retailers — not invented. Emily should still read through it; manufacturers revise
+  formulas periodically.
+- **Customer-facing pages.** Shop, Product Detail, Cart/Checkout, About, Services, Book, Studio,
+  Membership, and Contact are real pages (not stubs). Admin portal, analytics, and CSV import built.
+- **Cart + shipping math.** Client cart (localStorage) + server re-price; `$7` / free at `$49+`
+  pre-discount subtotal via `SHIPPING_THRESHOLD_BASIS` in `lib/shipping.js`.
+- **Launch promo mechanism.** `DEW15` (15% placeholder value) seeded in store; percentage is
+  admin-editable — not a confirmed client number.
+- **Admin gate.** `/admin/*` requires httpOnly session cookie + row in `Admins` (local file store
+  until Supabase Auth). Dev credentials: `ADMIN_EMAIL` / `ADMIN_PASSWORD` (defaults in `.env.example`).
+
+---
+
+## 2. New — from the pricing/catalog pass
+
+- **Sheer Protection SPF has no retail price in the source document.** Every other product listed
+  one; this is the only gap. Computed at $30 (2× the $15 wholesale) to match the confirmed pattern —
+  not a given figure. Confirm before publishing.
+- **Discount code specifics are unset.** The client asked for "some sort of discount for the launch
+  or some sort of referral code" without specifying a percentage/amount, or whether referral codes pay
+  out anything to the referrer. The mechanism is designed (Stripe Promotion Codes + admin UI) but the
+  numbers are admin-configurable — needs the client's input before the first code goes live. Seeded
+  `DEW15` at 15% is a **placeholder only**.
+- **Shipping threshold basis.** Recommended default is to compare the $49 free-shipping threshold
+  against the pre-discount subtotal (`SHIPPING_THRESHOLD_BASIS = 'pre_discount'`). Not a confirmed
+  decision — one-line change if client wants post-discount.
+- **Lip Treatment is two SKUs in Skin Script's real catalog** (Peppermint and Pomegranate, same price),
+  but the client's product list gave one wholesale/retail pair. Modeled as one product with a required
+  scent variant. Confirm this matches how the client wants to sell it.
+- **Botanical Bloom Hydrating Mask size** wasn't given; retailers list 2 oz. Placeholder, flagged in
+  `data/products.json`.
+- **Sheer Protection SPF formula conflict.** Catalog uses majority/manufacturer zinc-oxide version.
+
+---
+
+## 3. Business facts still invented (unrelated to the product catalog)
+
+| Location | What was invented |
+|---|---|
+| `app/page.jsx` → Emily band / `app/about/page.jsx` | Emily Mitchener's bio paragraphs |
+| `app/page.jsx` → Thesis section | The brand thesis sentence |
+| `lib/services.js` + Services/Book/Home | All service names, durations, and prices — still needs Emily's actual menu |
+| `components/Footer.jsx` | The one-line brand descriptor |
+| `app/studio/page.jsx` | Working hours (Mon–Sat); address intentionally "pending" |
+| `app/contact/page.jsx` | `hello@dewtheory.studio` email — domain not confirmed |
+| About credentials block | License board/number not provided |
+
+---
+
+## 4. Unresolved decisions (carried over)
+
+- Payment processor assumed to be Stripe — confirm. Wired for test keys; mock checkout without keys.
+- Studio name and address.
+- Deposit percentage and cancellation cutoff window for bookings.
+- Membership program: whether it launches at all, and on what terms (page built without inventing tiers/prices).
+- Domain name.
+- **Skin Script live sync.** No confirmed API. CSV/manual import is the real path (`/admin/import`).
+- **Visitor analytics provider** — recommended Vercel Analytics; funnel analytics use first-party events.
+- **Admin two-factor authentication** — recommended, not in initial build.
+- Google Calendar OAuth for live availability (booking uses mock 14-day slots until credentials exist).
+- Supabase project keys (file store at `data/runtime/store.json` mirrors schema until then).
+- Transactional email for order/booking confirmation.
+
+---
+
+## 5. Assets (carried over)
+
+- **The hero video is portrait, 1280 × 1618 — not the 16:9 the brief describes.** Composed as a
+  portrait glass column rather than cropped. Real logo and video files are in `/public`.
+- No product photography, studio photography, or photo of Emily. Animated iridescent fields stand in.
+
+---
+
+## 6. Blocked on access (carried over)
+
+- **Nothing was pushed to `marinerxcapital/dew-theory-website`.** Push manually when GitHub remote
+  and credentials are available.
+- **GitHub Pages preview.** Skip — private repo; Pages can't run Stripe/Supabase/admin.
+- **Live Stripe / Supabase / Google Calendar keys** — not present in this environment; integrations
+  are wired for env drop-in (see `.env.example`).
+
+---
+
+## 7. Build status (this autonomous pass)
+
+| Item | Status |
+|---|---|
+| Home | Done (pre-existing + product links) |
+| Shop | Done — category filter, 8 products |
+| Product Detail | Done — `/shop/[id]`, actives, variants, add to cart |
+| Cart / Checkout | Done — shipping math, promo `DEW15`, Stripe or local mock |
+| About Emily | Done — real page; bio still placeholder copy |
+| Services | Done — menu from `lib/services.js` |
+| Book Now | Done — 3-step flow + `/api/book` |
+| Studio | Done — address pending, hours assumed |
+| Membership | Done — no invented pricing/tiers |
+| Contact | Done — form → store messages |
+| Admin Portal | Done — auth, products CRUD, orders, appointments, discounts |
+| Analytics Dashboard | Done — `/admin/analytics` from real store data |
+| Skin Script CSV import | Done — `/admin/import` + `data/sample-import.csv` |
+
+### Definition of Done notes
+
+- Retail = wholesale × 2 sitewide; sticker prices are not pre-discounted.
+- Shipping $7 / free $49+ visible at checkout.
+- Stripe promo works when `STRIPE_SECRET_KEY` is set; local `DEW15` works without it.
+- `/admin` unreachable without admin session (customer has no path to that cookie).
+- Product/discount mutations write `AuditLog` rows.
+- CSV import creates products from sample columns.
+- Analytics uses seeded order + appointment + events, not hard-coded UI mock numbers.
+- **Not done without credentials:** end-to-end Stripe test payment, Google Calendar live slots,
+  Supabase-backed tables, push to private GitHub repo, production host URL.

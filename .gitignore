@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+.env*.local
+.env
+.DS_Store
+data/runtime/
+
+# Local orchestration — never push this to marinerxcapital/dew-theory-website.
+# setup_orchestration.ps1 also writes these rules; kept here too so the
+# safety net exists even before that script has been run.
+autonomous_system/config.local.ps1
+autonomous_system/logs/
+autonomous_system/status/
+autonomous_system/queue/
+autonomous_system/incoming/
+autonomous_system/completed/
