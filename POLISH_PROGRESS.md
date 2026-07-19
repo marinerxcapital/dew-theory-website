@@ -24,7 +24,7 @@ Interval: 30m
 | D5 | done | brand-voice copy on about/services/studio/membership/contact + footer; facts still OPEN_ITEMS | 2026-07-19T13:55:00Z |
 | D6 | done | invalid ?service= notice; double-submit guard; funnel events; deposit placeholder; past slots filtered; dup booking | 2026-07-19T14:25:00Z |
 | E1 | done | checkout validateAndPriceItems; unknown SKU/OOS reject; catalog re-price; Idempotency-Key; error code shapes | 2026-07-19T14:55:00Z |
-| E2 | pending | | |
+| E2 | done | node:test shipping matrix — $7/<$49, free@$49, pre vs post basis, promo×ship; npm test 18 pass | 2026-07-19T16:50:00Z |
 | E3 | pending | | |
 | E4 | pending | | |
 | E5 | pending | | |
