@@ -16,7 +16,7 @@ Interval: 30m
 | B5 | done | overflow-x clip; cart summary first+sticky; admin cards/table dual layout; hero/shop/rule mobile fixes | 2026-07-19T09:55:00Z |
 | C1 | done | MotionRoot gsap.context + kill on route; admin skip; reveal on cart/contact/book/pdp; frost threshold by path | 2026-07-19T10:25:00Z |
 | C2 | done | reduced-motion: no js-motion hide; hero poster-only; no pointer specular; CSS kills ambient/sweep/video; MQ live toggle | 2026-07-19T10:55:00Z |
-| C3 | pending | | |
+| C3 | done | cut bounce lifts + ambient/iridescent loops; keep sweep/specular/reveals; static orbs for glass; softer route fade | 2026-07-19T11:25:00Z |
 | D1 | pending | | |
 | D2 | pending | | |
 | D3 | pending | | |

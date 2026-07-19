@@ -52,7 +52,7 @@ export default function Nav() {
     <header
       data-nav
       data-state="clear"
-      className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
+      className="fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color,box-shadow] duration-500"
     >
       <a href="#main" className="skip-link">
         Skip to content

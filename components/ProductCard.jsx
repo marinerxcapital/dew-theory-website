@@ -5,7 +5,7 @@ export default function ProductCard({ product }) {
   return (
     <article
       data-reveal
-      className="sweep glass-1 flex flex-col transition-transform duration-500 hover:-translate-y-1"
+      className="sweep glass-1 flex flex-col"
     >
       <Link href={`/shop/${product.id}`} className="flex flex-1 flex-col p-8">
         <div className="iridescent mb-8 aspect-[4/5] w-full rounded-[2px]" aria-hidden="true" />

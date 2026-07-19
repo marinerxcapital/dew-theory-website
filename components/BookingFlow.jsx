@@ -150,7 +150,7 @@ export default function BookingFlow({ initialServiceId = null }) {
                   setServiceId(s.id);
                   setStep(2);
                 }}
-                className="sweep glass-1 flex h-full w-full flex-col p-8 text-left transition-transform hover:-translate-y-1"
+                className="sweep glass-1 flex h-full w-full flex-col p-8 text-left"
               >
                 <h2 className="font-display text-xl font-normal text-graphite">{s.name}</h2>
                 <Rule

@@ -71,7 +71,7 @@ export default function Home() {
               key={d.href}
               href={d.href}
               data-reveal
-              className="sweep glass-1 group flex min-h-[22rem] flex-col justify-between p-10 transition-transform duration-500 hover:-translate-y-1"
+              className="sweep glass-1 group flex min-h-[22rem] flex-col justify-between p-10"
             >
               <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
                 {d.eyebrow}
@@ -112,7 +112,7 @@ export default function Home() {
               key={p.id}
               href={`/shop/${p.id}`}
               data-reveal
-              className="sweep glass-1 flex flex-col p-8 transition-transform duration-500 hover:-translate-y-1"
+              className="sweep glass-1 flex flex-col p-8"
             >
               {/* Placeholder for product photography */}
               <div className="iridescent mb-8 aspect-[4/5] w-full rounded-[2px]" aria-hidden="true" />

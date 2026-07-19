@@ -128,7 +128,7 @@ export default function Hero() {
           <div data-reveal className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <Link
               href="/book"
-              className="sweep w-full border border-graphite/70 bg-graphite px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto sm:px-9"
+              className="sweep w-full border border-graphite/70 bg-graphite px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl sm:w-auto sm:px-9"
             >
               Book a facial
             </Link>

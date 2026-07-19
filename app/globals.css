@@ -105,17 +105,10 @@ button {
     transform: none !important;
   }
   /* Orphan / decorative motion that should fully stop */
-  .iridescent { animation: none !important; }
-  .ambient-orb { animation: none !important; }
   .chrome-text { transition: none !important; }
   .chrome-text.is-lit { background-position: 50% 50%; }
   .sweep::before { content: none !important; display: none !important; }
   .specular::after { content: none !important; display: none !important; }
-  /* No hover lift under reduced motion */
-  .hover\:-translate-y-1:hover,
-  .hover\:-translate-y-0\.5:hover {
-    transform: none !important;
-  }
 }
 
 /* ---- Keyboard focus (sitewide) ----
@@ -222,21 +215,16 @@ label:has(input:focus-visible) {
   transition: opacity 0.6s ease;
 }
 
-/* Ambient iridescence — also the placeholder field for missing photography. */
+/* Ambient iridescence — static material field (placeholder for missing photography).
+   Continuous drift removed: gradients already read as liquid chrome without looping. */
 .iridescent {
   background:
     radial-gradient(60% 55% at 22% 18%, rgba(222,194,207,0.55) 0%, rgba(222,194,207,0) 62%),
     radial-gradient(55% 60% at 78% 30%, rgba(196,218,233,0.60) 0%, rgba(196,218,233,0) 64%),
     radial-gradient(70% 60% at 55% 82%, rgba(206,205,225,0.55) 0%, rgba(206,205,225,0) 66%),
     linear-gradient(165deg, #F4F6F7 0%, #EDF1F3 48%, #F3ECEF 100%);
-  background-size: 180% 180%, 190% 190%, 200% 200%, 100% 100%;
-  animation: drift 34s ease-in-out infinite alternate;
+  background-size: 100% 100%;
 }
-@keyframes drift {
-  0%   { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
-  100% { background-position: 30% 40%, 60% 30%, 20% 60%, 0 0; }
-}
-@media (prefers-reduced-motion: reduce) { .iridescent { animation: none; } }
 
 /* ---- Site ambient: soft chrome fields for glass to refract ---- */
 .ambient-field {
@@ -254,11 +242,11 @@ label:has(input:focus-visible) {
       var(--color-pearl) 100%
     );
 }
+/* Static orbs — color for glass blur only; continuous drift was cut (7.3 discipline). */
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(2px);
-  will-change: transform;
 }
 .ambient-orb--ice {
   width: min(72vw, 44rem);
@@ -271,7 +259,6 @@ label:has(input:focus-visible) {
     rgba(196, 218, 233, 0.18) 45%,
     transparent 70%
   );
-  animation: ambient-drift-a 48s ease-in-out infinite alternate;
 }
 .ambient-orb--lavender {
   width: min(60vw, 36rem);
@@ -284,7 +271,6 @@ label:has(input:focus-visible) {
     rgba(206, 205, 225, 0.15) 48%,
     transparent 72%
   );
-  animation: ambient-drift-b 56s ease-in-out infinite alternate;
 }
 .ambient-orb--blush {
   width: min(68vw, 40rem);
@@ -297,7 +283,6 @@ label:has(input:focus-visible) {
     rgba(222, 194, 207, 0.12) 50%,
     transparent 72%
   );
-  animation: ambient-drift-c 62s ease-in-out infinite alternate;
 }
 .ambient-orb--chrome {
   width: min(40vw, 22rem);
@@ -309,7 +294,6 @@ label:has(input:focus-visible) {
     rgba(130, 143, 154, 0.22) 0%,
     transparent 68%
   );
-  animation: ambient-drift-b 40s ease-in-out infinite alternate-reverse;
 }
 /* Fine grain mesh so blur has micro-detail, not only soft blobs */
 .ambient-mesh {
@@ -320,21 +304,6 @@ label:has(input:focus-visible) {
     radial-gradient(rgba(45, 47, 58, 0.035) 0.6px, transparent 0.7px);
   background-size: 3px 3px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 75%);
-}
-@keyframes ambient-drift-a {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(6%, 8%) scale(1.06); }
-}
-@keyframes ambient-drift-b {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-5%, 6%) scale(1.08); }
-}
-@keyframes ambient-drift-c {
-  0%   { transform: translate(0, 0) scale(1.02); }
-  100% { transform: translate(4%, -5%) scale(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ambient-orb { animation: none; }
 }
 
 /* ---- Two planes of glass, deliberately different ----

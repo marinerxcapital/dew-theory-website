@@ -129,10 +129,11 @@ export default function MotionRoot() {
         mm.add('(prefers-reduced-motion: no-preference)', () => {
           document.documentElement.classList.add('js-motion');
           if (main) {
+            // Soft entry only — short; no scale/slide (hierarchy, not decoration)
             gsap.fromTo(
               main,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.45, ease: 'power1.out', overwrite: true }
+              { opacity: 0.35 },
+              { opacity: 1, duration: 0.35, ease: 'power1.out', overwrite: true }
             );
           }
 

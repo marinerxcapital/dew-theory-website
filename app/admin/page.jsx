@@ -31,7 +31,7 @@ export default async function AdminHomePage() {
           <Link
             key={c.label}
             href={c.href}
-            className="glass-1 p-6 transition-transform hover:-translate-y-0.5"
+            className="glass-1 p-6"
           >
             <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
               {c.label}
