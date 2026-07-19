@@ -61,11 +61,74 @@ button {
   }
 }
 
-/* Visible keyboard focus, sitewide. */
+/* ---- Keyboard focus (sitewide) ----
+   Mouse clicks use :focus without :focus-visible → no ring.
+   Keyboard tab uses :focus-visible → graphite + ice double ring. */
+:focus {
+  outline: none;
+}
 :focus-visible {
-  outline: 1px solid var(--color-graphite);
-  outline-offset: 4px;
+  outline: 2px solid var(--color-graphite);
+  outline-offset: 3px;
   border-radius: 2px;
+  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.55);
+}
+/* High-contrast on dark graphite CTAs */
+.bg-graphite:focus-visible,
+button.bg-graphite:focus-visible,
+a.bg-graphite:focus-visible {
+  outline-color: var(--color-pearl);
+  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.65);
+}
+/* Custom radio/checkbox chips: ring the visible label when input is focused */
+label:has(input:focus-visible) {
+  outline: 2px solid var(--color-graphite);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.55);
+}
+/* Skip link — first tab stop on storefront */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-pearl);
+  color: var(--color-charcoal);
+  border: 1px solid rgba(45, 47, 58, 0.35);
+  font-family: var(--font-label), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-decoration: none;
+  /* Visually hidden until focused */
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  clip: auto;
+  clip-path: none;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  white-space: normal;
+  outline: 2px solid var(--color-graphite);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.55);
+}
+/* Main landmark can receive skip-link focus without scroll outline flash */
+#main:focus {
+  outline: none;
+}
+#main:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 /* ---- Liquid chrome: the wordmark material, reused only where earned ---- */

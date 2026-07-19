@@ -52,7 +52,7 @@ export default function AddToCart({ product, className = '' }) {
       <button
         type="button"
         onClick={handleAdd}
-        className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-graphite sm:w-auto"
+        className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-opacity hover:opacity-90 sm:w-auto"
       >
         {added ? 'Added to cart' : 'Add to cart'}
       </button>

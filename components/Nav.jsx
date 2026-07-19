@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Wordmark from './Wordmark';
 import { useCart } from '@/components/CartProvider';
 
@@ -18,8 +18,35 @@ export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const { count, hydrated } = useCart();
+  const menuBtnRef = useRef(null);
+  const firstLinkRef = useRef(null);
+
+  // Close mobile menu on route change; return focus to menu button when closing
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (open && firstLinkRef.current) {
+      firstLinkRef.current.focus();
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        menuBtnRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
 
   if (pathname?.startsWith('/admin')) return null;
+
+  const mobileLinks = [...links, { href: '/book', label: 'Book a facial' }];
 
   return (
     <header
@@ -27,10 +54,7 @@ export default function Nav() {
       data-state="clear"
       className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
     >
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-pearl focus:px-3 focus:py-2 focus:font-label focus:text-xs focus:font-light focus:uppercase focus:tracking-lockup"
-      >
+      <a href="#main" className="skip-link">
         Skip to content
       </a>
 
@@ -71,6 +95,7 @@ export default function Nav() {
             Cart{hydrated && count > 0 ? ` (${count})` : ''}
           </Link>
           <button
+            ref={menuBtnRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
@@ -85,10 +110,11 @@ export default function Nav() {
       {open && (
         <nav id="mobile-nav" aria-label="Primary, mobile" className="glass-1 lg:hidden">
           <div className="flex flex-col px-6 py-4">
-            {[...links, { href: '/book', label: 'Book a facial' }].map((l) => (
+            {mobileLinks.map((l, i) => (
               <Link
                 key={l.href}
                 href={l.href}
+                ref={i === 0 ? firstLinkRef : undefined}
                 onClick={() => setOpen(false)}
                 className="border-b border-chrome/15 py-4 font-label text-[0.74rem] font-light uppercase tracking-lockup text-charcoal last:border-0"
               >

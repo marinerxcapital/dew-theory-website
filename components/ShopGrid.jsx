@@ -29,7 +29,23 @@ export default function ShopGrid({ products }) {
               type="button"
               role="tab"
               aria-selected={active}
+              tabIndex={active ? 0 : -1}
               onClick={() => setCategory(c)}
+              onKeyDown={(e) => {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                e.preventDefault();
+                const idx = filters.indexOf(c);
+                const next =
+                  e.key === 'ArrowRight'
+                    ? filters[(idx + 1) % filters.length]
+                    : filters[(idx - 1 + filters.length) % filters.length];
+                setCategory(next);
+                // Focus moves with selection on next paint via re-render of active tab
+                requestAnimationFrame(() => {
+                  const el = document.querySelector(`[role="tab"][aria-selected="true"]`);
+                  el?.focus();
+                });
+              }}
               className={`px-4 py-2 font-label text-[0.66rem] font-light uppercase tracking-lockup transition-colors ${
                 active
                   ? 'border-b-2 border-graphite text-graphite'

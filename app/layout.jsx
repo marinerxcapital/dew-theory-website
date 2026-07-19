@@ -41,7 +41,9 @@ export default function RootLayout({ children }) {
           <MotionRoot />
           <div className="relative z-[1]">
             <Nav />
-            <main id="main">{children}</main>
+            <main id="main" tabIndex={-1}>
+              {children}
+            </main>
             <Footer />
           </div>
         </CartProvider>

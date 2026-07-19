@@ -18,11 +18,23 @@ export default function AdminShell({ admin, children }) {
   const isLogin = pathname === '/admin/login';
 
   if (isLogin || !admin) {
-    return <div className="pt-24">{children}</div>;
+    return (
+      <div className="pt-24">
+        <a href="#admin-main" className="skip-link">
+          Skip to admin content
+        </a>
+        <div id="admin-main" tabIndex={-1}>
+          {children}
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="pt-24">
+      <a href="#admin-main" className="skip-link">
+        Skip to admin content
+      </a>
       <div className="border-b border-chrome/20 bg-pearl/70">
         <div className="mx-auto flex max-w-shell flex-wrap items-center justify-between gap-4 px-6 py-4 lg:px-10">
           <div>
@@ -65,7 +77,13 @@ export default function AdminShell({ admin, children }) {
           </form>
         </nav>
       </div>
-      <div className="mx-auto max-w-shell px-6 py-12 lg:px-10">{children}</div>
+      <div
+        id="admin-main"
+        tabIndex={-1}
+        className="mx-auto max-w-shell px-6 py-12 lg:px-10"
+      >
+        {children}
+      </div>
     </div>
   );
 }
