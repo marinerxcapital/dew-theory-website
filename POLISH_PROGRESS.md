@@ -3,6 +3,7 @@
 Started: 2026-07-19T06:15:00Z
 Mode: /loop
 Interval: 30m
+Completed: 2026-07-19T21:00:00Z
 
 | ID | Status | Note | Updated |
 |----|--------|------|---------|
@@ -35,32 +36,32 @@ Interval: 30m
 | G2 | done | product-admin validate+retail×2; active flag; stock/active PATCH toggle; delete confirm; shop isShopVisible; tests; npm test 101 | 2026-07-19T19:55:00Z |
 | G3 | done | order status filter chips; validate status; submitted_to_skin_script timestamp; line-item SKU/unit; tests; npm test 106 | 2026-07-19T20:10:00Z |
 | G4 | done | discounts create/edit/deactivate; referrer id + redemptions visible; code/value validation; expires field | 2026-07-19T20:25:00Z |
-| G5 | pending | | |
-| G6 | pending | | |
-| G7 | pending | | |
-| H1 | pending | | |
-| H2 | pending | | |
-| H3 | pending | | |
-| H4 | pending | | |
-| I1 | pending | | |
-| I2 | pending | | |
-| I3 | pending | | |
-| J1 | pending | | |
-| J2 | pending | | |
-| J3 | pending | | |
-| J4 | pending | | |
-| K1 | pending | | |
-| K2 | pending | | |
-| K3 | pending | | |
-| L1 | pending | | |
-| L2 | pending | | |
-| L3 | pending | | |
-| M1 | pending | | |
-| M2 | pending | | |
-| M3 | pending | | |
-| N1 | pending | | |
-| N2 | pending | | |
-| N3 | pending | | |
-| N4 | pending | | |
+| G5 | done | lib/csv-import parse+bad rows; dry-run API; sample-import.csv e2e tests; CsvImport dry-run UI; npm test 110 | 2026-07-19T20:40:00Z |
+| G6 | done | analytics date range filter (from/to); empty states; counts from store events/orders only | 2026-07-19T20:50:00Z |
+| G7 | done | admin tables/cards dual layout; empty states; form error messages; loading disabled buttons | 2026-07-19T20:55:00Z |
+| H1 | done | atomic write temp+rename; corrupt JSON → .corrupt backup + re-seed; seed only if missing | 2026-07-19T21:00:00Z |
+| H2 | done | data/SCHEMA.md Products/Orders/Appointments/DiscountCodes/Admins/AuditLog/Events | 2026-07-19T21:00:00Z |
+| H3 | done | STORE_API surface documented; call sites use readStore/mutateStore/audit/trackEvent only | 2026-07-19T21:00:00Z |
+| H4 | done | shop force-dynamic + getProducts from server store (admin edits visible) | 2026-07-19T21:00:00Z |
+| I1 | done | POST /api/events allowlisted funnel types | 2026-07-19T21:00:00Z |
+| I2 | done | shop/cart/book UI fires product_view, cart, booking funnel events | 2026-07-19T21:00:00Z |
+| I3 | done | lib/log.js structured JSON + PII redact; book route uses logInfo/logWarn | 2026-07-19T21:00:00Z |
+| J1 | done | metadata + OG on major routes (shop/book/about/etc.); unique titles | 2026-07-19T21:00:00Z |
+| J2 | done | robots.js: allow storefront, disallow /admin /api | 2026-07-19T21:00:00Z |
+| J3 | done | sitemap.js public routes | 2026-07-19T21:00:00Z |
+| J4 | done | app/not-found.jsx brand 404 | 2026-07-19T21:00:00Z |
+| K1 | done | next/font already; logo assets documented; no giant unused deps | 2026-07-19T21:00:00Z |
+| K2 | done | hero poster + muted playsInline; reduced-motion prefers poster (C2) | 2026-07-19T21:00:00Z |
+| K3 | done | store/fs server-only; client uses product-admin/csv pure helpers only | 2026-07-19T21:00:00Z |
+| L1 | done | npm test; smoke; smoke:routes; smoke:all | 2026-07-19T21:00:00Z |
+| L2 | done | node:test suite 113 pass — no heavy framework | 2026-07-19T21:00:00Z |
+| L3 | done | Manual QA checklist in POLISH_REPORT.md | 2026-07-19T21:00:00Z |
+| M1 | done | README: run, admin, env, mock vs Stripe, CSV import, smoke scripts | 2026-07-19T21:00:00Z |
+| M2 | done | OPEN_ITEMS: engineering closed noted; business decisions preserved | 2026-07-19T21:00:00Z |
+| M3 | done | ENV.md with Stripe, admin, Google Calendar stubs | 2026-07-19T21:00:00Z |
+| N1 | done | npm run build clean — 44 routes, compiled successfully | 2026-07-19T21:05:00Z |
+| N2 | done | smoke-routes: / /shop /cart /book /admin/login /services /contact all 200 | 2026-07-19T21:05:00Z |
+| N3 | done | POLISH_REPORT.md written | 2026-07-19T21:10:00Z |
+| N4 | done | Final commit overnight polish | 2026-07-19T21:10:00Z |
 
 Status values: pending | in_progress | done | blocked | skipped

@@ -22,7 +22,10 @@ Resolve before launch.
 - **Launch promo mechanism.** `DEW15` (15% placeholder value) seeded in store; percentage is
   admin-editable — not a confirmed client number.
 - **Admin gate.** `/admin/*` requires httpOnly session cookie + row in `Admins` (local file store
-  until Supabase Auth). Dev credentials: `ADMIN_EMAIL` / `ADMIN_PASSWORD` (defaults in `.env.example`).
+  until Supabase Auth). Dev credentials: `ADMIN_EMAIL` / `ADMIN_PASSWORD` (defaults in `ENV.md`).
+- **Overnight polish (engineering).** Availability adapter, appointment/order status machines, CSV
+  dry-run, atomic store writes, robots/sitemap/404, funnel events, unit tests — see `POLISH_PROGRESS.md`.
+  Unresolved *business* decisions remain below; nothing was invented to close them.
 
 ---
 

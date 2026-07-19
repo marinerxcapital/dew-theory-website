@@ -8,7 +8,13 @@ STRIPE_WEBHOOK_SECRET=
 # Public site URL for Stripe success/cancel redirects
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
-# Admin portal
+# Admin portal (production: must set all three; default password rejected)
 ADMIN_EMAIL=admin@dewtheory.local
 ADMIN_PASSWORD=dew-admin-dev
 ADMIN_SESSION_SECRET=change-me-to-a-long-random-string
+
+# Google Calendar (optional — booking uses mock slots until freebusy is implemented)
+# GOOGLE_CALENDAR_ID=
+# GOOGLE_CALENDAR_CLIENT_ID=
+# GOOGLE_CALENDAR_CLIENT_SECRET=
+# GOOGLE_CALENDAR_REFRESH_TOKEN=

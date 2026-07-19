@@ -35,15 +35,24 @@ npm run start
 Webhook (paid → order status): `POST /api/webhooks/stripe` needs `STRIPE_WEBHOOK_SECRET`.  
 Full notes: [`docs/STRIPE.md`](docs/STRIPE.md). Env template: [`ENV.md`](ENV.md).
 
+### CSV catalog import
+
+Admin → **CSV import** (`/admin/import`). Use `data/sample-import.csv` as a template.
+Map columns, review retail (auto wholesale × 2), **Dry-run** then **Confirm**. No Skin Script scraping.
+
+Schema for the file store: [`data/SCHEMA.md`](data/SCHEMA.md).
+
 ### Tests & smoke
 
 ```bash
 npm test                          # unit + offline order-path
+npm run build                     # production compile
 npm run dev                       # then in another terminal:
 npm run smoke                     # HTTP: checkout → admin status update
+npm run smoke:routes              # GET / /shop /cart /book /admin/login
 ```
 
-Order path docs: [`docs/ORDER_PATH.md`](docs/ORDER_PATH.md).
+Order path docs: [`docs/ORDER_PATH.md`](docs/ORDER_PATH.md). Env template: [`ENV.md`](ENV.md).
 
 ## Design tokens
 

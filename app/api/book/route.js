@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { logInfo, logWarn } from '@/lib/log';
 import { validateBookingRequest, buildAppointment } from '@/lib/booking';
 import { SERVICES } from '@/lib/services';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
@@ -27,6 +28,7 @@ export async function POST(request) {
     const result = validateBookingRequest(body, SERVICES, appointments);
 
     if (!result.ok) {
+      logWarn('book.reject', { code: result.code, service_id: body?.service_id });
       return jsonError(result, result.status || 400);
     }
 
@@ -83,6 +85,12 @@ export async function POST(request) {
         code: 'booking_duplicate'
       });
     }
+
+    logInfo('book.created', {
+      appointment_id: appointment.id,
+      service_id: appointment.service_id,
+      email: appointment.customer?.email
+    });
 
     trackEvent('booking_confirmed', {
       appointment_id: appointment.id,

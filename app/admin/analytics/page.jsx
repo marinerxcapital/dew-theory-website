@@ -1,20 +1,28 @@
+import Link from 'next/link';
 import { requireAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 import { formatMoney } from '@/lib/shipping';
+import {
+  parseDateRange,
+  filterByCreatedAt,
+  countEventsByType
+} from '@/lib/analytics';
 
-function countBy(events, type) {
-  return events.filter((e) => e.type === type).length;
-}
+const PAIDISH = new Set(['paid', 'fulfilled', 'submitted_to_skin_script']);
 
-export default async function AdminAnalyticsPage() {
+export default async function AdminAnalyticsPage({ searchParams }) {
   await requireAdmin();
+  const fromYmd = typeof searchParams?.from === 'string' ? searchParams.from : '';
+  const toYmd = typeof searchParams?.to === 'string' ? searchParams.to : '';
+  const { from, to } = parseDateRange(fromYmd || null, toYmd || null);
+
   const store = readStore();
-  const events = store.events || [];
-  const orders = store.orders.filter((o) => o.status === 'paid' || o.status === 'fulfilled' || o.status === 'submitted_to_skin_script');
+  const events = filterByCreatedAt(store.events || [], from, to, 'at');
+  const allOrders = filterByCreatedAt(store.orders || [], from, to, 'created_at');
+  const orders = allOrders.filter((o) => PAIDISH.has(o.status));
   const revenue = orders.reduce((s, o) => s + Number(o.total || 0), 0);
   const aov = orders.length ? revenue / orders.length : 0;
 
-  // Product performance from order line items
   const byProduct = new Map();
   const byCategory = new Map();
   for (const o of orders) {
@@ -33,7 +41,7 @@ export default async function AdminAnalyticsPage() {
     }
   }
 
-  const appts = store.appointments;
+  const appts = filterByCreatedAt(store.appointments || [], from, to, 'created_at');
   const byService = new Map();
   for (const a of appts) {
     const prev = byService.get(a.service_name) || { count: 0, cancelled: 0, no_show: 0 };
@@ -44,18 +52,26 @@ export default async function AdminAnalyticsPage() {
   }
 
   const shopFunnel = [
-    { label: 'Product views', n: countBy(events, 'product_view') },
-    { label: 'Add to cart', n: countBy(events, 'add_to_cart') },
-    { label: 'Checkout started', n: countBy(events, 'checkout_started') },
-    { label: 'Checkout completed', n: countBy(events, 'checkout_completed') }
+    { label: 'Product views', n: countEventsByType(events, 'product_view') },
+    { label: 'Add to cart', n: countEventsByType(events, 'add_to_cart') },
+    { label: 'Checkout started', n: countEventsByType(events, 'checkout_started') },
+    { label: 'Checkout completed', n: countEventsByType(events, 'checkout_completed') }
   ];
 
   const bookFunnel = [
-    { label: 'Booking started', n: countBy(events, 'booking_started') },
-    { label: 'Service selected', n: countBy(events, 'booking_service_selected') },
-    { label: 'Time selected', n: countBy(events, 'booking_time_selected') },
-    { label: 'Confirmed', n: countBy(events, 'booking_confirmed') }
+    { label: 'Booking started', n: countEventsByType(events, 'booking_started') },
+    { label: 'Service selected', n: countEventsByType(events, 'booking_service_selected') },
+    { label: 'Time selected', n: countEventsByType(events, 'booking_time_selected') },
+    { label: 'Confirmed', n: countEventsByType(events, 'booking_confirmed') }
   ];
+
+  const rangeQs = (f, t) => {
+    const p = new URLSearchParams();
+    if (f) p.set('from', f);
+    if (t) p.set('to', t);
+    const s = p.toString();
+    return s ? `?${s}` : '';
+  };
 
   return (
     <div>
@@ -64,6 +80,45 @@ export default async function AdminAnalyticsPage() {
         From site data (Orders, Appointments, DiscountCodes, events) — not static mock UI numbers.
         Visitor traffic source needs a provider (recommended: Vercel Analytics).
       </p>
+
+      <form method="get" className="mt-6 flex flex-wrap items-end gap-3 glass-1 p-4">
+        <label className="font-body text-xs font-light text-charcoal/70">
+          From
+          <input
+            type="date"
+            name="from"
+            defaultValue={fromYmd}
+            className="mt-1 block border border-chrome/30 bg-pearl/90 px-2 py-2"
+          />
+        </label>
+        <label className="font-body text-xs font-light text-charcoal/70">
+          To
+          <input
+            type="date"
+            name="to"
+            defaultValue={toYmd}
+            className="mt-1 block border border-chrome/30 bg-pearl/90 px-2 py-2"
+          />
+        </label>
+        <button
+          type="submit"
+          className="border border-graphite bg-graphite px-4 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-pearl"
+        >
+          Apply
+        </button>
+        <Link
+          href="/admin/analytics"
+          className="border border-chrome/30 px-4 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-charcoal"
+        >
+          Clear
+        </Link>
+        {(fromYmd || toYmd) && (
+          <p className="w-full font-body text-xs font-light text-chrome">
+            Range filter active{fromYmd ? ` from ${fromYmd}` : ''}
+            {toYmd ? ` to ${toYmd}` : ''}.
+          </p>
+        )}
+      </form>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
         {[
@@ -94,6 +149,11 @@ export default async function AdminAnalyticsPage() {
               </li>
             ))}
           </ul>
+          {shopFunnel.every((s) => s.n === 0) && (
+            <p className="mt-3 font-body text-xs font-light text-charcoal/50">
+              No funnel events in this range yet.
+            </p>
+          )}
         </section>
         <section>
           <h2 className="font-display text-xl font-normal text-graphite">Booking funnel</h2>
@@ -108,6 +168,11 @@ export default async function AdminAnalyticsPage() {
               </li>
             ))}
           </ul>
+          {bookFunnel.every((s) => s.n === 0) && (
+            <p className="mt-3 font-body text-xs font-light text-charcoal/50">
+              No booking events in this range yet.
+            </p>
+          )}
         </section>
       </div>
 
@@ -139,6 +204,9 @@ export default async function AdminAnalyticsPage() {
                 </span>
               </li>
             ))}
+            {!byCategory.size && (
+              <li className="py-3 text-sm text-charcoal/50">No category sales yet.</li>
+            )}
           </ul>
         </section>
       </div>
@@ -154,6 +222,9 @@ export default async function AdminAnalyticsPage() {
               </span>
             </li>
           ))}
+          {!byService.size && (
+            <li className="py-3 text-sm text-charcoal/50">No appointments in this range.</li>
+          )}
         </ul>
       </section>
 
@@ -171,8 +242,14 @@ export default async function AdminAnalyticsPage() {
               </span>
             </li>
           ))}
+          {!store.discount_codes.length && (
+            <li className="py-3 text-sm text-charcoal/50">No discount codes configured.</li>
+          )}
         </ul>
       </section>
+
+      {/* keep range helper referenced for future preset chips */}
+      <span className="hidden">{rangeQs(fromYmd, toYmd)}</span>
     </div>
   );
 }
