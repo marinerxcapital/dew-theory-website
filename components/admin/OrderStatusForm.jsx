@@ -8,7 +8,8 @@ const STATUSES = [
   'paid',
   'submitted_to_skin_script',
   'fulfilled',
-  'cancelled'
+  'cancelled',
+  'payment_failed'
 ];
 
 export default function OrderStatusForm({ orderId, current }) {
@@ -28,10 +29,15 @@ export default function OrderStatusForm({ orderId, current }) {
     });
     setLoading(false);
     if (!res.ok) {
-      setMsg('Update failed');
+      const data = await res.json().catch(() => ({}));
+      setMsg(data.error || 'Update failed');
       return;
     }
-    setMsg('Saved');
+    setMsg(
+      status === 'submitted_to_skin_script'
+        ? 'Marked submitted to Skin Script (manual — no API call)'
+        : 'Saved'
+    );
     router.refresh();
   }
 
@@ -39,7 +45,8 @@ export default function OrderStatusForm({ orderId, current }) {
     <form onSubmit={save} className="glass-1 p-6">
       <h2 className="font-display text-xl font-normal text-graphite">Fulfillment status</h2>
       <p className="mt-2 font-body text-xs font-light text-charcoal/60">
-        Manual only — does not auto-order from Skin Script.
+        Manual only — does not scrape or auto-order from Skin Script. Use submitted_to_skin_script
+        after you place the wholesale order yourself.
       </p>
       <select
         value={status}

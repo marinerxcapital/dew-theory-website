@@ -33,7 +33,7 @@ Interval: 30m
 | F3 | done | status machine confirmed→completed/cancelled/no_show; terminal locked; admin PATCH validates; UI options; tests; npm test 78 | 2026-07-19T19:25:00Z |
 | G1 | done | prod rejects default password/secret; login audit fail+success; logout clears cookie+audit; middleware gate; safe ?next=; policy tests; npm test 89 | 2026-07-19T19:40:00Z |
 | G2 | done | product-admin validate+retail×2; active flag; stock/active PATCH toggle; delete confirm; shop isShopVisible; tests; npm test 101 | 2026-07-19T19:55:00Z |
-| G3 | pending | | |
+| G3 | done | order status filter chips; validate status; submitted_to_skin_script timestamp; line-item SKU/unit; tests; npm test 106 | 2026-07-19T20:10:00Z |
 | G4 | pending | | |
 | G5 | pending | | |
 | G6 | pending | | |
