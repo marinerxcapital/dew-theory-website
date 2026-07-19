@@ -27,7 +27,7 @@ Interval: 30m
 | E2 | done | node:test shipping matrix — $7/<$49, free@$49, pre vs post basis, promo×ship; npm test 18 pass | 2026-07-19T16:50:00Z |
 | E3 | done | resolveDiscountCode pure + tests: %/fixed/expired/max_uses/inactive/case; npm test 39 pass | 2026-07-19T17:20:00Z |
 | E4 | done | Stripe webhook /api/webhooks/stripe; full session metadata; markOrderPaidFromSession; docs/STRIPE.md mock path | 2026-07-19T17:50:00Z |
-| E5 | pending | | |
+| E5 | done | order-path offline tests + scripts/smoke-checkout.mjs; docs/ORDER_PATH.md; npm test 43 pass | 2026-07-19T18:20:00Z |
 | F1 | pending | | |
 | F2 | pending | | |
 | F3 | pending | | |

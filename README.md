@@ -35,6 +35,16 @@ npm run start
 Webhook (paid → order status): `POST /api/webhooks/stripe` needs `STRIPE_WEBHOOK_SECRET`.  
 Full notes: [`docs/STRIPE.md`](docs/STRIPE.md). Env template: [`ENV.md`](ENV.md).
 
+### Tests & smoke
+
+```bash
+npm test                          # unit + offline order-path
+npm run dev                       # then in another terminal:
+npm run smoke                     # HTTP: checkout → admin status update
+```
+
+Order path docs: [`docs/ORDER_PATH.md`](docs/ORDER_PATH.md).
+
 ## Design tokens
 
 Every colour was sampled directly from the wordmark artwork with k-means clustering,
