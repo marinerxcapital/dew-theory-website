@@ -49,7 +49,7 @@ export default function AdminShell({ admin, children }) {
         </div>
         <nav
           aria-label="Admin"
-          className="mx-auto flex max-w-shell gap-1 overflow-x-auto px-6 pb-3 lg:px-10"
+          className="mx-auto flex max-w-shell gap-1 overflow-x-auto overscroll-x-contain px-4 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-6 lg:px-10 [&::-webkit-scrollbar]:hidden"
         >
           {nav.map((item) => {
             const active = item.exact
@@ -67,10 +67,10 @@ export default function AdminShell({ admin, children }) {
               </Link>
             );
           })}
-          <form action="/api/admin/logout" method="POST" className="ml-auto">
+          <form action="/api/admin/logout" method="POST" className="ml-auto shrink-0">
             <button
               type="submit"
-              className="px-3 py-2 font-label text-[0.64rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
+              className="whitespace-nowrap px-3 py-2 font-label text-[0.64rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
             >
               Sign out
             </button>

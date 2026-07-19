@@ -63,11 +63,14 @@ export default function Hero() {
       {/* Plane 2 — glass veil so type stays legible over the moving chrome */}
       <div className="glass-2 absolute inset-0 -z-10" aria-hidden="true" />
 
-      <div className="mx-auto grid w-full max-w-shell gap-14 px-6 pb-24 lg:grid-cols-[1.05fr_0.85fr] lg:items-center lg:px-10">
-        <div data-reveal-group="hero">
+      <div className="mx-auto grid w-full max-w-shell gap-10 px-5 pb-20 sm:gap-14 sm:px-6 sm:pb-24 lg:grid-cols-[1.05fr_0.85fr] lg:items-center lg:px-10">
+        <div data-reveal-group="hero" className="min-w-0">
           <h1 data-reveal>
-            <Wordmark lit={lit} className="block w-full max-w-xl text-[clamp(3.4rem,10vw,7.5rem)] leading-[0.95]" />
-            <span className="mt-6 block font-display text-[clamp(1.5rem,3.2vw,2.4rem)] font-normal leading-[1.25] text-graphite">
+            <Wordmark
+              lit={lit}
+              className="block w-full max-w-xl text-[clamp(2.75rem,11vw,7.5rem)] leading-[0.95]"
+            />
+            <span className="mt-5 block font-display text-[clamp(1.35rem,3.8vw,2.4rem)] font-normal leading-[1.25] text-graphite sm:mt-6">
               Clinical formulations,
               <br />
               finished by hand.
@@ -76,30 +79,30 @@ export default function Hero() {
 
           <p
             data-reveal
-            className="mt-7 max-w-md font-body text-base font-light leading-relaxed text-charcoal/75"
+            className="mt-6 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/75 sm:mt-7 sm:text-base"
           >
             Skin Script actives you can take home, and facials with Emily Mitchener that decide
             which of them you actually need. Two halves of the same routine.
           </p>
 
-          <div data-reveal className="mt-10 flex flex-wrap items-center gap-4">
+          <div data-reveal className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <Link
               href="/book"
-              className="sweep border border-graphite/70 bg-graphite px-9 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-transform duration-300 hover:-translate-y-0.5"
+              className="sweep w-full border border-graphite/70 bg-graphite px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto sm:px-9"
             >
               Book a facial
             </Link>
             <Link
               href="/shop"
-              className="sweep border border-graphite/25 px-9 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal transition-colors duration-300 hover:border-graphite/60"
+              className="sweep w-full border border-graphite/25 px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal transition-colors duration-300 hover:border-graphite/60 sm:w-auto sm:px-9"
             >
               Shop the collection
             </Link>
           </div>
         </div>
 
-        {/* The footage is portrait — give it a portrait frame instead of cropping it. */}
-        <div data-reveal className="relative mx-auto hidden aspect-[4/5] w-full max-w-sm lg:block">
+        {/* Portrait frame — show from md so tablet gets the glass column too */}
+        <div data-reveal className="relative mx-auto hidden aspect-[4/5] w-full max-w-sm md:block">
           <div className="glass-1 absolute inset-0 overflow-hidden rounded-[2px]">
             <div className="iridescent absolute inset-0" aria-hidden="true" />
             <video

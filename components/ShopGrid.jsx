@@ -17,7 +17,7 @@ export default function ShopGrid({ products }) {
   return (
     <div>
       <div
-        className="flex flex-wrap gap-2 border-b border-chrome/20 pb-8"
+        className="flex gap-1 overflow-x-auto border-b border-chrome/20 pb-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:gap-2 sm:overflow-visible sm:pb-8 [&::-webkit-scrollbar]:hidden"
         role="tablist"
         aria-label="Filter by category"
       >
@@ -46,7 +46,7 @@ export default function ShopGrid({ products }) {
                   el?.focus();
                 });
               }}
-              className={`px-4 py-2 font-label text-[0.66rem] font-light uppercase tracking-lockup transition-colors ${
+              className={`shrink-0 whitespace-nowrap px-3 py-2 font-label text-[0.62rem] font-light uppercase tracking-lockup transition-colors sm:px-4 sm:text-[0.66rem] ${
                 active
                   ? 'border-b-2 border-graphite text-graphite'
                   : 'text-chrome hover:text-charcoal'

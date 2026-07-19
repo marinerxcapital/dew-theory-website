@@ -8,13 +8,47 @@ export default async function AdminOrdersPage() {
   const { orders } = readStore();
 
   return (
-    <div>
-      <h1 className="font-display text-3xl font-normal text-graphite">Orders</h1>
+    <div className="min-w-0">
+      <h1 className="font-display text-2xl font-normal text-graphite sm:text-3xl">Orders</h1>
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">
         Manual fulfillment — mark submitted to Skin Script after you place the wholesale order.
       </p>
 
-      <div className="mt-10 overflow-x-auto">
+      <ul className="admin-card-list mt-8">
+        {orders.map((o) => (
+          <li key={o.id} className="glass-1 p-5">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="truncate font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
+                  {o.id}
+                </p>
+                <p className="mt-2 font-display text-lg font-normal text-graphite">
+                  {o.customer?.name || 'Guest'}
+                </p>
+                <p className="mt-1 truncate font-body text-xs font-light text-chrome">
+                  {o.customer?.email}
+                </p>
+              </div>
+              <p className="shrink-0 font-label text-sm font-light tracking-wide2 text-charcoal">
+                {formatMoney(o.total)}
+              </p>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-chrome/15 pt-3">
+              <span className="font-body text-xs font-light text-charcoal/70">
+                Ship {formatMoney(o.shipping_fee || 0)} · {o.status}
+              </span>
+              <Link
+                href={`/admin/orders/${o.id}`}
+                className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-charcoal hover:underline"
+              >
+                Open
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div className="admin-table-wrap table-scroll mt-10">
         <table className="w-full min-w-[720px] text-left">
           <thead>
             <tr className="border-b border-chrome/25 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">

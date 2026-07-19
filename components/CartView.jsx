@@ -131,23 +131,23 @@ export default function CartView() {
   }
 
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section className="mx-auto max-w-shell px-5 py-24 sm:px-6 sm:py-28 lg:px-10 lg:py-32">
       <Rule left="Cart" right={`${items.reduce((n, i) => n + i.quantity, 0)} items`} />
-      <h1 className="mt-8 font-display text-[clamp(2.4rem,6vw,4rem)] font-normal leading-[1.02] text-graphite">
+      <h1 className="mt-8 font-display text-[clamp(2.2rem,7vw,4rem)] font-normal leading-[1.02] text-graphite">
         Your bag
       </h1>
 
-      <div className="mt-16 grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
-        <ul className="divide-y divide-chrome/20 border-y border-chrome/20">
+      <div className="mt-10 grid gap-10 sm:mt-14 lg:mt-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+        <ul className="order-last min-w-0 divide-y divide-chrome/20 border-y border-chrome/20 lg:order-first">
           {items.map((item) => (
             <li
               key={`${item.product_id}-${item.variant || ''}`}
-              className="grid gap-4 py-8 sm:grid-cols-[1fr_auto] sm:items-center"
+              className="grid gap-4 py-6 sm:grid-cols-[1fr_auto] sm:items-center sm:py-8"
             >
-              <div>
+              <div className="min-w-0">
                 <Link
                   href={`/shop/${item.product_id}`}
-                  className="font-display text-xl font-normal text-graphite hover:underline"
+                  className="break-words font-display text-lg font-normal text-graphite hover:underline sm:text-xl"
                 >
                   {item.name}
                 </Link>
@@ -169,6 +169,7 @@ export default function CartView() {
                   type="number"
                   min={1}
                   max={20}
+                  inputMode="numeric"
                   value={item.quantity}
                   onChange={(e) =>
                     updateQuantity(item.product_id, item.variant, Number(e.target.value) || 1)
@@ -187,7 +188,8 @@ export default function CartView() {
           ))}
         </ul>
 
-        <aside className="glass-1 h-fit p-8 lg:sticky lg:top-28">
+        {/* Summary first on mobile so totals stay reachable; sticky under nav on desktop */}
+        <aside className="glass-1 order-first h-fit p-6 sm:p-8 lg:order-last lg:sticky lg:top-24">
           <h2 className="font-display text-2xl font-normal text-graphite">Summary</h2>
 
           <dl className="mt-8 space-y-3 font-body text-sm font-light text-charcoal/80">

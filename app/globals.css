@@ -18,13 +18,49 @@
   --color-specular: #F7F9FA;
 }
 
-html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  /* Prevent accidental horizontal scroll from lockup type / ambient orbs */
+  overflow-x: clip;
+}
 
 body {
   background: var(--color-pearl, #F4F6F7);
   color: var(--color-charcoal, #24262C);
   font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 300; /* Karla 300 — body always recedes */
+  overflow-x: clip;
+  min-width: 0;
+}
+
+/* Safe areas for notched phones */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Horizontal table scroller with edge fade cue */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 1.5rem), transparent 100%);
+}
+@media (min-width: 768px) {
+  .table-scroll { mask-image: none; }
+}
+
+/* Mobile-first admin cards (table hidden below md) */
+.admin-card-list { display: flex; flex-direction: column; gap: 0.75rem; }
+@media (min-width: 768px) {
+  .admin-card-list { display: none; }
+}
+.admin-table-wrap { display: none; }
+@media (min-width: 768px) {
+  .admin-table-wrap { display: block; }
 }
 
 /* Type roles — prefer these over ad-hoc weights */

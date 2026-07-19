@@ -35,9 +35,11 @@ export default function ServicesPage() {
       <ul className="mt-16 border-t border-chrome/25" data-reveal-group="svc-list">
         {SERVICES.map((s) => (
           <li key={s.id} data-reveal className="border-b border-chrome/20">
-            <div className="grid gap-6 py-10 md:grid-cols-[1fr_1.2fr_auto] md:items-start md:px-2">
-              <div>
-                <h2 className="font-display text-2xl font-normal text-graphite">{s.name}</h2>
+            <div className="grid gap-4 py-8 sm:gap-6 sm:py-10 md:grid-cols-[1fr_1.2fr_auto] md:items-start md:px-2">
+              <div className="min-w-0">
+                <h2 className="font-display text-xl font-normal text-graphite sm:text-2xl">
+                  {s.name}
+                </h2>
                 <Rule
                   left={formatDuration(s.duration_minutes)}
                   right={formatServicePrice(s.price)}
@@ -49,7 +51,7 @@ export default function ServicesPage() {
               </p>
               <Link
                 href={`/book?service=${s.id}`}
-                className="sweep h-fit border border-graphite/25 px-6 py-3 text-center font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60 md:justify-self-end"
+                className="sweep h-fit w-full border border-graphite/25 px-6 py-3 text-center font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60 sm:w-auto md:justify-self-end"
               >
                 Book
               </Link>

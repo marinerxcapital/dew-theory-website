@@ -220,7 +220,7 @@ export default function CsvImport() {
       {preview.length > 0 && (
         <div>
           <h2 className="font-display text-xl font-normal text-graphite">Review ({preview.length} rows)</h2>
-          <div className="mt-4 overflow-x-auto">
+          <div className="table-scroll mt-4">
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
                 <tr className="border-b border-chrome/25 font-label text-[0.6rem] font-light uppercase tracking-lockup text-chrome">
