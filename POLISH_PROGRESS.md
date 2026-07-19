@@ -15,7 +15,7 @@ Interval: 30m
 | B4 | done | focus-visible ice+graphite ring; skip links storefront+admin; main tabIndex=-1; mobile Esc/focus; shop tab arrows | 2026-07-19T09:25:00Z |
 | B5 | done | overflow-x clip; cart summary first+sticky; admin cards/table dual layout; hero/shop/rule mobile fixes | 2026-07-19T09:55:00Z |
 | C1 | done | MotionRoot gsap.context + kill on route; admin skip; reveal on cart/contact/book/pdp; frost threshold by path | 2026-07-19T10:25:00Z |
-| C2 | pending | | |
+| C2 | done | reduced-motion: no js-motion hide; hero poster-only; no pointer specular; CSS kills ambient/sweep/video; MQ live toggle | 2026-07-19T10:55:00Z |
 | C3 | pending | | |
 | D1 | pending | | |
 | D2 | pending | | |

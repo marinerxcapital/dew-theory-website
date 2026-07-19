@@ -89,11 +89,32 @@ button {
   font-weight: inherit;
 }
 
+/* ---- prefers-reduced-motion: CSS branch (GSAP handled in MotionRoot) ---- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Never leave scroll-reveal content invisible if js-motion was set before reduce */
+  .js-motion [data-reveal],
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Orphan / decorative motion that should fully stop */
+  .iridescent { animation: none !important; }
+  .ambient-orb { animation: none !important; }
+  .chrome-text { transition: none !important; }
+  .chrome-text.is-lit { background-position: 50% 50%; }
+  .sweep::before { content: none !important; display: none !important; }
+  .specular::after { content: none !important; display: none !important; }
+  /* No hover lift under reduced motion */
+  .hover\:-translate-y-1:hover,
+  .hover\:-translate-y-0\.5:hover {
+    transform: none !important;
   }
 }
 

@@ -3,22 +3,38 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import Wordmark from './Wordmark';
 
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener?.('change', apply);
+    return () => mq.removeEventListener?.('change', apply);
+  }, []);
+  return reduced;
+}
+
 export default function Hero() {
   const ref = useRef(null);
+  const reduced = useReducedMotion();
   const [lit, setLit] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
 
-  // The wordmark catches the light shortly after load.
+  // Wordmark light catch — instant under reduced motion, delayed otherwise
   useEffect(() => {
+    if (reduced) {
+      setLit(true);
+      return undefined;
+    }
     const t = setTimeout(() => setLit(true), 420);
     return () => clearTimeout(t);
-  }, []);
+  }, [reduced]);
 
-  // Specular highlight follows the pointer, the way light moves on the logo.
+  // Specular follows pointer only when motion is allowed
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!el || reduced) return undefined;
 
     let frame = 0;
     const onMove = (e) => {
@@ -36,31 +52,55 @@ export default function Hero() {
       el.removeEventListener('pointermove', onMove);
       cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [reduced]);
+
+  // Pause any playing video if preference flips to reduce
+  useEffect(() => {
+    if (!reduced) return;
+    ref.current?.querySelectorAll('video').forEach((v) => {
+      v.pause();
+      v.removeAttribute('autoplay');
+    });
+    setHasVideo(false);
+  }, [reduced]);
 
   return (
     <section
       ref={ref}
-      className="specular relative isolate flex min-h-[100svh] items-center overflow-hidden pt-28"
+      className={`relative isolate flex min-h-[100svh] items-center overflow-hidden pt-28 ${
+        reduced ? '' : 'specular'
+      }`}
     >
       {/* Plane 1 — ambient material */}
       <div className="iridescent absolute inset-0 -z-20" aria-hidden="true" />
-      <video
-        className={`absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000 ${
-          hasVideo ? 'opacity-40' : 'opacity-0'
-        }`}
-        src="/hero.mp4"
-        poster="/hero-poster.webp"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-        onCanPlay={() => setHasVideo(true)}
-        onError={() => setHasVideo(false)}
-      />
-      {/* Plane 2 — glass veil so type stays legible over the moving chrome */}
+
+      {/* Motion: looping video. Reduced: static poster only (no autoplay). */}
+      {reduced ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/hero-poster.webp"
+          alt=""
+          className="absolute inset-0 -z-20 h-full w-full object-cover opacity-40"
+          aria-hidden="true"
+        />
+      ) : (
+        <video
+          className={`absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000 ${
+            hasVideo ? 'opacity-40' : 'opacity-0'
+          }`}
+          src="/hero.mp4"
+          poster="/hero-poster.webp"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          onCanPlay={() => setHasVideo(true)}
+          onError={() => setHasVideo(false)}
+        />
+      )}
+
       <div className="glass-2 absolute inset-0 -z-10" aria-hidden="true" />
 
       <div className="mx-auto grid w-full max-w-shell gap-10 px-5 pb-20 sm:gap-14 sm:px-6 sm:pb-24 lg:grid-cols-[1.05fr_0.85fr] lg:items-center lg:px-10">
@@ -101,21 +141,30 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Portrait frame — show from md so tablet gets the glass column too */}
         <div data-reveal className="relative mx-auto hidden aspect-[4/5] w-full max-w-sm md:block">
           <div className="glass-1 absolute inset-0 overflow-hidden rounded-[2px]">
             <div className="iridescent absolute inset-0" aria-hidden="true" />
-            <video
-              className="media-lift relative h-full w-full object-cover"
-              src="/hero.mp4"
-              poster="/hero-poster.webp"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-            />
+            {reduced ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src="/hero-poster.webp"
+                alt=""
+                className="media-lift relative h-full w-full object-cover"
+                aria-hidden="true"
+              />
+            ) : (
+              <video
+                className="media-lift relative h-full w-full object-cover"
+                src="/hero.mp4"
+                poster="/hero-poster.webp"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+              />
+            )}
           </div>
           <span aria-hidden="true" className="absolute -bottom-px left-8 right-8 h-px bg-pearl/90" />
         </div>
