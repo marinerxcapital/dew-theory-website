@@ -27,9 +27,32 @@ const body = Karla({
 });
 
 export const metadata = {
-  title: 'Dew Theory — Skin Care',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: {
+    default: 'Dew Theory — Skin Care',
+    template: '%s · Dew Theory'
+  },
   description:
-    'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.'
+    'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Dew Theory',
+    title: 'Dew Theory — Skin Care',
+    description:
+      'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
+    images: [{ url: '/logo.png', alt: 'Dew Theory' }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dew Theory — Skin Care',
+    description:
+      'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
+    images: ['/logo.png']
+  },
+  icons: {
+    icon: '/logo-mark.webp'
+  }
 };
 
 export default function RootLayout({ children }) {

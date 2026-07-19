@@ -17,7 +17,7 @@ Interval: 30m
 | C1 | done | MotionRoot gsap.context + kill on route; admin skip; reveal on cart/contact/book/pdp; frost threshold by path | 2026-07-19T10:25:00Z |
 | C2 | done | reduced-motion: no js-motion hide; hero poster-only; no pointer specular; CSS kills ambient/sweep/video; MQ live toggle | 2026-07-19T10:55:00Z |
 | C3 | done | cut bounce lifts + ambient/iridescent loops; keep sweep/specular/reveals; static orbs for glass; softer route fade | 2026-07-19T11:25:00Z |
-| D1 | pending | | |
+| D1 | done | product links /shop/[id]; services from lib/services; empty states; home+root OG/twitter metadata | 2026-07-19T11:55:00Z |
 | D2 | pending | | |
 | D3 | pending | | |
 | D4 | pending | | |
