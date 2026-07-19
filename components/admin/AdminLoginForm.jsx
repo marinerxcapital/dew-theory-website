@@ -1,10 +1,12 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import { safeAdminNextPath } from '@/lib/admin-auth-policy';
 
 export default function AdminLoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,7 +28,8 @@ export default function AdminLoginForm() {
         setLoading(false);
         return;
       }
-      router.push('/admin');
+      const dest = safeAdminNextPath(searchParams.get('next'));
+      router.push(dest);
       router.refresh();
     } catch {
       setError('Login failed');

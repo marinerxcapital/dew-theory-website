@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { getAdminFromCookies } from '@/lib/admin-auth';
 import AdminLoginForm from '@/components/admin/AdminLoginForm';
@@ -17,7 +18,9 @@ export default async function AdminLoginPage() {
         Separate from customer accounts. Access requires a row in Admins — not a shop login.
       </p>
       <div className="mt-10">
-        <AdminLoginForm />
+        <Suspense fallback={<p className="font-body text-sm font-light text-charcoal/50">Loading…</p>}>
+          <AdminLoginForm />
+        </Suspense>
       </div>
     </section>
   );

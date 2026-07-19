@@ -1,13 +1,41 @@
 import { NextResponse } from 'next/server';
-import { getAdminSessionCookieName } from '@/lib/admin-auth';
+import {
+  getAdminFromCookies,
+  getAdminSessionCookieName
+} from '@/lib/admin-auth';
+import { audit } from '@/lib/store';
 
-export async function POST(request) {
-  const origin = request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const res = NextResponse.redirect(new URL('/admin/login', origin));
+function clearSessionCookie(res) {
   res.cookies.set(getAdminSessionCookieName(), '', {
     httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
     path: '/',
     maxAge: 0
   });
+}
+
+function loginRedirect(request) {
+  // Prefer relative redirect so host follows the request (not a stale SITE_URL)
+  const url = new URL('/admin/login', request.url);
+  return NextResponse.redirect(url);
+}
+
+export async function POST(request) {
+  try {
+    const admin = await getAdminFromCookies();
+    if (admin) {
+      audit(admin.id, 'admin.logout', 'Admins', admin.id, {});
+    }
+  } catch {
+    // still clear cookie
+  }
+  const res = loginRedirect(request);
+  clearSessionCookie(res);
   return res;
+}
+
+/** Allow GET logout links; same clear semantics */
+export async function GET(request) {
+  return POST(request);
 }
