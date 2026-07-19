@@ -11,8 +11,28 @@ export async function POST(request) {
     const body = await request.json();
     const code = String(body.code || '')
       .trim()
-      .toUpperCase();
+      .toUpperCase()
+      .slice(0, 40);
     if (!code) return NextResponse.json({ error: 'Code required' }, { status: 400 });
+    if (!/^[A-Z0-9_-]+$/.test(code)) {
+      return NextResponse.json(
+        { error: 'Code may only use letters, numbers, _ and -', code: 'code_invalid' },
+        { status: 400 }
+      );
+    }
+    const value = Number(body.value);
+    if (Number.isNaN(value) || value <= 0) {
+      return NextResponse.json(
+        { error: 'Value must be a positive number', code: 'value_invalid' },
+        { status: 400 }
+      );
+    }
+    if (body.type !== 'fixed' && value > 100) {
+      return NextResponse.json(
+        { error: 'Percentage cannot exceed 100', code: 'value_invalid' },
+        { status: 400 }
+      );
+    }
 
     let stripeId = null;
     if (process.env.STRIPE_SECRET_KEY) {
@@ -44,9 +64,11 @@ export async function POST(request) {
       id: `dc_${Date.now()}`,
       code,
       type: body.type === 'fixed' ? 'fixed' : 'percentage',
-      value: Number(body.value),
-      referrer_customer_id: body.referrer_customer_id || null,
-      max_uses: body.max_uses ?? null,
+      value,
+      referrer_customer_id: body.referrer_customer_id
+        ? String(body.referrer_customer_id).slice(0, 120)
+        : null,
+      max_uses: body.max_uses != null && body.max_uses !== '' ? Number(body.max_uses) : null,
       uses_count: 0,
       expires_at: body.expires_at || null,
       active: true,

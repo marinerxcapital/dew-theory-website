@@ -34,7 +34,7 @@ Interval: 30m
 | G1 | done | prod rejects default password/secret; login audit fail+success; logout clears cookie+audit; middleware gate; safe ?next=; policy tests; npm test 89 | 2026-07-19T19:40:00Z |
 | G2 | done | product-admin validate+retail×2; active flag; stock/active PATCH toggle; delete confirm; shop isShopVisible; tests; npm test 101 | 2026-07-19T19:55:00Z |
 | G3 | done | order status filter chips; validate status; submitted_to_skin_script timestamp; line-item SKU/unit; tests; npm test 106 | 2026-07-19T20:10:00Z |
-| G4 | pending | | |
+| G4 | done | discounts create/edit/deactivate; referrer id + redemptions visible; code/value validation; expires field | 2026-07-19T20:25:00Z |
 | G5 | pending | | |
 | G6 | pending | | |
 | G7 | pending | | |
