@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { requireAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 import { formatMoney } from '@/lib/shipping';
+import ProductStockToggle from '@/components/admin/ProductStockToggle';
 
 export default async function AdminProductsPage() {
   await requireAdmin();
@@ -13,7 +14,7 @@ export default async function AdminProductsPage() {
         <div className="min-w-0">
           <h1 className="font-display text-2xl font-normal text-graphite sm:text-3xl">Products</h1>
           <p className="mt-2 font-body text-sm font-light text-charcoal/70">
-            Full CRUD. Retail auto-computes at wholesale × 2 on create/import.
+            Full CRUD. Retail auto ×2 on wholesale change. Inactive / discontinued stay off the shop.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -47,14 +48,21 @@ export default async function AdminProductsPage() {
                 {formatMoney(p.retail_price)}
               </p>
             </div>
-            <div className="mt-4 flex items-center justify-between gap-3 border-t border-chrome/15 pt-3">
-              <span className="font-body text-xs font-light text-chrome">{p.source || 'manual'}</span>
-              <Link
-                href={`/admin/products/${p.id}`}
-                className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-charcoal hover:underline"
-              >
-                Edit
-              </Link>
+            <div className="mt-4 flex flex-col gap-3 border-t border-chrome/15 pt-3">
+              <ProductStockToggle
+                productId={p.id}
+                stockStatus={p.stock_status}
+                active={p.active}
+              />
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-body text-xs font-light text-chrome">{p.source || 'manual'}</span>
+                <Link
+                  href={`/admin/products/${p.id}`}
+                  className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-charcoal hover:underline"
+                >
+                  Edit
+                </Link>
+              </div>
             </div>
           </li>
         ))}
@@ -68,7 +76,7 @@ export default async function AdminProductsPage() {
               <th className="py-3 pr-4">Name</th>
               <th className="py-3 pr-4">Category</th>
               <th className="py-3 pr-4">Retail</th>
-              <th className="py-3 pr-4">Stock</th>
+              <th className="py-3 pr-4">Stock / Active</th>
               <th className="py-3 pr-4">Source</th>
               <th className="py-3"> </th>
             </tr>
@@ -76,10 +84,23 @@ export default async function AdminProductsPage() {
           <tbody>
             {products.map((p) => (
               <tr key={p.id} className="border-b border-chrome/15 font-body text-sm font-light">
-                <td className="py-4 pr-4 text-graphite">{p.name}</td>
+                <td className="py-4 pr-4 text-graphite">
+                  {p.name}
+                  {p.active === false && (
+                    <span className="ml-2 font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
+                      hidden
+                    </span>
+                  )}
+                </td>
                 <td className="py-4 pr-4 text-charcoal/70">{p.category}</td>
                 <td className="py-4 pr-4">{formatMoney(p.retail_price)}</td>
-                <td className="py-4 pr-4 text-charcoal/70">{p.stock_status || 'in_stock'}</td>
+                <td className="py-4 pr-4">
+                  <ProductStockToggle
+                    productId={p.id}
+                    stockStatus={p.stock_status}
+                    active={p.active}
+                  />
+                </td>
                 <td className="py-4 pr-4 text-chrome">{p.source || 'manual'}</td>
                 <td className="py-4">
                   <Link

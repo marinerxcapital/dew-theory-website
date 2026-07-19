@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CATEGORIES } from '@/lib/products';
+import { defaultRetailFromWholesale } from '@/lib/product-admin';
 
 const STOCK = ['in_stock', 'out_of_stock', 'discontinued'];
 
@@ -29,8 +30,8 @@ export default function ProductForm({ product = null }) {
     setForm((f) => {
       const next = { ...f, [key]: value };
       if (key === 'wholesale_price') {
-        const w = parseFloat(value);
-        if (!Number.isNaN(w)) next.retail_price = (w * 2).toFixed(2);
+        const retail = defaultRetailFromWholesale(value);
+        if (retail != null) next.retail_price = retail.toFixed(2);
       }
       return next;
     });
@@ -47,7 +48,8 @@ export default function ProductForm({ product = null }) {
         body: JSON.stringify({
           ...form,
           wholesale_price: parseFloat(form.wholesale_price),
-          retail_price: parseFloat(form.retail_price)
+          retail_price: parseFloat(form.retail_price),
+          active: Boolean(form.active)
         })
       });
       const data = await res.json();
@@ -65,7 +67,11 @@ export default function ProductForm({ product = null }) {
   }
 
   async function onDelete() {
-    if (!product || !confirm('Delete this product?')) return;
+    if (!product) return;
+    const ok = window.confirm(
+      `Delete "${product.name}" permanently?\n\nOK = hard delete\nCancel = keep product\n\nTip: uncheck Active or set stock to discontinued to hide from shop without deleting.`
+    );
+    if (!ok) return;
     setLoading(true);
     const res = await fetch(`/api/admin/products/${product.id}`, { method: 'DELETE' });
     if (res.ok) {
@@ -127,6 +133,7 @@ export default function ProductForm({ product = null }) {
           <input
             type="number"
             step="0.01"
+            min="0"
             required
             value={form.wholesale_price}
             onChange={(e) => setField('wholesale_price', e.target.value)}
@@ -135,11 +142,12 @@ export default function ProductForm({ product = null }) {
         </div>
         <div>
           <label className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
-            Retail ($) — editable
+            Retail ($) — auto ×2, editable
           </label>
           <input
             type="number"
             step="0.01"
+            min="0"
             required
             value={form.retail_price}
             onChange={(e) => setField('retail_price', e.target.value)}
@@ -183,6 +191,16 @@ export default function ProductForm({ product = null }) {
         </div>
       </div>
 
+      <label className="flex items-center gap-3 font-body text-sm font-light text-charcoal">
+        <input
+          type="checkbox"
+          checked={form.active}
+          onChange={(e) => setField('active', e.target.checked)}
+          className="size-4 accent-graphite"
+        />
+        Active on shop (uncheck to hide without deleting)
+      </label>
+
       {error && (
         <p className="font-body text-xs font-light text-charcoal/70" role="alert">
           {error}
@@ -201,7 +219,8 @@ export default function ProductForm({ product = null }) {
           <button
             type="button"
             onClick={onDelete}
-            className="border border-chrome/40 px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal"
+            disabled={loading}
+            className="border border-chrome/40 px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal disabled:opacity-60"
           >
             Delete
           </button>

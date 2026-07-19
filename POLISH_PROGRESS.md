@@ -32,7 +32,7 @@ Interval: 30m
 | F2 | done | lib/availability.js Mock+Google stub; GET /api/availability; BookingFlow loads API; excludeBookedSlots; tests; npm test 65 | 2026-07-19T19:20:00Z |
 | F3 | done | status machine confirmed→completed/cancelled/no_show; terminal locked; admin PATCH validates; UI options; tests; npm test 78 | 2026-07-19T19:25:00Z |
 | G1 | done | prod rejects default password/secret; login audit fail+success; logout clears cookie+audit; middleware gate; safe ?next=; policy tests; npm test 89 | 2026-07-19T19:40:00Z |
-| G2 | pending | | |
+| G2 | done | product-admin validate+retail×2; active flag; stock/active PATCH toggle; delete confirm; shop isShopVisible; tests; npm test 101 | 2026-07-19T19:55:00Z |
 | G3 | pending | | |
 | G4 | pending | | |
 | G5 | pending | | |
