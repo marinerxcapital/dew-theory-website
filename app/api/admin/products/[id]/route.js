@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getAdminFromCookies } from '@/lib/admin-auth';
+import { requireAdminApi } from '@/lib/admin-auth';
 import { audit, mutateStore, readStore } from '@/lib/store';
 
 export async function PUT(request, { params }) {
-  const admin = await getAdminFromCookies();
-  if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const gate = await requireAdminApi(request);
+  if (!gate.ok) return gate.response;
+  const { admin } = gate;
 
   try {
     const body = await request.json();
@@ -42,9 +43,10 @@ export async function PUT(request, { params }) {
   }
 }
 
-export async function DELETE(_request, { params }) {
-  const admin = await getAdminFromCookies();
-  if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+export async function DELETE(request, { params }) {
+  const gate = await requireAdminApi(request);
+  if (!gate.ok) return gate.response;
+  const { admin } = gate;
 
   const before = readStore().products.find((p) => p.id === params.id);
   if (!before) return NextResponse.json({ error: 'Not found' }, { status: 404 });

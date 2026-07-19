@@ -7,7 +7,7 @@ Interval: 30m
 | ID | Status | Note | Updated |
 |----|--------|------|---------|
 | A1 | done | npm install ok; `npm run build` pass (39 routes); no lint/type errors. 2 vulns deferred to A3 | 2026-07-19T06:17:30Z |
-| A2 | pending | | |
+| A2 | done | middleware admin gate; prod rejects default password/session secret; origin CSRF on mutations; rate limit 10/15m; timing-safe compare; no dev creds in prod UI | 2026-07-19T06:48:00Z |
 | A3 | pending | | |
 | B1 | pending | | |
 | B2 | pending | | |

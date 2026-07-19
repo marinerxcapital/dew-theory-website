@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getAdminFromCookies } from '@/lib/admin-auth';
+import { requireAdminApi } from '@/lib/admin-auth';
 import { audit, mutateStore, readStore } from '@/lib/store';
 
 export async function PATCH(request, { params }) {
-  const admin = await getAdminFromCookies();
-  if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const gate = await requireAdminApi(request);
+  if (!gate.ok) return gate.response;
+  const { admin } = gate;
 
   const body = await request.json();
   const before = readStore().appointments.find((a) => a.id === params.id);

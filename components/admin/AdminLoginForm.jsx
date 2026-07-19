@@ -82,10 +82,12 @@ export default function AdminLoginForm() {
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
-      <p className="font-body text-xs font-light text-charcoal/50">
-        Dev default: admin@dewtheory.local / dew-admin-dev (override with ADMIN_EMAIL /
-        ADMIN_PASSWORD).
-      </p>
+      {process.env.NODE_ENV !== 'production' && (
+        <p className="font-body text-xs font-light text-charcoal/50">
+          Dev default: admin@dewtheory.local / dew-admin-dev (override with ADMIN_EMAIL /
+          ADMIN_PASSWORD). Defaults are rejected in production — set env vars.
+        </p>
+      )}
     </form>
   );
 }

@@ -6,13 +6,13 @@ import {
 } from '@/lib/admin-auth';
 import { audit, mutateStore } from '@/lib/store';
 
-// Simple in-memory rate limit (per process)
+// In-memory rate limit per process (tighten: 10 / 15 min)
 const attempts = new Map();
 
 function rateLimited(ip) {
   const now = Date.now();
   const windowMs = 15 * 60 * 1000;
-  const max = 20;
+  const max = 10;
   const entry = attempts.get(ip) || { count: 0, start: now };
   if (now - entry.start > windowMs) {
     attempts.set(ip, { count: 1, start: now });
@@ -35,7 +35,9 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const admin = validateCredentials(body.email || '', body.password || '');
+    const email = String(body.email || '').slice(0, 320);
+    const password = String(body.password || '').slice(0, 256);
+    const admin = validateCredentials(email, password);
 
     if (!admin) {
       mutateStore((s) => {
@@ -44,16 +46,25 @@ export async function POST(request) {
           admin_id: null,
           action: 'admin.login_failed',
           entity: 'Admins',
-          entity_id: body.email || '',
+          entity_id: email,
           diff: { ip },
           created_at: new Date().toISOString()
         });
         return s;
       });
+      // Generic message — do not reveal whether email or password failed, or prod env missing
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    const token = createSessionToken(admin);
+    let token;
+    try {
+      token = createSessionToken(admin);
+    } catch {
+      return NextResponse.json(
+        { error: 'Server auth is not configured' },
+        { status: 503 }
+      );
+    }
     const cookie = sessionCookieOptions(token);
     audit(admin.id, 'admin.login_success', 'Admins', admin.id, { ip });
 

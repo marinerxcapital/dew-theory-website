@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getAdminFromCookies } from '@/lib/admin-auth';
+import { requireAdminApi } from '@/lib/admin-auth';
 import { audit, mutateStore } from '@/lib/store';
 
 export async function POST(request) {
-  const admin = await getAdminFromCookies();
-  if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const gate = await requireAdminApi(request);
+  if (!gate.ok) return gate.response;
+  const { admin } = gate;
 
   try {
     const body = await request.json();
