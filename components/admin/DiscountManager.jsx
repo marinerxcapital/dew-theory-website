@@ -64,13 +64,13 @@ export default function DiscountManager({ initial }) {
           placeholder="Code (e.g. DEW15)"
           value={form.code}
           onChange={(e) => setForm((f) => ({ ...f, code: e.target.value.toUpperCase() }))}
-          className="w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm uppercase"
+          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm uppercase"
         />
         <div className="grid grid-cols-2 gap-3">
           <select
             value={form.type}
             onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
-            className="border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm"
+            className="border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
           >
             <option value="percentage">Percentage</option>
             <option value="fixed">Fixed $</option>
@@ -81,20 +81,20 @@ export default function DiscountManager({ initial }) {
             required
             value={form.value}
             onChange={(e) => setForm((f) => ({ ...f, value: e.target.value }))}
-            className="border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm"
+            className="border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
           />
         </div>
         <input
           placeholder="Max uses (optional)"
           value={form.max_uses}
           onChange={(e) => setForm((f) => ({ ...f, max_uses: e.target.value }))}
-          className="w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm"
+          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
         />
         <input
           placeholder="Referrer customer id (optional)"
           value={form.referrer_customer_id}
           onChange={(e) => setForm((f) => ({ ...f, referrer_customer_id: e.target.value }))}
-          className="w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm"
+          className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
         />
         {error && <p className="text-xs text-charcoal/70">{error}</p>}
         <button

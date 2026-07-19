@@ -26,7 +26,7 @@ export default function AppointmentStatusForm({ appointmentId, current }) {
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="border border-chrome/30 bg-white/70 px-2 py-2 font-body text-xs"
+        className="border border-chrome/30 bg-pearl/90 px-2 py-2 font-body text-xs"
       >
         {STATUSES.map((s) => (
           <option key={s} value={s}>

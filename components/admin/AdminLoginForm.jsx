@@ -50,7 +50,7 @@ export default function AdminLoginForm() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+          className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         />
       </div>
       <div>
@@ -67,7 +67,7 @@ export default function AdminLoginForm() {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+          className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         />
       </div>
       {error && (

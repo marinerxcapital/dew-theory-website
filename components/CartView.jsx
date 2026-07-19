@@ -173,7 +173,7 @@ export default function CartView() {
                   onChange={(e) =>
                     updateQuantity(item.product_id, item.variant, Number(e.target.value) || 1)
                   }
-                  className="w-16 border border-chrome/30 bg-white/60 px-2 py-2 text-center font-body text-sm font-light text-charcoal"
+                  className="w-16 border border-chrome/30 bg-pearl/80 px-2 py-2 text-center font-body text-sm font-light text-charcoal"
                 />
                 <button
                   type="button"
@@ -230,7 +230,7 @@ export default function CartView() {
                 value={codeInput}
                 onChange={(e) => setCodeInput(e.target.value)}
                 placeholder="DEW15"
-                className="min-w-0 flex-1 border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light uppercase tracking-wide2 text-charcoal"
+                className="min-w-0 flex-1 border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light uppercase tracking-wide2 text-charcoal"
               />
               <button
                 type="submit"
@@ -283,7 +283,7 @@ export default function CartView() {
                   placeholder={label}
                   value={guest[key]}
                   onChange={(e) => setGuest((g) => ({ ...g, [key]: e.target.value }))}
-                  className="w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+                  className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
                 />
               </div>
             ))}

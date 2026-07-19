@@ -29,7 +29,7 @@ export default function Nav() {
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-white focus:px-3 focus:py-2 focus:font-label focus:text-xs focus:uppercase focus:tracking-wide2"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-pearl focus:px-3 focus:py-2 focus:font-label focus:text-xs focus:uppercase focus:tracking-wide2"
       >
         Skip to content
       </a>

@@ -202,7 +202,7 @@ export default function CsvImport() {
                 <select
                   value={map[field] || ''}
                   onChange={(e) => updateMap(field, e.target.value)}
-                  className="mt-1 w-full border border-chrome/30 bg-white/70 px-2 py-2 font-body text-sm"
+                  className="mt-1 w-full border border-chrome/30 bg-pearl/90 px-2 py-2 font-body text-sm"
                 >
                   <option value="">— skip —</option>
                   {headers.map((h) => (

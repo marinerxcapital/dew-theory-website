@@ -23,7 +23,7 @@ export default function AdminShell({ admin, children }) {
 
   return (
     <div className="pt-24">
-      <div className="border-b border-chrome/20 bg-white/50">
+      <div className="border-b border-chrome/20 bg-pearl/70">
         <div className="mx-auto flex max-w-shell flex-wrap items-center justify-between gap-4 px-6 py-4 lg:px-10">
           <div>
             <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">

@@ -114,7 +114,7 @@ export default function Hero() {
               aria-hidden="true"
             />
           </div>
-          <span aria-hidden="true" className="absolute -bottom-px left-8 right-8 h-px bg-white/70" />
+          <span aria-hidden="true" className="absolute -bottom-px left-8 right-8 h-px bg-pearl/90" />
         </div>
       </div>
 

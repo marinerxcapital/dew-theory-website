@@ -181,7 +181,7 @@ export default function Home() {
             <li key={s.id} data-reveal className="border-b border-chrome/20">
               <Link
                 href={`/book?service=${s.id}`}
-                className="sweep grid gap-4 py-8 transition-colors hover:bg-white/40 md:grid-cols-[1.1fr_1.4fr_auto] md:items-center md:px-4"
+                className="sweep grid gap-4 py-8 transition-colors hover:bg-pearl/50 md:grid-cols-[1.1fr_1.4fr_auto] md:items-center md:px-4"
               >
                 <h3 className="font-display text-xl text-graphite">{s.name}</h3>
                 <p className="font-body text-sm font-light leading-relaxed text-charcoal/70">

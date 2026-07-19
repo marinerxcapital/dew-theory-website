@@ -44,7 +44,7 @@ export default function OrderStatusForm({ orderId, current }) {
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="mt-4 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm"
+        className="mt-4 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm"
       >
         {STATUSES.map((s) => (
           <option key={s} value={s}>

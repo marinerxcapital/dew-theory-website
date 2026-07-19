@@ -69,7 +69,7 @@ export default function ContactForm() {
           required
           value={form.name}
           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-          className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+          className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         />
       </div>
       <div>
@@ -85,7 +85,7 @@ export default function ContactForm() {
           required
           value={form.email}
           onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-          className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+          className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         />
       </div>
       <div>
@@ -99,7 +99,7 @@ export default function ContactForm() {
           id="contact-topic"
           value={form.topic}
           onChange={(e) => setForm((f) => ({ ...f, topic: e.target.value }))}
-          className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+          className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         >
           <option value="general">General</option>
           <option value="booking">Booking / reschedule</option>
@@ -121,7 +121,7 @@ export default function ContactForm() {
           rows={6}
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-          className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+          className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         />
       </div>
       {error && (

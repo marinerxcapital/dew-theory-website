@@ -254,7 +254,7 @@ export default function BookingFlow({ initialServiceId = null }) {
                 required={required}
                 value={contact[key]}
                 onChange={(e) => setContact((c) => ({ ...c, [key]: e.target.value }))}
-                className="mt-2 w-full border border-chrome/30 bg-white/70 px-3 py-3 font-body text-sm font-light text-charcoal"
+                className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
               />
             </div>
           ))}
