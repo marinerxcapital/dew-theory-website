@@ -6,6 +6,7 @@ import {
   priceCart,
   normalizeIdempotencyKey
 } from '@/lib/checkout';
+import { resolveDiscountCode } from '@/lib/discounts';
 import { getProducts } from '@/lib/products-server';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
 
@@ -19,24 +20,6 @@ function jsonError(payload, status = 400) {
     },
     { status }
   );
-}
-
-function resolveDiscount(codeRaw) {
-  if (!codeRaw) return null;
-  const code = String(codeRaw).trim().toUpperCase();
-  if (!code) return null;
-  const store = readStore();
-  const discount = store.discount_codes.find(
-    (d) => d.code.toUpperCase() === code && d.active
-  );
-  if (!discount) return { error: true, code: 'discount_invalid', errorMsg: 'Promo code not valid' };
-  if (discount.expires_at && new Date(discount.expires_at) < new Date()) {
-    return { error: true, code: 'discount_expired', errorMsg: 'Promo code expired' };
-  }
-  if (discount.max_uses != null && discount.uses_count >= discount.max_uses) {
-    return { error: true, code: 'discount_exhausted', errorMsg: 'Promo code fully redeemed' };
-  }
-  return { error: false, discount };
 }
 
 export async function POST(request) {
@@ -74,11 +57,22 @@ export async function POST(request) {
     }
     const { items } = priced;
 
-    const disc = resolveDiscount(body.discount_code);
-    if (disc?.error) {
-      return jsonError({ error: disc.errorMsg, code: disc.code }, 400);
+    let discountCode = null;
+    if (body.discount_code) {
+      const resolved = resolveDiscountCode(
+        body.discount_code,
+        readStore().discount_codes || []
+      );
+      if (!resolved.ok) {
+        return jsonError(
+          { error: resolved.error, code: resolved.code },
+          resolved.code === 'discount_not_found' || resolved.code === 'discount_inactive'
+            ? 404
+            : 400
+        );
+      }
+      discountCode = resolved.discount;
     }
-    const discountCode = disc?.discount || null;
 
     const totals = priceCart(items, discountCode);
 

@@ -25,7 +25,7 @@ Interval: 30m
 | D6 | done | invalid ?service= notice; double-submit guard; funnel events; deposit placeholder; past slots filtered; dup booking | 2026-07-19T14:25:00Z |
 | E1 | done | checkout validateAndPriceItems; unknown SKU/OOS reject; catalog re-price; Idempotency-Key; error code shapes | 2026-07-19T14:55:00Z |
 | E2 | done | node:test shipping matrix — $7/<$49, free@$49, pre vs post basis, promo×ship; npm test 18 pass | 2026-07-19T16:50:00Z |
-| E3 | pending | | |
+| E3 | done | resolveDiscountCode pure + tests: %/fixed/expired/max_uses/inactive/case; npm test 39 pass | 2026-07-19T17:20:00Z |
 | E4 | pending | | |
 | E5 | pending | | |
 | F1 | pending | | |
