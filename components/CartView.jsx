@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/components/CartProvider';
 import Rule from '@/components/Rule';
-import { formatMoney } from '@/lib/shipping';
+import {
+  formatMoney,
+  FREE_SHIPPING_THRESHOLD_USD,
+  FLAT_SHIPPING_USD
+} from '@/lib/shipping';
 
 export default function CartView() {
   const {
@@ -12,6 +16,7 @@ export default function CartView() {
     totals,
     discountCode,
     hydrated,
+    maxQty,
     updateQuantity,
     removeItem,
     setPromo,
@@ -34,15 +39,23 @@ export default function CartView() {
     country: 'US'
   });
 
+  const towardFree = Math.max(0, FREE_SHIPPING_THRESHOLD_USD - totals.subtotal);
+  const freeShipping = totals.shipping_fee === 0;
+
   async function applyCode(e) {
     e.preventDefault();
     setCodeError('');
+    const code = codeInput.trim();
+    if (!code) {
+      setCodeError('Enter a code');
+      return;
+    }
     setCodeLoading(true);
     try {
       const res = await fetch('/api/discount/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: codeInput.trim() })
+        body: JSON.stringify({ code })
       });
       const data = await res.json();
       if (!res.ok) {
@@ -51,6 +64,7 @@ export default function CartView() {
         return;
       }
       setPromo(data.discount);
+      setCodeError('');
     } catch {
       setCodeError('Could not validate code');
     } finally {
@@ -58,9 +72,36 @@ export default function CartView() {
     }
   }
 
+  function onClearPromo() {
+    clearPromo();
+    setCodeInput('');
+    setCodeError('');
+  }
+
+  function onQtyChange(productId, variant, raw) {
+    // Empty field while typing — wait for blur; treat 0 as remove
+    if (raw === '' || raw === '-') return;
+    const n = Number(raw);
+    if (!Number.isFinite(n)) return;
+    updateQuantity(productId, variant, n);
+  }
+
+  function onQtyBlur(productId, variant, raw) {
+    const n = Number(raw);
+    if (!Number.isFinite(n) || n <= 0) {
+      updateQuantity(productId, variant, 0);
+      return;
+    }
+    updateQuantity(productId, variant, Math.min(maxQty, Math.floor(n)));
+  }
+
   async function startCheckout(e) {
     e.preventDefault();
     setCheckoutError('');
+    if (!items.length) {
+      setCheckoutError('Your cart is empty');
+      return;
+    }
     setCheckoutLoading(true);
     try {
       const res = await fetch('/api/checkout', {
@@ -92,9 +133,8 @@ export default function CartView() {
         window.location.href = data.url;
         return;
       }
-      // Local mock checkout success
       clearCart();
-      window.location.href = `/cart/confirmation?order=${data.order_id}`;
+      window.location.href = `/cart/confirmation?order=${encodeURIComponent(data.order_id)}`;
     } catch {
       setCheckoutError('Checkout failed. Try again.');
     } finally {
@@ -190,13 +230,14 @@ export default function CartView() {
                 <input
                   id={`qty-${item.product_id}-${item.variant}`}
                   type="number"
-                  min={1}
-                  max={20}
+                  min={0}
+                  max={maxQty}
                   inputMode="numeric"
                   value={item.quantity}
                   onChange={(e) =>
-                    updateQuantity(item.product_id, item.variant, Number(e.target.value) || 1)
+                    onQtyChange(item.product_id, item.variant, e.target.value)
                   }
+                  onBlur={(e) => onQtyBlur(item.product_id, item.variant, e.target.value)}
                   className="w-16 border border-chrome/30 bg-pearl/80 px-2 py-2 text-center font-body text-sm font-light text-charcoal"
                 />
                 <button
@@ -211,10 +252,9 @@ export default function CartView() {
           ))}
         </ul>
 
-        {/* Summary first on mobile so totals stay reachable; sticky under nav on desktop */}
         <aside
           data-reveal
-          className="glass-1 order-first h-fit p-6 sm:p-8 lg:order-last lg:sticky lg:top-24"
+          className="glass-1 order-first h-fit p-6 sm:p-8 lg:sticky lg:top-24 lg:order-last"
         >
           <h2 className="font-display text-2xl font-normal text-graphite">Summary</h2>
 
@@ -231,9 +271,7 @@ export default function CartView() {
             )}
             <div className="flex justify-between">
               <dt>Shipping</dt>
-              <dd>
-                {totals.shipping_fee === 0 ? 'Free' : formatMoney(totals.shipping_fee)}
-              </dd>
+              <dd>{freeShipping ? 'Free' : formatMoney(totals.shipping_fee)}</dd>
             </div>
             <div className="flex justify-between border-t border-chrome/20 pt-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-graphite">
               <dt>Total</dt>
@@ -241,9 +279,21 @@ export default function CartView() {
             </div>
           </dl>
 
-          <p className="mt-4 font-body text-xs font-light leading-relaxed text-charcoal/55">
-            Flat $7 shipping, waived at $49+ subtotal (before discount).
-          </p>
+          {/* Free shipping messaging */}
+          <div className="mt-4 border border-chrome/20 bg-pearl/50 p-4">
+            {freeShipping ? (
+              <p className="font-body text-xs font-light leading-relaxed text-charcoal/70">
+                Free shipping applied — subtotal is ${FREE_SHIPPING_THRESHOLD_USD}+ (before
+                discount).
+              </p>
+            ) : (
+              <p className="font-body text-xs font-light leading-relaxed text-charcoal/70">
+                Add {formatMoney(towardFree)} more for free shipping (threshold $
+                {FREE_SHIPPING_THRESHOLD_USD} pre-discount). Flat rate otherwise:{' '}
+                {formatMoney(FLAT_SHIPPING_USD)}.
+              </p>
+            )}
+          </div>
 
           <form onSubmit={applyCode} className="mt-8">
             <label
@@ -258,12 +308,13 @@ export default function CartView() {
                 value={codeInput}
                 onChange={(e) => setCodeInput(e.target.value)}
                 placeholder="DEW15"
+                autoComplete="off"
                 className="min-w-0 flex-1 border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light uppercase tracking-wide2 text-charcoal"
               />
               <button
                 type="submit"
-                disabled={codeLoading}
-                className="border border-graphite/25 px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+                disabled={codeLoading || !codeInput.trim()}
+                className="border border-graphite/25 px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60 disabled:opacity-40"
               >
                 Apply
               </button>
@@ -271,7 +322,7 @@ export default function CartView() {
             {discountCode && (
               <button
                 type="button"
-                onClick={clearPromo}
+                onClick={onClearPromo}
                 className="mt-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
               >
                 Remove {discountCode.code}
@@ -298,10 +349,7 @@ export default function CartView() {
               ['postal_code', 'Postal code', 'text']
             ].map(([key, label, type]) => (
               <div key={key}>
-                <label
-                  htmlFor={`guest-${key}`}
-                  className="sr-only"
-                >
+                <label htmlFor={`guest-${key}`} className="sr-only">
                   {label}
                 </label>
                 <input
@@ -324,7 +372,7 @@ export default function CartView() {
 
             <button
               type="submit"
-              disabled={checkoutLoading}
+              disabled={checkoutLoading || !items.length}
               className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
             >
               {checkoutLoading ? 'Starting checkout…' : 'Checkout'}

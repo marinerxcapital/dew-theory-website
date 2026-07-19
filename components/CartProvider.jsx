@@ -6,13 +6,49 @@ import { productById } from '@/lib/products';
 
 const CartContext = createContext(null);
 const STORAGE_KEY = 'dew_theory_cart_v1';
+const MAX_QTY = 20;
+
+function clampQty(n) {
+  const q = Math.floor(Number(n));
+  if (!Number.isFinite(q) || q <= 0) return 0;
+  return Math.min(MAX_QTY, q);
+}
+
+/** Drop unknown SKUs; re-price from catalog; clamp quantities. */
+function sanitizeItems(rawItems) {
+  if (!Array.isArray(rawItems)) return [];
+  const out = [];
+  for (const li of rawItems) {
+    const product = productById(li.product_id);
+    if (!product) continue; // missing product — drop
+    if (product.variants?.length) {
+      if (!li.variant || !product.variants.includes(li.variant)) continue;
+    }
+    const quantity = clampQty(li.quantity);
+    if (quantity <= 0) continue;
+    out.push({
+      product_id: product.id,
+      name: product.name,
+      unit_price: product.retail_price,
+      quantity,
+      variant: li.variant || null,
+      category: product.category,
+      size: product.size
+    });
+  }
+  return out;
+}
 
 function load() {
   if (typeof window === 'undefined') return { items: [], discountCode: null };
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { items: [], discountCode: null };
-    return JSON.parse(raw);
+    const data = JSON.parse(raw);
+    return {
+      items: sanitizeItems(data.items || []),
+      discountCode: data.discountCode || null
+    };
   } catch {
     return { items: [], discountCode: null };
   }
@@ -25,8 +61,8 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     const data = load();
-    setItems(data.items || []);
-    setDiscountCode(data.discountCode || null);
+    setItems(data.items);
+    setDiscountCode(data.discountCode);
     setHydrated(true);
   }, []);
 
@@ -39,6 +75,9 @@ export function CartProvider({ children }) {
     const product = productById(productId);
     if (!product) return;
     if (product.variants?.length && !variant) return;
+    if (product.variants?.length && !product.variants.includes(variant)) return;
+
+    const addQty = clampQty(quantity) || 1;
 
     setItems((prev) => {
       const key = `${productId}::${variant || ''}`;
@@ -46,7 +85,7 @@ export function CartProvider({ children }) {
       if (existing) {
         return prev.map((i) =>
           `${i.product_id}::${i.variant || ''}` === key
-            ? { ...i, quantity: i.quantity + quantity }
+            ? { ...i, quantity: clampQty(i.quantity + addQty) || i.quantity }
             : i
         );
       }
@@ -56,7 +95,7 @@ export function CartProvider({ children }) {
           product_id: productId,
           name: product.name,
           unit_price: product.retail_price,
-          quantity,
+          quantity: addQty,
           variant,
           category: product.category,
           size: product.size
@@ -66,15 +105,16 @@ export function CartProvider({ children }) {
   }, []);
 
   const updateQuantity = useCallback((productId, variant, quantity) => {
+    const q = clampQty(quantity);
     setItems((prev) => {
-      if (quantity <= 0) {
+      if (q <= 0) {
         return prev.filter(
           (i) => !(i.product_id === productId && (i.variant || null) === (variant || null))
         );
       }
       return prev.map((i) =>
         i.product_id === productId && (i.variant || null) === (variant || null)
-          ? { ...i, quantity }
+          ? { ...i, quantity: q, unit_price: productById(productId)?.retail_price ?? i.unit_price }
           : i
       );
     });
@@ -99,6 +139,18 @@ export function CartProvider({ children }) {
 
   const clearPromo = useCallback(() => setDiscountCode(null), []);
 
+  // Re-sanitize if catalog changes between sessions (e.g. removed SKU)
+  useEffect(() => {
+    if (!hydrated) return;
+    setItems((prev) => {
+      const next = sanitizeItems(prev);
+      if (next.length === prev.length && next.every((n, i) => n.quantity === prev[i].quantity && n.unit_price === prev[i].unit_price)) {
+        return prev;
+      }
+      return next;
+    });
+  }, [hydrated]);
+
   const count = useMemo(() => items.reduce((n, i) => n + i.quantity, 0), [items]);
   const totals = useMemo(() => cartTotals(items, discountCode), [items, discountCode]);
 
@@ -109,6 +161,7 @@ export function CartProvider({ children }) {
       totals,
       discountCode,
       hydrated,
+      maxQty: MAX_QTY,
       addItem,
       updateQuantity,
       removeItem,
