@@ -118,20 +118,156 @@ button {
 }
 @media (prefers-reduced-motion: reduce) { .iridescent { animation: none; } }
 
-/* ---- Two planes of glass, deliberately different ---- */
+/* ---- Site ambient: soft chrome fields for glass to refract ---- */
+.ambient-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      165deg,
+      var(--color-pearl) 0%,
+      #EEF1F3 42%,
+      var(--color-ivory) 72%,
+      var(--color-pearl) 100%
+    );
+}
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  will-change: transform;
+}
+.ambient-orb--ice {
+  width: min(72vw, 44rem);
+  height: min(72vw, 44rem);
+  top: -12%;
+  left: -8%;
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(196, 218, 233, 0.72) 0%,
+    rgba(196, 218, 233, 0.18) 45%,
+    transparent 70%
+  );
+  animation: ambient-drift-a 48s ease-in-out infinite alternate;
+}
+.ambient-orb--lavender {
+  width: min(60vw, 36rem);
+  height: min(60vw, 36rem);
+  top: 8%;
+  right: -10%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(206, 205, 225, 0.65) 0%,
+    rgba(206, 205, 225, 0.15) 48%,
+    transparent 72%
+  );
+  animation: ambient-drift-b 56s ease-in-out infinite alternate;
+}
+.ambient-orb--blush {
+  width: min(68vw, 40rem);
+  height: min(68vw, 40rem);
+  bottom: -18%;
+  left: 18%;
+  background: radial-gradient(
+    circle at 45% 45%,
+    rgba(222, 194, 207, 0.58) 0%,
+    rgba(222, 194, 207, 0.12) 50%,
+    transparent 72%
+  );
+  animation: ambient-drift-c 62s ease-in-out infinite alternate;
+}
+.ambient-orb--chrome {
+  width: min(40vw, 22rem);
+  height: min(40vw, 22rem);
+  top: 42%;
+  left: 48%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(130, 143, 154, 0.22) 0%,
+    transparent 68%
+  );
+  animation: ambient-drift-b 40s ease-in-out infinite alternate-reverse;
+}
+/* Fine grain mesh so blur has micro-detail, not only soft blobs */
+.ambient-mesh {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image:
+    radial-gradient(rgba(45, 47, 58, 0.035) 0.6px, transparent 0.7px);
+  background-size: 3px 3px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 75%);
+}
+@keyframes ambient-drift-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(6%, 8%) scale(1.06); }
+}
+@keyframes ambient-drift-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-5%, 6%) scale(1.08); }
+}
+@keyframes ambient-drift-c {
+  0%   { transform: translate(0, 0) scale(1.02); }
+  100% { transform: translate(4%, -5%) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb { animation: none; }
+}
+
+/* ---- Two planes of glass, deliberately different ----
+   More translucent than before so backdrop-filter actually reads
+   against AmbientField (was near-opaque over flat pearl). */
 .glass-1 {
-  background: rgba(244,246,247,0.58);
-  backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-backdrop-filter: blur(22px) saturate(1.25);
-  border: 1px solid rgba(244,246,247,0.82);
-  box-shadow: 0 1px 0 rgba(247,249,250,0.75) inset,
-              0 18px 48px -28px rgba(45,47,58,0.30);
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(247, 249, 250, 0.52) 0%,
+      rgba(244, 246, 247, 0.32) 48%,
+      rgba(196, 218, 233, 0.12) 100%
+    );
+  backdrop-filter: blur(28px) saturate(1.4);
+  -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  border: 1px solid rgba(247, 249, 250, 0.72);
+  box-shadow:
+    0 1px 0 rgba(247, 249, 250, 0.85) inset,
+    0 -1px 0 rgba(196, 218, 233, 0.12) inset,
+    0 20px 52px -28px rgba(45, 47, 58, 0.28);
+}
+.glass-1::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 249, 250, 0.28) 0%,
+    transparent 42%
+  );
+  z-index: 0;
+}
+.glass-1 > * {
+  position: relative;
+  z-index: 1;
 }
 .glass-2 {
-  background: rgba(244,246,247,0.34);
-  backdrop-filter: blur(9px) saturate(1.1);
-  -webkit-backdrop-filter: blur(9px) saturate(1.1);
-  border: 1px solid rgba(196,218,233,0.35);
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(244, 246, 247, 0.28) 0%,
+      rgba(206, 205, 225, 0.1) 100%
+    );
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid rgba(196, 218, 233, 0.4);
+  box-shadow: 0 1px 0 rgba(247, 249, 250, 0.4) inset;
 }
 
 /* Card hover: a highlight sweep, not a bounce. */
@@ -155,11 +291,15 @@ button {
 /* Nav frosting. Written here, not as a Tailwind variant: `data-[state]:glass-1`
    silently does nothing, because variants only compose real utilities. */
 [data-nav][data-state='frosted'] {
-  background: rgba(244,246,247,0.72);
-  backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-backdrop-filter: blur(22px) saturate(1.25);
-  border-bottom: 1px solid rgba(196,218,233,0.35);
-  box-shadow: 0 14px 40px -32px rgba(45,47,58,0.35);
+  background: linear-gradient(
+    180deg,
+    rgba(244, 246, 247, 0.62) 0%,
+    rgba(244, 246, 247, 0.42) 100%
+  );
+  backdrop-filter: blur(26px) saturate(1.35);
+  -webkit-backdrop-filter: blur(26px) saturate(1.35);
+  border-bottom: 1px solid rgba(196, 218, 233, 0.38);
+  box-shadow: 0 14px 40px -32px rgba(45, 47, 58, 0.28);
 }
 [data-nav][data-state='clear'] { background: transparent; border-bottom: 1px solid transparent; }
 

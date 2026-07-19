@@ -3,6 +3,7 @@ import { Bodoni_Moda, Jost, Karla } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import MotionRoot from '@/components/MotionRoot';
+import AmbientField from '@/components/AmbientField';
 import { CartProvider } from '@/components/CartProvider';
 
 const display = Bodoni_Moda({
@@ -34,12 +35,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
-      <body className="bg-pearl font-body font-light text-charcoal antialiased">
+      <body className="relative bg-pearl font-body font-light text-charcoal antialiased">
         <CartProvider>
+          <AmbientField />
           <MotionRoot />
-          <Nav />
-          <main id="main">{children}</main>
-          <Footer />
+          <div className="relative z-[1]">
+            <Nav />
+            <main id="main">{children}</main>
+            <Footer />
+          </div>
         </CartProvider>
       </body>
     </html>
