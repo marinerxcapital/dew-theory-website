@@ -19,10 +19,10 @@ export default function Wordmark({
 }) {
   const [failed, setFailed] = useState(false);
 
-  // logo-mark is a tight crop; full lockup is wider
+  // logo-mark is a tight crop; full lockup is wider (higher intrinsic size keeps nav crisp when enlarged)
   const isMark = src.includes('logo-mark');
-  const width = isMark ? 160 : 520;
-  const height = isMark ? 40 : 200;
+  const width = isMark ? 320 : 520;
+  const height = isMark ? 80 : 200;
 
   if (!failed) {
     return (
@@ -32,7 +32,8 @@ export default function Wordmark({
         width={width}
         height={height}
         priority={priority}
-        className={`${className} h-auto w-auto object-contain`}
+        sizes={isMark ? '(max-width: 640px) 176px, (max-width: 1024px) 216px, 240px' : '520px'}
+        className={`${className} object-contain`}
         onError={() => setFailed(true)}
       />
     );

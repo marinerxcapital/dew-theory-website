@@ -58,12 +58,16 @@ export default function Nav() {
         Skip to content
       </a>
 
-      <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 lg:px-10">
-        <Link href="/" aria-label="Dew Theory, home" className="shrink-0">
+      <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 sm:py-6 lg:px-10">
+        <Link
+          href="/"
+          aria-label="Dew Theory, home"
+          className="nav-logo shrink-0 transition-opacity duration-300 hover:opacity-90"
+        >
           <Wordmark
             src="/logo-mark.webp"
             priority
-            className="h-6 text-[1.55rem] leading-none sm:h-7 sm:text-[1.8rem]"
+            className="h-9 w-auto max-w-[11rem] object-contain object-left drop-shadow-[0_1px_2px_rgba(42,42,40,0.12)] sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
           />
         </Link>
 

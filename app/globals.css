@@ -639,6 +639,16 @@ article:hover .media-zoom img {
   border-bottom: 1px solid transparent;
 }
 
+/* Header logo — larger mark, stronger contrast on glass/video hero */
+.nav-logo img {
+  filter: contrast(1.08) saturate(1.05);
+}
+.nav-logo:focus-visible {
+  outline: 2px solid rgba(90, 125, 154, 0.55);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 /* Nav link underline — material, not decoration for its own sake */
 .nav-link {
   position: relative;
