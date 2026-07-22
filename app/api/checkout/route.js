@@ -9,6 +9,7 @@ import {
 import { resolveDiscountCode } from '@/lib/discounts';
 import { getProducts } from '@/lib/products-server';
 import { buildSessionMetadata } from '@/lib/stripe-orders';
+import { maybeAutoFulfill } from '@/lib/dropship/fulfill-order';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
 
 function jsonError(payload, status = 400) {
@@ -213,12 +214,30 @@ export async function POST(request) {
     });
     trackEvent('checkout_completed', { order_id: orderId, mode: 'mock' });
 
+    // Automated dropship when AUTO_FULFILL is not disabled (default on)
+    let fulfill = null;
+    try {
+      fulfill = await maybeAutoFulfill(orderId);
+    } catch (err) {
+      fulfill = { ok: false, error: err?.message || 'fulfill failed', code: 'fulfill_exception' };
+    }
+
     return NextResponse.json({
       order_id: orderId,
       mock: true,
       mode: 'mock',
       code: 'checkout_mock_paid',
-      totals
+      totals,
+      fulfill: fulfill
+        ? {
+            ok: fulfill.ok,
+            code: fulfill.code,
+            supplier_order_id: fulfill.order?.supplier_order_id || null,
+            status: fulfill.order?.status || null,
+            error: fulfill.error || null,
+            skipped: fulfill.skipped || false
+          }
+        : null
     });
   } catch (err) {
     return jsonError(

@@ -76,7 +76,16 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - Deposit percentage and cancellation cutoff window for bookings.
 - Membership program: whether it launches at all, and on what terms (page built without inventing tiers/prices).
 - Domain name.
-- **Skin Script live sync.** No confirmed API. CSV/manual import is the real path (`/admin/import`).
+- **Skin Script live sync.** No confirmed API. CSV/manual import remains (`/admin/import`).
+  **Also:** mock automated sync + dropship (`/admin/sync`, auto-fulfill on paid). Live path blocked
+  on partner answer — exact questions:
+  1. Is dropship/resale allowed on this wholesale account?
+  2. Catalog channel: partner API, scheduled CSV, or portal export only?
+  3. Order channel: API create PO, EDI, or email PO?
+  4. Canonical SKU + wholesale price file format and cadence?
+  5. Ship-from, tracking format, partial ships, returns process?
+  6. MAP / branding constraints?
+  Details: `docs/SKIN_SCRIPT_SYNC.md`.
 - **Visitor analytics provider** — recommended Vercel Analytics; funnel analytics use first-party events.
 - **Admin two-factor authentication** — recommended, not in initial build.
 - Google Calendar OAuth for live availability (booking uses mock 14-day slots until credentials exist).
@@ -87,9 +96,16 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 
 ## 5. Assets (carried over)
 
-- **The hero video is portrait, 1280 × 1618 — not the 16:9 the brief describes.** Composed as a
-  portrait glass column rather than cropped. Real logo and video files are in `/public`.
-- No product photography, studio photography, or photo of Emily. Animated iridescent fields stand in.
+- **The hero video is portrait, 848 × 1072 (not 16:9).** Full-bleed `object-cover` motion
+  background + portrait glass column (poster still). Source refreshed 2026-07-21 from
+  `generated_video (1).mp4`; web path is ping-pong-extended silent `hero.mp4` (~20s) +
+  `hero-poster.webp` via `next/image`. Original brief’s 16:9 landscape still not used.
+- **No real product photography, studio photography, or photo of Emily yet.** Shop/home/PDP use
+  brand-abstract SVG placeholders under `public/products/placeholders/` (not Skin Script bottles).
+  Pipeline is ready: set `product.images[0]` (admin primary image URL or seed) to a WebP/AVIF path
+  or remote URL. Real photos still required before customer launch visuals.
+- **Lighthouse local baseline (2026-07-20):** home perf ~60, shop ~58, PDP ~88; CLS excellent;
+  TBT/LCP on home+shop still driven by main-thread JS + hero media. See `docs/OPTIMIZATION_REPORT.md`.
 
 ---
 
@@ -100,6 +116,15 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **GitHub Pages preview.** Skip — private repo; Pages can't run Stripe/Supabase/admin.
 - **Live Stripe / Supabase / Google Calendar keys** — not present in this environment; integrations
   are wired for env drop-in (see `.env.example`).
+- **Cloudflare edge cache resources (Phase B).** Config is in `open-next.config.ts` + `wrangler.jsonc`,
+  but R2 bucket `dew-theory-opennext-cache` and D1 `dew-theory-tag-cache` are not created until
+  `wrangler login` + commands in `docs/EDGE_CACHE.md`. Until then, production Workers ISR may not
+  persist; local `next start` ISR still works.
+- **Skin Script live credentials.** Adapter stack is built (`mock` | `http` | `csv_feed`) but real
+  partner API/base URL/keys are unknown. Ask wholesale rep (see questions below). Until then use
+  `SKIN_SCRIPT_MODE=mock` + CSV import. No scraping.
+- **xAI assist optional.** Set `XAI_API_KEY` for messy feed mapping / error classification only.
+  Not required for mock dropship.
 
 ---
 
@@ -130,5 +155,8 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - Product/discount mutations write `AuditLog` rows.
 - CSV import creates products from sample columns.
 - Analytics uses seeded order + appointment + events, not hard-coded UI mock numbers.
+- **Perf (engineering):** ISR 60s on catalog routes; admin revalidates storefront; next/image +
+  placeholders; OpenNext edge cache **configured** (provision CF separately). Report:
+  `docs/OPTIMIZATION_REPORT.md`.
 - **Not done without credentials:** end-to-end Stripe test payment, Google Calendar live slots,
-  Supabase-backed tables, push to private GitHub repo, production host URL.
+  Supabase-backed tables, push to private GitHub repo, production host URL, CF R2/D1 create + deploy.

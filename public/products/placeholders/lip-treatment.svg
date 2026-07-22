@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Lip treatment abstract">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E0E8"/>
+      <stop offset="45%" stop-color="#F0D0DC"/>
+      <stop offset="100%" stop-color="#E8D8F0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#F0C0D0" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#E0C0E0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#E8A8C0" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="230" rx="140" ry="130" fill="url(#glow)"/>
+  <ellipse cx="200" cy="240" rx="90" ry="55" fill="url(#sheen)" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1"/>
+  <ellipse cx="200" cy="225" rx="70" ry="28" fill="#FFFFFF" fill-opacity="0.25"/>
+  <path d="M130 240 C160 210, 240 210, 270 240" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="100" cy="140" r="4" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="310" cy="160" r="5" fill="#FFFFFF" fill-opacity="0.5"/>
+  <circle cx="80" cy="360" r="3" fill="#FFFFFF" fill-opacity="0.4"/>
+  <circle cx="320" cy="380" r="4" fill="#FFFFFF" fill-opacity="0.35"/>
+</svg>

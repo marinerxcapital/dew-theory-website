@@ -57,7 +57,7 @@ export default function ShopGrid({ products = [] }) {
   return (
     <div>
       <div
-        className="flex gap-1 overflow-x-auto border-b border-chrome/20 pb-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:gap-2 sm:overflow-visible sm:pb-8 [&::-webkit-scrollbar]:hidden"
+        className="flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:gap-2.5 sm:overflow-visible [&::-webkit-scrollbar]:hidden"
         role="tablist"
         aria-label="Filter by category"
       >
@@ -87,14 +87,10 @@ export default function ShopGrid({ products = [] }) {
                   document.querySelector('[role="tab"][aria-selected="true"]')?.focus();
                 });
               }}
-              className={`shrink-0 whitespace-nowrap px-3 py-2 font-label text-[0.62rem] font-light uppercase tracking-lockup transition-colors sm:px-4 sm:text-[0.66rem] ${
-                active
-                  ? 'border-b-2 border-graphite text-graphite'
-                  : 'text-chrome hover:text-charcoal'
-              }`}
+              className="filter-chip shrink-0 whitespace-nowrap rounded-[2px] px-4 py-2.5 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome sm:text-[0.66rem]"
             >
               {c === 'all' ? 'All' : c}
-              <span className="ml-1.5 text-chrome/80" aria-hidden="true">
+              <span className="ml-1.5 opacity-70" aria-hidden="true">
                 {n}
               </span>
             </button>
@@ -133,7 +129,7 @@ export default function ShopGrid({ products = [] }) {
           id="shop-product-grid"
           role="tabpanel"
           aria-labelledby={`shop-tab-${category === 'all' ? 'all' : category.replace(/\s+/g, '-').toLowerCase()}`}
-          className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
           data-reveal-group="shop"
         >
           {filtered.map((p) => (

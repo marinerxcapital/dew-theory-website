@@ -24,8 +24,10 @@ Maps 1:1 to future Supabase tables (Addendum §9A). Adapter swap target:
 | conditions_addressed | string[] | |
 | stock_status | enum | `in_stock` \| `out_of_stock` \| `discontinued` |
 | source | enum | `manual` \| `csv_import` \| `sync` |
-| skin_script_sku | string\|null | |
+| skin_script_sku | string\|null | supplier SKU for catalog sync + dropship |
+| ai_assisted | boolean\|optional | draft mapped with xAI; still validated |
 | active | boolean | shop visibility |
+| images | string[] | image URLs or public paths; empty → category placeholder SVG via `lib/product-image.js` (max 8) |
 | variants | array\|null | e.g. lip treatment shades |
 
 ## Orders
@@ -37,10 +39,16 @@ Maps 1:1 to future Supabase tables (Addendum §9A). Adapter swap target:
 | items | array | product_id, name, quantity, unit_price, variant |
 | subtotal, shipping_fee, discount_amount, total | number | |
 | discount_code | string\|null | |
-| status | enum | see `lib/order-status.js` |
+| status | enum | see `lib/order-status.js` — includes `queued_for_supplier`, `failed_supplier` |
 | shipping_address | object | |
 | created_at | ISO string | |
-| submitted_to_skin_script_at | ISO\|null | set when status marked |
+| submitted_to_skin_script_at | ISO\|null | set when status marked / auto-fulfill succeeds |
+| supplier_order_id | string\|null | external PO id from Skin Script adapter |
+| supplier_status | string\|null | last supplier status |
+| supplier_raw | object\|null | sanitized adapter response |
+| fulfillment_error | string\|null | last auto-fulfill error |
+| fulfillment_error_code | string\|null | |
+| fulfillment_classification | object\|null | optional AI/deterministic classification |
 
 ## Appointments
 

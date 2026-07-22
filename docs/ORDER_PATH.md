@@ -1,6 +1,6 @@
 # Cart → order → admin fulfillment path
 
-End-to-end path for a Skin Script retail order (mock Stripe).
+End-to-end path for a Skin Script retail order (mock Stripe + optional auto dropship).
 
 ```
 Shop / PDP
@@ -10,11 +10,13 @@ Shop / PDP
        · re-price from catalog
        · validate customer + address
        · mock: status=paid  |  Stripe: pending_payment + Checkout URL
+  → (mock / Stripe paid) maybeAutoFulfill when AUTO_FULFILL ≠ false
+       · queued_for_supplier → submitted_to_skin_script + supplier_order_id
+       · or failed_supplier + fulfillment_error
   → Confirmation (?order= or ?session_id=)
   → Admin /admin/orders
-  → PATCH /api/admin/orders/:id  { status: "submitted_to_skin_script" }
-  → Manual wholesale order to Skin Script
-  → status: fulfilled
+       · Manual PATCH status  OR  POST .../fulfill (retry auto)
+  → status: fulfilled (when shipped / tracking later)
 ```
 
 ## Status values
@@ -23,10 +25,20 @@ Shop / PDP
 |---|---|
 | `pending_payment` | Stripe session open |
 | `paid` | Money captured (mock immediate / Stripe webhook or session resolve) |
-| `submitted_to_skin_script` | Staff placed wholesale order |
+| `queued_for_supplier` | Auto-fulfill in progress |
+| `submitted_to_skin_script` | Wholesale PO placed (manual mark or adapter) |
+| `failed_supplier` | Auto-fulfill failed (SKU/API/etc.) — admin-visible |
 | `fulfilled` | Shipped / handed off |
 | `cancelled` | Cancelled |
 | `payment_failed` | Stripe async payment failed |
+
+## Automated dropship fields on order
+
+- `supplier_order_id` — external PO id  
+- `supplier_status` — adapter status  
+- `supplier_raw` — sanitized response  
+- `fulfillment_error` / `fulfillment_error_code`  
+- `submitted_to_skin_script_at`
 
 ## Automated checks
 
@@ -34,11 +46,8 @@ Shop / PDP
 
 ```bash
 npm test
-# includes tests/order-path.test.mjs
+# includes order-path, catalog-sync, dropship tests
 ```
-
-Covers: re-price ignores client `unit_price`, unknown SKU reject, variant required,
-order write + `submitted_to_skin_script` + audit log.
 
 ### HTTP smoke (server must be running)
 
@@ -46,27 +55,24 @@ order write + `submitted_to_skin_script` + audit log.
 npm run dev
 # other terminal:
 npm run smoke
-# or:
-node scripts/smoke-checkout.mjs
-BASE_URL=http://localhost:3000 npm run smoke
 ```
 
 Steps:
 
-1. `POST /api/checkout` mock order (cleanser + moisturizer, optional `DEW15`)
-2. Replay same `Idempotency-Key` → same `order_id`
-3. `POST /api/admin/login` (defaults: `admin@dewtheory.local` / `dew-admin-dev`)
-4. `PATCH /api/admin/orders/:id` → `submitted_to_skin_script`
+1. `POST /api/checkout` mock order (cleanser + moisturizer, optional `DEW15`)  
+2. Response may include `fulfill.supplier_order_id` when auto-fulfill succeeds  
+3. Replay same `Idempotency-Key` → same `order_id`  
+4. Admin: `POST /api/admin/orders/:id/fulfill` is idempotent  
 
-## Manual QA (5 minutes)
+## Manual QA
 
-1. Open `/shop`, add Green Tea Cleanser + Ageless Moisturizer  
-2. Cart: confirm free shipping at $56 subtotal; apply `DEW15`  
-3. Checkout form → Confirm → confirmation page with order id  
-4. `/admin/login` → Orders → open order → status **submitted_to_skin_script** → Save  
-5. Confirm audit log entry on admin overview  
+1. Checkout mock order → confirm order `submitted_to_skin_script` or admin retry  
+2. `/admin/sync` dry-run → Apply sync  
+3. Order without product SKU mapping → `failed_supplier` with message  
+4. CSV import still works at `/admin/import`  
 
 ## Related
 
-- Mock vs Stripe: [`docs/STRIPE.md`](./STRIPE.md)
+- Sync architecture: [`SKIN_SCRIPT_SYNC.md`](./SKIN_SCRIPT_SYNC.md)  
+- Mock vs Stripe: [`STRIPE.md`](./STRIPE.md)  
 - Env: [`ENV.md`](../ENV.md)

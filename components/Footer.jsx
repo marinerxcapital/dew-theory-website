@@ -15,29 +15,35 @@ export default function Footer() {
   if (pathname?.startsWith('/admin')) return null;
 
   return (
-    <footer className="border-t border-chrome/20 bg-pearl">
-      <div className="mx-auto max-w-shell px-6 py-16 lg:px-10">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="site-footer relative mt-8">
+      <div className="relative z-[1] mx-auto max-w-shell px-6 py-20 lg:px-10">
+        <div className="grid gap-14 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-display text-3xl italic lowercase text-graphite">dew theory</p>
-            <Rule left="Skin" right="Care" className="mt-4" />
-            <p className="mt-6 max-w-xs font-body text-sm font-light leading-relaxed text-charcoal/70">
+            <p className="font-display text-3xl italic lowercase text-pearl sm:text-4xl">dew theory</p>
+            <Rule left="Skin" right="Care" className="mt-5 !text-ice/60" />
+            <p className="mt-7 max-w-xs font-body text-sm font-light leading-relaxed text-pearl/65">
               {/* OPEN_ITEMS: brand descriptor still placeholder */}
               Skin Script actives and in-studio facials — the plan and the products, together.
             </p>
+            <Link
+              href="/book"
+              className="sweep btn-ghost mt-8 border-pearl/25 px-7 py-3.5 font-label text-[0.68rem] font-light uppercase tracking-lockup text-pearl hover:border-pearl/50 hover:bg-pearl/10"
+            >
+              Book a facial
+            </Link>
           </div>
 
           {columns.map((col) => (
             <div key={col.head}>
-              <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
+              <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-ice/70">
                 {col.head}
               </p>
-              <ul className="mt-5 space-y-3">
+              <ul className="mt-5 space-y-3.5">
                 {col.items.map(([label, href]) => (
                   <li key={href}>
                     <Link
                       href={href}
-                      className="font-body text-sm font-light text-charcoal/80 transition-colors hover:text-charcoal"
+                      className="font-body text-sm font-light text-pearl/70 transition-colors hover:text-pearl"
                     >
                       {label}
                     </Link>
@@ -48,9 +54,14 @@ export default function Footer() {
           ))}
         </div>
 
-        <p className="mt-16 border-t border-chrome/15 pt-6 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
-          © {new Date().getFullYear()} Dew Theory
-        </p>
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-pearl/10 pt-7">
+          <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
+            © {new Date().getFullYear()} Dew Theory
+          </p>
+          <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome/70">
+            Clinical · Quiet · Precise
+          </p>
+        </div>
       </div>
     </footer>
   );

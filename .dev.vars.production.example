@@ -1,0 +1,4 @@
+NEXTJS_ENV=production
+NEXT_PUBLIC_SITE_URL=https://dewtheoryco.com
+SKIN_SCRIPT_MODE=mock
+AUTO_FULFILL=false

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Cleanser abstract">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E4F2F0"/>
+      <stop offset="50%" stop-color="#D0E4F5"/>
+      <stop offset="100%" stop-color="#E8DCEF"/>
+    </linearGradient>
+    <radialGradient id="bubble1" cx="40%" cy="35%" r="30%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#A8D4E8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bubble2" cx="65%" cy="55%" r="25%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#C5B8E0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="foam" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#B8D8E8" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="160" cy="180" rx="110" ry="100" fill="url(#bubble1)"/>
+  <ellipse cx="260" cy="280" rx="90" ry="85" fill="url(#bubble2)"/>
+  <circle cx="120" cy="300" r="28" fill="#FFFFFF" fill-opacity="0.35" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="1"/>
+  <circle cx="200" cy="360" r="18" fill="#FFFFFF" fill-opacity="0.3" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1"/>
+  <circle cx="300" cy="160" r="22" fill="#FFFFFF" fill-opacity="0.4" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1"/>
+  <circle cx="90" cy="140" r="12" fill="#FFFFFF" fill-opacity="0.45"/>
+  <path d="M60 400 C100 320, 180 300, 240 340 C300 380, 340 360, 360 300" fill="none" stroke="url(#foam)" stroke-width="40" stroke-linecap="round" opacity="0.4"/>
+  <path d="M140 100 C180 130, 220 110, 270 150" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.2"/>
+</svg>

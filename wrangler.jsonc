@@ -1,0 +1,68 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dew-theory",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-06-05",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // Custom domains (zone managed in MarinerX Capital Cloudflare account)
+  "routes": [
+    { "pattern": "dewtheoryco.com", "custom_domain": true },
+    { "pattern": "www.dewtheoryco.com", "custom_domain": true }
+  ],
+  // Self-reference required for DO queue revalidation requests
+  // https://opennext.js.org/cloudflare/caching
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "dew-theory"
+    }
+  ],
+  // R2 incremental cache (ISR / data cache bodies)
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "dew-theory-opennext-cache"
+    }
+  ],
+  // DO queue for time-based revalidation dedupe
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler"]
+    }
+  ],
+  // D1 next-mode tag cache
+  "d1_databases": [
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "dew-theory-tag-cache",
+      "database_id": "dc68ec21-ebc6-4800-9432-59357e3d6553"
+    }
+  ],
+  // Cloudflare Images binding (next/image on Workers)
+  "images": {
+    "binding": "IMAGES"
+  },
+  // Public runtime vars (secrets go via `wrangler secret put`)
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://dewtheoryco.com",
+    "SKIN_SCRIPT_MODE": "mock",
+    "AUTO_FULFILL": "false"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "workers_dev": true
+}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Serum abstract">
+  <defs>
+    <linearGradient id="bg" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#EDE4F5"/>
+      <stop offset="40%" stop-color="#D8C8F0"/>
+      <stop offset="100%" stop-color="#F0D8E4"/>
+    </linearGradient>
+    <linearGradient id="drop" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+      <stop offset="60%" stop-color="#C4A8E8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#E8B0C8" stop-opacity="0.25"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#D0B8F0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="200" rx="140" ry="120" fill="url(#glow)"/>
+  <path d="M200 90 C230 140, 260 200, 250 280 C240 360, 210 400, 200 410 C190 400, 160 360, 150 280 C140 200, 170 140, 200 90 Z" fill="url(#drop)" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1"/>
+  <ellipse cx="200" cy="250" rx="28" ry="40" fill="#FFFFFF" fill-opacity="0.25"/>
+  <circle cx="280" cy="140" r="5" fill="#FFFFFF" fill-opacity="0.65"/>
+  <circle cx="120" cy="320" r="4" fill="#FFFFFF" fill-opacity="0.5"/>
+  <circle cx="310" cy="360" r="3" fill="#FFFFFF" fill-opacity="0.4"/>
+</svg>

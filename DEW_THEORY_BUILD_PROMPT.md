@@ -176,7 +176,8 @@ Base model — see Addendum Section 9A for the admin/discount/audit additions.
 ## 10. Assets
 
 **Provided, in `/public`:** `logo.png` / `logo.webp` (wordmark), `logo-mark.webp` (nav crop),
-`hero.mp4` (web-optimized) / `hero-original.mp4` (untouched), `hero-poster.webp`.
+`hero.mp4` (web-optimized, 848×1072 portrait, ~20s silent ping-pong loop) /
+`hero-original.mp4` (untouched source cut), `hero-poster.webp` (reduced-motion / LCP).
 **Not yet provided:** product photography, studio photography, a photo of Emily Mitchener.
 
 ---

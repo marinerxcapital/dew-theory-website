@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation';
 import Rule from '@/components/Rule';
 import AddToCart from '@/components/AddToCart';
 import ProductCard from '@/components/ProductCard';
+import ProductImage from '@/components/ProductImage';
 import ProductViewTracker from '@/components/ProductViewTracker';
 import { PRODUCTS } from '@/lib/products';
+import { productImageSrc } from '@/lib/product-image';
 import { getProduct, getProducts } from '@/lib/products-server';
 import { formatMoney } from '@/lib/shipping';
 import { isShopVisible, stockLabel } from '@/lib/shop';
@@ -22,12 +24,12 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${product.name} — Dew Theory`,
       description: product.description_short,
-      images: [{ url: '/logo.png', alt: product.name }]
+      images: [{ url: productImageSrc(product), alt: product.name }]
     }
   };
 }
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export default function ProductDetailPage({ params }) {
   const product = getProduct(params.id);
@@ -83,11 +85,23 @@ export default function ProductDetailPage({ params }) {
         </ol>
       </nav>
 
-      <div className="grid gap-14 lg:grid-cols-2 lg:items-start" data-reveal-group="pdp">
+      <div className="grid gap-14 lg:grid-cols-2 lg:items-start lg:gap-16" data-reveal-group="pdp">
         <div data-reveal className="relative">
-          <div className="iridescent aspect-[4/5] w-full rounded-[2px]" aria-hidden="true" />
+          <div
+            className="pointer-events-none absolute -inset-8 -z-10 opacity-70"
+            aria-hidden="true"
+          >
+            <div className="absolute inset-10 rounded-full bg-ice/30 blur-3xl" />
+            <div className="absolute bottom-0 right-4 h-36 w-36 rounded-full bg-blush/25 blur-3xl" />
+          </div>
+          <ProductImage
+            product={product}
+            priority
+            framed
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
           {badge && (
-            <span className="absolute left-4 top-4 border border-chrome/40 bg-pearl/90 px-3 py-1.5 font-label text-[0.58rem] font-light uppercase tracking-lockup text-charcoal">
+            <span className="absolute left-4 top-4 z-[2] border border-chrome/40 bg-pearl/92 px-3 py-1.5 font-label text-[0.58rem] font-light uppercase tracking-lockup text-charcoal shadow-[0_8px_24px_-12px_rgba(45,47,58,0.35)] backdrop-blur-sm">
               {badge}
             </span>
           )}
@@ -95,10 +109,10 @@ export default function ProductDetailPage({ params }) {
 
         <div data-reveal>
           <Rule left={product.category} right={product.size || 'Size TBD'} />
-          <h1 className="mt-8 font-display text-[clamp(2.2rem,4.5vw,3.4rem)] font-normal leading-tight text-graphite">
+          <h1 className="mt-8 font-display text-[clamp(2.3rem,4.8vw,3.6rem)] font-normal leading-[1.08] text-graphite">
             {product.name}
           </h1>
-          <p className="mt-4 font-label text-lg font-light tracking-wide2 text-charcoal">
+          <p className="mt-5 font-label text-lg font-light tracking-wide2 text-charcoal">
             {formatMoney(product.retail_price)}
           </p>
           {!product.retail_price_confirmed && (

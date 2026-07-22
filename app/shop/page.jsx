@@ -15,8 +15,8 @@ export const metadata = {
   }
 };
 
-// Admin edits land in the runtime store; revalidate so shop stays current.
-export const dynamic = 'force-dynamic';
+// Admin edits revalidate via revalidateProductSurfaces; ISR keeps shop warm.
+export const revalidate = 60;
 
 export default function ShopPage() {
   const all = getProducts();
@@ -24,18 +24,22 @@ export default function ShopPage() {
   const count = visible.length;
 
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section className="relative mx-auto max-w-shell px-6 pb-32 pt-36 lg:px-10">
+      <div
+        className="pointer-events-none absolute left-1/2 top-24 -z-10 h-64 w-[min(90vw,42rem)] -translate-x-1/2 rounded-full bg-ice/25 blur-3xl"
+        aria-hidden="true"
+      />
       <div data-reveal-group="shop-head">
         <Rule left="Shop" right="Skin Script" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
+          className="mt-8 max-w-3xl font-display text-[clamp(2.6rem,6.5vw,4.6rem)] font-normal leading-[1.02] text-graphite"
         >
           The collection
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-7 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75 sm:text-[1.05rem]"
         >
           {count === 0
             ? 'Products will appear here once the catalog is ready.'
@@ -43,7 +47,7 @@ export default function ShopPage() {
         </p>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-16 sm:mt-20">
         <ShopGrid products={all} />
       </div>
     </section>

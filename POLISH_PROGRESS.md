@@ -63,5 +63,12 @@ Completed: 2026-07-19T21:00:00Z
 | N2 | done | smoke-routes: / /shop /cart /book /admin/login /services /contact all 200 | 2026-07-19T21:05:00Z |
 | N3 | done | POLISH_REPORT.md written | 2026-07-19T21:10:00Z |
 | N4 | done | Final commit overnight polish | 2026-07-19T21:10:00Z |
+| O1 | done | Lighthouse baseline home/shop/PDP — docs/lighthouse + OPTIMIZATION_REPORT | 2026-07-20T00:45:00Z |
+| O2 | done | next/image: Wordmark, Hero poster, ProductImage; single hero video; GSAP dynamic import | 2026-07-20T00:40:00Z |
+| O3 | done | next.config images avif/webp, compress, security + cache headers | 2026-07-20T00:40:00Z |
+| O4 | done | shop/home/PDP revalidate=60; revalidateProductSurfaces on admin product writes | 2026-07-20T00:35:00Z |
+| O5 | done | images[] schema + admin URL; category SVG placeholders; productImageSrc | 2026-07-20T00:40:00Z |
+| O6 | done | OpenNext R2+DO queue+D1 tag cache config; public/_headers; docs/EDGE_CACHE.md | 2026-07-20T00:35:00Z |
+| P1 | done | Hero motion refresh: new `generated_video (1).mp4` → hero-original; ping-pong extend ~20s silent hero.mp4; poster webp | 2026-07-21T23:14:00Z |
 
 Status values: pending | in_progress | done | blocked | skipped

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Mask abstract">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0E0F0"/>
+      <stop offset="40%" stop-color="#E0D0F0"/>
+      <stop offset="100%" stop-color="#F5D8E0"/>
+    </linearGradient>
+    <radialGradient id="bloom1" cx="30%" cy="40%" r="35%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#D8B8E8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bloom2" cx="70%" cy="55%" r="35%">
+      <stop offset="0%" stop-color="#F8D0E0" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#E8C0D0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="petal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#E0B8D8" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="140" cy="200" rx="120" ry="110" fill="url(#bloom1)"/>
+  <ellipse cx="280" cy="280" rx="110" ry="100" fill="url(#bloom2)"/>
+  <ellipse cx="200" cy="250" rx="70" ry="90" fill="url(#petal)" transform="rotate(-15 200 250)"/>
+  <ellipse cx="230" cy="240" rx="55" ry="80" fill="url(#petal)" transform="rotate(25 230 240)" opacity="0.8"/>
+  <ellipse cx="180" cy="260" rx="50" ry="75" fill="url(#petal)" transform="rotate(-40 180 260)" opacity="0.7"/>
+  <circle cx="210" cy="245" r="18" fill="#FFFFFF" fill-opacity="0.4"/>
+  <circle cx="100" cy="120" r="4" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="320" cy="400" r="3" fill="#FFFFFF" fill-opacity="0.45"/>
+</svg>

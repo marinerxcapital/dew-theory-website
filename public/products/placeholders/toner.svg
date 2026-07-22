@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Toner abstract">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0F0EC"/>
+      <stop offset="50%" stop-color="#D8E8F0"/>
+      <stop offset="100%" stop-color="#E8E0F0"/>
+    </linearGradient>
+    <radialGradient id="mist" cx="50%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#B8D8D0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spray" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#C0D8E8" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="200" rx="140" ry="130" fill="url(#mist)"/>
+  <ellipse cx="160" cy="180" rx="40" ry="55" fill="#FFFFFF" fill-opacity="0.25" transform="rotate(-20 160 180)"/>
+  <ellipse cx="240" cy="200" rx="35" ry="50" fill="#FFFFFF" fill-opacity="0.2" transform="rotate(15 240 200)"/>
+  <ellipse cx="200" cy="240" rx="50" ry="35" fill="#FFFFFF" fill-opacity="0.18"/>
+  <circle cx="120" cy="140" r="6" fill="#FFFFFF" fill-opacity="0.5"/>
+  <circle cx="280" cy="160" r="5" fill="#FFFFFF" fill-opacity="0.45"/>
+  <circle cx="180" cy="100" r="4" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="250" cy="280" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
+  <circle cx="140" cy="300" r="5" fill="#FFFFFF" fill-opacity="0.4"/>
+  <circle cx="300" cy="320" r="4" fill="#FFFFFF" fill-opacity="0.35"/>
+  <circle cx="100" cy="360" r="6" fill="#FFFFFF" fill-opacity="0.3"/>
+  <circle cx="220" cy="380" r="5" fill="#FFFFFF" fill-opacity="0.3"/>
+  <path d="M80 420 C150 360, 250 360, 320 420" fill="none" stroke="url(#spray)" stroke-width="20" opacity="0.35"/>
+</svg>

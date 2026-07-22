@@ -40,7 +40,33 @@ Full notes: [`docs/STRIPE.md`](docs/STRIPE.md). Env template: [`ENV.md`](ENV.md)
 Admin → **CSV import** (`/admin/import`). Use `data/sample-import.csv` as a template.
 Map columns, review retail (auto wholesale × 2), **Dry-run** then **Confirm**. No Skin Script scraping.
 
+### Skin Script sync + auto dropship (mock-ready)
+
+- Admin → **Catalog sync** (`/admin/sync`) — dry-run / apply via supplier adapters (`mock` default).
+- Paid mock checkout can **auto-submit** a dropship PO (`AUTO_FULFILL`, default on) →
+  `submitted_to_skin_script` + `supplier_order_id`. Admin retry: order detail → Auto-submit.
+- Live partner API: set `SKIN_SCRIPT_*` env after rep confirms (see [`docs/SKIN_SCRIPT_SYNC.md`](docs/SKIN_SCRIPT_SYNC.md)).
+- Optional xAI assist: `XAI_API_KEY` for messy feed mapping only (validated before write).
+
 Schema for the file store: [`data/SCHEMA.md`](data/SCHEMA.md).
+
+### Performance & caching
+
+- Storefront catalog (`/`, `/shop`, `/shop/[id]`) uses **ISR** (`revalidate = 60`). Admin product
+  create/update/delete/import calls path revalidation so edits appear without waiting a full minute.
+- Images: `next/image` for logos, hero poster, and product media. Empty product `images[]` uses
+  brand SVG placeholders under `public/products/placeholders/` until real photography lands.
+- Cloudflare / OpenNext edge cache (R2 + DO queue + D1): config in `open-next.config.ts` +
+  `wrangler.jsonc`. Provision resources with [`docs/EDGE_CACHE.md`](docs/EDGE_CACHE.md).
+- Lighthouse baselines + full notes: [`docs/OPTIMIZATION_REPORT.md`](docs/OPTIMIZATION_REPORT.md).
+
+### Cloudflare deploy
+
+```bash
+# after wrangler login + R2/D1 from docs/EDGE_CACHE.md
+npm run preview   # OpenNext local preview
+npm run deploy    # OpenNext → Cloudflare Workers
+```
 
 ### Tests & smoke
 
@@ -101,9 +127,9 @@ never as decoration.
 |---|---|
 | `public/logo.webp` | 520 px wide, used by `components/Wordmark.jsx` |
 | `public/logo.png` | Full-resolution original |
-| `public/hero.mp4` | Web-optimised, 872 KB, H.264 faststart, silent |
-| `public/hero-original.mp4` | Your untouched 3.1 MB original |
-| `public/hero-poster.webp` | Poster frame for slow connections |
+| `public/hero.mp4` | Web-optimised motion background — 848×1072, ~20s ping-pong loop, H.264 faststart, silent (~1.4 MB) |
+| `public/hero-original.mp4` | Untouched source cut (~2.7 MB, 10s, 848×1072) from `generated_video (1).mp4` |
+| `public/hero-poster.webp` | Poster frame (t≈3.5s) for LCP + `prefers-reduced-motion` |
 
 `Wordmark.jsx` probes for `/logo.webp` at runtime. If it is ever missing, the component falls back
 to live chrome-gradient type — so the brand never disappears.

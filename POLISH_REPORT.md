@@ -68,6 +68,22 @@ Events API, structured log helper, robots/sitemap/404.
 ### K–M Performance / tests / docs
 next/font + poster path, `npm test` / smoke scripts, README + ENV + OPEN_ITEMS hygiene.
 
+### O Performance optimization pass (2026-07-20)
+
+Full write-up: **`docs/OPTIMIZATION_REPORT.md`**. Highlights:
+
+| Item | Result |
+|------|--------|
+| O1 Lighthouse | Home perf 60 · Shop 58 · PDP 88; A11y 95–96; BP/SEO 100. Artifacts in `docs/lighthouse/` |
+| O2 next/image | Wordmark, hero poster, ProductCard/PDP/home via `ProductImage`; one hero video |
+| O3 next.config | AVIF/WebP, compress, security + static cache headers |
+| O4 ISR | `revalidate = 60` on `/`, `/shop`, `/shop/[id]`; admin `revalidateProductSurfaces` |
+| O5 Product media | `images[]` + category SVG placeholders (not real bottle photos) |
+| O6 Edge | OpenNext R2 + DO queue + D1 tag cache in config; provision via `docs/EDGE_CACHE.md` |
+| P1 Hero media | New motion cut installed 2026-07-21: `generated_video (1).mp4` → `hero-original.mp4`; web `hero.mp4` ~20s ping-pong silent H.264; fresh `hero-poster.webp` |
+
+Gates after O-pass: **113 tests pass**, production build OK (ISR 1m on catalog routes).
+
 ---
 
 ## Still open (business — not engineering)

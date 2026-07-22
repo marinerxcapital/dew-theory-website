@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { requireAdminApi } from '@/lib/admin-auth';
 import { validateAndNormalizeProduct } from '@/lib/product-admin';
+import { revalidateProductSurfaces } from '@/lib/revalidate-storefront';
 import { audit, mutateStore, readStore } from '@/lib/store';
 
 export async function PUT(request, { params }) {
@@ -42,6 +43,7 @@ export async function PUT(request, { params }) {
     });
 
     audit(admin.id, 'product.update', 'Products', params.id, { before, after });
+    revalidateProductSurfaces(params.id);
     return NextResponse.json({ product: after });
   } catch (err) {
     return NextResponse.json({ error: err.message || 'Update failed' }, { status: 400 });
@@ -73,6 +75,7 @@ export async function DELETE(request, { params }) {
       return s;
     });
     audit(admin.id, 'product.soft_delete', 'Products', params.id, { before, after });
+    revalidateProductSurfaces(params.id);
     return NextResponse.json({ ok: true, product: after, soft: true });
   }
 
@@ -81,6 +84,7 @@ export async function DELETE(request, { params }) {
     return s;
   });
   audit(admin.id, 'product.delete', 'Products', params.id, { before });
+  revalidateProductSurfaces(params.id);
   return NextResponse.json({ ok: true });
 }
 
@@ -115,5 +119,6 @@ export async function PATCH(request, { params }) {
     before: { stock_status: before.stock_status, active: before.active },
     after: { stock_status: after.stock_status, active: after.active }
   });
+  revalidateProductSurfaces(params.id);
   return NextResponse.json({ product: after });
 }

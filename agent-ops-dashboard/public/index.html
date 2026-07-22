@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dew Theory · Agent Ops (live)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Jost:wght@300;400&family=Karla:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <header class="top">
+      <div class="brand">
+        <p class="eyebrow">MarinerX · Live build room</p>
+        <h1>Agent Ops</h1>
+        <p class="sub" id="mission">Connecting…</p>
+      </div>
+      <div class="top-meta">
+        <div class="pill" id="conn">
+          <span class="dot"></span>
+          <span id="conn-label">connecting</span>
+        </div>
+        <div class="clock" id="clock">—</div>
+        <p class="hint">Show this screen to Emily · local only · not public</p>
+      </div>
+    </header>
+
+    <section class="stats" id="stats">
+      <article><span class="n" id="stat-agents">0</span><span class="l">Agents</span></article>
+      <article><span class="n" id="stat-sub">0</span><span class="l">Subagents</span></article>
+      <article><span class="n" id="stat-tools">0</span><span class="l">Tool calls</span></article>
+      <article><span class="n" id="stat-files">0</span><span class="l">File touches</span></article>
+      <article><span class="n" id="stat-events">0</span><span class="l">Events</span></article>
+    </section>
+
+    <main class="grid">
+      <section class="panel agents-panel">
+        <div class="panel-head">
+          <h2>Working now</h2>
+          <span class="soft" id="agent-count">0 active</span>
+        </div>
+        <div class="agents" id="agents"></div>
+      </section>
+
+      <section class="panel feed-panel">
+        <div class="panel-head">
+          <h2>Live activity</h2>
+          <span class="soft" id="feed-hint">newest first</span>
+        </div>
+        <ol class="feed" id="feed" aria-live="polite"></ol>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Dew Theory website · Grok multi-agent session</span>
+      <span id="started">—</span>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

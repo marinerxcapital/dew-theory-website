@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { requireAdminApi } from '@/lib/admin-auth';
 import { validateAndNormalizeProduct } from '@/lib/product-admin';
+import { revalidateProductSurfaces } from '@/lib/revalidate-storefront';
 import { audit, mutateStore, readStore } from '@/lib/store';
 
 export async function POST(request) {
@@ -36,6 +37,7 @@ export async function POST(request) {
     });
 
     audit(admin.id, 'product.create', 'Products', created.id, { after: created });
+    revalidateProductSurfaces(created.id);
     return NextResponse.json({ product: created });
   } catch (err) {
     return NextResponse.json({ error: err.message || 'Create failed' }, { status: 400 });

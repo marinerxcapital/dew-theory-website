@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Exfoliant abstract">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8E4F5"/>
+      <stop offset="45%" stop-color="#D4C8F0"/>
+      <stop offset="100%" stop-color="#E8D0E8"/>
+    </linearGradient>
+    <radialGradient id="facet" cx="50%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#C0B0E8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crystal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#D0C0F0" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#E0B8D8" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="210" rx="130" ry="115" fill="url(#facet)"/>
+  <polygon points="200,100 270,180 240,300 160,300 130,180" fill="url(#crystal)" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1"/>
+  <polygon points="200,140 240,195 220,260 180,260 160,195" fill="#FFFFFF" fill-opacity="0.2"/>
+  <circle cx="110" cy="340" r="8" fill="#FFFFFF" fill-opacity="0.4"/>
+  <circle cx="300" cy="320" r="6" fill="#FFFFFF" fill-opacity="0.35"/>
+  <circle cx="80" cy="200" r="5" fill="#FFFFFF" fill-opacity="0.45"/>
+  <circle cx="320" cy="150" r="4" fill="#FFFFFF" fill-opacity="0.5"/>
+  <circle cx="150" cy="380" r="5" fill="#FFFFFF" fill-opacity="0.3"/>
+  <circle cx="260" cy="400" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
+</svg>

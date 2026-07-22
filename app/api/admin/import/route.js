@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { requireAdminApi } from '@/lib/admin-auth';
 import { planImport } from '@/lib/csv-import';
+import { revalidateProductSurfaces } from '@/lib/revalidate-storefront';
 import { audit, mutateStore, readStore } from '@/lib/store';
 
 export async function POST(request) {
@@ -31,6 +32,7 @@ export async function POST(request) {
     let created = 0;
     let updated = 0;
     const skipped = [];
+    const touchedIds = [];
 
     mutateStore((s) => {
       for (const raw of products) {
@@ -82,11 +84,13 @@ export async function POST(request) {
           s.products.push(payload);
           created += 1;
         }
+        touchedIds.push(id);
       }
       return s;
     });
 
     audit(admin.id, 'product.csv_import', 'Products', 'batch', { created, updated, skipped: skipped.length });
+    revalidateProductSurfaces(touchedIds);
     return NextResponse.json({ created, updated, skipped });
   } catch (err) {
     return NextResponse.json({ error: err.message || 'Import failed' }, { status: 500 });

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Moisturizer abstract">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E8EC"/>
+      <stop offset="50%" stop-color="#E8DCE8"/>
+      <stop offset="100%" stop-color="#DCE8F5"/>
+    </linearGradient>
+    <radialGradient id="cream" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#F0D8E0" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#D0C8E8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="swirl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#E8C8D8" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="230" rx="150" ry="140" fill="url(#cream)"/>
+  <path d="M100 250 C130 180, 200 160, 250 200 C300 240, 310 320, 250 360 C190 400, 110 340, 100 250 Z" fill="url(#swirl)" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1"/>
+  <path d="M140 200 C180 220, 220 190, 260 230 C290 260, 280 310, 240 330" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="180" cy="210" rx="35" ry="20" fill="#FFFFFF" fill-opacity="0.35" transform="rotate(-20 180 210)"/>
+  <circle cx="300" cy="120" r="4" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="90" cy="380" r="3" fill="#FFFFFF" fill-opacity="0.4"/>
+</svg>

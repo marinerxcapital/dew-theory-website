@@ -98,7 +98,7 @@ export default async function AdminOrderDetailPage({ params }) {
               {order.shipping_address?.postal_code}
             </p>
           </div>
-          <OrderStatusForm orderId={order.id} current={order.status} />
+          <OrderStatusForm orderId={order.id} current={order.status} order={order} />
         </div>
       </div>
     </div>

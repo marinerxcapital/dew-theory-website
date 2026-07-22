@@ -15,3 +15,19 @@ autonomous_system/status/
 autonomous_system/queue/
 autonomous_system/incoming/
 autonomous_system/completed/
+
+.open-next
+.wrangler
+.dev.vars
+cloudflare-env.d.ts
+
+.cloudflare-preview-admin.json
+
+.cf-*.tmp
+.cf-*.json
+.env.local
+.dev.vars
+
+# Hero encode scratch + live ops runtime
+tmp-hero-work/
+agent-ops-dashboard/data/

@@ -9,27 +9,61 @@
     },
     "sources_researched": "skinscriptrx.com (manufacturer) and authorized retailers including artofskincare.com, skincarebyalana.com, naturalbeautyspa.com, incidecoder.com. All product marketing copy below is paraphrased, not copied."
   },
-  "categories": ["Cleanser", "Exfoliant", "Mask", "Moisturizer", "Serum", "Lip Treatment", "SPF", "Toner"],
+  "categories": [
+    "Cleanser",
+    "Exfoliant",
+    "Mask",
+    "Moisturizer",
+    "Serum",
+    "Lip Treatment",
+    "SPF",
+    "Toner"
+  ],
   "products": [
     {
       "id": "green-tea-citrus-cleanser",
       "name": "Green Tea Citrus Cleanser",
       "category": "Cleanser",
       "size": "6.4 oz",
-      "wholesale_price": 16.00,
-      "retail_price": 32.00,
+      "wholesale_price": 16,
+      "retail_price": 32,
       "retail_price_confirmed": true,
-      "skin_types": ["normal", "combination", "oily"],
-      "not_recommended_for": ["dry", "sensitive", "rosacea-prone"],
+      "skin_types": [
+        "normal",
+        "combination",
+        "oily"
+      ],
+      "not_recommended_for": [
+        "dry",
+        "sensitive",
+        "rosacea-prone"
+      ],
       "key_actives": [
-        { "name": "Green Tea (Camellia Sinensis) Leaf Extract + EGCG", "function": "Antioxidant; helps limit acne-causing bacteria while protecting the skin's healthy microbiome." },
-        { "name": "Grape Seed Extract", "function": "Polyphenol-rich antioxidant; supports skin balance and calms redness." },
-        { "name": "Grapefruit & Lemon Peel Oil", "function": "Vitamin C source; clarifies and brightens, contributes the citrus scent." },
-        { "name": "Wild Cherry Bark Extract", "function": "Soothing, anti-inflammatory." }
+        {
+          "name": "Green Tea (Camellia Sinensis) Leaf Extract + EGCG",
+          "function": "Antioxidant; helps limit acne-causing bacteria while protecting the skin's healthy microbiome."
+        },
+        {
+          "name": "Grape Seed Extract",
+          "function": "Polyphenol-rich antioxidant; supports skin balance and calms redness."
+        },
+        {
+          "name": "Grapefruit & Lemon Peel Oil",
+          "function": "Vitamin C source; clarifies and brightens, contributes the citrus scent."
+        },
+        {
+          "name": "Wild Cherry Bark Extract",
+          "function": "Soothing, anti-inflammatory."
+        }
       ],
       "how_to_use": "Apply to damp skin, massage in circular motions for about 60 seconds to emulsify and lift impurities, then rinse with warm water.",
-      "conditions_addressed": ["excess oil", "congestion / buildup", "dullness"],
-      "description_short": "A foaming gel cleanser built around green tea and citrus extracts — clarifies oily and combination skin without over-stripping it."
+      "conditions_addressed": [
+        "excess oil",
+        "congestion / buildup",
+        "dullness"
+      ],
+      "description_short": "A foaming gel cleanser built around green tea and citrus extracts — clarifies oily and combination skin without over-stripping it.",
+      "images": []
     },
     {
       "id": "mandelic-brightening-serum",
@@ -37,20 +71,43 @@
       "category": "Exfoliant",
       "category_note": "Named 'serum' by the manufacturer, but functions as a leave-on chemical exfoliant — categorized as Exfoliant per client instruction.",
       "size": "1 oz",
-      "wholesale_price": 20.00,
-      "retail_price": 40.00,
+      "wholesale_price": 20,
+      "retail_price": 40,
       "retail_price_confirmed": true,
-      "skin_types": ["all — introduce gradually"],
+      "skin_types": [
+        "all — introduce gradually"
+      ],
       "key_actives": [
-        { "name": "L-Mandelic Acid (5%)", "function": "Larger-molecule AHA; exfoliates, brightens, improves texture with a lower irritation profile than glycolic acid." },
-        { "name": "Azeloglicina® / Potassium Azelaoyl Diglycinate (3%)", "function": "Tyrosinase inhibitor; fades dark spots, calms redness, regulates oil." },
-        { "name": "Niacinamide", "function": "Barrier support, tone-evening, calming." },
-        { "name": "BioFense™ (Lactobacillus Ferment)", "function": "Probiotic microbiome support, reduces acne-related redness." },
-        { "name": "Synovea® HR (Hexylresorcinol)", "function": "Brightener; works with niacinamide for cellular support." }
+        {
+          "name": "L-Mandelic Acid (5%)",
+          "function": "Larger-molecule AHA; exfoliates, brightens, improves texture with a lower irritation profile than glycolic acid."
+        },
+        {
+          "name": "Azeloglicina® / Potassium Azelaoyl Diglycinate (3%)",
+          "function": "Tyrosinase inhibitor; fades dark spots, calms redness, regulates oil."
+        },
+        {
+          "name": "Niacinamide",
+          "function": "Barrier support, tone-evening, calming."
+        },
+        {
+          "name": "BioFense™ (Lactobacillus Ferment)",
+          "function": "Probiotic microbiome support, reduces acne-related redness."
+        },
+        {
+          "name": "Synovea® HR (Hexylresorcinol)",
+          "function": "Brightener; works with niacinamide for cellular support."
+        }
       ],
       "how_to_use": "After cleansing and toning, apply 3–5 drops to face, neck, and chest once daily (AM or PM). Layer with moisturizer. Apply SPF in the morning when using this product. Start with a lower frequency and build up if no dryness or sensitivity occurs.",
-      "conditions_addressed": ["hyperpigmentation", "uneven tone", "enlarged pores", "mild breakouts"],
-      "description_short": "A mandelic-acid leave-on exfoliant that brightens and refines texture while regulating oil — gentler than glycolic-based options."
+      "conditions_addressed": [
+        "hyperpigmentation",
+        "uneven tone",
+        "enlarged pores",
+        "mild breakouts"
+      ],
+      "description_short": "A mandelic-acid leave-on exfoliant that brightens and refines texture while regulating oil — gentler than glycolic-based options.",
+      "images": []
     },
     {
       "id": "botanical-bloom-hydrating-mask",
@@ -58,37 +115,75 @@
       "category": "Mask",
       "size": "2 oz",
       "size_confirmed": false,
-      "wholesale_price": 24.00,
-      "retail_price": 48.00,
+      "wholesale_price": 24,
+      "retail_price": 48,
       "retail_price_confirmed": true,
-      "skin_types": ["all — especially dry, sensitive, or dull"],
+      "skin_types": [
+        "all — especially dry, sensitive, or dull"
+      ],
       "key_actives": [
-        { "name": "Super Floral Complex (rose, orchid stem cells, daisy extract)", "function": "Brightens, calms, and helps fade dark spots." },
-        { "name": "Triple HA Complex (three molecular weights of hyaluronic acid)", "function": "Multi-depth hydration and plumping." },
-        { "name": "Luminescine®", "function": "Absorbs UV energy and re-emits it as visible light, giving an immediate luminous effect." }
+        {
+          "name": "Super Floral Complex (rose, orchid stem cells, daisy extract)",
+          "function": "Brightens, calms, and helps fade dark spots."
+        },
+        {
+          "name": "Triple HA Complex (three molecular weights of hyaluronic acid)",
+          "function": "Multi-depth hydration and plumping."
+        },
+        {
+          "name": "Luminescine®",
+          "function": "Absorbs UV energy and re-emits it as visible light, giving an immediate luminous effect."
+        }
       ],
       "how_to_use": "Apply a generous layer after cleansing, avoiding the eye area. Leave on 10–15 minutes and rinse with lukewarm water, or apply thinly as an overnight treatment. Use 1–3 times per week.",
-      "conditions_addressed": ["dryness", "dullness", "sensitivity", "uneven tone"],
-      "description_short": "A hyaluronic-acid-rich hydrating mask built around a rose, orchid, and daisy botanical complex."
+      "conditions_addressed": [
+        "dryness",
+        "dullness",
+        "sensitivity",
+        "uneven tone"
+      ],
+      "description_short": "A hyaluronic-acid-rich hydrating mask built around a rose, orchid, and daisy botanical complex.",
+      "images": []
     },
     {
       "id": "ageless-moisturizer",
       "name": "Ageless Moisturizer",
       "category": "Moisturizer",
       "size": "2 oz",
-      "wholesale_price": 12.00,
-      "retail_price": 24.00,
+      "wholesale_price": 12,
+      "retail_price": 24,
       "retail_price_confirmed": true,
-      "skin_types": ["normal", "combination", "sensitive"],
+      "skin_types": [
+        "normal",
+        "combination",
+        "sensitive"
+      ],
       "key_actives": [
-        { "name": "Aloe Barbadensis Leaf Juice", "function": "Hydrates, soothes, calms irritation." },
-        { "name": "Sodium Hyaluronate", "function": "Humectant; binds moisture and builds a hydration reservoir in the skin." },
-        { "name": "Ubiquinone (CoQ10)", "function": "Antioxidant; reduces lipid peroxidation and visible wrinkle depth." },
-        { "name": "AD-RESYL® (Ophiopogon Japonicus Root Extract)", "function": "Barrier support and redness reduction." }
+        {
+          "name": "Aloe Barbadensis Leaf Juice",
+          "function": "Hydrates, soothes, calms irritation."
+        },
+        {
+          "name": "Sodium Hyaluronate",
+          "function": "Humectant; binds moisture and builds a hydration reservoir in the skin."
+        },
+        {
+          "name": "Ubiquinone (CoQ10)",
+          "function": "Antioxidant; reduces lipid peroxidation and visible wrinkle depth."
+        },
+        {
+          "name": "AD-RESYL® (Ophiopogon Japonicus Root Extract)",
+          "function": "Barrier support and redness reduction."
+        }
       ],
       "how_to_use": "After cleansing and toning, apply a thin layer to face, neck, and chest morning and evening.",
-      "conditions_addressed": ["dehydration", "oil/water imbalance", "early signs of aging"],
-      "description_short": "A lightweight, fast-absorbing daily moisturizer with a satin, matte-leaning finish."
+      "conditions_addressed": [
+        "dehydration",
+        "oil/water imbalance",
+        "early signs of aging"
+      ],
+      "description_short": "A lightweight, fast-absorbing daily moisturizer with a satin, matte-leaning finish.",
+      "images": []
     },
     {
       "id": "hydrating-skin-serum",
@@ -96,19 +191,43 @@
       "category": "Serum",
       "manufacturer_name_note": "Sold by Skin Script as 'Ageless Skin Hydrating Serum' — matched via a second retailer's product-page URL. Confirm this is the intended item, not the similarly named Ageless Moisturizer.",
       "size": "1 oz",
-      "wholesale_price": 20.00,
-      "retail_price": 40.00,
+      "wholesale_price": 20,
+      "retail_price": 40,
       "retail_price_confirmed": true,
-      "skin_types": ["dry", "dehydrated", "mature", "combination", "acneic/milia-prone"],
+      "skin_types": [
+        "dry",
+        "dehydrated",
+        "mature",
+        "combination",
+        "acneic/milia-prone"
+      ],
       "key_actives": [
-        { "name": "Hyaluronic Acid + Sodium Hyaluronate", "function": "Multi-depth hydration, plumping." },
-        { "name": "Phospholipids + Sphingolipids", "function": "Restore the skin's lipid barrier." },
-        { "name": "Palmitoyl Tripeptide-38 (Matrixyl Synthe'6)", "function": "Signals collagen and hyaluronic acid production; smooths fine lines." },
-        { "name": "Cassia Alata Leaf Extract (DN-AGE)", "function": "Protects against UV-related DNA damage; supports cellular repair." }
+        {
+          "name": "Hyaluronic Acid + Sodium Hyaluronate",
+          "function": "Multi-depth hydration, plumping."
+        },
+        {
+          "name": "Phospholipids + Sphingolipids",
+          "function": "Restore the skin's lipid barrier."
+        },
+        {
+          "name": "Palmitoyl Tripeptide-38 (Matrixyl Synthe'6)",
+          "function": "Signals collagen and hyaluronic acid production; smooths fine lines."
+        },
+        {
+          "name": "Cassia Alata Leaf Extract (DN-AGE)",
+          "function": "Protects against UV-related DNA damage; supports cellular repair."
+        }
       ],
       "how_to_use": "After cleansing and toning, apply 1–2 pumps to the face morning and evening, then follow with moisturizer. Pairs well with retinol or exfoliating acids — apply after those actives have absorbed.",
-      "conditions_addressed": ["dehydration", "fine lines", "compromised barrier", "dryness from active ingredients"],
-      "description_short": "A barrier-focused hydrating serum combining hyaluronic acid with skin-identical lipids and a peptide complex."
+      "conditions_addressed": [
+        "dehydration",
+        "fine lines",
+        "compromised barrier",
+        "dryness from active ingredients"
+      ],
+      "description_short": "A barrier-focused hydrating serum combining hyaluronic acid with skin-identical lipids and a peptide complex.",
+      "images": []
     },
     {
       "id": "lip-treatment-peppermint-pomegranate",
@@ -116,59 +235,115 @@
       "category": "Lip Treatment",
       "manufacturer_name_note": "Skin Script sells this as 'Ageless Lip Treatment' in two separate scent SKUs, Peppermint and Pomegranate, at the same price. Modeled here as one product with a required scent variant — confirm against OPEN_ITEMS.md whether two SKUs are preferred instead.",
       "size": "0.27 oz",
-      "wholesale_price": 8.00,
-      "retail_price": 16.00,
+      "wholesale_price": 8,
+      "retail_price": 16,
       "retail_price_confirmed": true,
-      "variants": ["Peppermint", "Pomegranate"],
-      "skin_types": ["all"],
+      "variants": [
+        "Peppermint",
+        "Pomegranate"
+      ],
+      "skin_types": [
+        "all"
+      ],
       "key_actives": [
-        { "name": "Maxi-Lip™ (Palmitoyl Tripeptide-1)", "function": "Biomimetic peptide; stimulates collagen synthesis for firmness." },
-        { "name": "HydraSynol®", "function": "Deep, long-lasting hydration." },
-        { "name": "Dermaxyl™ (ceramide + peptide complex)", "function": "Repairs and strengthens the lip barrier." },
-        { "name": "Synoxyl® AZ (Acetyl Zingerone)", "function": "Antioxidant; firming." }
+        {
+          "name": "Maxi-Lip™ (Palmitoyl Tripeptide-1)",
+          "function": "Biomimetic peptide; stimulates collagen synthesis for firmness."
+        },
+        {
+          "name": "HydraSynol®",
+          "function": "Deep, long-lasting hydration."
+        },
+        {
+          "name": "Dermaxyl™ (ceramide + peptide complex)",
+          "function": "Repairs and strengthens the lip barrier."
+        },
+        {
+          "name": "Synoxyl® AZ (Acetyl Zingerone)",
+          "function": "Antioxidant; firming."
+        }
       ],
       "how_to_use": "Glide a small amount onto lips. Reapply as needed.",
-      "conditions_addressed": ["dry or chapped lips", "fine vertical lip lines", "thinning lips"],
-      "description_short": "A peptide lip treatment that plumps and hydrates rather than just coating — available in Peppermint or Pomegranate."
+      "conditions_addressed": [
+        "dry or chapped lips",
+        "fine vertical lip lines",
+        "thinning lips"
+      ],
+      "description_short": "A peptide lip treatment that plumps and hydrates rather than just coating — available in Peppermint or Pomegranate.",
+      "images": []
     },
     {
       "id": "sheer-protection-spf",
       "name": "Sheer Protection SPF 30",
       "category": "SPF",
       "size": "2 oz",
-      "wholesale_price": 15.00,
-      "retail_price": 30.00,
+      "wholesale_price": 15,
+      "retail_price": 30,
       "retail_price_confirmed": false,
       "retail_price_note": "No retail figure was given in the source document for this item — every other product listed a retail price. Computed here at 2x wholesale to match the confirmed pattern. Confirm before publishing.",
-      "skin_types": ["all — best for normal, dry, combination, sensitive; less ideal for acne-prone due to nut oils"],
+      "skin_types": [
+        "all — best for normal, dry, combination, sensitive; less ideal for acne-prone due to nut oils"
+      ],
       "key_actives": [
-        { "name": "Zinc Oxide (13.5%)", "function": "Mineral, broad-spectrum UVA/UVB filter; sits on the skin's surface rather than being absorbed." },
-        { "name": "Kukui Nut Oil & Macadamia Oil", "function": "Fatty acids; nourishing, easily absorbed." },
-        { "name": "Bisabolol, Sandalwood Extract, Phellodendron Amurense Bark Extract", "function": "Calming, anti-inflammatory." }
+        {
+          "name": "Zinc Oxide (13.5%)",
+          "function": "Mineral, broad-spectrum UVA/UVB filter; sits on the skin's surface rather than being absorbed."
+        },
+        {
+          "name": "Kukui Nut Oil & Macadamia Oil",
+          "function": "Fatty acids; nourishing, easily absorbed."
+        },
+        {
+          "name": "Bisabolol, Sandalwood Extract, Phellodendron Amurense Bark Extract",
+          "function": "Calming, anti-inflammatory."
+        }
       ],
       "how_to_use": "Apply in the morning after moisturizer, at least 30 minutes before sun exposure. Reapply every 2 hours. Not waterproof or sweatproof.",
-      "conditions_addressed": ["daily sun protection", "redness-prone skin"],
+      "conditions_addressed": [
+        "daily sun protection",
+        "redness-prone skin"
+      ],
       "description_short": "A mineral, zinc-oxide sunscreen formulated to sit sheer rather than leave a white cast.",
-      "source_conflict_note": "One lower-authority source described a chemical-filter (octinoxate/octocrylene) version of this product. The large majority of sources — including the manufacturer's own product page — describe a 13.5% zinc-oxide-only mineral formula. This entry follows the majority/manufacturer version; flagged in case Skin Script has multiple SPF 30 SKUs."
+      "source_conflict_note": "One lower-authority source described a chemical-filter (octinoxate/octocrylene) version of this product. The large majority of sources — including the manufacturer's own product page — describe a 13.5% zinc-oxide-only mineral formula. This entry follows the majority/manufacturer version; flagged in case Skin Script has multiple SPF 30 SKUs.",
+      "images": []
     },
     {
       "id": "cucumber-hydration-toner",
       "name": "Cucumber Hydration Toner",
       "category": "Toner",
       "size": "3.3 oz",
-      "wholesale_price": 12.00,
-      "retail_price": 24.00,
+      "wholesale_price": 12,
+      "retail_price": 24,
       "retail_price_confirmed": true,
-      "skin_types": ["all"],
+      "skin_types": [
+        "all"
+      ],
       "key_actives": [
-        { "name": "Cucumber (Cucumis Sativus) Fruit Extract & Seed Oil", "function": "Cooling, soothing." },
-        { "name": "Deuterium Oxide (Heavy Water)", "function": "High molecular weight; reduces trans-epidermal water loss." },
-        { "name": "Sodium PCA", "function": "Natural moisturizing factor component; humectant." },
-        { "name": "Hyaluronic Acid + Honey + Fructooligosaccharides", "function": "Hydration plus prebiotic microbiome support." }
+        {
+          "name": "Cucumber (Cucumis Sativus) Fruit Extract & Seed Oil",
+          "function": "Cooling, soothing."
+        },
+        {
+          "name": "Deuterium Oxide (Heavy Water)",
+          "function": "High molecular weight; reduces trans-epidermal water loss."
+        },
+        {
+          "name": "Sodium PCA",
+          "function": "Natural moisturizing factor component; humectant."
+        },
+        {
+          "name": "Hyaluronic Acid + Honey + Fructooligosaccharides",
+          "function": "Hydration plus prebiotic microbiome support."
+        }
       ],
       "how_to_use": "After cleansing and exfoliating, spritz onto skin or apply with a cotton round, morning and evening.",
-      "conditions_addressed": ["dehydration", "irritation", "poor serum absorption"],
-      "description_short": "A cucumber-based hydrating toner that preps skin to absorb the serums and moisturizer that follow it."
+      "conditions_addressed": [
+        "dehydration",
+        "irritation",
+        "poor serum absorption"
+      ],
+      "description_short": "A cucumber-based hydrating toner that preps skin to absorb the serums and moisturizer that follow it.",
+      "images": []
     }
   ]
 }

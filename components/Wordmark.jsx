@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useState } from 'react';
 
 /**
  * Uses the real logo artwork when the file is present.
@@ -9,17 +10,32 @@ import { useEffect, useState } from 'react';
  * `src` defaults to the full lockup; the nav passes the wordmark-only crop,
  * because the SKIN — CARE line is illegible at nav scale.
  */
-export default function Wordmark({ src = '/logo.webp', className = '', lit = false, alt = 'Dew Theory' }) {
-  const [hasArt, setHasArt] = useState(false);
+export default function Wordmark({
+  src = '/logo.webp',
+  className = '',
+  lit = false,
+  alt = 'Dew Theory',
+  priority = false
+}) {
+  const [failed, setFailed] = useState(false);
 
-  useEffect(() => {
-    const img = new Image();
-    img.onload = () => setHasArt(true);
-    img.src = src;
-  }, [src]);
+  // logo-mark is a tight crop; full lockup is wider
+  const isMark = src.includes('logo-mark');
+  const width = isMark ? 160 : 520;
+  const height = isMark ? 40 : 200;
 
-  if (hasArt) {
-    return <img src={src} alt={alt} className={`${className} w-auto object-contain`} />;
+  if (!failed) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        priority={priority}
+        className={`${className} h-auto w-auto object-contain`}
+        onError={() => setFailed(true)}
+      />
+    );
   }
 
   return (

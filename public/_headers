@@ -1,0 +1,38 @@
+# Cloudflare Workers Static Assets custom headers
+# https://developers.cloudflare.com/workers/static-assets/headers
+# https://opennext.js.org/cloudflare/caching#static-assets-caching
+#
+# Note: next.config headers do NOT apply to public/ or _next/static
+# (the worker does not sit in front of Static Assets).
+
+# Next.js immutable build assets (hashed filenames)
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+
+# Public brand / media assets (long-lived; rename file to bust cache)
+/logo.webp
+  Cache-Control: public,max-age=31536000,immutable
+/logo.png
+  Cache-Control: public,max-age=86400
+/logo-mark.webp
+  Cache-Control: public,max-age=31536000,immutable
+/hero-poster.webp
+  Cache-Control: public,max-age=31536000,immutable
+/hero.mp4
+  Cache-Control: public,max-age=31536000,immutable
+/hero-original.mp4
+  Cache-Control: public,max-age=31536000,immutable
+
+# Extension wildcards (static assets under public/)
+/*.webp
+  Cache-Control: public,max-age=31536000,immutable
+
+/*.mp4
+  Cache-Control: public,max-age=31536000,immutable
+
+/*.png
+  Cache-Control: public,max-age=86400
+
+# Product placeholders + future product media
+/products/*
+  Cache-Control: public,max-age=31536000,immutable

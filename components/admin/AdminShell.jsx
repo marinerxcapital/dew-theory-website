@@ -7,6 +7,7 @@ const nav = [
   { href: '/admin', label: 'Overview', exact: true },
   { href: '/admin/products', label: 'Products' },
   { href: '/admin/import', label: 'CSV import' },
+  { href: '/admin/sync', label: 'Catalog sync' },
   { href: '/admin/orders', label: 'Orders' },
   { href: '/admin/appointments', label: 'Appointments' },
   { href: '/admin/discounts', label: 'Discounts' },

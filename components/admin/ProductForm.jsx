@@ -21,6 +21,7 @@ export default function ProductForm({ product = null }) {
     how_to_use: product?.how_to_use || '',
     stock_status: product?.stock_status || 'in_stock',
     skin_script_sku: product?.skin_script_sku || '',
+    image_url: product?.images?.[0] || '',
     active: product?.active !== false
   });
   const [error, setError] = useState('');
@@ -49,7 +50,8 @@ export default function ProductForm({ product = null }) {
           ...form,
           wholesale_price: parseFloat(form.wholesale_price),
           retail_price: parseFloat(form.retail_price),
-          active: Boolean(form.active)
+          active: Boolean(form.active),
+          images: form.image_url?.trim() ? [form.image_url.trim()] : []
         })
       });
       const data = await res.json();
@@ -110,7 +112,8 @@ export default function ProductForm({ product = null }) {
         ['size', 'Size', 'text'],
         ['description_short', 'Short description', 'text'],
         ['how_to_use', 'How to use', 'text'],
-        ['skin_script_sku', 'Skin Script SKU (optional)', 'text']
+        ['skin_script_sku', 'Skin Script SKU (optional)', 'text'],
+        ['image_url', 'Primary image URL (optional)', 'text']
       ].map(([key, label]) => (
         <div key={key}>
           <label className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
@@ -120,6 +123,7 @@ export default function ProductForm({ product = null }) {
             required={key === 'name'}
             value={form[key]}
             onChange={(e) => setField(key, e.target.value)}
+            placeholder={key === 'image_url' ? '/products/… or https://…' : undefined}
             className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
           />
         </div>

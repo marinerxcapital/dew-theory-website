@@ -60,28 +60,38 @@ export default function Nav() {
 
       <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 lg:px-10">
         <Link href="/" aria-label="Dew Theory, home" className="shrink-0">
-          <Wordmark src="/logo-mark.webp" className="h-6 text-[1.55rem] leading-none sm:h-7 sm:text-[1.8rem]" />
+          <Wordmark
+            src="/logo-mark.webp"
+            priority
+            className="h-6 text-[1.55rem] leading-none sm:h-7 sm:text-[1.8rem]"
+          />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
-            >
-              {l.label}
-            </Link>
-          ))}
+        <nav aria-label="Primary" className="hidden items-center gap-8 xl:gap-9 lg:flex">
+          {links.map((l) => {
+            const current =
+              pathname === l.href || (l.href !== '/' && pathname?.startsWith(l.href));
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={current ? 'page' : undefined}
+                className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
+              >
+                {l.label}
+              </Link>
+            );
+          })}
           <Link
             href="/cart"
-            className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
+            aria-current={pathname === '/cart' ? 'page' : undefined}
+            className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
           >
             Cart{hydrated && count > 0 ? ` (${count})` : ''}
           </Link>
           <Link
             href="/book"
-            className="sweep border border-graphite/25 px-6 py-3 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal transition-colors hover:border-graphite/60"
+            className="sweep btn-primary px-6 py-3 font-label text-[0.7rem] font-light uppercase tracking-lockup"
           >
             Book a facial
           </Link>
