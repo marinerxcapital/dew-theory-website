@@ -54,8 +54,10 @@ Schema for the file store: [`data/SCHEMA.md`](data/SCHEMA.md).
 
 - Storefront catalog (`/`, `/shop`, `/shop/[id]`) uses **ISR** (`revalidate = 60`). Admin product
   create/update/delete/import calls path revalidation so edits appear without waiting a full minute.
-- Images: `next/image` for logos, hero poster, and product media. Empty product `images[]` uses
-  brand SVG placeholders under `public/products/placeholders/` until real photography lands.
+- Images: `next/image` for logos, hero poster, and product media. All eight Skin Script catalog
+  products use studio packshots at `public/images/products/skin-script/` (832×1232 PNG + WebP),
+  mapped in `data/products.json`. Category SVG placeholders under `public/products/placeholders/`
+  remain as fallback only.
 - Cloudflare / OpenNext edge cache (R2 + DO queue + D1): config in `open-next.config.ts` +
   `wrangler.jsonc`. Provision resources with [`docs/EDGE_CACHE.md`](docs/EDGE_CACHE.md).
 - Lighthouse baselines + full notes: [`docs/OPTIMIZATION_REPORT.md`](docs/OPTIMIZATION_REPORT.md).

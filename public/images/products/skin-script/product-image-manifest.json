@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "package": "DewTheory_SkinScript_Product_Implementation_Package",
+  "generatedOn": "2026-07-24",
+  "productionDimensions": {
+    "width": 832,
+    "height": 1232
+  },
+  "aspectRatio": "52:77",
+  "defaultPublicBasePath": "/images/products/skin-script",
+  "preferredFormat": "png",
+  "secondaryFormat": "webp",
+  "products": [
+    {
+      "order": 0,
+      "slug": "green-tea-citrus-cleanser",
+      "name": "Green Tea Citrus Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 fl oz | 190 ml",
+      "filename": "00-green-tea-citrus-cleanser.png",
+      "alt": "Skin Script Green Tea Citrus Cleanser bottle on a pastel iridescent studio background",
+      "role": "master-reference-and-production-asset",
+      "pngPath": "/images/products/skin-script/00-green-tea-citrus-cleanser.png",
+      "webpPath": "/images/products/skin-script/00-green-tea-citrus-cleanser.webp"
+    },
+    {
+      "order": 1,
+      "slug": "mandelic-brightening-serum",
+      "name": "Mandelic Brightening Serum",
+      "category": "Serum",
+      "size": "1 fl oz | 30 ml",
+      "filename": "01-mandelic-brightening-serum.png",
+      "alt": "Skin Script Mandelic Brightening Serum bottle on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/01-mandelic-brightening-serum.png",
+      "webpPath": "/images/products/skin-script/01-mandelic-brightening-serum.webp"
+    },
+    {
+      "order": 2,
+      "slug": "ageless-skin-hydrating-serum",
+      "name": "Ageless Skin Hydrating Serum",
+      "category": "Serum",
+      "size": "1 fl oz | 30 ml",
+      "filename": "02-ageless-skin-hydrating-serum.png",
+      "alt": "Skin Script Ageless Skin Hydrating Serum bottle on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/02-ageless-skin-hydrating-serum.png",
+      "webpPath": "/images/products/skin-script/02-ageless-skin-hydrating-serum.webp"
+    },
+    {
+      "order": 3,
+      "slug": "ageless-skin-moisturizer",
+      "name": "Ageless Skin Moisturizer",
+      "category": "Moisturizer",
+      "size": "2 fl oz | 60 ml",
+      "filename": "03-ageless-skin-moisturizer.png",
+      "alt": "Skin Script Ageless Skin Moisturizer bottle on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/03-ageless-skin-moisturizer.png",
+      "webpPath": "/images/products/skin-script/03-ageless-skin-moisturizer.webp"
+    },
+    {
+      "order": 4,
+      "slug": "botanical-bloom-hydrating-mask",
+      "name": "Botanical Bloom Hydrating Mask",
+      "category": "Mask",
+      "size": "2 fl oz | 60 ml",
+      "filename": "04-botanical-bloom-hydrating-mask.png",
+      "alt": "Skin Script Botanical Bloom Hydrating Mask tube on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/04-botanical-bloom-hydrating-mask.png",
+      "webpPath": "/images/products/skin-script/04-botanical-bloom-hydrating-mask.webp"
+    },
+    {
+      "order": 5,
+      "slug": "ageless-lip-treatment",
+      "name": "Ageless Lip Treatment with Pomegranate",
+      "category": "Lip Treatment",
+      "size": ".27 fl oz | 8 ml",
+      "filename": "05-ageless-lip-treatment.png",
+      "alt": "Skin Script Ageless Lip Treatment with Pomegranate tube on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/05-ageless-lip-treatment.png",
+      "webpPath": "/images/products/skin-script/05-ageless-lip-treatment.webp"
+    },
+    {
+      "order": 6,
+      "slug": "cucumber-hydration-toner",
+      "name": "Cucumber Hydration Toner",
+      "category": "Toner",
+      "size": "3.3 fl oz | 100 ml",
+      "filename": "06-cucumber-hydration-toner.png",
+      "alt": "Skin Script Cucumber Hydration Toner spray bottle on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/06-cucumber-hydration-toner.png",
+      "webpPath": "/images/products/skin-script/06-cucumber-hydration-toner.webp"
+    },
+    {
+      "order": 7,
+      "slug": "sheer-protection-spf-30",
+      "name": "Sheer Protection Broad Spectrum SPF 30",
+      "category": "Sunscreen",
+      "size": "2 fl oz | 60 ml",
+      "filename": "07-sheer-protection-spf-30.png",
+      "alt": "Skin Script Sheer Protection Broad Spectrum SPF 30 tube on a pastel iridescent studio background",
+      "role": "production-asset",
+      "pngPath": "/images/products/skin-script/07-sheer-protection-spf-30.png",
+      "webpPath": "/images/products/skin-script/07-sheer-protection-spf-30.webp"
+    }
+  ]
+}

@@ -100,10 +100,12 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
   background + portrait glass column (poster still). Source refreshed 2026-07-21 from
   `generated_video (1).mp4`; web path is ping-pong-extended silent `hero.mp4` (~20s) +
   `hero-poster.webp` via `next/image`. Original brief’s 16:9 landscape still not used.
-- **No real product photography, studio photography, or photo of Emily yet.** Shop/home/PDP use
-  brand-abstract SVG placeholders under `public/products/placeholders/` (not Skin Script bottles).
-  Pipeline is ready: set `product.images[0]` (admin primary image URL or seed) to a WebP/AVIF path
-  or remote URL. Real photos still required before customer launch visuals.
+- **Skin Script product photography — INSTALLED 2026-07-24.** All eight catalog products now use
+  coordinated 832×1232 studio assets at `/images/products/skin-script/` (PNG + WebP), wired through
+  `data/products.json` `images[]` / `image_alt` / `image_webp` and `lib/product-image.js`. Surfaces:
+  home featured, shop grid, PDP + OG, cart thumbnails, related strip. Placeholders remain only as
+  fallback for unknown categories. **Still missing:** Emily portrait, studio photography, and any
+  lifestyle/in-use shots beyond product packshots.
 - **Lighthouse local baseline (2026-07-20):** home perf ~60, shop ~58, PDP ~88; CLS excellent;
   TBT/LCP on home+shop still driven by main-thread JS + hero media. See `docs/OPTIMIZATION_REPORT.md`.
 

@@ -14,7 +14,7 @@
 | 2 | `next/image` pipeline (logos, hero poster, products) | **Done** |
 | 3 | `next.config.mjs` images, compress, security + cache headers | **Done** |
 | 4 | Shop caching: ISR 60s + admin `revalidatePath` | **Done** |
-| 5 | Product image path + brand abstract placeholders | **Done** (real photos still open) |
+| 5 | Product image path + brand abstract placeholders | **Done** — Skin Script studio photos installed 2026-07-24 |
 | 6 | Edge/CDN OpenNext (R2 + DO queue + D1 tag cache) | **Done config**; CF resources need `wrangler login` |
 
 **Gates:** `npm test` **113 pass** · `npm run build` **OK** · home/shop/PDP **HTTP 200** under `next start`

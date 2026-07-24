@@ -7,7 +7,15 @@
       "free_shipping_threshold_usd": 49,
       "applies_to": "order subtotal before discount codes (recommended default — see OPEN_ITEMS.md)"
     },
-    "sources_researched": "skinscriptrx.com (manufacturer) and authorized retailers including artofskincare.com, skincarebyalana.com, naturalbeautyspa.com, incidecoder.com. All product marketing copy below is paraphrased, not copied."
+    "sources_researched": "skinscriptrx.com (manufacturer) and authorized retailers including artofskincare.com, skincarebyalana.com, naturalbeautyspa.com, incidecoder.com. All product marketing copy below is paraphrased, not copied.",
+    "product_images": {
+      "package": "DewTheory_SkinScript_Product_Implementation_Package",
+      "installed_on": "2026-07-24",
+      "public_base": "/images/products/skin-script",
+      "dimensions": "832x1232",
+      "aspect_ratio": "52:77",
+      "note": "Canonical commerce IDs preserved; image fields only from package manifest."
+    }
   },
   "categories": [
     "Cleanser",
@@ -63,7 +71,11 @@
         "dullness"
       ],
       "description_short": "A foaming gel cleanser built around green tea and citrus extracts — clarifies oily and combination skin without over-stripping it.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/00-green-tea-citrus-cleanser.png"
+      ],
+      "image_alt": "Skin Script Green Tea Citrus Cleanser bottle on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/00-green-tea-citrus-cleanser.webp"
     },
     {
       "id": "mandelic-brightening-serum",
@@ -107,7 +119,11 @@
         "mild breakouts"
       ],
       "description_short": "A mandelic-acid leave-on exfoliant that brightens and refines texture while regulating oil — gentler than glycolic-based options.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/01-mandelic-brightening-serum.png"
+      ],
+      "image_alt": "Skin Script Mandelic Brightening Serum bottle on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/01-mandelic-brightening-serum.webp"
     },
     {
       "id": "botanical-bloom-hydrating-mask",
@@ -143,7 +159,11 @@
         "uneven tone"
       ],
       "description_short": "A hyaluronic-acid-rich hydrating mask built around a rose, orchid, and daisy botanical complex.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/04-botanical-bloom-hydrating-mask.png"
+      ],
+      "image_alt": "Skin Script Botanical Bloom Hydrating Mask tube on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/04-botanical-bloom-hydrating-mask.webp"
     },
     {
       "id": "ageless-moisturizer",
@@ -183,7 +203,11 @@
         "early signs of aging"
       ],
       "description_short": "A lightweight, fast-absorbing daily moisturizer with a satin, matte-leaning finish.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/03-ageless-skin-moisturizer.png"
+      ],
+      "image_alt": "Skin Script Ageless Skin Moisturizer bottle on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/03-ageless-skin-moisturizer.webp"
     },
     {
       "id": "hydrating-skin-serum",
@@ -227,7 +251,11 @@
         "dryness from active ingredients"
       ],
       "description_short": "A barrier-focused hydrating serum combining hyaluronic acid with skin-identical lipids and a peptide complex.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/02-ageless-skin-hydrating-serum.png"
+      ],
+      "image_alt": "Skin Script Ageless Skin Hydrating Serum bottle on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/02-ageless-skin-hydrating-serum.webp"
     },
     {
       "id": "lip-treatment-peppermint-pomegranate",
@@ -270,7 +298,11 @@
         "thinning lips"
       ],
       "description_short": "A peptide lip treatment that plumps and hydrates rather than just coating — available in Peppermint or Pomegranate.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/05-ageless-lip-treatment.png"
+      ],
+      "image_alt": "Skin Script Ageless Lip Treatment with Pomegranate tube on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/05-ageless-lip-treatment.webp"
     },
     {
       "id": "sheer-protection-spf",
@@ -305,7 +337,11 @@
       ],
       "description_short": "A mineral, zinc-oxide sunscreen formulated to sit sheer rather than leave a white cast.",
       "source_conflict_note": "One lower-authority source described a chemical-filter (octinoxate/octocrylene) version of this product. The large majority of sources — including the manufacturer's own product page — describe a 13.5% zinc-oxide-only mineral formula. This entry follows the majority/manufacturer version; flagged in case Skin Script has multiple SPF 30 SKUs.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/07-sheer-protection-spf-30.png"
+      ],
+      "image_alt": "Skin Script Sheer Protection Broad Spectrum SPF 30 tube on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/07-sheer-protection-spf-30.webp"
     },
     {
       "id": "cucumber-hydration-toner",
@@ -343,7 +379,11 @@
         "poor serum absorption"
       ],
       "description_short": "A cucumber-based hydrating toner that preps skin to absorb the serums and moisturizer that follow it.",
-      "images": []
+      "images": [
+        "/images/products/skin-script/06-cucumber-hydration-toner.png"
+      ],
+      "image_alt": "Skin Script Cucumber Hydration Toner spray bottle on a pastel iridescent studio background",
+      "image_webp": "/images/products/skin-script/06-cucumber-hydration-toner.webp"
     }
   ]
 }

@@ -6,6 +6,10 @@ out
 .DS_Store
 data/runtime/
 
+# Local package extract / asset backups (not for deploy)
+_package_extract/
+.dewtheory-backups/
+
 # Local orchestration — never push this to marinerxcapital/dew-theory-website.
 # setup_orchestration.ps1 also writes these rules; kept here too so the
 # safety net exists even before that script has been run.

@@ -590,6 +590,17 @@ article:hover .media-zoom img {
   filter: saturate(1.08) contrast(1.03);
 }
 
+/* Skin Script studio photos — keep pastel grade; no color-shift filters */
+[data-product-image-frame] .media-zoom-target {
+  filter: none !important;
+}
+[data-product-image-frame]:hover .media-zoom-target,
+a:hover [data-product-image-frame] .media-zoom-target,
+article:hover [data-product-image-frame] .media-zoom-target {
+  transform: scale(1.03);
+  filter: none !important;
+}
+
 /* Card hover: a highlight sweep, not a bounce. */
 .sweep { position: relative; overflow: hidden; }
 .sweep::before {

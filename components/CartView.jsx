@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/components/CartProvider';
+import ProductImage from '@/components/ProductImage';
 import Rule from '@/components/Rule';
+import { productById } from '@/lib/products';
 import {
   formatMoney,
   FREE_SHIPPING_THRESHOLD_USD,
@@ -214,12 +216,32 @@ export default function CartView() {
         data-reveal-group="cart-body"
       >
         <ul className="order-last min-w-0 divide-y divide-chrome/20 border-y border-chrome/20 lg:order-first">
-          {items.map((item) => (
+          {items.map((item) => {
+            const catalogProduct = productById(item.product_id);
+            const thumbProduct = catalogProduct || {
+              id: item.product_id,
+              name: item.name,
+              category: item.category
+            };
+            return (
             <li
               key={`${item.product_id}-${item.variant || ''}`}
               data-reveal
-              className="grid gap-4 py-6 sm:grid-cols-[1fr_auto] sm:items-center sm:py-8"
+              className="grid gap-4 py-6 sm:grid-cols-[5rem_1fr_auto] sm:items-center sm:gap-5 sm:py-8"
             >
+              <Link
+                href={`/shop/${item.product_id}`}
+                className="block w-16 shrink-0 sm:w-20"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <ProductImage
+                  product={thumbProduct}
+                  framed
+                  sizes="80px"
+                  className="!rounded-[2px]"
+                />
+              </Link>
               <div className="min-w-0">
                 <Link
                   href={`/shop/${item.product_id}`}
@@ -236,7 +258,7 @@ export default function CartView() {
                   {formatMoney(item.unit_price)}
                 </p>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 sm:col-auto">
                 <label className="sr-only" htmlFor={`qty-${item.product_id}-${item.variant}`}>
                   Quantity for {item.name}
                 </label>
@@ -262,7 +284,8 @@ export default function CartView() {
                 </button>
               </div>
             </li>
-          ))}
+            );
+          })}
         </ul>
 
         <aside

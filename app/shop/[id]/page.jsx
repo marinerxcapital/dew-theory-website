@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard';
 import ProductImage from '@/components/ProductImage';
 import ProductViewTracker from '@/components/ProductViewTracker';
 import { PRODUCTS } from '@/lib/products';
-import { productImageSrc } from '@/lib/product-image';
+import { productImageAlt, productImageSrc } from '@/lib/product-image';
 import { getProduct, getProducts } from '@/lib/products-server';
 import { formatMoney } from '@/lib/shipping';
 import { isShopVisible, stockLabel } from '@/lib/shop';
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${product.name} — Dew Theory`,
       description: product.description_short,
-      images: [{ url: productImageSrc(product), alt: product.name }]
+      images: [{ url: productImageSrc(product), alt: productImageAlt(product) }]
     }
   };
 }
