@@ -110,6 +110,7 @@ button {
   .sweep::before { content: none !important; display: none !important; }
   .specular::after { content: none !important; display: none !important; }
   .ambient-orb { animation: none !important; }
+  .motion-bg__video { display: none !important; }
   .scroll-cue { animation: none !important; opacity: 0.55 !important; transform: none !important; }
   .media-zoom img,
   .media-zoom .media-zoom-target,
@@ -244,7 +245,53 @@ label:has(input:focus-visible) {
   background-size: 100% 100%;
 }
 
-/* ---- Site ambient: soft chrome fields for glass to refract ---- */
+/* ---- Site motion plane (hero.mp4) — storefront only, behind content ---- */
+.motion-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.motion-bg__iridescent {
+  position: absolute;
+  inset: 0;
+}
+.motion-bg__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+}
+.motion-bg__video {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.motion-bg__video--ready {
+  opacity: 0.45;
+}
+.motion-bg__glass {
+  position: absolute;
+  inset: 0;
+}
+.motion-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 75% at 50% 40%, transparent 25%, rgba(244, 246, 247, 0.28) 100%),
+    linear-gradient(
+      180deg,
+      rgba(244, 246, 247, 0.12) 0%,
+      transparent 22%,
+      transparent 70%,
+      rgba(244, 246, 247, 0.42) 100%
+    );
+}
+
+/* ---- Site ambient: soft chrome fields for glass to refract ----
+   Background stays translucent so MotionBackground video shows through. */
 .ambient-field {
   position: fixed;
   inset: 0;
@@ -252,17 +299,9 @@ label:has(input:focus-visible) {
   pointer-events: none;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(196, 218, 233, 0.35) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 100% 50%, rgba(206, 205, 225, 0.22) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 45% at 0% 80%, rgba(222, 194, 207, 0.2) 0%, transparent 50%),
-    linear-gradient(
-      168deg,
-      var(--color-pearl) 0%,
-      #EEF1F3 38%,
-      var(--color-ivory) 68%,
-      #F2F0F3 88%,
-      var(--color-pearl) 100%
-    );
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(196, 218, 233, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 50%, rgba(206, 205, 225, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 45% at 0% 80%, rgba(222, 194, 207, 0.1) 0%, transparent 50%);
 }
 .ambient-orb {
   position: absolute;

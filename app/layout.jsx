@@ -3,6 +3,7 @@ import { Bodoni_Moda, Jost, Karla } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import MotionRoot from '@/components/MotionRoot';
+import MotionBackground from '@/components/MotionBackground';
 import AmbientField from '@/components/AmbientField';
 import { CartProvider } from '@/components/CartProvider';
 
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
       <body className="relative bg-pearl font-body font-light text-charcoal antialiased">
         <CartProvider>
+          <MotionBackground />
           <AmbientField />
           <MotionRoot />
           <div className="relative z-[1]">

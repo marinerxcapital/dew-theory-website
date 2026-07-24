@@ -16,12 +16,11 @@ function useReducedMotion() {
 }
 
 export default function Hero() {
-  const ref = useRef(null);
+  const sectionRef = useRef(null);
   const reduced = useReducedMotion();
-  const [hasVideo, setHasVideo] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = sectionRef.current;
     if (!el || reduced) return undefined;
 
     let frame = 0;
@@ -42,54 +41,14 @@ export default function Hero() {
     };
   }, [reduced]);
 
-  useEffect(() => {
-    if (!reduced) return;
-    ref.current?.querySelectorAll('video').forEach((v) => {
-      v.pause();
-      v.removeAttribute('autoplay');
-    });
-    setHasVideo(false);
-  }, [reduced]);
-
   return (
     <section
-      ref={ref}
+      ref={sectionRef}
       className={`relative isolate flex min-h-[100svh] items-center overflow-hidden pt-28 ${
         reduced ? '' : 'specular'
       }`}
     >
-      {/* Plane 1 — ambient material */}
-      <div className="iridescent absolute inset-0 -z-20" aria-hidden="true" />
-
-      {reduced ? (
-        <Image
-          src="/hero-poster.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover opacity-45"
-          aria-hidden="true"
-        />
-      ) : (
-        <video
-          className={`absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000 ${
-            hasVideo ? 'opacity-45' : 'opacity-0'
-          }`}
-          src="/hero.mp4"
-          poster="/hero-poster.webp"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          onCanPlay={() => setHasVideo(true)}
-          onError={() => setHasVideo(false)}
-        />
-      )}
-
-      <div className="glass-2 absolute inset-0 -z-10" aria-hidden="true" />
+      {/* Motion video is sitewide (MotionBackground). Hero only adds fold vignette + content. */}
       <div className="hero-vignette absolute inset-0 -z-[5]" aria-hidden="true" />
 
       <div className="relative z-[1] mx-auto grid w-full max-w-shell gap-12 px-5 pb-24 sm:gap-16 sm:px-6 sm:pb-28 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">

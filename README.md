@@ -5,6 +5,9 @@ Motion-first skincare site. Next.js 15 (App Router), Tailwind CSS, GSAP + Scroll
 Full storefront + admin portal: shop, product detail, cart/checkout, booking, and
 `/admin` (products, orders, discounts, analytics, Skin Script CSV import).
 
+Storefront pages share one fixed motion background (`components/MotionBackground.jsx` —
+`/hero.mp4` + poster, glass wash). Admin routes keep a solid pearl chrome without video.
+
 ## Run locally
 
 ```bash

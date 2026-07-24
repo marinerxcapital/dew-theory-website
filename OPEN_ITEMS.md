@@ -100,6 +100,8 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
   background + portrait glass column (poster still). Source refreshed 2026-07-21 from
   `generated_video (1).mp4`; web path is ping-pong-extended silent `hero.mp4` (~20s) +
   `hero-poster.webp` via `next/image`. Original brief’s 16:9 landscape still not used.
+  **2026-07-24:** Same motion plane is sitewide via `components/MotionBackground.jsx` on all
+  storefront routes (not `/admin`); home Hero no longer mounts a second video.
 - **Skin Script product photography — INSTALLED 2026-07-24.** All eight catalog products now use
   coordinated 832×1232 studio assets at `/images/products/skin-script/` (PNG + WebP), wired through
   `data/products.json` `images[]` / `image_alt` / `image_webp` and `lib/product-image.js`. Surfaces:
