@@ -5,9 +5,11 @@
 - **Repository:** `C:\Users\Skyler B. Brown\Desktop\dew-theory` (`marinerxcapital/dew-theory-website`)
 - **Branch:** `master` (tracks `origin/main`)
 - **Baseline commit:** `dab3ceb` (Make header logo more pronounced in the nav.)
+- **Final commit:** `472068d` — `feat(products): install Skin Script studio product photography`
 - **Package:** Desktop ZIP `DewTheory_SkinScript_Product_Implementation_Package.zip` (extracted under `_package_extract/`)
 - **Backup:** `.dewtheory-backups/product-assets/20260724-160446`
-- **Deployment:** Cloudflare Worker `dew-theory` → **https://dewtheoryco.com** (after this commit deploy)
+- **Deployment:** Cloudflare Worker `dew-theory` → **https://dewtheoryco.com**  
+  Version ID: `992e2f27-8aeb-46bb-aa6d-59bd7079e3cb` (also `www.dewtheoryco.com`)
 
 ## Product mapping
 
@@ -51,6 +53,16 @@
 | Checkout | Partial | Stripe hosted Checkout; bag shows thumbs pre-redirect |
 | Order confirmation | N/A | Text-only confirmation page |
 
+## Validation (executed)
+
+| Check | Result |
+|---|---|
+| Asset install (8 PNG + 8 WebP + manifest) | ✅ |
+| `npm test` | ✅ 130 pass (incl. product-image suite) |
+| `npm run build` | ✅ 48 routes |
+| `git push origin master:main` | ✅ |
+| `npm run deploy` | ✅ Worker version `992e2f27-8aeb-46bb-aa6d-59bd7079e3cb` |
+
 ## Known issues or ambiguities
 
 - Canonical names differ slightly from package labels for moisturizer, hydrating serum, lip treatment, and SPF — **IDs preserved**; package aliases documented above.
@@ -60,6 +72,8 @@
 ## Rollback
 
 ```bash
-git revert <this-commit>
+git revert 472068d
+git push origin master:main
+npm run deploy
 # Assets also under package ZIP; backup metadata at .dewtheory-backups/product-assets/
 ```
