@@ -92,7 +92,7 @@ export default function Nav() {
           <Wordmark
             src="/logo-mark.webp"
             priority
-            className="h-10 w-auto max-w-[12rem] object-contain object-left drop-shadow-[0_1px_3px_rgba(42,42,40,0.18)] sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
+            className="h-10 w-auto max-w-[12rem] object-contain object-left drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)] sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
           />
         </Link>
 
@@ -105,7 +105,7 @@ export default function Nav() {
                 key={l.href}
                 href={l.href}
                 aria-current={current ? 'page' : undefined}
-                className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
+                className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup transition-colors"
               >
                 {l.label}
               </Link>
@@ -114,13 +114,13 @@ export default function Nav() {
           <Link
             href="/cart"
             aria-current={pathname === '/cart' ? 'page' : undefined}
-            className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
+            className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup transition-colors"
           >
             Cart{hydrated && count > 0 ? ` (${count})` : ''}
           </Link>
           <Link
             href="/book"
-            className="sweep btn-primary px-6 py-3 font-label text-[0.7rem] font-light uppercase tracking-lockup"
+            className="sweep btn-nav-cta px-6 py-3 font-label text-[0.7rem] font-light uppercase tracking-lockup"
           >
             Book a facial
           </Link>
@@ -129,7 +129,7 @@ export default function Nav() {
         <div className="flex items-center gap-4 sm:gap-5 lg:hidden">
           <Link
             href="/cart"
-            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
+            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl/85 transition-colors hover:text-pearl"
           >
             Cart{hydrated && count > 0 ? ` (${count})` : ''}
           </Link>
@@ -139,7 +139,7 @@ export default function Nav() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
+            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl/85 transition-colors hover:text-pearl"
           >
             {open ? 'Close' : 'Menu'}
           </button>
@@ -151,7 +151,7 @@ export default function Nav() {
           id="mobile-nav"
           ref={panelRef}
           aria-label="Primary, mobile"
-          className="glass-1 max-h-[min(100dvh-4.5rem,32rem)] overflow-y-auto overscroll-contain lg:hidden"
+          className="max-h-[min(100dvh-4.5rem,32rem)] overflow-y-auto overscroll-contain lg:hidden"
         >
           <div className="flex flex-col px-6 py-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
             {mobileLinks.map((l, i) => {
@@ -164,7 +164,7 @@ export default function Nav() {
                   ref={i === 0 ? firstLinkRef : undefined}
                   onClick={() => setOpen(false)}
                   aria-current={current ? 'page' : undefined}
-                  className="border-b border-chrome/15 py-4 font-label text-[0.74rem] font-light uppercase tracking-lockup text-charcoal last:border-0"
+                  className="border-b py-4 font-label text-[0.74rem] font-light uppercase tracking-lockup last:border-0"
                 >
                   {l.label}
                 </Link>

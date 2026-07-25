@@ -666,42 +666,84 @@ article:hover [data-product-image-frame] .media-zoom-target {
 [data-reveal] { opacity: 1; }
 .js-motion [data-reveal] { opacity: 0; transform: translateY(22px); }
 
-/* Nav frosting */
-[data-nav][data-state='frosted'] {
-  background: linear-gradient(
-    180deg,
-    rgba(244, 246, 247, 0.78) 0%,
-    rgba(244, 246, 247, 0.52) 100%
-  );
-  backdrop-filter: blur(28px) saturate(1.45);
-  -webkit-backdrop-filter: blur(28px) saturate(1.45);
-  border-bottom: 1px solid rgba(196, 218, 233, 0.42);
+/* Nav — same deep graphite as .site-footer so the glassy wordmark reads clearly */
+[data-nav] {
+  color: rgba(244, 246, 247, 0.88);
+  background:
+    linear-gradient(
+      180deg,
+      #2a2c36 0%,
+      var(--color-graphite) 55%,
+      #252730 100%
+    );
+  border-bottom: 1px solid rgba(196, 218, 233, 0.2);
   box-shadow:
-    0 1px 0 rgba(247, 249, 250, 0.65) inset,
-    0 18px 48px -34px rgba(45, 47, 58, 0.32);
+    0 1px 0 rgba(196, 218, 233, 0.08) inset,
+    0 18px 48px -34px rgba(20, 22, 28, 0.55);
+}
+[data-nav][data-state='frosted'] {
+  background:
+    linear-gradient(
+      180deg,
+      #2c2e3a 0%,
+      var(--color-graphite) 50%,
+      #22242c 100%
+    );
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom-color: rgba(196, 218, 233, 0.28);
+  box-shadow:
+    0 1px 0 rgba(196, 218, 233, 0.1) inset,
+    0 22px 52px -30px rgba(15, 16, 20, 0.65);
 }
 [data-nav][data-state='clear'] {
-  background: linear-gradient(
-    180deg,
-    rgba(244, 246, 247, 0.22) 0%,
-    transparent 100%
-  );
-  border-bottom: 1px solid transparent;
+  /* Always solid footer graphite — logo contrast over iridescent hero */
+  background:
+    linear-gradient(
+      180deg,
+      #2a2c36 0%,
+      var(--color-graphite) 55%,
+      #252730 100%
+    );
+  border-bottom: 1px solid rgba(196, 218, 233, 0.2);
 }
 
-/* Header logo — larger mark, stronger contrast on glass/video hero */
+/* Soft ice wash (mirrors footer::before) so chrome logo pops */
+[data-nav]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 90% at 12% 0%, rgba(196, 218, 233, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 80% at 88% 100%, rgba(222, 194, 207, 0.07) 0%, transparent 50%);
+}
+[data-nav] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header logo — lift glassy mark on dark graphite */
 .nav-logo img {
-  filter: contrast(1.08) saturate(1.05);
+  filter: contrast(1.12) saturate(1.08) brightness(1.08);
 }
 .nav-logo:focus-visible {
-  outline: 2px solid rgba(90, 125, 154, 0.55);
+  outline: 2px solid rgba(196, 218, 233, 0.65);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
-/* Nav link underline — material, not decoration for its own sake */
+/* Nav link underline — ice chrome on dark bar */
 .nav-link {
   position: relative;
+  color: rgba(244, 246, 247, 0.72);
+}
+.nav-link:hover {
+  color: var(--color-pearl);
+}
+.nav-link[aria-current='page'] {
+  color: var(--color-pearl);
 }
 .nav-link::after {
   content: '';
@@ -713,7 +755,7 @@ article:hover [data-product-image-frame] .media-zoom-target {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(130, 143, 154, 0.7),
+    rgba(196, 218, 233, 0.75),
     transparent
   );
   transform: scaleX(0);
@@ -723,6 +765,40 @@ article:hover [data-product-image-frame] .media-zoom-target {
 .nav-link:hover::after,
 .nav-link[aria-current='page']::after {
   transform: scaleX(1);
+}
+
+/* Mobile drawer on dark header */
+[data-nav] #mobile-nav {
+  background: linear-gradient(
+    180deg,
+    rgba(42, 44, 54, 0.98) 0%,
+    rgba(34, 36, 44, 0.98) 100%
+  );
+  border-top: 1px solid rgba(196, 218, 233, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+[data-nav] #mobile-nav a {
+  color: rgba(244, 246, 247, 0.88);
+  border-color: rgba(196, 218, 233, 0.12);
+}
+[data-nav] #mobile-nav a:hover,
+[data-nav] #mobile-nav a[aria-current='page'] {
+  color: var(--color-pearl);
+}
+
+/* Book CTA on dark nav — pearl outline (matches footer ghost) */
+[data-nav] .btn-nav-cta {
+  border: 1px solid rgba(244, 246, 247, 0.28);
+  background: rgba(244, 246, 247, 0.08);
+  color: var(--color-pearl);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-nav] .btn-nav-cta:hover {
+  border-color: rgba(196, 218, 233, 0.55);
+  background: rgba(244, 246, 247, 0.14);
+  color: var(--color-pearl);
 }
 
 /* The footage is very pale; give it a little more presence behind glass. */
