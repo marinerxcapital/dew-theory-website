@@ -35,3 +35,10 @@ cloudflare-env.d.ts
 # Hero encode scratch + live ops runtime
 tmp-hero-work/
 agent-ops-dashboard/data/
+
+# Local work packages / source media (not for deploy)
+Dew Theory - Architecture To Implement.txt
+DewTheory_SkinScript_Product_Implementation_Package.zip
+generated_video (1).mp4
+tmp-hero-work/
+_package_extract/
