@@ -1,16 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useCart } from '@/components/CartProvider';
+import FreeShippingMeter from '@/components/FreeShippingMeter';
 import ProductImage from '@/components/ProductImage';
+import ProductCard from '@/components/ProductCard';
 import Rule from '@/components/Rule';
-import { productById } from '@/lib/products';
+import { productById, PRODUCTS } from '@/lib/products';
+import { suggestMissingRoutineSteps } from '@/lib/routine';
 import {
   formatMoney,
   FREE_SHIPPING_THRESHOLD_USD,
   FLAT_SHIPPING_USD
 } from '@/lib/shipping';
+import { isShopVisible } from '@/lib/shop';
+
+const NOTE_MAX = 400;
 
 export default function CartView() {
   const {
@@ -30,6 +36,7 @@ export default function CartView() {
   const [codeLoading, setCodeLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState('');
+  const [orderNote, setOrderNote] = useState('');
   const [guest, setGuest] = useState({
     name: '',
     email: '',
@@ -41,8 +48,15 @@ export default function CartView() {
     country: 'US'
   });
 
-  const towardFree = Math.max(0, FREE_SHIPPING_THRESHOLD_USD - totals.subtotal);
   const freeShipping = totals.shipping_fee === 0;
+  const complements = useMemo(
+    () =>
+      suggestMissingRoutineSteps(items, PRODUCTS, {
+        isVisible: isShopVisible,
+        limit: 3
+      }),
+    [items]
+  );
 
   async function applyCode(e) {
     e.preventDefault();
@@ -121,6 +135,7 @@ export default function CartView() {
           items,
           discount_code: discountCode?.code || null,
           idempotency_key: idempotencyKey,
+          customer_notes: orderNote.trim().slice(0, NOTE_MAX) || null,
           customer: {
             name: guest.name,
             email: guest.email,
@@ -332,21 +347,7 @@ export default function CartView() {
             </div>
           </dl>
 
-          {/* Free shipping messaging — constants from lib/shipping.js */}
-          <div className="mt-4 border border-chrome/20 bg-pearl/50 p-4">
-            {freeShipping ? (
-              <p className="font-body text-xs font-light leading-relaxed text-charcoal/70">
-                Free shipping applied — subtotal is {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+
-                (before discount).
-              </p>
-            ) : (
-              <p className="font-body text-xs font-light leading-relaxed text-charcoal/70">
-                Add {formatMoney(towardFree)} more for free shipping (threshold{' '}
-                {formatMoney(FREE_SHIPPING_THRESHOLD_USD)} pre-discount). Flat rate otherwise:{' '}
-                {formatMoney(FLAT_SHIPPING_USD)}.
-              </p>
-            )}
-          </div>
+          <FreeShippingMeter subtotal={totals.subtotal} className="mt-4" />
 
           <form onSubmit={applyCode} className="mt-8">
             <label
@@ -421,6 +422,28 @@ export default function CartView() {
                 />
               </div>
             ))}
+
+            <div>
+              <label
+                htmlFor="order-note"
+                className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome"
+              >
+                Gift or order note (optional)
+              </label>
+              <textarea
+                id="order-note"
+                rows={3}
+                maxLength={NOTE_MAX}
+                disabled={checkoutLoading}
+                value={orderNote}
+                onChange={(e) => setOrderNote(e.target.value.slice(0, NOTE_MAX))}
+                placeholder="Delivery instructions or a short gift message"
+                className="mt-2 w-full resize-y border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal disabled:opacity-60"
+              />
+              <p className="mt-1 text-right font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome/70">
+                {orderNote.length}/{NOTE_MAX}
+              </p>
+            </div>
 
             {checkoutError && (
               <div
@@ -501,6 +524,35 @@ export default function CartView() {
           </form>
         </aside>
       </div>
+
+      {complements.length > 0 && (
+        <div className="mt-16 border-t border-chrome/15 pt-14" data-reveal-group="cart-routine">
+          <p
+            data-reveal
+            className="eyebrow-line font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+          >
+            Complete the routine
+          </p>
+          <h2
+            data-reveal
+            className="mt-4 font-display text-[clamp(1.6rem,3.5vw,2.2rem)] font-normal text-graphite"
+          >
+            Missing steps from your bag
+          </h2>
+          <p
+            data-reveal
+            className="mt-3 max-w-xl font-body text-sm font-light leading-relaxed text-charcoal/70"
+          >
+            Suggestions follow standard order of operations (cleanser → treatments → moisturizer →
+            SPF) — not a medical protocol.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group="cart-upsell">
+            {complements.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

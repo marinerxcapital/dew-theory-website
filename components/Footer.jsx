@@ -14,7 +14,14 @@ const columns = [
       ['Virtual consultation', '/virtual-consultation']
     ]
   },
-  { head: 'Dew Theory', items: [['About Emily', '/about'], ['Contact', '/contact']] },
+  {
+    head: 'Dew Theory',
+    items: [
+      ['About Emily', '/about'],
+      ['Contact', '/contact'],
+      ['FAQ', '/faq']
+    ]
+  },
   {
     head: 'Policies',
     items: [

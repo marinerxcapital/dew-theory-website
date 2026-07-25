@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
+import StickyCtaBar from '@/components/StickyCtaBar';
 import {
   SERVICES,
   formatDuration,
@@ -16,8 +17,9 @@ export default function ServicesPage() {
   return (
     <section
       data-services-menu
-      className="relative mx-auto max-w-shell px-6 py-32 lg:px-10"
+      className="relative mx-auto max-w-shell px-6 py-32 pb-36 lg:px-10 lg:pb-32"
     >
+      <StickyCtaBar />
       <div data-reveal-group="svc-head">
         <Rule left="Services" right="In studio" data-reveal />
         <h1

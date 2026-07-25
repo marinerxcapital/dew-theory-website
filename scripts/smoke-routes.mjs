@@ -7,7 +7,7 @@ const base = (process.argv[2] || process.env.SMOKE_BASE || 'http://localhost:300
   ''
 );
 
-// Public storefront + admin login (matches sitemap static set; no policy pages unless present).
+// Public storefront + policies + admin login.
 const paths = [
   '/',
   '/shop',
@@ -17,6 +17,10 @@ const paths = [
   '/virtual-consultation',
   '/contact',
   '/cart',
+  '/faq',
+  '/privacy',
+  '/shipping',
+  '/returns',
   '/admin/login'
 ];
 

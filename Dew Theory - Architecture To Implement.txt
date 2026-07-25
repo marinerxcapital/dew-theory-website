@@ -1,0 +1,145 @@
+## Architecture to implement
+
+### A. Supplier abstraction
+
+Create:
+
+lib/suppliers/types.js lib/suppliers/skin-script/index.js          # factory lib/suppliers/skin-script/mock-adapter.js lib/suppliers/skin-script/http-adapter.js  # env-gated stub for
+future real API lib/suppliers/skin-script/csv-feed-adapter.js  # parse authorized feed files
+
+`SupplierAdapter` interface (exact shape flexible but must include):
+
+- `listCatalog({ since? }) → ProductDraft[]`
+- `getInventory(skus[]) → { sku, stock_status, quantity? }[]`
+- `createDropshipOrder(payload) → { external_id, status, raw? }`
+- `getOrderStatus(external_id) → { status, tracking_number?, carrier? }`
+- `name`, `capabilities` flags
+
+`ProductDraft` must map cleanly into existing `validateAndNormalizeProduct` / store product shape, including:
+
+- `skin_script_sku`, `wholesale_price`, `retail_price` (compute ×2 if missing), `source: 'sync'`, `active`, `stock_status`, optional `images`, variants.
+
+### B. Catalog sync job
+
+- `lib/catalog-sync.js` — pure-ish orchestration:
+  - fetch drafts from adapter
+  - upsert by `skin_script_sku` or `id` slug strategy (document choice)
+  - never wipe manual-only products without explicit flag
+  - dry-run mode returns plan: create / update / skip / error
+  - writes AuditLog rows: `catalog.sync`
+  - calls `revalidateProductSurfaces` after successful non-dry-run
+
+- API:
+  - `POST /api/admin/sync/catalog` — admin-auth, body `{ dry_run: true|false, source?: 'mock'|'csv_feed'|'http' }`
+  - Optional cron: `POST /api/cron/catalog-sync` protected by `CRON_SECRET`
+
+- Admin UI: `/admin/sync` — dry-run results table + “Apply sync” (mirror CSV import UX quality)
+
+### C. Automated dropship fulfillment
+
+- `lib/dropship/fulfill-order.js`:
+  - Input: paid order id
+  - Validate every line has mappable `skin_script_sku` (or product.sku mapping table)
+  - Build supplier payload: ship-to address, line items, customer name/phone/email (PII only as needed; log redaction via `lib/log.js`)
+  - Call `createDropshipOrder`
+  - On success: status → `submitted_to_skin_script` (or intermediate `queued_for_supplier` then submitted)
+  - Store `supplier_order_id`, `supplier_raw` (sanitized) on order
+  - On failure: `fulfillment_error` / `failed_supplier`, admin-visible, no infinite retry without backoff
+
+- Trigger paths:
+  1. Stripe webhook after `markOrderPaidFromSession` (and mock checkout path) → enqueue fulfill
+  2. Admin button “Submit to Skin Script (auto)” as manual retry
+  3. Idempotent: same order never double-submits (idempotency key = order id)
+
+- Extend order schema + SCHEMA.md + status machine + admin UI filters as needed.
+- Queue: start with **inline async** + status flags; if CF queue easy, document Phase-2 queue. Prefer correctness over cleverness.
+
+### D. xAI integration (optional brain, mandatory safety)
+
+Env: `XAI_API_KEY`, optional `XAI_MODEL` (default a current Grok chat model; document in ENV.md).
+
+- `lib/ai/xai-client.js` — server-only chat completions helper
+- Use cases only:
+  1. **Catalog row mapping**: messy CSV/JSON → ProductDraft JSON schema
+  2. **Fulfillment error classification**: supplier error text → enum + suggested action
+  3. **Optional**: draft customer-facing ship notification copy from tracking facts
+
+Rules:
+
+- AI output MUST pass existing validators before write
+- Never publish AI-invented ingredients/prices without human/admin confirm flag `ai_assisted: true` on draft and dry-run default
+- Redact PII in prompts where possible; never log full card data (there is none — keep it that way)
+- If `XAI_API_KEY` missing, features degrade gracefully (deterministic mappers only)
+
+Document in ENV.md + OPEN_ITEMS that xAI is assistive.
+
+### E. Data durability
+
+File store is fine for local, but design the supplier/order fields so Supabase swap is clean:
+
+- Prefer all access through `lib/store.js` (or add `lib/store-supabase.js` stub only if quick)
+- Add fields to seed/runtime schema documentation
+- Do not break existing tests
+
+### F. Security
+
+- All supplier credentials server-only
+- Cron auth via secret header
+- Admin routes behind existing admin session + origin checks
+- Rate-limit sync endpoints
+- No secrets in client bundles
+
+### G. Tests & docs
+
+- Unit tests: adapter mock, catalog upsert plan, fulfill idempotency, status transitions, AI mapper validation (mock fetch)
+- Extend `docs/ORDER_PATH.md` with automated dropship path
+- New `docs/SKIN_SCRIPT_SYNC.md` — architecture, env, dry-run, failure modes, “what Skin Script must provide”
+- Update OPEN_ITEMS: blocked on real SS credentials; list exact questions for the wholesale rep
+- Update README short section
+- `npm test` must pass; `npm run build` must pass
+
+## Subagent team plan (required)
+
+Run in parallel where possible:
+
+1. **explore** — map current order/product/import/webhook code; list exact edit points
+2. **plan** — write short design into `docs/SKIN_SCRIPT_SYNC.md` first (schema, statuses, adapters)
+3. **implement-adapters** — supplier types + mock + factory
+4. **implement-sync** — catalog sync + admin API/UI
+5. **implement-dropship** — fulfill on paid + admin retry + schema
+6. **implement-xai** — client + safe mappers + env docs
+7. **test-docs** — tests, ORDER_PATH, OPEN_ITEMS, README, smoke notes
+
+Orchestrator: integrate, fix conflicts, run full test+build gate, write `docs/DROPSHIP_BUILD_REPORT.md` with what works offline vs what needs Skin Script/xAI keys.
+
+## Acceptance criteria
+
+- [ ] Mock supplier can sync ≥ sample products into store with `source: 'sync'` and `skin_script_sku`
+- [ ] Dry-run sync shows create/update/skip without writing when dry_run=true
+- [ ] Paid mock checkout can auto-call fulfill (or explicit flag `AUTO_FULFILL=1`) and reach `submitted_to_skin_script` with `supplier_order_id`
+- [ ] Second fulfill attempt is idempotent
+- [ ] Missing skin_script_sku fails safely with admin-visible error
+- [ ] CSV import still works
+- [ ] xAI path optional; with fake/mock AI responses in tests
+- [ ] No scraping code
+- [ ] 113+ tests green (or more if you add); build clean
+- [ ] OPEN_ITEMS lists exact Skin Script discovery questions
+
+## Env placeholders (document, do not invent values)
+
+SKIN_SCRIPT_MODE=mock|http|csv_feed SKIN_SCRIPT_API_BASE= SKIN_SCRIPT_API_KEY= SKIN_SCRIPT_ACCOUNT_ID= SKIN_SCRIPT_FEED_URL= CRON_SECRET= AUTO_FULFILL=true|false XAI_API_KEY= XAI_MODEL=
+
+## Out of scope (unless trivial)
+
+- Real Skin Script production credentials
+- Full transactional email provider (structure hooks only)
+- Tax engine
+- Mobile apps
+- Scraping
+
+## Definition of done
+
+Ship working **mock-automated dropship + catalog sync** in this repo, with a clean adapter boundary so plugging a real Skin Script API later is a single adapter file + env, not a rewrite.
+Summarize next human steps: questions for Skin Script rep + where to paste keys.
+
+BEGIN: explore with subagents, then implement until acceptance criteria pass.

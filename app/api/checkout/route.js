@@ -86,6 +86,10 @@ export async function POST(request) {
     if (!ship.ok) return jsonError(ship, ship.status);
     const { shipping_address } = ship;
 
+    const customer_notes = String(body.customer_notes || '')
+      .trim()
+      .slice(0, 400) || null;
+
     trackEvent('checkout_started', {
       item_count: items.length,
       subtotal: totals.subtotal
@@ -175,6 +179,7 @@ export async function POST(request) {
           ...totals,
           status: 'pending_payment',
           shipping_address,
+          customer_notes,
           created_at: new Date().toISOString()
         });
         return s;
@@ -202,6 +207,7 @@ export async function POST(request) {
         ...totals,
         status: 'paid',
         shipping_address,
+        customer_notes,
         paid_at: new Date().toISOString(),
         created_at: new Date().toISOString(),
         source: 'mock_checkout'

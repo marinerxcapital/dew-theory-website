@@ -116,7 +116,12 @@ export default function Nav() {
             aria-current={pathname === '/cart' ? 'page' : undefined}
             className="nav-link font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
           >
-            Cart{hydrated && count > 0 ? ` (${count})` : ''}
+            Cart
+            {hydrated && count > 0 ? (
+              <span className="ml-1.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-graphite/90 px-1.5 py-0.5 text-[0.55rem] leading-none text-pearl">
+                {count > 99 ? '99+' : count}
+              </span>
+            ) : null}
           </Link>
           <Link
             href="/book"
@@ -131,7 +136,12 @@ export default function Nav() {
             href="/cart"
             className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
           >
-            Cart{hydrated && count > 0 ? ` (${count})` : ''}
+            Cart
+            {hydrated && count > 0 ? (
+              <span className="ml-1.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-graphite/90 px-1.5 py-0.5 text-[0.55rem] leading-none text-pearl">
+                {count > 99 ? '99+' : count}
+              </span>
+            ) : null}
           </Link>
           <button
             ref={menuBtnRef}

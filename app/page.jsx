@@ -48,18 +48,20 @@ const services = SERVICES.slice(0, 4).map((s) => ({
 
 const doors = [
   {
+    href: '/book',
+    eyebrow: 'Primary path',
+    title: 'Book with Emily',
+    copy: 'A licensed aesthetician reads your skin, then builds the plan around it.',
+    cta: 'Book a facial',
+    primary: true
+  },
+  {
     href: '/shop',
     eyebrow: 'Take home',
     title: 'Shop Skin Script',
     copy: 'Professional-grade actives, sold by the same person who uses them on you.',
-    cta: 'Shop the collection'
-  },
-  {
-    href: '/book',
-    eyebrow: 'In studio',
-    title: 'Book with Emily',
-    copy: 'A licensed aesthetician reads your skin, then builds the plan around it.',
-    cta: 'Book a facial'
+    cta: 'Shop the collection',
+    primary: false
   }
 ];
 
@@ -134,19 +136,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Two doors — equal weight */}
+      {/* Two doors — book primary, shop secondary */}
       <section className="mx-auto max-w-shell px-6 py-28 lg:px-10">
         <div className="grid gap-6 md:grid-cols-2 md:gap-7" data-reveal-group="doors">
-          {doors.map((d, i) => (
+          {doors.map((d) => (
             <Link
               key={d.href}
               href={d.href}
               data-reveal
-              className="sweep glass-1 glass-lift group relative flex min-h-[24rem] flex-col justify-between overflow-hidden rounded-[3px] p-10 sm:p-12"
+              className={`sweep glass-1 glass-lift group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[3px] p-10 sm:min-h-[24rem] sm:p-12 ${
+                d.primary ? 'md:col-span-1 ring-1 ring-graphite/15' : ''
+              }`}
             >
               <div
                 className={`pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full blur-3xl ${
-                  i === 0 ? 'bg-ice/40' : 'bg-blush/35'
+                  d.primary ? 'bg-blush/40' : 'bg-ice/35'
                 }`}
                 aria-hidden="true"
               />
@@ -160,7 +164,11 @@ export default function Home() {
                 <p className="mt-5 max-w-sm font-body text-sm font-light leading-relaxed text-charcoal/75 sm:text-base">
                   {d.copy}
                 </p>
-                <span className="mt-10 inline-flex items-center gap-3 font-label text-[0.68rem] font-light uppercase tracking-lockup text-charcoal">
+                <span
+                  className={`mt-10 inline-flex items-center gap-3 font-label text-[0.68rem] font-light uppercase tracking-lockup ${
+                    d.primary ? 'text-graphite' : 'text-charcoal'
+                  }`}
+                >
                   {d.cta}
                   <span
                     aria-hidden="true"
@@ -365,6 +373,43 @@ export default function Home() {
             </Link>
           </>
         )}
+      </section>
+
+      {/* FAQ teaser */}
+      <section className="border-t border-chrome/15 bg-pearl/40">
+        <div
+          className="mx-auto flex max-w-shell flex-col gap-6 px-6 py-16 sm:flex-row sm:items-end sm:justify-between lg:px-10"
+          data-reveal-group="faq-teaser"
+        >
+          <div className="max-w-xl">
+            <p
+              data-reveal
+              className="eyebrow-line font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+            >
+              Help
+            </p>
+            <h2
+              data-reveal
+              className="mt-4 font-display text-[clamp(1.6rem,3.5vw,2.2rem)] font-normal text-graphite"
+            >
+              Shipping, appointments, products
+            </h2>
+            <p
+              data-reveal
+              className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/70"
+            >
+              Free shipping at $49+ pre-discount, Skin Script authenticity, and how virtual
+              consults work — answered without inventing studio policies.
+            </p>
+          </div>
+          <Link
+            data-reveal
+            href="/faq"
+            className="sweep btn-ghost inline-flex min-h-[44px] shrink-0 items-center px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup"
+          >
+            Read the FAQ
+          </Link>
+        </div>
       </section>
     </>
   );

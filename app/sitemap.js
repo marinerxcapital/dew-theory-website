@@ -16,6 +16,7 @@ const STATIC = [
   { path: '/virtual-consultation', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/cart', changeFrequency: 'monthly', priority: 0.4 },
+  { path: '/faq', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/privacy', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/shipping', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/returns', changeFrequency: 'yearly', priority: 0.3 }

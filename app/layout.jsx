@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import MotionRoot from '@/components/MotionRoot';
 import MotionBackground from '@/components/MotionBackground';
 import AmbientField from '@/components/AmbientField';
+import ScrollTop from '@/components/ScrollTop';
 import { CartProvider } from '@/components/CartProvider';
 
 const display = Bodoni_Moda({
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
             <Footer />
+            <ScrollTop />
           </div>
         </CartProvider>
       </body>

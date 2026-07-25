@@ -98,6 +98,14 @@ export default async function AdminOrderDetailPage({ params }) {
               {order.shipping_address?.postal_code}
             </p>
           </div>
+          {order.customer_notes && (
+            <div>
+              <h2 className="font-display text-xl font-normal text-graphite">Customer note</h2>
+              <p className="mt-3 whitespace-pre-wrap font-body text-sm font-light leading-relaxed text-charcoal/75">
+                {order.customer_notes}
+              </p>
+            </div>
+          )}
           <OrderStatusForm orderId={order.id} current={order.status} order={order} />
         </div>
       </div>

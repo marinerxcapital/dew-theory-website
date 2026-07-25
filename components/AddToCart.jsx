@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/components/CartProvider';
 import { isOutOfStock } from '@/lib/shop';
@@ -99,19 +100,29 @@ export default function AddToCart({ product, className = '' }) {
           Out of stock
         </p>
       ) : (
-        <button
-          type="button"
-          onClick={handleAdd}
-          disabled={needsVariant && !variant}
-          aria-disabled={needsVariant && !variant}
-          className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
-        >
-          {added
-            ? 'Added to cart'
-            : needsVariant && !variant
-              ? 'Select a scent'
-              : 'Add to cart'}
-        </button>
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <button
+            type="button"
+            onClick={handleAdd}
+            disabled={needsVariant && !variant}
+            aria-disabled={needsVariant && !variant}
+            className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
+          >
+            {added
+              ? 'Added to cart'
+              : needsVariant && !variant
+                ? 'Select a scent'
+                : 'Add to cart'}
+          </button>
+          {added && (
+            <Link
+              href="/cart"
+              className="inline-flex min-h-[44px] items-center justify-center border border-graphite/25 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60 sm:w-auto"
+            >
+              View bag
+            </Link>
+          )}
+        </div>
       )}
     </div>
   );
