@@ -166,3 +166,20 @@ Shared First Load JS ≈ **103 kB**. Notable storefront routes:
 - [x] OpenNext edge cache config + docs  
 - [x] Tests green, build green  
 - [x] Memory files updated (`POLISH_*`, `OPEN_ITEMS`, `README`, this report)
+
+---
+
+## Engineering pass 2026-07-25
+
+**Scope:** Main-thread / media paint cost on storefront only. No copy, prices, auth, or Stripe changes.
+
+| File | Change |
+|------|--------|
+| `components/MotionBackground.jsx` | Poster-first via `next/image`. Video mounts only when `!prefers-reduced-motion` and (home `/` **or** not data-saver/slow-2g/2g). Non-home: idle-defer video (`requestIdleCallback` / 2s timeout), `preload="none"`. Home: immediate mount, `preload="metadata"`. Admin still skipped. Poster Image until video `canplay` (opacity fade already in CSS). |
+| `components/AmbientField.jsx` | Quiet orbs (no large circular orbs; mesh + linear wash kept) also on `/cart`, `/book`, `/virtual-consultation*` in addition to `/services`. |
+| `components/Hero.jsx` | No code change — already content + vignette + portrait poster only; no second `hero.mp4`. |
+| `app/globals.css` | Untouched — existing `.motion-bg__video` opacity transition covers poster → video. |
+
+**Expected impact:** lower TBT/network on non-home and constrained connections; less paint on conversion paths from fewer blurred orbs.
+
+**Risks:** brief still poster on non-home before idle video; Safari without Network Information API never treated as constrained (safe default = allow deferred video); home still loads video on slow links by design (home OR clause).

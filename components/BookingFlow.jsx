@@ -33,11 +33,14 @@ export default function BookingFlow({
   const [contact, setContact] = useState({ name: '', email: '', phone: '', notes: '' });
   const [status, setStatus] = useState('idle'); // idle | loading | done | error
   const [error, setError] = useState('');
+  const [errorCode, setErrorCode] = useState('');
   const [appointmentId, setAppointmentId] = useState(null);
   const [showInvalidNotice, setShowInvalidNotice] = useState(invalidServiceQuery);
   const [openSlots, setOpenSlots] = useState([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
+  const [slotsLoadFailed, setSlotsLoadFailed] = useState(false);
   const [slotSource, setSlotSource] = useState('mock');
+  const [slotsRetryKey, setSlotsRetryKey] = useState(0);
   const submitting = useRef(false);
   const started = useRef(false);
 
@@ -67,27 +70,40 @@ export default function BookingFlow({
     let cancelled = false;
     setSlotsLoading(true);
     setOpenSlots([]);
+    setSlotsLoadFailed(false);
+    setSlot(null);
 
     (async () => {
       try {
         const res = await fetch(
           `/api/availability?service_id=${encodeURIComponent(serviceId)}`
         );
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
         if (cancelled) return;
         if (res.ok && Array.isArray(data.slots)) {
           setOpenSlots(data.slots);
           setSlotSource(data.source || 'mock');
+          setSlotsLoadFailed(false);
           return;
         }
         throw new Error(data.error || 'availability failed');
       } catch {
         if (cancelled) return;
-        const adapter = new MockAvailabilityAdapter();
-        const slots = await adapter.listOpenSlots({ serviceId });
-        if (!cancelled) {
-          setOpenSlots(slots);
-          setSlotSource(adapter.getSource());
+        try {
+          const adapter = new MockAvailabilityAdapter();
+          const slots = await adapter.listOpenSlots({ serviceId });
+          if (!cancelled) {
+            setOpenSlots(slots);
+            setSlotSource(adapter.getSource());
+            // Soft fallback — times still shown from local adapter
+            setSlotsLoadFailed(false);
+          }
+        } catch {
+          if (!cancelled) {
+            setOpenSlots([]);
+            setSlotSource('unavailable');
+            setSlotsLoadFailed(true);
+          }
         }
       } finally {
         if (!cancelled) setSlotsLoading(false);
@@ -97,7 +113,7 @@ export default function BookingFlow({
     return () => {
       cancelled = true;
     };
-  }, [step, serviceId]);
+  }, [step, serviceId, slotsRetryKey]);
 
   const slotsByDay = useMemo(() => groupSlotsByDay(openSlots), [openSlots]);
 
@@ -106,6 +122,9 @@ export default function BookingFlow({
     setSlot(null);
     setStep(2);
     setShowInvalidNotice(false);
+    setError('');
+    setErrorCode('');
+    setStatus('idle');
     track('booking_service_selected', { service_id: id });
   }
 
@@ -114,11 +133,16 @@ export default function BookingFlow({
     track('booking_time_selected', { start_time: iso });
   }
 
+  function retrySlots() {
+    setSlotsRetryKey((k) => k + 1);
+  }
+
   async function confirm(e) {
     e.preventDefault();
     if (submitting.current || status === 'loading' || status === 'done') return;
     if (!serviceId || !slot) {
       setError('Select a service and time');
+      setErrorCode('selection_incomplete');
       setStatus('error');
       return;
     }
@@ -126,6 +150,7 @@ export default function BookingFlow({
     submitting.current = true;
     setStatus('loading');
     setError('');
+    setErrorCode('');
 
     try {
       const res = await fetch('/api/book', {
@@ -137,9 +162,19 @@ export default function BookingFlow({
           customer: contact
         })
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data.error || 'Booking failed');
+        const code = data.code || '';
+        let message = data.error || 'Booking failed';
+        if (code === 'slot_taken' || res.status === 409) {
+          message =
+            data.error ||
+            'That time was just taken. Go back and pick another open slot.';
+        } else if (code === 'slot_in_past') {
+          message = data.error || 'That time has passed. Choose a future slot.';
+        }
+        setError(message);
+        setErrorCode(code || String(res.status));
         setStatus('error');
         submitting.current = false;
         return;
@@ -149,7 +184,8 @@ export default function BookingFlow({
       // Server also records booking_confirmed; client keeps funnel complete if API path differs
       track('booking_confirmed', { appointment_id: data.appointment_id });
     } catch {
-      setError('Could not complete booking');
+      setError('Could not complete booking — check your connection and try again.');
+      setErrorCode('network');
       setStatus('error');
       submitting.current = false;
     }
@@ -197,6 +233,25 @@ export default function BookingFlow({
             Ref {appointmentId}
           </p>
         )}
+        <ol
+          data-reveal
+          className="mt-8 max-w-lg space-y-3 border border-chrome/20 bg-pearl/40 p-5"
+        >
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+            <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
+              Next · 1
+            </span>
+            <span className="mt-1 block">Watch for a confirmation at {contact.email}.</span>
+          </li>
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+            <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
+              Next · 2
+            </span>
+            <span className="mt-1 block">
+              Need to change the time? Contact the studio with your booking reference.
+            </span>
+          </li>
+        </ol>
         <div data-reveal className="mt-10 flex flex-wrap gap-4">
           <Link
             href="/shop"
@@ -240,7 +295,10 @@ export default function BookingFlow({
           role="status"
           data-reveal
         >
-          <p className="font-body text-sm font-light text-charcoal/75">
+          <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+            Link not recognized
+          </p>
+          <p className="mt-2 font-body text-sm font-light text-charcoal/75">
             That service link was not recognized. Choose from the menu below.
           </p>
           <button
@@ -298,18 +356,81 @@ export default function BookingFlow({
           </p>
 
           {slotsLoading ? (
-            <p className="mt-10 font-body text-sm font-light text-charcoal/70">
-              Loading open times…
-            </p>
+            <div
+              className="mt-10 border border-chrome/20 bg-pearl/40 p-6"
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                Availability
+              </p>
+              <p className="mt-2 font-body text-sm font-light text-charcoal/70">
+                Loading open times…
+              </p>
+            </div>
+          ) : slotsLoadFailed ? (
+            <div className="mt-10 border border-chrome/30 bg-pearl/60 p-6" role="alert">
+              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                Times unavailable
+              </p>
+              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/75">
+                We couldn&apos;t load open slots right now. Retry, or write us on the contact form
+                with your preferred times.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={retrySlots}
+                  className="sweep border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl"
+                >
+                  Retry times
+                </button>
+                <Link
+                  href="/contact"
+                  className="sweep border border-graphite/25 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+                >
+                  Contact studio
+                </Link>
+              </div>
+            </div>
           ) : slotsByDay.size === 0 ? (
-            <p className="mt-10 font-body text-sm font-light text-charcoal/70">
-              No open slots in the next two weeks. Write us on the contact form.
-            </p>
+            <div className="mt-10 border border-chrome/20 bg-pearl/40 p-6" role="status">
+              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                No open slots
+              </p>
+              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/75">
+                Nothing open in the next two weeks for this service. Try another treatment, or
+                message the studio with dates that work for you.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStep(1);
+                    setSlot(null);
+                  }}
+                  className="sweep border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl"
+                >
+                  Other services
+                </button>
+                <Link
+                  href="/contact"
+                  className="sweep border border-graphite/25 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+                >
+                  Contact form
+                </Link>
+              </div>
+            </div>
           ) : (
             <div className="mt-10 space-y-10">
-              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
-                Source · {slotSource}
-              </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                  Source · {slotSource}
+                </p>
+                <p className="font-body text-xs font-light text-charcoal/55">
+                  Double-book guarded at confirm — taken slots are rejected even if still shown.
+                </p>
+              </div>
               {[...slotsByDay.entries()].map(([day, times]) => (
                 <div key={day}>
                   <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
@@ -328,7 +449,7 @@ export default function BookingFlow({
                           type="button"
                           onClick={() => selectSlot(iso)}
                           aria-pressed={active}
-                          className={`border px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup transition-colors ${
+                          className={`min-h-[44px] border px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup transition-colors ${
                             active
                               ? 'border-graphite bg-graphite text-pearl'
                               : 'border-graphite/25 text-charcoal hover:border-graphite/60'
@@ -346,9 +467,9 @@ export default function BookingFlow({
 
           <button
             type="button"
-            disabled={!slot}
+            disabled={!slot || slotsLoading || slotsLoadFailed}
             onClick={() => setStep(3)}
-            className="sweep mt-12 border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-40"
+            className="sweep mt-12 min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-40"
           >
             Continue
           </button>
@@ -360,7 +481,12 @@ export default function BookingFlow({
         <form onSubmit={confirm} className="mt-14 max-w-lg space-y-5">
           <button
             type="button"
-            onClick={() => setStep(2)}
+            onClick={() => {
+              setStep(2);
+              setError('');
+              setErrorCode('');
+              setStatus('idle');
+            }}
             disabled={status === 'loading'}
             className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal disabled:opacity-40"
           >
@@ -415,16 +541,43 @@ export default function BookingFlow({
             </p>
           </div>
 
+          <p className="font-body text-xs font-light leading-relaxed text-charcoal/55">
+            Slot uniqueness is checked when you confirm (double-book guarded in store). Google
+            Calendar live sync is separate and only active once credentials are connected.
+          </p>
+
           {error && (
-            <p className="font-body text-xs font-light text-charcoal/70" role="alert">
-              {error}
-            </p>
+            <div className="border border-chrome/30 bg-pearl/70 p-4" role="alert">
+              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                Booking issue
+                {errorCode ? ` · ${errorCode}` : ''}
+              </p>
+              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/80">
+                {error}
+              </p>
+              {(errorCode === 'slot_taken' || errorCode === '409') && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStep(2);
+                    setError('');
+                    setErrorCode('');
+                    setStatus('idle');
+                    setSlot(null);
+                    retrySlots();
+                  }}
+                  className="mt-3 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
+                >
+                  Pick another time →
+                </button>
+              )}
+            </div>
           )}
 
           <button
             type="submit"
             disabled={status === 'loading' || submitting.current}
-            className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            className="sweep w-full min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
             {status === 'loading' ? 'Confirming…' : 'Confirm booking'}
           </button>

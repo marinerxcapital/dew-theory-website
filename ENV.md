@@ -56,16 +56,11 @@ CONSULTATION_TIMEZONE=America/Chicago
 # RESEND_API_KEY=
 # EMAIL_FROM=Dew Theory <noreply@dewtheoryco.com>
 # EMAIL_REPLY_TO=
-
-# ── Virtual consultation ──
-# Stripe Price ID for the virtual consultation (authoritative price — do not hardcode in UI)
-STRIPE_VIRTUAL_CONSULTATION_PRICE_ID=
-CONSULTATION_ADMIN_EMAIL=
-CONSULTATION_SCHEDULING_URL=
-CONSULTATION_SCHEDULER_PROVIDER=external
-CONSULTATION_TIMEZONE=America/Chicago
-# CONSULTATION_DISPLAY_PRICE_CENTS=9500
-# CONSULTATION_DURATION_MINUTES=45
-# RESEND_API_KEY=
-# EMAIL_FROM=Dew Theory <noreply@dewtheoryco.com>
-# EMAIL_REPLY_TO=
+#
+# Private consultation photo storage (Workers):
+# Wrangler R2 binding CONSULTATION_PHOTOS_R2 → bucket dew-theory-consultation-photos
+# (see wrangler.jsonc). Not an env secret — it is a Worker binding.
+# Create the bucket once (see docs/DEPLOY_DEWTHEORYCO.md). Until the binding is
+# live, code falls back to local FS (dev) or in-memory Map (Workers read-only FS).
+# No public URLs; access only via authorized admin/intake routes.
+# CONSULTATION_PHOTOS_R2  (binding name — not process.env; listed here for ops)

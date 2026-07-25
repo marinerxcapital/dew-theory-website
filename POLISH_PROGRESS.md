@@ -75,5 +75,13 @@ Completed: 2026-07-19T21:00:00Z
 | S1 | done | Mobile QA: hero dead space + logo + eyebrow `SKIN CARE · FACIALS · SKIN SCRIPT`; shop filter→card spacing; Emily empty media removed + approved bio; Studio/Membership out of nav | 2026-07-24 |
 | S2 | done | Virtual Consultation production path: `/virtual-consultation`, Stripe checkout+webhook, secure intake token, private photos, admin `/admin/consultations`, plan publish+email, sitemap/robots/redirects | 2026-07-24 |
 | S3 | done | Tests `tests/consultations.test.mjs`; npm test 137 pass; production build clean with VC + admin routes | 2026-07-24 |
+| T1 | done | Services mobile circular glow: quiet AmbientField orbs + pearl menu surface | 2026-07-25 |
+| T2 | done | Nav restored to light pearl glass (revert dark graphite bar) | 2026-07-25 |
+| U1 | done | Perf: MotionBackground poster-first; non-home idle video; data-saver skip; quiet ambient on cart/book/VC | 2026-07-25 |
+| U2 | done | SEO: metadataBase → dewtheoryco.com; OG dims; sitemap products+policies; robots private routes | 2026-07-25 |
+| U3 | done | Policy scaffolds `/privacy` `/shipping` `/returns` + footer Policies column | 2026-07-25 |
+| U4 | done | Trust UI: CartView/BookingFlow/CartConfirmation/VC checkout/ContactForm | 2026-07-25 |
+| U5 | done | Consultation photos R2→FS→memory; photo-storage.js; consultation-photos tests; ENV dedupe | 2026-07-25 |
+| U6 | done | Memory files OPEN_ITEMS/POLISH_* / README refreshed; merge to main | 2026-07-25 |
 
 Status values: pending | in_progress | done | blocked | skipped

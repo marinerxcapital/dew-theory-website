@@ -109,35 +109,44 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
   background + portrait glass column (poster still). Source refreshed 2026-07-21 from
   `generated_video (1).mp4`; web path is ping-pong-extended silent `hero.mp4` (~20s) +
   `hero-poster.webp` via `next/image`. Original brief’s 16:9 landscape still not used.
-  **2026-07-24:** Same motion plane is sitewide via `components/MotionBackground.jsx` on all
-  storefront routes (not `/admin`); home Hero no longer mounts a second video.
-- **Skin Script product photography — INSTALLED 2026-07-24.** All eight catalog products now use
-  coordinated 832×1232 studio assets at `/images/products/skin-script/` (PNG + WebP), wired through
-  `data/products.json` `images[]` / `image_alt` / `image_webp` and `lib/product-image.js`. Surfaces:
-  home featured, shop grid, PDP + OG, cart thumbnails, related strip. Placeholders remain only as
-  fallback for unknown categories. **Still missing:** Emily portrait, studio photography, and any
-  lifestyle/in-use shots beyond product packshots.
-- **Lighthouse local baseline (2026-07-20):** home perf ~60, shop ~58, PDP ~88; CLS excellent;
-  TBT/LCP on home+shop still driven by main-thread JS + hero media. See `docs/OPTIMIZATION_REPORT.md`.
+  **2026-07-24:** Sitewide `MotionBackground`. **2026-07-25 eng:** poster-first; home plays
+  video promptly; non-home defers video until idle (or skips on data-saver/2g); reduced-motion
+  stays poster-only. Ambient orbs quiet on `/services`, `/cart`, `/book`, `/virtual-consultation*`.
+- **Skin Script product photography — INSTALLED 2026-07-24.** All eight catalog products use
+  studio assets at `/images/products/skin-script/`. **Still missing (Emily/owner):** portrait,
+  studio photography, lifestyle/in-use shots.
+- **Lighthouse local baseline (2026-07-20):** home perf ~60, shop ~58, PDP ~88. Engineering
+  motion/ambient pass 2026-07-25 aims at TBT/LCP media cost — re-measure after deploy.
+  See `docs/OPTIMIZATION_REPORT.md`.
 
 ---
 
-## 6. Blocked on access (carried over)
+## 5b. Engineering closed 2026-07-25 (no owner/Emily required)
 
-- **Nothing was pushed to `marinerxcapital/dew-theory-website`.** Push manually when GitHub remote
-  and credentials are available.
-- **GitHub Pages preview.** Skip — private repo; Pages can't run Stripe/Supabase/admin.
-- **Live Stripe / Supabase / Google Calendar keys** — not present in this environment; integrations
-  are wired for env drop-in (see `.env.example`).
-- **Cloudflare edge cache resources (Phase B).** Config is in `open-next.config.ts` + `wrangler.jsonc`,
-  but R2 bucket `dew-theory-opennext-cache` and D1 `dew-theory-tag-cache` are not created until
-  `wrangler login` + commands in `docs/EDGE_CACHE.md`. Until then, production Workers ISR may not
-  persist; local `next start` ISR still works.
-- **Skin Script live credentials.** Adapter stack is built (`mock` | `http` | `csv_feed`) but real
-  partner API/base URL/keys are unknown. Ask wholesale rep (see questions below). Until then use
-  `SKIN_SCRIPT_MODE=mock` + CSV import. No scraping.
-- **xAI assist optional.** Set `XAI_API_KEY` for messy feed mapping / error classification only.
-  Not required for mock dropship.
+| Item | Status |
+|---|---|
+| Perf: poster-first MotionBackground + quiet ambient on conversion routes | Done |
+| SEO: production `metadataBase` default dewtheoryco.com; OG dimensions | Done |
+| Sitemap: static storefront + policy pages + shop-visible products | Done |
+| Robots: disallow admin/api/private consultation token routes | Done |
+| Policy scaffolds: `/privacy`, `/shipping`, `/returns` + footer links | Done (honest; final legal still Emily) |
+| Trust UI: cart/booking/VC checkout/contact error + trust strips | Done |
+| Consultation photos: R2 → FS → memory fallback (`CONSULTATION_PHOTOS_R2`) | Done (bucket create ops-optional) |
+| Services mobile circular glow artifact | Done earlier |
+| Light pearl nav restored (not dark graphite) | Done earlier |
+| Production deploy dewtheoryco.com | Done earlier this session |
+| GitHub push | Active remote `marinerxcapital/dew-theory-website` |
+
+---
+
+## 6. Blocked on access / owner secrets
+
+- **Live Stripe / Supabase / Google Calendar keys** — env drop-in (see `ENV.md`).
+- **Cloudflare edge cache** — R2 ISR + D1 tag cache already used in production deploy path;
+  optional private photo bucket `dew-theory-consultation-photos` (see `docs/DEPLOY_DEWTHEORYCO.md`).
+- **Skin Script live credentials.** Adapters ready; use `SKIN_SCRIPT_MODE=mock` + CSV until partner answers.
+- **xAI assist optional.** `XAI_API_KEY` for messy feed mapping only.
+- **Admin production secrets** must remain non-default on Worker.
 
 ---
 
@@ -159,18 +168,20 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Admin Portal | Done — auth, products, orders, appointments, **consultations**, discounts |
 | Analytics Dashboard | Done — `/admin/analytics` from real store data |
 | Skin Script CSV import | Done — `/admin/import` + `data/sample-import.csv` |
+| Privacy / Shipping / Returns | Done — honest scaffolds; final legal copy still Emily |
+| Production host | **https://dewtheoryco.com** (Cloudflare Worker `dew-theory`) |
 
 ### Definition of Done notes
 
 - Retail = wholesale × 2 sitewide; sticker prices are not pre-discounted.
-- Shipping $7 / free $49+ visible at checkout.
+- Shipping $7 / free $49+ visible at checkout (also documented on `/shipping`).
 - Stripe promo works when `STRIPE_SECRET_KEY` is set; local `DEW15` works without it.
 - `/admin` unreachable without admin session (customer has no path to that cookie).
 - Product/discount mutations write `AuditLog` rows.
 - CSV import creates products from sample columns.
 - Analytics uses seeded order + appointment + events, not hard-coded UI mock numbers.
-- **Perf (engineering):** ISR 60s on catalog routes; admin revalidates storefront; next/image +
-  placeholders; OpenNext edge cache **configured** (provision CF separately). Report:
-  `docs/OPTIMIZATION_REPORT.md`.
-- **Not done without credentials:** end-to-end Stripe test payment, Google Calendar live slots,
-  Supabase-backed tables, push to private GitHub repo, production host URL, CF R2/D1 create + deploy.
+- **Perf (engineering):** ISR 60s; poster-first motion; quiet ambient on conversion routes;
+  OpenNext edge cache configured. Report: `docs/OPTIMIZATION_REPORT.md`.
+- **Not done without credentials / Emily:** live Stripe payment test, Google Calendar slots,
+  Supabase-backed tables, Resend production email, real treatment menu prices, deposit %,
+  Emily portrait/studio photos, final returns legal language.

@@ -27,8 +27,10 @@ const body = Karla({
   display: 'swap'
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dewtheoryco.com';
+
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Dew Theory — Skin Care',
     template: '%s · Dew Theory'
@@ -42,7 +44,8 @@ export const metadata = {
     title: 'Dew Theory — Skin Care',
     description:
       'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
-    images: [{ url: '/logo.png', alt: 'Dew Theory' }]
+    // Relative URLs resolve against metadataBase → absolute OG tags in production.
+    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Dew Theory' }]
   },
   twitter: {
     card: 'summary_large_image',

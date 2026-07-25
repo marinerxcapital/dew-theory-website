@@ -68,7 +68,7 @@ export default function CartView() {
       setPromo(data.discount);
       setCodeError('');
     } catch {
-      setCodeError('Could not validate code');
+      setCodeError('Could not validate code — check connection and try again');
     } finally {
       setCodeLoading(false);
     }
@@ -141,7 +141,7 @@ export default function CartView() {
           Array.isArray(data.details) && data.details[0]?.error
             ? data.details[0].error
             : null;
-        setCheckoutError(detail || data.error || 'Checkout failed');
+        setCheckoutError(detail || data.error || 'Checkout failed — please try again');
         return;
       }
       if (data.url) {
@@ -151,7 +151,7 @@ export default function CartView() {
       clearCart();
       window.location.href = `/cart/confirmation?order=${encodeURIComponent(data.order_id)}`;
     } catch {
-      setCheckoutError('Checkout failed. Try again.');
+      setCheckoutError('Checkout failed. Check your connection and try again.');
     } finally {
       setCheckoutLoading(false);
     }
@@ -159,8 +159,16 @@ export default function CartView() {
 
   if (!hydrated) {
     return (
-      <section className="mx-auto max-w-shell px-6 py-40 lg:px-10">
-        <p className="font-body text-sm font-light text-charcoal/60">Loading cart…</p>
+      <section
+        className="mx-auto flex min-h-[50svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10"
+        aria-busy="true"
+        aria-live="polite"
+      >
+        <Rule left="Cart" right="Loading" />
+        <p className="mt-8 font-display text-2xl font-normal text-graphite">Opening your bag…</p>
+        <p className="mt-3 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/60">
+          Restoring items saved on this device. This only takes a moment.
+        </p>
       </section>
     );
   }
@@ -182,15 +190,24 @@ export default function CartView() {
           data-reveal
           className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
         >
-          The collection is eight products — start with a cleanser or the mask if your barrier is dry.
+          The collection is eight Skin Script products — start with a cleanser or the mask if your
+          barrier is dry. Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ subtotal
+          (before discount).
         </p>
-        <Link
-          data-reveal
-          href="/shop"
-          className="sweep mt-10 inline-block border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
-        >
-          Shop the collection
-        </Link>
+        <div data-reveal className="mt-10 flex flex-wrap gap-4">
+          <Link
+            href="/shop"
+            className="sweep inline-block border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+          >
+            Shop the collection
+          </Link>
+          <Link
+            href="/services"
+            className="sweep inline-block border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+          >
+            Treatment menu
+          </Link>
+        </div>
       </section>
     );
   }
@@ -295,37 +312,37 @@ export default function CartView() {
           <h2 className="font-display text-2xl font-normal text-graphite">Summary</h2>
 
           <dl className="mt-8 space-y-3 font-body text-sm font-light text-charcoal/80">
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-4">
               <dt>Subtotal</dt>
-              <dd>{formatMoney(totals.subtotal)}</dd>
+              <dd className="shrink-0">{formatMoney(totals.subtotal)}</dd>
             </div>
             {totals.discount_amount > 0 && (
-              <div className="flex justify-between text-chrome">
+              <div className="flex justify-between gap-4 text-chrome">
                 <dt>Discount{totals.discount_code ? ` (${totals.discount_code})` : ''}</dt>
-                <dd>−{formatMoney(totals.discount_amount)}</dd>
+                <dd className="shrink-0">−{formatMoney(totals.discount_amount)}</dd>
               </div>
             )}
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-4">
               <dt>Shipping</dt>
-              <dd>{freeShipping ? 'Free' : formatMoney(totals.shipping_fee)}</dd>
+              <dd className="shrink-0">{freeShipping ? 'Free' : formatMoney(totals.shipping_fee)}</dd>
             </div>
-            <div className="flex justify-between border-t border-chrome/20 pt-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-graphite">
+            <div className="flex justify-between gap-4 border-t border-chrome/20 pt-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-graphite">
               <dt>Total</dt>
-              <dd>{formatMoney(totals.total)}</dd>
+              <dd className="shrink-0">{formatMoney(totals.total)}</dd>
             </div>
           </dl>
 
-          {/* Free shipping messaging */}
+          {/* Free shipping messaging — constants from lib/shipping.js */}
           <div className="mt-4 border border-chrome/20 bg-pearl/50 p-4">
             {freeShipping ? (
               <p className="font-body text-xs font-light leading-relaxed text-charcoal/70">
-                Free shipping applied — subtotal is ${FREE_SHIPPING_THRESHOLD_USD}+ (before
-                discount).
+                Free shipping applied — subtotal is {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+
+                (before discount).
               </p>
             ) : (
               <p className="font-body text-xs font-light leading-relaxed text-charcoal/70">
-                Add {formatMoney(towardFree)} more for free shipping (threshold $
-                {FREE_SHIPPING_THRESHOLD_USD} pre-discount). Flat rate otherwise:{' '}
+                Add {formatMoney(towardFree)} more for free shipping (threshold{' '}
+                {formatMoney(FREE_SHIPPING_THRESHOLD_USD)} pre-discount). Flat rate otherwise:{' '}
                 {formatMoney(FLAT_SHIPPING_USD)}.
               </p>
             )}
@@ -345,14 +362,15 @@ export default function CartView() {
                 onChange={(e) => setCodeInput(e.target.value)}
                 placeholder="DEW15"
                 autoComplete="off"
-                className="min-w-0 flex-1 border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light uppercase tracking-wide2 text-charcoal"
+                disabled={codeLoading || checkoutLoading}
+                className="min-w-0 flex-1 border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light uppercase tracking-wide2 text-charcoal disabled:opacity-60"
               />
               <button
                 type="submit"
-                disabled={codeLoading || !codeInput.trim()}
-                className="border border-graphite/25 px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60 disabled:opacity-40"
+                disabled={codeLoading || !codeInput.trim() || checkoutLoading}
+                className="min-h-[44px] border border-graphite/25 px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60 disabled:opacity-40"
               >
-                Apply
+                {codeLoading ? '…' : 'Apply'}
               </button>
             </div>
             {discountCode && (
@@ -365,7 +383,10 @@ export default function CartView() {
               </button>
             )}
             {codeError && (
-              <p className="mt-2 font-body text-xs font-light text-charcoal/70" role="alert">
+              <p
+                className="mt-2 border border-chrome/25 bg-pearl/60 px-3 py-2 font-body text-xs font-light text-charcoal/75"
+                role="alert"
+              >
                 {codeError}
               </p>
             )}
@@ -393,29 +414,90 @@ export default function CartView() {
                   type={type}
                   required
                   placeholder={label}
+                  disabled={checkoutLoading}
                   value={guest[key]}
                   onChange={(e) => setGuest((g) => ({ ...g, [key]: e.target.value }))}
-                  className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
+                  className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal disabled:opacity-60"
                 />
               </div>
             ))}
 
             {checkoutError && (
-              <p className="font-body text-xs font-light text-charcoal/70" role="alert">
-                {checkoutError}
-              </p>
+              <div
+                className="border border-chrome/30 bg-pearl/70 p-4"
+                role="alert"
+              >
+                <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                  Checkout issue
+                </p>
+                <p className="mt-2 font-body text-xs font-light leading-relaxed text-charcoal/80">
+                  {checkoutError}
+                </p>
+              </div>
             )}
 
             <button
               type="submit"
               disabled={checkoutLoading || !items.length}
-              className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+              className="sweep w-full min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:cursor-not-allowed disabled:opacity-60"
             >
               {checkoutLoading ? 'Starting checkout…' : 'Checkout'}
             </button>
-            <p className="font-body text-xs font-light leading-relaxed text-charcoal/50">
-              Stripe Checkout when keys are set; otherwise a local order is recorded for admin review.
-            </p>
+
+            {/* Trust strip — near CTA; values from lib/shipping.js only */}
+            <ul className="space-y-2.5 border border-chrome/20 bg-pearl/40 px-4 py-4">
+              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+                <span
+                  className="mt-0.5 shrink-0 font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome"
+                  aria-hidden="true"
+                >
+                  ·
+                </span>
+                <span>
+                  <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
+                    Secure checkout
+                  </span>
+                  <span className="mt-0.5 block">
+                    Stripe Checkout when keys are set; otherwise a local order is recorded for admin
+                    review — no card form on this page.
+                  </span>
+                </span>
+              </li>
+              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+                <span
+                  className="mt-0.5 shrink-0 font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome"
+                  aria-hidden="true"
+                >
+                  ·
+                </span>
+                <span>
+                  <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
+                    Shipping
+                  </span>
+                  <span className="mt-0.5 block">
+                    Free at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ subtotal (pre-discount);
+                    otherwise {formatMoney(FLAT_SHIPPING_USD)} flat.
+                  </span>
+                </span>
+              </li>
+              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+                <span
+                  className="mt-0.5 shrink-0 font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome"
+                  aria-hidden="true"
+                >
+                  ·
+                </span>
+                <span>
+                  <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
+                    Authenticity
+                  </span>
+                  <span className="mt-0.5 block">
+                    Skin Script professional formulas — stocked and fulfilled by the studio, not
+                    third-party marketplace sellers.
+                  </span>
+                </span>
+              </li>
+            </ul>
           </form>
         </aside>
       </div>

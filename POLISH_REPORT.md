@@ -96,6 +96,23 @@ See `OPEN_ITEMS.md`, including:
 - Google Calendar OAuth for live availability  
 - Supabase swap when project keys land  
 - Shipping threshold pre- vs post-discount client call  
+- Emily portrait / studio photos  
+- Final privacy/returns legal language (scaffolds live)  
+- Stripe / Resend / VC Price ID / Zoom scheduler secrets  
+
+---
+
+## Engineering pass 2026-07-25 (5 parallel agents → main)
+
+| Workstream | Outcome |
+|---|---|
+| Perf | Poster-first motion; idle-defer video off-home; quiet ambient on cart/book/VC/services |
+| SEO | `metadataBase` → dewtheoryco.com; product sitemap; tighter robots |
+| Policies | `/privacy` `/shipping` `/returns` + footer; honest scaffolds |
+| Trust UI | Cart/booking/VC/contact trust strips + error recovery |
+| Photos + debt | R2/FS/memory photo storage; ENV dedupe; photo unit tests |
+
+Production: **https://dewtheoryco.com** (Worker `dew-theory`). Business facts still unconfirmed stay in OPEN_ITEMS — none invented this pass.
 
 ---
 
@@ -110,9 +127,16 @@ npm run dev          # admin defaults: admin@dewtheory.local / dew-admin-dev
 # set ADMIN_EMAIL, ADMIN_PASSWORD (≠ dew-admin-dev), ADMIN_SESSION_SECRET
 npm run start
 npm run smoke:routes
+npm run deploy       # OpenNext → Cloudflare (dewtheoryco.com)
 ```
 
 CSV: `/admin/import` + `data/sample-import.csv`.
+
+Optional private photo R2:
+
+```bash
+npx wrangler r2 bucket create dew-theory-consultation-photos
+```
 
 ---
 
@@ -120,4 +144,4 @@ CSV: `/admin/import` + `data/sample-import.csv`.
 
 Local `master` includes sequential `polish F2` … `polish G4` and a final overnight pass commit covering G5–N4.
 
-**DONE — overnight polish complete.**
+**2026-07-25:** Autonomous engineering pass (perf/SEO/policies/trust/photos) + memory file refresh; pushed to `main`.

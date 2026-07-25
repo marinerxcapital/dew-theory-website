@@ -1,4 +1,7 @@
-const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const site = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dewtheoryco.com').replace(
+  /\/$/,
+  ''
+);
 
 export default function robots() {
   return {
@@ -9,16 +12,17 @@ export default function robots() {
         disallow: [
           '/admin',
           '/admin/',
-          '/api/',
           '/api',
+          '/api/',
           '/virtual-consultation/intake',
           '/virtual-consultation/intake/',
           '/virtual-consultation/plan',
           '/virtual-consultation/plan/',
-          '/virtual-consultation/success'
+          '/virtual-consultation/success',
+          '/cart/confirmation'
         ]
       }
     ],
-    sitemap: `${site.replace(/\/$/, '')}/sitemap.xml`
+    sitemap: `${site}/sitemap.xml`
   };
 }

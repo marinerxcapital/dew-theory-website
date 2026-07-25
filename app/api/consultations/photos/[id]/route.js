@@ -12,7 +12,7 @@ export async function GET(request, { params }) {
     return NextResponse.json({ error: 'Forbidden', code: 'forbidden' }, { status: 403 });
   }
 
-  const result = readPhotoBytes(id, {
+  const result = await readPhotoBytes(id, {
     admin: Boolean(admin),
     intakeToken
   });
@@ -40,7 +40,7 @@ export async function DELETE(request, { params }) {
     return NextResponse.json({ error: 'Forbidden', code: 'forbidden' }, { status: 403 });
   }
 
-  const result = deletePhoto(id, { admin: Boolean(admin), intakeToken });
+  const result = await deletePhoto(id, { admin: Boolean(admin), intakeToken });
   if (!result.ok) {
     return NextResponse.json({ error: result.error, code: result.code }, { status: result.status });
   }

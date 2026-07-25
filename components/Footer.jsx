@@ -14,7 +14,15 @@ const columns = [
       ['Virtual consultation', '/virtual-consultation']
     ]
   },
-  { head: 'Dew Theory', items: [['About Emily', '/about'], ['Contact', '/contact']] }
+  { head: 'Dew Theory', items: [['About Emily', '/about'], ['Contact', '/contact']] },
+  {
+    head: 'Policies',
+    items: [
+      ['Privacy', '/privacy'],
+      ['Shipping', '/shipping'],
+      ['Returns', '/returns']
+    ]
+  }
 ];
 
 export default function Footer() {
@@ -24,7 +32,7 @@ export default function Footer() {
   return (
     <footer className="site-footer relative mt-8">
       <div className="relative z-[1] mx-auto max-w-shell px-6 py-20 lg:px-10">
-        <div className="grid gap-14 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div>
             <p className="font-display text-3xl italic lowercase text-pearl sm:text-4xl">dew theory</p>
             <Rule left="Skin" right="Care" className="mt-5 !text-ice/60" />

@@ -22,10 +22,15 @@
     }
   ],
   // R2 incremental cache (ISR / data cache bodies)
+  // + optional private consultation photo blobs (create bucket before first deploy that requires it)
   "r2_buckets": [
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "dew-theory-opennext-cache"
+    },
+    {
+      "binding": "CONSULTATION_PHOTOS_R2",
+      "bucket_name": "dew-theory-consultation-photos"
     }
   ],
   // DO queue for time-based revalidation dedupe

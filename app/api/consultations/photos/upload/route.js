@@ -19,7 +19,7 @@ export async function POST(request) {
 
     const ab = await file.arrayBuffer();
     const buffer = Buffer.from(ab);
-    const result = storePhoto({
+    const result = await storePhoto({
       consultationId: auth.consultation.id,
       slot,
       buffer,

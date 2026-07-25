@@ -80,10 +80,25 @@ npm test                          # unit + offline order-path
 npm run build                     # production compile
 npm run dev                       # then in another terminal:
 npm run smoke                     # HTTP: checkout → admin status update
-npm run smoke:routes              # GET / /shop /cart /book /admin/login
+npm run smoke:routes              # public storefront + /admin/login
 ```
 
 Order path docs: [`docs/ORDER_PATH.md`](docs/ORDER_PATH.md). Env template: [`ENV.md`](ENV.md).
+
+### Policy pages (scaffolds)
+
+| Route | Notes |
+|---|---|
+| `/shipping` | Documents confirmed $7 / free $49+ pre-discount rule |
+| `/privacy` | Cart storage, Stripe, consultation photos, admin sessions — honest scope |
+| `/returns` | Structure only; final windows still OPEN_ITEMS for Emily |
+
+### Production
+
+- **Live:** [https://dewtheoryco.com](https://dewtheoryco.com)
+- Deploy: `npm run deploy` (OpenNext → Cloudflare Worker `dew-theory`)
+- Before customer launch: resolve remaining **business** items in [`OPEN_ITEMS.md`](OPEN_ITEMS.md)
+  (menu prices, Stripe/Resend secrets, calendar, deposit policy).
 
 ## Design tokens
 
