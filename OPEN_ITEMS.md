@@ -15,8 +15,10 @@ Resolve before launch.
   (`data/products.json`), with ingredients and usage researched from Skin Script's own product pages
   and authorized retailers — not invented. Emily should still read through it; manufacturers revise
   formulas periodically.
-- **Customer-facing pages.** Shop, Product Detail, Cart/Checkout, About, Services, Book, Studio,
-  Membership, and Contact are real pages (not stubs). Admin portal, analytics, and CSV import built.
+- **Customer-facing pages.** Shop, Product Detail, Cart/Checkout, About, Services, Book, Contact,
+  and **Virtual Consultation** are live storefront routes. Studio + Membership public nav items
+  removed (permanent redirects to About / Services). Admin portal, analytics, CSV import, and
+  **admin consultations** built.
 - **Cart + shipping math.** Client cart (localStorage) + server re-price; `$7` / free at `$49+`
   pre-discount subtotal via `SHIPPING_THRESHOLD_BASIS` in `lib/shipping.js`.
 - **Launch promo mechanism.** `DEW15` (15% placeholder value) seeded in store; percentage is
@@ -58,14 +60,15 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 
 | Location | What was invented |
 |---|---|
-| `app/page.jsx` → Emily band / `app/about/page.jsx` | Emily Mitchener's bio paragraphs (polished draft, not approved) |
+| `app/page.jsx` → Emily band | Home Emily blurb still draft (About page copy is Emily-approved 2026-07) |
 | `app/page.jsx` → Thesis section | The brand thesis sentence |
 | `lib/services.js` + Services/Book/Home | All service names, durations, and prices — still needs Emily's actual menu |
 | `components/Footer.jsx` | The one-line brand descriptor |
-| `app/studio/page.jsx` | Working hours (Mon–Sat); address intentionally "pending" |
+| `app/studio/page.jsx` | Working hours (Mon–Sat); address intentionally "pending" (route redirects; content kept) |
 | `app/contact/page.jsx` | `hello@dewtheory.studio` email — domain not confirmed |
 | About credentials block | License board/number not provided |
-| Membership page | Directional language only; no tiers or prices invented |
+| Membership page | Directional language only; no tiers or prices invented (route redirects; content kept) |
+| Virtual consultation price/duration | From Stripe Price ID / env only — never hardcode; set before live sell |
 
 ---
 
@@ -74,8 +77,14 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - Payment processor assumed to be Stripe — confirm. Wired for test keys; mock checkout without keys.
 - Studio name and address.
 - Deposit percentage and cancellation cutoff window for bookings.
-- Membership program: whether it launches at all, and on what terms (page built without inventing tiers/prices).
-- Domain name.
+- Membership program: whether it launches at all, and on what terms (page built without inventing tiers/prices; nav removed).
+- Domain name — **production uses dewtheoryco.com** (Cloudflare Worker); confirm as canonical brand domain.
+- **Virtual consultation go-live checklist (owner actions):**
+  1. Create Stripe Product/Price → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
+  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` includes consultation metadata sessions
+  3. Scheduler URL that mints unique Zoom meetings → `CONSULTATION_SCHEDULING_URL`
+  4. Transactional email → `RESEND_API_KEY` + verified `EMAIL_FROM` (else emails log only)
+  5. Optional R2 private bucket for consultation photos (Workers FS is not durable across isolates)
 - **Skin Script live sync.** No confirmed API. CSV/manual import remains (`/admin/import`).
   **Also:** mock automated sync + dropship (`/admin/sync`, auto-fulfill on paid). Live path blocked
   on partner answer — exact questions:
@@ -90,7 +99,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **Admin two-factor authentication** — recommended, not in initial build.
 - Google Calendar OAuth for live availability (booking uses mock 14-day slots until credentials exist).
 - Supabase project keys (file store at `data/runtime/store.json` mirrors schema until then).
-- Transactional email for order/booking confirmation.
+- Transactional email for order/booking/consultation confirmation (Resend optional path wired).
 
 ---
 
@@ -140,13 +149,14 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Shop | Done — category filter, 8 products |
 | Product Detail | Done — `/shop/[id]`, actives, variants, add to cart |
 | Cart / Checkout | Done — shipping math, promo `DEW15`, Stripe or local mock |
-| About Emily | Done — real page; bio still placeholder copy |
-| Services | Done — menu from `lib/services.js` |
+| About Emily | Done — approved bio copy (2026-07 mobile pass); no empty media placeholder |
+| Services | Done — menu from `lib/services.js` + VC promo card |
 | Book Now | Done — 3-step flow + `/api/book` |
-| Studio | Done — address pending, hours assumed |
-| Membership | Done — no invented pricing/tiers |
+| Studio | Nav removed; 308 → `/about`; page file retained |
+| Membership | Nav removed; 308 → `/services`; page file retained |
 | Contact | Done — form → store messages |
-| Admin Portal | Done — auth, products CRUD, orders, appointments, discounts |
+| Virtual Consultation | Done — public page, Stripe/mock checkout, intake+photos, admin plan, emails |
+| Admin Portal | Done — auth, products, orders, appointments, **consultations**, discounts |
 | Analytics Dashboard | Done — `/admin/analytics` from real store data |
 | Skin Script CSV import | Done — `/admin/import` + `data/sample-import.csv` |
 

@@ -6,7 +6,17 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/admin/', '/api/', '/api']
+        disallow: [
+          '/admin',
+          '/admin/',
+          '/api/',
+          '/api',
+          '/virtual-consultation/intake',
+          '/virtual-consultation/intake/',
+          '/virtual-consultation/plan',
+          '/virtual-consultation/plan/',
+          '/virtual-consultation/success'
+        ]
       }
     ],
     sitemap: `${site.replace(/\/$/, '')}/sitemap.xml`

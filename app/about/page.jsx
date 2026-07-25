@@ -4,68 +4,78 @@ import Rule from '@/components/Rule';
 export const metadata = {
   title: 'About Emily',
   description:
-    'Emily Mitchener — licensed aesthetician. Barrier-first facials and Skin Script actives, sequenced for your skin that week.'
+    'Emily Mitchener — licensed aesthetician. Evidence-informed, barrier-first facials and Skin Script actives, sequenced for your skin.'
 };
 
 export default function AboutPage() {
   return (
     <>
-      <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
-        <div
-          className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
-          data-reveal-group="about-hero"
-        >
-          <div
+      <section className="mx-auto max-w-shell px-6 pb-20 pt-32 sm:pb-24 sm:pt-36 lg:px-10">
+        <div className="max-w-2xl" data-reveal-group="about-hero">
+          <p
             data-reveal
-            className="iridescent aspect-[4/5] w-full max-w-md rounded-[2px]"
-            aria-hidden="true"
-          />
-          <div>
-            <Rule left="Aesthetician" right="Licensed" data-reveal />
-            <h1
-              data-reveal
-              className="mt-8 font-display text-[clamp(2.4rem,5.5vw,4rem)] font-normal leading-[1.05] text-graphite"
-            >
-              Emily Mitchener
-            </h1>
-            <p
-              data-reveal
-              className="mt-8 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
-            >
-              {/* PLACEHOLDER bio — OPEN_ITEMS.md: not Emily-approved copy */}
-              Emily approaches skin the way a careful technician approaches a system: look first,
-              change one variable at a time, and never sell a part you do not need. Each appointment
-              begins with a read of the barrier as it is that week — not last season, not a product
-              claim.
-            </p>
-            <p
-              data-reveal
-              className="mt-5 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
-            >
-              She works with Skin Script in the treatment room and on the shelf. The actives she
-              recommends are the ones she uses on your face. No mystery back-bar. No kit built for
-              the ticket average.
-            </p>
+            className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70 sm:text-[0.62rem] sm:tracking-lockup"
+          >
+            Licensed aesthetician
+          </p>
+          <h1
+            data-reveal
+            className="mt-6 font-display text-[clamp(2.4rem,5.5vw,4rem)] font-normal leading-[1.05] text-graphite"
+          >
+            Emily Mitchener
+          </h1>
+          <p
+            data-reveal
+            className="mt-7 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          >
+            Emily takes an evidence-informed, barrier-first approach to skin. Every recommendation
+            begins with careful observation of your skin&apos;s current condition, product history,
+            sensitivity, lifestyle, and goals—not a trend, a sales target, or a one-size-fits-all
+            routine.
+          </p>
+          <p
+            data-reveal
+            className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          >
+            She explains the reasoning behind each step in clear, approachable language so you
+            understand what to use, how to use it, and why it belongs in your routine. The goal is
+            to remove guesswork, build trust, and create a plan that feels realistic enough to
+            follow consistently.
+          </p>
+          <p
+            data-reveal
+            className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          >
+            Emily works with Skin Script in the treatment room and at home, selecting products
+            because they fit your skin—not because they raise the ticket average. Expect practical
+            recommendations, clear expectations, and thoughtful adjustments as your skin changes.
+          </p>
+          <div data-reveal className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <Link
-              data-reveal
               href="/book"
-              className="sweep mt-10 inline-block border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+              className="sweep btn-primary inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup"
             >
               Book with Emily
+            </Link>
+            <Link
+              href="/virtual-consultation"
+              className="sweep btn-ghost inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup"
+            >
+              Book a virtual consultation
             </Link>
           </div>
         </div>
       </section>
 
       <section className="border-y border-chrome/15 bg-ivory">
-        <div className="mx-auto max-w-shell px-6 py-24 lg:px-10" data-reveal-group="philosophy">
+        <div className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10" data-reveal-group="philosophy">
           <h2
             data-reveal
             className="font-display text-[clamp(1.8rem,3.8vw,2.6rem)] font-normal text-graphite"
           >
             How she works
           </h2>
-          <ul className="mt-12 grid gap-8 md:grid-cols-3">
+          <ul className="mt-10 grid gap-6 sm:mt-12 sm:gap-8 md:grid-cols-3">
             {[
               {
                 t: 'Read first',
@@ -91,13 +101,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-shell px-6 py-24 lg:px-10">
+      <section className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10">
         <Rule left="Credentials" right="Practice" data-reveal />
         <div className="mt-10 grid gap-10 md:grid-cols-2">
           <div data-reveal>
             <h2 className="font-display text-2xl font-normal text-graphite">Licensed aesthetician</h2>
             <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
-              {/* OPEN_ITEMS: license board / number not provided */}
               State-licensed aesthetician working in medical-adjacent skincare — peels, extractions,
               and barrier-first protocols. Exact board and license number will be listed here once
               confirmed for launch.
@@ -111,7 +120,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <div className="mt-14 flex flex-wrap gap-4">
+        <div className="mt-12 flex flex-wrap gap-4 sm:mt-14">
           <Link
             href="/services"
             className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
@@ -119,10 +128,10 @@ export default function AboutPage() {
             Treatment menu
           </Link>
           <Link
-            href="/studio"
-            className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+            href="/virtual-consultation"
+            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
           >
-            Visit the studio →
+            Virtual consultation →
           </Link>
         </div>
       </section>

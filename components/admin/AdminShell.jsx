@@ -10,6 +10,7 @@ const nav = [
   { href: '/admin/sync', label: 'Catalog sync' },
   { href: '/admin/orders', label: 'Orders' },
   { href: '/admin/appointments', label: 'Appointments' },
+  { href: '/admin/consultations', label: 'Consultations' },
   { href: '/admin/discounts', label: 'Discounts' },
   { href: '/admin/analytics', label: 'Analytics' }
 ];

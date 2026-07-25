@@ -62,6 +62,20 @@ export default function ServicesPage() {
       </ul>
 
       <div className="mt-16 glass-1 p-8 md:p-10" data-reveal>
+        <h2 className="font-display text-xl font-normal text-graphite">Virtual consultation</h2>
+        <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
+          Prefer to meet online? Book a Zoom consultation with Emily — secure intake, private photo
+          upload, and a personalized morning and evening routine after your appointment.
+        </p>
+        <Link
+          href="/virtual-consultation"
+          className="sweep mt-6 inline-flex min-h-[44px] items-center border border-graphite/25 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+        >
+          Virtual consultation
+        </Link>
+      </div>
+
+      <div className="mt-8 glass-1 p-8 md:p-10" data-reveal>
         <h2 className="font-display text-xl font-normal text-graphite">Deposits &amp; cancellations</h2>
         <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
           {/* OPEN_ITEMS: deposit % and cancellation cutoff unconfirmed */}

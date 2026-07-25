@@ -6,8 +6,7 @@ const STATIC = [
   '/services',
   '/book',
   '/about',
-  '/studio',
-  '/membership',
+  '/virtual-consultation',
   '/contact',
   '/cart'
 ];
@@ -18,6 +17,11 @@ export default function sitemap() {
     url: `${site}${path || '/'}`,
     lastModified: now,
     changeFrequency: path === '' || path === '/shop' ? 'weekly' : 'monthly',
-    priority: path === '' ? 1 : path === '/shop' || path === '/book' ? 0.9 : 0.6
+    priority:
+      path === ''
+        ? 1
+        : path === '/shop' || path === '/book' || path === '/virtual-consultation'
+          ? 0.9
+          : 0.6
   }));
 }

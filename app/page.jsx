@@ -77,9 +77,46 @@ export default function Home() {
     <>
       <Hero />
 
+      {/* Virtual consultation — post-hero feature block */}
+      <section className="border-y border-chrome/15 bg-ivory/60">
+        <div
+          className="mx-auto flex max-w-shell flex-col gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between sm:py-14 lg:px-10"
+          data-reveal-group="vc-feature"
+        >
+          <div className="min-w-0 max-w-xl">
+            <p
+              data-reveal
+              className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70 sm:text-[0.62rem] sm:tracking-lockup"
+            >
+              One-on-one · Online
+            </p>
+            <h2
+              data-reveal
+              className="mt-4 font-display text-[clamp(1.6rem,3.5vw,2.2rem)] font-normal leading-[1.15] text-graphite"
+            >
+              Prefer a virtual consultation?
+            </h2>
+            <p
+              data-reveal
+              className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/75 sm:text-base"
+            >
+              Meet Emily by Zoom for a focused skin review, then receive a personalized morning and
+              evening routine with product links.
+            </p>
+          </div>
+          <Link
+            data-reveal
+            href="/virtual-consultation"
+            className="sweep btn-ghost inline-flex min-h-[44px] shrink-0 items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup"
+          >
+            Virtual consultation
+          </Link>
+        </div>
+      </section>
+
       {/* Thesis — editorial band */}
       <section className="section-veil relative">
-        <div className="relative z-[1] mx-auto max-w-shell px-6 py-28 lg:px-10" data-reveal-group="thesis">
+        <div className="relative z-[1] mx-auto max-w-shell px-6 py-20 sm:py-28 lg:px-10" data-reveal-group="thesis">
           <p
             data-reveal
             className="eyebrow-line font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"

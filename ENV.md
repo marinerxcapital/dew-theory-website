@@ -38,3 +38,34 @@ CRON_SECRET=
 XAI_API_KEY=
 XAI_MODEL=grok-3
 # XAI_API_BASE=https://api.x.ai/v1
+
+# ── Virtual consultation ──
+# Stripe Price ID for the virtual consultation (authoritative price — do not hardcode in UI)
+STRIPE_VIRTUAL_CONSULTATION_PRICE_ID=
+# Admin notification recipient (defaults to ADMIN_EMAIL)
+CONSULTATION_ADMIN_EMAIL=
+# External scheduler that creates unique Zoom meetings (Calendly, Acuity, etc.)
+CONSULTATION_SCHEDULING_URL=
+CONSULTATION_SCHEDULER_PROVIDER=external
+CONSULTATION_TIMEZONE=America/Chicago
+# Optional display-only cents when Stripe not configured (mock checkout only)
+# CONSULTATION_DISPLAY_PRICE_CENTS=9500
+# CONSULTATION_DURATION_MINUTES=45
+# CONSULTATION_PHOTO_MAX_BYTES=10485760
+# Transactional email (optional — without RESEND_API_KEY emails are logged to store)
+# RESEND_API_KEY=
+# EMAIL_FROM=Dew Theory <noreply@dewtheoryco.com>
+# EMAIL_REPLY_TO=
+
+# ── Virtual consultation ──
+# Stripe Price ID for the virtual consultation (authoritative price — do not hardcode in UI)
+STRIPE_VIRTUAL_CONSULTATION_PRICE_ID=
+CONSULTATION_ADMIN_EMAIL=
+CONSULTATION_SCHEDULING_URL=
+CONSULTATION_SCHEDULER_PROVIDER=external
+CONSULTATION_TIMEZONE=America/Chicago
+# CONSULTATION_DISPLAY_PRICE_CENTS=9500
+# CONSULTATION_DURATION_MINUTES=45
+# RESEND_API_KEY=
+# EMAIL_FROM=Dew Theory <noreply@dewtheoryco.com>
+# EMAIL_REPLY_TO=

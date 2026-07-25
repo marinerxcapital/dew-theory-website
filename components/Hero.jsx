@@ -44,25 +44,25 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className={`relative isolate flex min-h-[100svh] items-center overflow-hidden pt-28 ${
+      className={`relative isolate flex items-center overflow-hidden pt-24 sm:pt-28 ${
         reduced ? '' : 'specular'
       }`}
     >
       {/* Motion video is sitewide (MotionBackground). Hero only adds fold vignette + content. */}
       <div className="hero-vignette absolute inset-0 -z-[5]" aria-hidden="true" />
 
-      <div className="relative z-[1] mx-auto grid w-full max-w-shell gap-12 px-5 pb-24 sm:gap-16 sm:px-6 sm:pb-28 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10">
+      <div className="relative z-[1] mx-auto grid w-full max-w-shell gap-10 px-5 pb-14 pt-2 sm:gap-14 sm:px-6 sm:pb-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10 lg:pb-24">
         <div data-reveal-group="hero" className="min-w-0">
           <p
             data-reveal
-            className="eyebrow-line font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+            className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70 sm:text-[0.62rem] sm:tracking-lockup"
           >
-            Skin care · Studio · Skin Script
+            Skin care · Facials · Skin Script
           </p>
 
           <h1
             data-reveal
-            className="mt-7 max-w-lg font-display text-[clamp(1.75rem,5vw,2.85rem)] font-normal leading-[1.18] text-graphite sm:mt-8"
+            className="mt-5 max-w-lg font-display text-[clamp(1.75rem,5vw,2.85rem)] font-normal leading-[1.18] text-graphite sm:mt-7"
           >
             Clinical formulations,
             <br />
@@ -71,7 +71,7 @@ export default function Hero() {
 
           <p
             data-reveal
-            className="mt-7 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/78 sm:mt-8 sm:text-[1.05rem] sm:leading-relaxed"
+            className="mt-5 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/78 sm:mt-7 sm:text-[1.05rem] sm:leading-relaxed"
           >
             Skin Script actives you can take home, and facials with Emily Mitchener that decide
             which of them you actually need. Two halves of the same routine.
@@ -79,17 +79,17 @@ export default function Hero() {
 
           <div
             data-reveal
-            className="mt-9 flex w-full flex-col gap-3 sm:mt-11 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            className="mt-7 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
             <Link
               href="/book"
-              className="sweep btn-primary w-full px-9 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup sm:w-auto"
+              className="sweep btn-primary w-full min-h-[44px] px-9 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup sm:w-auto"
             >
               Book a facial
             </Link>
             <Link
               href="/shop"
-              className="sweep btn-ghost w-full px-9 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup sm:w-auto"
+              className="sweep btn-ghost w-full min-h-[44px] px-9 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup sm:w-auto"
             >
               Shop the collection
             </Link>
@@ -143,7 +143,7 @@ export default function Hero() {
 
       <span
         aria-hidden="true"
-        className="scroll-cue pointer-events-none absolute bottom-8 left-1/2 h-12 w-px -translate-x-1/2"
+        className="scroll-cue pointer-events-none absolute bottom-4 left-1/2 hidden h-10 w-px -translate-x-1/2 sm:bottom-6 sm:block"
       />
     </section>
   );

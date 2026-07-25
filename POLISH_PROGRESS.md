@@ -72,5 +72,8 @@ Completed: 2026-07-19T21:00:00Z
 | P1 | done | Hero motion refresh: new `generated_video (1).mp4` → hero-original; ping-pong extend ~20s silent hero.mp4; poster webp | 2026-07-21T23:14:00Z |
 | Q1 | done | Skin Script product images package: 8× PNG+WebP 832×1232 → public/images/products/skin-script; products.json wired; ProductImage 52/77; cart thumbs; product-image tests; deploy dewtheoryco.com | 2026-07-24T16:10:00Z |
 | R1 | done | Sitewide MotionBackground: same hero.mp4/poster as home on all storefront pages; ambient field translucent; Hero no longer owns video; admin excluded; reduced-motion → poster | 2026-07-24T18:00:00Z |
+| S1 | done | Mobile QA: hero dead space + logo + eyebrow `SKIN CARE · FACIALS · SKIN SCRIPT`; shop filter→card spacing; Emily empty media removed + approved bio; Studio/Membership out of nav | 2026-07-24 |
+| S2 | done | Virtual Consultation production path: `/virtual-consultation`, Stripe checkout+webhook, secure intake token, private photos, admin `/admin/consultations`, plan publish+email, sitemap/robots/redirects | 2026-07-24 |
+| S3 | done | Tests `tests/consultations.test.mjs`; npm test 137 pass; production build clean with VC + admin routes | 2026-07-24 |
 
 Status values: pending | in_progress | done | blocked | skipped

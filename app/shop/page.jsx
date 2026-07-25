@@ -24,7 +24,7 @@ export default function ShopPage() {
   const count = visible.length;
 
   return (
-    <section className="relative mx-auto max-w-shell px-6 pb-32 pt-36 lg:px-10">
+    <section className="relative mx-auto max-w-shell px-6 pb-24 pt-32 sm:pb-32 sm:pt-36 lg:px-10">
       <div
         className="pointer-events-none absolute left-1/2 top-24 -z-10 h-64 w-[min(90vw,42rem)] -translate-x-1/2 rounded-full bg-ice/25 blur-3xl"
         aria-hidden="true"
@@ -33,13 +33,13 @@ export default function ShopPage() {
         <Rule left="Shop" right="Skin Script" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-3xl font-display text-[clamp(2.6rem,6.5vw,4.6rem)] font-normal leading-[1.02] text-graphite"
+          className="mt-6 max-w-3xl font-display text-[clamp(2.4rem,6.5vw,4.6rem)] font-normal leading-[1.02] text-graphite sm:mt-8"
         >
           The collection
         </h1>
         <p
           data-reveal
-          className="mt-7 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75 sm:text-[1.05rem]"
+          className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75 sm:mt-7 sm:text-[1.05rem]"
         >
           {count === 0
             ? 'Products will appear here once the catalog is ready.'
@@ -47,7 +47,7 @@ export default function ShopPage() {
         </p>
       </div>
 
-      <div className="mt-16 sm:mt-20">
+      <div className="mt-8 sm:mt-12">
         <ShopGrid products={all} />
       </div>
     </section>

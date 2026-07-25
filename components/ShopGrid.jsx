@@ -99,7 +99,7 @@ export default function ShopGrid({ products = [] }) {
       </div>
 
       <p
-        className="mt-8 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+        className="mt-4 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome sm:mt-5"
         aria-live="polite"
       >
         {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
@@ -110,7 +110,7 @@ export default function ShopGrid({ products = [] }) {
         <div
           id="shop-product-grid"
           role="tabpanel"
-          className="glass-1 mt-8 p-10 text-center"
+          className="glass-1 mt-6 p-10 text-center sm:mt-8"
         >
           <p className="font-display text-xl font-normal text-graphite">No products in this category</p>
           <p className="mx-auto mt-3 max-w-sm font-body text-sm font-light text-charcoal/70">
@@ -129,7 +129,7 @@ export default function ShopGrid({ products = [] }) {
           id="shop-product-grid"
           role="tabpanel"
           aria-labelledby={`shop-tab-${category === 'all' ? 'all' : category.replace(/\s+/g, '-').toLowerCase()}`}
-          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
+          className="mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-7"
           data-reveal-group="shop"
         >
           {filtered.map((p) => (

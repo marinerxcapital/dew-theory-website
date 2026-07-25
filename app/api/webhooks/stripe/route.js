@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server';
 import { markOrderPaidFromSession } from '@/lib/stripe-orders';
-import { mutateStore } from '@/lib/store';
+import { mutateStore, readStore } from '@/lib/store';
+import { markConsultationPaidFromSession } from '@/lib/consultations/service.js';
+import { sendPaymentReceivedEmail } from '@/lib/consultations/emails.js';
 
 /**
- * Stripe webhook stub — checkout.session.completed / async payment → order paid.
+ * Stripe webhook — checkout.session.completed for shop orders + virtual consultations.
  *
  * Configure in Stripe Dashboard:
  *   Endpoint: https://<host>/api/webhooks/stripe
- *   Events: checkout.session.completed, checkout.session.async_payment_succeeded
+ *   Events: checkout.session.completed, checkout.session.async_payment_succeeded,
+ *           checkout.session.async_payment_failed
  *   Secret → STRIPE_WEBHOOK_SECRET
- *
- * Without STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET, returns 503 (not a silent no-op).
- * Local mock checkout does not need this route — orders are marked paid immediately.
  */
 export async function POST(request) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
@@ -50,7 +50,6 @@ export async function POST(request) {
     );
   }
 
-  // Raw body required for signature verification
   const rawBody = await request.text();
 
   let event;
@@ -66,15 +65,26 @@ export async function POST(request) {
     );
   }
 
-  // Audit webhook receipt (no PII beyond event type/id)
+  // Idempotency: skip fully processed event IDs
+  const prior = (readStore().webhook_events || []).find((e) => e.id === event.id && e.processed);
+  if (prior) {
+    return NextResponse.json({ received: true, code: 'event_replay_skipped', id: event.id });
+  }
+
   mutateStore((s) => {
     if (!s.webhook_events) s.webhook_events = [];
-    s.webhook_events.unshift({
-      id: event.id,
-      type: event.type,
-      at: new Date().toISOString()
-    });
-    s.webhook_events = s.webhook_events.slice(0, 100);
+    const existing = s.webhook_events.find((e) => e.id === event.id);
+    if (existing) {
+      existing.at = new Date().toISOString();
+    } else {
+      s.webhook_events.unshift({
+        id: event.id,
+        type: event.type,
+        at: new Date().toISOString(),
+        processed: false
+      });
+    }
+    s.webhook_events = s.webhook_events.slice(0, 200);
     return s;
   });
 
@@ -83,13 +93,41 @@ export async function POST(request) {
       case 'checkout.session.completed':
       case 'checkout.session.async_payment_succeeded': {
         const session = event.data.object;
-        // Only mark paid when payment succeeded (or no payment required)
         if (
           session.payment_status === 'paid' ||
           session.payment_status === 'no_payment_required' ||
           event.type === 'checkout.session.async_payment_succeeded'
         ) {
+          const isConsultation =
+            session.metadata?.service_type === 'virtual_consultation' ||
+            Boolean(session.metadata?.consultation_id);
+
+          if (isConsultation) {
+            const { consultation, alreadyPaid } = markConsultationPaidFromSession(session);
+            if (!alreadyPaid && consultation) {
+              let intakeToken = null;
+              mutateStore((s) => {
+                const idx = s.consultations?.findIndex((c) => c.id === consultation.id);
+                if (idx >= 0 && s.consultations[idx]._intake_token_once) {
+                  intakeToken = s.consultations[idx]._intake_token_once;
+                  delete s.consultations[idx]._intake_token_once;
+                }
+                return s;
+              });
+              if (intakeToken && consultation.client_email) {
+                await sendPaymentReceivedEmail({ consultation, intakeToken });
+              }
+            }
+            markProcessed(event.id);
+            return NextResponse.json({
+              received: true,
+              consultation_id: consultation?.id,
+              code: 'consultation_marked_paid'
+            });
+          }
+
           const { order } = markOrderPaidFromSession(session);
+          markProcessed(event.id);
           return NextResponse.json({
             received: true,
             order_id: order?.id,
@@ -105,15 +143,27 @@ export async function POST(request) {
       case 'checkout.session.async_payment_failed': {
         const session = event.data.object;
         mutateStore((s) => {
-          const idx = s.orders.findIndex((o) => o.stripe_session_id === session.id);
-          if (idx >= 0 && s.orders[idx].status === 'pending_payment') {
-            s.orders[idx] = { ...s.orders[idx], status: 'payment_failed' };
+          const oIdx = s.orders.findIndex((o) => o.stripe_session_id === session.id);
+          if (oIdx >= 0 && s.orders[oIdx].status === 'pending_payment') {
+            s.orders[oIdx] = { ...s.orders[oIdx], status: 'payment_failed' };
+          }
+          if (Array.isArray(s.consultations)) {
+            const cIdx = s.consultations.findIndex((c) => c.stripe_session_id === session.id);
+            if (cIdx >= 0 && s.consultations[cIdx].payment_status === 'pending') {
+              s.consultations[cIdx] = {
+                ...s.consultations[cIdx],
+                payment_status: 'failed',
+                updated_at: new Date().toISOString()
+              };
+            }
           }
           return s;
         });
+        markProcessed(event.id);
         return NextResponse.json({ received: true, code: 'payment_failed_recorded' });
       }
       default:
+        markProcessed(event.id);
         return NextResponse.json({ received: true, code: 'event_ignored', type: event.type });
     }
   } catch (err) {
@@ -124,5 +174,13 @@ export async function POST(request) {
   }
 }
 
-// App Router: no body parsing config needed when using request.text()
+function markProcessed(eventId) {
+  mutateStore((s) => {
+    if (!s.webhook_events) return s;
+    const e = s.webhook_events.find((x) => x.id === eventId);
+    if (e) e.processed = true;
+    return s;
+  });
+}
+
 export const runtime = 'nodejs';

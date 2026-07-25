@@ -34,6 +34,14 @@ npx wrangler secret put ADMIN_SESSION_SECRET
 npx wrangler secret put STRIPE_SECRET_KEY
 npx wrangler secret put NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 npx wrangler secret put STRIPE_WEBHOOK_SECRET
+# virtual consultation:
+npx wrangler secret put STRIPE_VIRTUAL_CONSULTATION_PRICE_ID
+npx wrangler secret put CONSULTATION_SCHEDULING_URL
+npx wrangler secret put CONSULTATION_ADMIN_EMAIL
+# optional email + timezone:
+# npx wrangler secret put RESEND_API_KEY
+# npx wrangler secret put EMAIL_FROM
+# npx wrangler secret put CONSULTATION_TIMEZONE
 ```
 
 ## Stripe webhook (after Stripe keys)
@@ -45,6 +53,18 @@ https://dewtheoryco.com/api/webhooks/stripe
 ```
 
 Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`.
+
+Handles both **shop orders** and **virtual consultations** (`metadata.service_type=virtual_consultation`).
+
+## Post-deploy smoke (VC)
+
+```text
+https://dewtheoryco.com/
+https://dewtheoryco.com/virtual-consultation
+https://dewtheoryco.com/admin/consultations  (auth required)
+https://dewtheoryco.com/studio → 308 /about
+https://dewtheoryco.com/membership → 308 /services
+```
 
 ## Skin Script
 

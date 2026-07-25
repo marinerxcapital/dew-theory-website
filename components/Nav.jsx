@@ -9,8 +9,7 @@ const links = [
   { href: '/shop', label: 'Shop' },
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'Emily' },
-  { href: '/studio', label: 'Studio' },
-  { href: '/membership', label: 'Membership' },
+  { href: '/virtual-consultation', label: 'Virtual Consultation' },
   { href: '/contact', label: 'Contact' }
 ];
 
@@ -20,6 +19,7 @@ export default function Nav() {
   const { count, hydrated } = useCart();
   const menuBtnRef = useRef(null);
   const firstLinkRef = useRef(null);
+  const panelRef = useRef(null);
 
   // Close mobile menu on route change; return focus to menu button when closing
   useEffect(() => {
@@ -32,12 +32,37 @@ export default function Nav() {
     }
   }, [open]);
 
+  // Prevent background scroll while mobile drawer is open
+  useEffect(() => {
+    if (!open) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
       if (e.key === 'Escape') {
         setOpen(false);
         menuBtnRef.current?.focus();
+        return;
+      }
+      if (e.key !== 'Tab' || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll(
+        'a[href], button:not([disabled])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
     window.addEventListener('keydown', onKey);
@@ -58,16 +83,16 @@ export default function Nav() {
         Skip to content
       </a>
 
-      <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 sm:py-6 lg:px-10">
+      <div className="mx-auto flex max-w-shell items-center justify-between px-5 py-4 sm:px-6 sm:py-5 lg:px-10 lg:py-6">
         <Link
           href="/"
           aria-label="Dew Theory, home"
-          className="nav-logo shrink-0 transition-opacity duration-300 hover:opacity-90"
+          className="nav-logo flex shrink-0 items-center transition-opacity duration-300 hover:opacity-90"
         >
           <Wordmark
             src="/logo-mark.webp"
             priority
-            className="h-9 w-auto max-w-[11rem] object-contain object-left drop-shadow-[0_1px_2px_rgba(42,42,40,0.12)] sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
+            className="h-10 w-auto max-w-[12rem] object-contain object-left drop-shadow-[0_1px_3px_rgba(42,42,40,0.18)] sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
           />
         </Link>
 
@@ -101,10 +126,10 @@ export default function Nav() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-5 lg:hidden">
+        <div className="flex items-center gap-4 sm:gap-5 lg:hidden">
           <Link
             href="/cart"
-            className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
+            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
           >
             Cart{hydrated && count > 0 ? ` (${count})` : ''}
           </Link>
@@ -114,7 +139,7 @@ export default function Nav() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
+            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
           >
             {open ? 'Close' : 'Menu'}
           </button>
@@ -122,19 +147,29 @@ export default function Nav() {
       </div>
 
       {open && (
-        <nav id="mobile-nav" aria-label="Primary, mobile" className="glass-1 lg:hidden">
-          <div className="flex flex-col px-6 py-4">
-            {mobileLinks.map((l, i) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                ref={i === 0 ? firstLinkRef : undefined}
-                onClick={() => setOpen(false)}
-                className="border-b border-chrome/15 py-4 font-label text-[0.74rem] font-light uppercase tracking-lockup text-charcoal last:border-0"
-              >
-                {l.label}
-              </Link>
-            ))}
+        <nav
+          id="mobile-nav"
+          ref={panelRef}
+          aria-label="Primary, mobile"
+          className="glass-1 max-h-[min(100dvh-4.5rem,32rem)] overflow-y-auto overscroll-contain lg:hidden"
+        >
+          <div className="flex flex-col px-6 py-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
+            {mobileLinks.map((l, i) => {
+              const current =
+                pathname === l.href || (l.href !== '/' && pathname?.startsWith(l.href));
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  ref={i === 0 ? firstLinkRef : undefined}
+                  onClick={() => setOpen(false)}
+                  aria-current={current ? 'page' : undefined}
+                  className="border-b border-chrome/15 py-4 font-label text-[0.74rem] font-light uppercase tracking-lockup text-charcoal last:border-0"
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       )}
