@@ -169,6 +169,8 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Analytics Dashboard | Done — `/admin/analytics` from real store data |
 | Skin Script CSV import | Done — `/admin/import` + `data/sample-import.csv` |
 | Privacy / Shipping / Returns | Done — honest scaffolds; final legal copy still Emily |
+| FAQ | Done — `/faq` + home teaser |
+| Free-ship meter · routine upsell · gift notes · sticky mobile CTA | Done 2026-07-25 |
 | Production host | **https://dewtheoryco.com** (Cloudflare Worker `dew-theory`) |
 
 ### Definition of Done notes
