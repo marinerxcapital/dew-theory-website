@@ -14,7 +14,10 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section
+      data-services-menu
+      className="relative mx-auto max-w-shell px-6 py-32 lg:px-10"
+    >
       <div data-reveal-group="svc-head">
         <Rule left="Services" right="In studio" data-reveal />
         <h1
@@ -33,10 +36,18 @@ export default function ServicesPage() {
         </p>
       </div>
 
-      <ul className="mt-16 border-t border-chrome/25" data-reveal-group="svc-list">
+      {/*
+        Continuous menu surface (pearl + isolation). Circular ambient orbs are
+        suppressed on this route; this surface also blocks residual fixed-layer
+        bleed without covering individual cells with a blob.
+      */}
+      <ul
+        className="services-menu-list mt-16 overflow-hidden rounded-[3px] border border-chrome/20 backdrop-blur-[2px]"
+        data-reveal-group="svc-list"
+      >
         {SERVICES.map((s) => (
-          <li key={s.id} data-reveal className="border-b border-chrome/20">
-            <div className="grid gap-4 py-8 sm:gap-6 sm:py-10 md:grid-cols-[1fr_1.2fr_auto] md:items-start md:px-2">
+          <li key={s.id} data-reveal className="border-b border-chrome/20 last:border-b-0">
+            <div className="grid gap-4 px-4 py-8 sm:gap-6 sm:px-5 sm:py-10 md:grid-cols-[1fr_1.2fr_auto] md:items-start md:px-6">
               <div className="min-w-0">
                 <h2 className="font-display text-xl font-normal text-graphite sm:text-2xl">
                   {s.name}
