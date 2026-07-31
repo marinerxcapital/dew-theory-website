@@ -183,4 +183,6 @@ Homepage content, nav, CTAs, and sections preserved. Runtime loads once via `nex
 | Files | `app/globals.css`, `components/Nav.jsx` (removed weak Tailwind drop-shadow; CSS owns legibility) |
 | Lint / typecheck | N/A (not configured) |
 | Tests | `npm test` **148 pass**; `npm run build` **pass** |
-| Live | https://dewtheoryco.com — verify logo halo CSS on home header (clear + frosted scroll) |
+| Commit | `904ffc6` — `fix(nav): improve logo contrast over Noise Shimmer` |
+| Deploy | Cloudflare Worker `dew-theory` version `a53c3568-c230-448d-97d3-44f69b78eb70` |
+| Live | https://dewtheoryco.com — logo-mark + `.nav-logo` halo/drop-shadow CSS verified on production CSS bundle |
