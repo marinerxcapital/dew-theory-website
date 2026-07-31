@@ -112,6 +112,11 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
   **2026-07-24:** Sitewide `MotionBackground`. **2026-07-25 eng:** poster-first; home plays
   video promptly; non-home defers video until idle (or skips on data-saver/2g); reduced-motion
   stays poster-only. Ambient orbs quiet on `/services`, `/cart`, `/book`, `/virtual-consultation*`.
+  **2026-07-30:** Home hero adds AIDesigner **Noise Shimmer** (`data-aifx="noise-shimmer"`,
+  colors `#6f7cff,#ff4fa3,#4fe3d1`, bg `#7f84b8`, scale 1.66 / shimmer 0.52 / intensity 0.24 /
+  contrast 0.55 / speed 1.37). Runtime once in root layout; static CSS fallback; reduced-motion
+  omits attrs. Commit `3eeadca` · CF version `527da30c-e938-463c-b3d8-0d6eb8c527dc` · live on
+  dewtheoryco.com. Details: `docs/MOTION_BACKGROUND.md`, `POLISH_PROGRESS.md` V1.
 - **Skin Script product photography — INSTALLED 2026-07-24.** All eight catalog products use
   studio assets at `/images/products/skin-script/`. **Still missing (Emily/owner):** portrait,
   studio photography, lifestyle/in-use shots.
@@ -172,6 +177,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | FAQ | Done — `/faq` + home teaser |
 | Free-ship meter · routine upsell · gift notes · sticky mobile CTA | Done 2026-07-25 |
 | Production host | **https://dewtheoryco.com** (Cloudflare Worker `dew-theory`) |
+| Noise Shimmer hero | Done 2026-07-30 — commit `3eeadca`, live verified |
 
 ### Definition of Done notes
 

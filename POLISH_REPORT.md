@@ -145,3 +145,27 @@ npx wrangler r2 bucket create dew-theory-consultation-photos
 Local `master` includes sequential `polish F2` … `polish G4` and a final overnight pass commit covering G5–N4.
 
 **2026-07-25:** Autonomous engineering pass (perf/SEO/policies/trust/photos) + memory file refresh; pushed to `main`.
+
+---
+
+## 2026-07-30 — Noise Shimmer hero background
+
+| Item | Detail |
+|------|--------|
+| Task | Replace homepage hero decorative plane with AIDesigner **Noise Shimmer** |
+| Effect | `noise-shimmer` |
+| Colors | `#6f7cff,#ff4fa3,#4fe3d1` · bg `#7f84b8` |
+| Params | scale `1.66`, shimmer `0.52`, intensity `0.24`, contrast `0.55`, speed `1.37` |
+| Files | `components/Hero.jsx`, `app/layout.jsx` (runtime Script once), `app/globals.css` (fallback + reduced-motion) |
+| Fallback | `.noise-shimmer-fallback` radial gradients (same palette) |
+| CSP | No CSP in project — no change |
+| Tests | `npm test` **148 pass**; `npm run build` **pass**; no lint/typecheck scripts |
+| Commit | `3eeadca00a2e7cd614d170445f603ca944a5334a` — `feat(home): add vibrant Noise Shimmer hero background` |
+| Branch | local `master` → remote `main` (`origin/main` @ marinerxcapital/dew-theory-website) |
+| Provider | Cloudflare Workers via OpenNext (`npm run deploy`) · Worker `dew-theory` |
+| Deploy ID | Worker Version `527da30c-e938-463c-b3d8-0d6eb8c527dc` · workers.dev + custom domains |
+| Live | https://dewtheoryco.com — **verified 2026-07-30** (HTTP 200) |
+| Live checks | `data-aifx="noise-shimmer"` + full color/params attrs; CDN `cdn.aidesigner.ai/effects/runtime/v1.js`; `.noise-shimmer-fallback`; CTAs "Book a facial" / "Shop the collection"; brand copy intact |
+| Docs | `docs/MOTION_BACKGROUND.md`, this file, `POLISH_PROGRESS.md` V1 |
+
+Homepage content, nav, CTAs, and sections preserved. Runtime loads once via `next/script` `id="aidesigner-effects-runtime"`.
