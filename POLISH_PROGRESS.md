@@ -92,6 +92,6 @@ Completed: 2026-07-19T21:00:00Z
 | W5 | done | Membership page live + interest API; packages without invented prices | 2026-07-31 |
 | W6 | done | Admin weekly funnel strip + `/admin/emails` outbound log | 2026-07-31 |
 | W7 | done | Path-gate AIDesigner runtime to homepage only | 2026-07-31 |
-| W8 | done | npm test 164 pass; production build; push main; CF deploy dewtheoryco.com | 2026-07-31 |
+| W8 | done | npm test 164 pass; production build; push main `30a8a8d`; CF Worker version `de081377-4005-4270-84d9-d28df73e6d81` · dewtheoryco.com | 2026-07-31 |
 
 Status values: pending | in_progress | done | blocked | skipped

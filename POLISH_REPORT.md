@@ -203,4 +203,7 @@ Homepage content, nav, CTAs, and sections preserved. Runtime loads once via `nex
 | Stripe | **Not connected** (owner); mock checkout + full Stripe code path remain |
 | Tests | **164 pass** |
 | Build | **pass** (membership + membership interest routes) |
+| Commit | `30a8a8d` — `feat: complete non-Stripe product paths for production readiness` |
+| Deploy | Cloudflare Worker `dew-theory` version **`de081377-4005-4270-84d9-d28df73e6d81`** |
+| Live | dewtheoryco.com — home kits, membership page, book/services/shop 200 |
 | Remaining owner secrets | `STRIPE_*`, optional `GOOGLE_CALENDAR_*`, `RESEND_*`, `ADMIN_TOTP_SECRET`, Emily menu/prices |
