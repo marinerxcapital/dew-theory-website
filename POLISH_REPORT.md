@@ -169,3 +169,18 @@ Local `master` includes sequential `polish F2` … `polish G4` and a final overn
 | Docs | `docs/MOTION_BACKGROUND.md`, this file, `POLISH_PROGRESS.md` V1 |
 
 Homepage content, nav, CTAs, and sections preserved. Runtime loads once via `next/script` `id="aidesigner-effects-runtime"`.
+
+---
+
+## 2026-07-30 — Header logo contrast (Noise Shimmer)
+
+| Item | Detail |
+|------|--------|
+| Task | Improve iridescent “dew theory” logo visibility over Noise Shimmer without changing artwork |
+| Asset | `/logo-mark.webp` — **unchanged** (full opacity, no recolor/redraw) |
+| Treatment | `.nav-logo::before` feathered radial halo `rgba(32, 27, 42, 0.06–0.30)` + blur; img `drop-shadow` tight + wide soft lift; light contrast/saturate only on filter |
+| Frosted nav | Halo opacity 0.5 so pearl glass doesn’t double-darken |
+| Files | `app/globals.css`, `components/Nav.jsx` (removed weak Tailwind drop-shadow; CSS owns legibility) |
+| Lint / typecheck | N/A (not configured) |
+| Tests | `npm test` **148 pass**; `npm run build` **pass** |
+| Live | https://dewtheoryco.com — verify logo halo CSS on home header (clear + frosted scroll) |

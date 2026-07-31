@@ -87,12 +87,12 @@ export default function Nav() {
         <Link
           href="/"
           aria-label="Dew Theory, home"
-          className="nav-logo flex shrink-0 items-center transition-opacity duration-300 hover:opacity-90"
+          className="nav-logo relative flex shrink-0 items-center transition-opacity duration-300 hover:opacity-90"
         >
           <Wordmark
             src="/logo-mark.webp"
             priority
-            className="h-10 w-auto max-w-[12rem] object-contain object-left drop-shadow-[0_1px_3px_rgba(42,42,40,0.18)] sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
+            className="h-10 w-auto max-w-[12rem] object-contain object-left sm:h-11 sm:max-w-[13.5rem] lg:h-12 lg:max-w-[15rem]"
           />
         </Link>
 

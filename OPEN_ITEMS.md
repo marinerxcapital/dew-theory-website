@@ -178,6 +178,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Free-ship meter · routine upsell · gift notes · sticky mobile CTA | Done 2026-07-25 |
 | Production host | **https://dewtheoryco.com** (Cloudflare Worker `dew-theory`) |
 | Noise Shimmer hero | Done 2026-07-30 — commit `3eeadca`, live verified |
+| Nav logo contrast vs Noise Shimmer | Done 2026-07-30 — halo + drop-shadow UI only; `/logo-mark.webp` unchanged |
 
 ### Definition of Done notes
 

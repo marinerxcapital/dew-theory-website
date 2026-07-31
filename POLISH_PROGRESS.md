@@ -84,5 +84,6 @@ Completed: 2026-07-19T21:00:00Z
 | U5 | done | Consultation photos R2→FS→memory; photo-storage.js; consultation-photos tests; ENV dedupe | 2026-07-25 |
 | U6 | done | Memory files OPEN_ITEMS/POLISH_* / README refreshed; merge to main | 2026-07-25 |
 | V1 | done | Home hero AIDesigner Noise Shimmer: palette+params; runtime once in layout; static fallback; reduced-motion; commit `3eeadca` → origin/main; CF Worker version `527da30c-e938-463c-b3d8-0d6eb8c527dc`; live HTML verified | 2026-07-30 |
+| V2 | done | Nav logo contrast: soft charcoal-plum radial halo + dual drop-shadow on `.nav-logo` (asset `/logo-mark.webp` unchanged); frosted state lighter halo; CSS + Nav.jsx only | 2026-07-30 |
 
 Status values: pending | in_progress | done | blocked | skipped

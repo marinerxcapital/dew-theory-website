@@ -731,9 +731,48 @@ article:hover [data-product-image-frame] .media-zoom-target {
   border-bottom: 1px solid transparent;
 }
 
-/* Header logo — larger mark, stronger contrast on glass/video hero */
+/*
+ * Header logo legibility — iridescent lockup on Noise Shimmer / clear nav.
+ * Soft charcoal-plum radial halo + drop-shadow only; never a rectangular badge.
+ * Source artwork (/logo-mark.webp) stays full-opacity and unaltered.
+ */
+.nav-logo {
+  position: relative;
+  isolation: isolate;
+}
+.nav-logo::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  /* Feathered ellipse, larger than the mark — not a hard box */
+  inset: -42% -22% -48% -16%;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse 70% 62% at 40% 48%,
+    rgba(32, 27, 42, 0.3) 0%,
+    rgba(32, 27, 42, 0.18) 38%,
+    rgba(32, 27, 42, 0.06) 62%,
+    rgba(32, 27, 42, 0) 78%
+  );
+  filter: blur(16px);
+  pointer-events: none;
+  transform: translateZ(0);
+}
+/* Pearl frosted bar already lifts contrast — keep a lighter halo so it doesn’t double-muddy */
+[data-nav][data-state='frosted'] .nav-logo::before {
+  opacity: 0.5;
+  filter: blur(14px);
+}
 .nav-logo img {
-  filter: contrast(1.08) saturate(1.05);
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  /* Tight edge definition + wider soft lift; keep iridescence (light saturate only) */
+  filter:
+    drop-shadow(0 1px 1px rgba(20, 16, 28, 0.38))
+    drop-shadow(0 3px 10px rgba(32, 27, 42, 0.2))
+    contrast(1.06)
+    saturate(1.04);
 }
 .nav-logo:focus-visible {
   outline: 2px solid rgba(90, 125, 154, 0.55);
