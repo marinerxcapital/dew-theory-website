@@ -16,11 +16,26 @@ ADMIN_EMAIL=admin@dewtheory.local
 ADMIN_PASSWORD=dew-admin-dev
 ADMIN_SESSION_SECRET=change-me-to-a-long-random-string
 
-# Google Calendar (optional — booking uses mock slots until freebusy is implemented)
+# Google Calendar (optional — freebusy + event create when all four set)
 # GOOGLE_CALENDAR_ID=
 # GOOGLE_CALENDAR_CLIENT_ID=
 # GOOGLE_CALENDAR_CLIENT_SECRET=
 # GOOGLE_CALENDAR_REFRESH_TOKEN=
+# Optional tuning:
+# GOOGLE_CALENDAR_HOURS=10,11,13,14,15,16
+# GOOGLE_CALENDAR_CLOSED_DAYS=0
+# GOOGLE_CALENDAR_DAYS_AHEAD=14
+# GOOGLE_CALENDAR_SLOT_MINUTES=60
+
+# Booking policy display (optional — shown on services / emails when set)
+# BOOKING_DEPOSIT_PERCENT=25
+# BOOKING_CANCEL_HOURS=24
+
+# Admin 2FA (optional base32 secret for TOTP authenticator apps)
+# ADMIN_TOTP_SECRET=
+
+# Membership package prices (optional JSON array). Without this, packages show “Price set by Emily”
+# MEMBERSHIP_PACKAGES_JSON=[{"id":"rhythm-care","name":"Rhythm of care","description":"…","price_cents":null,"interval":null,"perks":[]}]
 
 # ── Skin Script catalog + dropship (see docs/SKIN_SCRIPT_SYNC.md) ──
 # mock = offline (default). http = partner API when confirmed. csv_feed = authorized export URL/path.

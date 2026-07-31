@@ -220,6 +220,13 @@ export async function POST(request) {
     });
     trackEvent('checkout_completed', { order_id: orderId, mode: 'mock' });
 
+    const mockOrder = readStore().orders.find((o) => o.id === orderId);
+    if (mockOrder) {
+      import('@/lib/email')
+        .then(({ sendOrderConfirmationEmail }) => sendOrderConfirmationEmail({ order: mockOrder }))
+        .catch(() => {});
+    }
+
     // Automated dropship when AUTO_FULFILL is not disabled (default on)
     let fulfill = null;
     try {

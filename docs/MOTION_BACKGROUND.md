@@ -32,7 +32,7 @@ Every storefront page uses the **same** motion plane as the home hero (silent lo
 | Background | `#7f84b8` |
 | scale / shimmer / intensity / contrast / speed | `1.66` / `0.52` / `0.24` / `0.55` / `1.37` |
 | Host | `components/Hero.jsx` — `relative isolate overflow-hidden`; layer `absolute inset-0 -z-10 pointer-events-none` |
-| Runtime | `https://cdn.aidesigner.ai/effects/runtime/v1.js` via `next/script` in `app/layout.jsx` (`id="aidesigner-effects-runtime"`, `afterInteractive`) — **once per app** |
+| Runtime | `https://cdn.aidesigner.ai/effects/runtime/v1.js` via `components/AidesignerRuntime.jsx` — **homepage only** (`pathname === '/'`), `id="aidesigner-effects-runtime"`, `afterInteractive` |
 | Static fallback | `.noise-shimmer-fallback` layered radials (same palette) for first paint / CDN failure / no-JS |
 | Readability | Existing `.hero-vignette` pearl wash slightly strengthened (`-z-[5]`); content `z-[1]` |
 | CSP | None configured in project — no allowlist change required |

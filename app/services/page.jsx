@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import StickyCtaBar from '@/components/StickyCtaBar';
+import { getBookingPolicy } from '@/lib/email';
 import {
   SERVICES,
   formatDuration,
@@ -14,6 +15,8 @@ export const metadata = {
 };
 
 export default function ServicesPage() {
+  const bookingPolicy = getBookingPolicy();
+
   return (
     <section
       data-services-menu
@@ -35,6 +38,12 @@ export default function ServicesPage() {
           {/* PLACEHOLDER menu — OPEN_ITEMS.md: names, durations, prices need Emily’s confirmation */}
           Every visit starts with a barrier read. Names, times, and prices below are a working draft
           until Emily publishes the live menu — polished prose, not confirmed business facts.
+        </p>
+        <p
+          data-reveal
+          className="mt-4 max-w-xl font-body text-sm font-light leading-relaxed text-charcoal/65"
+        >
+          {bookingPolicy.publicNote}
         </p>
       </div>
 

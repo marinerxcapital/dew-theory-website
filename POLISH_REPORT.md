@@ -186,3 +186,21 @@ Homepage content, nav, CTAs, and sections preserved. Runtime loads once via `nex
 | Commit | `904ffc6` — `fix(nav): improve logo contrast over Noise Shimmer` |
 | Deploy | Cloudflare Worker `dew-theory` version `a53c3568-c230-448d-97d3-44f69b78eb70` |
 | Live | https://dewtheoryco.com — logo-mark + `.nav-logo` halo/drop-shadow CSS verified on production CSS bundle |
+
+---
+
+## 2026-07-31 — Full non-Stripe product completion pass
+
+| Area | Status |
+|------|--------|
+| Google Calendar | freebusy + event create in `lib/availability.js`; env-gated; mock fallback |
+| Email | `lib/email.js` + booking/order/VC/membership; admin `/admin/emails` |
+| Admin 2FA | TOTP via `lib/totp.js` when `ADMIN_TOTP_SECRET` set |
+| Conversion | Home sticky CTA; starter kits (`lib/routine-kits.js`); post-book/post-order prep |
+| Membership | Live `/membership` + `POST /api/membership/interest`; no fake prices |
+| Analytics | 7-day first-party weekly strip |
+| Perf | AIDesigner runtime homepage-only |
+| Stripe | **Not connected** (owner); mock checkout + full Stripe code path remain |
+| Tests | **164 pass** |
+| Build | **pass** (membership + membership interest routes) |
+| Remaining owner secrets | `STRIPE_*`, optional `GOOGLE_CALENDAR_*`, `RESEND_*`, `ADMIN_TOTP_SECRET`, Emily menu/prices |

@@ -136,7 +136,8 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
             </span>
             <span className="mt-1 block">
               Save your order reference
-              {orderId ? ` (${orderId})` : ''} for any questions about this shipment.
+              {orderId ? ` (${orderId})` : ''} — a confirmation email is queued when Resend is
+              configured.
             </span>
           </li>
           <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
@@ -144,7 +145,8 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
               Next · 2
             </span>
             <span className="mt-1 block">
-              Watch your inbox for confirmation and ship updates from the studio.
+              Emily fulfills Skin Script wholesale manually unless auto-fulfill is enabled. Watch
+              for ship updates from the studio.
             </span>
           </li>
           <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
@@ -152,7 +154,7 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
               Next · 3
             </span>
             <span className="mt-1 block">
-              Questions or address changes? Use the contact form and include your order reference.
+              Pair the products with a facial when you are ready — sequencing is half the result.
             </span>
           </li>
         </ol>

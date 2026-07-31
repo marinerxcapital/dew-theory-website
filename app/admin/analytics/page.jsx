@@ -5,7 +5,8 @@ import { formatMoney } from '@/lib/shipping';
 import {
   parseDateRange,
   filterByCreatedAt,
-  countEventsByType
+  countEventsByType,
+  weeklyEventSummary
 } from '@/lib/analytics';
 
 const PAIDISH = new Set(['paid', 'fulfilled', 'submitted_to_skin_script']);
@@ -65,6 +66,8 @@ export default async function AdminAnalyticsPage({ searchParams }) {
     { label: 'Confirmed', n: countEventsByType(events, 'booking_confirmed') }
   ];
 
+  const week = weeklyEventSummary(store.events || [], 7);
+
   const rangeQs = (f, t) => {
     const p = new URLSearchParams();
     if (f) p.set('from', f);
@@ -78,8 +81,33 @@ export default async function AdminAnalyticsPage({ searchParams }) {
       <h1 className="font-display text-3xl font-normal text-graphite">Analytics</h1>
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">
         From site data (Orders, Appointments, DiscountCodes, events) — not static mock UI numbers.
-        Visitor traffic source needs a provider (recommended: Vercel Analytics).
+        First-party funnel only; optional third-party traffic analytics later.
       </p>
+
+      <div className="mt-8 glass-1 p-5">
+        <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+          Last 7 days (UTC)
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['Product views', week.byType.product_view],
+            ['Add to cart', week.byType.add_to_cart],
+            ['Checkout completed', week.byType.checkout_completed],
+            ['Bookings confirmed', week.byType.booking_confirmed],
+            ['Checkout started', week.byType.checkout_started],
+            ['Booking started', week.byType.booking_started],
+            ['Membership interest', week.byType.membership_interest],
+            ['All events', week.total_events]
+          ].map(([label, n]) => (
+            <div key={label} className="border border-chrome/15 bg-pearl/40 px-4 py-3">
+              <p className="font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
+                {label}
+              </p>
+              <p className="mt-1 font-display text-2xl font-normal text-graphite">{n}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <form method="get" className="mt-6 flex flex-wrap items-end gap-3 glass-1 p-4">
         <label className="font-body text-xs font-light text-charcoal/70">

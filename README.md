@@ -2,11 +2,17 @@
 
 Motion-first skincare site. Next.js 15 (App Router), Tailwind CSS, GSAP + ScrollTrigger.
 
-Full storefront + admin portal: shop, product detail, cart/checkout, booking, and
-`/admin` (products, orders, discounts, analytics, Skin Script CSV import).
+Full storefront + admin portal: shop, product detail, cart/checkout, booking, virtual
+consultation, membership interest, and `/admin` (products, orders, discounts, analytics,
+outbound email log, Skin Script CSV import / sync).
+
+**Integrations (env-gated):** Google Calendar freebusy + booking events, Resend email,
+optional admin TOTP 2FA. **Stripe** code is wired; leave keys empty for mock checkout until
+billing is connected. See `ENV.md` / `.env.example`.
 
 Storefront pages share one fixed motion background (`components/MotionBackground.jsx` —
-`/hero.mp4` + poster, glass wash). Admin routes keep a solid pearl chrome without video.
+`/hero.mp4` + poster, glass wash). Home hero adds Noise Shimmer (AIDesigner runtime on `/`
+only). Admin routes keep a solid pearl chrome without video.
 
 ## Run locally
 
@@ -26,7 +32,9 @@ npm run start
 
 - URL: http://localhost:3000/admin/login
 - Defaults: `admin@dewtheory.local` / `dew-admin-dev` (override in `.env.local` — see `.env.example`)
+- Optional 2FA: set `ADMIN_TOTP_SECRET` (base32) and enter authenticator code at login
 - Promo code seed: `DEW15` (15% placeholder — not a confirmed client rate)
+- Outbound email log: `/admin/emails` · weekly funnel: `/admin/analytics`
 
 ### Checkout (mock vs Stripe)
 

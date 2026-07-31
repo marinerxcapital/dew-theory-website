@@ -9,7 +9,8 @@ const ALLOWED = new Set([
   'booking_started',
   'booking_service_selected',
   'booking_time_selected',
-  'booking_confirmed'
+  'booking_confirmed',
+  'membership_interest'
 ]);
 
 export async function POST(request) {

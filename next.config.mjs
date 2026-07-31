@@ -20,9 +20,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/studio', destination: '/about', permanent: true },
-      { source: '/studio/:path*', destination: '/about', permanent: true },
-      { source: '/membership', destination: '/services', permanent: true },
-      { source: '/membership/:path*', destination: '/services', permanent: true }
+      { source: '/studio/:path*', destination: '/about', permanent: true }
+      // /membership is a live interest-list + package structure page (no invented prices)
     ];
   },
   async headers() {

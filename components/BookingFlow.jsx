@@ -222,8 +222,8 @@ export default function BookingFlow({
               })}
             </>
           )}
-          . We have {contact.email} for confirmation. Live calendar sync starts when Google
-          credentials are connected.
+          . A confirmation is queued for {contact.email}
+          {slotSource === 'google_calendar' ? ' · live calendar availability' : ''}.
         </p>
         {appointmentId && (
           <p
@@ -239,16 +239,28 @@ export default function BookingFlow({
         >
           <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
-              Next · 1
+              Prep · 1
             </span>
-            <span className="mt-1 block">Watch for a confirmation at {contact.email}.</span>
+            <span className="mt-1 block">
+              Arrive with a clean face when possible — skip heavy makeup the morning of.
+            </span>
           </li>
           <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
-              Next · 2
+              Prep · 2
             </span>
             <span className="mt-1 block">
-              Need to change the time? Contact the studio with your booking reference.
+              Note any new actives, prescriptions, or reactions since your last visit so Emily can
+              adjust the plan.
+            </span>
+          </li>
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+            <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
+              Prep · 3
+            </span>
+            <span className="mt-1 block">
+              Need to change the time? Contact the studio with ref {appointmentId || 'your booking'}.
+              Deposit / cancellation windows appear when Emily confirms them.
             </span>
           </li>
         </ol>
@@ -257,13 +269,19 @@ export default function BookingFlow({
             href="/shop"
             className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
           >
-            Browse products for after
+            Start a home routine
           </Link>
           <Link
             href="/services"
             className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
           >
             Treatment menu
+          </Link>
+          <Link
+            href="/contact"
+            className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+          >
+            Contact studio
           </Link>
         </div>
       </section>

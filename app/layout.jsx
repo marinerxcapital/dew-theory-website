@@ -1,11 +1,11 @@
 import './globals.css';
-import Script from 'next/script';
 import { Bodoni_Moda, Jost, Karla } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import MotionRoot from '@/components/MotionRoot';
 import MotionBackground from '@/components/MotionBackground';
 import AmbientField from '@/components/AmbientField';
+import AidesignerRuntime from '@/components/AidesignerRuntime';
 import ScrollTop from '@/components/ScrollTop';
 import { CartProvider } from '@/components/CartProvider';
 
@@ -65,12 +65,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
       <body className="relative bg-pearl font-body font-light text-charcoal antialiased">
-        <Script
-          id="aidesigner-effects-runtime"
-          src="https://cdn.aidesigner.ai/effects/runtime/v1.js"
-          strategy="afterInteractive"
-        />
         <CartProvider>
+          <AidesignerRuntime />
           <MotionBackground />
           <AmbientField />
           <MotionRoot />

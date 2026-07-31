@@ -2,9 +2,13 @@ import Link from 'next/link';
 import Hero from '@/components/Hero';
 import ProductImage from '@/components/ProductImage';
 import Rule from '@/components/Rule';
-import { getFeaturedProducts } from '@/lib/products-server';
+import StickyCtaBar from '@/components/StickyCtaBar';
+import AddRoutineKit from '@/components/AddRoutineKit';
+import { getFeaturedProducts, getProducts } from '@/lib/products-server';
+import { listResolvedKits } from '@/lib/routine-kits';
 import { SERVICES, formatDuration, formatServicePrice } from '@/lib/services';
 import { formatMoney } from '@/lib/shipping';
+import { isShopVisible } from '@/lib/shop';
 
 export const metadata = {
   title: 'Dew Theory — Skin Care',
@@ -33,7 +37,7 @@ export const revalidate = 60;
 // Real Skin Script catalog (data/products.json). Starter-routine pick — not ranked by sales.
 const FEATURED_IDS = [
   'green-tea-citrus-cleanser',
-  'mandelic-brightening-serum',
+  'hydrating-skin-serum',
   'ageless-moisturizer'
 ];
 
@@ -75,9 +79,12 @@ export default function Home() {
     note: p.description_short
   }));
 
+  const kits = listResolvedKits(getProducts(), { isVisible: isShopVisible });
+
   return (
     <>
       <Hero />
+      <StickyCtaBar />
 
       {/* Virtual consultation — post-hero feature block */}
       <section className="border-y border-chrome/15 bg-ivory/60">
@@ -180,6 +187,68 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Curated kits — one-tap cart from real catalog IDs */}
+      {kits.length > 0 && (
+        <section className="mx-auto max-w-shell px-6 pb-16 lg:px-10" aria-labelledby="home-kits">
+          <div data-reveal-group="kits-head">
+            <p
+              data-reveal
+              className="eyebrow-line font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+            >
+              Emily would start you here
+            </p>
+            <h2
+              id="home-kits"
+              data-reveal
+              className="mt-4 font-display text-[clamp(2rem,4.2vw,3rem)] font-normal text-graphite"
+            >
+              Starter kits
+            </h2>
+            <p
+              data-reveal
+              className="mt-4 max-w-xl font-body text-sm font-light leading-relaxed text-charcoal/70"
+            >
+              Full retail pricing — no invented kit discounts. Add every step to your bag in one
+              tap, then edit quantities in cart.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-2" data-reveal-group="kits">
+            {kits.map((kit) => (
+              <article key={kit.id} data-reveal className="glass-1 flex flex-col rounded-[3px] p-8">
+                <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                  {kit.eyebrow}
+                </p>
+                <h3 className="mt-3 font-display text-2xl font-normal text-graphite">{kit.name}</h3>
+                <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/70">
+                  {kit.description}
+                </p>
+                <ul className="mt-6 space-y-2 border-t border-chrome/15 pt-5">
+                  {kit.products.map((p) => (
+                    <li
+                      key={p.id}
+                      className="flex justify-between gap-4 font-body text-sm font-light text-charcoal/75"
+                    >
+                      <span>{p.name}</span>
+                      <span className="shrink-0 text-charcoal/60">
+                        {formatMoney(p.retail_price)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-graphite">
+                  Kit total {formatMoney(kit.subtotal)}
+                  {!kit.complete ? ' · partial (stock)' : ''}
+                </p>
+                <AddRoutineKit
+                  productIds={kit.products.map((p) => p.id)}
+                  label="Add kit to bag"
+                />
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Featured products */}
       <section className="mx-auto max-w-shell px-6 pb-28 lg:px-10" aria-labelledby="home-products">

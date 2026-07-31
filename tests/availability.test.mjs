@@ -85,7 +85,7 @@ describe('excludeBookedSlots / groupSlotsByDay', () => {
   });
 });
 
-describe('getAvailabilityAdapter / Google stub', () => {
+describe('getAvailabilityAdapter / Google adapter', () => {
   it('defaults to mock without Google env', () => {
     const a = getAvailabilityAdapter();
     assert.equal(a.getSource(), 'mock');

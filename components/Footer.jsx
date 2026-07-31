@@ -18,6 +18,7 @@ const columns = [
     head: 'Dew Theory',
     items: [
       ['About Emily', '/about'],
+      ['Membership', '/membership'],
       ['Contact', '/contact'],
       ['FAQ', '/faq']
     ]

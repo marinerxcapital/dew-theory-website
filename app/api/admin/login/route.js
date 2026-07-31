@@ -4,6 +4,7 @@ import {
   sessionCookieOptions,
   validateCredentials
 } from '@/lib/admin-auth';
+import { getAdminTotpSecret, isAdminTotpRequired, verifyTotp } from '@/lib/totp';
 import { audit, mutateStore } from '@/lib/store';
 
 // In-memory rate limit per process (tighten: 10 / 15 min)
@@ -37,6 +38,7 @@ export async function POST(request) {
     const body = await request.json();
     const email = String(body.email || '').slice(0, 320);
     const password = String(body.password || '').slice(0, 256);
+    const totp = String(body.totp || body.code || '').slice(0, 12);
     const admin = validateCredentials(email, password);
 
     if (!admin) {
@@ -56,6 +58,28 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
+    if (isAdminTotpRequired()) {
+      const secret = getAdminTotpSecret();
+      if (!verifyTotp(secret, totp)) {
+        mutateStore((s) => {
+          s.audit_log.unshift({
+            id: `aud_${Date.now()}`,
+            admin_id: admin.id,
+            action: 'admin.login_totp_failed',
+            entity: 'Admins',
+            entity_id: admin.id,
+            diff: { ip },
+            created_at: new Date().toISOString()
+          });
+          return s;
+        });
+        return NextResponse.json(
+          { error: 'Invalid authenticator code', code: 'totp_required', totp_required: true },
+          { status: 401 }
+        );
+      }
+    }
+
     let token;
     try {
       token = createSessionToken(admin);
@@ -66,9 +90,16 @@ export async function POST(request) {
       );
     }
     const cookie = sessionCookieOptions(token);
-    audit(admin.id, 'admin.login_success', 'Admins', admin.id, { ip });
+    audit(admin.id, 'admin.login_success', 'Admins', admin.id, {
+      ip,
+      totp: isAdminTotpRequired()
+    });
 
-    const res = NextResponse.json({ ok: true, admin: { name: admin.name, role: admin.role } });
+    const res = NextResponse.json({
+      ok: true,
+      admin: { name: admin.name, role: admin.role },
+      totp_enabled: isAdminTotpRequired()
+    });
     res.cookies.set(cookie.name, cookie.value, {
       httpOnly: cookie.httpOnly,
       secure: cookie.secure,

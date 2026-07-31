@@ -67,39 +67,30 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | `app/studio/page.jsx` | Working hours (Mon–Sat); address intentionally "pending" (route redirects; content kept) |
 | `app/contact/page.jsx` | `hello@dewtheory.studio` email — domain not confirmed |
 | About credentials block | License board/number not provided |
-| Membership page | Directional language only; no tiers or prices invented (route redirects; content kept) |
+| Membership page | Live `/membership` interest list + package shells; prices null until `MEMBERSHIP_PACKAGES_JSON` |
 | Virtual consultation price/duration | From Stripe Price ID / env only — never hardcode; set before live sell |
 
 ---
 
 ## 4. Unresolved decisions (carried over)
 
-- Payment processor assumed to be Stripe — confirm. Wired for test keys; mock checkout without keys.
+- **Stripe live billing** — owner connects `STRIPE_*` keys + webhook + VC Price ID. Code fully wired; mock checkout without keys.
 - Studio name and address.
-- Deposit percentage and cancellation cutoff window for bookings.
-- Membership program: whether it launches at all, and on what terms (page built without inventing tiers/prices; nav removed).
+- Deposit percentage and cancellation cutoff — **UI/env wired** (`BOOKING_DEPOSIT_PERCENT`, `BOOKING_CANCEL_HOURS`); Emily must set values.
+- Membership **terms/prices** — structure + interest API live; Emily sets `MEMBERSHIP_PACKAGES_JSON` price_cents to sell.
 - Domain name — **production uses dewtheoryco.com** (Cloudflare Worker); confirm as canonical brand domain.
 - **Virtual consultation go-live checklist (owner actions):**
   1. Create Stripe Product/Price → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
   2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` includes consultation metadata sessions
   3. Scheduler URL that mints unique Zoom meetings → `CONSULTATION_SCHEDULING_URL`
-  4. Transactional email → `RESEND_API_KEY` + verified `EMAIL_FROM` (else emails log only)
-  5. Optional R2 private bucket for consultation photos (Workers FS is not durable across isolates)
-- **Skin Script live sync.** No confirmed API. CSV/manual import remains (`/admin/import`).
-  **Also:** mock automated sync + dropship (`/admin/sync`, auto-fulfill on paid). Live path blocked
-  on partner answer — exact questions:
-  1. Is dropship/resale allowed on this wholesale account?
-  2. Catalog channel: partner API, scheduled CSV, or portal export only?
-  3. Order channel: API create PO, EDI, or email PO?
-  4. Canonical SKU + wholesale price file format and cadence?
-  5. Ship-from, tracking format, partial ships, returns process?
-  6. MAP / branding constraints?
-  Details: `docs/SKIN_SCRIPT_SYNC.md`.
-- **Visitor analytics provider** — recommended Vercel Analytics; funnel analytics use first-party events.
-- **Admin two-factor authentication** — recommended, not in initial build.
-- Google Calendar OAuth for live availability (booking uses mock 14-day slots until credentials exist).
-- Supabase project keys (file store at `data/runtime/store.json` mirrors schema until then).
-- Transactional email for order/booking/consultation confirmation (Resend optional path wired).
+  4. Drop `RESEND_API_KEY` + verified `EMAIL_FROM` (code sends; without key emails log to store)
+  5. Optional R2 private bucket for consultation photos
+- **Skin Script live sync.** No confirmed API. CSV/manual + mock adapters live. Partner questions unchanged in `docs/SKIN_SCRIPT_SYNC.md`.
+- **Visitor analytics provider** — first-party weekly funnel in admin is live; optional third-party later.
+- **Admin 2FA** — **implemented** via `ADMIN_TOTP_SECRET` (base32 TOTP); optional until secret set.
+- **Google Calendar** — **freebusy + event create implemented**; set `GOOGLE_CALENDAR_*` to go live (mock fallback if unset or API fails).
+- Supabase project keys (file store still default until owner provisions).
+- Emily portrait / studio photography still pending (honest “portrait pending” slots).
 
 ---
 
@@ -112,11 +103,8 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
   **2026-07-24:** Sitewide `MotionBackground`. **2026-07-25 eng:** poster-first; home plays
   video promptly; non-home defers video until idle (or skips on data-saver/2g); reduced-motion
   stays poster-only. Ambient orbs quiet on `/services`, `/cart`, `/book`, `/virtual-consultation*`.
-  **2026-07-30:** Home hero adds AIDesigner **Noise Shimmer** (`data-aifx="noise-shimmer"`,
-  colors `#6f7cff,#ff4fa3,#4fe3d1`, bg `#7f84b8`, scale 1.66 / shimmer 0.52 / intensity 0.24 /
-  contrast 0.55 / speed 1.37). Runtime once in root layout; static CSS fallback; reduced-motion
-  omits attrs. Commit `3eeadca` · CF version `527da30c-e938-463c-b3d8-0d6eb8c527dc` · live on
-  dewtheoryco.com. Details: `docs/MOTION_BACKGROUND.md`, `POLISH_PROGRESS.md` V1.
+  **2026-07-30:** Home hero adds AIDesigner **Noise Shimmer**. **2026-07-31:** Runtime
+  path-gated to homepage only (`AidesignerRuntime`); logo contrast halo shipped earlier.
 - **Skin Script product photography — INSTALLED 2026-07-24.** All eight catalog products use
   studio assets at `/images/products/skin-script/`. **Still missing (Emily/owner):** portrait,
   studio photography, lifestyle/in-use shots.
@@ -179,6 +167,14 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Production host | **https://dewtheoryco.com** (Cloudflare Worker `dew-theory`) |
 | Noise Shimmer hero | Done 2026-07-30 — commit `3eeadca`, live verified |
 | Nav logo contrast vs Noise Shimmer | Done 2026-07-30 — halo + drop-shadow UI only; `/logo-mark.webp` unchanged |
+| Google Calendar freebusy + event write | Done 2026-07-31 — code complete; needs GOOGLE_CALENDAR_* secrets |
+| Shared Resend email (book/order/VC/membership) | Done 2026-07-31 — needs RESEND_API_KEY for live send |
+| Admin TOTP 2FA | Done 2026-07-31 — optional ADMIN_TOTP_SECRET |
+| Starter kits + sticky mobile CTA | Done 2026-07-31 |
+| Membership interest + package shells | Done 2026-07-31 — no invented prices |
+| Admin weekly analytics + outbound email log | Done 2026-07-31 |
+| Path-gate AIDesigner to `/` only | Done 2026-07-31 |
+| **Stripe live keys** | **Owner only** — code ready, not connected |
 
 ### Definition of Done notes
 

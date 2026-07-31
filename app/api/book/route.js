@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { logInfo, logWarn } from '@/lib/log';
 import { validateBookingRequest, buildAppointment } from '@/lib/booking';
 import { SERVICES } from '@/lib/services';
+import { GoogleCalendarAdapter } from '@/lib/availability';
+import { sendBookingConfirmationEmail } from '@/lib/email';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
 
 function jsonError(payload, status = 400) {
@@ -97,10 +99,51 @@ export async function POST(request) {
       service_id: appointment.service_id
     });
 
+    // Best-effort: confirmation email + optional Google Calendar event
+    sendBookingConfirmationEmail({
+      appointment,
+      service: result.service
+    }).catch((err) => logWarn('book.email_failed', { message: err?.message }));
+
+    const gcal = new GoogleCalendarAdapter();
+    if (gcal.isConfigured()) {
+      gcal
+        .createEvent({
+          summary: `Dew Theory · ${result.service.name}`,
+          description: [
+            `Client: ${appointment.customer?.name || ''}`,
+            `Email: ${appointment.customer?.email || ''}`,
+            `Phone: ${appointment.customer?.phone || ''}`,
+            `Notes: ${appointment.customer?.notes || ''}`,
+            `Ref: ${appointment.id}`
+          ].join('\n'),
+          startIso: appointment.start_time,
+          durationMinutes: result.service.duration_minutes || 60,
+          attendeeEmail: appointment.customer?.email
+        })
+        .then((ev) => {
+          if (ev?.id) {
+            mutateStore((s) => {
+              const idx = (s.appointments || []).findIndex((a) => a.id === appointment.id);
+              if (idx >= 0) {
+                s.appointments[idx] = {
+                  ...s.appointments[idx],
+                  google_event_id: ev.id,
+                  google_event_html_link: ev.htmlLink || null
+                };
+              }
+              return s;
+            });
+          }
+        })
+        .catch((err) => logWarn('book.gcal_failed', { message: err?.message }));
+    }
+
     return NextResponse.json({
       appointment_id: appointment.id,
       appointment,
-      code: 'booking_confirmed'
+      code: 'booking_confirmed',
+      email_queued: true
     });
   } catch (err) {
     return jsonError(

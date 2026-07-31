@@ -12,7 +12,8 @@ const nav = [
   { href: '/admin/appointments', label: 'Appointments' },
   { href: '/admin/consultations', label: 'Consultations' },
   { href: '/admin/discounts', label: 'Discounts' },
-  { href: '/admin/analytics', label: 'Analytics' }
+  { href: '/admin/analytics', label: 'Analytics' },
+  { href: '/admin/emails', label: 'Emails' }
 ];
 
 export default function AdminShell({ admin, children }) {

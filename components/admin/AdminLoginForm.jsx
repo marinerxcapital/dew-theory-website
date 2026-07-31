@@ -9,6 +9,8 @@ export default function AdminLoginForm() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [totp, setTotp] = useState('');
+  const [needTotp, setNeedTotp] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -20,10 +22,13 @@ export default function AdminLoginForm() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, totp: totp || undefined })
       });
       const data = await res.json();
       if (!res.ok) {
+        if (data.totp_required || data.code === 'totp_required') {
+          setNeedTotp(true);
+        }
         setError(data.error || 'Login failed');
         setLoading(false);
         return;
@@ -73,6 +78,31 @@ export default function AdminLoginForm() {
           className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal"
         />
       </div>
+      {(needTotp || totp) && (
+        <div>
+          <label
+            htmlFor="admin-totp"
+            className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+          >
+            Authenticator code
+          </label>
+          <input
+            id="admin-totp"
+            type="text"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            pattern="[0-9]{6}"
+            maxLength={6}
+            value={totp}
+            onChange={(e) => setTotp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+            className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light tracking-[0.2em] text-charcoal"
+            placeholder="000000"
+          />
+          <p className="mt-2 font-body text-xs font-light text-charcoal/55">
+            Enter the 6-digit code from your authenticator app (ADMIN_TOTP_SECRET is enabled).
+          </p>
+        </div>
+      )}
       {error && (
         <p className="font-body text-xs font-light text-charcoal/70" role="alert">
           {error}
@@ -88,7 +118,8 @@ export default function AdminLoginForm() {
       {process.env.NODE_ENV !== 'production' && (
         <p className="font-body text-xs font-light text-charcoal/50">
           Dev default: admin@dewtheory.local / dew-admin-dev (override with ADMIN_EMAIL /
-          ADMIN_PASSWORD). Defaults are rejected in production — set env vars.
+          ADMIN_PASSWORD). Defaults are rejected in production — set env vars. Optional 2FA:
+          ADMIN_TOTP_SECRET (base32).
         </p>
       )}
     </form>

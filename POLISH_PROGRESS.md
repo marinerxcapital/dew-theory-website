@@ -85,5 +85,13 @@ Completed: 2026-07-19T21:00:00Z
 | U6 | done | Memory files OPEN_ITEMS/POLISH_* / README refreshed; merge to main | 2026-07-25 |
 | V1 | done | Home hero AIDesigner Noise Shimmer: palette+params; runtime once in layout; static fallback; reduced-motion; commit `3eeadca` → origin/main; CF Worker version `527da30c-e938-463c-b3d8-0d6eb8c527dc`; live HTML verified | 2026-07-30 |
 | V2 | done | Nav logo contrast: soft charcoal-plum radial halo + dual drop-shadow on `.nav-logo` (asset `/logo-mark.webp` unchanged); commit `904ffc6` → main; CF version `a53c3568-c230-448d-97d3-44f69b78eb70`; live CSS verified | 2026-07-30 |
+| W1 | done | Google Calendar freebusy + booking event create; mock fallback | 2026-07-31 |
+| W2 | done | Shared Resend `lib/email.js` — booking, order, VC, membership interest | 2026-07-31 |
+| W3 | done | Admin TOTP 2FA (`ADMIN_TOTP_SECRET`); login form OTP field | 2026-07-31 |
+| W4 | done | Starter kits (real SKUs) + home sticky CTA + booking/order ritual copy | 2026-07-31 |
+| W5 | done | Membership page live + interest API; packages without invented prices | 2026-07-31 |
+| W6 | done | Admin weekly funnel strip + `/admin/emails` outbound log | 2026-07-31 |
+| W7 | done | Path-gate AIDesigner runtime to homepage only | 2026-07-31 |
+| W8 | done | npm test 164 pass; production build; push main; CF deploy dewtheoryco.com | 2026-07-31 |
 
 Status values: pending | in_progress | done | blocked | skipped
