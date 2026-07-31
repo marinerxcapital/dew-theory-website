@@ -48,7 +48,25 @@ export default function Hero() {
         reduced ? '' : 'specular'
       }`}
     >
-      {/* Motion video is sitewide (MotionBackground). Hero only adds fold vignette + content. */}
+      {/* AIDesigner Noise Shimmer — decorative hero plane (static fallback always paints first). */}
+      <div
+        {...(reduced
+          ? {}
+          : {
+              'data-aifx': 'noise-shimmer',
+              'data-aifx-colors': '#6f7cff,#ff4fa3,#4fe3d1',
+              'data-aifx-bg': '#7f84b8',
+              'data-aifx-scale': '1.66',
+              'data-aifx-shimmer': '0.52',
+              'data-aifx-intensity': '0.24',
+              'data-aifx-contrast': '0.55',
+              'data-aifx-speed': '1.37'
+            })}
+        className="noise-shimmer-fallback absolute inset-0 -z-10 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Soft pearl wash so graphite/charcoal type stays readable over the shimmer. */}
       <div className="hero-vignette absolute inset-0 -z-[5]" aria-hidden="true" />
 
       <div className="relative z-[1] mx-auto grid w-full max-w-shell gap-10 px-5 pb-14 pt-2 sm:gap-14 sm:px-6 sm:pb-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-10 lg:pb-24">

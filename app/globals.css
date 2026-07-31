@@ -111,6 +111,10 @@ button {
   .specular::after { content: none !important; display: none !important; }
   .ambient-orb { animation: none !important; }
   .motion-bg__video { display: none !important; }
+  /* AIDesigner Noise Shimmer: keep static gradient fallback only */
+  [data-aifx='noise-shimmer'] canvas {
+    display: none !important;
+  }
   .scroll-cue { animation: none !important; opacity: 0.55 !important; transform: none !important; }
   .media-zoom img,
   .media-zoom .media-zoom-target,
@@ -768,12 +772,22 @@ article:hover [data-product-image-frame] .media-zoom-target {
   filter: saturate(1.22) contrast(1.08) brightness(1.02);
 }
 
+/* AIDesigner Noise Shimmer — static first-paint fallback (no white flash) */
+.noise-shimmer-fallback {
+  background-color: #7f84b8;
+  background-image:
+    radial-gradient(ellipse 75% 55% at 18% 28%, rgba(111, 124, 255, 0.85) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 50% at 82% 18%, rgba(255, 79, 163, 0.72) 0%, transparent 52%),
+    radial-gradient(ellipse 60% 55% at 62% 82%, rgba(79, 227, 209, 0.68) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(127, 132, 184, 0.4) 0%, #7f84b8 70%);
+}
+
 /* Hero vignette + scroll cue */
 .hero-vignette {
   pointer-events: none;
   background:
-    radial-gradient(ellipse 85% 70% at 50% 45%, transparent 30%, rgba(244, 246, 247, 0.35) 100%),
-    linear-gradient(180deg, rgba(244, 246, 247, 0.15) 0%, transparent 28%, transparent 55%, rgba(244, 246, 247, 0.55) 100%);
+    radial-gradient(ellipse 85% 70% at 50% 45%, transparent 30%, rgba(244, 246, 247, 0.42) 100%),
+    linear-gradient(180deg, rgba(244, 246, 247, 0.22) 0%, transparent 28%, transparent 55%, rgba(244, 246, 247, 0.58) 100%);
 }
 .scroll-cue {
   background: linear-gradient(
