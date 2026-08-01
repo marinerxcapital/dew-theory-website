@@ -129,7 +129,7 @@ export default function ShopGrid({ products = [] }) {
           id="shop-product-grid"
           role="tabpanel"
           aria-labelledby={`shop-tab-${category === 'all' ? 'all' : category.replace(/\s+/g, '-').toLowerCase()}`}
-          className="mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-6"
+          className="content-auto mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-6"
           data-reveal-group="shop"
         >
           {filtered.map((p) => (

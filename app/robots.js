@@ -19,10 +19,12 @@ export default function robots() {
           '/virtual-consultation/plan',
           '/virtual-consultation/plan/',
           '/virtual-consultation/success',
-          '/cart/confirmation'
+          '/cart/confirmation',
+          '/cart/confirmation/'
         ]
       }
     ],
-    sitemap: `${site}/sitemap.xml`
+    sitemap: `${site}/sitemap.xml`,
+    host: site
   };
 }

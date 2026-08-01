@@ -1,17 +1,7 @@
-'use client';
-
 /**
- * Quiet ambient wash only — no floating orbs.
- * Solid pearl surfaces don't need heavy blur refraction fields.
+ * Ambient field removed for performance — solid pearl + surface cards need no
+ * fixed paint layer. Kept as a no-op so layout imports stay stable.
  */
 export default function AmbientField() {
-  return (
-    <div
-      className="ambient-field ambient-field--quiet"
-      aria-hidden="true"
-      data-ambient="quiet"
-    >
-      <span className="ambient-mesh" />
-    </div>
-  );
+  return null;
 }

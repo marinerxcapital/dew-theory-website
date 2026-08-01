@@ -8,9 +8,15 @@ import {
 } from '@/lib/shipping';
 
 export const metadata = {
-  title: 'FAQ',
+  title: 'FAQ — Shipping, Appointments & Products',
   description:
-    'Shipping, appointments, Skin Script products, and virtual consultations at Dew Theory — practical answers without invented studio policies.'
+    'Answers about free shipping at $49+, Skin Script products, facials, virtual consultations, discounts, and returns at Dew Theory.',
+  alternates: { canonical: '/faq' },
+  openGraph: {
+    title: 'FAQ — Dew Theory',
+    description: 'Shipping, appointments, products, and virtual consultations — answered plainly.',
+    url: '/faq'
+  }
 };
 
 const FAQS = [

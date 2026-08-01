@@ -9,14 +9,22 @@ import {
 } from '@/lib/shipping';
 
 export const metadata = {
-  title: 'Shop',
+  title: 'Shop Skin Script Skincare',
   description:
-    'Skin Script professional skincare — the same actives Emily uses in the studio. Free shipping at $49+ pre-discount.',
+    'Shop Skin Script professional skincare — the same actives Emily uses in the studio. Free shipping at $49+ pre-discount. Cleansers, serums, moisturizers, SPF, and more.',
+  alternates: { canonical: '/shop' },
   openGraph: {
-    title: 'Shop — Dew Theory',
+    title: 'Shop Skin Script — Dew Theory',
     description:
-      'Skin Script professional skincare — the same actives Emily uses in the studio.',
-    images: [{ url: '/logo.png', alt: 'Dew Theory' }]
+      'Professional Skin Script skincare with clear retail pricing. Free shipping at $49+.',
+    url: '/shop',
+    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Dew Theory shop' }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shop Skin Script — Dew Theory',
+    description: 'Professional Skin Script skincare with clear retail pricing.',
+    images: ['/logo.png']
   }
 };
 

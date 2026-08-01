@@ -9,9 +9,16 @@ import {
 } from '@/lib/services';
 
 export const metadata = {
-  title: 'Services',
+  title: 'Facial Services & Treatments',
   description:
-    'In-studio facial treatments with Emily Mitchener. Barrier read first, then the right protocol for that week.'
+    'In-studio facial treatments with licensed aesthetician Emily Mitchener. Barrier read first, then the right protocol for that week. Book online.',
+  alternates: { canonical: '/services' },
+  openGraph: {
+    title: 'Facial Services — Dew Theory',
+    description:
+      'In-studio facials with Emily Mitchener. Barrier read first, then the right protocol.',
+    url: '/services'
+  }
 };
 
 export default function ServicesPage() {

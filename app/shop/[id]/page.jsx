@@ -20,14 +20,28 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const product = getProduct(params.id) || PRODUCTS.find((p) => p.id === params.id);
   if (!product) return { title: 'Product' };
+  const img = productImageSrc(product);
+  const desc =
+    product.description_short ||
+    `${product.name} — Skin Script professional skincare at Dew Theory.`;
   return {
-    title: product.name,
-    description: product.description_short,
+    title: `${product.name} | Skin Script`,
+    description: desc,
+    alternates: { canonical: `/shop/${product.id}` },
     openGraph: {
+      type: 'website',
       title: `${product.name} — Dew Theory`,
-      description: product.description_short,
-      images: [{ url: productImageSrc(product), alt: productImageAlt(product) }]
-    }
+      description: desc,
+      url: `/shop/${product.id}`,
+      images: [{ url: img, width: 832, height: 1232, alt: productImageAlt(product) }]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.name} — Dew Theory`,
+      description: desc,
+      images: [img]
+    },
+    robots: { index: true, follow: true }
   };
 }
 
@@ -72,28 +86,47 @@ export default function ProductDetailPage({ params }) {
     /\/$/,
     ''
   );
+  const imgUrl = `${site}${productImageSrc(product)}`;
+  const productUrl = `${site}/shop/${product.id}`;
   const productLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
     description: product.description_short,
-    image: `${site}${productImageSrc(product)}`,
+    image: [imgUrl],
+    sku: product.id,
     brand: { '@type': 'Brand', name: 'Skin Script' },
+    category: product.category,
     offers: {
       '@type': 'Offer',
       priceCurrency: 'USD',
-      price: String(product.retail_price),
+      price: Number(product.retail_price).toFixed(2),
       availability:
         product.stock_status === 'out_of_stock'
           ? 'https://schema.org/OutOfStock'
           : 'https://schema.org/InStock',
-      url: `${site}/shop/${product.id}`
+      url: productUrl,
+      seller: { '@type': 'Organization', name: 'Dew Theory' }
     }
+  };
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site },
+      { '@type': 'ListItem', position: 2, name: 'Shop', item: `${site}/shop` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: product.name,
+        item: productUrl
+      }
+    ]
   };
 
   return (
     <article className="mx-auto max-w-shell px-6 pb-24 pt-28 sm:pt-32 lg:px-10">
-      <JsonLd data={productLd} />
+      <JsonLd data={[productLd, breadcrumbLd]} />
       <ProductViewTracker productId={product.id} />
 
       <nav aria-label="Breadcrumb" className="mb-8" data-reveal>
@@ -122,7 +155,8 @@ export default function ProductDetailPage({ params }) {
             product={product}
             priority
             framed
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            quality={80}
+            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 520px"
           />
           {badge && (
             <span className="absolute left-4 top-4 z-[2] border border-chrome/20 bg-surface/95 px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-charcoal">

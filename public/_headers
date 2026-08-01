@@ -23,8 +23,15 @@
 /hero-original.mp4
   Cache-Control: public,max-age=31536000,immutable
 
+# Product photography — aggressive cache (WebP primary path)
+/images/*
+  Cache-Control: public,max-age=31536000,immutable
+
 # Extension wildcards (static assets under public/)
 /*.webp
+  Cache-Control: public,max-age=31536000,immutable
+
+/*.avif
   Cache-Control: public,max-age=31536000,immutable
 
 /*.mp4

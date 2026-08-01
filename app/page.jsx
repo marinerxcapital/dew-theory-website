@@ -10,23 +10,25 @@ import { formatMoney } from '@/lib/shipping';
 import { isShopVisible } from '@/lib/shop';
 
 export const metadata = {
-  title: 'Dew Theory — Skin Care',
+  title: 'Clinical Skin Care & Facials',
   description:
-    'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
+    'Shop Skin Script professional skincare and book facials or virtual consultations with licensed aesthetician Emily Mitchener. Free shipping at $49+.',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Dew Theory — Skin Care',
+    title: 'Dew Theory — Clinical Skin Care & Facials',
     description:
-      'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
+      'Skin Script actives for home and in-studio facials with Emily Mitchener. Free shipping at $49+.',
     type: 'website',
     locale: 'en_US',
+    url: '/',
     siteName: 'Dew Theory',
     images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Dew Theory' }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dew Theory — Skin Care',
+    title: 'Dew Theory — Clinical Skin Care & Facials',
     description:
-      'Skin Script formulations and in-studio facials with licensed aesthetician Emily Mitchener.',
+      'Skin Script actives for home and in-studio facials with Emily Mitchener.',
     images: ['/logo.png']
   }
 };
@@ -122,8 +124,11 @@ export default function Home() {
             </Link>
           </div>
         ) : (
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6" data-reveal-group="products">
-            {products.map((p) => (
+          <div
+            className="content-auto mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+            data-reveal-group="products"
+          >
+            {products.map((p, i) => (
               <Link
                 key={p.id}
                 href={`/shop/${p.id}`}
@@ -133,7 +138,9 @@ export default function Home() {
                 <div className="relative">
                   <ProductImage
                     product={p}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={i === 0}
+                    quality={70}
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 360px"
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-6">

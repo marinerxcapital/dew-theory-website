@@ -18,7 +18,7 @@ export default function ScrollTop() {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-20 right-4 z-30 flex size-11 items-center justify-center border border-chrome/30 bg-pearl/90 font-label text-[0.58rem] font-light uppercase tracking-lockup text-charcoal shadow-[0_12px_32px_-16px_rgba(45,47,58,0.45)] backdrop-blur-md transition-opacity hover:border-graphite/40 lg:bottom-8 lg:right-8"
+      className="fixed bottom-[max(5.5rem,env(safe-area-inset-bottom))] right-4 z-30 flex size-11 min-h-[44px] min-w-[44px] items-center justify-center border border-chrome/25 bg-surface/95 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-charcoal shadow-card transition-opacity hover:border-graphite/40 lg:bottom-8 lg:right-8"
       aria-label="Back to top"
     >
       Top

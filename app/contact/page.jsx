@@ -3,7 +3,14 @@ import ContactForm from '@/components/ContactForm';
 
 export const metadata = {
   title: 'Contact',
-  description: 'Write Dew Theory — products, appointments, or the studio.'
+  description:
+    'Contact Dew Theory about products, appointments, shipping, or the studio. We respond as soon as we can.',
+  alternates: { canonical: '/contact' },
+  openGraph: {
+    title: 'Contact — Dew Theory',
+    description: 'Write Dew Theory about products, appointments, or the studio.',
+    url: '/contact'
+  }
 };
 
 export default function ContactPage() {

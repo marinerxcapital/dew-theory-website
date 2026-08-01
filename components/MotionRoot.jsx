@@ -9,213 +9,90 @@ function prefersReducedMotion() {
 }
 
 /**
- * Sitewide motion: route cross-fade, scroll reveals, nav frosting.
- * Under prefers-reduced-motion: no js-motion hide, no GSAP tweens, no ScrollTriggers.
- * GSAP is dynamically imported to keep it out of the initial bundle.
+ * Lightweight site motion — no GSAP.
+ * Nav frost + IntersectionObserver scroll reveals (CSS transitions only).
+ * Keeps ~70KB+ of animation library off the critical path (TBT / mobile).
  */
 export default function MotionRoot() {
   const pathname = usePathname();
 
   useEffect(() => {
-    let cancelled = false;
-    /** @type {import('gsap').gsap | null} */
-    let gsap = null;
-    /** @type {typeof import('gsap/ScrollTrigger').ScrollTrigger | null} */
-    let ScrollTrigger = null;
-    let ctx;
-    let mm;
-    let raf = 0;
-    let t2 = 0;
-    /** @type {(() => void) | undefined} */
-    let cleanupNav;
-    /** @type {(() => void) | undefined} */
-    let cleanupMq;
+    const root = document.documentElement;
+    const nav = document.querySelector('[data-nav]');
+    const reduced = prefersReducedMotion();
+    const isAdmin = pathname?.startsWith('/admin');
 
-    const hardCleanup = () => {
-      cancelAnimationFrame(raf);
-      window.clearTimeout(t2);
-      cleanupNav?.();
-      cleanupMq?.();
-      cleanupNav = undefined;
-      cleanupMq = undefined;
-      if (ctx) ctx.revert();
-      if (mm) mm.revert();
-      ctx = undefined;
-      mm = undefined;
-      if (ScrollTrigger) {
-        ScrollTrigger.getAll().forEach((st) => st.kill());
-      }
-      if (gsap) {
-        gsap.set('[data-reveal]', { clearProps: 'all' });
-        gsap.set('#main', { clearProps: 'opacity' });
-      }
+    const setNavState = () => {
+      if (!nav) return;
+      // Always frosted in clinical redesign; keep attribute for CSS compatibility
+      nav.dataset.state = 'frosted';
     };
+    setNavState();
 
-    (async () => {
-      const gsapMod = await import('gsap');
-      const stMod = await import('gsap/ScrollTrigger');
-      if (cancelled) return;
+    if (isAdmin || reduced) {
+      root.classList.remove('js-motion');
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        el.classList.add('is-inview');
+        el.dataset.revealDone = '1';
+      });
+      return undefined;
+    }
 
-      gsap = gsapMod.default;
-      ScrollTrigger = stMod.ScrollTrigger;
-      gsap.registerPlugin(ScrollTrigger);
+    root.classList.add('js-motion');
 
-      const reduced = prefersReducedMotion();
+    const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!nodes.length || typeof IntersectionObserver === 'undefined') {
+      nodes.forEach((el) => {
+        el.classList.add('is-inview');
+        el.dataset.revealDone = '1';
+      });
+      return () => root.classList.remove('js-motion');
+    }
 
-      // Admin or reduced motion: never leave content at opacity 0
-      if (pathname?.startsWith('/admin') || reduced) {
-        document.documentElement.classList.remove('js-motion');
-        gsap.set('[data-reveal]', { clearProps: 'all' });
-        gsap.set('#main', { clearProps: 'opacity' });
-        document.querySelectorAll('[data-reveal]').forEach((el) => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target;
+          el.classList.add('is-inview');
           el.dataset.revealDone = '1';
-        });
-        ScrollTrigger.getAll().forEach((st) => st.kill());
+          io.unobserve(el);
+        }
+      },
+      { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+    );
 
-        if (pathname?.startsWith('/admin')) return;
-
-        // Still frost nav on scroll without animated threshold fuss
-        const nav = document.querySelector('[data-nav]');
-        const onScroll = () => {
-          if (!nav) return;
-          nav.dataset.state = window.scrollY > 48 ? 'frosted' : 'clear';
-        };
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        cleanupNav = () => window.removeEventListener('scroll', onScroll);
+    nodes.forEach((el) => {
+      if (el.dataset.revealDone === '1') {
+        el.classList.add('is-inview');
         return;
       }
+      // Above-the-fold: reveal immediately to avoid LCP/text delay
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        el.classList.add('is-inview');
+        el.dataset.revealDone = '1';
+      } else {
+        io.observe(el);
+      }
+    });
 
-      document.documentElement.classList.add('js-motion');
-
-      const nav = document.querySelector('[data-nav]');
-      const main = document.getElementById('main');
-
-      const frostThreshold = () => {
-        if (pathname === '/') return window.innerHeight * 0.72;
-        return 48;
-      };
-      const onScroll = () => {
-        if (!nav) return;
-        nav.dataset.state = window.scrollY > frostThreshold() ? 'frosted' : 'clear';
-      };
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
-      cleanupNav = () => window.removeEventListener('scroll', onScroll);
-
-      const bindReveals = () => {
-        if (cancelled || prefersReducedMotion() || !gsap || !ScrollTrigger) return;
-
-        const nodes = document.querySelectorAll('[data-reveal]');
-        const groups = new Map();
-        nodes.forEach((el) => {
-          if (el.dataset.revealDone === '1') return;
-          const key = el.closest('[data-reveal-group]') || el;
-          if (!groups.has(key)) groups.set(key, []);
-          groups.get(key).push(el);
-        });
-
-        groups.forEach((els) => {
-          gsap.to(els, {
-            opacity: 1,
-            y: 0,
-            duration: 0.95,
-            ease: 'power2.out',
-            stagger: 0.09,
-            scrollTrigger: {
-              trigger: els[0],
-              start: 'top 90%',
-              once: true,
-              onEnter: () => {
-                els.forEach((el) => {
-                  el.dataset.revealDone = '1';
-                });
-              }
-            }
-          });
-        });
-
-        ScrollTrigger.refresh();
-      };
-
-      const run = () => {
-        if (cancelled || !gsap || !ScrollTrigger) return;
-        if (ctx) ctx.revert();
-        if (mm) mm.revert();
-        ScrollTrigger.getAll().forEach((st) => st.kill());
-
-        // User flipped OS setting mid-session
-        if (prefersReducedMotion()) {
-          document.documentElement.classList.remove('js-motion');
-          gsap.set('[data-reveal]', { clearProps: 'all' });
-          gsap.set('#main', { clearProps: 'opacity' });
-          return;
-        }
-
-        ctx = gsap.context(() => {
-          mm = gsap.matchMedia();
-
-          mm.add('(prefers-reduced-motion: reduce)', () => {
-            document.documentElement.classList.remove('js-motion');
-            gsap.set('[data-reveal]', { opacity: 1, y: 0, clearProps: 'transform' });
-            gsap.set('#main', { clearProps: 'opacity' });
-            document.querySelectorAll('[data-reveal]').forEach((el) => {
-              el.dataset.revealDone = '1';
-            });
-          });
-
-          mm.add('(prefers-reduced-motion: no-preference)', () => {
-            document.documentElement.classList.add('js-motion');
-            if (main) {
-              // Soft entry only — short; no scale/slide (hierarchy, not decoration)
-              gsap.fromTo(
-                main,
-                { opacity: 0.35 },
-                { opacity: 1, duration: 0.35, ease: 'power1.out', overwrite: true }
-              );
-            }
-
-            document.querySelectorAll('[data-reveal]').forEach((el) => {
-              if (el.dataset.revealDone === '1') {
-                gsap.set(el, { opacity: 1, y: 0 });
-              } else {
-                gsap.set(el, { opacity: 0, y: 18 });
-              }
-            });
-
-            bindReveals();
-          });
-        }, main || undefined);
-
-        raf = requestAnimationFrame(() => {
-          t2 = window.setTimeout(() => {
-            if (prefersReducedMotion() || cancelled) return;
-            bindReveals();
-          }, 120);
-        });
-      };
-
-      run();
-
-      // Live toggle if user changes OS preference while tab is open
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const onMq = () => {
-        if (mq.matches) {
-          document.documentElement.classList.remove('js-motion');
-          ScrollTrigger.getAll().forEach((st) => st.kill());
-          gsap.set('[data-reveal]', { clearProps: 'all' });
-          gsap.set('#main', { clearProps: 'opacity' });
-        } else {
-          run();
-        }
-      };
-      mq.addEventListener?.('change', onMq);
-      cleanupMq = () => mq.removeEventListener?.('change', onMq);
-    })();
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onMq = () => {
+      if (!mq.matches) return;
+      root.classList.remove('js-motion');
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        el.classList.add('is-inview');
+        el.dataset.revealDone = '1';
+      });
+      io.disconnect();
+    };
+    mq.addEventListener?.('change', onMq);
 
     return () => {
-      cancelled = true;
-      hardCleanup();
+      mq.removeEventListener?.('change', onMq);
+      io.disconnect();
+      root.classList.remove('js-motion');
     };
   }, [pathname]);
 

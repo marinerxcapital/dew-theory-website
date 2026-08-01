@@ -45,6 +45,22 @@ body {
   }
 }
 
+/* Mobile: keep interactive targets tappable; reduce paint on long lists */
+@media (max-width: 767px) {
+  .btn-primary,
+  .btn-ghost,
+  a.btn-primary,
+  a.btn-ghost {
+    min-height: 44px;
+  }
+}
+
+/* Below-fold product grids: browser may skip layout until near viewport */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
 /* Horizontal table scroller with edge fade cue */
 .table-scroll {
   overflow-x: auto;
@@ -252,7 +268,7 @@ label:has(input:focus-visible) {
   background-size: 100% 100%;
 }
 
-/* ---- Site motion plane — very quiet; solid retail first ---- */
+/* ---- Site background — solid pearl (no video, no fixed media decode) ---- */
 .motion-bg {
   position: fixed;
   inset: 0;
@@ -261,51 +277,21 @@ label:has(input:focus-visible) {
   overflow: hidden;
   background: var(--color-pearl);
 }
-.motion-bg__iridescent {
-  position: absolute;
-  inset: 0;
-  opacity: 0.35;
-}
-.motion-bg__media {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.12;
-}
-.motion-bg__video {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-.motion-bg__video--ready {
-  opacity: 0.12;
-}
 .motion-bg__glass {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(247, 245, 242, 0.55) 0%,
-    rgba(247, 245, 242, 0.78) 45%,
-    rgba(247, 245, 242, 0.92) 100%
-  );
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border: none;
-  box-shadow: none;
+  background: var(--color-pearl);
 }
 .motion-bg__vignette {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(247, 245, 242, 0.4) 0%,
-      transparent 18%,
-      transparent 72%,
-      rgba(247, 245, 242, 0.75) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    rgba(247, 245, 242, 1) 0%,
+    rgba(247, 245, 242, 0.98) 40%,
+    rgba(241, 236, 230, 0.55) 100%
+  );
+  opacity: 0.65;
 }
 
 /* ---- Site ambient: whisper wash only (no orbs sitewide) ---- */
@@ -594,9 +580,29 @@ article:hover [data-product-image-frame] .media-zoom-target {
   display: none;
 }
 
-/* Reveal base state — no-JS and reduced-motion users still see everything. */
-[data-reveal] { opacity: 1; }
-.js-motion [data-reveal] { opacity: 0; transform: translateY(22px); }
+/* Reveal base state — no-JS and reduced-motion users still see everything.
+   With js-motion: CSS transitions driven by IntersectionObserver (.is-inview). */
+[data-reveal] { opacity: 1; transform: none; }
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.js-motion [data-reveal].is-inview {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-motion [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* Nav — solid pearl bar, always readable */
 [data-nav][data-state='frosted'],

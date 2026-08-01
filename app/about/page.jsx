@@ -2,9 +2,15 @@ import Link from 'next/link';
 import Rule from '@/components/Rule';
 
 export const metadata = {
-  title: 'About Emily',
+  title: 'About Emily Mitchener',
   description:
-    'Emily Mitchener — licensed aesthetician. Evidence-informed, barrier-first facials and Skin Script actives, sequenced for your skin.'
+    'Meet Emily Mitchener — licensed aesthetician at Dew Theory. Barrier-first facials and Skin Script professional actives, sequenced for your skin.',
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'About Emily Mitchener — Dew Theory',
+    description: 'Licensed aesthetician offering barrier-first facials and clinical skincare.',
+    url: '/about'
+  }
 };
 
 export default function AboutPage() {

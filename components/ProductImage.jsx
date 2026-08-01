@@ -9,16 +9,17 @@ import {
 
 /**
  * Product media with Skin Script studio photography (or category placeholder).
- * Photos are 832×1232 (52:77) — full bottle/tube, no crop, no extra background.
+ * Photos are 832×1232 (52:77). Primary path is WebP (~40KB).
  *
- * @param {{ product: object, priority?: boolean, className?: string, sizes?: string, framed?: boolean }} props
+ * @param {{ product: object, priority?: boolean, className?: string, sizes?: string, framed?: boolean, quality?: number }} props
  */
 export default function ProductImage({
   product,
   priority = false,
   className = '',
-  sizes = '(max-width: 768px) 100vw, 33vw',
-  framed = false
+  sizes = '(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 360px',
+  framed = false,
+  quality = 75
 }) {
   const src = productImageSrc(product);
   const alt = productImageAlt(product);
@@ -32,7 +33,6 @@ export default function ProductImage({
         framed ? 'rounded-[2px] border border-chrome/15 bg-surface' : 'bg-pearl'
       } ${className}`}
     >
-      {/* Placeholders only: soft pearl field (no iridescent rainbow) */}
       {!photo && (
         <div
           className="absolute inset-0 bg-gradient-to-b from-pearl via-ivory/80 to-pearl"
@@ -45,6 +45,7 @@ export default function ProductImage({
         fill
         sizes={sizes}
         priority={priority}
+        quality={quality}
         unoptimized={unoptimized}
         className={`media-zoom-target ${photo ? 'object-cover object-center' : 'object-cover'}`}
       />

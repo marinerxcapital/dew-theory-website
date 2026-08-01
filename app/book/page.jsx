@@ -2,9 +2,15 @@ import BookingFlow from '@/components/BookingFlow';
 import { SERVICES } from '@/lib/services';
 
 export const metadata = {
-  title: 'Book',
+  title: 'Book a Facial',
   description:
-    'Book a facial with Emily Mitchener. Choose a service, pick a time, leave your details.'
+    'Book an in-studio facial with licensed aesthetician Emily Mitchener. Choose a service, pick a time, and confirm your details online.',
+  alternates: { canonical: '/book' },
+  openGraph: {
+    title: 'Book a Facial — Dew Theory',
+    description: 'Schedule an in-studio facial with Emily Mitchener.',
+    url: '/book'
+  }
 };
 
 export default function BookPage({ searchParams }) {
