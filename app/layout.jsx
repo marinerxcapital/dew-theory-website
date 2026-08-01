@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import MotionRoot from '@/components/MotionRoot';
 import MotionBackground from '@/components/MotionBackground';
 import AmbientField from '@/components/AmbientField';
-import AidesignerRuntime from '@/components/AidesignerRuntime';
 import ScrollTop from '@/components/ScrollTop';
 import { CartProvider } from '@/components/CartProvider';
 
@@ -18,13 +17,13 @@ const display = Bodoni_Moda({
 });
 const label = Jost({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['400', '500'],
   variable: '--font-label',
   display: 'swap'
 });
 const body = Karla({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['400', '500'],
   variable: '--font-body',
   display: 'swap'
 });
@@ -64,9 +63,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
-      <body className="relative bg-pearl font-body font-light text-charcoal antialiased">
+      <body className="relative bg-pearl font-body font-normal text-charcoal antialiased">
         <CartProvider>
-          <AidesignerRuntime />
           <MotionBackground />
           <AmbientField />
           <MotionRoot />

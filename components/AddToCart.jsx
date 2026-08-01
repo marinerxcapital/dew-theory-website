@@ -106,7 +106,7 @@ export default function AddToCart({ product, className = '' }) {
             onClick={handleAdd}
             disabled={needsVariant && !variant}
             aria-disabled={needsVariant && !variant}
-            className="sweep w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
+            className="btn-primary w-full min-h-[48px] px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
           >
             {added
               ? 'Added to cart'

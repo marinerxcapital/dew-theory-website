@@ -92,12 +92,12 @@ export default function ProductDetailPage({ params }) {
   };
 
   return (
-    <article className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <article className="mx-auto max-w-shell px-6 pb-24 pt-28 sm:pt-32 lg:px-10">
       <JsonLd data={productLd} />
       <ProductViewTracker productId={product.id} />
 
-      <nav aria-label="Breadcrumb" className="mb-10" data-reveal>
-        <ol className="flex flex-wrap items-center gap-2 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
+      <nav aria-label="Breadcrumb" className="mb-8" data-reveal>
+        <ol className="flex flex-wrap items-center gap-2 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
           <li>
             <Link href="/shop" className="hover:text-charcoal">
               Shop
@@ -105,10 +105,7 @@ export default function ProductDetailPage({ params }) {
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link
-              href="/shop"
-              className="hover:text-charcoal"
-            >
+            <Link href="/shop" className="hover:text-charcoal">
               {product.category}
             </Link>
           </li>
@@ -119,15 +116,8 @@ export default function ProductDetailPage({ params }) {
         </ol>
       </nav>
 
-      <div className="grid gap-14 lg:grid-cols-2 lg:items-start lg:gap-16" data-reveal-group="pdp">
-        <div data-reveal className="relative">
-          <div
-            className="pointer-events-none absolute -inset-8 -z-10 opacity-70"
-            aria-hidden="true"
-          >
-            <div className="absolute inset-10 rounded-full bg-ice/30 blur-3xl" />
-            <div className="absolute bottom-0 right-4 h-36 w-36 rounded-full bg-blush/25 blur-3xl" />
-          </div>
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14" data-reveal-group="pdp">
+        <div data-reveal className="relative lg:sticky lg:top-28">
           <ProductImage
             product={product}
             priority
@@ -135,7 +125,7 @@ export default function ProductDetailPage({ params }) {
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           {badge && (
-            <span className="absolute left-4 top-4 z-[2] border border-chrome/40 bg-pearl/92 px-3 py-1.5 font-label text-[0.58rem] font-light uppercase tracking-lockup text-charcoal shadow-[0_8px_24px_-12px_rgba(45,47,58,0.35)] backdrop-blur-sm">
+            <span className="absolute left-4 top-4 z-[2] border border-chrome/20 bg-surface/95 px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-charcoal">
               {badge}
             </span>
           )}
@@ -143,40 +133,40 @@ export default function ProductDetailPage({ params }) {
 
         <div data-reveal>
           <Rule left={product.category} right={product.size || 'Size TBD'} />
-          <h1 className="mt-8 font-display text-[clamp(2.3rem,4.8vw,3.6rem)] font-normal leading-[1.08] text-graphite">
+          <h1 className="mt-6 font-display text-[clamp(2.1rem,4.5vw,3.2rem)] font-normal leading-[1.08] text-graphite">
             {product.name}
           </h1>
-          <p className="mt-5 font-label text-lg font-light tracking-wide2 text-charcoal">
+          <p className="mt-4 font-label text-lg font-normal tracking-wide2 text-graphite">
             {formatMoney(product.retail_price)}
           </p>
           {!product.retail_price_confirmed && (
-            <p className="mt-2 font-body text-xs font-light text-charcoal/55">
+            <p className="mt-2 font-body text-xs font-normal text-charcoal/55">
               Retail price pending confirmation (wholesale × 2 applied).
             </p>
           )}
-          <p className="mt-8 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75">
+          <p className="mt-7 max-w-lg font-body text-base font-normal leading-relaxed text-charcoal/80">
             {product.description_short}
           </p>
 
-          <AddToCart product={product} className="mt-10" />
+          <AddToCart product={product} className="mt-9" />
 
           {product.skin_types?.length > 0 && (
-            <div className="mt-12 border-t border-chrome/20 pt-8">
-              <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
+            <div className="mt-10 border-t border-chrome/15 pt-7">
+              <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
                 Skin types
               </p>
-              <p className="mt-3 font-body text-sm font-light text-charcoal/75">
+              <p className="mt-3 font-body text-sm font-normal text-charcoal/75">
                 {product.skin_types.join(' · ')}
               </p>
             </div>
           )}
 
           {product.how_to_use && (
-            <div className="mt-8 border-t border-chrome/20 pt-8">
-              <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
+            <div className="mt-7 border-t border-chrome/15 pt-7">
+              <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
                 How to use
               </p>
-              <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/75">
+              <p className="mt-3 font-body text-sm font-normal leading-relaxed text-charcoal/75">
                 {product.how_to_use}
               </p>
             </div>
@@ -185,15 +175,19 @@ export default function ProductDetailPage({ params }) {
       </div>
 
       {actives.length > 0 && (
-        <section className="mt-24 border-t border-chrome/20 pt-16" data-reveal-group="actives">
-          <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.4rem)] font-normal text-graphite">
+        <section className="mt-20 border-t border-chrome/15 pt-14" data-reveal-group="actives">
+          <h2 className="font-display text-[clamp(1.7rem,3.2vw,2.2rem)] font-normal text-graphite">
             Key actives
           </h2>
-          <ul className="mt-10 grid gap-6 md:grid-cols-2">
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {actives.map((a) => (
-              <li key={a.name} data-reveal className="glass-1 p-6">
+              <li
+                key={a.name}
+                data-reveal
+                className="rounded-[2px] border border-chrome/15 bg-surface p-6"
+              >
                 <p className="font-display text-lg font-normal text-graphite">{a.name}</p>
-                <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/70">
+                <p className="mt-2.5 font-body text-sm font-normal leading-relaxed text-charcoal/70">
                   {a.function}
                 </p>
               </li>
@@ -203,39 +197,38 @@ export default function ProductDetailPage({ params }) {
       )}
 
       {product.conditions_addressed?.length > 0 && (
-        <section className="mt-16" data-reveal>
-          <p className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-chrome">
+        <section className="mt-12" data-reveal>
+          <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
             Addresses
           </p>
-          <p className="mt-3 font-body text-sm font-light text-charcoal/75">
+          <p className="mt-3 font-body text-sm font-normal text-charcoal/75">
             {product.conditions_addressed.join(' · ')}
           </p>
         </section>
       )}
 
       {related.length > 0 && (
-        <section className="mt-24 border-t border-chrome/20 pt-16" data-reveal-group="related">
+        <section className="mt-20 border-t border-chrome/15 pt-14" data-reveal-group="related">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
                 Complete the routine
               </p>
-              <h2 className="mt-3 font-display text-[clamp(1.8rem,3.5vw,2.4rem)] font-normal text-graphite">
+              <h2 className="mt-2 font-display text-[clamp(1.7rem,3.2vw,2.2rem)] font-normal text-graphite">
                 Pair with these
               </h2>
             </div>
             <Link
               href="/shop"
-              className="font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+              className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
             >
               Shop all
             </Link>
           </div>
-          <p className="mt-4 max-w-xl font-body text-sm font-light leading-relaxed text-charcoal/70">
-            Ordered by typical AM/PM sequence (cleanser → actives → moisturizer → SPF), not as a
-            medical protocol.
+          <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-charcoal/70">
+            Ordered by typical AM/PM sequence (cleanser → actives → moisturizer → SPF).
           </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -243,10 +236,10 @@ export default function ProductDetailPage({ params }) {
         </section>
       )}
 
-      <div className="mt-20">
+      <div className="mt-16">
         <Link
           href="/shop"
-          className="font-label text-[0.68rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
         >
           ← Back to shop
         </Link>

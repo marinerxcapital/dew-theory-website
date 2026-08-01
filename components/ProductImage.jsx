@@ -28,19 +28,16 @@ export default function ProductImage({
   return (
     <div
       data-product-image-frame
-      className={`media-zoom relative aspect-[52/77] w-full overflow-hidden rounded-[3px] ${
-        framed ? 'chrome-frame' : ''
-      } ${photo ? 'bg-pearl' : ''} ${className}`}
+      className={`media-zoom relative aspect-[52/77] w-full overflow-hidden ${
+        framed ? 'rounded-[2px] border border-chrome/15 bg-surface' : 'bg-pearl'
+      } ${className}`}
     >
-      {/* Placeholders only: iridescent underlay. Real photos already include studio bg. */}
+      {/* Placeholders only: soft pearl field (no iridescent rainbow) */}
       {!photo && (
-        <>
-          <div className="iridescent absolute inset-0" aria-hidden="true" />
-          <div
-            className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-br from-pearl/25 via-transparent to-lavender/15"
-            aria-hidden="true"
-          />
-        </>
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-pearl via-ivory/80 to-pearl"
+          aria-hidden="true"
+        />
       )}
       <Image
         src={src}
@@ -51,12 +48,6 @@ export default function ProductImage({
         unoptimized={unoptimized}
         className={`media-zoom-target ${photo ? 'object-cover object-center' : 'object-cover'}`}
       />
-      {!photo && (
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-t from-graphite/10 to-transparent"
-          aria-hidden="true"
-        />
-      )}
     </div>
   );
 }

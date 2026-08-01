@@ -25,7 +25,7 @@ export default function AddRoutineKit({ productIds = [], label = 'Add kit to bag
       type="button"
       onClick={onAdd}
       disabled={status === 'adding' || !productIds.length}
-      className="sweep btn-primary mt-6 w-full min-h-[44px] px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup disabled:opacity-60 sm:w-auto"
+      className="btn-primary mt-6 w-full min-h-[44px] px-6 py-3 font-label text-[0.66rem] font-normal uppercase tracking-lockup disabled:opacity-60 sm:w-auto"
     >
       {status === 'done' ? 'Added to bag' : status === 'adding' ? 'Adding…' : label}
     </button>

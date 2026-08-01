@@ -3,7 +3,7 @@ export default function Rule({ left, right, className = '', ...rest }) {
   return (
     <div
       {...rest}
-      className={`flex max-w-full flex-wrap items-center gap-3 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome sm:gap-5 sm:text-[0.68rem] ${className}`}
+      className={`flex max-w-full flex-wrap items-center gap-3 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome sm:gap-5 sm:text-[0.68rem] ${className}`}
     >
       <span className="min-w-0 break-words">{left}</span>
       <span

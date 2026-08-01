@@ -34,9 +34,9 @@ export default function ShopGrid({ products = [] }) {
 
   if (!products.length) {
     return (
-      <div className="glass-1 p-10 text-center" role="status">
+      <div className="rounded-[2px] border border-chrome/15 bg-surface p-10 text-center" role="status">
         <p className="font-display text-xl font-normal text-graphite">No products yet</p>
-        <p className="mx-auto mt-3 max-w-md font-body text-sm font-light text-charcoal/70">
+        <p className="mx-auto mt-3 max-w-md font-body text-sm font-normal text-charcoal/70">
           The collection will appear here once products are added to the catalog.
         </p>
       </div>
@@ -45,9 +45,9 @@ export default function ShopGrid({ products = [] }) {
 
   if (!catalog.length) {
     return (
-      <div className="glass-1 p-10 text-center" role="status">
+      <div className="rounded-[2px] border border-chrome/15 bg-surface p-10 text-center" role="status">
         <p className="font-display text-xl font-normal text-graphite">Nothing available</p>
-        <p className="mx-auto mt-3 max-w-md font-body text-sm font-light text-charcoal/70">
+        <p className="mx-auto mt-3 max-w-md font-body text-sm font-normal text-charcoal/70">
           All listed items are currently discontinued or inactive.
         </p>
       </div>
@@ -87,7 +87,7 @@ export default function ShopGrid({ products = [] }) {
                   document.querySelector('[role="tab"][aria-selected="true"]')?.focus();
                 });
               }}
-              className="filter-chip shrink-0 whitespace-nowrap rounded-[2px] px-4 py-2.5 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome sm:text-[0.66rem]"
+              className="filter-chip shrink-0 whitespace-nowrap rounded-[2px] px-4 py-2.5 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome sm:text-[0.66rem]"
             >
               {c === 'all' ? 'All' : c}
               <span className="ml-1.5 opacity-70" aria-hidden="true">
@@ -99,7 +99,7 @@ export default function ShopGrid({ products = [] }) {
       </div>
 
       <p
-        className="mt-4 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome sm:mt-5"
+        className="mt-4 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome sm:mt-5"
         aria-live="polite"
       >
         {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
@@ -110,16 +110,16 @@ export default function ShopGrid({ products = [] }) {
         <div
           id="shop-product-grid"
           role="tabpanel"
-          className="glass-1 mt-6 p-10 text-center sm:mt-8"
+          className="mt-6 rounded-[2px] border border-chrome/15 bg-surface p-10 text-center sm:mt-8"
         >
           <p className="font-display text-xl font-normal text-graphite">No products in this category</p>
-          <p className="mx-auto mt-3 max-w-sm font-body text-sm font-light text-charcoal/70">
+          <p className="mx-auto mt-3 max-w-sm font-body text-sm font-normal text-charcoal/70">
             Try another filter, or view the full collection.
           </p>
           <button
             type="button"
             onClick={() => setCategory('all')}
-            className="sweep mt-8 border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+            className="btn-ghost mt-8 px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
             Show all
           </button>
@@ -129,7 +129,7 @@ export default function ShopGrid({ products = [] }) {
           id="shop-product-grid"
           role="tabpanel"
           aria-labelledby={`shop-tab-${category === 'all' ? 'all' : category.replace(/\s+/g, '-').toLowerCase()}`}
-          className="mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-7"
+          className="mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-6"
           data-reveal-group="shop"
         >
           {filtered.map((p) => (

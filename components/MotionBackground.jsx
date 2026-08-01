@@ -106,11 +106,20 @@ export default function MotionBackground() {
   // Home can use metadata; deferred non-home routes use none until idle mount.
   const videoPreload = isHome ? 'metadata' : 'none';
 
+  // Quiet clinical: pearl field only on conversion paths; whisper media on browse routes.
+  const isConversion =
+    pathname === '/cart' ||
+    pathname?.startsWith('/cart/') ||
+    pathname === '/book' ||
+    pathname?.startsWith('/book/') ||
+    pathname === '/virtual-consultation' ||
+    pathname?.startsWith('/virtual-consultation/');
+
   return (
     <div className="motion-bg" aria-hidden="true">
-      <div className="iridescent motion-bg__iridescent" />
+      {!isConversion ? <div className="iridescent motion-bg__iridescent" /> : null}
 
-      {showPoster ? (
+      {!isConversion && showPoster ? (
         <Image
           src="/hero-poster.webp"
           alt=""
@@ -121,7 +130,7 @@ export default function MotionBackground() {
         />
       ) : null}
 
-      {mountVideo && !reduced ? (
+      {!isConversion && mountVideo && !reduced ? (
         <video
           className={`motion-bg__media motion-bg__video ${
             hasVideo ? 'motion-bg__video--ready' : ''
@@ -141,7 +150,7 @@ export default function MotionBackground() {
         />
       ) : null}
 
-      <div className="glass-2 motion-bg__glass" />
+      <div className="motion-bg__glass" />
       <div className="motion-bg__vignette" />
     </div>
   );
