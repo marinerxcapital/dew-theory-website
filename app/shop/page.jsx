@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Rule from '@/components/Rule';
 import ShopGrid from '@/components/ShopGrid';
 import { getProducts } from '@/lib/products-server';
@@ -62,6 +63,48 @@ export default function ShopPage() {
             (before discount). Below that, {formatMoney(FLAT_SHIPPING_USD)} flat.
           </p>
         )}
+
+        <div
+          data-reveal
+          className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4"
+        >
+          <Link
+            href="/quiz"
+            className="group flex flex-col justify-between rounded-[2px] border border-chrome/15 bg-graphite p-6 text-pearl transition-colors hover:bg-[#2a2d36] sm:p-7"
+          >
+            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-pearl/55">
+              Teens → 60 & beyond
+            </p>
+            <div className="mt-6">
+              <p className="font-display text-2xl font-normal text-pearl">Skin quiz</p>
+              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-pearl/70">
+                Four questions. A morning and evening sequence built for your chapter of skin.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-pearl">
+                Start the quiz
+                <span className="h-px w-6 bg-pearl/40 transition-[width] group-hover:w-10" />
+              </span>
+            </div>
+          </Link>
+          <Link
+            href="/routine"
+            className="group flex flex-col justify-between rounded-[2px] border border-chrome/15 bg-surface p-6 shadow-card transition-shadow hover:shadow-card-hover sm:p-7"
+          >
+            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
+              AM · PM builder
+            </p>
+            <div className="mt-6">
+              <p className="font-display text-2xl font-normal text-graphite">Build your routine</p>
+              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-charcoal/70">
+                Choose each step. Thin to thick. SPF last by day. Add the sequence in one tap.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-graphite">
+                Open builder
+                <span className="h-px w-6 bg-chrome/50 transition-[width] group-hover:w-10" />
+              </span>
+            </div>
+          </Link>
+        </div>
       </div>
 
       <div className="mt-10 sm:mt-12">

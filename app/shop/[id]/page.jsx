@@ -6,6 +6,7 @@ import JsonLd from '@/components/JsonLd';
 import ProductCard from '@/components/ProductCard';
 import ProductImage from '@/components/ProductImage';
 import ProductViewTracker from '@/components/ProductViewTracker';
+import EmilyPairsWith from '@/components/EmilyPairsWith';
 import { PRODUCTS } from '@/lib/products';
 import { productImageAlt, productImageSrc } from '@/lib/product-image';
 import { getProduct, getProducts } from '@/lib/products-server';
@@ -184,6 +185,21 @@ export default function ProductDetailPage({ params }) {
 
           <AddToCart product={product} className="mt-9" />
 
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/quiz"
+              className="btn-ghost min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
+            >
+              Find my routine
+            </Link>
+            <Link
+              href="/routine"
+              className="inline-flex min-h-[44px] items-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+            >
+              Build AM / PM →
+            </Link>
+          </div>
+
           {product.skin_types?.length > 0 && (
             <div className="mt-10 border-t border-chrome/15 pt-7">
               <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
@@ -241,6 +257,8 @@ export default function ProductDetailPage({ params }) {
         </section>
       )}
 
+      <EmilyPairsWith product={product} catalog={all} limit={4} />
+
       {related.length > 0 && (
         <section className="mt-20 border-t border-chrome/15 pt-14" data-reveal-group="related">
           <div className="flex flex-wrap items-end justify-between gap-4">
@@ -249,14 +267,14 @@ export default function ProductDetailPage({ params }) {
                 Complete the routine
               </p>
               <h2 className="mt-2 font-display text-[clamp(1.7rem,3.2vw,2.2rem)] font-normal text-graphite">
-                Pair with these
+                More from the collection
               </h2>
             </div>
             <Link
-              href="/shop"
+              href="/routine"
               className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
             >
-              Shop all
+              Open routine builder
             </Link>
           </div>
           <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-charcoal/70">

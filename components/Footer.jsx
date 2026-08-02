@@ -5,7 +5,15 @@ import { usePathname } from 'next/navigation';
 import Rule from './Rule';
 
 const columns = [
-  { head: 'Shop', items: [['Shop all', '/shop'], ['Cart', '/cart']] },
+  {
+    head: 'Shop',
+    items: [
+      ['Shop all', '/shop'],
+      ['Skin quiz', '/quiz'],
+      ['Routine builder', '/routine'],
+      ['Cart', '/cart']
+    ]
+  },
   {
     head: 'Services',
     items: [

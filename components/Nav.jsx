@@ -7,9 +7,10 @@ import { useCart } from '@/components/CartProvider';
 
 const links = [
   { href: '/shop', label: 'Shop' },
+  { href: '/quiz', label: 'Skin Quiz' },
+  { href: '/routine', label: 'Routine' },
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'Emily' },
-  { href: '/virtual-consultation', label: 'Virtual' },
   { href: '/contact', label: 'Contact' }
 ];
 

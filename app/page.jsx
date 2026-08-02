@@ -86,6 +86,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Skin quiz + routine — inclusive all ages */}
+      <section className="relative overflow-hidden border-b border-chrome/12">
+        <div className="mx-auto grid max-w-shell lg:grid-cols-2">
+          <div className="flex flex-col justify-center bg-ivory px-6 py-16 sm:px-10 sm:py-20 lg:px-12">
+            <p className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome">
+              For every chapter of skin
+            </p>
+            <h2 className="mt-4 font-display text-[clamp(1.9rem,4vw,2.75rem)] font-normal leading-[1.1] text-graphite">
+              A quiz that listens —
+              <br />
+              teens to 60 & beyond
+            </h2>
+            <p className="mt-5 max-w-md font-body text-sm font-normal leading-relaxed text-charcoal/75 sm:text-base">
+              Four gentle questions. A morning and evening Skin Script sequence shaped by how your
+              skin feels today — not a one-size “anti-aging” script.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/quiz"
+                className="btn-primary min-h-[48px] px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+              >
+                Take the skin quiz
+              </Link>
+              <Link
+                href="/routine"
+                className="btn-ghost min-h-[48px] px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+              >
+                Build AM / PM
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 border-t border-chrome/12 lg:border-l lg:border-t-0">
+            {[
+              ['Teens', 'First routines, calmer actives'],
+              ['20s–30s', 'Clarity, prevention, glow'],
+              ['40s–50s', 'Resilience through change'],
+              ['60+', 'Comfort, barrier, light']
+            ].map(([age, line]) => (
+              <div
+                key={age}
+                className="flex flex-col justify-end border-b border-r border-chrome/12 bg-surface p-6 last:border-r-0 even:border-r-0 sm:p-8 [&:nth-child(2)]:border-r-0 sm:[&:nth-child(2)]:border-r"
+              >
+                <p className="font-display text-2xl font-normal text-graphite sm:text-3xl">{age}</p>
+                <p className="mt-2 font-body text-sm font-normal text-charcoal/65">{line}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured products — commercial first */}
       <section className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10" aria-labelledby="home-products">
         <div className="flex flex-wrap items-end justify-between gap-6" data-reveal-group="products-head">

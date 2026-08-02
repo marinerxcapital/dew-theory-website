@@ -26,12 +26,14 @@ export default function ProductImage({
   const photo = isProductPhotoSrc(src);
   const unoptimized = isSvgSrc(src) || !isLocalImageSrc(src);
 
+  const hasCustomSize = className.includes('h-full') || className.includes('aspect-auto');
+
   return (
     <div
       data-product-image-frame
-      className={`media-zoom relative aspect-[52/77] w-full overflow-hidden ${
-        framed ? 'rounded-[2px] border border-chrome/15 bg-surface' : 'bg-pearl'
-      } ${className}`}
+      className={`media-zoom relative w-full overflow-hidden ${
+        hasCustomSize ? '' : 'aspect-[52/77]'
+      } ${framed ? 'rounded-[2px] border border-chrome/15 bg-surface' : 'bg-pearl'} ${className}`}
     >
       {!photo && (
         <div
