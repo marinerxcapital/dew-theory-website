@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Rule from '@/components/Rule';
 import AddToCart from '@/components/AddToCart';
 import JsonLd from '@/components/JsonLd';
 import ProductCard from '@/components/ProductCard';
@@ -11,7 +10,11 @@ import { PRODUCTS } from '@/lib/products';
 import { productImageAlt, productImageSrc } from '@/lib/product-image';
 import { getProduct, getProducts } from '@/lib/products-server';
 import { suggestRoutineComplements } from '@/lib/routine';
-import { formatMoney } from '@/lib/shipping';
+import {
+  formatMoney,
+  FREE_SHIPPING_THRESHOLD_USD,
+  FLAT_SHIPPING_USD
+} from '@/lib/shipping';
 import { isShopVisible, stockLabel } from '@/lib/shop';
 
 export function generateStaticParams() {
@@ -19,7 +22,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const product = getProduct(params.id) || PRODUCTS.find((p) => p.id === params.id);
+  const { id } = await params;
+  const product = getProduct(id) || PRODUCTS.find((p) => p.id === id);
   if (!product) return { title: 'Product' };
   const img = productImageSrc(product);
   const desc =
@@ -48,8 +52,28 @@ export async function generateMetadata({ params }) {
 
 export const revalidate = 60;
 
-export default function ProductDetailPage({ params }) {
-  const product = getProduct(params.id);
+function AccordionSection({ title, children, defaultOpen = false }) {
+  return (
+    <details
+      className="group border-b border-border py-4"
+      open={defaultOpen || undefined}
+    >
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+        {title}
+        <span className="text-muted transition-transform group-open:rotate-45" aria-hidden="true">
+          +
+        </span>
+      </summary>
+      <div className="mt-3 font-body text-sm font-normal leading-relaxed text-muted">
+        {children}
+      </div>
+    </details>
+  );
+}
+
+export default async function ProductDetailPage({ params }) {
+  const { id } = await params;
+  const product = getProduct(id);
   if (!product) notFound();
 
   const actives = product.key_actives || product.active_ingredients || [];
@@ -61,7 +85,6 @@ export default function ProductDetailPage({ params }) {
     limit: 3
   });
 
-  // If routine suggestions sparse, fill with same-category / skin-type peers
   if (related.length < 3) {
     for (const p of all) {
       if (related.length >= 3) break;
@@ -126,172 +149,209 @@ export default function ProductDetailPage({ params }) {
   };
 
   return (
-    <article className="mx-auto max-w-shell px-6 pb-24 pt-28 sm:pt-32 lg:px-10">
+    <article className="mx-auto max-w-shell px-5 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-10">
       <JsonLd data={[productLd, breadcrumbLd]} />
       <ProductViewTracker productId={product.id} />
 
       <nav aria-label="Breadcrumb" className="mb-8" data-reveal>
-        <ol className="flex flex-wrap items-center gap-2 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+        <ol className="flex flex-wrap items-center gap-2 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted">
           <li>
-            <Link href="/shop" className="hover:text-charcoal">
+            <Link href="/" className="hover:text-ink">
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <Link href="/shop" className="hover:text-ink">
               Shop
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href="/shop" className="hover:text-charcoal">
+            <Link
+              href={`/shop?type=${encodeURIComponent(product.category)}`}
+              className="hover:text-ink"
+            >
               {product.category}
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <span className="text-charcoal/70">{product.name}</span>
+            <span className="text-ink/70">{product.name}</span>
           </li>
         </ol>
       </nav>
 
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14" data-reveal-group="pdp">
-        <div data-reveal className="relative lg:sticky lg:top-28">
+      <div
+        className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-14"
+        data-reveal-group="pdp"
+      >
+        <div data-reveal className="relative bg-surface-light lg:sticky lg:top-28">
           <ProductImage
             product={product}
             priority
             framed
-            quality={80}
-            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 520px"
+            quality={75}
+            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 560px"
           />
-          {badge && (
-            <span className="absolute left-4 top-4 z-[2] border border-chrome/20 bg-surface/95 px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-charcoal">
+          {badge ? (
+            <span className="absolute left-4 top-4 z-[2] border border-border bg-white/95 px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ink">
               {badge}
             </span>
-          )}
+          ) : null}
         </div>
 
-        <div data-reveal>
-          <Rule left={product.category} right={product.size || 'Size TBD'} />
-          <h1 className="mt-6 font-display text-[clamp(2.1rem,4.5vw,3.2rem)] font-normal leading-[1.08] text-graphite">
+        <div data-reveal className="lg:sticky lg:top-28">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted">
+            Skin Script
+            {product.size ? ` · ${product.size}` : ''}
+          </p>
+          <h1 className="mt-3 font-display text-[clamp(2rem,4.2vw,3rem)] font-normal leading-[1.08] text-ink">
             {product.name}
           </h1>
-          <p className="mt-4 font-label text-lg font-normal tracking-wide2 text-graphite">
+          <p className="mt-2 font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+            {product.category}
+          </p>
+          <p className="mt-5 font-label text-xl font-normal tracking-wide2 text-ink">
             {formatMoney(product.retail_price)}
           </p>
-          {!product.retail_price_confirmed && (
-            <p className="mt-2 font-body text-xs font-normal text-charcoal/55">
-              Retail price pending confirmation (wholesale × 2 applied).
-            </p>
-          )}
-          <p className="mt-7 max-w-lg font-body text-base font-normal leading-relaxed text-charcoal/80">
+          <p className="mt-5 max-w-lg font-body text-base font-normal leading-relaxed text-charcoal">
             {product.description_short}
           </p>
 
-          <AddToCart product={product} className="mt-9" />
+          <AddToCart product={product} className="mt-8" />
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-5 border border-border bg-surface-light px-4 py-3">
+            <p className="font-body text-xs leading-relaxed text-charcoal">
+              Free shipping on {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal. Flat{' '}
+              {formatMoney(FLAT_SHIPPING_USD)} below threshold.
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/quiz"
-              className="btn-ghost min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
+              className="btn-dew-outline min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
             >
               Find my routine
             </Link>
             <Link
               href="/routine"
-              className="inline-flex min-h-[44px] items-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+              className="btn-ghost min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
             >
-              Build AM / PM →
+              Build AM / PM
+            </Link>
+            <Link
+              href="/virtual-consultation"
+              className="inline-flex min-h-[44px] items-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
+            >
+              Ask Emily
             </Link>
           </div>
 
-          {product.skin_types?.length > 0 && (
-            <div className="mt-10 border-t border-chrome/15 pt-7">
-              <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
-                Skin types
-              </p>
-              <p className="mt-3 font-body text-sm font-normal text-charcoal/75">
+          <div className="mt-10">
+            <AccordionSection title="What it is" defaultOpen>
+              {product.description_short}
+            </AccordionSection>
+            {product.skin_types?.length > 0 ? (
+              <AccordionSection title="Best for / skin types">
                 {product.skin_types.join(' · ')}
-              </p>
-            </div>
-          )}
-
-          {product.how_to_use && (
-            <div className="mt-7 border-t border-chrome/15 pt-7">
-              <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
-                How to use
-              </p>
-              <p className="mt-3 font-body text-sm font-normal leading-relaxed text-charcoal/75">
-                {product.how_to_use}
-              </p>
-            </div>
-          )}
+                {product.not_recommended_for?.length ? (
+                  <span className="mt-2 block text-muted">
+                    Not typically recommended for: {product.not_recommended_for.join(', ')}.
+                  </span>
+                ) : null}
+              </AccordionSection>
+            ) : null}
+            {product.conditions_addressed?.length > 0 ? (
+              <AccordionSection title="What it addresses">
+                {product.conditions_addressed.join(' · ')}
+              </AccordionSection>
+            ) : null}
+            {actives.length > 0 ? (
+              <AccordionSection title="Key actives">
+                <ul className="space-y-3">
+                  {actives.map((a) => (
+                    <li key={a.name}>
+                      <p className="font-body text-sm text-ink">{a.name}</p>
+                      <p className="mt-1 text-muted">{a.function}</p>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionSection>
+            ) : null}
+            {product.how_to_use ? (
+              <AccordionSection title="How to use">{product.how_to_use}</AccordionSection>
+            ) : null}
+            <AccordionSection title="Shipping & returns">
+              Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal before
+              discount. Flat {formatMoney(FLAT_SHIPPING_USD)} below. See{' '}
+              <Link href="/shipping" className="text-ink underline underline-offset-2">
+                Shipping
+              </Link>{' '}
+              and{' '}
+              <Link href="/returns" className="text-ink underline underline-offset-2">
+                Returns
+              </Link>{' '}
+              for full details.
+            </AccordionSection>
+            <AccordionSection title="Professional guidance">
+              Unsure how this fits your barrier this week?{' '}
+              <Link href="/quiz" className="text-dew underline underline-offset-2">
+                Take the Skin Quiz
+              </Link>
+              ,{' '}
+              <Link href="/routine" className="text-dew underline underline-offset-2">
+                build an AM/PM sequence
+              </Link>
+              , or{' '}
+              <Link
+                href="/virtual-consultation"
+                className="text-dew underline underline-offset-2"
+              >
+                book a virtual consultation
+              </Link>{' '}
+              with Emily.
+            </AccordionSection>
+          </div>
         </div>
       </div>
 
-      {actives.length > 0 && (
-        <section className="mt-20 border-t border-chrome/15 pt-14" data-reveal-group="actives">
-          <h2 className="font-display text-[clamp(1.7rem,3.2vw,2.2rem)] font-normal text-graphite">
-            Key actives
-          </h2>
-          <ul className="mt-8 grid gap-4 md:grid-cols-2">
-            {actives.map((a) => (
-              <li
-                key={a.name}
-                data-reveal
-                className="rounded-[2px] border border-chrome/15 bg-surface p-6"
-              >
-                <p className="font-display text-lg font-normal text-graphite">{a.name}</p>
-                <p className="mt-2.5 font-body text-sm font-normal leading-relaxed text-charcoal/70">
-                  {a.function}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {product.conditions_addressed?.length > 0 && (
-        <section className="mt-12" data-reveal>
-          <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-chrome">
-            Addresses
-          </p>
-          <p className="mt-3 font-body text-sm font-normal text-charcoal/75">
-            {product.conditions_addressed.join(' · ')}
-          </p>
-        </section>
-      )}
-
       <EmilyPairsWith product={product} catalog={all} limit={4} />
 
-      {related.length > 0 && (
-        <section className="mt-20 border-t border-chrome/15 pt-14" data-reveal-group="related">
+      {related.length > 0 ? (
+        <section className="mt-16 border-t border-border pt-12" data-reveal-group="related">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew">
                 Complete the routine
               </p>
-              <h2 className="mt-2 font-display text-[clamp(1.7rem,3.2vw,2.2rem)] font-normal text-graphite">
-                More from the collection
+              <h2 className="mt-2 font-display text-[clamp(1.7rem,3.2vw,2.2rem)] font-normal text-ink">
+                Next steps
               </h2>
             </div>
             <Link
               href="/routine"
-              className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+              className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
             >
               Open routine builder
             </Link>
           </div>
-          <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-charcoal/70">
-            Ordered by typical AM/PM sequence (cleanser → actives → moisturizer → SPF).
+          <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-muted">
+            Suggested by typical layering order (cleanser → actives → moisturizer → SPF).
           </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
         </section>
-      )}
+      ) : null}
 
-      <div className="mt-16">
+      <div className="mt-14">
         <Link
           href="/shop"
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
         >
           ← Back to shop
         </Link>

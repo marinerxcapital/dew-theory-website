@@ -1,13 +1,20 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import Hero from '@/components/Hero';
-import ProductImage from '@/components/ProductImage';
+import ProductRail from '@/components/ProductRail';
 import StickyCtaBar from '@/components/StickyCtaBar';
 import AddRoutineKit from '@/components/AddRoutineKit';
 import { getFeaturedProducts, getProducts } from '@/lib/products-server';
 import { listResolvedKits } from '@/lib/routine-kits';
 import { SERVICES, formatDuration, formatServicePrice } from '@/lib/services';
-import { formatMoney } from '@/lib/shipping';
+import {
+  formatMoney,
+  FREE_SHIPPING_THRESHOLD_USD,
+  FLAT_SHIPPING_USD
+} from '@/lib/shipping';
 import { isShopVisible } from '@/lib/shop';
+import { collectConcerns, presentCategories } from '@/lib/shop-filters';
+import { productById } from '@/lib/products';
 
 export const metadata = {
   title: 'Clinical Skin Care & Facials',
@@ -35,10 +42,12 @@ export const metadata = {
 
 export const revalidate = 60;
 
-const FEATURED_IDS = [
+const EMILY_PICK_IDS = [
   'green-tea-citrus-cleanser',
   'hydrating-skin-serum',
-  'ageless-moisturizer'
+  'ageless-moisturizer',
+  'mandelic-brightening-serum',
+  'sheer-protection-spf'
 ];
 
 const services = SERVICES.slice(0, 4).map((s) => ({
@@ -50,16 +59,18 @@ const services = SERVICES.slice(0, 4).map((s) => ({
 }));
 
 export default function Home() {
-  const products = getFeaturedProducts(FEATURED_IDS).map((p) => ({
-    id: p.id,
-    name: p.name,
-    category: p.category,
-    images: p.images || [],
-    price: formatMoney(p.retail_price),
-    note: p.description_short
-  }));
+  const all = getProducts().filter(isShopVisible);
+  const emilyPicks = getFeaturedProducts(EMILY_PICK_IDS);
+  const kits = listResolvedKits(all, { isVisible: isShopVisible });
+  const concerns = collectConcerns(all).slice(0, 8);
+  const types = presentCategories(all);
 
-  const kits = listResolvedKits(getProducts(), { isVisible: isShopVisible });
+  const sampleAm = [
+    productById('green-tea-citrus-cleanser'),
+    productById('hydrating-skin-serum'),
+    productById('ageless-moisturizer'),
+    productById('sheer-protection-spf')
+  ].filter(Boolean);
 
   return (
     <>
@@ -67,18 +78,19 @@ export default function Home() {
       <StickyCtaBar />
 
       {/* Trust strip */}
-      <section className="border-b border-chrome/12 bg-surface">
-        <div className="mx-auto grid max-w-shell gap-6 px-6 py-8 sm:grid-cols-3 sm:gap-8 lg:px-10">
+      <section className="border-b border-border bg-white" aria-label="Trust signals">
+        <div className="mx-auto grid max-w-shell gap-6 px-5 py-7 sm:grid-cols-2 sm:gap-8 sm:px-6 lg:grid-cols-4 lg:px-10">
           {[
-            ['Professional actives', 'Skin Script formulas Emily uses in treatment'],
-            ['In-studio + virtual', 'Facials and Zoom consults with a licensed aesthetician'],
-            ['Free shipping $49+', 'Flat $7 below threshold, pre-discount']
+            ['Free shipping $49+', `Flat ${formatMoney(FLAT_SHIPPING_USD)} below threshold`],
+            ['Skin Script professional', 'The actives Emily uses in treatment'],
+            ['In-studio + virtual', 'Facials and Zoom consults'],
+            ['Aesthetician-led', 'Barrier-first guidance from Emily']
           ].map(([title, copy]) => (
-            <div key={title} className="text-center sm:text-left">
-              <p className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome">
+            <div key={title}>
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ink">
                 {title}
               </p>
-              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-charcoal/75">
+              <p className="mt-1.5 font-body text-sm font-normal leading-relaxed text-muted">
                 {copy}
               </p>
             </div>
@@ -86,387 +98,344 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skin quiz + routine — inclusive all ages */}
-      <section className="relative overflow-hidden border-b border-chrome/12">
+      {/* Emily's Picks rail */}
+      <section className="border-b border-border bg-surface-light py-14 sm:py-16">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+                Emily&apos;s picks
+              </p>
+              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+                Where most people start
+              </h2>
+            </div>
+            <Link
+              href="/shop"
+              className="font-label text-[0.65rem] uppercase tracking-lockup text-ink underline-offset-4 hover:underline"
+            >
+              Shop all
+            </Link>
+          </div>
+          <Suspense fallback={null}>
+            <ProductRail products={emilyPicks} label="Emily's picks" />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* Shop by concern */}
+      <section className="border-b border-border bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+            Shop by concern
+          </p>
+          <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+            What are you working on?
+          </h2>
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {concerns.map((c) => (
+              <Link
+                key={c}
+                href={`/shop?concern=${encodeURIComponent(c)}`}
+                className="group border border-border bg-white p-5 transition-colors hover:border-ink hover:bg-surface-light"
+              >
+                <p className="font-display text-xl text-ink group-hover:text-dew-dark">{c}</p>
+                <p className="mt-2 font-label text-[0.58rem] uppercase tracking-lockup text-muted">
+                  Shop →
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Shop by type */}
+      <section className="border-b border-border bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+            Shop by type
+          </p>
+          <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+            Build your shelf
+          </h2>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {types.map((t) => (
+              <Link
+                key={t}
+                href={`/shop?type=${encodeURIComponent(t)}`}
+                className="filter-chip rounded-[2px] px-4 py-2.5 font-label text-[0.65rem] uppercase tracking-lockup text-charcoal hover:bg-ink hover:text-white"
+              >
+                {t}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quiz feature */}
+      <section className="border-b border-border">
         <div className="mx-auto grid max-w-shell lg:grid-cols-2">
-          <div className="flex flex-col justify-center bg-ivory px-6 py-16 sm:px-10 sm:py-20 lg:px-12">
-            <p className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome">
-              For every chapter of skin
+          <div className="dew-panel flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+              ~2 minutes · teens to 60+
             </p>
-            <h2 className="mt-4 font-display text-[clamp(1.9rem,4vw,2.75rem)] font-normal leading-[1.1] text-graphite">
-              A quiz that listens —
-              <br />
-              teens to 60 & beyond
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] leading-[1.1] text-ink">
+              A quiz that listens
             </h2>
-            <p className="mt-5 max-w-md font-body text-sm font-normal leading-relaxed text-charcoal/75 sm:text-base">
+            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-charcoal/80">
               Four gentle questions. A morning and evening Skin Script sequence shaped by how your
-              skin feels today — not a one-size “anti-aging” script.
+              skin feels today — not a one-size script.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/quiz"
-                className="btn-primary min-h-[48px] px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+                className="btn-dew px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup"
               >
-                Take the skin quiz
+                Find my routine
               </Link>
               <Link
                 href="/routine"
-                className="btn-ghost min-h-[48px] px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+                className="btn-ghost px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup"
               >
                 Build AM / PM
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 border-t border-chrome/12 lg:border-l lg:border-t-0">
+          <div className="grid grid-cols-2 border-t border-border lg:border-l lg:border-t-0">
             {[
               ['Teens', 'First routines, calmer actives'],
               ['20s–30s', 'Clarity, prevention, glow'],
               ['40s–50s', 'Resilience through change'],
               ['60+', 'Comfort, barrier, light']
-            ].map(([age, line]) => (
-              <div
-                key={age}
-                className="flex flex-col justify-end border-b border-r border-chrome/12 bg-surface p-6 last:border-r-0 even:border-r-0 sm:p-8 [&:nth-child(2)]:border-r-0 sm:[&:nth-child(2)]:border-r"
-              >
-                <p className="font-display text-2xl font-normal text-graphite sm:text-3xl">{age}</p>
-                <p className="mt-2 font-body text-sm font-normal text-charcoal/65">{line}</p>
+            ].map(([title, copy]) => (
+              <div key={title} className="border-b border-r border-border bg-white p-6 last:border-b-0 even:border-r-0 sm:p-8">
+                <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">{title}</p>
+                <p className="mt-2 font-body text-sm text-charcoal/75">{copy}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured products — commercial first */}
-      <section className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10" aria-labelledby="home-products">
-        <div className="flex flex-wrap items-end justify-between gap-6" data-reveal-group="products-head">
-          <div>
-            <p
-              data-reveal
-              className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome"
-            >
-              Starter routine
-            </p>
-            <h2
-              id="home-products"
-              data-reveal
-              className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] font-normal text-graphite"
-            >
-              Where most people start
-            </h2>
+      {/* Routine builder feature */}
+      <section className="border-b border-border bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+                AM · PM builder
+              </p>
+              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+                Layer in professional order
+              </h2>
+              <p className="mt-4 max-w-md font-body text-base leading-relaxed text-muted">
+                Choose each step. Thin to thick. SPF last by day. Add the full sequence in one tap.
+              </p>
+              <Link
+                href="/routine"
+                className="btn-primary mt-8 inline-flex px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup"
+              >
+                Build my routine
+              </Link>
+            </div>
+            <ol className="space-y-3">
+              {sampleAm.map((p, i) => (
+                <li
+                  key={p.id}
+                  className="flex items-center gap-4 border border-border bg-surface-light px-4 py-3"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-dew text-sm font-label text-white">
+                    {i + 1}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-body text-sm text-ink">{p.name}</p>
+                    <p className="font-label text-[0.55rem] uppercase tracking-lockup text-muted">
+                      {p.category}
+                    </p>
+                  </div>
+                  <p className="font-label text-sm text-ink">{formatMoney(p.retail_price)}</p>
+                </li>
+              ))}
+            </ol>
           </div>
-          <Link
-            data-reveal
-            href="/shop"
-            className="font-label text-[0.7rem] font-normal uppercase tracking-lockup text-charcoal/75 transition-colors hover:text-charcoal"
-          >
-            Shop all →
-          </Link>
         </div>
+      </section>
 
-        {products.length === 0 ? (
-          <div data-reveal className="mt-12 rounded-[2px] border border-chrome/15 bg-surface p-12 text-center">
-            <p className="font-display text-xl font-normal text-graphite">Collection loading</p>
+      {/* Starter kits */}
+      {kits.length > 0 ? (
+        <section className="border-b border-border bg-surface-light py-14 sm:py-16">
+          <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+              Emily would start you here
+            </p>
+            <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+              Starter kits
+            </h2>
+            <p className="mt-3 max-w-xl font-body text-sm text-muted">
+              Full retail pricing — add every step to your bag in one tap, then edit in cart.
+            </p>
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              {kits.map((kit) => (
+                <article
+                  key={kit.id}
+                  className="flex flex-col border border-border bg-white p-6 sm:p-8"
+                >
+                  <p className="font-label text-[0.58rem] uppercase tracking-lockup text-muted">
+                    {kit.eyebrow}
+                  </p>
+                  <h3 className="mt-2 font-display text-2xl text-ink">{kit.name}</h3>
+                  <p className="mt-3 font-body text-sm leading-relaxed text-muted">
+                    {kit.description}
+                  </p>
+                  <ul className="mt-6 flex-1 space-y-2 border-t border-border pt-5">
+                    {kit.products.map((p) => (
+                      <li key={p.id} className="flex justify-between gap-3 font-body text-sm">
+                        <span className="text-charcoal">{p.name}</span>
+                        <span className="shrink-0 text-muted">{formatMoney(p.retail_price)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                    <p className="font-label text-sm uppercase tracking-wide2 text-ink">
+                      Kit total {formatMoney(kit.subtotal)}
+                    </p>
+                    <AddRoutineKit productIds={kit.products.map((p) => p.id)} label="Add kit to bag" />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Services */}
+      <section className="border-b border-border bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+                In studio
+              </p>
+              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+                Treatment menu
+              </h2>
+              <p className="mt-3 max-w-lg font-body text-sm text-muted">
+                Menu details are being finalized — request an appointment and Emily will confirm
+                timing and investment.
+              </p>
+            </div>
             <Link
-              href="/shop"
-              className="btn-ghost mt-8 inline-block px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+              href="/services"
+              className="font-label text-[0.65rem] uppercase tracking-lockup text-ink underline-offset-4 hover:underline"
             >
-              Browse the shop
+              See all services →
             </Link>
           </div>
-        ) : (
-          <div
-            className="content-auto mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-            data-reveal-group="products"
-          >
-            {products.map((p, i) => (
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((s) => (
               <Link
-                key={p.id}
-                href={`/shop/${p.id}`}
-                data-reveal
-                className="group flex flex-col overflow-hidden rounded-[2px] border border-chrome/15 bg-surface shadow-card transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-card-hover"
+                key={s.id}
+                href={`/book?service=${encodeURIComponent(s.id)}`}
+                className="group flex flex-col border border-border bg-white p-5 transition-colors hover:border-dew"
               >
-                <div className="relative">
-                  <ProductImage
-                    product={p}
-                    priority={i === 0}
-                    quality={70}
-                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 360px"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-6">
-                  <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
-                    {p.category}
-                  </p>
-                  <h3 className="mt-2 font-display text-xl font-normal text-graphite group-hover:text-charcoal">
-                    {p.name}
-                  </h3>
-                  <p className="mt-2 flex-1 font-body text-sm font-normal leading-relaxed text-charcoal/70">
-                    {p.note}
-                  </p>
-                  <p className="mt-5 border-t border-chrome/12 pt-4 font-label text-sm font-normal tracking-wide2 text-graphite">
-                    {p.price}
-                  </p>
-                </div>
+                <p className="font-display text-xl text-ink group-hover:text-dew-dark">{s.name}</p>
+                <p className="mt-2 flex-1 font-body text-sm text-muted">{s.note}</p>
+                <p className="mt-4 font-label text-[0.6rem] uppercase tracking-lockup text-muted">
+                  {s.duration} · {s.price}
+                </p>
+                <span className="mt-3 font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+                  Request booking →
+                </span>
               </Link>
             ))}
           </div>
-        )}
-      </section>
-
-      {/* Two paths — book / shop */}
-      <section className="border-y border-chrome/12 bg-surface">
-        <div className="mx-auto grid max-w-shell md:grid-cols-2" data-reveal-group="doors">
-          {[
-            {
-              href: '/book',
-              eyebrow: 'In studio',
-              title: 'Book with Emily',
-              copy: 'A licensed aesthetician reads your skin, then builds the plan around it.',
-              cta: 'Book a facial',
-              primary: true
-            },
-            {
-              href: '/shop',
-              eyebrow: 'Take home',
-              title: 'Shop Skin Script',
-              copy: 'Professional-grade actives, sold by the same person who uses them on you.',
-              cta: 'Shop the collection',
-              primary: false
-            }
-          ].map((d) => (
-            <Link
-              key={d.href}
-              href={d.href}
-              data-reveal
-              className={`group flex min-h-[18rem] flex-col justify-between border-chrome/12 p-10 transition-colors sm:min-h-[20rem] sm:p-12 md:border-r md:last:border-r-0 ${
-                d.primary ? 'bg-graphite text-pearl hover:bg-[#2a2d36]' : 'bg-surface hover:bg-pearl'
-              }`}
-            >
-              <p
-                className={`font-label text-[0.65rem] font-normal uppercase tracking-lockup ${
-                  d.primary ? 'text-pearl/55' : 'text-chrome'
-                }`}
-              >
-                {d.eyebrow}
-              </p>
-              <div className="mt-10">
-                <h2
-                  className={`font-display text-[clamp(1.85rem,3.5vw,2.5rem)] font-normal leading-[1.1] ${
-                    d.primary ? 'text-pearl' : 'text-graphite'
-                  }`}
-                >
-                  {d.title}
-                </h2>
-                <p
-                  className={`mt-4 max-w-sm font-body text-sm font-normal leading-relaxed ${
-                    d.primary ? 'text-pearl/70' : 'text-charcoal/70'
-                  }`}
-                >
-                  {d.copy}
-                </p>
-                <span
-                  className={`mt-8 inline-flex items-center gap-3 font-label text-[0.68rem] font-normal uppercase tracking-lockup ${
-                    d.primary ? 'text-pearl' : 'text-graphite'
-                  }`}
-                >
-                  {d.cta}
-                  <span
-                    aria-hidden="true"
-                    className={`h-px w-8 transition-[width] duration-400 group-hover:w-12 ${
-                      d.primary ? 'bg-pearl/50' : 'bg-chrome/50'
-                    }`}
-                  />
-                </span>
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
 
-      {/* Kits */}
-      {kits.length > 0 && (
-        <section className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10" aria-labelledby="home-kits">
-          <div data-reveal-group="kits-head">
-            <p
-              data-reveal
-              className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome"
-            >
-              Emily would start you here
+      {/* Virtual consultation + Emily */}
+      <section className="border-b border-border">
+        <div className="mx-auto grid max-w-shell lg:grid-cols-2">
+          <div className="border-b border-border bg-ink px-5 py-14 text-white sm:px-10 sm:py-16 lg:border-b-0 lg:border-r lg:px-12">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-white/55">
+              From anywhere
             </p>
-            <h2
-              id="home-kits"
-              data-reveal
-              className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] font-normal text-graphite"
-            >
-              Starter kits
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-white">
+              Virtual consultation
             </h2>
-            <p
-              data-reveal
-              className="mt-4 max-w-xl font-body text-sm font-normal leading-relaxed text-charcoal/70"
-            >
-              Full retail pricing — add every step to your bag in one tap, then edit in cart.
+            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-white/75">
+              Secure intake, private photos, and a personalized AM/PM plan — without leaving home.
             </p>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-6" data-reveal-group="kits">
-            {kits.map((kit) => (
-              <article
-                key={kit.id}
-                data-reveal
-                className="flex flex-col rounded-[2px] border border-chrome/15 bg-surface p-8 shadow-card"
-              >
-                <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
-                  {kit.eyebrow}
-                </p>
-                <h3 className="mt-3 font-display text-2xl font-normal text-graphite">{kit.name}</h3>
-                <p className="mt-3 font-body text-sm font-normal leading-relaxed text-charcoal/70">
-                  {kit.description}
-                </p>
-                <ul className="mt-6 space-y-2.5 border-t border-chrome/12 pt-5">
-                  {kit.products.map((p) => (
-                    <li
-                      key={p.id}
-                      className="flex justify-between gap-4 font-body text-sm font-normal text-charcoal/80"
-                    >
-                      <span>{p.name}</span>
-                      <span className="shrink-0 text-charcoal/55">{formatMoney(p.retail_price)}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup text-graphite">
-                  Kit total {formatMoney(kit.subtotal)}
-                  {!kit.complete ? ' · partial (stock)' : ''}
-                </p>
-                <AddRoutineKit productIds={kit.products.map((p) => p.id)} label="Add kit to bag" />
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Emily — typography-led, no “portrait pending” emptiness */}
-      <section className="section-ivory relative">
-        <div
-          className="relative z-[1] mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10"
-          data-reveal-group="emily"
-        >
-          <div className="max-w-3xl">
-            <p
-              data-reveal
-              className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome"
+            <Link
+              href="/virtual-consultation"
+              className="btn-ghost mt-8 inline-flex border-white/30 bg-transparent px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup text-white hover:border-white hover:bg-white/10"
             >
+              Book virtual consult
+            </Link>
+          </div>
+          <div className="bg-ivory px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
               Aesthetician · Licensed
             </p>
-            <h2
-              data-reveal
-              className="mt-4 font-display text-[clamp(2.1rem,4.5vw,3.2rem)] font-normal leading-[1.08] text-graphite"
-            >
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-ink">
               Emily Mitchener
             </h2>
-            <p
-              data-reveal
-              className="mt-7 max-w-2xl font-body text-base font-normal leading-relaxed text-charcoal/80 sm:text-[1.08rem]"
-            >
-              Emily treats skin carefully: look first, change one variable at a time, and don&apos;t
-              sell you a product you don&apos;t need. Every appointment starts with a read of where
-              your barrier actually is that week.
+            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-charcoal/80">
+              Evidence-informed and barrier-first. Look first, change one variable at a time, and
+              don&apos;t sell a product you don&apos;t need.
             </p>
-            <div data-reveal className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/about"
-                className="btn-ghost px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+                className="btn-primary px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup"
               >
                 Meet Emily
               </Link>
               <Link
-                href="/virtual-consultation"
-                className="btn-primary px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+                href="/book"
+                className="btn-dew-outline px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup"
               >
-                Virtual consultation
+                Book a facial
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10" aria-labelledby="home-services">
-        <div data-reveal-group="services-head" className="flex flex-wrap items-end justify-between gap-6">
+      {/* FAQ / help + membership */}
+      <section className="bg-white py-14 sm:py-16">
+        <div className="mx-auto grid max-w-shell gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:px-10">
           <div>
-            <p
-              data-reveal
-              className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome"
-            >
-              In studio
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">Help</p>
+            <h2 className="mt-2 font-display text-3xl text-ink">Shipping, appointments, products</h2>
+            <p className="mt-3 font-body text-sm text-muted">
+              Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal before
+              discount. Flat {formatMoney(FLAT_SHIPPING_USD)} below.
             </p>
-            <h2
-              id="home-services"
-              data-reveal
-              className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] font-normal text-graphite"
-            >
-              Treatment menu
-            </h2>
-          </div>
-          <Link
-            data-reveal
-            href="/services"
-            className="font-label text-[0.7rem] font-normal uppercase tracking-lockup text-charcoal/75 hover:text-charcoal"
-          >
-            See all services →
-          </Link>
-        </div>
-
-        <ul
-          className="mt-12 overflow-hidden rounded-[2px] border border-chrome/15 bg-surface"
-          data-reveal-group="services"
-        >
-          {services.map((s) => (
-            <li key={s.id} data-reveal className="border-b border-chrome/12 last:border-b-0">
-              <Link
-                href={`/book?service=${s.id}`}
-                className="group grid gap-3 px-5 py-7 transition-colors hover:bg-pearl/80 md:grid-cols-[1.1fr_1.4fr_auto] md:items-center md:gap-6 md:px-8"
-              >
-                <h3 className="font-display text-xl font-normal text-graphite group-hover:text-charcoal sm:text-2xl">
-                  {s.name}
-                </h3>
-                <p className="font-body text-sm font-normal leading-relaxed text-charcoal/70">
-                  {s.note}
-                </p>
-                <p className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-chrome md:text-right">
-                  {s.duration} · {s.price}
-                </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/faq" className="btn-ghost px-6 py-3 font-label text-[0.65rem] uppercase tracking-lockup">
+                FAQ
               </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* FAQ / help */}
-      <section className="border-t border-chrome/12 bg-surface">
-        <div
-          className="mx-auto flex max-w-shell flex-col gap-6 px-6 py-14 sm:flex-row sm:items-center sm:justify-between lg:px-10"
-          data-reveal-group="faq-teaser"
-        >
-          <div className="max-w-xl">
-            <p
-              data-reveal
-              className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome"
-            >
-              Help
-            </p>
-            <h2
-              data-reveal
-              className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)] font-normal text-graphite"
-            >
-              Shipping, appointments, products
-            </h2>
+              <Link href="/contact" className="btn-ghost px-6 py-3 font-label text-[0.65rem] uppercase tracking-lockup">
+                Contact
+              </Link>
+            </div>
           </div>
-          <Link
-            data-reveal
-            href="/faq"
-            className="btn-ghost inline-flex min-h-[44px] shrink-0 items-center px-8 py-3.5 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
-          >
-            Read the FAQ
-          </Link>
+          <div className="dew-panel p-6 sm:p-8">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+              Stay in the plan
+            </p>
+            <h2 className="mt-2 font-display text-3xl text-ink">Membership interest</h2>
+            <p className="mt-3 font-body text-sm text-charcoal/80">
+              Membership is not for sale yet. Join the interest list for updates when Emily opens
+              packages.
+            </p>
+            <Link
+              href="/membership"
+              className="btn-dew mt-6 inline-flex px-6 py-3 font-label text-[0.65rem] uppercase tracking-lockup"
+            >
+              Join interest list
+            </Link>
+          </div>
         </div>
       </section>
     </>

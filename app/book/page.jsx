@@ -13,8 +13,9 @@ export const metadata = {
   }
 };
 
-export default function BookPage({ searchParams }) {
-  const raw = typeof searchParams?.service === 'string' ? searchParams.service : null;
+export default async function BookPage({ searchParams }) {
+  const sp = await searchParams;
+  const raw = typeof sp?.service === 'string' ? sp.service : null;
   const valid = raw && SERVICES.some((s) => s.id === raw);
   const initialServiceId = valid ? raw : null;
   // True when ?service= was present but not a real id (typo / old link)

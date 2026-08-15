@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Rule from '@/components/Rule';
+import { Suspense } from 'react';
 import ShopGrid from '@/components/ShopGrid';
 import { getProducts } from '@/lib/products-server';
 import { isShopVisible } from '@/lib/shop';
@@ -37,70 +37,70 @@ export default function ShopPage() {
   const count = visible.length;
 
   return (
-    <section className="relative mx-auto max-w-shell px-6 pb-24 pt-28 sm:pb-32 sm:pt-32 lg:px-10">
+    <section className="relative mx-auto max-w-shell px-5 pb-20 pt-10 sm:px-6 sm:pb-28 sm:pt-12 lg:px-10">
       <div data-reveal-group="shop-head">
-        <Rule left="Shop" right="Skin Script" data-reveal />
+        <p
+          data-reveal
+          className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted"
+        >
+          Skin Script
+        </p>
         <h1
           data-reveal
-          className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-normal leading-[1.05] text-graphite sm:mt-6"
+          className="mt-2 max-w-3xl font-display text-[clamp(2.2rem,5vw,3.5rem)] font-normal leading-[1.05] text-ink"
         >
-          The collection
+          Shop skincare
         </h1>
         <p
           data-reveal
-          className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-charcoal/75 sm:mt-6"
+          className="mt-4 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
           {count === 0
             ? 'Products will appear here once the catalog is ready.'
-            : `${count} Skin Script formulation${count === 1 ? '' : 's'} — professional actives, clear pricing.`}
+            : `${count} professional formulation${count === 1 ? '' : 's'} — the same actives Emily uses in treatment.`}
         </p>
         {count > 0 && (
           <p
             data-reveal
-            className="mt-5 inline-flex max-w-xl border border-chrome/15 bg-surface px-4 py-3 font-body text-xs font-normal leading-relaxed text-charcoal/70"
+            className="mt-5 inline-flex max-w-xl border border-border bg-surface-light px-4 py-3 font-body text-xs font-normal leading-relaxed text-charcoal"
           >
-            Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal
-            (before discount). Below that, {formatMoney(FLAT_SHIPPING_USD)} flat.
+            Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal (before
+            discount). Below that, {formatMoney(FLAT_SHIPPING_USD)} flat.
           </p>
         )}
 
-        <div
-          data-reveal
-          className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4"
-        >
+        <div data-reveal className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4">
           <Link
             href="/quiz"
-            className="group flex flex-col justify-between rounded-[2px] border border-chrome/15 bg-graphite p-6 text-pearl transition-colors hover:bg-[#2a2d36] sm:p-7"
+            className="group flex flex-col justify-between bg-dew p-6 text-white transition-colors hover:bg-dew-dark sm:p-7"
           >
-            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-pearl/55">
+            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-white/70">
               Teens → 60 & beyond
             </p>
             <div className="mt-6">
-              <p className="font-display text-2xl font-normal text-pearl">Skin quiz</p>
-              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-pearl/70">
+              <p className="font-display text-2xl font-normal text-white">Skin quiz</p>
+              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-white/80">
                 Four questions. A morning and evening sequence built for your chapter of skin.
               </p>
-              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-pearl">
-                Start the quiz
-                <span className="h-px w-6 bg-pearl/40 transition-[width] group-hover:w-10" />
+              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-white">
+                Start the quiz →
               </span>
             </div>
           </Link>
           <Link
             href="/routine"
-            className="group flex flex-col justify-between rounded-[2px] border border-chrome/15 bg-surface p-6 shadow-card transition-shadow hover:shadow-card-hover sm:p-7"
+            className="group flex flex-col justify-between border border-border bg-white p-6 transition-colors hover:border-ink sm:p-7"
           >
-            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
+            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
               AM · PM builder
             </p>
             <div className="mt-6">
-              <p className="font-display text-2xl font-normal text-graphite">Build your routine</p>
-              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-charcoal/70">
+              <p className="font-display text-2xl font-normal text-ink">Build your routine</p>
+              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-muted">
                 Choose each step. Thin to thick. SPF last by day. Add the sequence in one tap.
               </p>
-              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-graphite">
-                Open builder
-                <span className="h-px w-6 bg-chrome/50 transition-[width] group-hover:w-10" />
+              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ink">
+                Open builder →
               </span>
             </div>
           </Link>
@@ -108,7 +108,15 @@ export default function ShopPage() {
       </div>
 
       <div className="mt-10 sm:mt-12">
-        <ShopGrid products={all} />
+        <Suspense
+          fallback={
+            <p className="font-body text-sm text-muted" role="status">
+              Loading collection…
+            </p>
+          }
+        >
+          <ShopGrid products={all} />
+        </Suspense>
       </div>
     </section>
   );

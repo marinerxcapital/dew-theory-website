@@ -69,37 +69,38 @@ const AFTER = [
   'Tips to maximize results'
 ];
 
-export default function VirtualConsultationPage({ searchParams }) {
-  const cancelled = searchParams?.cancelled === '1';
+export default async function VirtualConsultationPage({ searchParams }) {
+  const sp = await searchParams;
+  const cancelled = sp?.cancelled === '1';
   const pub = getPublicConsultationConfig();
 
   return (
     <>
-      <section className="relative mx-auto max-w-shell px-6 pb-16 pt-32 sm:pb-20 sm:pt-36 lg:px-10">
+      <section className="relative mx-auto max-w-shell px-6 pb-16 pt-12 sm:pb-20 sm:pt-14 lg:px-10 lg:pt-16">
         <div data-reveal-group="vc-hero">
           <p
             data-reveal
-            className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70 sm:text-[0.62rem] sm:tracking-lockup"
+            className="dew-badge inline-flex px-3 py-1.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
           >
             One-on-one · Online · Personalized
           </p>
           <h1
             data-reveal
-            className="mt-6 max-w-3xl font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-normal leading-[1.05] text-graphite"
+            className="mt-6 max-w-3xl font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-normal leading-[1.05] text-ink"
           >
             Dew Theory Virtual Consultation
           </h1>
           <p
             data-reveal
-            className="mt-6 max-w-2xl font-body text-base font-light leading-relaxed text-charcoal/75 sm:text-[1.05rem]"
+            className="mt-6 max-w-2xl font-body text-base font-normal leading-relaxed text-muted sm:text-[1.05rem]"
           >
-            Meet with Emily by Zoom for a focused review of your skin, current products, habits, and
-            goals. You&apos;ll leave with a clear direction—and receive a personalized morning and
-            evening routine after your appointment.
+            Meet with Emily by Zoom for a focused review of your skin, current products, habits,
+            and goals. You&apos;ll leave with a clear direction — and receive a personalized
+            morning and evening routine after your appointment.
           </p>
           <p
             data-reveal
-            className="mt-5 font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome"
+            className="mt-5 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew"
           >
             Secure intake · Private photo upload · Personalized plan within 24–48 hours
             {pub.durationMinutes ? ` · About ${pub.durationMinutes} minutes` : ''}
@@ -107,7 +108,7 @@ export default function VirtualConsultationPage({ searchParams }) {
           {cancelled ? (
             <p
               data-reveal
-              className="mt-6 max-w-xl border border-chrome/25 bg-pearl/50 px-5 py-4 font-body text-sm font-light text-charcoal/80"
+              className="mt-6 max-w-xl border border-border bg-surface-light px-5 py-4 font-body text-sm font-normal text-ink/80"
               role="status"
             >
               Checkout was cancelled. No charge was made. You can book again when ready.
@@ -116,7 +117,7 @@ export default function VirtualConsultationPage({ searchParams }) {
           <div data-reveal className="mt-8">
             <a
               href="#book"
-              className="sweep btn-primary inline-flex min-h-[44px] items-center px-9 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup"
+              className="btn-primary inline-flex min-h-[44px] items-center px-9 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
             >
               Book your consultation
             </a>
@@ -124,23 +125,30 @@ export default function VirtualConsultationPage({ searchParams }) {
         </div>
       </section>
 
-      <section className="border-y border-chrome/15 bg-ivory/50">
-        <div className="mx-auto max-w-shell px-6 py-16 sm:py-20 lg:px-10" data-reveal-group="vc-before">
+      <section className="border-y border-border bg-surface-light">
+        <div
+          className="mx-auto max-w-shell px-6 py-16 sm:py-20 lg:px-10"
+          data-reveal-group="vc-before"
+        >
           <Rule left="Prepare" right="Before" data-reveal />
           <h2
             data-reveal
-            className="mt-8 font-display text-[clamp(1.75rem,3.5vw,2.4rem)] font-normal text-graphite"
+            className="mt-8 font-display text-[clamp(1.75rem,3.5vw,2.4rem)] font-normal text-ink"
           >
             Before your appointment
           </h2>
-          <ol className="mt-10 space-y-6">
+          <ol className="mt-10 grid gap-6 sm:grid-cols-2">
             {BEFORE.map((item, i) => (
-              <li key={item.title} data-reveal className="glass-1 rounded-[3px] p-6 sm:p-7">
-                <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
+              <li
+                key={item.title}
+                data-reveal
+                className="rounded-[3px] border border-border bg-white p-6 shadow-card sm:p-7"
+              >
+                <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew">
                   Step {i + 1}
                 </p>
-                <h3 className="mt-2 font-display text-xl font-normal text-graphite">{item.title}</h3>
-                <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/75">
+                <h3 className="mt-2 font-display text-xl font-normal text-ink">{item.title}</h3>
+                <p className="mt-3 font-body text-sm font-normal leading-relaxed text-muted">
                   {item.body}
                 </p>
               </li>
@@ -155,11 +163,11 @@ export default function VirtualConsultationPage({ searchParams }) {
             <Rule left="Together" right="Live" data-reveal />
             <h2
               data-reveal
-              className="mt-8 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-normal text-graphite"
+              className="mt-8 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-normal text-ink"
             >
               During your consultation
             </h2>
-            <p data-reveal className="mt-4 font-body text-sm font-light text-charcoal/70">
+            <p data-reveal className="mt-4 font-body text-sm font-normal text-muted">
               Together we&apos;ll:
             </p>
             <ul className="mt-6 space-y-3">
@@ -167,9 +175,9 @@ export default function VirtualConsultationPage({ searchParams }) {
                 <li
                   key={t}
                   data-reveal
-                  className="flex gap-3 font-body text-sm font-light leading-relaxed text-charcoal/80"
+                  className="flex gap-3 font-body text-sm font-normal leading-relaxed text-ink/80"
                 >
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-chrome" aria-hidden="true" />
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-dew" aria-hidden="true" />
                   {t}
                 </li>
               ))}
@@ -179,11 +187,11 @@ export default function VirtualConsultationPage({ searchParams }) {
             <Rule left="Follow-up" right="Plan" data-reveal />
             <h2
               data-reveal
-              className="mt-8 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-normal text-graphite"
+              className="mt-8 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-normal text-ink"
             >
               After your consultation
             </h2>
-            <p data-reveal className="mt-4 font-body text-sm font-light text-charcoal/70">
+            <p data-reveal className="mt-4 font-body text-sm font-normal text-muted">
               Within 24–48 hours, you&apos;ll receive:
             </p>
             <ul className="mt-6 space-y-3">
@@ -191,16 +199,16 @@ export default function VirtualConsultationPage({ searchParams }) {
                 <li
                   key={t}
                   data-reveal
-                  className="flex gap-3 font-body text-sm font-light leading-relaxed text-charcoal/80"
+                  className="flex gap-3 font-body text-sm font-normal leading-relaxed text-ink/80"
                 >
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-chrome" aria-hidden="true" />
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-dew" aria-hidden="true" />
                   {t}
                 </li>
               ))}
             </ul>
             <p
               data-reveal
-              className="mt-8 font-body text-sm font-light leading-relaxed text-charcoal/75"
+              className="mt-8 font-body text-sm font-normal leading-relaxed text-muted"
             >
               Thank you for choosing Dew Theory. Emily looks forward to helping you build a
               thoughtful routine for healthy, glowing skin.
@@ -209,13 +217,13 @@ export default function VirtualConsultationPage({ searchParams }) {
         </div>
       </section>
 
-      <section id="book" className="border-t border-chrome/15 bg-pearl/40">
+      <section id="book" className="border-t border-border bg-surface-light">
         <div className="mx-auto max-w-shell px-6 py-16 sm:py-20 lg:px-10">
           <VirtualConsultationCheckout />
-          <p className="mx-auto mt-8 max-w-lg text-center font-body text-xs font-light leading-relaxed text-charcoal/60">
-            Virtual consultations provide aesthetic skincare guidance and do not replace evaluation,
-            diagnosis, or treatment by a licensed medical professional.{' '}
-            <Link href="/contact" className="underline decoration-chrome/40 underline-offset-2">
+          <p className="mx-auto mt-8 max-w-lg text-center font-body text-xs font-normal leading-relaxed text-muted">
+            Virtual consultations provide aesthetic skincare guidance and do not replace
+            evaluation, diagnosis, or treatment by a licensed medical professional.{' '}
+            <Link href="/contact" className="underline decoration-border underline-offset-2 hover:text-ink">
               Questions? Contact us
             </Link>
             .

@@ -19,39 +19,48 @@ export default function FreeShippingMeter({ subtotal = 0, className = '' }) {
 
   return (
     <div
-      className={`border border-chrome/20 bg-pearl/50 p-4 ${className}`.trim()}
+      className={`border border-border bg-surface-light p-4 ${className}`.trim()}
       role="status"
       aria-live="polite"
     >
       <div className="flex items-baseline justify-between gap-3">
-        <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+        <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
           Shipping
         </p>
-        <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-charcoal/70">
+        <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ink">
           {unlocked ? 'Free unlocked' : `${formatMoney(FLAT_SHIPPING_USD)} flat`}
         </p>
       </div>
 
       <div
-        className="mt-3 h-1.5 overflow-hidden rounded-full bg-chrome/15"
-        aria-hidden="true"
+        className="mt-3 h-1.5 overflow-hidden rounded-full bg-border"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={pct}
+        aria-label={
+          unlocked
+            ? 'Free shipping unlocked'
+            : `${formatMoney(remaining)} away from free shipping`
+        }
       >
         <div
-          className="h-full rounded-full bg-gradient-to-r from-ice/80 via-lavender/70 to-chrome/60 transition-[width] duration-500 ease-out"
+          className={`h-full rounded-full transition-[width] duration-500 ease-out ${
+            unlocked ? 'bg-dew' : 'bg-ink'
+          }`}
           style={{ width: `${pct}%` }}
         />
       </div>
 
-      <p className="mt-3 font-body text-xs font-light leading-relaxed text-charcoal/70">
+      <p className="mt-3 font-body text-xs font-normal leading-relaxed text-muted">
         {unlocked ? (
           <>
             Free shipping applied — subtotal is {formatMoney(threshold)}+ before discount.
           </>
         ) : (
           <>
-            Add <span className="text-charcoal">{formatMoney(remaining)}</span> more for free
-            shipping (threshold {formatMoney(threshold)} pre-discount). Otherwise{' '}
-            {formatMoney(FLAT_SHIPPING_USD)} flat.
+            You&apos;re <span className="text-ink">{formatMoney(remaining)}</span> away from free
+            shipping. Otherwise {formatMoney(FLAT_SHIPPING_USD)} flat.
           </>
         )}
       </p>

@@ -35,20 +35,20 @@ export default function RoutinePage() {
     }));
 
   return (
-    <section className="relative mx-auto max-w-shell px-5 pb-24 pt-28 sm:px-6 sm:pb-32 sm:pt-32 lg:px-10">
-      <div className="mb-6 flex flex-wrap items-center gap-4">
+    <section className="relative mx-auto max-w-shell px-5 pb-24 pt-12 sm:px-6 sm:pb-32 sm:pt-14 lg:px-10 lg:pt-16">
+      <div className="mb-8 flex flex-wrap items-center gap-4">
         <Link
           href="/shop"
-          className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome hover:text-charcoal"
+          className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
         >
           ← Shop
         </Link>
-        <span className="text-chrome/40" aria-hidden="true">
+        <span className="text-border" aria-hidden="true">
           /
         </span>
         <Link
           href="/quiz"
-          className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome hover:text-charcoal"
+          className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
         >
           Or take the quiz
         </Link>
@@ -56,18 +56,17 @@ export default function RoutinePage() {
 
       <RoutineBuilder catalog={catalog} />
 
-      {/* Age-inclusive trust band */}
-      <div className="mt-20 grid gap-6 border-t border-chrome/12 pt-14 sm:grid-cols-3">
+      <div className="mt-20 grid gap-6 border-t border-border pt-14 sm:grid-cols-3">
         {[
           ['Teens & first routines', 'Fewer steps, calmer actives, habits that last.'],
           ['Busy decades', 'Clear AM/PM order when time is short.'],
           ['Mature & sensitive', 'Barrier-first layering — comfort before polish.']
         ].map(([t, c]) => (
           <div key={t}>
-            <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+            <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew">
               {t}
             </p>
-            <p className="mt-2 font-body text-sm font-normal leading-relaxed text-charcoal/70">{c}</p>
+            <p className="mt-2 font-body text-sm font-normal leading-relaxed text-muted">{c}</p>
           </div>
         ))}
       </div>

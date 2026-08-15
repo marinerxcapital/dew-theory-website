@@ -9,12 +9,12 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="privacy-head">
         <Rule left="Policies" right="Privacy" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
+          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-ink"
         >
           Privacy
         </h1>
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
 
       <div className="mt-16 space-y-6" data-reveal-group="privacy-body">
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Cart on your device</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Cart on your device</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             Your shopping cart and any promo code you apply are stored in your browser&apos;s{' '}
             <span className="text-charcoal/90">localStorage</span> so the bag persists between
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Orders &amp; payments</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Orders &amp; payments</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             When payment processing is configured, checkout runs through{' '}
             <span className="text-charcoal/90">Stripe</span>. Card numbers and payment credentials
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">
+          <h2 className="font-display text-xl font-normal text-ink">
             Booking &amp; virtual consultation
           </h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Admin sessions</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Admin sessions</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             Studio staff sign in through a separate admin area. Sessions use an httpOnly cookie so
             credentials are not exposed to page scripts. That gate is for operators only — it is not
@@ -74,17 +74,16 @@ export default function PrivacyPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Email (when configured)</h2>
-          <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
-            Transactional messages (order or consultation-related) may be sent through{' '}
-            <span className="text-charcoal/90">Resend</span> when an API key and verified from-address
-            are set. Until then, messages are logged for development rather than delivered. Contact
-            form submissions are handled by the site&apos;s contact API for Emily to reply.
+          <h2 className="font-display text-xl font-normal text-ink">Email</h2>
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
+            Transactional messages related to orders or consultations may be sent by email when
+            delivery is enabled for the studio. Contact form submissions reach Emily through the
+            site&apos;s contact flow so she can reply directly.
           </p>
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">
+          <h2 className="font-display text-xl font-normal text-ink">
             What this page does not claim yet
           </h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">

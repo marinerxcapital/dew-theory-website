@@ -13,7 +13,6 @@ import { ROUTINE_ORDER } from '@/lib/routine';
 
 /**
  * Interactive AM/PM routine builder — catalog products only.
- * Inclusive UI for every age: simple defaults, clear sequence.
  */
 export default function RoutineBuilder({ catalog = [] }) {
   const { addItem } = useCart();
@@ -72,19 +71,19 @@ export default function RoutineBuilder({ catalog = [] }) {
     <div className="mx-auto max-w-4xl">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome">
-            Sequence · Your rules
+          <p className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-dew">
+            Professional layering
           </p>
-          <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] font-normal text-graphite">
+          <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] font-normal text-ink">
             Build your routine
           </h2>
-          <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-charcoal/70 sm:text-base">
+          <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-muted sm:text-base">
             Thin to thick. Morning ends in SPF. Evening can rest. Works for first routines and
             lifelong ones — teens to 60 & beyond.
           </p>
         </div>
         <div
-          className="inline-flex rounded-[2px] border border-chrome/20 bg-surface p-1"
+          className="inline-flex rounded-[2px] border border-border bg-white p-1"
           role="tablist"
           aria-label="Morning or evening"
         >
@@ -103,8 +102,8 @@ export default function RoutineBuilder({ catalog = [] }) {
               }}
               className={`min-h-[44px] px-6 py-2.5 font-label text-[0.68rem] font-normal uppercase tracking-lockup transition-colors ${
                 slot === id
-                  ? 'bg-graphite text-pearl'
-                  : 'text-charcoal/70 hover:text-charcoal'
+                  ? 'bg-dew text-white'
+                  : 'text-muted hover:text-ink'
               }`}
             >
               {label}
@@ -113,7 +112,6 @@ export default function RoutineBuilder({ catalog = [] }) {
         </div>
       </div>
 
-      {/* Timeline */}
       <ol className="mt-12 space-y-4">
         {steps.map((step, index) => {
           const options = productsForCategory(catalog, step.category);
@@ -121,18 +119,24 @@ export default function RoutineBuilder({ catalog = [] }) {
           return (
             <li
               key={step.category}
-              className="overflow-hidden rounded-[2px] border border-chrome/15 bg-surface shadow-card"
+              className="overflow-hidden rounded-[2px] border border-border bg-white"
             >
               <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:p-6">
                 <div className="flex items-center gap-4 sm:w-44 sm:shrink-0">
-                  <span className="flex size-9 items-center justify-center border border-chrome/25 font-label text-[0.62rem] font-normal text-chrome">
+                  <span
+                    className={`flex size-9 items-center justify-center font-label text-[0.62rem] font-normal ${
+                      step.product
+                        ? 'bg-dew text-white'
+                        : 'border border-border text-muted'
+                    }`}
+                  >
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
+                    <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
                       {step.required ? 'Essential' : 'Optional'}
                     </p>
-                    <p className="mt-0.5 font-display text-lg font-normal text-graphite">
+                    <p className="mt-0.5 font-display text-lg font-normal text-ink">
                       {step.category}
                     </p>
                   </div>
@@ -143,20 +147,25 @@ export default function RoutineBuilder({ catalog = [] }) {
                     href={`/shop/${step.product.id}`}
                     className="flex min-w-0 flex-1 items-center gap-4"
                   >
-                    <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-[2px] bg-pearl">
-                      <ProductImage product={step.product} sizes="56px" quality={70} className="!aspect-auto h-full" />
+                    <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-[2px] bg-surface-light">
+                      <ProductImage
+                        product={step.product}
+                        sizes="56px"
+                        quality={70}
+                        className="!aspect-auto h-full"
+                      />
                     </div>
                     <div className="min-w-0">
-                      <p className="truncate font-display text-base font-normal text-graphite sm:text-lg">
+                      <p className="truncate font-display text-base font-normal text-ink sm:text-lg">
                         {step.product.name}
                       </p>
-                      <p className="mt-0.5 font-label text-sm font-normal tracking-wide2 text-charcoal/70">
+                      <p className="mt-0.5 font-label text-sm font-normal tracking-wide2 text-muted">
                         {formatMoney(step.product.retail_price)}
                       </p>
                     </div>
                   </Link>
                 ) : (
-                  <p className="flex-1 font-body text-sm font-normal text-charcoal/55">
+                  <p className="flex-1 font-body text-sm font-normal text-muted">
                     {options.length
                       ? 'Choose a formula for this step'
                       : 'No product in this category yet'}
@@ -169,6 +178,7 @@ export default function RoutineBuilder({ catalog = [] }) {
                     onClick={() => setOpenCat(isOpen ? null : step.category)}
                     className="btn-ghost min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
                     disabled={!options.length}
+                    aria-expanded={isOpen}
                   >
                     {step.product ? 'Change' : 'Choose'}
                   </button>
@@ -176,7 +186,7 @@ export default function RoutineBuilder({ catalog = [] }) {
                     <button
                       type="button"
                       onClick={() => clearStep(step.category)}
-                      className="min-h-[44px] px-4 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome hover:text-charcoal"
+                      className="min-h-[44px] px-4 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
                     >
                       Clear
                     </button>
@@ -185,7 +195,7 @@ export default function RoutineBuilder({ catalog = [] }) {
               </div>
 
               {isOpen && options.length > 0 && (
-                <div className="border-t border-chrome/12 bg-pearl/50 px-4 py-4 sm:px-6">
+                <div className="border-t border-border bg-dew-surface px-4 py-4 sm:px-6">
                   <div className="grid gap-3 sm:grid-cols-2">
                     {options.map((p) => (
                       <button
@@ -194,18 +204,23 @@ export default function RoutineBuilder({ catalog = [] }) {
                         onClick={() => pickProduct(step.category, p)}
                         className={`flex gap-3 rounded-[2px] border p-3 text-left transition-colors ${
                           step.product?.id === p.id
-                            ? 'border-graphite bg-surface'
-                            : 'border-chrome/15 bg-surface hover:border-chrome/35'
+                            ? 'border-dew bg-white'
+                            : 'border-border bg-white hover:border-dew/40'
                         }`}
                       >
                         <div className="relative h-16 w-11 shrink-0 overflow-hidden rounded-[2px]">
-                          <ProductImage product={p} sizes="44px" quality={65} className="!aspect-auto h-full" />
+                          <ProductImage
+                            product={p}
+                            sizes="44px"
+                            quality={70}
+                            className="!aspect-auto h-full"
+                          />
                         </div>
                         <span className="min-w-0">
-                          <span className="block truncate font-display text-base font-normal text-graphite">
+                          <span className="block truncate font-display text-base font-normal text-ink">
                             {p.name}
                           </span>
-                          <span className="mt-0.5 block font-label text-xs font-normal text-chrome">
+                          <span className="mt-0.5 block font-label text-xs font-normal text-muted">
                             {formatMoney(p.retail_price)}
                           </span>
                         </span>
@@ -219,17 +234,17 @@ export default function RoutineBuilder({ catalog = [] }) {
         })}
       </ol>
 
-      <div className="mt-10 flex flex-col gap-6 rounded-[2px] border border-chrome/15 bg-graphite p-8 text-pearl sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-6 rounded-[2px] bg-ink p-8 text-white sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-pearl/55">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/55">
             {slot === 'am' ? 'Morning' : 'Evening'} bag · {selectedProducts.length} step
             {selectedProducts.length === 1 ? '' : 's'}
           </p>
-          <p className="mt-2 font-display text-3xl font-normal text-pearl">
+          <p className="mt-2 font-display text-3xl font-normal text-white">
             {formatMoney(subtotal)}
           </p>
           {!completeRequired && (
-            <p className="mt-2 font-body text-xs font-normal text-pearl/60">
+            <p className="mt-2 font-body text-xs font-normal text-white/60">
               Add required steps for a complete {slot === 'am' ? 'morning' : 'evening'} path.
             </p>
           )}
@@ -239,7 +254,7 @@ export default function RoutineBuilder({ catalog = [] }) {
             type="button"
             onClick={addRoutine}
             disabled={!selectedProducts.length || status === 'adding'}
-            className="min-h-[48px] border border-pearl/30 bg-pearl px-8 py-3.5 font-label text-[0.68rem] font-normal uppercase tracking-lockup text-graphite transition-opacity hover:opacity-90 disabled:opacity-40"
+            className="min-h-[48px] border border-white/30 bg-white px-8 py-3.5 font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink transition-opacity hover:opacity-90 disabled:opacity-40"
           >
             {status === 'done'
               ? 'Added to bag'
@@ -249,16 +264,25 @@ export default function RoutineBuilder({ catalog = [] }) {
           </button>
           <Link
             href="/quiz"
-            className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-pearl/65 hover:text-pearl"
+            className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew-soft hover:text-white"
           >
-            Prefer Emily’s quiz →
+            Prefer the Skin Quiz →
           </Link>
         </div>
       </div>
 
-      <p className="mt-6 font-body text-xs font-normal leading-relaxed text-charcoal/55">
-        Order follows professional layering ({ROUTINE_ORDER.filter((c) => c !== 'Mask' && c !== 'Exfoliant').join(' → ')}
-        …). Not a medical protocol — when in doubt, book a read with Emily.
+      <p className="mt-6 font-body text-xs font-normal leading-relaxed text-muted">
+        Why this order? Professional layering (
+        {ROUTINE_ORDER.filter((c) => c !== 'Mask' && c !== 'Exfoliant').join(' → ')}
+        …). Not a medical protocol — when in doubt,{' '}
+        <Link href="/virtual-consultation" className="text-dew underline underline-offset-2">
+          book a virtual consultation
+        </Link>{' '}
+        or{' '}
+        <Link href="/quiz" className="text-dew underline underline-offset-2">
+          take the Skin Quiz
+        </Link>
+        .
       </p>
     </div>
   );

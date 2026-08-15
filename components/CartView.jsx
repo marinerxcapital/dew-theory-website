@@ -179,7 +179,7 @@ export default function CartView() {
         aria-busy="true"
         aria-live="polite"
       >
-        <Rule left="Cart" right="Loading" />
+        <Rule left="Bag" right="Loading" />
         <p className="mt-8 font-display text-2xl font-normal text-graphite">Opening your bag…</p>
         <p className="mt-3 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/60">
           Restoring items saved on this device. This only takes a moment.
@@ -191,36 +191,46 @@ export default function CartView() {
   if (items.length === 0) {
     return (
       <section
-        className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-6 py-40 lg:px-10"
+        className="mx-auto flex min-h-[70svh] max-w-shell flex-col justify-center px-5 py-24 sm:px-6 lg:px-10"
         data-reveal-group="cart-empty"
       >
-        <Rule left="Cart" right="Empty" data-reveal />
+        <p
+          data-reveal
+          className="font-label text-[0.62rem] uppercase tracking-lockup text-muted"
+        >
+          Bag · Empty
+        </p>
         <h1
           data-reveal
-          className="mt-8 font-display text-[clamp(2.6rem,7vw,5rem)] font-normal leading-[1.02] text-graphite"
+          className="mt-4 font-display text-[clamp(2.4rem,6vw,4.5rem)] font-normal leading-[1.02] text-ink"
         >
           Nothing here yet
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-6 max-w-lg font-body text-base font-normal leading-relaxed text-muted"
         >
-          The collection is eight Skin Script products — start with a cleanser or the mask if your
-          barrier is dry. Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ subtotal
-          (before discount).
+          Start with Skin Script, the Skin Quiz, or an AM/PM routine. Free shipping at{' '}
+          {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal (before discount).
         </p>
-        <div data-reveal className="mt-10 flex flex-wrap gap-4">
+        <div data-reveal className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/shop"
-            className="sweep inline-block border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+            className="btn-primary px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
-            Shop the collection
+            Shop Skin Script
           </Link>
           <Link
-            href="/services"
-            className="sweep inline-block border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+            href="/quiz"
+            className="btn-dew-outline px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
-            Treatment menu
+            Take the Skin Quiz
+          </Link>
+          <Link
+            href="/routine"
+            className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+          >
+            Build a routine
           </Link>
         </div>
       </section>
@@ -228,16 +238,17 @@ export default function CartView() {
   }
 
   return (
-    <section className="mx-auto max-w-shell px-5 py-24 sm:px-6 sm:py-28 lg:px-10 lg:py-32">
+    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="cart-head">
-        <Rule
-          left="Cart"
-          right={`${items.reduce((n, i) => n + i.quantity, 0)} items`}
+        <p
           data-reveal
-        />
+          className="font-label text-[0.62rem] uppercase tracking-lockup text-muted"
+        >
+          Bag · {items.reduce((n, i) => n + i.quantity, 0)} items
+        </p>
         <h1
           data-reveal
-          className="mt-8 font-display text-[clamp(2.2rem,7vw,4rem)] font-normal leading-[1.02] text-graphite"
+          className="mt-3 font-display text-[clamp(2.2rem,6vw,3.75rem)] font-normal leading-[1.02] text-ink"
         >
           Your bag
         </h1>

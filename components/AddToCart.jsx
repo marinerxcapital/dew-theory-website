@@ -109,10 +109,10 @@ export default function AddToCart({ product, className = '' }) {
             className="btn-primary w-full min-h-[48px] px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
           >
             {added
-              ? 'Added to cart'
+              ? 'Added to bag'
               : needsVariant && !variant
                 ? 'Select a scent'
-                : 'Add to cart'}
+                : 'Add to Bag'}
           </button>
           {added && (
             <Link

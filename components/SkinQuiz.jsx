@@ -72,32 +72,37 @@ export default function SkinQuiz({ catalog = [] }) {
       {/* Progress */}
       <div className="mb-10">
         <div className="flex items-center justify-between gap-4">
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew">
             {current.eyebrow}
           </p>
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted">
             {step + 1} / {total}
           </p>
         </div>
+        <div className="mt-4 flex gap-1.5" aria-hidden="true">
+          {QUIZ_STEPS.map((s, i) => (
+            <span
+              key={s.id}
+              className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+                i < step ? 'bg-dew' : i === step ? 'bg-dew/60' : 'bg-border'
+              }`}
+            />
+          ))}
+        </div>
         <div
-          className="mt-4 h-px w-full bg-chrome/20"
+          className="sr-only"
           role="progressbar"
           aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-label="Quiz progress"
-        >
-          <div
-            className="h-px bg-graphite transition-[width] duration-500 ease-out"
-            style={{ width: `${Math.max(progress, 8)}%` }}
-          />
-        </div>
+        />
       </div>
 
-      <h2 className="font-display text-[clamp(1.85rem,4.5vw,2.75rem)] font-normal leading-[1.12] text-graphite">
+      <h2 className="font-display text-[clamp(1.85rem,4.5vw,2.75rem)] font-normal leading-[1.12] text-ink">
         {current.title}
       </h2>
-      <p className="mt-4 max-w-xl font-body text-base font-normal leading-relaxed text-charcoal/75">
+      <p className="mt-4 max-w-xl font-body text-base font-normal leading-relaxed text-muted">
         {current.subtitle}
       </p>
 
@@ -115,23 +120,23 @@ export default function SkinQuiz({ catalog = [] }) {
               role="option"
               aria-selected={selected}
               onClick={() => select(opt.value)}
-              className={`group flex min-h-[72px] w-full flex-col items-start rounded-[2px] border px-5 py-5 text-left transition-all duration-300 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6 ${
+              className={`group flex min-h-[72px] w-full flex-col items-start rounded-[3px] border px-5 py-5 text-left transition-all duration-300 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6 ${
                 selected
-                  ? 'border-graphite bg-graphite text-pearl shadow-card'
-                  : 'border-chrome/20 bg-surface text-charcoal shadow-card hover:-translate-y-0.5 hover:border-chrome/40 hover:shadow-card-hover'
+                  ? 'border-dew bg-dew text-white shadow-card'
+                  : 'border-border bg-white text-ink shadow-card hover:-translate-y-0.5 hover:border-dew/50 hover:shadow-card-hover'
               }`}
             >
               <span>
                 <span
                   className={`block font-display text-xl font-normal sm:text-2xl ${
-                    selected ? 'text-pearl' : 'text-graphite'
+                    selected ? 'text-white' : 'text-ink'
                   }`}
                 >
                   {opt.label}
                 </span>
                 <span
                   className={`mt-1.5 block font-body text-sm font-normal leading-relaxed ${
-                    selected ? 'text-pearl/70' : 'text-charcoal/65'
+                    selected ? 'text-white/75' : 'text-muted'
                   }`}
                 >
                   {opt.hint}
@@ -139,10 +144,10 @@ export default function SkinQuiz({ catalog = [] }) {
               </span>
               <span
                 className={`mt-4 font-label text-[0.62rem] font-normal uppercase tracking-lockup sm:mt-0 ${
-                  selected ? 'text-pearl/55' : 'text-chrome'
+                  selected ? 'text-white/60' : 'text-muted'
                 }`}
               >
-                Select
+                {selected ? 'Selected' : 'Select'}
               </span>
             </button>
           );
@@ -154,11 +159,11 @@ export default function SkinQuiz({ catalog = [] }) {
           type="button"
           onClick={back}
           disabled={step === 0}
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-charcoal/70 transition-colors hover:text-charcoal disabled:opacity-30"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink/70 transition-colors hover:text-ink disabled:opacity-30"
         >
           ← Back
         </button>
-        <p className="max-w-sm text-right font-body text-xs font-normal leading-relaxed text-charcoal/55">
+        <p className="max-w-sm text-right font-body text-xs font-normal leading-relaxed text-muted">
           For every age — teens through 60 & beyond. No medical claims; just a clear sequence.
         </p>
       </div>
@@ -171,13 +176,13 @@ function QuizResults({ result, onRestart }) {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <p className="eyebrow-line font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome">
+      <p className="dew-badge inline-flex px-3 py-1.5 font-label text-[0.65rem] font-normal uppercase tracking-lockup">
         Your path · {result.archetype}
       </p>
-      <h2 className="mt-4 font-display text-[clamp(2rem,5vw,3.1rem)] font-normal leading-[1.1] text-graphite">
+      <h2 className="mt-5 font-display text-[clamp(2rem,5vw,3.1rem)] font-normal leading-[1.1] text-ink">
         {result.headline}
       </h2>
-      <p className="mt-5 max-w-2xl font-body text-base font-normal leading-relaxed text-charcoal/80 sm:text-[1.05rem]">
+      <p className="mt-5 max-w-2xl font-body text-base font-normal leading-relaxed text-ink/80 sm:text-[1.05rem]">
         {result.emilyNote}
       </p>
 
@@ -186,7 +191,7 @@ function QuizResults({ result, onRestart }) {
           {result.notes?.map((n) => (
             <p
               key={n}
-              className="rounded-[2px] border border-chrome/15 bg-surface px-5 py-4 font-body text-sm font-normal leading-relaxed text-charcoal/75"
+              className="dew-panel rounded-[3px] px-5 py-4 font-body text-sm font-normal leading-relaxed text-ink/80"
             >
               {n}
             </p>
@@ -194,7 +199,7 @@ function QuizResults({ result, onRestart }) {
           {result.cautions?.map((n) => (
             <p
               key={n}
-              className="rounded-[2px] border border-blush/40 bg-ivory/80 px-5 py-4 font-body text-sm font-normal leading-relaxed text-charcoal/80"
+              className="rounded-[3px] border border-promo/25 bg-promo/5 px-5 py-4 font-body text-sm font-normal leading-relaxed text-ink/85"
             >
               {n}
             </p>
@@ -208,15 +213,15 @@ function QuizResults({ result, onRestart }) {
         <RoutineColumn title="Weekly ritual" eyebrow="1–2× per week" products={result.weekly} />
       )}
 
-      <div className="mt-12 flex flex-col gap-6 rounded-[2px] border border-chrome/15 bg-surface p-8 shadow-card sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-12 flex flex-col gap-6 rounded-[3px] border border-border bg-white p-8 shadow-card sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted">
             Full routine · retail
           </p>
-          <p className="mt-2 font-display text-3xl font-normal text-graphite">
+          <p className="mt-2 font-display text-3xl font-normal text-ink">
             {formatMoney(result.subtotal)}
           </p>
-          <p className="mt-2 max-w-sm font-body text-sm font-normal text-charcoal/65">
+          <p className="mt-2 max-w-sm font-body text-sm font-normal text-muted">
             {result.products.length} Skin Script step
             {result.products.length === 1 ? '' : 's'} — no invented kit discounts.
           </p>
@@ -235,7 +240,7 @@ function QuizResults({ result, onRestart }) {
             </Link>
             <Link
               href="/virtual-consultation"
-              className="inline-flex min-h-[44px] items-center font-label text-[0.66rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+              className="inline-flex min-h-[44px] items-center font-label text-[0.66rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
             >
               Prefer virtual →
             </Link>
@@ -243,27 +248,27 @@ function QuizResults({ result, onRestart }) {
         </div>
       </div>
 
-      <p className="mt-8 font-body text-xs font-normal leading-relaxed text-charcoal/55">
+      <p className="mt-8 font-body text-xs font-normal leading-relaxed text-muted">
         {QUIZ_DISCLAIMER}
       </p>
 
-      <div className="mt-8 flex flex-wrap gap-4 border-t border-chrome/12 pt-8">
+      <div className="mt-8 flex flex-wrap gap-4 border-t border-border pt-8">
         <button
           type="button"
           onClick={onRestart}
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink/70 hover:text-ink"
         >
           Retake quiz
         </button>
         <Link
           href={`/quiz?r=${encodeURIComponent(shareCode)}`}
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-chrome hover:text-charcoal"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
         >
           Result code: {shareCode}
         </Link>
         <Link
           href="/routine"
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink/70 hover:text-ink"
         >
           Build your own routine →
         </Link>
@@ -276,18 +281,18 @@ function RoutineColumn({ title, eyebrow, products }) {
   if (!products?.length) return null;
   return (
     <section className="mt-14">
-      <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+      <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew">
         {eyebrow}
       </p>
-      <h3 className="mt-2 font-display text-2xl font-normal text-graphite sm:text-3xl">{title}</h3>
+      <h3 className="mt-2 font-display text-2xl font-normal text-ink sm:text-3xl">{title}</h3>
       <ol className="mt-6 space-y-3">
         {products.map((p, i) => (
           <li key={p.id}>
             <Link
               href={`/shop/${p.id}`}
-              className="group flex gap-4 rounded-[2px] border border-chrome/15 bg-surface p-4 transition-shadow hover:shadow-card-hover sm:gap-5 sm:p-5"
+              className="group flex gap-4 rounded-[3px] border border-border bg-white p-4 transition-shadow hover:shadow-card-hover sm:gap-5 sm:p-5"
             >
-              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-[2px] bg-pearl sm:h-28 sm:w-20">
+              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-[2px] bg-surface-light sm:h-28 sm:w-20">
                 <ProductImage
                   product={p}
                   sizes="80px"
@@ -296,16 +301,16 @@ function RoutineColumn({ title, eyebrow, products }) {
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
+                <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
                   Step {i + 1} · {p.category}
                 </p>
-                <p className="mt-1 font-display text-lg font-normal text-graphite group-hover:text-charcoal sm:text-xl">
+                <p className="mt-1 font-display text-lg font-normal text-ink group-hover:text-ink/80 sm:text-xl">
                   {p.name}
                 </p>
-                <p className="mt-1 line-clamp-2 font-body text-sm font-normal text-charcoal/65">
+                <p className="mt-1 line-clamp-2 font-body text-sm font-normal text-muted">
                   {p.description_short}
                 </p>
-                <p className="mt-2 font-label text-sm font-normal tracking-wide2 text-graphite">
+                <p className="mt-2 font-label text-sm font-normal tracking-wide2 text-ink">
                   {formatMoney(p.retail_price)}
                 </p>
               </div>

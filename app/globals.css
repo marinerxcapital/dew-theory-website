@@ -5,19 +5,31 @@
 :root {
   --sweep-x: 50%;
   --sweep-y: 50%;
-  /* Quiet clinical tokens — high-contrast retail */
-  --color-pearl: #F7F5F2;
-  --color-ivory: #F1ECE6;
-  --color-chrome: #6B7680;
-  --color-graphite: #1F2128;
-  --color-ice: #C4DAE9;
-  --color-lavender: #CECDE1;
-  --color-blush: #DEC2CF;
-  --color-charcoal: #1A1C20;
+  /* Retail foundation — black / white + Dew green + restrained promo red */
+  --color-black: #000000;
+  --color-ink: #111111;
+  --color-pearl: #FFFFFF;
+  --color-ivory: #FAFAF8;
+  --color-chrome: #666666;
+  --color-graphite: #111111;
+  --color-ice: #E8F0EB;
+  --color-lavender: #F3F7F4;
+  --color-blush: #F7F7F7;
+  --color-charcoal: #2A2A2A;
+  --color-muted: #666666;
   --color-surface: #FFFFFF;
+  --color-surface-light: #F7F7F7;
   --color-specular: #FFFFFF;
-  --color-border: rgba(31, 33, 40, 0.1);
-  --color-border-strong: rgba(31, 33, 40, 0.18);
+  --color-border: #E2E2E2;
+  --color-border-strong: #C8C8C8;
+  --color-promo: #D6001C;
+  --color-promo-dark: #A80016;
+  --color-dew: #2F5D4A;
+  --color-dew-dark: #183C30;
+  --color-dew-mid: #5F826F;
+  --color-dew-soft: #E8F0EB;
+  --color-dew-surface: #F3F7F4;
+  --header-offset: 7.5rem;
 }
 
 html {
@@ -28,8 +40,8 @@ html {
 }
 
 body {
-  background: var(--color-pearl, #F7F5F2);
-  color: var(--color-charcoal, #1A1C20);
+  background: var(--color-pearl, #FFFFFF);
+  color: var(--color-charcoal, #2A2A2A);
   font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 400;
   overflow-x: clip;
@@ -49,8 +61,12 @@ body {
 @media (max-width: 767px) {
   .btn-primary,
   .btn-ghost,
+  .btn-dew,
+  .btn-promo,
   a.btn-primary,
-  a.btn-ghost {
+  a.btn-ghost,
+  a.btn-dew,
+  a.btn-promo {
     min-height: 44px;
   }
 }
@@ -150,23 +166,26 @@ button {
   outline: none;
 }
 :focus-visible {
-  outline: 2px solid var(--color-graphite);
+  outline: 2px solid var(--color-dew);
   outline-offset: 3px;
   border-radius: 2px;
-  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.55);
+  box-shadow: 0 0 0 4px rgba(47, 93, 74, 0.25);
 }
-/* High-contrast on dark graphite CTAs */
+/* High-contrast on dark CTAs */
 .bg-graphite:focus-visible,
+.bg-ink:focus-visible,
+.bg-black:focus-visible,
+.btn-primary:focus-visible,
 button.bg-graphite:focus-visible,
 a.bg-graphite:focus-visible {
-  outline-color: var(--color-pearl);
-  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.65);
+  outline-color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(47, 93, 74, 0.45);
 }
 /* Custom radio/checkbox chips: ring the visible label when input is focused */
 label:has(input:focus-visible) {
-  outline: 2px solid var(--color-graphite);
+  outline: 2px solid var(--color-dew);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px rgba(196, 218, 233, 0.55);
+  box-shadow: 0 0 0 4px rgba(47, 93, 74, 0.25);
 }
 /* Skip link — first tab stop on storefront */
 .skip-link {
@@ -275,23 +294,23 @@ label:has(input:focus-visible) {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: var(--color-pearl);
+  background: #FFFFFF;
 }
 .motion-bg__glass {
   position: absolute;
   inset: 0;
-  background: var(--color-pearl);
+  background: #FFFFFF;
 }
 .motion-bg__vignette {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(247, 245, 242, 1) 0%,
-    rgba(247, 245, 242, 0.98) 40%,
-    rgba(241, 236, 230, 0.55) 100%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(247, 247, 247, 0.5) 55%,
+    rgba(243, 247, 244, 0.35) 100%
   );
-  opacity: 0.65;
+  opacity: 0.9;
 }
 
 /* ---- Site ambient: whisper wash only (no orbs sitewide) ---- */
@@ -505,26 +524,25 @@ a.glass-1:hover,
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Primary / ghost buttons — solid, confident */
+/* Primary / ghost / dew / promo buttons — retail hierarchy */
 .btn-primary {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-graphite);
-  background: var(--color-graphite);
-  color: #F7F5F2;
-  box-shadow: 0 10px 28px -16px rgba(31, 33, 40, 0.55);
+  border: 1px solid var(--color-ink);
+  background: var(--color-ink);
+  color: #FFFFFF;
+  box-shadow: none;
   transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.35s ease,
-    transform 0.3s ease;
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 .btn-primary:hover {
-  background: #2a2d36;
-  border-color: #2a2d36;
-  box-shadow: 0 14px 32px -14px rgba(31, 33, 40, 0.6);
+  background: var(--color-black);
+  border-color: var(--color-black);
   transform: translateY(-1px);
 }
 .btn-ghost {
@@ -534,16 +552,57 @@ a.glass-1:hover,
   justify-content: center;
   border: 1px solid var(--color-border-strong);
   background: var(--color-surface);
-  color: var(--color-charcoal);
+  color: var(--color-ink);
   transition:
-    border-color 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.3s ease;
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .btn-ghost:hover {
-  border-color: var(--color-graphite);
+  border-color: var(--color-ink);
   background: var(--color-surface);
-  box-shadow: 0 10px 24px -18px rgba(31, 33, 40, 0.2);
+}
+.btn-dew {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-dew);
+  background: var(--color-dew);
+  color: #FFFFFF;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.btn-dew:hover {
+  background: var(--color-dew-dark);
+  border-color: var(--color-dew-dark);
+  transform: translateY(-1px);
+}
+.btn-dew-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-dew);
+  background: transparent;
+  color: var(--color-dew-dark);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-dew-outline:hover {
+  background: var(--color-dew-soft);
+}
+.btn-promo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-promo);
+  background: var(--color-promo);
+  color: #FFFFFF;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.btn-promo:hover {
+  background: var(--color-promo-dark);
+  border-color: var(--color-promo-dark);
 }
 
 /* Media hover — soft scale, no bounce */
@@ -604,14 +663,39 @@ article:hover [data-product-image-frame] .media-zoom-target {
   }
 }
 
-/* Nav — solid pearl bar, always readable */
+/* Nav — solid white retail bar */
 [data-nav][data-state='frosted'],
 [data-nav][data-state='clear'] {
-  background: rgba(247, 245, 242, 0.92);
-  backdrop-filter: blur(16px) saturate(1.1);
-  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 10px 30px -28px rgba(31, 33, 40, 0.18);
+  box-shadow: none;
+}
+
+/* Announcement / promo bar */
+.announcement-bar {
+  background: var(--color-ink);
+  color: #FFFFFF;
+}
+.announcement-bar--promo {
+  background: var(--color-promo);
+}
+.announcement-bar--service {
+  background: var(--color-dew);
+}
+
+/* Black category rail */
+.category-nav {
+  background: var(--color-black);
+  color: #FFFFFF;
+}
+.category-nav a {
+  color: rgba(255, 255, 255, 0.88);
+}
+.category-nav a:hover,
+.category-nav a[aria-current='page'] {
+  color: #FFFFFF;
 }
 
 .nav-logo {
@@ -694,11 +778,11 @@ article:hover [data-product-image-frame] .media-zoom-target {
   50% { opacity: 0.9; transform: scaleY(1); transform-origin: top; }
 }
 
-/* Footer — solid graphite, no prism wash */
+/* Footer — solid ink retail IA */
 .site-footer {
   position: relative;
-  background: var(--color-graphite);
-  color: rgba(247, 245, 242, 0.9);
+  background: var(--color-ink);
+  color: rgba(255, 255, 255, 0.9);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none;
 }
@@ -707,17 +791,17 @@ article:hover [data-product-image-frame] .media-zoom-target {
   display: none;
 }
 .site-footer a {
-  color: rgba(247, 245, 242, 0.72);
+  color: rgba(255, 255, 255, 0.72);
   transition: color 0.25s ease;
 }
 .site-footer a:hover {
-  color: #F7F5F2;
+  color: #FFFFFF;
 }
 .site-footer .footer-rule {
-  color: rgba(196, 218, 233, 0.45);
+  color: rgba(232, 240, 235, 0.45);
 }
 .site-footer .footer-rule span[aria-hidden='true'] {
-  background: rgba(196, 218, 233, 0.28);
+  background: rgba(232, 240, 235, 0.28);
 }
 
 /* Shop filter chip */
@@ -729,16 +813,58 @@ article:hover [data-product-image-frame] .media-zoom-target {
     border-color 0.25s ease,
     color 0.25s ease;
 }
-.filter-chip[aria-selected='true'] {
-  background: var(--color-graphite);
-  border-color: var(--color-graphite);
+.filter-chip[aria-selected='true'],
+.filter-chip[aria-pressed='true'] {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
   box-shadow: none;
-  color: #F7F5F2;
+  color: #FFFFFF;
 }
-.filter-chip:not([aria-selected='true']):hover {
-  border-color: var(--color-border-strong);
+.filter-chip:not([aria-selected='true']):not([aria-pressed='true']):hover {
+  border-color: var(--color-ink);
   background: var(--color-surface);
-  color: var(--color-charcoal);
+  color: var(--color-ink);
+}
+
+/* Dew guidance panel */
+.dew-panel {
+  background: var(--color-dew-surface);
+  border: 1px solid rgba(47, 93, 74, 0.18);
+}
+.dew-badge {
+  background: var(--color-dew-soft);
+  color: var(--color-dew-dark);
+  border: 1px solid rgba(47, 93, 74, 0.2);
+}
+
+/* Product rail scroll */
+.product-rail {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+.product-rail > * {
+  scroll-snap-align: start;
+  flex: 0 0 min(72vw, 16.5rem);
+}
+@media (min-width: 768px) {
+  .product-rail > * {
+    flex-basis: calc((100% - 3rem) / 3);
+  }
+}
+@media (min-width: 1024px) {
+  .product-rail > * {
+    flex-basis: calc((100% - 4rem) / 4);
+  }
+}
+@media (min-width: 1280px) {
+  .product-rail > * {
+    flex-basis: calc((100% - 5rem) / 5);
+  }
 }
 
 /* Eyebrow hairline accent */

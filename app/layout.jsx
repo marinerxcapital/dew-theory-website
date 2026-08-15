@@ -44,8 +44,8 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F7F5F2' },
-    { media: '(prefers-color-scheme: dark)', color: '#1F2128' }
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#111111' }
   ],
   viewportFit: 'cover',
   colorScheme: 'light'
@@ -142,7 +142,15 @@ const orgLd = {
       name: 'Dew Theory',
       description: SITE_DESCRIPTION,
       publisher: { '@id': `${siteUrl}/#organization` },
-      inLanguage: 'en-US'
+      inLanguage: 'en-US',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${siteUrl}/shop?q={search_term_string}`
+        },
+        'query-input': 'required name=search_term_string'
+      }
     },
     {
       '@type': 'BeautySalon',
@@ -178,14 +186,14 @@ const orgLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
-      <body className="relative bg-pearl font-body font-normal text-charcoal antialiased">
+      <body className="relative bg-white font-body font-normal text-charcoal antialiased">
         <JsonLd data={orgLd} />
         <CartProvider>
           <MotionBackground />
           <MotionRoot />
           <div className="relative z-[1]">
             <Nav />
-            <main id="main" tabIndex={-1}>
+            <main id="main" tabIndex={-1} className="min-h-[50vh]">
               {children}
             </main>
             <Footer />
