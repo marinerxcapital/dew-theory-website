@@ -37,47 +37,43 @@ export default function QuizPage() {
     }));
 
   return (
-    <section className="relative mx-auto max-w-shell px-5 pb-24 pt-28 sm:px-6 sm:pb-32 sm:pt-32 lg:px-10">
-      {/* Soft editorial header */}
+    <section className="relative mx-auto max-w-shell px-5 pb-24 pt-10 sm:px-6 sm:pb-28 sm:pt-12 lg:px-10">
       <div className="mx-auto max-w-3xl text-center">
-        <p className="eyebrow-line mx-auto justify-center font-label text-[0.65rem] font-normal uppercase tracking-lockup text-chrome">
+        <p className="font-label text-[0.65rem] font-normal uppercase tracking-lockup text-dew">
           For every age · Teens to 60 & beyond
         </p>
-        <h1 className="mt-5 font-display text-[clamp(2.2rem,6vw,3.8rem)] font-normal leading-[1.05] text-graphite">
-          What does your skin
-          <br />
-          <em className="not-italic">need next?</em>
+        <h1 className="mt-4 font-display text-[clamp(2.2rem,6vw,3.6rem)] font-normal leading-[1.05] text-ink">
+          What does your skin need next?
         </h1>
-        <p className="mx-auto mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-charcoal/75">
+        <p className="mx-auto mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted">
           Four gentle questions. One clear morning and evening sequence from our Skin Script
-          collection — no overwhelm, no medical claims, no one-size-fits-all.
+          collection — no overwhelm, no medical claims.
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <span className="rounded-full border border-chrome/20 bg-surface px-4 py-2 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
-            ~2 minutes
-          </span>
-          <span className="rounded-full border border-chrome/20 bg-surface px-4 py-2 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
-            Real products only
-          </span>
-          <span className="rounded-full border border-chrome/20 bg-surface px-4 py-2 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-chrome">
-            Inclusive ages
-          </span>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {['~2 minutes', 'Real products only', 'Inclusive ages'].map((t) => (
+            <span
+              key={t}
+              className="dew-badge rounded-full px-4 py-2 font-label text-[0.58rem] font-normal uppercase tracking-lockup"
+            >
+              {t}
+            </span>
+          ))}
         </div>
       </div>
 
-      <div className="mx-auto mt-14 max-w-3xl rounded-[2px] border border-chrome/15 bg-surface p-6 shadow-card sm:mt-16 sm:p-10 lg:p-12">
+      <div className="mx-auto mt-12 max-w-3xl rounded-[2px] border border-border bg-white p-6 sm:mt-14 sm:p-10 lg:p-12">
         <SkinQuiz catalog={catalog} />
       </div>
 
-      <p className="mx-auto mt-10 max-w-2xl text-center font-body text-xs font-normal leading-relaxed text-charcoal/55">
+      <p className="mx-auto mt-10 max-w-2xl text-center font-body text-xs font-normal leading-relaxed text-muted">
         {QUIZ_DISCLAIMER}{' '}
-        <Link href="/book" className="underline decoration-chrome/40 underline-offset-4 hover:text-charcoal">
+        <Link href="/book" className="text-dew underline underline-offset-2 hover:text-dew-dark">
           Book a facial
         </Link>{' '}
         or{' '}
         <Link
           href="/virtual-consultation"
-          className="underline decoration-chrome/40 underline-offset-4 hover:text-charcoal"
+          className="text-dew underline underline-offset-2 hover:text-dew-dark"
         >
           virtual consultation
         </Link>{' '}

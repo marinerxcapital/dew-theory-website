@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
+import Accordion from '@/components/Accordion';
 import JsonLd from '@/components/JsonLd';
 import {
   formatMoney,
@@ -8,41 +9,154 @@ import {
 } from '@/lib/shipping';
 
 export const metadata = {
-  title: 'FAQ — Shipping, Appointments & Products',
+  title: 'Help Center — Orders, Facials & Virtual Consultations',
   description:
-    'Answers about free shipping at $49+, Skin Script products, facials, virtual consultations, discounts, and returns at Dew Theory.',
+    'Answers about shipping, returns, Skin Script products, the skin quiz, facials, virtual consultations, and membership at Dew Theory.',
   alternates: { canonical: '/faq' },
   openGraph: {
-    title: 'FAQ — Dew Theory',
-    description: 'Shipping, appointments, products, and virtual consultations — answered plainly.',
+    title: 'Help Center — Dew Theory',
+    description: 'Shipping, returns, products, booking, and virtual consultations — answered plainly.',
     url: '/faq'
   }
 };
 
-const FAQS = [
+const CATEGORIES = [
   {
-    q: 'What is free shipping?',
-    a: `Orders with a product subtotal of ${formatMoney(FREE_SHIPPING_THRESHOLD_USD)} or more (before discount codes) ship free. Below that, shipping is a flat ${formatMoney(FLAT_SHIPPING_USD)}. The threshold uses the pre-discount subtotal so a promo cannot remove free shipping once you qualify.`
+    id: 'orders',
+    label: 'Orders & Shipping',
+    items: [
+      {
+        id: 'free-shipping',
+        q: 'What is free shipping?',
+        a: `Orders with a product subtotal of ${formatMoney(FREE_SHIPPING_THRESHOLD_USD)} or more ship free. Below that, shipping is a flat ${formatMoney(FLAT_SHIPPING_USD)}. The threshold is calculated on your pre-discount subtotal, so applying a promo code never removes free shipping once you qualify.`
+      },
+      {
+        id: 'order-status',
+        q: 'How do I check on my order?',
+        a: 'Reach out through the contact form with your order reference and email address, and Emily will follow up with the current status.'
+      },
+      {
+        id: 'address',
+        q: 'What address do you ship to?',
+        a: 'Checkout collects a complete shipping address — street, city, state, and postal code — so your order can be fulfilled correctly. Incomplete addresses are flagged before payment goes through.'
+      }
+    ]
   },
   {
-    q: 'Are the products real professional formulas?',
-    a: 'Yes. The shop carries Skin Script formulations — the same professional line Emily uses in-studio. Retail prices follow wholesale × 2 unless a sticker price is confirmed otherwise.'
+    id: 'returns',
+    label: 'Returns',
+    items: [
+      {
+        id: 'return-window',
+        q: 'Can I return a product?',
+        a: 'Yes — see the Returns page for eligibility and how to start a request. Skincare items may have hygiene-related limits on opened or used products.'
+      },
+      {
+        id: 'damaged',
+        q: 'What if my order arrives damaged or incorrect?',
+        a: 'Contact the studio as soon as you can with photos and your order reference, and Emily will help sort out a replacement or refund.'
+      }
+    ]
   },
   {
-    q: 'How do facials work?',
-    a: 'Every visit starts with a barrier read. Treatment names, durations, and prices on the menu are a working draft until Emily publishes the live list — book to hold a slot; deposit terms publish before live deposits open.'
+    id: 'products',
+    label: 'Products',
+    items: [
+      {
+        id: 'skin-script',
+        q: 'Are these real professional formulas?',
+        a: 'Yes. The shop carries Skin Script formulations — the same professional line Emily uses in-studio, sold at published retail pricing.'
+      },
+      {
+        id: 'discount-codes',
+        q: 'How do promo codes work?',
+        a: "Enter your code at checkout — active, valid codes apply automatically to your subtotal. If a code doesn't apply, it may be expired, inactive, or fully redeemed."
+      },
+      {
+        id: 'shelf-life',
+        q: 'How do I know what to use, and when?',
+        a: 'Take the skin quiz or open the routine builder for a suggested morning and evening sequence. For anything beyond home care, a virtual consultation or in-studio visit gives you a real barrier read.'
+      }
+    ]
   },
   {
-    q: 'Can I meet online instead?',
-    a: 'Yes. Virtual consultation is a Zoom-based review with secure intake and private photo upload, then a personalized morning and evening routine. Checkout uses Stripe when configured.'
+    id: 'quiz',
+    label: 'Skin Quiz & Routine',
+    items: [
+      {
+        id: 'quiz-how',
+        q: 'How does the skin quiz work?',
+        a: 'A few quick questions about your age range, how your skin feels, and your main concern build a suggested AM/PM sequence from real Skin Script products — never invented SKUs.'
+      },
+      {
+        id: 'quiz-medical',
+        q: 'Is the quiz a substitute for a professional read?',
+        a: 'No. It is an educational starting point, not a diagnosis. Sensitive, reactive, or medical skin conditions deserve an in-person or virtual read with Emily.'
+      },
+      {
+        id: 'routine-builder',
+        q: 'What is the routine builder for?',
+        a: 'If you already know what you like, the routine builder lets you choose each step yourself — cleanser through SPF — and add the full sequence to your bag in one tap.'
+      }
+    ]
   },
   {
-    q: 'How do discounts work?',
-    a: 'Enter a code at checkout. Launch promo values are admin-configured — the seeded DEW15 example is a placeholder percentage until Emily confirms launch economics.'
+    id: 'facials',
+    label: 'Facials & Booking',
+    items: [
+      {
+        id: 'facial-process',
+        q: 'What happens during a facial?',
+        a: 'Every visit starts with a barrier read. Emily chooses the right protocol for your skin that day rather than running a fixed script regardless of how your skin looks.'
+      },
+      {
+        id: 'facial-book',
+        q: 'How do I book an appointment?',
+        a: 'Use the booking page to choose a service and see open times. You will receive a confirmation once your appointment is on the calendar.'
+      },
+      {
+        id: 'facial-policy',
+        q: 'Are there deposit or cancellation requirements?',
+        a: 'Any deposit and cancellation terms will be shown at booking and in your confirmation email. If none apply yet, your appointment is simply held on the studio calendar.'
+      }
+    ]
   },
   {
-    q: 'Where do I send returns or order questions?',
-    a: 'Use the contact form. Final return windows and non-returnable lists are published on the Returns page as operational policy is confirmed — we do not invent a 30-day guarantee.'
+    id: 'virtual',
+    label: 'Virtual Consultation',
+    items: [
+      {
+        id: 'virtual-what',
+        q: 'What is a virtual consultation?',
+        a: 'A Zoom-based session with Emily: a focused review of your skin, current products, and goals. You will complete a secure intake with private photo upload beforehand, then receive a personalized morning and evening routine afterward.'
+      },
+      {
+        id: 'virtual-privacy',
+        q: 'Are my intake photos private?',
+        a: 'Yes. Photos are stored privately with no public gallery, and access is limited to Emily and the secure intake session tied to your consultation.'
+      },
+      {
+        id: 'virtual-payment',
+        q: 'How does payment work?',
+        a: 'Checkout runs securely on Stripe\u2019s hosted payment page — your card details never touch this site directly.'
+      }
+    ]
+  },
+  {
+    id: 'membership',
+    label: 'Membership',
+    items: [
+      {
+        id: 'membership-status',
+        q: 'Is membership available now?',
+        a: 'Membership is currently an interest list — join it on the membership page and we will notify you as soon as terms are published. No card or payment is collected to join the list.'
+      },
+      {
+        id: 'membership-perks',
+        q: 'What will membership include?',
+        a: 'The plan is designed around a steady, calm rhythm of care — priority booking, a facial cadence set with Emily, and shop guidance between visits. Final pricing and terms are still being finalized.'
+      }
+    ]
   }
 ];
 
@@ -50,67 +164,94 @@ export default function FaqPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQS.map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.a
-      }
-    }))
+    mainEntity: CATEGORIES.flatMap((cat) =>
+      cat.items.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.a
+        }
+      }))
+    )
   };
 
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section className="mx-auto max-w-shell px-6 pb-24 pt-12 sm:pb-28 sm:pt-14 lg:px-10 lg:pt-16">
       <JsonLd data={jsonLd} />
 
       <div data-reveal-group="faq-head">
-        <Rule left="Help" right="FAQ" data-reveal />
+        <Rule left="Help center" right="FAQ" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
+          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-ink"
         >
           Questions, answered plainly
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-6 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          Shipping and product facts below match what the storefront implements. Studio deposit
-          windows and final legal return terms still follow Emily&apos;s published policy.
+          Browse by topic, or use the contact form for anything specific to your order or
+          appointment.
         </p>
       </div>
 
-      <ul className="mt-16 space-y-4" data-reveal-group="faq-list">
-        {FAQS.map((item) => (
-          <li key={item.q} data-reveal className="glass-1 rounded-[3px] p-6 sm:p-8">
-            <h2 className="font-display text-xl font-normal text-graphite sm:text-2xl">{item.q}</h2>
-            <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
-              {item.a}
-            </p>
-          </li>
+      <nav
+        aria-label="Help topics"
+        data-reveal
+        className="mt-12 flex flex-wrap gap-2 sm:mt-14"
+      >
+        {CATEGORIES.map((cat) => (
+          <a
+            key={cat.id}
+            href={`#${cat.id}`}
+            className="filter-chip rounded-full px-4 py-2 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted"
+          >
+            {cat.label}
+          </a>
         ))}
-      </ul>
+      </nav>
 
-      <div className="mt-16 flex flex-wrap gap-4" data-reveal>
-        <Link
-          href="/contact"
-          className="sweep btn-primary inline-flex min-h-[44px] items-center px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup"
-        >
-          Contact
-        </Link>
-        <Link
-          href="/shipping"
-          className="sweep inline-flex min-h-[44px] items-center border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
-        >
-          Shipping details
-        </Link>
-        <Link
-          href="/book"
-          className="sweep inline-flex min-h-[44px] items-center border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
-        >
-          Book a facial
-        </Link>
+      <div className="mt-14 space-y-14 sm:mt-16 sm:space-y-16" data-reveal-group="faq-categories">
+        {CATEGORIES.map((cat) => (
+          <div key={cat.id} id={cat.id} data-reveal className="scroll-mt-28">
+            <h2 className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-dew">
+              {cat.label}
+            </h2>
+            <div className="mt-4 rounded-[3px] border border-border bg-white px-5 sm:px-8">
+              <Accordion items={cat.items} idPrefix={cat.id} />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div
+        className="mt-16 flex flex-col gap-6 rounded-[3px] border border-border bg-surface-light p-8 sm:mt-20 sm:flex-row sm:items-center sm:justify-between sm:p-10"
+        data-reveal
+      >
+        <div>
+          <p className="font-display text-xl font-normal text-ink sm:text-2xl">
+            Still have a question?
+          </p>
+          <p className="mt-2 max-w-md font-body text-sm font-normal leading-relaxed text-muted">
+            The contact form reaches the studio directly — Emily replies to what you write in.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/contact"
+            className="btn-primary min-h-[44px] px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+          >
+            Contact us
+          </Link>
+          <Link
+            href="/book"
+            className="btn-ghost min-h-[44px] px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
+          >
+            Book a facial
+          </Link>
+        </div>
       </div>
     </section>
   );

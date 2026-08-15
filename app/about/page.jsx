@@ -16,32 +16,32 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="mx-auto max-w-shell px-6 pb-20 pt-32 sm:pb-24 sm:pt-36 lg:px-10">
+      <section className="mx-auto max-w-shell px-6 pb-16 pt-12 sm:pb-20 sm:pt-14 lg:px-10 lg:pt-16">
         <div className="max-w-2xl" data-reveal-group="about-hero">
           <p
             data-reveal
-            className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70 sm:text-[0.62rem] sm:tracking-lockup"
+            className="dew-badge inline-flex px-3 py-1.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
           >
             Licensed aesthetician
           </p>
           <h1
             data-reveal
-            className="mt-6 font-display text-[clamp(2.4rem,5.5vw,4rem)] font-normal leading-[1.05] text-graphite"
+            className="mt-6 font-display text-[clamp(2.4rem,5.5vw,4rem)] font-normal leading-[1.05] text-ink"
           >
             Emily Mitchener
           </h1>
           <p
             data-reveal
-            className="mt-7 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+            className="mt-7 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
           >
             Emily takes an evidence-informed, barrier-first approach to skin. Every recommendation
-            begins with careful observation of your skin&apos;s current condition, product history,
-            sensitivity, lifestyle, and goals—not a trend, a sales target, or a one-size-fits-all
-            routine.
+            begins with careful observation of your skin&apos;s current condition, product
+            history, sensitivity, lifestyle, and goals — not a trend, a sales target, or a
+            one-size-fits-all routine.
           </p>
           <p
             data-reveal
-            className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+            className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
           >
             She explains the reasoning behind each step in clear, approachable language so you
             understand what to use, how to use it, and why it belongs in your routine. The goal is
@@ -50,22 +50,26 @@ export default function AboutPage() {
           </p>
           <p
             data-reveal
-            className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+            className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
           >
             Emily works with Skin Script in the treatment room and at home, selecting products
-            because they fit your skin—not because they raise the ticket average. Expect practical
-            recommendations, clear expectations, and thoughtful adjustments as your skin changes.
+            because they fit your skin — not because they raise the ticket average. Expect
+            practical recommendations, clear expectations, and thoughtful adjustments as your skin
+            changes.
           </p>
-          <div data-reveal className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+          <div
+            data-reveal
+            className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+          >
             <Link
               href="/book"
-              className="sweep btn-primary inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup"
+              className="btn-primary inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-normal uppercase tracking-lockup"
             >
               Book with Emily
             </Link>
             <Link
               href="/virtual-consultation"
-              className="sweep btn-ghost inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-light uppercase tracking-lockup"
+              className="btn-dew-outline inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-normal uppercase tracking-lockup"
             >
               Book a virtual consultation
             </Link>
@@ -73,13 +77,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-chrome/15 bg-ivory">
-        <div className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10" data-reveal-group="philosophy">
+      <section className="border-y border-border bg-surface-light">
+        <div
+          className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10"
+          data-reveal-group="philosophy"
+        >
+          <Rule left="Approach" right="How she works" data-reveal />
           <h2
             data-reveal
-            className="font-display text-[clamp(1.8rem,3.8vw,2.6rem)] font-normal text-graphite"
+            className="mt-6 font-display text-[clamp(1.8rem,3.8vw,2.6rem)] font-normal text-ink"
           >
-            How she works
+            Look first, sell second
           </h2>
           <ul className="mt-10 grid gap-6 sm:mt-12 sm:gap-8 md:grid-cols-3">
             {[
@@ -96,9 +104,13 @@ export default function AboutPage() {
                 d: 'If you do not need it, she will not sell it. The shop continues the plan — it does not empty the cart.'
               }
             ].map((item) => (
-              <li key={item.t} data-reveal className="glass-1 p-8">
-                <h3 className="font-display text-xl font-normal text-graphite">{item.t}</h3>
-                <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/70">
+              <li
+                key={item.t}
+                data-reveal
+                className="rounded-[3px] border border-border bg-white p-8 shadow-card"
+              >
+                <h3 className="font-display text-xl font-normal text-ink">{item.t}</h3>
+                <p className="mt-4 font-body text-sm font-normal leading-relaxed text-muted">
                   {item.d}
                 </p>
               </li>
@@ -111,31 +123,33 @@ export default function AboutPage() {
         <Rule left="Credentials" right="Practice" data-reveal />
         <div className="mt-10 grid gap-10 md:grid-cols-2">
           <div data-reveal>
-            <h2 className="font-display text-2xl font-normal text-graphite">Licensed aesthetician</h2>
-            <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
-              State-licensed aesthetician working in medical-adjacent skincare — peels, extractions,
-              and barrier-first protocols. Exact board and license number will be listed here once
-              confirmed for launch.
+            <h2 className="font-display text-2xl font-normal text-ink">Licensed aesthetician</h2>
+            <p className="mt-4 font-body text-sm font-normal leading-relaxed text-muted">
+              State-licensed aesthetician working in medical-adjacent skincare — peels,
+              extractions, and barrier-first protocols. Her license number will be published here
+              once confirmed for launch.
             </p>
           </div>
           <div data-reveal>
-            <h2 className="font-display text-2xl font-normal text-graphite">The same actives, explained</h2>
-            <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
+            <h2 className="font-display text-2xl font-normal text-ink">
+              The same actives, explained
+            </h2>
+            <p className="mt-4 font-body text-sm font-normal leading-relaxed text-muted">
               You leave knowing what each product does and when to use it — not only a bag and a
               receipt. Order of operations is the work.
             </p>
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap gap-4 sm:mt-14">
+        <div className="mt-12 flex flex-wrap items-center gap-6 sm:mt-14">
           <Link
             href="/services"
-            className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+            className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
             Treatment menu
           </Link>
           <Link
             href="/virtual-consultation"
-            className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+            className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
           >
             Virtual consultation →
           </Link>
