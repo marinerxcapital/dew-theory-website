@@ -5,6 +5,21 @@ Resolve before launch.
 
 ---
 
+## 0. Redesign status (2026-08-15)
+
+Sephora-inspired retail redesign implemented on branch
+`cursor/sephora-inspired-storefront-2e1c` (PR #1). See
+`docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md`.
+
+Engineering complete for storefront UX; business facts below remain unresolved.
+Membership remains **interest-list only** (live `/membership` route — not a redirect).
+
+**Production deploy blocker for this agent:** Cloudflare Wrangler is not authenticated
+in the Cloud Agent environment (`wrangler whoami` → not logged in). Owner must run
+`npm run deploy` (or provide `CLOUDFLARE_API_TOKEN`) after merge to main.
+
+---
+
 ## 1. Resolved this pass (were open, now confirmed)
 
 - **Shipping.** $7 flat rate, waived at $49+ subtotal — confirmed business rule, now in

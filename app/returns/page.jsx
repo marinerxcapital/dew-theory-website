@@ -9,12 +9,12 @@ export const metadata = {
 
 export default function ReturnsPage() {
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="returns-head">
         <Rule left="Policies" right="Returns" data-reveal />
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
+          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-ink"
         >
           Returns
         </h1>
@@ -30,7 +30,7 @@ export default function ReturnsPage() {
 
       <div className="mt-16 space-y-6" data-reveal-group="returns-body">
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Eligibility</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Eligibility</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             Which products can be returned, in what condition, and within what timeframe will be
             stated here once confirmed. Skincare often has hygiene limits; final eligibility will
@@ -44,7 +44,7 @@ export default function ReturnsPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">How to request</h2>
+          <h2 className="font-display text-xl font-normal text-ink">How to request</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             When the full policy is live, this section will list the steps and what to include (order
             reference, reason, photos if needed). For now, reach out through the{' '}
@@ -57,7 +57,7 @@ export default function ReturnsPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Non-returnables</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Non-returnables</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             Categories that cannot be returned (for example opened actives, certain hygiene-sensitive
             items, or final-sale promotions) will be listed explicitly when Emily sets the policy. No
@@ -66,7 +66,7 @@ export default function ReturnsPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Damaged or incorrect</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Damaged or incorrect</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             If something arrives damaged or does not match what you ordered, contact the studio as
             soon as you can with photos and your order reference. Resolution paths (replacement,
@@ -76,7 +76,7 @@ export default function ReturnsPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-graphite">Services</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Services</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
             In-studio facials and virtual consultations are services, not shipped goods. Deposit and
             cancellation terms for bookings are separate and will publish when those numbers are set

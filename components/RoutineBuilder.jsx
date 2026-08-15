@@ -212,7 +212,7 @@ export default function RoutineBuilder({ catalog = [] }) {
                           <ProductImage
                             product={p}
                             sizes="44px"
-                            quality={65}
+                            quality={70}
                             className="!aspect-auto h-full"
                           />
                         </div>

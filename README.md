@@ -110,26 +110,23 @@ Order path docs: [`docs/ORDER_PATH.md`](docs/ORDER_PATH.md). Env template: [`ENV
 
 ## Design tokens
 
-Every colour was sampled directly from the wordmark artwork with k-means clustering,
-not chosen by eye.
+Retail foundation (2026-08 Sephora-inspired redesign):
 
 | Token | Hex | Role |
 |---|---|---|
-| `pearl` | `#F4F6F7` | Ground |
-| `ivory` | `#F1ECE6` | Warm alternate band — the Emily section only |
-| `chrome` | `#828F9A` | Mercury mid-tone: labels, rules, eyebrows |
-| `graphite` | `#2D2F3A` | Headlines and the primary CTA |
-| `ice` | `#C4DAE9` | Cool highlight |
-| `lavender` | `#CECDE1` | Opal highlight |
-| `blush` | `#DEC2CF` | Warm highlight |
-| `charcoal` | `#24262C` | Body text only |
+| `ink` / `graphite` | `#111111` | Structure, primary CTAs |
+| `black` | `#000000` | Category nav |
+| `white` / `pearl` | `#FFFFFF` | Ground |
+| `muted` / `chrome` | `#666666` | Secondary text |
+| `promo` | `#D6001C` | Sparse promo/alert only |
+| `dew` | `#2F5D4A` | Guidance / quiz / services |
 
-No pure black, no pure white, no saturated colour anywhere.
+See `docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md` for the full token set and redesign status.
 
 **Type**
 - Display — Bodoni Moda. The didone thick/thin modulation matches the wordmark's hairline serifs.
-- Label — Jost 300, uppercase, tracked to `0.34em`, mirroring the `SKIN —— CARE` lockup.
-- Body — Karla 300. Chosen to recede.
+- Label — Jost, uppercase, tracked lockup.
+- Body — Karla. Chosen to recede.
 
 ## Where the motion lives
 

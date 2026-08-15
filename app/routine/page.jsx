@@ -35,7 +35,7 @@ export default function RoutinePage() {
     }));
 
   return (
-    <section className="relative mx-auto max-w-shell px-5 pb-24 pt-10 sm:px-6 sm:pb-28 sm:pt-12 lg:px-10">
+    <section className="relative mx-auto max-w-shell px-5 pb-24 pt-12 sm:px-6 sm:pb-32 sm:pt-14 lg:px-10 lg:pt-16">
       <div className="mb-8 flex flex-wrap items-center gap-4">
         <Link
           href="/shop"
@@ -56,7 +56,7 @@ export default function RoutinePage() {
 
       <RoutineBuilder catalog={catalog} />
 
-      <div className="mt-16 grid gap-6 border-t border-border pt-12 sm:grid-cols-3">
+      <div className="mt-20 grid gap-6 border-t border-border pt-14 sm:grid-cols-3">
         {[
           ['Teens & first routines', 'Fewer steps, calmer actives, habits that last.'],
           ['Busy decades', 'Clear AM/PM order when time is short.'],

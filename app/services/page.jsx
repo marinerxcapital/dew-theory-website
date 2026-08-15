@@ -89,9 +89,8 @@ export default function ServicesPage() {
         className="mt-6 max-w-2xl font-body text-xs font-normal leading-relaxed text-muted"
         data-reveal
       >
-        Names, durations, and prices above are Emily&apos;s working draft menu. They may shift
-        slightly before the final published version — request an appointment and she will confirm
-        everything with you directly.
+        Names, durations, and prices above are being finalized. Request an appointment and Emily
+        will confirm timing and investment with you directly.
       </p>
 
       <div

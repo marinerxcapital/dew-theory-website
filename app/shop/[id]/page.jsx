@@ -22,7 +22,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const product = getProduct(params.id) || PRODUCTS.find((p) => p.id === params.id);
+  const { id } = await params;
+  const product = getProduct(id) || PRODUCTS.find((p) => p.id === id);
   if (!product) return { title: 'Product' };
   const img = productImageSrc(product);
   const desc =
@@ -70,8 +71,9 @@ function AccordionSection({ title, children, defaultOpen = false }) {
   );
 }
 
-export default function ProductDetailPage({ params }) {
-  const product = getProduct(params.id);
+export default async function ProductDetailPage({ params }) {
+  const { id } = await params;
+  const product = getProduct(id);
   if (!product) notFound();
 
   const actives = product.key_actives || product.active_ingredients || [];
@@ -189,7 +191,7 @@ export default function ProductDetailPage({ params }) {
             product={product}
             priority
             framed
-            quality={80}
+            quality={75}
             sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 560px"
           />
           {badge ? (

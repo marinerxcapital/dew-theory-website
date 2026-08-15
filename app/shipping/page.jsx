@@ -9,21 +9,26 @@ export const metadata = {
 
 export default function ShippingPage() {
   return (
-    <section className="mx-auto max-w-shell px-6 py-32 lg:px-10">
+    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="ship-head">
-        <Rule left="Policies" right="Shipping" data-reveal />
+        <p
+          data-reveal
+          className="font-label text-[0.62rem] uppercase tracking-lockup text-muted"
+        >
+          Policies · Shipping
+        </p>
         <h1
           data-reveal
-          className="mt-8 max-w-2xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-normal leading-[1.05] text-graphite"
+          className="mt-3 max-w-2xl font-display text-[clamp(2.3rem,5.5vw,3.8rem)] font-normal leading-[1.05] text-ink"
         >
           Shipping
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          Rates below match what the cart and checkout already calculate. Transit windows, carriers,
-          and ship-from details will be published when fulfillment is confirmed — not guessed here.
+          Rates below match what the bag and checkout already calculate. Transit windows, carriers,
+          and ship-from details will be published when fulfillment is confirmed.
         </p>
       </div>
 
