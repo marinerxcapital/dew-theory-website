@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-6 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
           This page describes how the site works today with data you provide. Full legal terms,
           retention schedules, and a published contact for privacy requests will be confirmed before
@@ -31,9 +31,9 @@ export default function PrivacyPage() {
       <div className="mt-16 space-y-6" data-reveal-group="privacy-body">
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">Cart on your device</h2>
-          <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             Your shopping cart and any promo code you apply are stored in your browser&apos;s{' '}
-            <span className="text-charcoal/90">localStorage</span> so the bag persists between
+            <span className="text-ink/90">localStorage</span> so the bag persists between
             visits. That data stays on your device until you clear site data or empty the cart. At
             checkout, line items are re-priced on the server so totals match current catalog prices.
           </p>
@@ -41,9 +41,9 @@ export default function PrivacyPage() {
 
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">Orders &amp; payments</h2>
-          <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             When payment processing is configured, checkout runs through{' '}
-            <span className="text-charcoal/90">Stripe</span>. Card numbers and payment credentials
+            <span className="text-ink/90">Stripe</span>. Card numbers and payment credentials
             are handled by Stripe — Dew Theory does not store full card data on this site. Order
             records keep what is needed to fulfill and support the purchase (items, totals, shipping
             address you provide, and status). Without Stripe keys, checkout can still run in a local
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
           <h2 className="font-display text-xl font-normal text-ink">
             Booking &amp; virtual consultation
           </h2>
-          <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             Appointment requests and virtual-consultation intake collect the information you submit
             so Emily can prepare and follow up. Consultation photos are stored privately — there are
             no public image URLs. Access is limited to authorized admin views and the secure intake
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
 
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">Admin sessions</h2>
-          <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             Studio staff sign in through a separate admin area. Sessions use an httpOnly cookie so
             credentials are not exposed to page scripts. That gate is for operators only — it is not
             part of the customer account experience.
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
           <h2 className="font-display text-xl font-normal text-ink">
             What this page does not claim yet
           </h2>
-          <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/70">
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             We do not invent third-party analytics vendors, ad networks, or a privacy-officer name.
             Cookie banners, formal retention periods, and GDPR/CCPA request procedures will be
             published when Emily confirms the full policy. First-party funnel events may be recorded
@@ -96,16 +96,16 @@ export default function PrivacyPage() {
         </div>
       </div>
 
-      <div className="mt-12 flex flex-wrap gap-4 sm:mt-14" data-reveal>
+      <div className="mt-12 flex flex-wrap items-center gap-6 sm:mt-14" data-reveal>
         <Link
           href="/contact"
-          className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
+          className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
         >
           Contact
         </Link>
         <Link
           href="/shipping"
-          className="inline-flex min-h-[44px] items-center font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.7rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
         >
           Shipping →
         </Link>
