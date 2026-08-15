@@ -1,59 +1,89 @@
 import Link from 'next/link';
 import ProductImage from '@/components/ProductImage';
+import QuickAdd from '@/components/QuickAdd';
 import { formatMoney } from '@/lib/shipping';
 import { isOutOfStock, stockLabel } from '@/lib/shop';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, compact = false, showQuickAdd = true }) {
   const oos = isOutOfStock(product);
   const badge = stockLabel(product);
+  const concern = Array.isArray(product.conditions_addressed)
+    ? product.conditions_addressed[0]
+    : null;
 
   return (
     <article
       data-reveal
-      className="group flex flex-col overflow-hidden rounded-[2px] border border-chrome/15 bg-surface shadow-card transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-card-hover"
+      className="group flex h-full flex-col overflow-hidden rounded-[2px] border border-border bg-white transition-[border-color,box-shadow] duration-300 hover:border-ink/30 hover:shadow-card"
     >
       <Link
         href={`/shop/${product.id}`}
         className="flex flex-1 flex-col"
         aria-label={oos ? `${product.name}, out of stock` : product.name}
       >
-        <div className={`relative ${oos ? 'opacity-55' : ''}`}>
+        <div className={`relative bg-surface-light ${oos ? 'opacity-55' : ''}`}>
           <ProductImage
             product={product}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes={
+              compact
+                ? '(max-width: 768px) 70vw, 20vw'
+                : '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw'
+            }
           />
-          {badge && (
-            <span className="absolute left-3 top-3 z-[2] border border-chrome/20 bg-surface/95 px-2.5 py-1 font-label text-[0.6rem] font-normal uppercase tracking-lockup text-charcoal">
+          {badge ? (
+            <span className="absolute left-2 top-2 z-[2] border border-border bg-white/95 px-2 py-1 font-label text-[0.55rem] font-normal uppercase tracking-lockup text-ink">
               {badge}
             </span>
-          )}
+          ) : null}
+          {product.category === 'SPF' ? (
+            <span className="absolute right-2 top-2 z-[2] dew-badge px-2 py-1 font-label text-[0.55rem] uppercase tracking-lockup">
+              SPF
+            </span>
+          ) : null}
         </div>
-        <div className="flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-6">
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
-            {product.category}
+        <div className={`flex flex-1 flex-col ${compact ? 'px-3 pb-3 pt-3' : 'px-4 pb-4 pt-4'}`}>
+          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
+            Skin Script · {product.category}
           </p>
-          <h3 className="mt-2 font-display text-xl font-normal leading-snug text-graphite transition-colors group-hover:text-charcoal">
+          <h3
+            className={`mt-1.5 font-display font-normal leading-snug text-ink transition-colors group-hover:text-charcoal ${
+              compact ? 'text-lg' : 'text-xl'
+            }`}
+          >
             {product.name}
           </h3>
-          <p className="mt-2.5 flex-1 font-body text-sm font-normal leading-relaxed text-charcoal/70">
-            {product.description_short}
-          </p>
-          <div className="mt-5 flex items-baseline justify-between gap-4 border-t border-chrome/12 pt-4">
+          {!compact && product.description_short ? (
+            <p className="mt-2 line-clamp-2 flex-1 font-body text-sm font-normal leading-relaxed text-muted">
+              {concern
+                ? `Helps with ${concern}.`
+                : product.description_short}
+            </p>
+          ) : (
+            <p className="mt-1.5 flex-1 font-body text-xs text-muted">
+              {concern ? `For ${concern}` : product.size}
+            </p>
+          )}
+          <div className="mt-3 flex items-baseline justify-between gap-3 border-t border-border pt-3">
             <p
               className={`font-label text-sm font-normal tracking-wide2 ${
-                oos ? 'text-charcoal/45 line-through' : 'text-graphite'
+                oos ? 'text-muted line-through' : 'text-ink'
               }`}
             >
               {formatMoney(product.retail_price)}
             </p>
-            {product.size && (
-              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-chrome">
+            {product.size ? (
+              <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
                 {product.size}
               </p>
-            )}
+            ) : null}
           </div>
         </div>
       </Link>
+      {showQuickAdd ? (
+        <div className={`mt-auto ${compact ? 'px-3 pb-3' : 'px-4 pb-4'}`}>
+          <QuickAdd product={product} />
+        </div>
+      ) : null}
     </article>
   );
 }

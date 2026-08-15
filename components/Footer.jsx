@@ -3,15 +3,23 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Rule from './Rule';
+import {
+  FREE_SHIPPING_THRESHOLD_USD,
+  formatMoney
+} from '@/lib/shipping';
 
 const columns = [
   {
     head: 'Shop',
     items: [
       ['Shop all', '/shop'],
+      ['Cleansers', '/shop?type=Cleanser'],
+      ['Serums & treatments', '/shop?type=Serum'],
+      ['Moisturizers', '/shop?type=Moisturizer'],
+      ['SPF', '/shop?type=SPF'],
       ['Skin quiz', '/quiz'],
       ['Routine builder', '/routine'],
-      ['Cart', '/cart']
+      ['Bag', '/cart']
     ]
   },
   {
@@ -32,11 +40,12 @@ const columns = [
     ]
   },
   {
-    head: 'Policies',
+    head: 'Help',
     items: [
-      ['Privacy', '/privacy'],
       ['Shipping', '/shipping'],
-      ['Returns', '/returns']
+      ['Returns', '/returns'],
+      ['Order support', '/contact'],
+      ['Privacy', '/privacy']
     ]
   }
 ];
@@ -46,36 +55,48 @@ export default function Footer() {
   if (pathname?.startsWith('/admin')) return null;
 
   return (
-    <footer className="site-footer relative mt-12">
-      <div className="relative z-[1] mx-auto max-w-shell px-6 py-16 lg:px-10 lg:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
+    <footer className="site-footer relative mt-16">
+      <div className="relative z-[1] mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-10 lg:py-18">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-display text-3xl italic lowercase text-pearl sm:text-4xl">
+            <p className="font-display text-3xl italic lowercase text-white sm:text-4xl">
               dew theory
             </p>
-            <Rule left="Skin" right="Care" className="mt-5 !text-ice/50" />
-            <p className="mt-6 max-w-xs font-body text-sm font-normal leading-relaxed text-pearl/65">
-              Skin Script actives and in-studio facials — the plan and the products, together.
+            <Rule left="Skin" right="Care" className="footer-rule mt-5" />
+            <p className="mt-6 max-w-xs font-body text-sm font-normal leading-relaxed text-white/70">
+              Clinical Skin Script actives and in-studio facials — aesthetician-led, barrier-first,
+              precise.
             </p>
-            <Link
-              href="/book"
-              className="btn-ghost mt-8 border-pearl/25 bg-transparent px-7 py-3.5 font-label text-[0.68rem] font-normal uppercase tracking-lockup text-pearl hover:border-pearl/50 hover:bg-pearl/10"
-            >
-              Book a facial
-            </Link>
+            <p className="mt-4 font-label text-[0.58rem] uppercase tracking-lockup text-white/45">
+              Free shipping {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/book"
+                className="btn-ghost border-white/25 bg-transparent px-6 py-3 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-white hover:border-white/50 hover:bg-white/10"
+              >
+                Book a facial
+              </Link>
+              <Link
+                href="/quiz"
+                className="inline-flex items-center px-2 font-label text-[0.65rem] uppercase tracking-lockup text-dew-soft hover:text-white"
+              >
+                Skin Quiz
+              </Link>
+            </div>
           </div>
 
           {columns.map((col) => (
             <div key={col.head}>
-              <p className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-ice/65">
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/55">
                 {col.head}
               </p>
-              <ul className="mt-5 space-y-3">
+              <ul className="mt-5 space-y-2.5">
                 {col.items.map(([label, href]) => (
-                  <li key={href}>
+                  <li key={`${col.head}-${href}-${label}`}>
                     <Link
                       href={href}
-                      className="font-body text-sm font-normal text-pearl/70 transition-colors hover:text-pearl"
+                      className="font-body text-sm font-normal text-white/70 transition-colors hover:text-white"
                     >
                       {label}
                     </Link>
@@ -86,11 +107,11 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-pearl/10 pt-6">
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-pearl/45">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/45">
             © {new Date().getFullYear()} Dew Theory
           </p>
-          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-pearl/40">
+          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-white/40">
             Clinical · Quiet · Precise
           </p>
         </div>
