@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
+import LegalPdfActions from '@/components/LegalPdfActions';
 
 export const metadata = {
   title: 'Returns',
   description:
-    'Dew Theory returns scaffold — eligibility, how to request, and non-returnables. Final policy will be published by Emily before full launch.'
+    'Dew Theory returns, refunds, and exchanges. View or download the full FIXED V2 Returns Policy PDF.',
+  alternates: { canonical: '/returns' },
+  robots: { index: true, follow: true }
 };
 
 export default function ReturnsPage() {
@@ -22,10 +25,11 @@ export default function ReturnsPage() {
           data-reveal
           className="mt-6 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          Structure only for now. Return windows, restocking rules, and refund timing are business
-          decisions Emily will publish before full launch — this page does not invent a 30-day (or
-          any other) guarantee.
+          The full Returns, Refunds &amp; Exchanges Policy PDF is the authoritative printable
+          document. Site notes below do not invent windows, fees, or guarantees beyond what that
+          policy states.
         </p>
+        <LegalPdfActions documentId="returns" />
       </div>
 
       <div className="mt-16 space-y-6" data-reveal-group="returns-body">

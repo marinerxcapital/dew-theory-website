@@ -1,5 +1,6 @@
 import { getProducts } from '@/lib/products-server';
 import { isShopVisible } from '@/lib/shop';
+import { getPublicLegalRoutes } from '@/lib/legal-documents';
 
 const site = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dewtheoryco.com').replace(
   /\/$/,
@@ -20,9 +21,11 @@ const STATIC = [
   { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/cart', changeFrequency: 'monthly', priority: 0.4 },
   { path: '/faq', changeFrequency: 'monthly', priority: 0.5 },
-  { path: '/privacy', changeFrequency: 'yearly', priority: 0.3 },
-  { path: '/shipping', changeFrequency: 'yearly', priority: 0.3 },
-  { path: '/returns', changeFrequency: 'yearly', priority: 0.3 }
+  ...getPublicLegalRoutes().map((path) => ({
+    path,
+    changeFrequency: 'yearly',
+    priority: 0.3
+  }))
 ];
 
 export default function sitemap() {

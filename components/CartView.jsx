@@ -15,6 +15,8 @@ import {
   FLAT_SHIPPING_USD
 } from '@/lib/shipping';
 import { isShopVisible } from '@/lib/shop';
+import { getCheckoutLegalDocuments } from '@/lib/legal-documents';
+import LegalDocLinks from '@/components/LegalDocLinks';
 
 const NOTE_MAX = 400;
 
@@ -532,6 +534,17 @@ export default function CartView() {
                 </span>
               </li>
             </ul>
+
+            <div className="mt-5 border-t border-chrome/15 pt-4">
+              <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+                Policies
+              </p>
+              <LegalDocLinks
+                dense
+                className="mt-2"
+                documents={getCheckoutLegalDocuments()}
+              />
+            </div>
           </form>
         </aside>
       </div>
