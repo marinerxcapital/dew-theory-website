@@ -11,8 +11,9 @@ optional admin TOTP 2FA. **Stripe** code is wired; leave keys empty for mock che
 billing is connected. See `ENV.md` / `.env.example`.
 
 Storefront pages share one fixed motion background (`components/MotionBackground.jsx` —
-`/hero.mp4` + poster, glass wash). Home hero adds Noise Shimmer (AIDesigner runtime on `/`
-only). Admin routes keep a solid pearl chrome without video.
+`/hero.mp4` + poster, glass wash). The home hero is a full-bleed brand-first dew-motion stage
+(canvas dew particles + ken-burns + caustic light, local to `components/Hero.jsx` — see
+`docs/LANDING_HERO_MOTION_2026-08.md`). Admin routes keep a solid pearl chrome without video.
 
 ## Run locally
 
@@ -93,18 +94,23 @@ npm run smoke:routes              # public storefront + /admin/login
 
 Order path docs: [`docs/ORDER_PATH.md`](docs/ORDER_PATH.md). Env template: [`ENV.md`](ENV.md).
 
-### Policy pages (scaffolds)
+### Policy pages
 
 | Route | Notes |
 |---|---|
-| `/shipping` | Documents confirmed $7 / free $49+ pre-discount rule |
-| `/privacy` | Cart storage, Stripe, consultation photos, admin sessions — honest scope |
-| `/returns` | Structure only; final windows still OPEN_ITEMS for Emily |
+| `/privacy` `/terms` `/shipping` `/returns` | Commerce + data policies with FIXED V2 PDF download/print |
+| `/booking-policy` `/aesthetic-disclaimer` | Booking + services policies |
+| `/cookies` `/accessibility` | Sitewide notices |
+
+All public legal routes resolve through `lib/legal-documents.js`; FIXED V2 PDFs live under
+`/legal/pdfs/`. Internal attorney docs stay out of public navigation.
 
 ### Production
 
 - **Live:** [https://dewtheoryco.com](https://dewtheoryco.com)
 - Deploy: `npm run deploy` (OpenNext → Cloudflare Worker `dew-theory`)
+- Latest deploy: main SHA `1e56d6c`, Worker version `e6bc265f-97d8-4518-a96b-6f37a0983bca`
+  (2026-08-16) — see `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`
 - Before customer launch: resolve remaining **business** items in [`OPEN_ITEMS.md`](OPEN_ITEMS.md)
   (menu prices, Stripe/Resend secrets, calendar, deposit policy).
 
@@ -130,8 +136,9 @@ See `docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md` for the full token set and redes
 
 ## Where the motion lives
 
-- `components/Hero.jsx` — the signature moment. Pointer-tracked specular highlight
-  (`--sweep-x` / `--sweep-y` CSS variables) plus the wordmark catching light on load.
+- `components/Hero.jsx` — the signature moment. Full-bleed `dew theory` lockup over a cinematic
+  product plane, with a local dew-particle canvas, ken-burns and caustic light (CSS-only, no GSAP
+  on the hero). `prefers-reduced-motion` disables the canvas and hides the caustic/dew layers.
 - `components/MotionRoot.jsx` — all sitewide motion. Scroll reveals, staggering, nav frosting,
   route cross-fade. One `gsap.matchMedia()` call splits animated and reduced-motion behaviour.
 - `app/globals.css` — the material language: `.chrome-text`, `.specular`, `.iridescent`,

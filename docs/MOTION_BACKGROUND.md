@@ -2,6 +2,11 @@
 
 **Updated:** 2026-07-30
 
+> **2026-08-16:** The home hero itself was rebuilt with a local dew-motion stage (canvas particles,
+> ken-burns, caustic light) in PR #6 — see `docs/LANDING_HERO_MOTION_2026-08.md`. The sitewide
+> `MotionBackground` described below is unchanged; the home fold no longer uses the AIDesigner
+> Noise Shimmer layer.
+
 ## Goal
 
 Every storefront page uses the **same** motion plane as the home hero (silent looped

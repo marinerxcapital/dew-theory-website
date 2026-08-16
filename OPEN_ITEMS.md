@@ -14,9 +14,11 @@ Sephora-inspired retail redesign implemented on branch
 Engineering complete for storefront UX; business facts below remain unresolved.
 Membership remains **interest-list only** (live `/membership` route — not a redirect).
 
-**Production deploy blocker for this agent:** Cloudflare Wrangler is not authenticated
-in the Cloud Agent environment (`wrangler whoami` → not logged in). Owner must run
-`npm run deploy` (or provide `CLOUDFLARE_API_TOKEN`) after merge to main.
+**Production deploy blocker — RESOLVED 2026-08-16.** Cloudflare deploy succeeded via the
+stored Wrangler OAuth token (`skyler@marinerxcapital.com`). Latest deployed main SHA
+`1e56d6c96d0075811e806af952673e1d6a09e4ba`, Worker `dew-theory` version
+`e6bc265f-97d8-4518-a96b-6f37a0983bca` (timestamp `2026-08-16T05:54:19Z`). See
+`docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`.
 
 ## 0b. FIXED V2 legal PDFs (2026-08-16)
 
@@ -26,6 +28,19 @@ Authoritative FIXED V2 legal PDFs wired under `public/legal/pdfs/` with registry
 Internal attorney PDFs stay in `legal/internal/` (not web-served). Consumer Health
 Data remains CONDITIONAL (`CONSUMER_HEALTH_POLICY_PUBLISHED = false`). Membership
 terms are PRE_LAUNCH. See `docs/CODEX_LEGAL_PDFS_DEPLOY_HANDOFF.md` for live deploy.
+
+**Status: DEPLOYED LIVE 2026-08-16.** All 8 public legal HTML routes return 200 and the
+FIXED V2 PDFs serve `application/pdf` on `https://dewtheoryco.com`. Privacy + Terms PDFs
+SHA256-match the local `public/legal/pdfs/` originals (full logo, not cropped). Footer Help
+contains only the 8 public policies; internal/CONDITIONAL/PRE_LAUNCH docs are absent from nav.
+
+## 0c. Landing hero motion (PR #6, deployed 2026-08-16)
+
+Full-bleed dew-motion landing hero merged via PR #6 (`1e56d6c`) and deployed live. Brand-first
+`dew theory` lockup, full-bleed serum product plane, canvas dew particles, ken-burns + caustic
+light, and a lean Shop Skin Script / Take the Skin Quiz CTA pair. `prefers-reduced-motion` is
+respected (canvas short-circuits; caustic/dew hidden under reduce). See
+`docs/LANDING_HERO_MOTION_2026-08.md`.
 
 ---
 

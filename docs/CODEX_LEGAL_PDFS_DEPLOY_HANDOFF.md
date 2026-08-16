@@ -1,5 +1,9 @@
 # Codex production deploy — Dew Theory FIXED V2 legal PDFs (+ redesign if not live)
 
+> **COMPLETED — 2026-08-16.** Deployed main SHA `1e56d6c96d0075811e806af952673e1d6a09e4ba`,
+> Worker `dew-theory` version `e6bc265f-97d8-4518-a96b-6f37a0983bca`. Full evidence in
+> `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`. Body below retained for reference.
+
 You have Cloudflare credentials. Deploy canonical `main` of `marinerxcapital/dew-theory-website` to the live domain and verify FIXED V2 legal PDFs.
 
 ## Mission

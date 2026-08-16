@@ -1,5 +1,9 @@
 # Codex production deploy directive — Dew Theory redesign
 
+> **COMPLETED — 2026-08-16.** Deployed main SHA `1e56d6c96d0075811e806af952673e1d6a09e4ba`,
+> Worker `dew-theory` version `e6bc265f-97d8-4518-a96b-6f37a0983bca`. Full evidence in
+> `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`. Body below retained for reference.
+
 You have `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Use them to deploy the already-merged Sephora-inspired Dew Theory storefront redesign to the live public domain.
 
 ## Mission

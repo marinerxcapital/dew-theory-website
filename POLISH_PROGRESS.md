@@ -1,5 +1,12 @@
 # Polish Progress
 
+> **2026-08-16 — production deploy note.** The 2026-08 Sephora-inspired redesign (PR #1), FIXED V2
+> legal PDFs (PR #5), and full-bleed landing hero motion (PR #6) are merged and deployed to
+> `https://dewtheoryco.com`. Deployed main SHA `1e56d6c96d0075811e806af952673e1d6a09e4ba`,
+> Worker `dew-theory` version `e6bc265f-97d8-4518-a96b-6f37a0983bca`. See
+> `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`. The polish queue below is historical (2026-07); no
+> completed items were reopened.
+
 Started: 2026-07-19T06:15:00Z
 Mode: /loop
 Interval: 30m

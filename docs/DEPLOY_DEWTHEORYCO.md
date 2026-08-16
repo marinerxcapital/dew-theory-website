@@ -69,15 +69,47 @@ Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`
 
 Handles both **shop orders** and **virtual consultations** (`metadata.service_type=virtual_consultation`).
 
-## Post-deploy smoke (VC)
+## Post-deploy smoke checklist
 
 ```text
-https://dewtheoryco.com/
-https://dewtheoryco.com/virtual-consultation
-https://dewtheoryco.com/admin/consultations  (auth required)
-https://dewtheoryco.com/studio → 308 /about
-https://dewtheoryco.com/membership → 308 /services
+# HTML routes (expect 200)
+/  /shop  /services  /book  /about  /virtual-consultation  /contact  /cart  /faq
+/privacy  /terms  /shipping  /returns  /booking-policy  /aesthetic-disclaimer  /cookies  /accessibility
+/membership   # LIVE interest-list route (NOT a redirect)
+/admin/login
+
+# FIXED V2 PDFs (expect 200 + application/pdf)
+/legal/pdfs/DEW_THEORY_PRIVACY_POLICY.pdf
+/legal/pdfs/DEW_THEORY_TERMS_OF_USE_AND_SALE.pdf
+/legal/pdfs/DEW_THEORY_SHIPPING_AND_DELIVERY_POLICY.pdf
+/legal/pdfs/DEW_THEORY_RETURNS_REFUNDS_AND_EXCHANGES_POLICY.pdf
+/legal/pdfs/DEW_THEORY_BOOKING_CANCELLATION_AND_NO_SHOW_POLICY.pdf
+/legal/pdfs/DEW_THEORY_AESTHETIC_SERVICES_AND_SKINCARE_DISCLAIMER.pdf
+/legal/pdfs/DEW_THEORY_COOKIE_AND_TRACKING_TECHNOLOGIES_NOTICE.pdf
+/legal/pdfs/DEW_THEORY_ACCESSIBILITY_STATEMENT.pdf
+/legal/pdfs/DEW_THEORY_VIRTUAL_CONSULTATION_TERMS_AND_INFORMED_CONSENT.pdf
+/legal/pdfs/DEW_THEORY_CONSULTATION_PHOTO_AND_INTAKE_AUTHORIZATION.pdf
 ```
+
+Homepage hero check: full-bleed `dew theory` brand lockup + full-bleed product plane, no
+inset cards/promo chips; `Shop Skin Script` + `Take the Skin Quiz` CTAs; dew-particle canvas +
+ken-burns/caustic motion (hidden under `prefers-reduced-motion`).
+
+Automated check:
+
+```bash
+npm run smoke:routes -- https://dewtheoryco.com
+```
+
+## Latest successful deploy
+
+| Item | Value |
+|---|---|
+| Main SHA | `1e56d6c96d0075811e806af952673e1d6a09e4ba` |
+| Worker | `dew-theory` |
+| Version ID | `e6bc265f-97d8-4518-a96b-6f37a0983bca` |
+| Timestamp (UTC) | `2026-08-16T05:54:19Z` |
+| Evidence | `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md` |
 
 ## Skin Script
 
