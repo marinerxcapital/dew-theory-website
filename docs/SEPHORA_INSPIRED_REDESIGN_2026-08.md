@@ -2,17 +2,22 @@
 
 **Date:** 2026-08-15  
 **Branch:** merged via PR #1 → `main`  
-**Final main SHA:** `c17ac1bc5ea293b776ce4d225e6beff8278a11dc`  
+**Final main SHA:** `7a737cdb5fe8524d30763a4545386305475284ba`  
 **PR:** https://github.com/marinerxcapital/dew-theory-website/pull/1 (MERGED)  
 **Canonical repo:** `marinerxcapital/dew-theory-website`  
 **Production:** https://dewtheoryco.com (Cloudflare Worker `dew-theory` via OpenNext)  
 **Working tree:** clean on merged main  
 
-### Deploy status
-- Finished redesign code is on **canonical main** (`c17ac1b`).
-- Cloudflare Wrangler is **not authenticated** in this Cloud Agent (`wrangler whoami` fails).
-- Production deploy and live-domain verification are **blocked** until `CLOUDFLARE_API_TOKEN` is provided or the owner runs `npm run deploy`.
-- Live `dewtheoryco.com` still serves the pre-redesign homepage copy until that deploy succeeds.
+### Deploy status — complete (2026-08-16)
+
+- Deployed **canonical main** `7a737cdb5fe8524d30763a4545386305475284ba` (PR #1 redesign + PR #2 deploy-blocker note + PR #3 policy token polish).
+- Cloudflare Worker **`dew-theory`** version **`b79f2af0-8be7-4f10-83ea-a837b3cacf28`** is active at 100%.
+- Deploy command `npm run deploy` succeeded (`opennextjs-cloudflare build` + `opennextjs-cloudflare deploy`).
+- Re-validation before deploy: `npm test` **182 pass / 0 fail**, `npm run build` **pass**.
+- Live verified on `https://dewtheoryco.com` and `https://www.dewtheoryco.com` (both `200`; apex is canonical).
+- Redesign markers confirmed live: hero H1 "Clinical skincare, selected by the aesthetician who uses it.", announcement free-shipping bar, black category nav, global search, Dew-green guidance accents on quiz/routine/services.
+- Smoke + journey checks passed: `/`, `/shop`, PDPs (green-tea-citrus-cleanser, hydrating-skin-serum, ageless-moisturizer), `/cart`, `/quiz`, `/routine`, `/services`, `/virtual-consultation`, `/about`, `/membership`, `/contact`, `/faq`, `/shipping`, `/returns`, `/privacy` — all `200`; add-to-bag → cart, quiz → results, routine add, and www behavior verified in a real headless browser.
+- Deploy timestamp: `2026-08-16T02:45:52Z`; verification timestamp: `2026-08-16T02:53:45Z` (PDT `2026-08-15 19:53`).
 
 ## Objective
 

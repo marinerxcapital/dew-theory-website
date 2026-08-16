@@ -14,9 +14,13 @@ Sephora-inspired retail redesign implemented on branch
 Engineering complete for storefront UX; business facts below remain unresolved.
 Membership remains **interest-list only** (live `/membership` route — not a redirect).
 
-**Production deploy blocker for this agent:** Cloudflare Wrangler is not authenticated
-in the Cloud Agent environment (`wrangler whoami` → not logged in). Owner must run
-`npm run deploy` (or provide `CLOUDFLARE_API_TOKEN`) after merge to main.
+**Production deploy — resolved 2026-08-16.** Deployed canonical main
+`7a737cdb5fe8524d30763a4545386305475284ba` to Cloudflare Worker `dew-theory`
+(version `b79f2af0-8be7-4f10-83ea-a837b3cacf28`, 100% active). `npm run deploy`
+succeeded and `https://dewtheoryco.com` + `https://www.dewtheoryco.com` were
+live-verified serving the redesign (all public routes `200`; hero/announcement/
+category-nav/search/quiz/routine/services journey checks passed). See
+`docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md`.
 
 ---
 
