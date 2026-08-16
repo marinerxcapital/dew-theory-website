@@ -288,10 +288,18 @@ export default async function ProductDetailPage({ params }) {
               discount. Flat {formatMoney(FLAT_SHIPPING_USD)} below. See{' '}
               <Link href="/shipping" className="text-ink underline underline-offset-2">
                 Shipping
-              </Link>{' '}
-              and{' '}
+              </Link>
+              ,{' '}
               <Link href="/returns" className="text-ink underline underline-offset-2">
                 Returns
+              </Link>
+              ,{' '}
+              <Link href="/terms" className="text-ink underline underline-offset-2">
+                Terms
+              </Link>
+              , and{' '}
+              <Link href="/privacy" className="text-ink underline underline-offset-2">
+                Privacy
               </Link>{' '}
               for full details.
             </AccordionSection>

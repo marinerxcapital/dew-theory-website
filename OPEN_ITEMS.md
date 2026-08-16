@@ -18,6 +18,15 @@ Membership remains **interest-list only** (live `/membership` route — not a re
 in the Cloud Agent environment (`wrangler whoami` → not logged in). Owner must run
 `npm run deploy` (or provide `CLOUDFLARE_API_TOKEN`) after merge to main.
 
+## 0b. FIXED V2 legal PDFs (2026-08-16)
+
+Authoritative FIXED V2 legal PDFs wired under `public/legal/pdfs/` with registry in
+`lib/legal-documents.js`. Public HTML routes: `/privacy`, `/terms`, `/shipping`,
+`/returns`, `/booking-policy`, `/aesthetic-disclaimer`, `/cookies`, `/accessibility`.
+Internal attorney PDFs stay in `legal/internal/` (not web-served). Consumer Health
+Data remains CONDITIONAL (`CONSUMER_HEALTH_POLICY_PUBLISHED = false`). Membership
+terms are PRE_LAUNCH. See `docs/CODEX_LEGAL_PDFS_DEPLOY_HANDOFF.md` for live deploy.
+
 ---
 
 ## 1. Resolved this pass (were open, now confirmed)

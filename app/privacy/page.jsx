@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
+import LegalPdfActions from '@/components/LegalPdfActions';
 
 export const metadata = {
   title: 'Privacy',
   description:
-    'How Dew Theory handles cart data, payments, admin sessions, and consultation photos. Final legal terms publish before full launch.'
+    'How Dew Theory handles cart data, payments, admin sessions, and consultation photos. View or download the full Privacy Policy PDF.',
+  alternates: { canonical: '/privacy' },
+  robots: { index: true, follow: true }
 };
 
 export default function PrivacyPage() {
@@ -22,10 +25,10 @@ export default function PrivacyPage() {
           data-reveal
           className="mt-6 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          This page describes how the site works today with data you provide. Full legal terms,
-          retention schedules, and a published contact for privacy requests will be confirmed before
-          full launch — nothing below invents those details.
+          This page describes how the site works today with data you provide. The full Privacy
+          Policy PDF is the authoritative printable document — use the links below.
         </p>
+        <LegalPdfActions documentId="privacy" />
       </div>
 
       <div className="mt-16 space-y-6" data-reveal-group="privacy-body">
@@ -102,6 +105,18 @@ export default function PrivacyPage() {
           className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
         >
           Contact
+        </Link>
+        <Link
+          href="/terms"
+          className="font-label text-[0.7rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
+        >
+          Terms →
+        </Link>
+        <Link
+          href="/cookies"
+          className="font-label text-[0.7rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
+        >
+          Cookies →
         </Link>
         <Link
           href="/shipping"

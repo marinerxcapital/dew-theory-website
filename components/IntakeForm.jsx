@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { PHOTO_SLOT_LABELS, REQUIRED_PHOTO_SLOTS } from '@/lib/consultations/statuses.js';
+import LegalDocLinks from '@/components/LegalDocLinks';
+import { getVirtualConsultationLegalDocuments } from '@/lib/legal-documents';
 
 const emptyProduct = () => ({ brand: '', product_name: '', frequency: '', notes: '' });
 
@@ -586,6 +588,16 @@ export default function IntakeForm({ token }) {
         <h2 id="consent-h" className="font-display text-xl text-graphite">
           Consent
         </h2>
+        <div className="border border-chrome/20 bg-pearl/40 px-4 py-4">
+          <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+            Documents to review
+          </p>
+          <LegalDocLinks
+            dense
+            className="mt-3"
+            documents={getVirtualConsultationLegalDocuments()}
+          />
+        </div>
         {[
           ['consent_accuracy', 'I confirm this information is accurate to my knowledge.'],
           ['consent_photos', 'I submit these photos for my virtual consultation only.'],

@@ -7,6 +7,9 @@ import {
   FREE_SHIPPING_THRESHOLD_USD,
   formatMoney
 } from '@/lib/shipping';
+import { getFooterLegalLinks } from '@/lib/legal-documents';
+
+const footerLegal = getFooterLegalLinks();
 
 const columns = [
   {
@@ -42,10 +45,8 @@ const columns = [
   {
     head: 'Help',
     items: [
-      ['Shipping', '/shipping'],
-      ['Returns', '/returns'],
-      ['Order support', '/contact'],
-      ['Privacy', '/privacy']
+      ...footerLegal.map((l) => [l.label, l.href]),
+      ['Order support', '/contact']
     ]
   }
 ];

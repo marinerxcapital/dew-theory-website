@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
+import LegalPdfActions from '@/components/LegalPdfActions';
 
 export const metadata = {
   title: 'Shipping',
   description:
-    'Dew Theory shipping: $7 flat rate, free at $49+ order subtotal (before discounts). Fulfillment notes for Skin Script products.'
+    'Dew Theory shipping: $7 flat rate, free at $49+ order subtotal (before discounts). View or download the full Shipping & Delivery Policy PDF.',
+  alternates: { canonical: '/shipping' },
+  robots: { index: true, follow: true }
 };
 
 export default function ShippingPage() {
@@ -22,9 +25,10 @@ export default function ShippingPage() {
           data-reveal
           className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          Rates below match what the bag and checkout already calculate. Transit windows,
-          carriers, and ship-from details will be published when fulfillment is confirmed.
+          Rates below match what the bag and checkout already calculate. The full Shipping &amp;
+          Delivery Policy PDF is the authoritative printable document.
         </p>
+        <LegalPdfActions documentId="shipping" />
       </div>
 
       <div className="mt-16 space-y-6" data-reveal-group="ship-body">

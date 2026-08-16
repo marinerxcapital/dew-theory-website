@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import StickyCtaBar from '@/components/StickyCtaBar';
+import LegalDocLinks from '@/components/LegalDocLinks';
 import { getBookingPolicy } from '@/lib/email';
+import { getBookingLegalDocuments } from '@/lib/legal-documents';
 import {
   SERVICES,
   formatDuration,
@@ -116,10 +118,10 @@ export default function ServicesPage() {
       >
         <h2 className="font-display text-xl font-normal text-ink">Deposits &amp; cancellations</h2>
         <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-          Deposit amount and cancellation window are not set yet. The booking flow is built to
-          hold a policy without inventing numbers — Emily will publish terms before live deposits
-          open.
+          Deposit amount and cancellation window are not invented here. Review the booking,
+          aesthetic disclaimer, and treatment informed consent documents before you book.
         </p>
+        <LegalDocLinks className="mt-5" documents={getBookingLegalDocuments()} />
       </div>
     </section>
   );

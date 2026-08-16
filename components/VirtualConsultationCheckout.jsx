@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import LegalDocLinks from '@/components/LegalDocLinks';
+import { getVirtualConsultationLegalDocuments } from '@/lib/legal-documents';
 
 export default function VirtualConsultationCheckout() {
   const [name, setName] = useState('');
@@ -9,6 +11,7 @@ export default function VirtualConsultationCheckout() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const legalDocs = getVirtualConsultationLegalDocuments();
   const canSubmit =
     !loading && name.trim().length > 0 && email.trim().length > 0 && consent;
 
@@ -98,6 +101,18 @@ export default function VirtualConsultationCheckout() {
             className="mt-2 w-full border border-chrome/25 bg-pearl/60 px-4 py-3 font-body text-sm font-light text-charcoal outline-none focus:border-graphite/40 disabled:cursor-not-allowed disabled:opacity-60"
           />
         </div>
+
+        <div className="border border-chrome/20 bg-pearl/40 px-4 py-4">
+          <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
+            Review before you agree
+          </p>
+          <LegalDocLinks dense className="mt-3" documents={legalDocs} />
+          <p className="mt-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/60">
+            Photo &amp; intake authorization covers clinical consultation use only — it is not a
+            marketing or publicity release.
+          </p>
+        </div>
+
         <label
           className={`flex items-start gap-3 ${loading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
         >
@@ -111,7 +126,7 @@ export default function VirtualConsultationCheckout() {
           />
           <span className="font-body text-sm font-light leading-relaxed text-charcoal/75">
             I understand this is aesthetic skincare guidance (not medical diagnosis), and I agree to
-            the consultation terms and privacy practices for intake and photos.
+            the consultation terms and privacy practices for intake and photos linked above.
           </span>
         </label>
       </div>

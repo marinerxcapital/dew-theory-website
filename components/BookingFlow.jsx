@@ -8,6 +8,8 @@ import {
   MockAvailabilityAdapter,
   groupSlotsByDay
 } from '@/lib/availability';
+import { getBookingLegalDocuments } from '@/lib/legal-documents';
+import LegalDocLinks from '@/components/LegalDocLinks';
 
 function track(type, payload = {}) {
   fetch('/api/events', {
@@ -554,9 +556,14 @@ export default function BookingFlow({
             </p>
             <p className="mt-3 font-body text-xs font-light leading-relaxed text-charcoal/70">
               A deposit may apply when Emily publishes the policy. Percentage and cancellation
-              cutoff are not set yet — no amount is charged at booking in this build. Terms will
-              appear in this panel without inventing numbers.
+              cutoff are not set yet — no amount is charged at booking in this build. Review the
+              booking and aesthetic policies below before confirming.
             </p>
+            <LegalDocLinks
+              dense
+              className="mt-4"
+              documents={getBookingLegalDocuments()}
+            />
           </div>
 
           <p className="font-body text-xs font-light leading-relaxed text-charcoal/55">

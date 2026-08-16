@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import MembershipInterestForm from '@/components/MembershipInterestForm';
+import LegalDocLinks from '@/components/LegalDocLinks';
 import {
   formatPackagePrice,
   getMembershipPackages,
   membershipCheckoutEnabled
 } from '@/lib/membership';
+import { getMembershipLegalDocuments } from '@/lib/legal-documents';
 
 export const metadata = {
   title: 'Membership',
@@ -16,6 +18,7 @@ export const metadata = {
 export default function MembershipPage() {
   const packages = getMembershipPackages();
   const livePricing = membershipCheckoutEnabled();
+  const membershipDocs = getMembershipLegalDocuments();
 
   return (
     <section className="mx-auto max-w-shell px-6 pb-24 pt-12 sm:pb-28 sm:pt-14 lg:px-10 lg:pt-16">
@@ -83,6 +86,26 @@ export default function MembershipPage() {
           file, no charge — just an early heads-up.
         </p>
         <MembershipInterestForm />
+        {!livePricing && membershipDocs.length > 0 ? (
+          <div className="mt-8 border-t border-border pt-6">
+            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
+              Pre-launch terms (not in effect)
+            </p>
+            <p className="mt-3 font-body text-xs font-normal leading-relaxed text-muted">
+              Membership enrollment and automatic renewal are not live. The draft terms PDF is
+              available for reference only and does not enable recurring billing on this site.
+            </p>
+            <LegalDocLinks dense className="mt-3" documents={membershipDocs} />
+          </div>
+        ) : null}
+        {livePricing && membershipDocs.length > 0 ? (
+          <div className="mt-8 border-t border-border pt-6">
+            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
+              Membership terms
+            </p>
+            <LegalDocLinks dense className="mt-3" documents={membershipDocs} />
+          </div>
+        ) : null}
         <div className="mt-10 flex flex-wrap gap-4">
           <Link
             href="/book"
