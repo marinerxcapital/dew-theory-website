@@ -72,7 +72,7 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Last known Worker version ID | `e6bc265f-97d8-4518-a96b-6f37a0983bca` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
-| Revamp commit (implementation) | `c38e715d012afe5188e1b53e602273d908f9db3d` (re-run `git rev-parse` after new pushes) |
+| Revamp commit (implementation) | Re-verify with `git rev-parse HEAD` on `cursor/brand-revamp-editorial-5502` (PR #7) |
 | Live design as of 2026-08-25 Cursor session | Still **pre-revamp** Sephora shell (`#111111` / `#FFFFFF`) until merge + `npm run deploy` |
 | Deploy blocker this session | No `CLOUDFLARE_API_TOKEN` / Wrangler login in Cursor Cloud environment |
 
@@ -185,6 +185,11 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 | `npm run smoke` checkout | mock checkout OK; admin login 401 without local admin secrets (expected) |
 | Production deploy | **not completed** — Cloudflare auth missing |
 | Live brand verification of revamp | **blocked** pending deploy |
+
+### Issues found and fixed this session
+- Contrast failures on sage bands / `.btn-dew` / footer ivory opacities → fixed
+- Shop quiz tile white-on-sage-deep → forest/ivory
+- Late-mounted `[data-reveal]` product cards could stay invisible → MotionRoot MutationObserver + rescan
 
 ### Remaining technical debt
 

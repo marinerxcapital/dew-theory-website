@@ -11,7 +11,7 @@ function prefersReducedMotion() {
 /**
  * Lightweight site motion — no GSAP.
  * Nav frost + IntersectionObserver scroll reveals (CSS transitions only).
- * Keeps ~70KB+ of animation library off the critical path (TBT / mobile).
+ * MutationObserver picks up late client-hydrated [data-reveal] nodes (e.g. ShopGrid).
  */
 export default function MotionRoot() {
   const pathname = usePathname();
@@ -24,28 +24,27 @@ export default function MotionRoot() {
 
     const setNavState = () => {
       if (!nav) return;
-      // Always frosted in clinical redesign; keep attribute for CSS compatibility
       nav.dataset.state = 'frosted';
     };
     setNavState();
 
-    if (isAdmin || reduced) {
-      root.classList.remove('js-motion');
+    const revealAll = () => {
       document.querySelectorAll('[data-reveal]').forEach((el) => {
         el.classList.add('is-inview');
         el.dataset.revealDone = '1';
       });
+    };
+
+    if (isAdmin || reduced) {
+      root.classList.remove('js-motion');
+      revealAll();
       return undefined;
     }
 
     root.classList.add('js-motion');
 
-    const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
-    if (!nodes.length || typeof IntersectionObserver === 'undefined') {
-      nodes.forEach((el) => {
-        el.classList.add('is-inview');
-        el.dataset.revealDone = '1';
-      });
+    if (typeof IntersectionObserver === 'undefined') {
+      revealAll();
       return () => root.classList.remove('js-motion');
     }
 
@@ -59,39 +58,65 @@ export default function MotionRoot() {
           io.unobserve(el);
         }
       },
-      { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      { root: null, rootMargin: '0px 0px -4% 0px', threshold: 0.01 }
     );
 
-    nodes.forEach((el) => {
+    const arm = (el) => {
+      if (!(el instanceof Element) || !el.hasAttribute('data-reveal')) return;
       if (el.dataset.revealDone === '1') {
         el.classList.add('is-inview');
         return;
       }
-      // Above-the-fold: reveal immediately to avoid LCP/text delay
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.92) {
+      // Reveal near/in viewport immediately so shop grids never stay invisible
+      if (rect.top < window.innerHeight * 1.05 && rect.bottom > 0) {
         el.classList.add('is-inview');
         el.dataset.revealDone = '1';
-      } else {
-        io.observe(el);
+        return;
       }
-    });
+      io.observe(el);
+    };
+
+    const scan = () => {
+      document.querySelectorAll('[data-reveal]').forEach(arm);
+    };
+
+    scan();
+
+    const mo =
+      typeof MutationObserver !== 'undefined'
+        ? new MutationObserver((mutations) => {
+            for (const m of mutations) {
+              m.addedNodes.forEach((node) => {
+                if (!(node instanceof Element)) return;
+                if (node.hasAttribute?.('data-reveal')) arm(node);
+                node.querySelectorAll?.('[data-reveal]').forEach(arm);
+              });
+            }
+          })
+        : null;
+    mo?.observe(document.body, { childList: true, subtree: true });
+
+    // Second pass after layout/hydration settles (client ShopGrid, fonts, images)
+    const t1 = window.setTimeout(scan, 50);
+    const t2 = window.setTimeout(scan, 400);
 
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     const onMq = () => {
       if (!mq.matches) return;
       root.classList.remove('js-motion');
-      document.querySelectorAll('[data-reveal]').forEach((el) => {
-        el.classList.add('is-inview');
-        el.dataset.revealDone = '1';
-      });
+      revealAll();
       io.disconnect();
+      mo?.disconnect();
     };
     mq.addEventListener?.('change', onMq);
 
     return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
       mq.removeEventListener?.('change', onMq);
       io.disconnect();
+      mo?.disconnect();
       root.classList.remove('js-motion');
     };
   }, [pathname]);
