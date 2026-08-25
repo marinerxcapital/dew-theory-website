@@ -16,6 +16,14 @@
   Cache-Control: public,max-age=86400
 /logo-mark.webp
   Cache-Control: public,max-age=31536000,immutable
+/logo-dewtheory-20260825.webp
+  Cache-Control: public,max-age=31536000,immutable
+/logo-dewtheory-mark-20260825.webp
+  Cache-Control: public,max-age=31536000,immutable
+/logo-dewtheory-ivory-20260825.webp
+  Cache-Control: public,max-age=31536000,immutable
+/logo-dewtheory-og-20260825.png
+  Cache-Control: public,max-age=86400
 /hero-poster.webp
   Cache-Control: public,max-age=31536000,immutable
 /hero.mp4

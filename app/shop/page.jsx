@@ -19,13 +19,13 @@ export const metadata = {
     description:
       'Professional Skin Script skincare with clear retail pricing. Free shipping at $49+.',
     url: '/shop',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Dew Theory shop' }]
+    images: [{ url: '/logo-dewtheory-og-20260825.png', width: 1200, height: 630, alt: 'Dew Theory shop' }]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Shop Skin Script — Dew Theory',
     description: 'Professional Skin Script skincare with clear retail pricing.',
-    images: ['/logo.png']
+    images: ['/logo-dewtheory-og-20260825.png']
   }
 };
 

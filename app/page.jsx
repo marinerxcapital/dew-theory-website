@@ -29,14 +29,14 @@ export const metadata = {
     locale: 'en_US',
     url: '/',
     siteName: 'Dew Theory',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Dew Theory' }]
+    images: [{ url: '/logo-dewtheory-og-20260825.png', width: 1200, height: 630, alt: 'Dew Theory' }]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Dew Theory — Clinical Skin Care & Facials',
     description:
       'Skin Script actives for home and in-studio facials with Emily Mitchener.',
-    images: ['/logo.png']
+    images: ['/logo-dewtheory-og-20260825.png']
   }
 };
 

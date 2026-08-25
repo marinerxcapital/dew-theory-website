@@ -156,14 +156,17 @@ never as decoration.
 
 | File | Notes |
 |---|---|
-| `public/logo.webp` | 520 px wide, used by `components/Wordmark.jsx` |
-| `public/logo.png` | Full-resolution original |
+| `public/logo-dewtheory-20260825.webp` | Current transparent forest wordmark, used by hero/default `components/Wordmark.jsx` |
+| `public/logo-dewtheory-mark-20260825.webp` | Current transparent forest nav/icon wordmark |
+| `public/logo-dewtheory-ivory-20260825.webp` | Current transparent ivory wordmark for forest footer |
+| `public/logo-dewtheory-og-20260825.png` | Current 1200×630 ivory-backed OpenGraph logo |
+| `public/logo.webp`, `public/logo-mark.webp`, `public/logo.png` | Legacy aliases kept updated for old links/caches |
 | `public/hero.mp4` | Web-optimised motion background — 848×1072, ~20s ping-pong loop, H.264 faststart, silent (~1.4 MB) |
 | `public/hero-original.mp4` | Untouched source cut (~2.7 MB, 10s, 848×1072) from `generated_video (1).mp4` |
 | `public/hero-poster.webp` | Poster frame (t≈3.5s) for LCP + `prefers-reduced-motion` |
 
-`Wordmark.jsx` probes for `/logo.webp` at runtime. If it is ever missing, the component falls back
-to live chrome-gradient type — so the brand never disappears.
+`Wordmark.jsx` defaults to the versioned transparent wordmark. If it is ever missing, the component
+falls back to live type — so the brand never disappears.
 
 See `OPEN_ITEMS.md` before putting this in front of a customer.
 

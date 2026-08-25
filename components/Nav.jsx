@@ -111,9 +111,9 @@ export default function Nav() {
             className="nav-logo relative flex shrink-0 items-center transition-opacity duration-300 hover:opacity-85"
           >
             <Wordmark
-              src="/logo-mark.webp"
+              src="/logo-dewtheory-mark-20260825.webp"
               priority
-              className="h-8 w-auto max-w-[10rem] object-contain object-left sm:h-9 sm:max-w-[12rem] lg:h-10 lg:max-w-[13rem]"
+              className="h-9 w-auto max-w-[12rem] object-contain object-left sm:h-10 sm:max-w-[14rem] lg:h-11 lg:max-w-[16rem]"
             />
           </Link>
 

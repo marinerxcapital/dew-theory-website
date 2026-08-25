@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import Wordmark from './Wordmark';
 
 const HERO_IMAGE = {
   src: '/images/products/skin-script/02-ageless-skin-hydrating-serum.webp',
@@ -146,9 +147,11 @@ export default function Hero() {
 
       <div className="relative z-[2] mx-auto flex min-h-[min(92svh,58rem)] w-full max-w-shell flex-col justify-end px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:justify-center lg:px-10 lg:pb-20 lg:pt-24">
         <div className="hero-stage__copy max-w-xl lg:max-w-2xl">
-          <p className="hero-stage__brand font-display text-[clamp(3.2rem,12vw,7.5rem)] font-normal italic leading-[0.92] tracking-[-0.02em] text-ink">
-            dew theory
-          </p>
+          <Wordmark
+            src="/logo-dewtheory-20260825.webp"
+            priority
+            className="hero-stage__brand-logo h-auto w-[min(78vw,42rem)] object-contain object-left"
+          />
 
           <p className="hero-stage__rule mt-4 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew-dark sm:mt-5 sm:text-[0.68rem]">
             Skin — Care

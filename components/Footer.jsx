@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Rule from './Rule';
+import Wordmark from './Wordmark';
 import {
   FREE_SHIPPING_THRESHOLD_USD,
   formatMoney
@@ -60,9 +61,10 @@ export default function Footer() {
       <div className="relative z-[1] mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-10 lg:py-18">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-display text-3xl italic lowercase text-ivory sm:text-4xl">
-              dew theory
-            </p>
+            <Wordmark
+              src="/logo-dewtheory-ivory-20260825.webp"
+              className="h-auto w-[min(13rem,70vw)] object-contain object-left sm:w-60"
+            />
             <Rule left="Skin" right="Care" className="footer-rule mt-5" />
             <p className="mt-6 max-w-xs font-body text-sm font-normal leading-relaxed text-ivory/70">
               Calm, botanical, barrier-first care — Skin Script actives and in-studio facials with

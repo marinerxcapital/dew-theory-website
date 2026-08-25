@@ -13,7 +13,7 @@ export const metadata = {
     description:
       'One-on-one online skincare consultation with Emily Mitchener — personalized plan and product recommendations.',
     type: 'website',
-    images: [{ url: '/logo.png', alt: 'Dew Theory' }]
+    images: [{ url: '/logo-dewtheory-og-20260825.png', alt: 'Dew Theory' }]
   },
   robots: { index: true, follow: true }
 };

@@ -6,7 +6,7 @@
 ## What changed
 
 The home hero was replaced from the split retail card layout with a brand-first, edge-to-edge
-composition: a large italic `dew theory` lockup, a cinematic full-bleed product plane (single
+composition: a large Dew Theory wordmark lockup, a cinematic full-bleed product plane (single
 `ageless-skin-hydrating-serum.webp`), and a lean CTA pair (`Shop Skin Script` + `Take the Skin Quiz`).
 
 ## Motion architecture
@@ -18,7 +18,7 @@ All motion is CSS + a lightweight 2D canvas. No GSAP runs on the critical hero p
 | Ken Burns | `.hero-stage__media` — `hero-ken` 28s alternate scale/translate |
 | Caustic light | `.hero-stage__caustic` — soft-light gradient sweep, `hero-caustic` 11s alternate |
 | Dew particles | `<canvas>` in `components/Hero.jsx` — rising radial-gradient droplets, DPR-capped (≤2), count scales 28/42/56 by viewport width |
-| Text reveal | `.hero-stage__brand` / `__headline` / `__lede` / `__cta` — staggered `hero-rise` blur+translate |
+| Text reveal | `.hero-stage__brand-logo` / `__headline` / `__lede` / `__cta` — staggered `hero-rise` blur+translate |
 | Rule reveal | `.hero-stage__rule::after` — `hero-rule` scaleX |
 | Fade-in | `.hero-stage__dew` — `hero-dew-fade` |
 

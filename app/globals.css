@@ -855,8 +855,8 @@ article:hover [data-product-image-frame] .media-zoom-target {
 .hero-stage__dew {
   opacity: 0.85;
 }
-.hero-stage__brand {
-  text-wrap: balance;
+.hero-stage__brand-logo {
+  display: block;
 }
 .hero-stage__rule {
   position: relative;
@@ -881,7 +881,7 @@ article:hover [data-product-image-frame] .media-zoom-target {
   .hero-stage__caustic {
     animation: hero-caustic 11s ease-in-out infinite alternate;
   }
-  .hero-stage__brand {
+  .hero-stage__brand-logo {
     animation: hero-rise 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
   }
   .hero-stage__rule {
