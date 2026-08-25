@@ -103,7 +103,7 @@ export default function Nav() {
 
       <AnnouncementBar />
 
-      <div className="border-b border-border bg-white/97">
+      <div className="border-b border-border bg-ivory/95">
         <div className="mx-auto flex max-w-shell items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6 lg:px-10">
           <Link
             href="/"
@@ -126,24 +126,24 @@ export default function Nav() {
           <nav aria-label="Primary utilities" className="ml-auto hidden items-center gap-5 lg:flex xl:gap-6">
             <Link
               href="/book"
-              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-charcoal transition-colors hover:text-ink"
+              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-forest transition-colors hover:text-sage-deep"
             >
               Book
             </Link>
             <Link
               href="/virtual-consultation"
-              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-dew transition-colors hover:text-dew-dark"
+              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-sage-deep transition-colors hover:text-forest"
             >
               Virtual Consult
             </Link>
             <Link
               href="/cart"
               aria-current={pathname === '/cart' ? 'page' : undefined}
-              className="inline-flex items-center font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink"
+              className="inline-flex items-center font-label text-[0.68rem] font-normal uppercase tracking-lockup text-forest"
             >
               Bag
               {hydrated && count > 0 ? (
-                <span className="ml-1.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-ink px-1.5 py-0.5 text-[0.55rem] font-normal leading-none text-white">
+                <span className="ml-1.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-forest px-1.5 py-0.5 text-[0.55rem] font-normal leading-none text-ivory">
                   {count > 99 ? '99+' : count}
                 </span>
               ) : null}
@@ -159,17 +159,17 @@ export default function Nav() {
               }}
               aria-expanded={searchOpen}
               aria-controls="mobile-search"
-              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ink"
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-[0.65rem] font-normal uppercase tracking-lockup text-forest"
             >
               Search
             </button>
             <Link
               href="/cart"
-              className="inline-flex min-h-[44px] items-center px-1 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ink"
+              className="inline-flex min-h-[44px] items-center px-1 font-label text-[0.65rem] uppercase tracking-lockup text-forest"
             >
               Bag
               {hydrated && count > 0 ? (
-                <span className="ml-1.5 inline-flex min-w-[1.2rem] items-center justify-center rounded-full bg-ink px-1.5 py-0.5 text-[0.55rem] font-normal leading-none text-white">
+                <span className="ml-1.5 inline-flex min-w-[1.2rem] items-center justify-center rounded-full bg-forest px-1.5 py-0.5 text-[0.55rem] font-normal leading-none text-ivory">
                   {count > 99 ? '99+' : count}
                 </span>
               ) : null}
@@ -183,7 +183,7 @@ export default function Nav() {
               }}
               aria-expanded={open}
               aria-controls="mobile-nav"
-              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ink"
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-label text-[0.65rem] font-normal uppercase tracking-lockup text-forest"
             >
               {open ? 'Close' : 'Menu'}
             </button>
@@ -211,7 +211,7 @@ export default function Nav() {
           id="mobile-nav"
           ref={panelRef}
           aria-label="Primary, mobile"
-          className="max-h-[min(100dvh-5rem,40rem)] overflow-y-auto overscroll-contain border-t border-border bg-white lg:hidden"
+          className="max-h-[min(100dvh-5rem,40rem)] overflow-y-auto overscroll-contain border-t border-border bg-ivory lg:hidden"
         >
           <div className="flex flex-col px-5 py-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
             <p className="pt-3 font-label text-[0.58rem] uppercase tracking-lockup text-muted">

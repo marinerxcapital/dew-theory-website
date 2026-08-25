@@ -77,9 +77,26 @@ export default function Home() {
       <Hero />
       <StickyCtaBar />
 
+      {/* Philosophy — calm monday */}
+      <section className="border-b border-border bg-ivory" aria-labelledby="philosophy-heading">
+        <div className="mx-auto max-w-shell px-5 py-16 sm:px-6 sm:py-20 lg:px-10">
+          <p className="editorial-label">Dew Theory / Philosophy</p>
+          <h2
+            id="philosophy-heading"
+            className="editorial-quote mt-5 max-w-3xl text-[clamp(2rem,5vw,3.5rem)]"
+          >
+            a calm monday
+          </h2>
+          <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted sm:text-lg">
+            Barrier-first care. Fewer products that earn their place. Guidance that feels like a
+            deep breath — not another algorithm telling you what to buy.
+          </p>
+        </div>
+      </section>
+
       {/* Trust strip */}
-      <section className="border-b border-border bg-white" aria-label="Trust signals">
-        <div className="mx-auto grid max-w-shell gap-6 px-5 py-7 sm:grid-cols-2 sm:gap-8 sm:px-6 lg:grid-cols-4 lg:px-10">
+      <section className="border-b border-border section-stone" aria-label="Trust signals">
+        <div className="mx-auto grid max-w-shell gap-6 px-5 py-8 sm:grid-cols-2 sm:gap-8 sm:px-6 lg:grid-cols-4 lg:px-10">
           {[
             ['Free shipping $49+', `Flat ${formatMoney(FLAT_SHIPPING_USD)} below threshold`],
             ['Skin Script professional', 'The actives Emily uses in treatment'],
@@ -87,10 +104,10 @@ export default function Home() {
             ['Aesthetician-led', 'Barrier-first guidance from Emily']
           ].map(([title, copy]) => (
             <div key={title}>
-              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ink">
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-forest">
                 {title}
               </p>
-              <p className="mt-1.5 font-body text-sm font-normal leading-relaxed text-muted">
+              <p className="mt-1.5 font-body text-sm font-normal leading-relaxed text-forest/75">
                 {copy}
               </p>
             </div>
@@ -98,21 +115,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Emily's Picks rail */}
-      <section className="border-b border-border bg-surface-light py-14 sm:py-16">
+      {/* Emily's Picks — this is what you need */}
+      <section className="border-b border-border bg-ivory py-14 sm:py-16">
         <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+              <p className="editorial-label">this is what you need</p>
+              <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">
                 Emily&apos;s picks
-              </p>
-              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
-                Where most people start
               </h2>
+              <p className="mt-2 max-w-md font-body text-sm text-muted">
+                Where most people start — sequenced for home, chosen the way Emily chooses in the room.
+              </p>
             </div>
             <Link
               href="/shop"
-              className="font-label text-[0.65rem] uppercase tracking-lockup text-ink underline-offset-4 hover:underline"
+              className="font-label text-[0.65rem] uppercase tracking-lockup text-forest underline-offset-4 hover:underline"
             >
               Shop all
             </Link>
@@ -123,13 +141,93 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reassurance band */}
+      <section className="section-sage border-b border-border" aria-labelledby="reassure-heading">
+        <div className="mx-auto max-w-shell px-5 py-16 sm:px-6 sm:py-20 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-12 lg:px-10 lg:py-24">
+          <div>
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest/70">
+              by emily | hydration specialist
+            </p>
+            <h2
+              id="reassure-heading"
+              className="editorial-quote mt-4 text-[clamp(2.1rem,5vw,3.75rem)]"
+            >
+              relax. i&apos;ve got you covered
+            </h2>
+          </div>
+          <p className="mt-6 max-w-md font-body text-base leading-relaxed text-forest/85 lg:mt-0">
+            Look first. Change one variable at a time. Never sell a product your barrier doesn&apos;t
+            ask for. That&apos;s the Dew Theory rhythm.
+          </p>
+        </div>
+      </section>
+
+      {/* Myth busting education — educational only, not a bookable service */}
+      <section className="border-b border-border bg-ivory py-14 sm:py-16" aria-labelledby="myth-heading">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <p className="editorial-label">Dew Theory / Myth Busting</p>
+          <h2
+            id="myth-heading"
+            className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.6rem)] text-forest"
+          >
+            let&apos;s debunk the worst advice going viral rn
+          </h2>
+          <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-muted">
+            Trends move faster than barriers heal. Education first — then a plan that fits your skin,
+            not a feed.
+          </p>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <article className="border border-border bg-white p-6 sm:p-8">
+              <p className="font-label text-[0.58rem] uppercase tracking-lockup text-sage-deep">
+                Viral caution
+              </p>
+              <h3 className="mt-3 font-display text-2xl italic text-forest sm:text-3xl">
+                tiktok made me do it... and now my barrier is ruined
+              </h3>
+              <p className="mt-4 font-body text-sm leading-relaxed text-muted">
+                Stacking acids, retinoids, and &ldquo;glass skin&rdquo; routines overnight is a common
+                path to redness and reactivity. Slow sequencing beats a seven-step haul.
+              </p>
+              <Link
+                href="/quiz"
+                className="mt-6 inline-flex font-label text-[0.62rem] uppercase tracking-lockup text-forest underline-offset-4 hover:underline"
+              >
+                Start with a gentler read →
+              </Link>
+            </article>
+            <article className="border border-border bg-surface-light p-6 sm:p-8">
+              <p className="font-label text-[0.58rem] uppercase tracking-lockup text-sage-deep">
+                Education · not a menu item
+              </p>
+              <h3 className="mt-3 font-display text-2xl italic text-forest sm:text-3xl">
+                what is PDRN?
+              </h3>
+              <p className="mt-2 font-body text-sm italic text-forest/70">
+                salmon DNA skin booster — a phrase you&apos;ll see online
+              </p>
+              <p className="mt-4 font-body text-sm leading-relaxed text-muted">
+                PDRN (polydeoxyribonucleotide) shows up in beauty content as a &ldquo;salmon DNA&rdquo;
+                booster. Dew Theory does not currently list PDRN as a bookable treatment or retail
+                SKU. Ask Emily before chasing any viral ingredient — your barrier comes first.
+              </p>
+              <Link
+                href="/faq"
+                className="mt-6 inline-flex font-label text-[0.62rem] uppercase tracking-lockup text-forest underline-offset-4 hover:underline"
+              >
+                Read the FAQ →
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* Shop by concern */}
       <section className="border-b border-border bg-white py-14 sm:py-16">
         <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
           <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
             Shop by concern
           </p>
-          <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+          <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">
             What are you working on?
           </h2>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -137,9 +235,9 @@ export default function Home() {
               <Link
                 key={c}
                 href={`/shop?concern=${encodeURIComponent(c)}`}
-                className="group border border-border bg-white p-5 transition-colors hover:border-ink hover:bg-surface-light"
+                className="group border border-border bg-ivory p-5 transition-colors hover:border-forest hover:bg-dew-soft"
               >
-                <p className="font-display text-xl text-ink group-hover:text-dew-dark">{c}</p>
+                <p className="font-display text-xl text-forest group-hover:text-sage-deep">{c}</p>
                 <p className="mt-2 font-label text-[0.58rem] uppercase tracking-lockup text-muted">
                   Shop →
                 </p>
@@ -150,12 +248,12 @@ export default function Home() {
       </section>
 
       {/* Shop by type */}
-      <section className="border-b border-border bg-white py-14 sm:py-16">
+      <section className="border-b border-border bg-ivory py-14 sm:py-16">
         <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
           <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
             Shop by type
           </p>
-          <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+          <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">
             Build your shelf
           </h2>
           <div className="mt-8 flex flex-wrap gap-2">
@@ -163,7 +261,7 @@ export default function Home() {
               <Link
                 key={t}
                 href={`/shop?type=${encodeURIComponent(t)}`}
-                className="filter-chip rounded-[2px] px-4 py-2.5 font-label text-[0.65rem] uppercase tracking-lockup text-charcoal hover:bg-ink hover:text-white"
+                className="filter-chip rounded-[2px] px-4 py-2.5 font-label text-[0.65rem] uppercase tracking-lockup text-forest hover:bg-forest hover:text-ivory"
               >
                 {t}
               </Link>
@@ -176,13 +274,13 @@ export default function Home() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-shell lg:grid-cols-2">
           <div className="dew-panel flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
               ~2 minutes · teens to 60+
             </p>
-            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] leading-[1.1] text-ink">
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] leading-[1.1] text-forest">
               A quiz that listens
             </h2>
-            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-charcoal/80">
+            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-forest/80">
               Four gentle questions. A morning and evening Skin Script sequence shaped by how your
               skin feels today — not a one-size script.
             </p>
@@ -208,9 +306,14 @@ export default function Home() {
               ['40s–50s', 'Resilience through change'],
               ['60+', 'Comfort, barrier, light']
             ].map(([title, copy]) => (
-              <div key={title} className="border-b border-r border-border bg-white p-6 last:border-b-0 even:border-r-0 sm:p-8">
-                <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">{title}</p>
-                <p className="mt-2 font-body text-sm text-charcoal/75">{copy}</p>
+              <div
+                key={title}
+                className="border-b border-r border-border bg-white p-6 last:border-b-0 even:border-r-0 sm:p-8"
+              >
+                <p className="font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
+                  {title}
+                </p>
+                <p className="mt-2 font-body text-sm text-muted">{copy}</p>
               </div>
             ))}
           </div>
@@ -225,7 +328,7 @@ export default function Home() {
               <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
                 AM · PM builder
               </p>
-              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">
                 Layer in professional order
               </h2>
               <p className="mt-4 max-w-md font-body text-base leading-relaxed text-muted">
@@ -242,18 +345,18 @@ export default function Home() {
               {sampleAm.map((p, i) => (
                 <li
                   key={p.id}
-                  className="flex items-center gap-4 border border-border bg-surface-light px-4 py-3"
+                  className="flex items-center gap-4 border border-border bg-ivory px-4 py-3"
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-dew text-sm font-label text-white">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sage-deep text-sm font-label text-ivory">
                     {i + 1}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate font-body text-sm text-ink">{p.name}</p>
+                    <p className="truncate font-body text-sm text-forest">{p.name}</p>
                     <p className="font-label text-[0.55rem] uppercase tracking-lockup text-muted">
                       {p.category}
                     </p>
                   </div>
-                  <p className="font-label text-sm text-ink">{formatMoney(p.retail_price)}</p>
+                  <p className="font-label text-sm text-forest">{formatMoney(p.retail_price)}</p>
                 </li>
               ))}
             </ol>
@@ -265,10 +368,8 @@ export default function Home() {
       {kits.length > 0 ? (
         <section className="border-b border-border bg-surface-light py-14 sm:py-16">
           <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
-              Emily would start you here
-            </p>
-            <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+            <p className="editorial-label">Emily would start you here</p>
+            <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">
               Starter kits
             </h2>
             <p className="mt-3 max-w-xl font-body text-sm text-muted">
@@ -283,20 +384,20 @@ export default function Home() {
                   <p className="font-label text-[0.58rem] uppercase tracking-lockup text-muted">
                     {kit.eyebrow}
                   </p>
-                  <h3 className="mt-2 font-display text-2xl text-ink">{kit.name}</h3>
+                  <h3 className="mt-2 font-display text-2xl text-forest">{kit.name}</h3>
                   <p className="mt-3 font-body text-sm leading-relaxed text-muted">
                     {kit.description}
                   </p>
                   <ul className="mt-6 flex-1 space-y-2 border-t border-border pt-5">
                     {kit.products.map((p) => (
                       <li key={p.id} className="flex justify-between gap-3 font-body text-sm">
-                        <span className="text-charcoal">{p.name}</span>
+                        <span className="text-forest">{p.name}</span>
                         <span className="shrink-0 text-muted">{formatMoney(p.retail_price)}</span>
                       </li>
                     ))}
                   </ul>
                   <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-                    <p className="font-label text-sm uppercase tracking-wide2 text-ink">
+                    <p className="font-label text-sm uppercase tracking-wide2 text-forest">
                       Kit total {formatMoney(kit.subtotal)}
                     </p>
                     <AddRoutineKit productIds={kit.products.map((p) => p.id)} label="Add kit to bag" />
@@ -309,14 +410,14 @@ export default function Home() {
       ) : null}
 
       {/* Services */}
-      <section className="border-b border-border bg-white py-14 sm:py-16">
+      <section className="border-b border-border bg-ivory py-14 sm:py-16">
         <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
                 In studio
               </p>
-              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-ink">
+              <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">
                 Treatment menu
               </h2>
               <p className="mt-3 max-w-lg font-body text-sm text-muted">
@@ -326,7 +427,7 @@ export default function Home() {
             </div>
             <Link
               href="/services"
-              className="font-label text-[0.65rem] uppercase tracking-lockup text-ink underline-offset-4 hover:underline"
+              className="font-label text-[0.65rem] uppercase tracking-lockup text-forest underline-offset-4 hover:underline"
             >
               See all services →
             </Link>
@@ -336,14 +437,14 @@ export default function Home() {
               <Link
                 key={s.id}
                 href={`/book?service=${encodeURIComponent(s.id)}`}
-                className="group flex flex-col border border-border bg-white p-5 transition-colors hover:border-dew"
+                className="group flex flex-col border border-border bg-white p-5 transition-colors hover:border-sage-deep"
               >
-                <p className="font-display text-xl text-ink group-hover:text-dew-dark">{s.name}</p>
+                <p className="font-display text-xl text-forest group-hover:text-sage-deep">{s.name}</p>
                 <p className="mt-2 flex-1 font-body text-sm text-muted">{s.note}</p>
                 <p className="mt-4 font-label text-[0.6rem] uppercase tracking-lockup text-muted">
                   {s.duration} · {s.price}
                 </p>
-                <span className="mt-3 font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+                <span className="mt-3 font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
                   Request booking →
                 </span>
               </Link>
@@ -355,31 +456,34 @@ export default function Home() {
       {/* Virtual consultation + Emily */}
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-shell lg:grid-cols-2">
-          <div className="border-b border-border bg-ink px-5 py-14 text-white sm:px-10 sm:py-16 lg:border-b-0 lg:border-r lg:px-12">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-white/55">
+          <div className="border-b border-border bg-forest px-5 py-14 text-ivory sm:px-10 sm:py-16 lg:border-b-0 lg:border-r lg:px-12">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-ivory/55">
               From anywhere
             </p>
-            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-white">
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-ivory">
               Virtual consultation
             </h2>
-            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-white/75">
+            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-ivory/75">
               Secure intake, private photos, and a personalized AM/PM plan — without leaving home.
             </p>
             <Link
               href="/virtual-consultation"
-              className="btn-ghost mt-8 inline-flex border-white/30 bg-transparent px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup text-white hover:border-white hover:bg-white/10"
+              className="btn-ghost mt-8 inline-flex border-ivory/30 bg-transparent px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup text-ivory hover:border-ivory hover:bg-ivory/10"
             >
               Book virtual consult
             </Link>
           </div>
-          <div className="bg-ivory px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+          <div className="bg-stone px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest/65">
               Aesthetician · Licensed
             </p>
-            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-ink">
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-forest">
               Emily Mitchener
             </h2>
-            <p className="mt-4 max-w-md font-body text-base leading-relaxed text-charcoal/80">
+            <blockquote className="mt-5 max-w-md font-display text-xl italic leading-snug text-forest sm:text-2xl">
+              I&apos;d rather be exhausted building my dream than comfortable watching it pass me by
+            </blockquote>
+            <p className="mt-5 max-w-md font-body text-base leading-relaxed text-forest/80">
               Evidence-informed and barrier-first. Look first, change one variable at a time, and
               don&apos;t sell a product you don&apos;t need.
             </p>
@@ -402,11 +506,11 @@ export default function Home() {
       </section>
 
       {/* FAQ / help + membership */}
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-ivory py-14 sm:py-16">
         <div className="mx-auto grid max-w-shell gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:px-10">
           <div>
             <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">Help</p>
-            <h2 className="mt-2 font-display text-3xl text-ink">Shipping, appointments, products</h2>
+            <h2 className="mt-2 font-display text-3xl text-forest">Shipping, appointments, products</h2>
             <p className="mt-3 font-body text-sm text-muted">
               Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal before
               discount. Flat {formatMoney(FLAT_SHIPPING_USD)} below.
@@ -421,11 +525,11 @@ export default function Home() {
             </div>
           </div>
           <div className="dew-panel p-6 sm:p-8">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-dew">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
               Stay in the plan
             </p>
-            <h2 className="mt-2 font-display text-3xl text-ink">Membership interest</h2>
-            <p className="mt-3 font-body text-sm text-charcoal/80">
+            <h2 className="mt-2 font-display text-3xl text-forest">Membership interest</h2>
+            <p className="mt-3 font-body text-sm text-forest/80">
               Membership is not for sale yet. Join the interest list for updates when Emily opens
               packages.
             </p>
