@@ -72,7 +72,7 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Last known Worker version ID | `e6bc265f-97d8-4518-a96b-6f37a0983bca` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
-| Revamp commit (implementation) | See latest commit on that branch — re-run `git rev-parse HEAD` |
+| Revamp commit (implementation) | `c38e715d012afe5188e1b53e602273d908f9db3d` (re-run `git rev-parse` after new pushes) |
 | Live design as of 2026-08-25 Cursor session | Still **pre-revamp** Sephora shell (`#111111` / `#FFFFFF`) until merge + `npm run deploy` |
 | Deploy blocker this session | No `CLOUDFLARE_API_TOKEN` / Wrangler login in Cursor Cloud environment |
 
