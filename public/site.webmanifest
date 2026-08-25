@@ -4,8 +4,8 @@
   "description": "Clinical Skin Script skincare and facials with Emily Mitchener.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F7F5F2",
-  "theme_color": "#F7F5F2",
+  "background_color": "#EDEDE6",
+  "theme_color": "#1E2B22",
   "lang": "en-US",
   "icons": [
     {

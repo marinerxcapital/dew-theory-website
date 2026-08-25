@@ -1,4 +1,8 @@
-# Sephora-inspired storefront redesign — source of truth
+# Sephora-inspired storefront redesign — historical record
+
+> **Superseded for brand colors (2026-08-25).** Current brand SoT is
+> `DEW-THEORY-CURRENT-STATUS.md` (forest `#1E2B22` / sage-deep `#5B7356` / sage `#93A890` /
+> ivory `#EDEDE6` / stone `#C9C4B8`). This document remains as chronology for PR #1.
 
 **Date:** 2026-08-15  
 **Branch:** merged via PR #1 → `main`  
@@ -15,6 +19,8 @@
 - Follow-on work also live: FIXED V2 legal PDFs (PR #5, merge `a5fef35`) and full-bleed
   landing hero motion (PR #6, merge `1e56d6c`).
 - Full evidence: `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`.
+- **2026-08-25:** Editorial brand revamp pending deploy — see
+  `DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md`.
 
 ## Objective
 

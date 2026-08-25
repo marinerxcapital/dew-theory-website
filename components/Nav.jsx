@@ -132,7 +132,7 @@ export default function Nav() {
             </Link>
             <Link
               href="/virtual-consultation"
-              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-sage-deep transition-colors hover:text-forest"
+              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-forest transition-colors hover:text-sage-deep"
             >
               Virtual Consult
             </Link>

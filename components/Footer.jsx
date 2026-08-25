@@ -68,7 +68,7 @@ export default function Footer() {
               Calm, botanical, barrier-first care — Skin Script actives and in-studio facials with
               Emily Mitchener.
             </p>
-            <p className="mt-4 font-label text-[0.58rem] uppercase tracking-lockup text-ivory/45">
+            <p className="mt-4 font-label text-[0.58rem] uppercase tracking-lockup text-ivory/75">
               Free shipping {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {columns.map((col) => (
             <div key={col.head}>
-              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/55">
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/75">
                 {col.head}
               </p>
               <ul className="mt-5 space-y-2.5">
@@ -97,7 +97,7 @@ export default function Footer() {
                   <li key={`${col.head}-${href}-${label}`}>
                     <Link
                       href={href}
-                      className="font-body text-sm font-normal text-ivory/70 transition-colors hover:text-ivory"
+                      className="font-body text-sm font-normal text-ivory/80 transition-colors hover:text-ivory"
                     >
                       {label}
                     </Link>
@@ -109,10 +109,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-ivory/10 pt-6">
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/45">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/75">
             © {new Date().getFullYear()} Dew Theory
           </p>
-          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ivory/40">
+          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ivory/70">
             Calm · Botanical · Precise
           </p>
         </div>

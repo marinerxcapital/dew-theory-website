@@ -111,6 +111,11 @@ npm run smoke:routes -- https://dewtheoryco.com
 | Timestamp (UTC) | `2026-08-16T05:54:19Z` |
 | Evidence | `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md` |
 
+> **Pending (2026-08-25):** Editorial forest/sage/ivory brand revamp on
+> `cursor/brand-revamp-editorial-5502` is implemented and tested but **not deployed**.
+> Follow `DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md`. After deploy, update this
+> table and `DEW-THEORY-CURRENT-STATUS.md`.
+
 ## Skin Script
 
 No API key required. Use CSV import + admin order statuses for real wholesale.

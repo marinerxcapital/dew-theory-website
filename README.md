@@ -116,18 +116,17 @@ All public legal routes resolve through `lib/legal-documents.js`; FIXED V2 PDFs 
 
 ## Design tokens
 
-Retail foundation (2026-08 Sephora-inspired redesign):
+Editorial brand system (2026-08 forest/sage/ivory revamp):
 
 | Token | Hex | Role |
 |---|---|---|
-| `ink` / `graphite` | `#111111` | Structure, primary CTAs |
-| `black` | `#000000` | Category nav |
-| `white` / `pearl` | `#FFFFFF` | Ground |
-| `muted` / `chrome` | `#666666` | Secondary text |
-| `promo` | `#D6001C` | Sparse promo/alert only |
-| `dew` | `#2F5D4A` | Guidance / quiz / services |
+| `forest` / `ink` | `#1E2B22` | Primary text, CTAs, footer, category rail |
+| `sage-deep` / `dew` | `#5B7356` | Botanical accent, rules, selected accents |
+| `sage` / `dew-mid` | `#93A890` | Signature sage surfaces and editorial bands |
+| `ivory` / `pearl` | `#EDEDE6` | Page ground, inverse text on forest |
+| `stone` | `#C9C4B8` | Warm alternate section surfaces |
 
-See `docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md` for the full token set and redesign status.
+See `DEW-THEORY-CURRENT-STATUS.md` for the full token map and redesign status.
 
 **Type**
 - Display — Bodoni Moda. The didone thick/thin modulation matches the wordmark's hairline serifs.

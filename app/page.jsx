@@ -145,7 +145,7 @@ export default function Home() {
       <section className="section-sage border-b border-border" aria-labelledby="reassure-heading">
         <div className="mx-auto max-w-shell px-5 py-16 sm:px-6 sm:py-20 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-12 lg:px-10 lg:py-24">
           <div>
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest/70">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest">
               by emily | hydration specialist
             </p>
             <h2
@@ -155,7 +155,7 @@ export default function Home() {
               relax. i&apos;ve got you covered
             </h2>
           </div>
-          <p className="mt-6 max-w-md font-body text-base leading-relaxed text-forest/85 lg:mt-0">
+          <p className="mt-6 max-w-md font-body text-base leading-relaxed text-forest lg:mt-0">
             Look first. Change one variable at a time. Never sell a product your barrier doesn&apos;t
             ask for. That&apos;s the Dew Theory rhythm.
           </p>
@@ -178,7 +178,7 @@ export default function Home() {
           </p>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             <article className="border border-border bg-white p-6 sm:p-8">
-              <p className="font-label text-[0.58rem] uppercase tracking-lockup text-sage-deep">
+              <p className="font-label text-[0.58rem] uppercase tracking-lockup text-forest">
                 Viral caution
               </p>
               <h3 className="mt-3 font-display text-2xl italic text-forest sm:text-3xl">
@@ -196,7 +196,7 @@ export default function Home() {
               </Link>
             </article>
             <article className="border border-border bg-surface-light p-6 sm:p-8">
-              <p className="font-label text-[0.58rem] uppercase tracking-lockup text-sage-deep">
+              <p className="font-label text-[0.58rem] uppercase tracking-lockup text-forest">
                 Education · not a menu item
               </p>
               <h3 className="mt-3 font-display text-2xl italic text-forest sm:text-3xl">
@@ -274,7 +274,7 @@ export default function Home() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-shell lg:grid-cols-2">
           <div className="dew-panel flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest">
               ~2 minutes · teens to 60+
             </p>
             <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.75rem)] leading-[1.1] text-forest">
@@ -310,7 +310,7 @@ export default function Home() {
                 key={title}
                 className="border-b border-r border-border bg-white p-6 last:border-b-0 even:border-r-0 sm:p-8"
               >
-                <p className="font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
+                <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest">
                   {title}
                 </p>
                 <p className="mt-2 font-body text-sm text-muted">{copy}</p>
@@ -474,7 +474,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="bg-stone px-5 py-14 sm:px-10 sm:py-16 lg:px-12">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest/65">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest">
               Aesthetician · Licensed
             </p>
             <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,2.6rem)] text-forest">
@@ -525,7 +525,7 @@ export default function Home() {
             </div>
           </div>
           <div className="dew-panel p-6 sm:p-8">
-            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-sage-deep">
+            <p className="font-label text-[0.62rem] uppercase tracking-lockup text-forest">
               Stay in the plan
             </p>
             <h2 className="mt-2 font-display text-3xl text-forest">Membership interest</h2>
