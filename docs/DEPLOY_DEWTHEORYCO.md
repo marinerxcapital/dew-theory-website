@@ -105,16 +105,16 @@ npm run smoke:routes -- https://dewtheoryco.com
 
 | Item | Value |
 |---|---|
-| Main SHA | `1e56d6c96d0075811e806af952673e1d6a09e4ba` |
+| Main SHA | `17d4849a0c3bb502d2341552ee5573a12f46472f` |
 | Worker | `dew-theory` |
-| Version ID | `e6bc265f-97d8-4518-a96b-6f37a0983bca` |
-| Timestamp (UTC) | `2026-08-16T05:54:19Z` |
-| Evidence | `docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md` |
+| Version ID | `c76d0236-07e4-47b1-9e49-e413664e80e9` |
+| Timestamp (UTC) | `2026-08-25T22:57:41.090Z` |
+| Evidence | `docs/PRODUCTION_DEPLOY_LOG_2026-08-25.md` |
 
-> **Pending (2026-08-25):** Editorial forest/sage/ivory brand revamp on
-> `cursor/brand-revamp-editorial-5502` is implemented and tested but **not deployed**.
-> Follow `DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md`. After deploy, update this
-> table and `DEW-THEORY-CURRENT-STATUS.md`.
+> **Completed (2026-08-25):** Editorial forest/sage/ivory brand revamp from PR #7 is
+> deployed. PR branch HEAD was `e4e036df18fccccbf36157de343419fce07218f1`; squash
+> merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has the same tree and is the
+> deployed main SHA.
 
 ## Skin Script
 

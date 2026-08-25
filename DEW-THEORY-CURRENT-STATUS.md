@@ -68,15 +68,15 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (last known deployed) | `1e56d6c96d0075811e806af952673e1d6a09e4ba` (2026-08-16) |
+| Live production SHA (verified deployed) | `17d4849a0c3bb502d2341552ee5573a12f46472f` (2026-08-25) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Last known Worker version ID | `e6bc265f-97d8-4518-a96b-6f37a0983bca` |
+| Current Worker version ID | `c76d0236-07e4-47b1-9e49-e413664e80e9` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
-| Revamp commit (implementation) | `9f5da67c1f38a1a923e9c1d7d6916d8a27d8ff6b` on `cursor/brand-revamp-editorial-5502` (PR #7) — re-verify before deploy |
-| Live design as of 2026-08-25 Cursor session | Still **pre-revamp** Sephora shell (`#111111` / `#FFFFFF`) until merge + `npm run deploy` |
-| Deploy blocker this session | No `CLOUDFLARE_API_TOKEN` / Wrangler login in Cursor Cloud environment |
+| Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
+| Live design as of 2026-08-25 Codex deploy | **Revamp live**: ivory ground, forest text, sage/stone accents, Bodoni editorial motifs |
+| Deploy blocker this session | Cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
-**Live smoke (production, 2026-08-25):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS. Brand tokens from this revamp are **not** live until deploy.
+**Live smoke (production, 2026-08-25):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS. `npm run smoke:routes -- https://dewtheoryco.com` passed. Browser smoke passed for brand motifs/tokens, shop reveal after scroll, add-to-cart, cart update/remove, checkout handoff, checkout policies, and mobile nav/overflow. Cloudflare deployment readback shows Worker version `c76d0236-07e4-47b1-9e49-e413664e80e9` at 100%.
 
 ---
 
@@ -124,11 +124,11 @@ See `ENV.md` / `.env.example`. Key names: `NEXT_PUBLIC_SITE_URL`, `STRIPE_SECRET
 
 ### What must happen next for “complete”
 
-1. Merge PR for `cursor/brand-revamp-editorial-5502` into `main` (or push if protections allow)
-2. `npm run deploy` with Cloudflare credentials → Worker `dew-theory`
-3. Verify https://dewtheoryco.com shows ivory ground + forest text + Bodoni motifs
-4. Run `npm run smoke:routes -- https://dewtheoryco.com` + manual cart/checkout handoff
-5. Record final deployed SHA + Worker version ID in this file and `docs/PRODUCTION_DEPLOY_LOG_*`
+1. PR #7 merged into `main` as squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f`
+2. `npm run deploy` completed for Worker `dew-theory`
+3. https://dewtheoryco.com verified live with ivory ground + forest text + Bodoni motifs
+4. `npm run smoke:routes -- https://dewtheoryco.com` passed; browser smoke passed cart/checkout handoff and mobile checks
+5. Final deployed SHA + Worker version ID recorded here and in `docs/PRODUCTION_DEPLOY_LOG_2026-08-25.md`
 
 If blocked, follow `DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md`.
 
@@ -183,13 +183,21 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 | `npm run build` | success |
 | `npm run smoke:routes -- http://localhost:3000` | all clear |
 | `npm run smoke` checkout | mock checkout OK; admin login 401 without local admin secrets (expected) |
-| Production deploy | **not completed** — Cloudflare auth missing |
-| Live brand verification of revamp | **blocked** pending deploy |
+| Production deploy | completed from `main` `17d4849a0c3bb502d2341552ee5573a12f46472f` |
+| Live brand verification of revamp | passed on apex production domain |
 
 ### Issues found and fixed this session
 - Contrast failures on sage bands / `.btn-dew` / footer ivory opacities → fixed
 - Shop quiz tile white-on-sage-deep → forest/ivory
 - Late-mounted `[data-reveal]` product cards could stay invisible → MotionRoot MutationObserver + rescan
+
+### 2026-08-25 Codex production deploy closeout
+
+- PR #7 is merged. GitHub reports merge commit `17d4849a0c3bb502d2341552ee5573a12f46472f`; remote branch head `e4e036df18fccccbf36157de343419fce07218f1`; tree diff between them is empty.
+- Local gates rerun after fresh clone: `npm ci` completed with 8 existing audit findings (1 moderate, 7 high); `npm test` passed 192/192; `npm run build` passed and generated 67/67 pages.
+- `npm run deploy` completed via OpenNext/Cloudflare. Worker `dew-theory` Current Version ID: `c76d0236-07e4-47b1-9e49-e413664e80e9`; deployment created `2026-08-25T22:57:41.090Z` and read back at 100%.
+- Apex and www roots returned HTTP 200 from Cloudflare. Route smoke passed all configured public routes and PDFs.
+- Browser smoke passed: editorial brand signals, computed brand token wiring, shop card reveal after scroll, add-to-cart, cart quantity update/remove, checkout handoff without paid order, checkout policy links, mobile nav, and no horizontal overflow on `/`, `/shop`, `/cart`, `/privacy`, `/terms`.
 
 ### Remaining technical debt
 
