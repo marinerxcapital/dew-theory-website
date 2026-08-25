@@ -44,8 +44,8 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
-    { media: '(prefers-color-scheme: dark)', color: '#111111' }
+    { media: '(prefers-color-scheme: light)', color: '#EDEDE6' },
+    { media: '(prefers-color-scheme: dark)', color: '#1E2B22' }
   ],
   viewportFit: 'cover',
   colorScheme: 'light'
@@ -186,7 +186,7 @@ const orgLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
-      <body className="relative bg-white font-body font-normal text-charcoal antialiased">
+      <body className="relative bg-ivory font-body font-normal text-forest antialiased">
         <JsonLd data={orgLd} />
         <CartProvider>
           <MotionBackground />

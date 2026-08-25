@@ -50,7 +50,13 @@ export default function AboutPage() {
           </p>
           <p
             data-reveal
-            className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
+            className="mt-5 max-w-xl font-display text-xl italic leading-snug text-forest sm:text-2xl"
+          >
+            I&apos;d rather be exhausted building my dream than comfortable watching it pass me by
+          </p>
+          <p
+            data-reveal
+            className="mt-6 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
           >
             Emily works with Skin Script in the treatment room and at home, selecting products
             because they fit your skin — not because they raise the ticket average. Expect
@@ -77,18 +83,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-surface-light">
+      <section className="section-sage border-y border-border">
         <div
           className="mx-auto max-w-shell px-6 py-20 sm:py-24 lg:px-10"
           data-reveal-group="philosophy"
         >
           <Rule left="Approach" right="How she works" data-reveal />
+          <p data-reveal className="editorial-label mt-6">
+            by emily | hydration specialist
+          </p>
           <h2
             data-reveal
-            className="mt-6 font-display text-[clamp(1.8rem,3.8vw,2.6rem)] font-normal text-ink"
+            className="mt-4 font-display text-[clamp(1.8rem,3.8vw,2.6rem)] font-normal text-forest"
           >
             Look first, sell second
           </h2>
+          <p data-reveal className="mt-4 max-w-xl font-display text-2xl italic text-forest">
+            relax. i&apos;ve got you covered
+          </p>
           <ul className="mt-10 grid gap-6 sm:mt-12 sm:gap-8 md:grid-cols-3">
             {[
               {
@@ -107,10 +119,10 @@ export default function AboutPage() {
               <li
                 key={item.t}
                 data-reveal
-                className="rounded-[3px] border border-border bg-white p-8 shadow-card"
+                className="rounded-[3px] border border-forest/15 bg-ivory/70 p-8"
               >
-                <h3 className="font-display text-xl font-normal text-ink">{item.t}</h3>
-                <p className="mt-4 font-body text-sm font-normal leading-relaxed text-muted">
+                <h3 className="font-display text-xl font-normal text-forest">{item.t}</h3>
+                <p className="mt-4 font-body text-sm font-normal leading-relaxed text-forest/80">
                   {item.d}
                 </p>
               </li>

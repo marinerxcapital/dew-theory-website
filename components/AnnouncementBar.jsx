@@ -27,13 +27,13 @@ export default function AnnouncementBar({
   return (
     <div className={toneClass} role="region" aria-label="Store announcement">
       <div className="mx-auto flex max-w-shell items-center justify-center gap-3 px-4 py-2 sm:px-6 lg:px-10">
-        <p className="text-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white sm:text-[0.68rem]">
+        <p className="text-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory sm:text-[0.68rem]">
           {text}
         </p>
         {href ? (
           <Link
             href={href}
-            className="hidden font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/85 underline-offset-2 hover:text-white hover:underline sm:inline"
+            className="hidden font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/85 underline-offset-2 hover:text-ivory hover:underline sm:inline"
           >
             {cta}
           </Link>

@@ -60,27 +60,27 @@ export default function Footer() {
       <div className="relative z-[1] mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-10 lg:py-18">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-display text-3xl italic lowercase text-white sm:text-4xl">
+            <p className="font-display text-3xl italic lowercase text-ivory sm:text-4xl">
               dew theory
             </p>
             <Rule left="Skin" right="Care" className="footer-rule mt-5" />
-            <p className="mt-6 max-w-xs font-body text-sm font-normal leading-relaxed text-white/70">
-              Clinical Skin Script actives and in-studio facials — aesthetician-led, barrier-first,
-              precise.
+            <p className="mt-6 max-w-xs font-body text-sm font-normal leading-relaxed text-ivory/70">
+              Calm, botanical, barrier-first care — Skin Script actives and in-studio facials with
+              Emily Mitchener.
             </p>
-            <p className="mt-4 font-label text-[0.58rem] uppercase tracking-lockup text-white/45">
+            <p className="mt-4 font-label text-[0.58rem] uppercase tracking-lockup text-ivory/75">
               Free shipping {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/book"
-                className="btn-ghost border-white/25 bg-transparent px-6 py-3 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-white hover:border-white/50 hover:bg-white/10"
+                className="btn-ghost border-ivory/25 bg-transparent px-6 py-3 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ivory hover:border-ivory/50 hover:bg-ivory/10"
               >
                 Book a facial
               </Link>
               <Link
                 href="/quiz"
-                className="inline-flex items-center px-2 font-label text-[0.65rem] uppercase tracking-lockup text-dew-soft hover:text-white"
+                className="inline-flex items-center px-2 font-label text-[0.65rem] uppercase tracking-lockup text-sage hover:text-ivory"
               >
                 Skin Quiz
               </Link>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {columns.map((col) => (
             <div key={col.head}>
-              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/55">
+              <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/75">
                 {col.head}
               </p>
               <ul className="mt-5 space-y-2.5">
@@ -97,7 +97,7 @@ export default function Footer() {
                   <li key={`${col.head}-${href}-${label}`}>
                     <Link
                       href={href}
-                      className="font-body text-sm font-normal text-white/70 transition-colors hover:text-white"
+                      className="font-body text-sm font-normal text-ivory/80 transition-colors hover:text-ivory"
                     >
                       {label}
                     </Link>
@@ -108,12 +108,12 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/45">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-ivory/10 pt-6">
+          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-ivory/75">
             © {new Date().getFullYear()} Dew Theory
           </p>
-          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-white/40">
-            Clinical · Quiet · Precise
+          <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ivory/70">
+            Calm · Botanical · Precise
           </p>
         </div>
       </div>

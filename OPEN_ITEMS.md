@@ -5,20 +5,24 @@ Resolve before launch.
 
 ---
 
-## 0. Redesign status (2026-08-15)
+## 0. Redesign status (2026-08-15 → 2026-08-25)
 
-Sephora-inspired retail redesign implemented on branch
-`cursor/sephora-inspired-storefront-2e1c` (PR #1). See
-`docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md`.
+**Current brand SoT:** `DEW-THEORY-CURRENT-STATUS.md` (forest / sage / ivory / stone editorial system).
 
-Engineering complete for storefront UX; business facts below remain unresolved.
+Sephora-inspired retail redesign (PR #1) was an earlier shell. The **2026-08-25** editorial
+revamp lives on branch `cursor/brand-revamp-editorial-5502` — see
+`DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md` until merged + deployed.
+
+Engineering complete for storefront UX brand remapping; business facts below remain unresolved.
 Membership remains **interest-list only** (live `/membership` route — not a redirect).
 
-**Production deploy blocker — RESOLVED 2026-08-16.** Cloudflare deploy succeeded via the
-stored Wrangler OAuth token (`skyler@marinerxcapital.com`). Latest deployed main SHA
-`1e56d6c96d0075811e806af952673e1d6a09e4ba`, Worker `dew-theory` version
-`e6bc265f-97d8-4518-a96b-6f37a0983bca` (timestamp `2026-08-16T05:54:19Z`). See
-`docs/PRODUCTION_DEPLOY_LOG_2026-08-16.md`.
+**Production deploy blocker — PARTIAL.** Last live Worker deploy (2026-08-16) succeeded for
+main SHA `1e56d6c` (legal PDFs + hero motion). The **editorial brand revamp is not yet live**
+as of 2026-08-25 because Cursor Cloud lacked Cloudflare auth. Codex (or an authenticated agent)
+must merge + `npm run deploy` and verify https://dewtheoryco.com.
+
+Historical Sephora notes remain in `docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md` (superseded for
+color tokens).
 
 ## 0b. FIXED V2 legal PDFs (2026-08-16)
 

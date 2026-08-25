@@ -74,9 +74,9 @@ export default function Hero() {
         }
 
         const g = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, d.r * 3.2);
-        g.addColorStop(0, `rgba(255,255,255,${d.a})`);
-        g.addColorStop(0.45, `rgba(232,240,235,${d.a * 0.55})`);
-        g.addColorStop(1, 'rgba(47,93,74,0)');
+        g.addColorStop(0, `rgba(237,237,230,${d.a})`);
+        g.addColorStop(0.45, `rgba(147,168,144,${d.a * 0.45})`);
+        g.addColorStop(1, 'rgba(30,43,34,0)');
         ctx.beginPath();
         ctx.fillStyle = g;
         ctx.arc(d.x, d.y, d.r * 3.2, 0, Math.PI * 2);
@@ -155,12 +155,12 @@ export default function Hero() {
           </p>
 
           <h1 className="hero-stage__headline mt-7 max-w-lg font-display text-[clamp(1.55rem,3.6vw,2.35rem)] font-normal leading-[1.15] tracking-[-0.01em] text-ink sm:mt-8">
-            Clinical skincare, selected by the aesthetician who uses it.
+            this and no stress
           </h1>
 
           <p className="hero-stage__lede mt-4 max-w-md font-body text-base font-normal leading-relaxed text-charcoal/90 sm:mt-5 sm:text-[1.05rem]">
-            Professional Skin Script actives for home — and facials with Emily Mitchener that decide
-            which of them you actually need.
+            Professional Skin Script actives for home — and barrier-first facials with Emily that
+            decide which of them you actually need.
           </p>
 
           <div className="hero-stage__cta mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
@@ -172,7 +172,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/quiz"
-              className="btn-dew-outline w-full min-h-[48px] bg-white/70 px-9 py-4 text-center font-label text-[0.72rem] font-normal uppercase tracking-lockup backdrop-blur-[2px] sm:w-auto"
+              className="btn-dew-outline w-full min-h-[48px] bg-ivory/80 px-9 py-4 text-center font-label text-[0.72rem] font-normal uppercase tracking-lockup backdrop-blur-[2px] sm:w-auto"
             >
               Take the Skin Quiz
             </Link>
