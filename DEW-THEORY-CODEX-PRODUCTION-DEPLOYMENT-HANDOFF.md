@@ -31,10 +31,10 @@ A preview deploy, successful Git push, or “deploy started” message is **not*
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Base main SHA when work started | `e9f64da2652832b150811c75db0aa1c504ec656e` |
 | First revamp commit | `c2e1a022855b18b3d5ee51cbc142f70027b70ec3` |
-| Latest revamp HEAD (docs + contrast) | `c38e715d012afe5188e1b53e602273d908f9db3d` |
+| Latest revamp HEAD | `9f5da67c1f38a1a923e9c1d7d6916d8a27d8ff6b` |
 | Expect later commits on same branch | `git log origin/cursor/brand-revamp-editorial-5502 -5 --oneline` |
 | Working tree at Cursor handoff | Should be clean after final push — run `git status` |
-| PR | Create/merge if not already merged — check `gh pr list --head cursor/brand-revamp-editorial-5502` |
+| PR | https://github.com/marinerxcapital/dew-theory-website/pull/7 (draft) — merge then deploy |
 | Last **live** production deploy | SHA `1e56d6c` / Worker version `e6bc265f-97d8-4518-a96b-6f37a0983bca` (2026-08-16) — **does not include this revamp** |
 
 ```bash
