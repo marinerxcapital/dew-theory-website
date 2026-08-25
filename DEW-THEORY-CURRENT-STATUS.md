@@ -68,15 +68,15 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `17d4849a0c3bb502d2341552ee5573a12f46472f` (2026-08-25) |
+| Live production SHA (verified deployed) | `bb3a48c8e42bb0583e700ef9d4b11e765c2577f6` (2026-08-25, brand logo replacement) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `c76d0236-07e4-47b1-9e49-e413664e80e9` |
+| Current Worker version ID | `2f3d66be-106a-4c52-9060-26b5ee3a94bf` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
-| Live design as of 2026-08-25 Codex deploy | **Revamp live**: ivory ground, forest text, sage/stone accents, Bodoni editorial motifs |
+| Live design as of 2026-08-25 Codex deploy | **Revamp + logo live**: ivory ground, forest text, sage/stone accents, Bodoni editorial motifs, and the 2026-08-25 Dew Theory logo lockup/mark/favicon/OG artwork |
 | Deploy blocker this session | Cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
-**Live smoke (production, 2026-08-25):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS. `npm run smoke:routes -- https://dewtheoryco.com` passed. Browser smoke passed for brand motifs/tokens, shop reveal after scroll, add-to-cart, cart update/remove, checkout handoff, checkout policies, and mobile nav/overflow. Cloudflare deployment readback shows Worker version `c76d0236-07e4-47b1-9e49-e413664e80e9` at 100%.
+**Live smoke (production, 2026-08-25):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS. `npm run smoke:routes -- https://dewtheoryco.com` passed. Browser smoke passed for brand motifs/tokens, shop reveal after scroll, add-to-cart, cart update/remove, checkout handoff, checkout policies, and mobile nav/overflow. Cloudflare deployment readback shows Worker version `2f3d66be-106a-4c52-9060-26b5ee3a94bf` at 100% (this is the logo-replacement deploy; the prior revamp deploy was `c76d0236-07e4-47b1-9e49-e413664e80e9`).
 
 ---
 
@@ -183,8 +183,9 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 | `npm run build` | success |
 | `npm run smoke:routes -- http://localhost:3000` | all clear |
 | `npm run smoke` checkout | mock checkout OK; admin login 401 without local admin secrets (expected) |
-| Production deploy | completed from `main` `17d4849a0c3bb502d2341552ee5573a12f46472f` |
+| Production deploy | completed from `main` `17d4849a0c3bb502d2341552ee5573a12f46472f` (revamp) then `bb3a48c8e42bb0583e700ef9d4b11e765c2577f6` (logo) |
 | Live brand verification of revamp | passed on apex production domain |
+| Live logo verification | passed on apex + www: `logo-dewtheory-20260825.webp` (hero), `logo-dewtheory-mark-20260825.webp` (nav/favicon), `logo-dewtheory-ivory-20260825.webp` (footer), `logo-dewtheory-og-20260825.png` (OG) all served with transparent lossless alpha |
 
 ### Issues found and fixed this session
 - Contrast failures on sage bands / `.btn-dew` / footer ivory opacities → fixed
@@ -198,6 +199,13 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 - `npm run deploy` completed via OpenNext/Cloudflare. Worker `dew-theory` Current Version ID: `c76d0236-07e4-47b1-9e49-e413664e80e9`; deployment created `2026-08-25T22:57:41.090Z` and read back at 100%.
 - Apex and www roots returned HTTP 200 from Cloudflare. Route smoke passed all configured public routes and PDFs.
 - Browser smoke passed: editorial brand signals, computed brand token wiring, shop card reveal after scroll, add-to-cart, cart quantity update/remove, checkout handoff without paid order, checkout policy links, mobile nav, and no horizontal overflow on `/`, `/shop`, `/cart`, `/privacy`, `/terms`.
+
+### 2026-08-25 Codex logo replacement closeout
+
+- Commit `bb3a48c8e42bb0583e700ef9d4b11e765c2577f6` (`feat(brand): replace Dew Theory logo assets`) replaced the wordmark lockup, nav mark, footer ivory lockup, favicon, and OG/social image across `Nav`, `Hero`, `Footer`, `Wordmark`, `layout`, home/shop/virtual-consultation metadata, `site.webmanifest`, and `_headers`.
+- Deployed as Worker version `2f3d66be-106a-4c52-9060-26b5ee3a94bf` (`2026-08-25T23:33:19.034Z`), read back at 100%.
+- Verified live on apex + www: all logo asset URLs return HTTP 200; the new WEBP assets are lossless (`VP8L`) with alpha so they blend into the ivory/forest/sage surfaces without a bounding box; the `1200x630` OG PNG is a full-bleed social card (opaque by design).
+- No code references the legacy `/logo.webp`, `/logo.png`, or `/logo-mark.webp` paths except the backwards-compatible cache rules in `public/_headers`; the legacy files remain as in-place copies of the new artwork.
 
 ### Remaining technical debt
 
@@ -216,3 +224,5 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 5. Independent audits found contrast issues → fixed
 6. Tests + build + local smoke passed; pushed branch
 7. Production deploy blocked → Codex handoff written
+8. PR #7 merged; `npm run deploy` shipped revamp as Worker `c76d0236-07e4-47b1-9e49-e413664e80e9`
+9. Brand logo replacement committed (`bb3a48c`) and deployed as Worker `2f3d66be-106a-4c52-9060-26b5ee3a94bf`; verified live on apex + www

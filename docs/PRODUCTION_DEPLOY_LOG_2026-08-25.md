@@ -66,3 +66,42 @@ npx playwright test tmp-production-smoke.spec.mjs --reporter=line
 - Stripe / Resend / Google Calendar / Skin Script live credentials remain owner-only configuration
 - GSAP remains listed in `package.json` but unused by components
 - Dependency audit still reports 8 findings (1 moderate, 7 high); not changed during this scoped production deploy
+
+---
+
+## Follow-on deploy: brand logo replacement (2026-08-25)
+
+**Domain:** https://dewtheoryco.com (+ https://www.dewtheoryco.com)  
+**Worker:** `dew-theory`
+
+| Item | Value |
+|---|---|
+| Logo deploy SHA | `bb3a48c8e42bb0583e700ef9d4b11e765c2577f6` |
+| Commit | `feat(brand): replace Dew Theory logo assets` |
+| Cloudflare Worker version / deploy ID | `2f3d66be-106a-4c52-9060-26b5ee3a94bf` |
+| Deploy timestamp (UTC) | `2026-08-25T23:33:19.034Z` |
+| Auth | Wrangler OAuth token for `skyler@marinerxcapital.com`; no secret values exposed |
+
+### What changed
+
+- New versioned logo assets added: `logo-dewtheory-20260825.webp` (hero lockup), `logo-dewtheory-mark-20260825.webp` (nav mark + favicon), `logo-dewtheory-ivory-20260825.webp` (footer lockup on forest), `logo-dewtheory-og-20260825.png` (1200x630 social/OG card).
+- `Nav`, `Hero`, `Footer`, and `Wordmark` now render the new artwork (with live-type fallback retained in `Wordmark`).
+- Metadata, favicon, `site.webmanifest`, and OpenGraph/JSON-LD logos repointed to the versioned assets.
+- `public/_headers` gained immutable cache rules for the new assets; legacy `logo.png`/`logo.webp`/`logo-mark.webp` remain as in-place copies.
+
+### Verification
+
+| Check | Result | Evidence |
+|---|---|---|
+| Apex root | PASS | HTTP 200, serves `logo-dewtheory-20260825.webp` references |
+| www root | PASS | HTTP 200, serves new logo references |
+| New logo assets | PASS | `logo-dewtheory-*.webp`/`.png` return HTTP 200 |
+| Logo transparency | PASS | WEBP assets are lossless (`VP8L`) with alpha (no bounding box on ivory/forest/sage surfaces) |
+| OG card | PASS | `1200x630` PNG, `Format32bppArgb` (full-bleed social card by design) |
+| Route/PDF smoke | PASS | `npm run smoke:routes -- https://dewtheoryco.com` returned `smoke-routes: all clear` |
+| Stale references | PASS | No app/component code references legacy logo paths; only cache rules remain |
+
+### Notes
+
+- The prior revamp deploy (`17d4849`, Worker `c76d0236-07e4-47b1-9e49-e413664e80e9`) remains the source of the forest/sage/ivory/stone token system. This follow-on deploy layered the logo artwork on top without altering the five brand hex values.
+- Sage green (`#93A890`) and sage deep (`#5B7356`) were already part of the deployed revamp; this deploy did not change them.
