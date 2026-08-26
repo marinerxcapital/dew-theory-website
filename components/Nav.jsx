@@ -11,11 +11,8 @@ import { useCart } from '@/components/CartProvider';
 const links = [
   { href: '/shop', label: 'Shop' },
   { href: '/quiz', label: 'Skin Quiz' },
-  { href: '/routine', label: 'Routine' },
-  { href: '/services', label: 'Services' },
   { href: '/virtual-consultation', label: 'Virtual Consult' },
   { href: '/about', label: 'Emily' },
-  { href: '/membership', label: 'Membership' },
   { href: '/contact', label: 'Contact' },
   { href: '/faq', label: 'FAQ' }
 ];
@@ -89,8 +86,6 @@ export default function Nav() {
 
   if (pathname?.startsWith('/admin')) return null;
 
-  const mobileLinks = [...links, { href: '/book', label: 'Book a facial' }];
-
   return (
     <header
       data-nav
@@ -124,12 +119,6 @@ export default function Nav() {
           </div>
 
           <nav aria-label="Primary utilities" className="ml-auto hidden items-center gap-5 lg:flex xl:gap-6">
-            <Link
-              href="/book"
-              className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-forest transition-colors hover:text-sage-deep"
-            >
-              Book
-            </Link>
             <Link
               href="/virtual-consultation"
               className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-forest transition-colors hover:text-sage-deep"
@@ -217,7 +206,7 @@ export default function Nav() {
             <p className="pt-3 font-label text-[0.58rem] uppercase tracking-lockup text-muted">
               Explore
             </p>
-            {mobileLinks.map((l, i) => {
+            {links.map((l, i) => {
               const current =
                 pathname === l.href || (l.href !== '/' && pathname?.startsWith(l.href));
               return (

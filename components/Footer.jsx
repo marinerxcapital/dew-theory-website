@@ -30,7 +30,6 @@ const columns = [
     head: 'Services',
     items: [
       ['Services', '/services'],
-      ['Book a facial', '/book'],
       ['Virtual consultation', '/virtual-consultation']
     ]
   },
@@ -74,12 +73,6 @@ export default function Footer() {
               Free shipping {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/book"
-                className="btn-ghost border-ivory/25 bg-transparent px-6 py-3 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ivory hover:border-ivory/50 hover:bg-ivory/10"
-              >
-                Book a facial
-              </Link>
               <Link
                 href="/quiz"
                 className="inline-flex items-center px-2 font-label text-[0.65rem] uppercase tracking-lockup text-sage hover:text-ivory"

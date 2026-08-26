@@ -10,11 +10,8 @@ const DESKTOP_LINKS = [
   { href: '/shop?type=Moisturizer', label: 'Moisturizers', match: 'Moisturizer' },
   { href: '/shop?type=SPF', label: 'SPF', match: 'SPF' },
   { href: '/quiz', label: 'Skin Quiz' },
-  { href: '/routine', label: 'Build a Routine' },
-  { href: '/services', label: 'Facials' },
   { href: '/virtual-consultation', label: 'Virtual Consult' },
-  { href: '/about', label: 'Emily' },
-  { href: '/membership', label: 'Membership' }
+  { href: '/about', label: 'Emily' }
 ];
 
 function isCurrent(pathname, searchParams, link) {

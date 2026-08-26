@@ -1,14 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import Wordmark from './Wordmark';
-
-const HERO_IMAGE = {
-  src: '/images/products/skin-script/02-ageless-skin-hydrating-serum.webp',
-  alt: 'Ageless Skin Hydrating Serum — Skin Script professional formula'
-};
 
 /**
  * Full-bleed landing hero — brand-first composition with dew-field motion.
@@ -123,22 +117,6 @@ export default function Hero() {
       className="hero-stage relative isolate min-h-[min(92svh,58rem)] overflow-hidden border-b border-border"
       aria-label="Dew Theory"
     >
-      {/* Full-bleed visual plane */}
-      <div className="hero-stage__media absolute inset-0" aria-hidden="true">
-        <Image
-          src={HERO_IMAGE.src}
-          alt=""
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          quality={75}
-          className="hero-stage__photo object-cover object-[68%_30%] sm:object-[72%_28%]"
-        />
-        <div className="hero-stage__wash" />
-        <div className="hero-stage__caustic" />
-      </div>
-
       <canvas
         ref={canvasRef}
         className="hero-stage__dew pointer-events-none absolute inset-0 z-[1]"

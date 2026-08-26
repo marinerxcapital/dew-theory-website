@@ -788,69 +788,11 @@ article:hover [data-product-image-frame] .media-zoom-target {
   50% { opacity: 0.9; transform: scaleY(1); transform-origin: top; }
 }
 
-/* ---- Landing hero stage: full-bleed brand composition + dew motion ---- */
+/* ---- Landing hero stage: sage brand composition + dew motion ---- */
 .hero-stage {
   background:
-    radial-gradient(120% 80% at 78% 18%, rgba(147, 168, 144, 0.55) 0%, transparent 55%),
-    linear-gradient(165deg, #EDEDE6 0%, #D8E0D4 48%, #C9C4B8 100%);
-}
-.hero-stage__media {
-  transform-origin: 58% 40%;
-}
-.hero-stage__photo {
-  filter: saturate(0.92) contrast(1.02);
-}
-.hero-stage__wash {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      100deg,
-      rgba(237, 237, 230, 0.96) 0%,
-      rgba(237, 237, 230, 0.88) 28%,
-      rgba(216, 224, 212, 0.35) 48%,
-      rgba(147, 168, 144, 0.08) 68%,
-      transparent 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(237, 237, 230, 0.12) 0%,
-      transparent 32%,
-      rgba(30, 43, 34, 0.14) 100%
-    );
-}
-@media (max-width: 639px) {
-  .hero-stage__wash {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(237, 237, 230, 0.55) 0%,
-        rgba(237, 237, 230, 0.28) 28%,
-        rgba(237, 237, 230, 0.72) 62%,
-        rgba(237, 237, 230, 0.94) 100%
-      ),
-      linear-gradient(
-        100deg,
-        rgba(237, 237, 230, 0.5) 0%,
-        transparent 55%
-      );
-  }
-}
-.hero-stage__caustic {
-  position: absolute;
-  inset: -10% -5%;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    transparent 42%,
-    rgba(237, 237, 230, 0.28) 49%,
-    rgba(147, 168, 144, 0.2) 52%,
-    transparent 58%,
-    transparent 100%
-  );
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
-  transform: translateX(-12%);
+    radial-gradient(120% 80% at 85% 8%, rgba(91, 115, 86, 0.3) 0%, transparent 58%),
+    linear-gradient(165deg, #93A890 0%, #93A890 100%);
 }
 .hero-stage__dew {
   opacity: 0.85;
@@ -875,12 +817,6 @@ article:hover [data-product-image-frame] .media-zoom-target {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-stage__media {
-    animation: hero-ken 28s ease-in-out infinite alternate;
-  }
-  .hero-stage__caustic {
-    animation: hero-caustic 11s ease-in-out infinite alternate;
-  }
   .hero-stage__brand-logo {
     animation: hero-rise 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
   }
@@ -904,14 +840,6 @@ article:hover [data-product-image-frame] .media-zoom-target {
   }
 }
 
-@keyframes hero-ken {
-  0% { transform: scale(1.04) translate3d(0, 0, 0); }
-  100% { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
-}
-@keyframes hero-caustic {
-  0% { transform: translateX(-14%) translateY(0); opacity: 0.35; }
-  100% { transform: translateX(8%) translateY(2%); opacity: 0.7; }
-}
 @keyframes hero-rise {
   from {
     opacity: 0;
@@ -934,7 +862,6 @@ article:hover [data-product-image-frame] .media-zoom-target {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-stage__caustic,
   .hero-stage__dew {
     display: none;
   }
