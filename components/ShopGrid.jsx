@@ -329,8 +329,8 @@ export default function ShopGrid({ products = [] }) {
                 className="content-auto grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4"
                 data-reveal-group="shop"
               >
-                {filtered.map((p) => (
-                  <ProductCard key={p.id} product={p} />
+                {filtered.map((p, i) => (
+                  <ProductCard key={p.id} product={p} revealIndex={i} />
                 ))}
               </div>
             )}

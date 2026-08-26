@@ -50,7 +50,7 @@ export default function Home() {
       {/* Emily's Picks — this is what you need */}
       <section className="border-b border-border bg-ivory py-14 sm:py-16">
         <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4" data-reveal>
             <div>
               <p className="editorial-label">this is what you need</p>
               <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-forest">

@@ -665,6 +665,15 @@ article:hover [data-product-image-frame] .media-zoom-target {
   transform: none;
   will-change: auto;
 }
+/* Staggered reveal — premium cadence for product grids/rails.
+   Delay is additive to the base reveal transition and gated by .js-motion. */
+.js-motion [data-reveal][data-stagger='1'] { transition-delay: 55ms; }
+.js-motion [data-reveal][data-stagger='2'] { transition-delay: 110ms; }
+.js-motion [data-reveal][data-stagger='3'] { transition-delay: 165ms; }
+.js-motion [data-reveal][data-stagger='4'] { transition-delay: 220ms; }
+.js-motion [data-reveal][data-stagger='5'] { transition-delay: 275ms; }
+.js-motion [data-reveal][data-stagger='6'] { transition-delay: 330ms; }
+.js-motion [data-reveal][data-stagger='7'] { transition-delay: 385ms; }
 @media (prefers-reduced-motion: reduce) {
   .js-motion [data-reveal] {
     opacity: 1 !important;
@@ -793,6 +802,34 @@ article:hover [data-product-image-frame] .media-zoom-target {
   background:
     radial-gradient(120% 80% at 85% 8%, rgba(91, 115, 86, 0.3) 0%, transparent 58%),
     linear-gradient(165deg, #93A890 0%, #93A890 100%);
+}
+/* Ambient sage breath — slow drift of botanical light behind the copy. */
+.hero-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 68% at 14% 88%, rgba(91, 115, 86, 0.20) 0%, transparent 62%),
+    radial-gradient(46% 58% at 90% 10%, rgba(237, 237, 230, 0.24) 0%, transparent 58%);
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stage::after {
+    animation: hero-breathe 16s ease-in-out infinite alternate;
+  }
+}
+@keyframes hero-breathe {
+  from {
+    opacity: 0.55;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0.85;
+    transform: translate3d(1.5%, -1%, 0) scale(1.025);
+  }
 }
 .hero-stage__dew {
   opacity: 0.85;

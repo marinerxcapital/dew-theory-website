@@ -4,7 +4,12 @@ import QuickAdd from '@/components/QuickAdd';
 import { formatMoney } from '@/lib/shipping';
 import { isOutOfStock, stockLabel } from '@/lib/shop';
 
-export default function ProductCard({ product, compact = false, showQuickAdd = true }) {
+export default function ProductCard({
+  product,
+  compact = false,
+  showQuickAdd = true,
+  revealIndex
+}) {
   const oos = isOutOfStock(product);
   const badge = stockLabel(product);
   const concern = Array.isArray(product.conditions_addressed)
@@ -14,6 +19,7 @@ export default function ProductCard({ product, compact = false, showQuickAdd = t
   return (
     <article
       data-reveal
+      data-stagger={typeof revealIndex === 'number' ? String(revealIndex % 8) : undefined}
       className="group flex h-full flex-col overflow-hidden rounded-[2px] border border-border bg-white transition-[border-color,box-shadow] duration-300 hover:border-ink/30 hover:shadow-card"
     >
       <Link
