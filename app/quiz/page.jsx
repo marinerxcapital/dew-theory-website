@@ -70,17 +70,14 @@ export default function QuizPage() {
 
       <p className="mx-auto mt-10 max-w-2xl text-center font-body text-xs font-normal leading-relaxed text-muted">
         {QUIZ_DISCLAIMER}{' '}
-        <Link href="/book" className="underline decoration-border underline-offset-4 hover:text-ink">
-          Book a facial
-        </Link>{' '}
-        or{' '}
+        Book a{' '}
         <Link
           href="/virtual-consultation"
           className="underline decoration-border underline-offset-4 hover:text-ink"
         >
           virtual consultation
         </Link>{' '}
-        for a true barrier read.
+        with Emily for a true barrier read.
       </p>
     </section>
   );

@@ -37,7 +37,7 @@ const body = Karla({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dewtheoryco.com';
 
 const SITE_DESCRIPTION =
-  'Professional Skin Script skincare and in-studio facials with licensed aesthetician Emily Mitchener. Shop clinical actives, book treatments, or book a virtual consultation.';
+  'Professional Skin Script skincare with licensed aesthetician Emily Mitchener. Shop clinical actives and book a virtual consultation.';
 
 export const viewport = {
   width: 'device-width',
@@ -54,7 +54,7 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Dew Theory — Clinical Skin Care & Facials',
+    default: 'Dew Theory — Professional Skin Script Skincare',
     template: '%s · Dew Theory'
   },
   description: SITE_DESCRIPTION,
@@ -66,7 +66,6 @@ export const metadata = {
   keywords: [
     'Dew Theory',
     'Skin Script',
-    'facials',
     'aesthetician',
     'Emily Mitchener',
     'professional skincare',
@@ -92,7 +91,7 @@ export const metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Dew Theory',
-    title: 'Dew Theory — Clinical Skin Care & Facials',
+    title: 'Dew Theory — Professional Skin Script Skincare',
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -105,7 +104,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dew Theory — Clinical Skin Care & Facials',
+    title: 'Dew Theory — Professional Skin Script Skincare',
     description: SITE_DESCRIPTION,
     images: ['/logo-dewtheory-og-20260825.png']
   },
@@ -158,18 +157,10 @@ const orgLd = {
       name: 'Dew Theory',
       url: siteUrl,
       description:
-        'Licensed aesthetician Emily Mitchener — in-studio facials and Skin Script professional skincare.',
+        'Licensed aesthetician Emily Mitchener — Skin Script professional skincare and virtual skin consultations.',
       image: `${siteUrl}/logo-dewtheory-og-20260825.png`,
       priceRange: '$$',
       makesOffer: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'In-studio facial',
-            url: `${siteUrl}/book`
-          }
-        },
         {
           '@type': 'Offer',
           itemOffered: {

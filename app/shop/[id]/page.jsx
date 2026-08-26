@@ -236,12 +236,6 @@ export default async function ProductDetailPage({ params }) {
               Find my routine
             </Link>
             <Link
-              href="/routine"
-              className="btn-ghost min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
-            >
-              Build AM / PM
-            </Link>
-            <Link
               href="/virtual-consultation"
               className="inline-flex min-h-[44px] items-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
             >
@@ -308,10 +302,6 @@ export default async function ProductDetailPage({ params }) {
               <Link href="/quiz" className="text-dew underline underline-offset-2">
                 Take the Skin Quiz
               </Link>
-              ,{' '}
-              <Link href="/routine" className="text-dew underline underline-offset-2">
-                build an AM/PM sequence
-              </Link>
               , or{' '}
               <Link
                 href="/virtual-consultation"
@@ -338,12 +328,6 @@ export default async function ProductDetailPage({ params }) {
                 Next steps
               </h2>
             </div>
-            <Link
-              href="/routine"
-              className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
-            >
-              Open routine builder
-            </Link>
           </div>
           <p className="mt-3 max-w-xl font-body text-sm font-normal leading-relaxed text-muted">
             Suggested by typical layering order (cleanser → actives → moisturizer → SPF).

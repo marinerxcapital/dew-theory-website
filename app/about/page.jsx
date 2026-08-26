@@ -68,10 +68,10 @@ export default function AboutPage() {
             className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
             <Link
-              href="/book"
+              href="/shop"
               className="btn-primary inline-flex min-h-[44px] items-center justify-center px-8 py-4 text-center font-label text-[0.7rem] font-normal uppercase tracking-lockup"
             >
-              Book with Emily
+              Shop Skin Script
             </Link>
             <Link
               href="/virtual-consultation"
@@ -154,10 +154,10 @@ export default function AboutPage() {
         </div>
         <div className="mt-12 flex flex-wrap items-center gap-6 sm:mt-14">
           <Link
-            href="/services"
+            href="/shop"
             className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
-            Treatment menu
+            Shop the collection
           </Link>
           <Link
             href="/virtual-consultation"

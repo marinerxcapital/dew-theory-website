@@ -6,14 +6,14 @@ import StickyCtaBar from '@/components/StickyCtaBar';
 import { getFeaturedProducts } from '@/lib/products-server';
 
 export const metadata = {
-  title: 'Clinical Skin Care & Facials',
+  title: 'Professional Skin Script Skincare',
   description:
-    'Shop Skin Script professional skincare and book facials or virtual consultations with licensed aesthetician Emily Mitchener. Free shipping at $49+.',
+    'Shop Skin Script professional skincare and book a virtual consultation with licensed aesthetician Emily Mitchener. Free shipping at $49+.',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Dew Theory — Clinical Skin Care & Facials',
+    title: 'Dew Theory — Professional Skin Script Skincare',
     description:
-      'Skin Script actives for home and in-studio facials with Emily Mitchener. Free shipping at $49+.',
+      'Skin Script actives for home and virtual consultations with Emily Mitchener. Free shipping at $49+.',
     type: 'website',
     locale: 'en_US',
     url: '/',
@@ -22,9 +22,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dew Theory — Clinical Skin Care & Facials',
+    title: 'Dew Theory — Professional Skin Script Skincare',
     description:
-      'Skin Script actives for home and in-studio facials with Emily Mitchener.',
+      'Skin Script actives for home and virtual consultations with Emily Mitchener.',
     images: ['/logo-dewtheory-og-20260825.png']
   }
 };

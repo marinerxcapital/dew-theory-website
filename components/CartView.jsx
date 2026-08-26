@@ -228,12 +228,6 @@ export default function CartView() {
           >
             Take the Skin Quiz
           </Link>
-          <Link
-            href="/routine"
-            className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
-          >
-            Build a routine
-          </Link>
         </div>
       </section>
     );

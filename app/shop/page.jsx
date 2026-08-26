@@ -69,7 +69,7 @@ export default function ShopPage() {
           </p>
         )}
 
-        <div data-reveal className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4">
+        <div data-reveal className="mt-8 grid gap-3">
           <Link
             href="/quiz"
             className="group flex flex-col justify-between bg-forest p-6 text-ivory transition-colors hover:bg-sage-deep sm:p-7"
@@ -84,23 +84,6 @@ export default function ShopPage() {
               </p>
               <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ivory">
                 Start the quiz →
-              </span>
-            </div>
-          </Link>
-          <Link
-            href="/routine"
-            className="group flex flex-col justify-between border border-border bg-white p-6 transition-colors hover:border-ink sm:p-7"
-          >
-            <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
-              AM · PM builder
-            </p>
-            <div className="mt-6">
-              <p className="font-display text-2xl font-normal text-ink">Build your routine</p>
-              <p className="mt-2 font-body text-sm font-normal leading-relaxed text-muted">
-                Choose each step. Thin to thick. SPF last by day. Add the sequence in one tap.
-              </p>
-              <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ink">
-                Open builder →
               </span>
             </div>
           </Link>

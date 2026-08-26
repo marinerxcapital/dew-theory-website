@@ -233,12 +233,6 @@ function QuizResults({ result, onRestart }) {
           />
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/book"
-              className="btn-ghost min-h-[44px] px-6 py-3 font-label text-[0.66rem] font-normal uppercase tracking-lockup"
-            >
-              Book a facial instead
-            </Link>
-            <Link
               href="/virtual-consultation"
               className="inline-flex min-h-[44px] items-center font-label text-[0.66rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
             >
@@ -265,12 +259,6 @@ function QuizResults({ result, onRestart }) {
           className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
         >
           Result code: {shareCode}
-        </Link>
-        <Link
-          href="/routine"
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink/70 hover:text-ink"
-        >
-          Build your own routine →
         </Link>
       </div>
     </div>

@@ -28,10 +28,17 @@ describe('search', () => {
     assert.equal(flat.length, 0);
   });
 
-  it('buildSearchIndex includes services', () => {
+  it('buildSearchIndex excludes unpublished service/routine/membership routes', () => {
     const index = buildSearchIndex(PRODUCTS);
-    assert.ok(index.some((i) => i.kind === 'service'));
     assert.ok(index.some((i) => i.kind === 'product'));
+    assert.ok(!index.some((i) => i.kind === 'service'));
+    const hrefs = index.map((i) => i.href);
+    for (const path of ['/routine', '/services', '/membership', '/book']) {
+      assert.ok(
+        !hrefs.some((h) => h === path || h.startsWith(`${path}?`)),
+        `removed route should not be in search index: ${path}`
+      );
+    }
   });
 });
 

@@ -120,7 +120,6 @@ export default function ContactForm() {
           <option value="general">General</option>
           <option value="booking">Booking / reschedule</option>
           <option value="order">Order / shipping</option>
-          <option value="membership">Membership interest</option>
           <option value="press">Press / wholesale</option>
         </select>
       </div>

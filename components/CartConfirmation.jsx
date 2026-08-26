@@ -154,7 +154,7 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
               Next · 3
             </span>
             <span className="mt-1 block">
-              Pair the products with a facial when you are ready — sequencing is half the result.
+              Apply the products in their AM / PM order — sequencing is half the result.
             </span>
           </li>
         </ol>
@@ -183,12 +183,6 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
               className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
             >
               Continue shopping
-            </Link>
-            <Link
-              href="/book"
-              className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
-            >
-              Book a facial
             </Link>
             {status === 'ready' && (
               <Link

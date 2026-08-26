@@ -11,8 +11,6 @@ const base = (process.argv[2] || process.env.SMOKE_BASE || 'http://localhost:300
 const paths = [
   '/',
   '/shop',
-  '/services',
-  '/book',
   '/about',
   '/virtual-consultation',
   '/contact',
@@ -26,7 +24,6 @@ const paths = [
   '/aesthetic-disclaimer',
   '/cookies',
   '/accessibility',
-  '/membership',
   '/admin/login',
   // Public FIXED V2 PDFs
   '/legal/pdfs/DEW_THEORY_PRIVACY_POLICY.pdf',

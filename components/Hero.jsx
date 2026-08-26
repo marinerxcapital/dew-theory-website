@@ -140,8 +140,8 @@ export default function Hero() {
           </h1>
 
           <p className="hero-stage__lede mt-4 max-w-md font-body text-base font-normal leading-relaxed text-charcoal/90 sm:mt-5 sm:text-[1.05rem]">
-            Professional Skin Script actives for home — and barrier-first facials with Emily that
-            decide which of them you actually need.
+            Professional Skin Script actives for home — and a barrier-first routine built around
+            what your skin actually needs.
           </p>
 
           <div className="hero-stage__cta mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">

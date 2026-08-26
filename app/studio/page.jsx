@@ -80,10 +80,10 @@ export default function StudioPage() {
       <section className="mx-auto max-w-shell px-6 py-24 lg:px-10">
         <div className="flex flex-wrap gap-4">
           <Link
-            href="/book"
+            href="/virtual-consultation"
             className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
           >
-            Book a visit
+            Virtual consultation
           </Link>
           <Link
             href="/contact"

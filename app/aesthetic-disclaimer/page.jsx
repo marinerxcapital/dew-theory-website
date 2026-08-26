@@ -14,7 +14,6 @@ export default function AestheticDisclaimerPage() {
       documentId="aesthetic-disclaimer"
       eyebrowRight="Disclaimer"
       related={[
-        { href: '/services', label: 'Services →' },
         { href: '/booking-policy', label: 'Booking policy →' },
         { href: '/virtual-consultation', label: 'Virtual consultation →' }
       ]}

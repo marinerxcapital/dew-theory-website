@@ -29,12 +29,6 @@ export default function NotFound() {
         >
           Home
         </Link>
-        <Link
-          href="/book"
-          className="border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal"
-        >
-          Book
-        </Link>
       </div>
     </section>
   );

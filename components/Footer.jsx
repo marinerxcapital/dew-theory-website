@@ -22,22 +22,14 @@ const columns = [
       ['Moisturizers', '/shop?type=Moisturizer'],
       ['SPF', '/shop?type=SPF'],
       ['Skin quiz', '/quiz'],
-      ['Routine builder', '/routine'],
       ['Bag', '/cart']
-    ]
-  },
-  {
-    head: 'Services',
-    items: [
-      ['Services', '/services'],
-      ['Virtual consultation', '/virtual-consultation']
     ]
   },
   {
     head: 'Dew Theory',
     items: [
       ['About Emily', '/about'],
-      ['Membership', '/membership'],
+      ['Virtual consultation', '/virtual-consultation'],
       ['Contact', '/contact'],
       ['FAQ', '/faq']
     ]
@@ -58,7 +50,7 @@ export default function Footer() {
   return (
     <footer className="site-footer relative mt-16">
       <div className="relative z-[1] mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-10 lg:py-18">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr]">
           <div>
             <Wordmark
               src="/logo-dewtheory-ivory-20260825.webp"
@@ -66,8 +58,7 @@ export default function Footer() {
             />
             <Rule left="Skin" right="Care" className="footer-rule mt-5" />
             <p className="mt-6 max-w-xs font-body text-sm font-normal leading-relaxed text-ivory/70">
-              Calm, botanical, barrier-first care — Skin Script actives and in-studio facials with
-              Emily Mitchener.
+              Calm, botanical, barrier-first care — Skin Script actives with Emily Mitchener.
             </p>
             <p className="mt-4 font-label text-[0.58rem] uppercase tracking-lockup text-ivory/75">
               Free shipping {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal

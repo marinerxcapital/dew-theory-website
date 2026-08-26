@@ -81,9 +81,9 @@ export default function ReturnsPage() {
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">Services</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            In-studio facials and virtual consultations are services, not shipped goods. Deposit and
-            cancellation terms for bookings are separate and will publish when those numbers are set
-            — they are not folded into product returns language.
+            Virtual consultations are a service, not a shipped good. Deposit and cancellation terms
+            are separate and will publish when those numbers are set — they are not folded into
+            product returns language.
           </p>
         </div>
       </div>

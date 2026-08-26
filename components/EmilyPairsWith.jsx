@@ -68,12 +68,6 @@ export default function EmilyPairsWith({ product, catalog = [], limit = 4 }) {
 
       <div className="mt-8 flex flex-wrap gap-4">
         <Link
-          href="/routine"
-          className="btn-ghost min-h-[44px] px-6 py-3 font-label text-[0.66rem] font-normal uppercase tracking-lockup"
-        >
-          Build full routine
-        </Link>
-        <Link
           href="/quiz"
           className="inline-flex min-h-[44px] items-center font-label text-[0.66rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
         >

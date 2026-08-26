@@ -14,9 +14,7 @@ export default function BookingPolicyPage() {
       documentId="booking-policy"
       eyebrowRight="Booking"
       related={[
-        { href: '/book', label: 'Book a facial →' },
-        { href: '/aesthetic-disclaimer', label: 'Aesthetic disclaimer →' },
-        { href: '/services', label: 'Services →' }
+        { href: '/aesthetic-disclaimer', label: 'Aesthetic disclaimer →' }
       ]}
     >
       <div data-reveal className="glass-1 p-8 md:p-10">

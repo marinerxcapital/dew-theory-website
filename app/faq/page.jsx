@@ -9,13 +9,13 @@ import {
 } from '@/lib/shipping';
 
 export const metadata = {
-  title: 'Help Center — Orders, Facials & Virtual Consultations',
+  title: 'Help Center — Orders & Virtual Consultations',
   description:
-    'Answers about shipping, returns, Skin Script products, the skin quiz, facials, virtual consultations, and membership at Dew Theory.',
+    'Answers about shipping, returns, Skin Script products, the skin quiz, and virtual consultations at Dew Theory.',
   alternates: { canonical: '/faq' },
   openGraph: {
     title: 'Help Center — Dew Theory',
-    description: 'Shipping, returns, products, booking, and virtual consultations — answered plainly.',
+    description: 'Shipping, returns, products, and virtual consultations — answered plainly.',
     url: '/faq'
   }
 };
@@ -75,13 +75,13 @@ const CATEGORIES = [
       {
         id: 'shelf-life',
         q: 'How do I know what to use, and when?',
-        a: 'Take the skin quiz or open the routine builder for a suggested morning and evening sequence. For anything beyond home care, a virtual consultation or in-studio visit gives you a real barrier read.'
+        a: 'Take the skin quiz for a suggested morning and evening sequence. For anything beyond home care, a virtual consultation gives you a real barrier read.'
       }
     ]
   },
   {
     id: 'quiz',
-    label: 'Skin Quiz & Routine',
+    label: 'Skin Quiz',
     items: [
       {
         id: 'quiz-how',
@@ -92,32 +92,6 @@ const CATEGORIES = [
         id: 'quiz-medical',
         q: 'Is the quiz a substitute for a professional read?',
         a: 'No. It is an educational starting point, not a diagnosis. Sensitive, reactive, or medical skin conditions deserve an in-person or virtual read with Emily.'
-      },
-      {
-        id: 'routine-builder',
-        q: 'What is the routine builder for?',
-        a: 'If you already know what you like, the routine builder lets you choose each step yourself — cleanser through SPF — and add the full sequence to your bag in one tap.'
-      }
-    ]
-  },
-  {
-    id: 'facials',
-    label: 'Facials & Booking',
-    items: [
-      {
-        id: 'facial-process',
-        q: 'What happens during a facial?',
-        a: 'Every visit starts with a barrier read. Emily chooses the right protocol for your skin that day rather than running a fixed script regardless of how your skin looks.'
-      },
-      {
-        id: 'facial-book',
-        q: 'How do I book an appointment?',
-        a: 'Use the booking page to choose a service and see open times. You will receive a confirmation once your appointment is on the calendar.'
-      },
-      {
-        id: 'facial-policy',
-        q: 'Are there deposit or cancellation requirements?',
-        a: 'Any deposit and cancellation terms will be shown at booking and in your confirmation email. If none apply yet, your appointment is simply held on the studio calendar.'
       }
     ]
   },
@@ -139,22 +113,6 @@ const CATEGORIES = [
         id: 'virtual-payment',
         q: 'How does payment work?',
         a: 'Checkout runs securely on Stripe\u2019s hosted payment page — your card details never touch this site directly.'
-      }
-    ]
-  },
-  {
-    id: 'membership',
-    label: 'Membership',
-    items: [
-      {
-        id: 'membership-status',
-        q: 'Is membership available now?',
-        a: 'Membership is currently an interest list — join it on the membership page and we will notify you as soon as terms are published. No card or payment is collected to join the list.'
-      },
-      {
-        id: 'membership-perks',
-        q: 'What will membership include?',
-        a: 'The plan is designed around a steady, calm rhythm of care — priority booking, a facial cadence set with Emily, and shop guidance between visits. Final pricing and terms are still being finalized.'
       }
     ]
   }
@@ -244,12 +202,6 @@ export default function FaqPage() {
             className="btn-primary min-h-[44px] px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
             Contact us
-          </Link>
-          <Link
-            href="/book"
-            className="btn-ghost min-h-[44px] px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
-          >
-            Book a facial
           </Link>
         </div>
       </div>
