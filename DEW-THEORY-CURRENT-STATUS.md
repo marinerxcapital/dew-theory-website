@@ -68,15 +68,15 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `4b69747e7ef2fdc65c54e108d57624946fb71269` (2026-08-26, owner simplification) |
+| Live production SHA (verified deployed) | `32e22dbe739861e6781ec32dbb9448cb76323c91` (2026-08-26, owner-removal correction) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `98313824-e97d-480a-ba84-059be65de309` |
+| Current Worker version ID | `f9322bb9-7560-4e1e-8058-219bf663c5d1` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
-| Live design as of 2026-08-26 Codex deploy | **Simplified + sage hero live**: sage `#93A890` hero, forest text, Bodoni motifs, and the Dew Theory logo artwork. Homepage is now hero + Emily's Picks product rail only; primary menu is Shop / Skin Quiz / Virtual Consult / Emily / Contact / FAQ |
+| Live design as of 2026-08-26 correction deploy | **Simplified + sage hero live**: sage `#93A890` hero, forest text, Bodoni motifs, and the Dew Theory logo artwork. Homepage is hero + Emily's Picks product rail only; primary menu is Shop / Skin Quiz / Virtual Consult / Emily / Contact / FAQ. Removed offerings (`/routine`, `/services`, `/membership`, `/book`) are unpublished and return the application 404. |
 | Deploy blocker this session | Cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
-**Live smoke (production, 2026-08-26):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the simplified build (removed homepage copy absent; `Shop Skin Script` + `Take the Skin Quiz` + `Emily's picks` present; sage hero compiled into the CSS). `npm run smoke:routes -- https://dewtheoryco.com` passed. Preserved routes `/routine`, `/quiz`, `/services`, `/book`, `/membership`, and product pages all return HTTP 200. Cloudflare deployment readback shows Worker version `98313824-e97d-480a-ba84-059be65de309` at 100%.
+**Live smoke (production, 2026-08-26 correction):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the simplified build (removed homepage copy absent; `Shop Skin Script` + `Take the Skin Quiz` + `Emily's picks` present; sage `#93A890` hero compiled into the CSS). Removed routes `/routine`, `/services`, `/membership`, `/book` return the application 404 (verified with and without cache-busting). Cloudflare deployment readback shows Worker version `f9322bb9-7560-4e1e-8058-219bf663c5d1`.
 
 ---
 
@@ -111,7 +111,9 @@ See `ENV.md` / `.env.example`. Key names: `NEXT_PUBLIC_SITE_URL`, `STRIPE_SECRET
 
 ### Public route inventory
 
-`/`, `/shop`, `/shop/[id]`, `/cart`, `/cart/confirmation`, `/quiz`, `/routine`, `/services`, `/book`, `/virtual-consultation` (+ intake/plan/success), `/about`, `/membership`, `/contact`, `/faq`, `/studio`, legal: `/privacy` `/terms` `/shipping` `/returns` `/booking-policy` `/aesthetic-disclaimer` `/cookies` `/accessibility`, `/admin/*`.
+`/`, `/shop`, `/shop/[id]`, `/cart`, `/cart/confirmation`, `/quiz`, `/virtual-consultation` (+ intake/plan/success), `/about`, `/contact`, `/faq`, `/studio` (redirects to `/about`), legal: `/privacy` `/terms` `/shipping` `/returns` `/booking-policy` `/aesthetic-disclaimer` `/cookies` `/accessibility`, `/admin/*`.
+
+**Unpublished (return the application 404):** `/routine`, `/services`, `/membership`, `/book`.
 
 ### What this revamp changed
 
@@ -216,6 +218,25 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 - Mobile sticky CTA collapsed to a single full-width `Shop` button with safe-area handling intact.
 - Preserved routes `/routine`, `/services`, `/membership`, `/book`, `/virtual-consultation`, and catalog/checkout/search/legal remain live and indexable.
 - Gates: `npm test` 192/192, `npm run build` success, production route/PDF smoke `all clear`.
+
+### 2026-08-26 Codex owner-removal correction closeout (this pass supersedes the prior one)
+
+The prior "simplification" closeout above is **incomplete**. It removed Routine/Services/Membership/Book a Facial from the primary menu while leaving the same features publicly reachable through the footer, the global search index, the sitemap, internal cross-links, and the live `/routine` `/services` `/membership` `/book` routes (all returned HTTP 200). That directly contradicted Emily's annotated request.
+
+Correction commit `32e22dbe739861e6781ec32dbb9448cb76323c91` (`fix: complete Dew Theory owner-requested removals`) removes the four offerings from the current public experience:
+
+- **Routes unpublished:** deleted `app/routine/page.jsx`, `app/services/page.jsx`, `app/membership/page.jsx`, and `app/book/page.jsx`. All four paths now return the application 404. Source for later restoration is preserved in git history; backend API routes and dead `RoutineBuilder`/`BookingFlow`/`MembershipInterestForm` components were intentionally left as archived code.
+- **Footer corrected:** removed `Routine builder`, the `Services` column, and `Membership`. `Virtual consultation` moved into the `Dew Theory` column. Grid reduced from 5 to 4 columns. Removed the "in-studio facials" tagline phrase.
+- **Search index cleaned:** removed the Routine Builder / Services / Book a Facial / Membership static pages and the `SERVICES` loop from `lib/search.js`.
+- **Sitemap cleaned:** removed `/routine`, `/services`, `/book`, `/membership` from `app/sitemap.js`.
+- **Cross-links removed:** cleared `/routine`, `/services`, `/membership`, `/book` links and CTAs from shop/PDP, quiz, about, FAQ, skin-quiz results, "Emily pairs with", cart, cart confirmation, contact form topic, 404 page, booking-policy/aesthetic-disclaimer related links, and the (redirected) studio page.
+- **Metadata/structured data:** removed "book treatments / book facials" from homepage/layout metadata and removed the `In-studio facial` offer (`/book`) from the `BeautySalon` JSON-LD.
+- **Sticky CTA:** confirmed single full-width `Shop` action (no `Book a Facial`).
+- **Mobile menu:** confirmed exactly Shop / Skin Quiz / Virtual Consult / Emily / Contact / FAQ plus Shop-by-type catalog categories.
+
+**Live verification (production):** apex + www return HTTP 200; `/routine`, `/services`, `/membership`, `/book` return 404; sage `#93A890` hero confirmed in compiled CSS; homepage removed copy (`a calm monday`, `worst advice`, `tiktok made me do it`, `what is PDRN`, trust-strip copy) absent; `Shop Skin Script` + `Take the Skin Quiz` + `Emily's picks` present. Browser verification (headless Chromium, 390px + 1280px) confirmed the mobile menu, desktop category nav, footer, and sticky CTA match the owner request.
+
+**Do not reintroduce** Routine, Services, Membership, or Book a Facial into the public site unless Emily explicitly asks. Git history is the restore point.
 
 ### Remaining technical debt
 
