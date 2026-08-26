@@ -68,15 +68,15 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `bb3a48c8e42bb0583e700ef9d4b11e765c2577f6` (2026-08-25, brand logo replacement) |
+| Live production SHA (verified deployed) | `4b69747e7ef2fdc65c54e108d57624946fb71269` (2026-08-26, owner simplification) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `2f3d66be-106a-4c52-9060-26b5ee3a94bf` |
+| Current Worker version ID | `98313824-e97d-480a-ba84-059be65de309` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
-| Live design as of 2026-08-25 Codex deploy | **Revamp + logo live**: ivory ground, forest text, sage/stone accents, Bodoni editorial motifs, and the 2026-08-25 Dew Theory logo lockup/mark/favicon/OG artwork |
+| Live design as of 2026-08-26 Codex deploy | **Simplified + sage hero live**: sage `#93A890` hero, forest text, Bodoni motifs, and the Dew Theory logo artwork. Homepage is now hero + Emily's Picks product rail only; primary menu is Shop / Skin Quiz / Virtual Consult / Emily / Contact / FAQ |
 | Deploy blocker this session | Cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
-**Live smoke (production, 2026-08-25):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS. `npm run smoke:routes -- https://dewtheoryco.com` passed. Browser smoke passed for brand motifs/tokens, shop reveal after scroll, add-to-cart, cart update/remove, checkout handoff, checkout policies, and mobile nav/overflow. Cloudflare deployment readback shows Worker version `2f3d66be-106a-4c52-9060-26b5ee3a94bf` at 100% (this is the logo-replacement deploy; the prior revamp deploy was `c76d0236-07e4-47b1-9e49-e413664e80e9`).
+**Live smoke (production, 2026-08-26):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the simplified build (removed homepage copy absent; `Shop Skin Script` + `Take the Skin Quiz` + `Emily's picks` present; sage hero compiled into the CSS). `npm run smoke:routes -- https://dewtheoryco.com` passed. Preserved routes `/routine`, `/quiz`, `/services`, `/book`, `/membership`, and product pages all return HTTP 200. Cloudflare deployment readback shows Worker version `98313824-e97d-480a-ba84-059be65de309` at 100%.
 
 ---
 
@@ -207,6 +207,16 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 - Verified live on apex + www: all logo asset URLs return HTTP 200; the new WEBP assets are lossless (`VP8L`) with alpha so they blend into the ivory/forest/sage surfaces without a bounding box; the `1200x630` OG PNG is a full-bleed social card (opaque by design).
 - No code references the legacy `/logo.webp`, `/logo.png`, or `/logo-mark.webp` paths except the backwards-compatible cache rules in `public/_headers`; the legacy files remain as in-place copies of the new artwork.
 
+### 2026-08-26 Codex owner simplification closeout
+
+- Commit `4b69747e7ef2fdc65c54e108d57624946fb71269` (`feat: simplify Dew Theory site per owner feedback`) shipped the owner's reduction pass and deployed as Worker version `98313824-e97d-480a-ba84-059be65de309` (`2026-08-26T00:51:15.450Z`), read back at 100%.
+- Sage hero: `.hero-stage` now uses the approved sage token `#93A890` with a subtle `#5B7356` radial accent; the pale product-photo/wash/caustic background was removed.
+- Homepage reduced to hero + `Emily's picks` product rail. Removed: philosophy (`a calm monday`), trust strip, reassurance band, myth-busting/viral-caution block, PDRN card, shop-by-concern/type, quiz feature, routine builder, starter kits, services, virtual-consultation/Emily, and FAQ/membership homepage sections.
+- Primary menu simplified to Shop / Skin Quiz / Virtual Consult / Emily / Contact / FAQ. `Book a Facial`/`Book` removed from mobile menu, desktop utilities nav, footer CTA/Services column, and the sticky mobile bar.
+- Mobile sticky CTA collapsed to a single full-width `Shop` button with safe-area handling intact.
+- Preserved routes `/routine`, `/services`, `/membership`, `/book`, `/virtual-consultation`, and catalog/checkout/search/legal remain live and indexable.
+- Gates: `npm test` 192/192, `npm run build` success, production route/PDF smoke `all clear`.
+
 ### Remaining technical debt
 
 - Placeholder service menu prices (`OPEN_ITEMS.md`)
@@ -214,6 +224,7 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 - Stripe / Resend / Calendar secrets for full production commerce email
 - Sephora redesign doc (`docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md`) is historical; brand SoT is this file
 - GSAP listed in package.json but unused by components
+- Homepage is intentionally minimal per owner direction; prior editorial/educational sections are preserved in git history for later reintroduction
 
 ### Chronology (this revamp)
 
@@ -226,3 +237,4 @@ Service menu entries in `lib/services.js` remain **placeholder** (see `OPEN_ITEM
 7. Production deploy blocked → Codex handoff written
 8. PR #7 merged; `npm run deploy` shipped revamp as Worker `c76d0236-07e4-47b1-9e49-e413664e80e9`
 9. Brand logo replacement committed (`bb3a48c`) and deployed as Worker `2f3d66be-106a-4c52-9060-26b5ee3a94bf`; verified live on apex + www
+10. Owner simplification committed (`4b69747`) and deployed as Worker `98313824-e97d-480a-ba84-059be65de309`; verified live on apex + www
