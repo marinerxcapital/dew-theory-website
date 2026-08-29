@@ -68,15 +68,15 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `32e22dbe739861e6781ec32dbb9448cb76323c91` (2026-08-26, owner-removal correction) |
+| Live production SHA (verified deployed) | `415f0881275dbb856c332ebedd67289cb8241289` (2026-08-29, consultation + products only) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `f9322bb9-7560-4e1e-8058-219bf663c5d1` |
+| Current Worker version ID | `358e17e8-d038-4183-ba03-0d6b4a6ef554` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
-| Live design as of 2026-08-26 correction deploy | **Simplified + sage hero live**: sage `#93A890` hero, forest text, Bodoni motifs, and the Dew Theory logo artwork. Homepage is hero + Emily's Picks product rail only; primary menu is Shop / Skin Quiz / Virtual Consult / Emily / Contact / FAQ. Removed offerings (`/routine`, `/services`, `/membership`, `/book`) are unpublished and return the application 404. |
+| Live design as of 2026-08-29 | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. Public offering surface is exactly Shop (products) + Virtual Consultation. Primary menu is Shop / Virtual Consult (+ Shop-by-type catalog). |
 | Deploy blocker this session | Cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
-**Live smoke (production, 2026-08-26 correction):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the simplified build (removed homepage copy absent; `Shop Skin Script` + `Take the Skin Quiz` + `Emily's picks` present; sage `#93A890` hero compiled into the CSS). Removed routes `/routine`, `/services`, `/membership`, `/book` return the application 404 (verified with and without cache-busting). Cloudflare deployment readback shows Worker version `f9322bb9-7560-4e1e-8058-219bf663c5d1`.
+**Live smoke (production, 2026-08-29):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` + `Emily's picks` present; `Take the Skin Quiz`/`Skin Quiz`/`About Emily`/`FAQ`/`Contact` absent). Removed routes `/quiz`, `/about`, `/contact`, `/faq`, `/routine`, `/services`, `/membership`, `/book` return the application 404; `/studio` 308-redirects to `/`. Cloudflare deployment readback shows Worker version `358e17e8-d038-4183-ba03-0d6b4a6ef554`.
 
 ---
 
@@ -111,9 +111,9 @@ See `ENV.md` / `.env.example`. Key names: `NEXT_PUBLIC_SITE_URL`, `STRIPE_SECRET
 
 ### Public route inventory
 
-`/`, `/shop`, `/shop/[id]`, `/cart`, `/cart/confirmation`, `/quiz`, `/virtual-consultation` (+ intake/plan/success), `/about`, `/contact`, `/faq`, `/studio` (redirects to `/about`), legal: `/privacy` `/terms` `/shipping` `/returns` `/booking-policy` `/aesthetic-disclaimer` `/cookies` `/accessibility`, `/admin/*`.
+`/`, `/shop`, `/shop/[id]`, `/cart`, `/cart/confirmation`, `/virtual-consultation` (+ intake/plan/success), legal: `/privacy` `/terms` `/shipping` `/returns` `/booking-policy` `/aesthetic-disclaimer` `/cookies` `/accessibility`, `/admin/*`.
 
-**Unpublished (return the application 404):** `/routine`, `/services`, `/membership`, `/book`.
+**Unpublished (return the application 404):** `/routine`, `/services`, `/membership`, `/book`, `/quiz`, `/about`, `/contact`, `/faq`. `/studio` 308-redirects to `/`.
 
 ### What this revamp changed
 
@@ -237,6 +237,28 @@ Correction commit `32e22dbe739861e6781ec32dbb9448cb76323c91` (`fix: complete Dew
 **Live verification (production):** apex + www return HTTP 200; `/routine`, `/services`, `/membership`, `/book` return 404; sage `#93A890` hero confirmed in compiled CSS; homepage removed copy (`a calm monday`, `worst advice`, `tiktok made me do it`, `what is PDRN`, trust-strip copy) absent; `Shop Skin Script` + `Take the Skin Quiz` + `Emily's picks` present. Browser verification (headless Chromium, 390px + 1280px) confirmed the mobile menu, desktop category nav, footer, and sticky CTA match the owner request.
 
 **Do not reintroduce** Routine, Services, Membership, or Book a Facial into the public site unless Emily explicitly asks. Git history is the restore point.
+
+### 2026-08-29 Codex "consultation + products only" closeout
+
+Owner directive: **"Only consultation and products nothing else!"**
+
+Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to consultation and products`) reduces the public offering surface to exactly two things — **Products** (Shop) and **Virtual Consultation**:
+
+- **Routes unpublished:** deleted `app/quiz/page.jsx`, `app/about/page.jsx`, `app/contact/page.jsx`, `app/faq/page.jsx`, and `app/studio/page.jsx`. All now return the application 404 (`/studio` 308-redirects to `/`). Source preserved in git history.
+- **Navigation:** mobile primary menu is now exactly `Shop` + `Virtual Consult` (plus Shop-by-type catalog categories). Desktop category rail is `Shop` / Cleansers / Treatments / Moisturizers / SPF / Virtual Consult. Removed Skin Quiz, Emily, Contact, FAQ.
+- **Footer:** reduced to brand block (with `Virtual consultation` link) + `Shop` + `Help` (legal). Removed Skin Quiz, About Emily, Contact, FAQ, and `Order support`.
+- **Homepage hero:** two CTAs are now `Shop Skin Script` + `Virtual Consultation`. `Emily's picks` product rail retained. Homepage metadata no longer advertises quiz/facials.
+- **Search index:** removed Skin Quiz, About Emily, Contact, and FAQ entries from `lib/search.js`.
+- **Sitemap:** removed `/quiz`, `/about`, `/contact`, `/faq`.
+- **Cross-links:** cleared `/quiz`, `/about`, `/contact`, `/faq` from shop, PDP, cart, cart confirmation, shop-grid empty state, global-search fallback, "Emily pairs with", legal pages, and virtual-consultation success/plan pages. `/contact` references replaced with `mailto:hello@dewtheory.studio` where a support channel is legally required (privacy/returns/accessibility/consultation).
+- **Transactional emails:** removed `/book` and `/contact` URL references; replaced with `hello@dewtheory.studio`.
+- **Tests:** extended `tests/public-removals.test.mjs` and `tests/search-shop-filters.test.mjs` to enforce the full removed-route set (196 pass / 0 fail).
+
+**Commerce and legal infrastructure retained:** `/shop`, `/shop/[id]`, `/cart`, `/cart/confirmation`, all legal pages, and the virtual-consultation flow remain live and functional.
+
+**Live verification (production):** apex + www return HTTP 200; `/quiz` `/about` `/contact` `/faq` `/routine` `/services` `/membership` `/book` return 404; retained routes return 200; homepage + mobile menu + footer + desktop nav verified with headless Chromium.
+
+**Do not reintroduce** Skin Quiz, About/Emily, Contact, FAQ, Routine, Services, Membership, or Book a Facial into the public site unless Emily explicitly asks.
 
 ### Remaining technical debt
 
