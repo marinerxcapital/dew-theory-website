@@ -71,19 +71,19 @@ export default function ShopPage() {
 
         <div data-reveal className="mt-8 grid gap-3">
           <Link
-            href="/quiz"
+            href="/virtual-consultation"
             className="group flex flex-col justify-between bg-forest p-6 text-ivory transition-colors hover:bg-sage-deep sm:p-7"
           >
             <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ivory/80">
-              Teens → 60 & beyond
+              One-on-one · Zoom
             </p>
             <div className="mt-6">
-              <p className="font-display text-2xl font-normal text-ivory">Skin quiz</p>
+              <p className="font-display text-2xl font-normal text-ivory">Virtual consultation</p>
               <p className="mt-2 font-body text-sm font-normal leading-relaxed text-ivory/85">
-                Four questions. A morning and evening sequence built for your chapter of skin.
+                A focused skin review with Emily, plus a personalized morning and evening plan.
               </p>
               <span className="mt-5 inline-flex items-center gap-2 font-label text-[0.65rem] font-normal uppercase tracking-lockup text-ivory">
-                Start the quiz →
+                Book a consultation →
               </span>
             </div>
           </Link>

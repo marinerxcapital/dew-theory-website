@@ -164,7 +164,7 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
         {status === 'error' ? (
           <>
             <Link
-              href="/contact"
+              href="mailto:hello@dewtheory.studio"
               className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
             >
               Contact studio
@@ -186,7 +186,7 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
             </Link>
             {status === 'ready' && (
               <Link
-                href="/contact"
+                href="mailto:hello@dewtheory.studio"
                 className="sweep border border-graphite/25 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:border-graphite/60"
               >
                 Questions?

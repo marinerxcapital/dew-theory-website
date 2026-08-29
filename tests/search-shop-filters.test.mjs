@@ -17,9 +17,15 @@ describe('search', () => {
     assert.ok(flat.some((i) => i.href.includes('green-tea-citrus-cleanser')));
   });
 
-  it('finds skin quiz guide', () => {
-    const { groups } = searchStorefront('quiz', { catalog: PRODUCTS });
-    assert.ok(groups.Guides?.some((g) => g.href === '/quiz'));
+  it('does not surface quiz/about/contact/faq as public results', () => {
+    const index = buildSearchIndex(PRODUCTS);
+    const hrefs = index.map((i) => i.href);
+    for (const path of ['/quiz', '/about', '/contact', '/faq']) {
+      assert.ok(
+        !hrefs.some((h) => h === path || h.startsWith(`${path}?`)),
+        `removed route should not be in search index: ${path}`
+      );
+    }
   });
 
   it('returns empty for nonsense query', () => {
@@ -33,7 +39,16 @@ describe('search', () => {
     assert.ok(index.some((i) => i.kind === 'product'));
     assert.ok(!index.some((i) => i.kind === 'service'));
     const hrefs = index.map((i) => i.href);
-    for (const path of ['/routine', '/services', '/membership', '/book']) {
+    for (const path of [
+      '/routine',
+      '/services',
+      '/membership',
+      '/book',
+      '/quiz',
+      '/about',
+      '/contact',
+      '/faq'
+    ]) {
       assert.ok(
         !hrefs.some((h) => h === path || h.startsWith(`${path}?`)),
         `removed route should not be in search index: ${path}`

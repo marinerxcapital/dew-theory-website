@@ -230,12 +230,6 @@ export default async function ProductDetailPage({ params }) {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/quiz"
-              className="btn-dew-outline min-h-[44px] px-5 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup"
-            >
-              Find my routine
-            </Link>
-            <Link
               href="/virtual-consultation"
               className="inline-flex min-h-[44px] items-center font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew hover:text-dew-dark"
             >
@@ -299,10 +293,6 @@ export default async function ProductDetailPage({ params }) {
             </AccordionSection>
             <AccordionSection title="Professional guidance">
               Unsure how this fits your barrier this week?{' '}
-              <Link href="/quiz" className="text-dew underline underline-offset-2">
-                Take the Skin Quiz
-              </Link>
-              , or{' '}
               <Link
                 href="/virtual-consultation"
                 className="text-dew underline underline-offset-2"

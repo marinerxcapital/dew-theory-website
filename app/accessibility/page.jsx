@@ -14,7 +14,6 @@ export default function AccessibilityPage() {
       documentId="accessibility"
       eyebrowRight="Access"
       related={[
-        { href: '/contact', label: 'Contact →' },
         { href: '/privacy', label: 'Privacy →' }
       ]}
     >
@@ -23,7 +22,11 @@ export default function AccessibilityPage() {
         <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
           The complete Accessibility Statement is provided as a downloadable PDF. Use View PDF or
           Download PDF above for the authoritative printable document. For accessibility feedback,
-          use the Contact page.
+          email{' '}
+          <a href="mailto:hello@dewtheory.studio" className="text-ink underline underline-offset-2">
+            hello@dewtheory.studio
+          </a>
+          .
         </p>
       </div>
     </LegalPageShell>

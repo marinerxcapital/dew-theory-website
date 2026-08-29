@@ -223,9 +223,9 @@ export default async function VirtualConsultationPage({ searchParams }) {
           <p className="mx-auto mt-8 max-w-lg text-center font-body text-xs font-normal leading-relaxed text-muted">
             Virtual consultations provide aesthetic skincare guidance and do not replace
             evaluation, diagnosis, or treatment by a licensed medical professional.{' '}
-            <Link href="/contact" className="underline decoration-border underline-offset-2 hover:text-ink">
-              Questions? Contact us
-            </Link>
+            <a href="mailto:hello@dewtheory.studio" className="underline decoration-border underline-offset-2 hover:text-ink">
+              Questions? Email us
+            </a>
             .
           </p>
         </div>

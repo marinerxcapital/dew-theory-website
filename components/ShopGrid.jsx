@@ -27,7 +27,7 @@ function emptyState(filters, clearAll) {
     >
       <p className="font-display text-xl font-normal text-ink">No products match</p>
       <p className="mx-auto mt-3 max-w-sm font-body text-sm font-normal text-muted">
-        Try clearing filters, or let the Skin Quiz suggest a sequence.
+        Try clearing filters, or book a virtual consultation for a personalized sequence.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <button
@@ -38,10 +38,10 @@ function emptyState(filters, clearAll) {
           Clear filters
         </button>
         <Link
-          href="/quiz"
+          href="/virtual-consultation"
           className="btn-dew-outline px-8 py-3.5 font-label text-[0.68rem] uppercase tracking-lockup"
         >
-          Skin Quiz
+          Virtual Consultation
         </Link>
       </div>
     </div>

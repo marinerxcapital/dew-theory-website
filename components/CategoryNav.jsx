@@ -9,9 +9,7 @@ const DESKTOP_LINKS = [
   { href: '/shop?type=Serum', label: 'Treatments', matchTypes: ['Serum', 'Exfoliant', 'Toner', 'Mask'] },
   { href: '/shop?type=Moisturizer', label: 'Moisturizers', match: 'Moisturizer' },
   { href: '/shop?type=SPF', label: 'SPF', match: 'SPF' },
-  { href: '/quiz', label: 'Skin Quiz' },
-  { href: '/virtual-consultation', label: 'Virtual Consult' },
-  { href: '/about', label: 'Emily' }
+  { href: '/virtual-consultation', label: 'Virtual Consult' }
 ];
 
 function isCurrent(pathname, searchParams, link) {

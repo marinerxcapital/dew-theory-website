@@ -27,8 +27,8 @@ export default function PlanPage({ params }) {
         <p className="mt-4 font-body text-sm font-light text-charcoal/70">
           This link is invalid, expired, or the plan has not been published yet.
         </p>
-        <Link href="/contact" className="mt-8 inline-block font-label text-[0.7rem] uppercase tracking-lockup">
-          Contact us
+        <Link href="mailto:hello@dewtheory.studio" className="mt-8 inline-block font-label text-[0.7rem] uppercase tracking-lockup">
+          Email us
         </Link>
       </section>
     );
@@ -109,8 +109,8 @@ export default function PlanPage({ params }) {
       <p className="mt-14 max-w-xl font-body text-xs font-light leading-relaxed text-charcoal/55">
         Virtual consultations provide aesthetic skincare guidance and do not replace evaluation,
         diagnosis, or treatment by a licensed medical professional. Questions?{' '}
-        <Link href="/contact" className="underline decoration-chrome/40">
-          Contact Dew Theory
+        <Link href="mailto:hello@dewtheory.studio" className="underline decoration-chrome/40">
+          Email Dew Theory
         </Link>
         .
       </p>

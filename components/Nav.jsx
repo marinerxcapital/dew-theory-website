@@ -10,11 +10,7 @@ import { useCart } from '@/components/CartProvider';
 
 const links = [
   { href: '/shop', label: 'Shop' },
-  { href: '/quiz', label: 'Skin Quiz' },
-  { href: '/virtual-consultation', label: 'Virtual Consult' },
-  { href: '/about', label: 'Emily' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/faq', label: 'FAQ' }
+  { href: '/virtual-consultation', label: 'Virtual Consult' }
 ];
 
 const categoryLinks = [

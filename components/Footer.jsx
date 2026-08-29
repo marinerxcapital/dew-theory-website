@@ -21,25 +21,12 @@ const columns = [
       ['Serums & treatments', '/shop?type=Serum'],
       ['Moisturizers', '/shop?type=Moisturizer'],
       ['SPF', '/shop?type=SPF'],
-      ['Skin quiz', '/quiz'],
       ['Bag', '/cart']
     ]
   },
   {
-    head: 'Dew Theory',
-    items: [
-      ['About Emily', '/about'],
-      ['Virtual consultation', '/virtual-consultation'],
-      ['Contact', '/contact'],
-      ['FAQ', '/faq']
-    ]
-  },
-  {
     head: 'Help',
-    items: [
-      ...footerLegal.map((l) => [l.label, l.href]),
-      ['Order support', '/contact']
-    ]
+    items: footerLegal.map((l) => [l.label, l.href])
   }
 ];
 
@@ -50,7 +37,7 @@ export default function Footer() {
   return (
     <footer className="site-footer relative mt-16">
       <div className="relative z-[1] mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-10 lg:py-18">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr]">
           <div>
             <Wordmark
               src="/logo-dewtheory-ivory-20260825.webp"
@@ -65,10 +52,10 @@ export default function Footer() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/quiz"
+                href="/virtual-consultation"
                 className="inline-flex items-center px-2 font-label text-[0.65rem] uppercase tracking-lockup text-sage hover:text-ivory"
               >
-                Skin Quiz
+                Virtual consultation
               </Link>
             </div>
           </div>

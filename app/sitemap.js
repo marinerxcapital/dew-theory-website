@@ -11,12 +11,8 @@ const site = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dewtheoryco.com').rep
 const STATIC = [
   { path: '', changeFrequency: 'weekly', priority: 1 },
   { path: '/shop', changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/quiz', changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/about', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/virtual-consultation', changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/cart', changeFrequency: 'monthly', priority: 0.4 },
-  { path: '/faq', changeFrequency: 'monthly', priority: 0.5 },
   ...getPublicLegalRoutes().map((path) => ({
     path,
     changeFrequency: 'yearly',

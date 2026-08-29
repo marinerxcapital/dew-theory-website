@@ -25,8 +25,8 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      { source: '/studio', destination: '/about', permanent: true },
-      { source: '/studio/:path*', destination: '/about', permanent: true }
+      { source: '/studio', destination: '/', permanent: true },
+      { source: '/studio/:path*', destination: '/', permanent: true }
     ];
   },
   async headers() {

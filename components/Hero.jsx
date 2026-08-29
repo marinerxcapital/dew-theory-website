@@ -140,8 +140,8 @@ export default function Hero() {
           </h1>
 
           <p className="hero-stage__lede mt-4 max-w-md font-body text-base font-normal leading-relaxed text-charcoal/90 sm:mt-5 sm:text-[1.05rem]">
-            Professional Skin Script actives for home — and a barrier-first routine built around
-            what your skin actually needs.
+            Professional Skin Script actives for home — or a virtual consultation with Emily for a
+            plan built around your skin.
           </p>
 
           <div className="hero-stage__cta mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
@@ -152,10 +152,10 @@ export default function Hero() {
               Shop Skin Script
             </Link>
             <Link
-              href="/quiz"
+              href="/virtual-consultation"
               className="btn-dew-outline w-full min-h-[48px] bg-ivory/80 px-9 py-4 text-center font-label text-[0.72rem] font-normal uppercase tracking-lockup backdrop-blur-[2px] sm:w-auto"
             >
-              Take the Skin Quiz
+              Virtual Consultation
             </Link>
           </div>
         </div>

@@ -50,12 +50,12 @@ export default function ReturnsPage() {
           <h2 className="font-display text-xl font-normal text-ink">How to request</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             When the full policy is live, this section will list the steps and what to include (order
-            reference, reason, photos if needed). For now, reach out through the{' '}
-            <Link href="/contact" className="text-ink underline-offset-4 hover:underline">
-              contact form
-            </Link>{' '}
-            with your order details and what went wrong — Emily can respond case by case while formal
-            terms are finalized.
+            reference, reason, photos if needed). For now, email{' '}
+            <a href="mailto:hello@dewtheory.studio" className="text-ink underline-offset-4 hover:underline">
+              hello@dewtheory.studio
+            </a>{' '}
+            with your order details and what went wrong — Emily can respond case by case while
+            formal terms are finalized.
           </p>
         </div>
 
@@ -90,10 +90,10 @@ export default function ReturnsPage() {
 
       <div className="mt-12 flex flex-wrap items-center gap-6 sm:mt-14" data-reveal>
         <Link
-          href="/contact"
+          href="mailto:hello@dewtheory.studio"
           className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
         >
-          Contact
+          Email us
         </Link>
         <Link
           href="/shipping"

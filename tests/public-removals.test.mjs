@@ -9,13 +9,27 @@ function read(rel) {
   return readFileSync(new URL(rel, root), 'utf8');
 }
 
-const UNPUBLISHED_ROUTES = ['/routine', '/services', '/membership', '/book'];
+const UNPUBLISHED_ROUTES = [
+  '/routine',
+  '/services',
+  '/membership',
+  '/book',
+  '/quiz',
+  '/about',
+  '/contact',
+  '/faq'
+];
 
 const UNPUBLISHED_PAGES = [
   'app/routine/page.jsx',
   'app/services/page.jsx',
   'app/membership/page.jsx',
-  'app/book/page.jsx'
+  'app/book/page.jsx',
+  'app/quiz/page.jsx',
+  'app/about/page.jsx',
+  'app/contact/page.jsx',
+  'app/faq/page.jsx',
+  'app/studio/page.jsx'
 ];
 
 describe('owner-removal regression', () => {

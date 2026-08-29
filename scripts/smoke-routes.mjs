@@ -11,11 +11,8 @@ const base = (process.argv[2] || process.env.SMOKE_BASE || 'http://localhost:300
 const paths = [
   '/',
   '/shop',
-  '/about',
   '/virtual-consultation',
-  '/contact',
   '/cart',
-  '/faq',
   '/privacy',
   '/terms',
   '/shipping',

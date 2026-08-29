@@ -80,8 +80,8 @@ export default function PrivacyPage() {
           <h2 className="font-display text-xl font-normal text-ink">Email</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             Transactional messages related to orders or consultations may be sent by email when
-            delivery is enabled for the studio. Contact form submissions reach Emily through the
-            site&apos;s contact flow so she can reply directly.
+            delivery is enabled for the studio. Questions reach Emily by email at{' '}
+            <span className="text-ink/90">hello@dewtheory.studio</span> so she can reply directly.
           </p>
         </div>
 
@@ -101,10 +101,10 @@ export default function PrivacyPage() {
 
       <div className="mt-12 flex flex-wrap items-center gap-6 sm:mt-14" data-reveal>
         <Link
-          href="/contact"
+          href="mailto:hello@dewtheory.studio"
           className="btn-ghost px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
         >
-          Contact
+          Email us
         </Link>
         <Link
           href="/terms"

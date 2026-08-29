@@ -212,7 +212,7 @@ export default function CartView() {
           data-reveal
           className="mt-6 max-w-lg font-body text-base font-normal leading-relaxed text-muted"
         >
-          Start with Skin Script, the Skin Quiz, or an AM/PM routine. Free shipping at{' '}
+          Start with Skin Script, or book a virtual consultation for a personalized plan. Free shipping at{' '}
           {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal (before discount).
         </p>
         <div data-reveal className="mt-10 flex flex-wrap gap-3">
@@ -223,10 +223,10 @@ export default function CartView() {
             Shop Skin Script
           </Link>
           <Link
-            href="/quiz"
+            href="/virtual-consultation"
             className="btn-dew-outline px-8 py-4 font-label text-[0.7rem] font-normal uppercase tracking-lockup"
           >
-            Take the Skin Quiz
+            Virtual consultation
           </Link>
         </div>
       </section>

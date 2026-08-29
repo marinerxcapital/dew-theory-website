@@ -68,10 +68,10 @@ export default function EmilyPairsWith({ product, catalog = [], limit = 4 }) {
 
       <div className="mt-8 flex flex-wrap gap-4">
         <Link
-          href="/quiz"
+          href="/virtual-consultation"
           className="inline-flex min-h-[44px] items-center font-label text-[0.66rem] font-normal uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
         >
-          Take the skin quiz →
+          Book a consultation →
         </Link>
       </div>
     </section>

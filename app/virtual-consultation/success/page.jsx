@@ -129,10 +129,10 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
           ← Back to consultation info
         </Link>
         <Link
-          href="/contact"
+          href="mailto:hello@dewtheory.studio"
           className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
         >
-          Contact
+          Email
         </Link>
         <Link
           href="/shop"

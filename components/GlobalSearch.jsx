@@ -145,14 +145,14 @@ export default function GlobalSearch({
             <div className="px-4 py-5" role="option" aria-selected="false">
               <p className="font-body text-sm text-charcoal">No matches for “{query.trim()}”.</p>
               <Link
-                href="/quiz"
+                href="/shop"
                 onClick={() => {
                   close();
                   onNavigate?.();
                 }}
                 className="mt-3 inline-flex font-label text-[0.65rem] uppercase tracking-lockup text-dew"
               >
-                Try the Skin Quiz
+                View the shop
               </Link>
             </div>
           ) : (
