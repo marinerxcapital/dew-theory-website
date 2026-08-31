@@ -2,7 +2,7 @@
 
 **Signed:** Cursor Cloud Agent  
 **Last updated (UTC):** 2026-08-31T17:02:00Z  
-**Head SHA:** pending session 3 commit (base `c4e3108`)  
+**Head SHA:** `99bef7d`  
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **PR:** #8 (draft, CI green on prior push)
 
