@@ -49,7 +49,8 @@ class ProductPage:
 
     async def add_to_cart(self, qty: int) -> None:
         for _ in range(max(1, qty)):
-            await self.page.click(self.sel["add_to_cart"])
+            async with self.page.expect_navigation():
+                await self.page.click(self.sel["add_to_cart"])
 
 
 class CartPage:
@@ -59,7 +60,8 @@ class CartPage:
 
     async def clear(self) -> None:
         if await self.page.locator(self.sel["clear"]).count():
-            await self.page.click(self.sel["clear"])
+            async with self.page.expect_navigation():
+                await self.page.click(self.sel["clear"])
 
     async def is_empty(self) -> bool:
         return await self.page.locator(self.sel["empty_marker"]).count() > 0

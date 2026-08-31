@@ -9,46 +9,22 @@ Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfi
 - **RPA service:** Full `services/skin-script-rpa/` — FastAPI, HMAC, Page Objects, worker, Docker, CLI bootstrap
 - **RPA adapter:** `lib/suppliers/skin-script/rpa-adapter.js` + factory `rpa` mode
 - **Security:** HMAC auth, kill switch, financial caps, no CAPTCHA bypass
-- **Mock portal:** `services/mock-supplier-portal/` for CI scenarios
-- **Tests:** `npm test` 203/203; `python3 -m pytest` 3/3; `npm run build` success
+- **Mock portal:** Dynamic HTTP server `services/mock-supplier-portal/server.py` with scenario matrix (captcha, MFA, OOS, price drift, address, payment)
+- **Playwright E2E:** 9 tests in `services/skin-script-rpa/tests/test_worker_e2e.py` against mock portal
+- **Node failure-injection:** 9 tests in `tests/commerce-failure-injection.test.mjs` (idempotency, HMAC replay/skew, cancel, kill switch)
+- **Operator scripts:** `scripts/setup-d1-commerce.mjs` (`npm run setup:d1`, `npm run setup:d1:local`), `scripts/seed-supplier-mapping-templates.mjs` (`npm run seed:mappings`)
+- **Integration tests (session 3):** Stripe→commerce persistence, RPA adapter↔mock HMAC service, job claim lock + retry scheduling
+- **setup:d1 fix:** Detect wrangler "not authenticated" (exit 0 bug); `--remote` for prod, `--local` for dev schema
+- **Tests (session 3):** `npm test` 220/220; `npm run build` success; `python3 -m pytest -q` 12/12; `ruff check` pass
 - **Memory system:** `AGENTS.md`, `.cursor/rules/`, `AI_PROJECT_INSTRUCTIONS.md`, continuity script
-- **CI:** `.github/workflows/ci.yml`
+- **CI:** `.github/workflows/ci.yml` — 6/6 green (node, python-rpa, docker-rpa × push/PR)
 - **Docs:** Full `docs/SKIN_SCRIPT_RPA_*` suite + ADR-001
 
----
-
-# CODEX REMAINING TASKS
-
-## TASK-01: Provision Cloudflare D1 commerce database
-
-**Blocker:** Cursor iOS lacks Cloudflare account CLI/auth to create D1 and obtain real database_id.
-
-**Why Cursor could not complete:** No interactive Cloudflare login / production account access in this environment.
-
-**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
-**Prerequisite:** `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
-
-**Files:** `wrangler.jsonc`, `migrations/001_commerce_schema.sql`
-
-**Commands:**
-```bash
-wrangler d1 create dew-theory-commerce
-# Update DEW_THEORY_D1.database_id in wrangler.jsonc with output ID
-wrangler d1 execute dew-theory-commerce --file=migrations/001_commerce_schema.sql
-npm run deploy
-```
-
-**Secret names:** none (D1 is binding, not secret)
-
-**External access:** Cloudflare dashboard / Wrangler OAuth for MarinerX account
-
-**Acceptance:** Paid order survives Worker restart; `data/runtime/commerce.json` not sole production store
-
-**Verify:** Place test order via Stripe test mode; restart Worker; confirm order + fulfillment_job in D1
-
-**Rollback:** Worker can run with file fallback if D1 binding removed (not recommended for prod)
+**Signed:** Cursor Cloud Agent · **Last updated (UTC):** 2026-08-31T17:02:00Z
 
 ---
+
+# CODEX REMAINING EXTERNALLY BLOCKED TASKS
 
 ## TASK-02: Authenticated Skin Script portal reconnaissance
 
@@ -76,10 +52,10 @@ npm run deploy
 
 **Files:** `lib/suppliers/skin-script/mapping.js`, D1 `supplier_mappings` table
 
-**Commands:**
+**Commands (after portal recon):**
 ```bash
-# After portal recon — upsert verified mappings (verified=1, verified_at set)
-# via admin script or direct D1 insert per product in data/products.json
+npm run seed:mappings   # creates verified=0 templates only
+# Then upsert verified=1 rows with real skin_script_sku, supplier_product_url, expected_wholesale_price
 ```
 
 **Acceptance:** Every live-fulfillment product has `verified=1` mapping with real `skin_script_sku`, `supplier_product_url`, `expected_wholesale_price`
@@ -140,3 +116,15 @@ docker build -t dew-theory-skin-script-rpa services/skin-script-rpa
 **Acceptance:** One real supplier order with captured confirmation ID; no duplicate on webhook replay
 
 **Rollback:** `SKIN_SCRIPT_RPA_ENABLED=false`, `AUTO_FULFILL=false`
+
+---
+
+## TASK-07: Merge replacement PR #9
+
+**Blocker:** Requires explicit owner approval after gates are green.
+
+**Original PR:** https://github.com/marinerxcapital/dew-theory-website/pull/8 — already merged at `20b7b1c` from older head `1056dba`
+
+**Active draft PR:** https://github.com/marinerxcapital/dew-theory-website/pull/9
+
+**Acceptance:** PR #9 merged only after owner approval; do not merge from this handoff alone.

@@ -37,7 +37,11 @@ class FulfillmentWorker:
 
             try:
                 base = settings.portal_base_url.rstrip("/")
-                await page.goto(f"{base}/login")
+                login_url = f"{base}/login"
+                test_scenario = payload.get("_test_scenario")
+                if test_scenario:
+                    login_url = f"{login_url}?scenario={test_scenario}"
+                await page.goto(login_url)
 
                 login = LoginPage(page, selectors["login"])
                 if settings.username and settings.password:
@@ -53,6 +57,7 @@ class FulfillmentWorker:
                         return self._blocked("account_mismatch", f"Unexpected account: {name}")
 
                 cart = CartPage(page, selectors["cart"])
+                await page.goto(f"{base}/cart")
                 await cart.clear()
                 if not await cart.is_empty():
                     return self._blocked("blocked_supplier_policy", "Cart not empty after clear")

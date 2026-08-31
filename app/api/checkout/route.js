@@ -10,6 +10,7 @@ import { resolveDiscountCode } from '@/lib/discounts';
 import { getProducts } from '@/lib/products-server';
 import { buildSessionMetadata } from '@/lib/stripe-orders';
 import { maybeAutoFulfill } from '@/lib/dropship/fulfill-order';
+import { persistPaidOrderWithJob } from '@/lib/fulfillment/jobs';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
 
 function jsonError(payload, status = 400) {
@@ -221,7 +222,11 @@ export async function POST(request) {
     trackEvent('checkout_completed', { order_id: orderId, mode: 'mock' });
 
     const mockOrder = readStore().orders.find((o) => o.id === orderId);
+    let durableJob = null;
     if (mockOrder) {
+      const persisted = await persistPaidOrderWithJob(mockOrder);
+      durableJob = persisted.job;
+
       import('@/lib/email')
         .then(({ sendOrderConfirmationEmail }) => sendOrderConfirmationEmail({ order: mockOrder }))
         .catch(() => {});
@@ -249,6 +254,12 @@ export async function POST(request) {
             status: fulfill.order?.status || null,
             error: fulfill.error || null,
             skipped: fulfill.skipped || false
+          }
+        : null,
+      durable: durableJob
+        ? {
+            job_id: durableJob.id,
+            status: durableJob.status
           }
         : null
     });
