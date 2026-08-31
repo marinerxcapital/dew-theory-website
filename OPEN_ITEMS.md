@@ -181,9 +181,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **Cloudflare edge cache** — R2 ISR + D1 tag cache already used in production deploy path;
   optional private photo bucket `dew-theory-consultation-photos` (see `docs/DEPLOY_DEWTHEORYCO.md`).
 - **Skin Script live credentials.** Adapters ready; use `SKIN_SCRIPT_MODE=mock` + CSV until partner answers.
-- **Skin Script RPA production (2026-08-31).** Architecture implemented on `cursor/skin-script-rpa-fulfillment-5261`.
-  Requires D1 provisioning, portal reconnaissance, verified mappings, session bootstrap, RPA deploy —
-  see `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` (6 Codex-only tasks).
+- **Skin Script RPA production (2026-08-31).** D1 live (TASK-01 complete). WooCommerce portal flow + public URL map on `cursor/skin-script-rpa-completion-e021`. Portal login blocked — password incorrect for authorized account. Remaining: password fix, verified SKUs, session bootstrap, RPA container deploy, dry-run/live validation, PR merge approval. See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
 - **xAI assist optional.** `XAI_API_KEY` for messy feed mapping only.
 - **Admin production secrets** must remain non-default on Worker.
 

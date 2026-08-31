@@ -1,0 +1,55 @@
+{
+  "login": {
+    "username": "#username",
+    "password": "#password",
+    "submit": "button.woocommerce-form-login__submit",
+    "account_name": ".woocommerce-MyAccount-navigation",
+    "captcha_marker": ".g-recaptcha, iframe[src*='recaptcha']",
+    "mfa_marker": "[data-mfa], .two-factor, input[name*='otp']",
+    "cookie_accept": "button:has-text('Accept All')",
+    "logout_link": "a:has-text('Logout')"
+  },
+  "cart": {
+    "clear": "a.remove, .product-remove a",
+    "empty_marker": ".cart-empty, .woocommerce-info:has-text('cart is empty')",
+    "line_sku": ".product-name a",
+    "line_qty": ".product-quantity input.qty",
+    "unexpected_line": ".cart_item"
+  },
+  "product": {
+    "sku": ".sku",
+    "name": "h1.product_title",
+    "size": ".woocommerce-product-attributes-item--attribute_pa_size .woocommerce-product-attributes-item__value",
+    "price": ".price .amount, .woocommerce-Price-amount",
+    "stock": ".stock",
+    "add_to_cart": "button.single_add_to_cart_button",
+    "quantity": "input.qty"
+  },
+  "shipping": {
+    "name": "#billing_first_name",
+    "line1": "#billing_address_1",
+    "line2": "#billing_address_2",
+    "city": "#billing_city",
+    "state": "#billing_state",
+    "postal": "#billing_postcode",
+    "phone": "#billing_phone",
+    "email": "#billing_email",
+    "suggestion": ".pac-container, .address-suggestion"
+  },
+  "payment": {
+    "saved_method": "#payment_method_stored, input[name='payment_method']",
+    "challenge_marker": "#payment .woocommerce-error, .payment-challenge"
+  },
+  "review": {
+    "total": ".order-total .amount, .woocommerce-checkout-review-order-table .order-total .amount",
+    "place_order": "#place_order"
+  },
+  "confirmation": {
+    "order_id": ".woocommerce-order-overview__order strong, .order-number",
+    "total": ".woocommerce-order-overview__total strong"
+  },
+  "orders_history": {
+    "row": ".woocommerce-orders-table tbody tr",
+    "order_id": ".woocommerce-orders-table__cell-order-number a"
+  }
+}

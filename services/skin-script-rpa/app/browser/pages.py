@@ -8,8 +8,9 @@ from typing import Any
 from playwright.async_api import Page
 
 
-def load_selectors() -> dict[str, Any]:
-    path = Path(__file__).resolve().parent.parent / "config" / "selectors.json"
+def load_selectors(path: Path | None = None) -> dict[str, Any]:
+    if path is None:
+        path = Path(__file__).resolve().parent.parent / "config" / "selectors.json"
     return json.loads(path.read_text())
 
 
@@ -49,7 +50,8 @@ class ProductPage:
 
     async def add_to_cart(self, qty: int) -> None:
         for _ in range(max(1, qty)):
-            await self.page.click(self.sel["add_to_cart"])
+            async with self.page.expect_navigation():
+                await self.page.click(self.sel["add_to_cart"])
 
 
 class CartPage:
@@ -59,7 +61,8 @@ class CartPage:
 
     async def clear(self) -> None:
         if await self.page.locator(self.sel["clear"]).count():
-            await self.page.click(self.sel["clear"])
+            async with self.page.expect_navigation():
+                await self.page.click(self.sel["clear"])
 
     async def is_empty(self) -> bool:
         return await self.page.locator(self.sel["empty_marker"]).count() > 0
