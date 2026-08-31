@@ -2,7 +2,7 @@
 
 **Signed:** Cursor Cloud Agent  
 **Last updated (UTC):** 2026-08-31T17:00:00Z  
-**Head SHA:** `c22eb17`  
+**Head SHA:** `b06abc8`  
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **PR:** #8 (draft, CI green)
 
