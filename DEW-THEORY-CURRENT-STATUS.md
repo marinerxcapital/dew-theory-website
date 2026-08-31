@@ -275,9 +275,9 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **PR:** #8 (draft)  
 **Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`  
-**Current SHA:** `78589f8a` (`78589f8`) — session 2 E2E + failure injection + operator scripts  
+**Current SHA:** `c22eb17` (head); feature commit `78589f8` — session 2 E2E + failure injection + operator scripts  
 **Signed:** Cursor Cloud Agent  
-**Timestamp (UTC):** 2026-08-31T16:55:00Z
+**Timestamp (UTC):** 2026-08-31T17:00:00Z
 
 | Area | Status |
 |------|--------|
@@ -302,7 +302,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 | `npm run build` | **success** |
 | `python3 -m pytest -q` (RPA) | **12 pass** (3 unit + 9 E2E) |
 | `python3 -m ruff check app tests` | **pass** |
-| `node scripts/check-project-continuity.mjs` | pending post-commit |
+| `node scripts/check-project-continuity.mjs` | **OK** |
 | `docker build services/skin-script-rpa` | not run locally (no docker); CI docker-rpa **pass** on `1056dba` |
 
 **Real portal verification:** Not performed — selectors remain contract placeholders; Codex TASK-02.

@@ -1,7 +1,8 @@
 # Active Work — Dew Theory
 
 **Signed:** Cursor Cloud Agent  
-**Last updated (UTC):** 2026-08-31T16:55:00Z  
+**Last updated (UTC):** 2026-08-31T17:00:00Z  
+**Head SHA:** `c22eb17`  
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **PR:** #8 (draft, CI green)
 
