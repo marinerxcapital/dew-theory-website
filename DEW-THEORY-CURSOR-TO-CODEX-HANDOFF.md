@@ -1,0 +1,142 @@
+# CURSOR COMPLETED
+
+Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfillment-5261` (from `69d66d1`):
+
+- **Durable commerce persistence:** `lib/commerce/` with D1 backend + file fallback; schema in `migrations/001_commerce_schema.sql`; `DEW_THEORY_D1` binding added to `wrangler.jsonc` (placeholder ID)
+- **Payment → job outbox:** `persistPaidOrderWithJob()` wired from `lib/stripe-orders.js`; idempotent fulfillment jobs
+- **State machine:** Expanded blocked/retry states in `lib/fulfillment/state-machine.js` and `lib/order-status.js`
+- **Verified mappings:** `lib/suppliers/skin-script/mapping.js` — RPA mode rejects unverified mappings
+- **RPA service:** Full `services/skin-script-rpa/` — FastAPI, HMAC, Page Objects, worker, Docker, CLI bootstrap
+- **RPA adapter:** `lib/suppliers/skin-script/rpa-adapter.js` + factory `rpa` mode
+- **Security:** HMAC auth, kill switch, financial caps, no CAPTCHA bypass
+- **Mock portal:** `services/mock-supplier-portal/` for CI scenarios
+- **Tests:** `npm test` 203/203; `python3 -m pytest` 3/3; `npm run build` success
+- **Memory system:** `AGENTS.md`, `.cursor/rules/`, `AI_PROJECT_INSTRUCTIONS.md`, continuity script
+- **CI:** `.github/workflows/ci.yml`
+- **Docs:** Full `docs/SKIN_SCRIPT_RPA_*` suite + ADR-001
+
+---
+
+# CODEX REMAINING TASKS
+
+## TASK-01: Provision Cloudflare D1 commerce database
+
+**Blocker:** Cursor iOS lacks Cloudflare account CLI/auth to create D1 and obtain real database_id.
+
+**Why Cursor could not complete:** No interactive Cloudflare login / production account access in this environment.
+
+**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Prerequisite:** `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
+
+**Files:** `wrangler.jsonc`, `migrations/001_commerce_schema.sql`
+
+**Commands:**
+```bash
+wrangler d1 create dew-theory-commerce
+# Update DEW_THEORY_D1.database_id in wrangler.jsonc with output ID
+wrangler d1 execute dew-theory-commerce --file=migrations/001_commerce_schema.sql
+npm run deploy
+```
+
+**Secret names:** none (D1 is binding, not secret)
+
+**External access:** Cloudflare dashboard / Wrangler OAuth for MarinerX account
+
+**Acceptance:** Paid order survives Worker restart; `data/runtime/commerce.json` not sole production store
+
+**Verify:** Place test order via Stripe test mode; restart Worker; confirm order + fulfillment_job in D1
+
+**Rollback:** Worker can run with file fallback if D1 binding removed (not recommended for prod)
+
+---
+
+## TASK-02: Authenticated Skin Script portal reconnaissance
+
+**Blocker:** No authorized access to live Skin Script wholesale portal from Cursor iOS.
+
+**Why Cursor could not complete:** Cannot browse authenticated supplier portal or verify real UI.
+
+**Prerequisite:** Owner wholesale credentials; architecture + selector contract in `services/skin-script-rpa/app/config/selectors.json`
+
+**Files to edit after recon:** `services/skin-script-rpa/app/config/selectors.json`, `lib/suppliers/skin-script/mapping.js` (verified rows)
+
+**Commands:** Manual headed browser session; document login flow, SKU display, cart, address, payment, confirmation
+
+**Secret names:** `SKIN_SCRIPT_USERNAME`, `SKIN_SCRIPT_PASSWORD`, `SKIN_SCRIPT_PORTAL_BASE_URL`, `SKIN_SCRIPT_EXPECTED_ACCOUNT_NAME`
+
+**Acceptance:** Selectors match real portal; no fabricated URLs/SKUs in mapping table
+
+**Verify:** Health check loads catalog screen without purchase
+
+---
+
+## TASK-03: Verify and activate supplier product mappings
+
+**Blocker:** Real Skin Script SKUs/URLs not available to Cursor.
+
+**Files:** `lib/suppliers/skin-script/mapping.js`, D1 `supplier_mappings` table
+
+**Commands:**
+```bash
+# After portal recon — upsert verified mappings (verified=1, verified_at set)
+# via admin script or direct D1 insert per product in data/products.json
+```
+
+**Acceptance:** Every live-fulfillment product has `verified=1` mapping with real `skin_script_sku`, `supplier_product_url`, `expected_wholesale_price`
+
+**Verify:** RPA dry-run completes without `blocked_supplier_mapping`
+
+---
+
+## TASK-04: Interactive session bootstrap (MFA)
+
+**Blocker:** Requires headed browser + human MFA on supplier portal.
+
+**Files:** `services/skin-script-rpa/app/cli.py`
+
+**Commands:**
+```bash
+cd services/skin-script-rpa
+python -m app.cli bootstrap-session
+# Save storage state to secure secret store — never commit
+```
+
+**Secret names:** storage state file path via `SKIN_SCRIPT_STORAGE_STATE` or mount in container
+
+**Acceptance:** RPA worker loads session; account name matches `SKIN_SCRIPT_EXPECTED_ACCOUNT_NAME`
+
+---
+
+## TASK-05: Deploy RPA container + configure secrets
+
+**Blocker:** No deployment credentials for chosen container host.
+
+**Files:** `services/skin-script-rpa/Dockerfile`, `docs/SKIN_SCRIPT_RPA_DEPLOYMENT.md`
+
+**Commands:**
+```bash
+docker build -t dew-theory-skin-script-rpa services/skin-script-rpa
+# Deploy to approved host; set env from ENV.md
+# wrangler secret put SKIN_SCRIPT_RPA_SERVICE_URL
+# wrangler secret put SKIN_SCRIPT_RPA_HMAC_SECRET
+```
+
+**Secret names:** `SKIN_SCRIPT_RPA_HMAC_SECRET`, `SKIN_SCRIPT_RPA_SERVICE_URL`, portal credentials (same on both sides for HMAC)
+
+**Acceptance:** `GET /health` 200; Dew Theory can create signed job (dry-run)
+
+---
+
+## TASK-06: Real portal dry-run then controlled live validation
+
+**Blocker:** Requires TASK-02 through TASK-05 complete + owner authorization.
+
+**Commands:**
+```bash
+# SKIN_SCRIPT_DRY_RUN=true first — full flow to review page
+# Then SKIN_SCRIPT_DRY_RUN=false with single controlled test order
+```
+
+**Acceptance:** One real supplier order with captured confirmation ID; no duplicate on webhook replay
+
+**Rollback:** `SKIN_SCRIPT_RPA_ENABLED=false`, `AUTO_FULFILL=false`

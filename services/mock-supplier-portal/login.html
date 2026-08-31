@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" /><title>Login</title></head>
+<body>
+  <h1>Wholesale Login</h1>
+  <input data-testid="login-email" placeholder="email" />
+  <input data-testid="login-password" type="password" placeholder="password" />
+  <button data-testid="login-submit">Sign in</button>
+  <p data-testid="account-name">Dew Theory Wholesale</p>
+  <div data-testid="captcha-block" class="hidden" id="captcha"></div>
+  <div data-testid="mfa-block" class="hidden" id="mfa"></div>
+  <script>
+    if (window.SCENARIO === 'captcha') document.getElementById('captcha').classList.remove('hidden');
+    if (window.SCENARIO === 'mfa') document.getElementById('mfa').classList.remove('hidden');
+  </script>
+</body>
+</html>

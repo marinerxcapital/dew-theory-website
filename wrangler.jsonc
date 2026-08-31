@@ -48,12 +48,17 @@
       "new_sqlite_classes": ["DOQueueHandler"]
     }
   ],
-  // D1 next-mode tag cache
+  // D1 next-mode tag cache + commerce durable store (orders/fulfillment)
   "d1_databases": [
     {
       "binding": "NEXT_TAG_CACHE_D1",
       "database_name": "dew-theory-tag-cache",
       "database_id": "dc68ec21-ebc6-4800-9432-59357e3d6553"
+    },
+    {
+      "binding": "DEW_THEORY_D1",
+      "database_name": "dew-theory-commerce",
+      "database_id": "00000000-0000-0000-0000-000000000001"
     }
   ],
   // Cloudflare Images binding (next/image on Workers)

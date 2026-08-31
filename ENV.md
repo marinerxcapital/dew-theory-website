@@ -38,13 +38,30 @@ ADMIN_SESSION_SECRET=change-me-to-a-long-random-string
 # MEMBERSHIP_PACKAGES_JSON=[{"id":"rhythm-care","name":"Rhythm of care","description":"…","price_cents":null,"interval":null,"perks":[]}]
 
 # ── Skin Script catalog + dropship (see docs/SKIN_SCRIPT_SYNC.md) ──
-# mock = offline (default). http = partner API when confirmed. csv_feed = authorized export URL/path.
+# mock = offline (default). http = partner API. csv_feed = authorized export. rpa = Playwright service.
 SKIN_SCRIPT_MODE=mock
 SKIN_SCRIPT_API_BASE=
 SKIN_SCRIPT_API_KEY=
 SKIN_SCRIPT_ACCOUNT_ID=
 SKIN_SCRIPT_FEED_URL=
-# Auto-submit paid orders to supplier adapter (default true; set false to disable)
+# RPA production fulfillment (see docs/SKIN_SCRIPT_RPA_ARCHITECTURE.md)
+SKIN_SCRIPT_RPA_ENABLED=false
+SKIN_SCRIPT_RPA_SERVICE_URL=
+SKIN_SCRIPT_RPA_HMAC_SECRET=
+SKIN_SCRIPT_PORTAL_BASE_URL=
+SKIN_SCRIPT_LOGIN_URL=
+SKIN_SCRIPT_USERNAME=
+SKIN_SCRIPT_PASSWORD=
+SKIN_SCRIPT_EXPECTED_ACCOUNT_NAME=
+SKIN_SCRIPT_DRY_RUN=true
+SKIN_SCRIPT_MAX_ORDER_TOTAL_CENTS=50000
+SKIN_SCRIPT_MAX_LINE_QUANTITY=6
+SKIN_SCRIPT_PRICE_TOLERANCE_PERCENT=5
+FULFILLMENT_ALERT_WEBHOOK_URL=
+FULFILLMENT_MAX_ATTEMPTS=3
+# Durable commerce store: D1 on Workers (DEW_THEORY_D1 binding), file locally
+# STORE_BACKEND=file
+# Auto-submit paid orders to supplier adapter (default true for mock; false on production Worker)
 AUTO_FULFILL=true
 # Cron: POST /api/cron/catalog-sync with Authorization: Bearer $CRON_SECRET
 CRON_SECRET=

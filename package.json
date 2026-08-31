@@ -10,10 +10,11 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "test": "node --test --test-concurrency=1 tests/**/*.test.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
     "smoke": "node scripts/smoke-checkout.mjs",
     "smoke:routes": "node scripts/smoke-routes.mjs",
     "smoke:all": "node scripts/smoke-checkout.mjs && node scripts/smoke-routes.mjs",
+    "continuity": "node scripts/check-project-continuity.mjs",
     "ops:dashboard": "node agent-ops-dashboard/server.mjs",
     "ops:emit": "node agent-ops-dashboard/emit.mjs"
   },
