@@ -1,0 +1,51 @@
+{
+  "login": {
+    "username": "[data-testid='login-email']",
+    "password": "[data-testid='login-password']",
+    "submit": "[data-testid='login-submit']",
+    "account_name": "[data-testid='account-name']",
+    "captcha_marker": "[data-testid='captcha-block']",
+    "mfa_marker": "[data-testid='mfa-block']"
+  },
+  "cart": {
+    "clear": "[data-testid='cart-clear']",
+    "empty_marker": "[data-testid='cart-empty']",
+    "line_sku": "[data-testid='cart-line-sku']",
+    "line_qty": "[data-testid='cart-line-qty']",
+    "unexpected_line": "[data-testid='cart-unexpected']"
+  },
+  "product": {
+    "sku": "[data-testid='product-sku']",
+    "name": "[data-testid='product-name']",
+    "size": "[data-testid='product-size']",
+    "price": "[data-testid='product-price']",
+    "stock": "[data-testid='product-stock']",
+    "add_to_cart": "[data-testid='add-to-cart']"
+  },
+  "shipping": {
+    "name": "[data-testid='ship-name']",
+    "line1": "[data-testid='ship-line1']",
+    "line2": "[data-testid='ship-line2']",
+    "city": "[data-testid='ship-city']",
+    "state": "[data-testid='ship-state']",
+    "postal": "[data-testid='ship-postal']",
+    "phone": "[data-testid='ship-phone']",
+    "suggestion": "[data-testid='address-suggestion']"
+  },
+  "payment": {
+    "saved_method": "[data-testid='saved-payment']",
+    "challenge_marker": "[data-testid='payment-challenge']"
+  },
+  "review": {
+    "total": "[data-testid='order-total']",
+    "place_order": "[data-testid='place-order']"
+  },
+  "confirmation": {
+    "order_id": "[data-testid='confirmation-order-id']",
+    "total": "[data-testid='confirmation-total']"
+  },
+  "orders_history": {
+    "row": "[data-testid='order-history-row']",
+    "order_id": "[data-testid='history-order-id']"
+  }
+}

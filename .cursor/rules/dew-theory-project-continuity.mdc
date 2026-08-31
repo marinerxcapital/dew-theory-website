@@ -1,0 +1,33 @@
+---
+description: Dew Theory project continuity — mandatory memory maintenance for all agents
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Dew Theory Project Continuity
+
+You are working on **marinerxcapital/dew-theory-website** (dewtheoryco.com).
+
+## Mandatory protocol
+
+### Before coding
+- Read `DEW-THEORY-CURRENT-STATUS.md`, `OPEN_ITEMS.md`, and relevant `docs/implementation/` logs
+- Verify branch, HEAD SHA, and recent commits — do not trust stale SHAs in docs
+
+### During work
+- Preserve completed architecture (supplier adapters, commerce D1, RPA service)
+- Record decisions in implementation logs when changing commerce, fulfillment, or deployment
+
+### After material work
+- Update `DEW-THEORY-CURRENT-STATUS.md` with verified SHA, test results, blockers
+- Update `OPEN_ITEMS.md` when items resolve or new blockers appear
+- Run available tests and record exact commands/results in status or implementation log
+
+### Commerce / fulfillment rules
+- Paid → webhook → durable order → fulfillment job outbox before supplier purchase
+- `SKIN_SCRIPT_MODE=rpa` requires verified supplier mappings and `SKIN_SCRIPT_RPA_ENABLED=true`
+- Never bypass CAPTCHA/MFA; use blocked states and alerts
+- Never fabricate supplier selectors, orders, or portal verification
+
+Run `node scripts/check-project-continuity.mjs` before finishing PRs that touch commerce paths.

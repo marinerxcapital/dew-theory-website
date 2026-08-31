@@ -268,6 +268,37 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 - Sephora redesign doc (`docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md`) is historical; brand SoT is this file
 - GSAP listed in package.json but unused by components
 - Homepage is intentionally minimal per owner direction; prior editorial/educational sections are preserved in git history for later reintroduction
+- **Skin Script RPA:** D1 commerce DB must be provisioned in Cloudflare (placeholder ID in wrangler.jsonc); verified supplier mappings + portal selectors pending Codex handoff (`DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`)
+
+### 2026-08-31 Skin Script RPA fulfillment architecture (Cursor)
+
+**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`
+
+| Area | Status |
+|------|--------|
+| Durable commerce (D1 + file) | Implemented — D1 binding stub; needs real database_id |
+| Fulfillment jobs / outbox | Implemented |
+| Stripe paid → job | Implemented via `persistPaidOrderWithJob` |
+| RPA service (`services/skin-script-rpa/`) | Implemented — FastAPI, Playwright, HMAC, Docker |
+| RPA adapter (`SKIN_SCRIPT_MODE=rpa`) | Implemented |
+| Verified supplier mappings | Schema + validation; real SKUs unverified |
+| Mock supplier portal | Implemented for CI |
+| Agent memory system | `AGENTS.md`, `.cursor/rules/`, continuity script |
+| CI | `.github/workflows/ci.yml` |
+| Production deploy | **Not deployed** — see Codex handoff |
+
+**Tests (this session):**
+
+| Gate | Result |
+|------|--------|
+| `npm test` | 203 pass / 0 fail |
+| `npm run build` | success |
+| `python3 -m pytest -q` (RPA) | 3 pass |
+
+**Real portal verification:** Not performed — selectors are contract placeholders; Codex TASK-02.
+
+**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — 6 remaining tasks.
 
 ### Chronology (this revamp)
 

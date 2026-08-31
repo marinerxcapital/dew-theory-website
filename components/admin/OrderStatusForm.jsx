@@ -7,8 +7,18 @@ const STATUSES = [
   'pending_payment',
   'paid',
   'queued_for_supplier',
+  'processing_supplier',
+  'blocked_supplier_mapping',
+  'blocked_out_of_stock',
+  'blocked_price_drift',
+  'blocked_address_validation',
+  'blocked_human_verification',
+  'blocked_payment_authentication',
+  'submission_ambiguous',
   'submitted_to_skin_script',
   'failed_supplier',
+  'supplier_processing',
+  'supplier_shipped',
   'fulfilled',
   'cancelled',
   'payment_failed'
@@ -110,7 +120,8 @@ export default function OrderStatusForm({ orderId, current, order }) {
         )}
         {order?.fulfillment_error && (
           <p className="mt-2 font-body text-xs font-light text-charcoal/70" role="alert">
-            Last error: {order.fulfillment_error}
+            Last error{order.fulfillment_error_code ? ` (${order.fulfillment_error_code})` : ''}:{' '}
+            {order.fulfillment_error}
           </p>
         )}
         <button

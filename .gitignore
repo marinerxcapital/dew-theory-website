@@ -36,6 +36,19 @@ cloudflare-env.d.ts
 tmp-hero-work/
 agent-ops-dashboard/data/
 
+# Skin Script RPA secrets / sensitive artifacts
+**/skin-script-storage.json
+**/storageState.json
+services/skin-script-rpa/.env
+services/skin-script-rpa/traces/
+services/skin-script-rpa/screenshots/
+services/skin-script-rpa/**/__pycache__/
+services/skin-script-rpa/**/*.pyc
+services/skin-script-rpa/*.egg-info/
+services/skin-script-rpa/**/*.egg-info/
+playwright-report/
+test-results/
+
 # Local work packages / source media (not for deploy)
 Dew Theory - Architecture To Implement.txt
 DewTheory_SkinScript_Product_Implementation_Package.zip

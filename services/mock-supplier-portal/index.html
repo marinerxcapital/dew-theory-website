@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mock Skin Script Portal</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    [data-testid] { margin: 0.5rem 0; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Mock Skin Script Wholesale Portal</h1>
+  <p>Deterministic fixture for CI — not real supplier data.</p>
+  <nav>
+    <a href="/login">Login</a> |
+    <a href="/product/SS-GREEN_TEA_CITRUS_CLEANSER">Product</a> |
+    <a href="/checkout/review">Review</a>
+  </nav>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const scenario = params.get('scenario') || 'ok';
+    window.SCENARIO = scenario;
+  </script>
+</body>
+</html>

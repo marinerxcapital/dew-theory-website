@@ -1,0 +1,28 @@
+---
+description: Dew Theory engineering conventions
+globs:
+  - "**/*.{js,jsx,mjs,ts,tsx,py}"
+alwaysApply: false
+---
+
+# Dew Theory Engineering
+
+## Stack
+- Next.js 15 App Router, React 19, Tailwind, Cloudflare Workers (OpenNext)
+- Commerce durable layer: `lib/commerce/` (D1 production, file local)
+- Skin Script modes: `mock` | `http` | `csv_feed` | `rpa`
+
+## Supplier fulfillment
+- Adapter factory: `lib/suppliers/skin-script/index.js`
+- RPA adapter: `lib/suppliers/skin-script/rpa-adapter.js` → `services/skin-script-rpa/`
+- Verified mappings: `lib/suppliers/skin-script/mapping.js`
+
+## Security
+- Internal HMAC: `lib/internal/hmac-auth.js` / RPA `app/security/hmac.py`
+- No credentials in repo; update `.env.example` and `ENV.md` names only
+
+## Tests
+- Node: `npm test`
+- Python RPA: `cd services/skin-script-rpa && pytest`
+
+Preserve existing abstractions; extend rather than replace for style.
