@@ -1,23 +1,35 @@
 # Active Work — Dew Theory
 
-**Last updated:** 2026-08-31  
-**Branch:** `cursor/skin-script-rpa-fulfillment-5261`
+**Signed:** Cursor Cloud Agent  
+**Last updated (UTC):** 2026-08-31T16:55:00Z  
+**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**PR:** #8 (draft, CI green)
 
-## In progress
+## Completed (session 2 — 2026-08-31T16:43Z)
 
-Skin Script RPA fulfillment architecture — code complete; external tasks in Codex handoff.
+- [x] Mock portal dynamic HTTP server + scenario matrix
+- [x] Playwright E2E tests (9) against mock portal
+- [x] Node commerce failure-injection tests (9)
+- [x] D1 setup operator script (`npm run setup:d1`)
+- [x] Unverified mapping seed script (`npm run seed:mappings`)
+- [x] CI: Playwright chromium install step
+- [x] Worker cart navigation + E2E scenario hook
 
-## Completed this session
+## Blocked — requires owner/Codex/external access
 
-- Durable commerce + fulfillment jobs
-- RPA service + adapter + mock portal
-- Agent memory system + CI
+| # | Task | Blocker |
+|---|------|---------|
+| 1 | D1 commerce DB provision | Wrangler/Cloudflare auth not available in Cursor VM |
+| 2 | Portal reconnaissance | No authenticated Skin Script portal access |
+| 3 | Verified SKU mappings | Depends on TASK-02 |
+| 4 | Session bootstrap (MFA) | Interactive headed browser + human MFA |
+| 5 | RPA container deploy + secrets | No container host credentials |
+| 6 | Live dry-run / validation | TASK-01–05 + owner authorization |
 
-## Next (Codex / owner)
+See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
 
-1. Provision D1 `dew-theory-commerce`
-2. Portal reconnaissance + verified mappings
-3. Session bootstrap + RPA deploy
-4. Dry-run → controlled live validation
+## Next code-capable (future sessions)
 
-See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` (6 tasks).
+- Admin UI for supplier mapping verification (after real SKUs known)
+- Stripe webhook → commerce integration test with mock session
+- Merge PR #8 when owner approves

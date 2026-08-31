@@ -9,11 +9,16 @@ Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfi
 - **RPA service:** Full `services/skin-script-rpa/` — FastAPI, HMAC, Page Objects, worker, Docker, CLI bootstrap
 - **RPA adapter:** `lib/suppliers/skin-script/rpa-adapter.js` + factory `rpa` mode
 - **Security:** HMAC auth, kill switch, financial caps, no CAPTCHA bypass
-- **Mock portal:** `services/mock-supplier-portal/` for CI scenarios
-- **Tests:** `npm test` 203/203; `python3 -m pytest` 3/3; `npm run build` success
+- **Mock portal:** Dynamic HTTP server `services/mock-supplier-portal/server.py` with scenario matrix (captcha, MFA, OOS, price drift, address, payment)
+- **Playwright E2E:** 9 tests in `services/skin-script-rpa/tests/test_worker_e2e.py` against mock portal
+- **Node failure-injection:** 9 tests in `tests/commerce-failure-injection.test.mjs` (idempotency, HMAC replay/skew, cancel, kill switch)
+- **Operator scripts:** `scripts/setup-d1-commerce.mjs` (`npm run setup:d1`), `scripts/seed-supplier-mapping-templates.mjs` (`npm run seed:mappings`)
+- **Tests (session 2):** `npm test` 212/212; `npm run build` success; `python3 -m pytest -q` 12/12; `ruff check` pass
 - **Memory system:** `AGENTS.md`, `.cursor/rules/`, `AI_PROJECT_INSTRUCTIONS.md`, continuity script
-- **CI:** `.github/workflows/ci.yml`
+- **CI:** `.github/workflows/ci.yml` — 6/6 green (node, python-rpa, docker-rpa × push/PR)
 - **Docs:** Full `docs/SKIN_SCRIPT_RPA_*` suite + ADR-001
+
+**Signed:** Cursor Cloud Agent · **Last updated (UTC):** 2026-08-31T16:55:00Z
 
 ---
 
@@ -21,20 +26,16 @@ Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfi
 
 ## TASK-01: Provision Cloudflare D1 commerce database
 
-**Blocker:** Cursor iOS lacks Cloudflare account CLI/auth to create D1 and obtain real database_id.
+**Blocker:** Cursor Cloud Agent VM has no `wrangler` auth (`wrangler whoami` fails).
 
-**Why Cursor could not complete:** No interactive Cloudflare login / production account access in this environment.
+**Prerequisite completed by Cursor:** `scripts/setup-d1-commerce.mjs`, `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
 
-**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
-**Prerequisite:** `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
-
-**Files:** `wrangler.jsonc`, `migrations/001_commerce_schema.sql`
-
-**Commands:**
+**Commands (operator):**
 ```bash
-wrangler d1 create dew-theory-commerce
-# Update DEW_THEORY_D1.database_id in wrangler.jsonc with output ID
-wrangler d1 execute dew-theory-commerce --file=migrations/001_commerce_schema.sql
+npm ci
+npx wrangler login
+npm run setup:d1
+# Update wrangler.jsonc DEW_THEORY_D1.database_id from wrangler output if needed
 npm run deploy
 ```
 
@@ -76,10 +77,10 @@ npm run deploy
 
 **Files:** `lib/suppliers/skin-script/mapping.js`, D1 `supplier_mappings` table
 
-**Commands:**
+**Commands (after portal recon):**
 ```bash
-# After portal recon — upsert verified mappings (verified=1, verified_at set)
-# via admin script or direct D1 insert per product in data/products.json
+npm run seed:mappings   # creates verified=0 templates only
+# Then upsert verified=1 rows with real skin_script_sku, supplier_product_url, expected_wholesale_price
 ```
 
 **Acceptance:** Every live-fulfillment product has `verified=1` mapping with real `skin_script_sku`, `supplier_product_url`, `expected_wholesale_price`

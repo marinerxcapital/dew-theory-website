@@ -273,32 +273,53 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 ### 2026-08-31 Skin Script RPA fulfillment architecture (Cursor)
 
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
-**Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`
+**PR:** #8 (draft)  
+**Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`  
+**Current SHA:** pending commit (session 2); base `e916c56` merge + local changes  
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-08-31T16:55:00Z
 
 | Area | Status |
 |------|--------|
-| Durable commerce (D1 + file) | Implemented — D1 binding stub; needs real database_id |
+| Durable commerce (D1 + file) | Implemented — D1 binding stub; `scripts/setup-d1-commerce.mjs` added |
 | Fulfillment jobs / outbox | Implemented |
 | Stripe paid → job | Implemented via `persistPaidOrderWithJob` |
 | RPA service (`services/skin-script-rpa/`) | Implemented — FastAPI, Playwright, HMAC, Docker |
 | RPA adapter (`SKIN_SCRIPT_MODE=rpa`) | Implemented |
-| Verified supplier mappings | Schema + validation; real SKUs unverified |
-| Mock supplier portal | Implemented for CI |
+| Verified supplier mappings | Templates via `npm run seed:mappings` (verified=0 until Codex) |
+| Mock supplier portal | **Dynamic server** `services/mock-supplier-portal/server.py` + scenario matrix |
+| Playwright E2E | **9 E2E tests** against mock portal (dry-run, submit, blocked scenarios) |
+| Node failure-injection | **9 tests** in `tests/commerce-failure-injection.test.mjs` |
 | Agent memory system | `AGENTS.md`, `.cursor/rules/`, continuity script |
-| CI | `.github/workflows/ci.yml` |
+| CI | `.github/workflows/ci.yml` — 6/6 green after CI fix commit `1056dba` |
 | Production deploy | **Not deployed** — see Codex handoff |
 
-**Tests (this session):**
+**Tests (session 2 — 2026-08-31T16:43Z):**
 
 | Gate | Result |
 |------|--------|
-| `npm test` | 203 pass / 0 fail |
-| `npm run build` | success |
-| `python3 -m pytest -q` (RPA) | 3 pass |
+| `npm test` | **212 pass / 0 fail** |
+| `npm run build` | **success** |
+| `python3 -m pytest -q` (RPA) | **12 pass** (3 unit + 9 E2E) |
+| `python3 -m ruff check app tests` | **pass** |
+| `node scripts/check-project-continuity.mjs` | pending post-commit |
+| `docker build services/skin-script-rpa` | not run locally (no docker); CI docker-rpa **pass** on `1056dba` |
 
-**Real portal verification:** Not performed — selectors are contract placeholders; Codex TASK-02.
+**Real portal verification:** Not performed — selectors remain contract placeholders; Codex TASK-02.
 
-**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — 6 remaining tasks.
+**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — **6 remaining external tasks** (unchanged).
+
+### 2026-08-31 Session 2 — E2E + failure injection (Cursor)
+
+**Signed:** Cursor Cloud Agent · **Timestamp:** 2026-08-31T16:55:00Z
+
+- Mock portal HTTP server with scenario injection (captcha, MFA, OOS, price drift, address, payment)
+- Playwright worker E2E: dry-run happy path + production submit on mock + 6 blocked scenarios
+- Node commerce failure-injection suite (idempotency, HMAC replay/skew, cancel, RPA kill switch)
+- Operator scripts: `scripts/setup-d1-commerce.mjs`, `scripts/seed-supplier-mapping-templates.mjs`
+- Worker fix: navigate to `/cart` before clear; `_test_scenario` hook for E2E only
+- CI: `playwright install chromium` step added to python-rpa job
+- Ruff: conftest.py specific exception handling (BLE001 fix)
 
 ### Chronology (this revamp)
 

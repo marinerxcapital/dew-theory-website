@@ -1,22 +1,34 @@
 # Skin Script RPA Deployment Log
 
-## 2026-08-31
+---
 
+## 2026-08-31 Session 2
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-08-31T16:43:00Z  
 **Status:** Prepared only — not deployed
 
-### Artifacts ready
+### Verified in CI (not production)
 
-- `services/skin-script-rpa/Dockerfile`
-- `wrangler.jsonc` — `DEW_THEORY_D1` binding (placeholder database_id)
-- `migrations/001_commerce_schema.sql`
-- `docs/SKIN_SCRIPT_RPA_DEPLOYMENT.md`
+| Artifact | CI result |
+|----------|-----------|
+| Next.js build | pass (node job) |
+| Docker RPA image | pass (docker-rpa job) |
+| Playwright E2E | pass (python-rpa job, 12 tests) |
 
-### Blocked on
+### Operator next steps
 
-- Cloudflare D1 database creation + real database_id
-- RPA container host + secrets
-- Owner authorization for production enablement
+1. `npx wrangler login && npm run setup:d1`
+2. Deploy RPA container (see `docs/SKIN_SCRIPT_RPA_DEPLOYMENT.md`)
+3. `wrangler secret put SKIN_SCRIPT_RPA_HMAC_SECRET` (+ service URL)
+4. Dry-run then live validation (handoff TASK-06)
 
-### Next deploy steps
+---
 
-See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`
+## 2026-08-31 Session 1
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-08-31T16:25:00Z  
+**Status:** Prepared only — not deployed
+
+See session 1 notes in prior entry; artifacts: Dockerfile, wrangler.jsonc stub, migration SQL.
