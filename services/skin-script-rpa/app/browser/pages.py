@@ -8,8 +8,9 @@ from typing import Any
 from playwright.async_api import Page
 
 
-def load_selectors() -> dict[str, Any]:
-    path = Path(__file__).resolve().parent.parent / "config" / "selectors.json"
+def load_selectors(path: Path | None = None) -> dict[str, Any]:
+    if path is None:
+        path = Path(__file__).resolve().parent.parent / "config" / "selectors.json"
     return json.loads(path.read_text())
 
 

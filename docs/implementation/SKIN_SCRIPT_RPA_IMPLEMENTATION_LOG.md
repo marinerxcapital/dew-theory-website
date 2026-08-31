@@ -2,6 +2,37 @@
 
 ---
 
+## 2026-08-31 Session 4 — WooCommerce portal + URL mapping (Cursor)
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/skin-script-rpa-completion-e021`  
+**Base SHA:** `3405a3e`  
+**Timestamp (UTC):** 2026-08-31T23:30:00Z
+
+### Implemented
+
+- WooCommerce portal flow: `app/jobs/portal_flows.py`, `selectors-woocommerce.json`
+- Storage-state loading in `worker.py`
+- `SKIN_SCRIPT_*` env aliases in `app/config.py`
+- Public URL registry: `data/supplier/skin-script-portal-urls.json`
+- `npm run seed:portal-urls`, portal recon scripts, 3 new Python tests, 2 Node tests
+
+### Portal recon
+
+- Login at `skinscript.com/my-account/` — password rejected (incorrect)
+- Public product URLs verified for 8/8 catalog items
+- MFA not observed
+
+### Tests
+
+| Command | Result |
+|---------|--------|
+| `npm test` | 222 pass |
+| `python3 -m pytest -q` | 15 pass |
+| `ruff check` | pass |
+
+---
+
 ## 2026-08-31 Codex TASK-01 — D1 provision + checkout durable verification
 
 **Signed:** Codex  

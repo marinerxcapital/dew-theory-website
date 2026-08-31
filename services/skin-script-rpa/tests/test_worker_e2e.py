@@ -36,6 +36,8 @@ def _base_payload(order_id: str = "ord_e2e_001", **overrides):
 @pytest.fixture(autouse=True)
 def enable_rpa(mock_portal_url, monkeypatch):
     monkeypatch.setattr(settings, "portal_base_url", mock_portal_url)
+    monkeypatch.setattr(settings, "mock_portal", True)
+    monkeypatch.setattr(settings, "portal_profile", "mock")
     monkeypatch.setattr(settings, "rpa_enabled", True)
     monkeypatch.setattr(settings, "dry_run", True)
     monkeypatch.setattr(settings, "username", "")

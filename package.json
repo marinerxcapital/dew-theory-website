@@ -16,6 +16,7 @@
     "smoke:all": "node scripts/smoke-checkout.mjs && node scripts/smoke-routes.mjs",
     "continuity": "node scripts/check-project-continuity.mjs",
     "seed:mappings": "node scripts/seed-supplier-mapping-templates.mjs",
+    "seed:portal-urls": "node scripts/seed-portal-url-mappings.mjs",
     "setup:d1": "node scripts/setup-d1-commerce.mjs",
     "setup:d1:local": "node scripts/setup-d1-commerce.mjs --local",
     "ops:dashboard": "node agent-ops-dashboard/server.mjs",

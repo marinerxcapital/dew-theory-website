@@ -268,7 +268,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 - Sephora redesign doc (`docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md`) is historical; brand SoT is this file
 - GSAP listed in package.json but unused by components
 - Homepage is intentionally minimal per owner direction; prior editorial/educational sections are preserved in git history for later reintroduction
-- **Skin Script RPA:** D1 commerce DB must be provisioned in Cloudflare (placeholder ID in wrangler.jsonc); verified supplier mappings + portal selectors pending Codex handoff (`DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`)
+- **Skin Script RPA:** D1 provisioned (`cd55d01f-2c27-4b53-a8aa-9b10555d3b17`); WooCommerce portal flow implemented; live auth blocked — see `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`
 
 ### 2026-08-31 Skin Script RPA fulfillment architecture (Cursor)
 
@@ -383,6 +383,40 @@ Remaining external tasks:
 - TASK-05 RPA container deploy and HMAC secrets: needs approved container host and secret values.
 - TASK-06 real portal dry-run/live validation: needs TASK-02 through TASK-05 complete plus owner authorization before any real purchase.
 - TASK-07 PR #10 merge: still blocked pending owner approval; do not merge.
+
+### 2026-08-31 Cursor Cloud — WooCommerce portal + URL mapping (session 4)
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-08-31T23:30:00Z  
+**Branch:** `cursor/skin-script-rpa-completion-e021` (from `codex/skin-script-rpa-task01-closeout` @ `3405a3e`)
+
+| Area | Status |
+|------|--------|
+| WooCommerce portal profile | Implemented — `portal_flows.py`, `selectors-woocommerce.json` |
+| Storage-state loading | Implemented in `worker.py` |
+| Python `SKIN_SCRIPT_*` env aliases | Implemented in `app/config.py` |
+| Public product URL registry | `data/supplier/skin-script-portal-urls.json` — 8/8 catalog URLs verified (HTTP 200/301) |
+| Portal login attempt | **Failed** — WooCommerce reports password incorrect for authorized email (no MFA observed) |
+| SKU/price verification | **Blocked** — wholesale data hidden until login succeeds |
+| RPA container deploy | **Not deployed** |
+
+**Tests (this session):**
+
+| Gate | Result |
+|------|--------|
+| `npm test` | 222 pass / 0 fail |
+| `npm run build` | success |
+| `python3 -m pytest -q` | 15 pass |
+| `python3 -m ruff check .` | pass |
+| Production apex smoke | HTTP 200; `Shop Skin Script` present |
+
+**Skin Script portal discoveries (no secrets):**
+
+- Portal: `https://skinscript.com` (WooCommerce professional store)
+- Login: `https://skinscript.com/my-account/` — fields `#username`, `#password`, `button.woocommerce-form-login__submit`
+- Product URL pattern: `https://skinscript.com/product/{slug}/`
+- Lip treatment live slug: `new-ageless-lip-treatment` (variant selection pending login)
+- Hydrating serum live slug: `ageless-hydrating-serum` (catalog id `hydrating-skin-serum`)
 
 ### Chronology (this revamp)
 
