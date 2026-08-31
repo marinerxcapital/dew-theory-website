@@ -291,7 +291,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 | Playwright E2E | **9 E2E tests** against mock portal (dry-run, submit, blocked scenarios) |
 | Node failure-injection | **9 tests** in `tests/commerce-failure-injection.test.mjs` |
 | Agent memory system | `AGENTS.md`, `.cursor/rules/`, continuity script |
-| CI | `.github/workflows/ci.yml` — 6/6 green after CI fix commit `1056dba` |
+| CI | `.github/workflows/ci.yml` — **6/6 green** on push `c22eb17` (2026-08-31T17:00Z) |
 | Production deploy | **Not deployed** — see Codex handoff |
 
 **Tests (session 2 — 2026-08-31T16:43Z):**
