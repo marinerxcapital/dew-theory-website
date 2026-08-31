@@ -4,7 +4,7 @@ from __future__ import annotations
 import time
 import uuid
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any
 
 
 @dataclass
@@ -14,12 +14,12 @@ class JobRecord:
     idempotency_key: str
     status: str
     payload: dict[str, Any]
-    supplier_order_id: Optional[str] = None
-    error_code: Optional[str] = None
-    error_message: Optional[str] = None
+    supplier_order_id: str | None = None
+    error_code: str | None = None
+    error_message: str | None = None
     attempt_count: int = 0
-    locked_by: Optional[str] = None
-    locked_at: Optional[float] = None
+    locked_by: str | None = None
+    locked_at: float | None = None
     created_at: float = field(default_factory=time.time)
     updated_at: float = field(default_factory=time.time)
     metadata: dict[str, Any] = field(default_factory=dict)
@@ -49,14 +49,14 @@ class JobStore:
         self._by_order[payload["order_id"]] = job_id
         return rec
 
-    def get(self, job_id: str) -> Optional[JobRecord]:
+    def get(self, job_id: str) -> JobRecord | None:
         return self._jobs.get(job_id)
 
-    def get_by_order(self, order_id: str) -> Optional[JobRecord]:
+    def get_by_order(self, order_id: str) -> JobRecord | None:
         jid = self._by_order.get(order_id)
         return self._jobs.get(jid) if jid else None
 
-    def update(self, job_id: str, **fields: Any) -> Optional[JobRecord]:
+    def update(self, job_id: str, **fields: Any) -> JobRecord | None:
         rec = self._jobs.get(job_id)
         if not rec:
             return None

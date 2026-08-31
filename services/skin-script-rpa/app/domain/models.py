@@ -1,5 +1,5 @@
 """Fulfillment domain models."""
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -22,12 +22,12 @@ class ShippingAddress(BaseModel):
 
 class FulfillmentLine(BaseModel):
     skin_script_sku: str
-    product_id: Optional[str] = None
-    name: Optional[str] = None
+    product_id: str | None = None
+    name: str | None = None
     quantity: int = Field(ge=1)
-    variant: Optional[str] = None
-    unit_wholesale: Optional[float] = None
-    supplier_product_url: Optional[str] = None
+    variant: str | None = None
+    unit_wholesale: float | None = None
+    supplier_product_url: str | None = None
 
     @field_validator("quantity")
     @classmethod
@@ -45,15 +45,15 @@ class CreateJobRequest(BaseModel):
     customer: Customer
     shipping_address: ShippingAddress
     lines: list[FulfillmentLine]
-    dry_run: Optional[bool] = None
+    dry_run: bool | None = None
 
 
 class JobResponse(BaseModel):
     job_id: str
     status: str
-    supplier_order_id: Optional[str] = None
-    error_code: Optional[str] = None
-    error_message: Optional[str] = None
+    supplier_order_id: str | None = None
+    error_code: str | None = None
+    error_message: str | None = None
     dry_run: bool = False
     metadata: dict[str, Any] = Field(default_factory=dict)
 
@@ -65,4 +65,4 @@ class InventoryCheckRequest(BaseModel):
 class InventoryRow(BaseModel):
     sku: str
     stock_status: str
-    quantity: Optional[int] = None
+    quantity: int | None = None

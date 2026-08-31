@@ -31,8 +31,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -e ".[dev]"
-      - run: pytest -q
-      - run: ruff check app tests
+      - run: python -m pytest -q
+      - run: python -m ruff check app tests
 
   docker-rpa:
     runs-on: ubuntu-latest

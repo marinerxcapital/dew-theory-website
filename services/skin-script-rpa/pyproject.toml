@@ -2,7 +2,7 @@
 name = "skin-script-rpa"
 version = "0.1.0"
 description = "Dew Theory Skin Script Playwright RPA fulfillment service"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
   "fastapi>=0.115.0",
   "uvicorn[standard]>=0.32.0",
@@ -25,4 +25,4 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py312"
+target-version = "py310"

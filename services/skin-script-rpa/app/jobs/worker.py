@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 from playwright.async_api import async_playwright
 
 from app.browser.pages import (
@@ -105,7 +106,7 @@ class FulfillmentWorker:
                 await review.place_order()
                 try:
                     await page.wait_for_url("**/confirmation**", timeout=settings.navigation_timeout_ms)
-                except Exception:
+                except PlaywrightTimeoutError:
                     history = OrdersHistoryPage(page, selectors["orders_history"])
                     await page.goto(f"{base}/orders")
                     found = await history.find_order_by_reference(payload["order_id"])
