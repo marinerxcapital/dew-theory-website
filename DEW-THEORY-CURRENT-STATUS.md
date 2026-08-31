@@ -68,15 +68,15 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `415f0881275dbb856c332ebedd67289cb8241289` (2026-08-29, consultation + products only) |
+| Live production SHA (verified deployed) | `7346633` (2026-08-31, Skin Script RPA TASK-01 D1 provision + durable mock checkout) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `358e17e8-d038-4183-ba03-0d6b4a6ef554` |
+| Current Worker version ID | `30e07650-5d65-4ee1-a4fc-c7f0edf005ae` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
 | Live design as of 2026-08-29 | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. Public offering surface is exactly Shop (products) + Virtual Consultation. Primary menu is Shop / Virtual Consult (+ Shop-by-type catalog). |
-| Deploy blocker this session | Cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
+| Deploy blocker this session | TASK-01 cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
-**Live smoke (production, 2026-08-29):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` + `Emily's picks` present; `Take the Skin Quiz`/`Skin Quiz`/`About Emily`/`FAQ`/`Contact` absent). Removed routes `/quiz`, `/about`, `/contact`, `/faq`, `/routine`, `/services`, `/membership`, `/book` return the application 404; `/studio` 308-redirects to `/`. Cloudflare deployment readback shows Worker version `358e17e8-d038-4183-ba03-0d6b4a6ef554`.
+**Live smoke (production, 2026-08-31):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` present). `npm run smoke:routes -- https://dewtheoryco.com` passed for retained routes and all 8 public legal PDFs. Cloudflare deployment readback shows Worker version `30e07650-5d65-4ee1-a4fc-c7f0edf005ae`.
 
 ---
 
@@ -312,7 +312,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 
 **Real portal verification:** Not performed — selectors remain contract placeholders; Codex TASK-02.
 
-**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — **6 remaining external tasks** (unchanged).
+**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — TASK-02 through TASK-07 remain externally blocked.
 
 ### 2026-08-31 Session 3 — Integration tests + setup:d1 fix (Cursor)
 
@@ -335,6 +335,53 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 - Worker fix: navigate to `/cart` before clear; `_test_scenario` hook for E2E only
 - CI: `playwright install chromium` step added to python-rpa job
 - Ruff: conftest.py specific exception handling (BLE001 fix)
+
+### 2026-08-31 Codex TASK-01 — D1 commerce provision + production deploy
+
+**Signed:** Codex  
+**Timestamp (UTC):** 2026-08-31T21:17:00Z  
+**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Code/config commit:** `7346633` (`fix: wire mock checkout to durable commerce`)  
+**Production Worker version:** `30e07650-5d65-4ee1-a4fc-c7f0edf005ae`  
+**D1 database:** `dew-theory-commerce` / `cd55d01f-2c27-4b53-a8aa-9b10555d3b17` / region `ENAM`
+
+Completed:
+
+- Provisioned remote Cloudflare D1 database `dew-theory-commerce`.
+- Updated `wrangler.jsonc` `DEW_THEORY_D1.database_id` from placeholder to the real D1 ID.
+- Applied `migrations/001_commerce_schema.sql` remotely; D1 readback showed commerce tables including `orders`, `fulfillment_jobs`, `supplier_mappings`, `webhook_events`, and `hmac_nonces`.
+- Fixed `scripts/setup-d1-commerce.mjs` for Windows paths with spaces and idempotent reruns after `wrangler.jsonc` has a real commerce D1 ID.
+- Patched mock-paid checkout to call `persistPaidOrderWithJob()` so production mock checkout verifies the durable commerce outbox path when Stripe keys are not available.
+- Deployed Worker `dew-theory` from committed SHA `7346633`.
+- Created production mock paid test order `ord_1788210773973`; response returned durable job `fj_1788210774554_5y45fov` with status `queued_for_supplier`.
+- Redeployed after the test order; D1 readback still returned order `ord_1788210773973` status `paid` and fulfillment job status `queued_for_supplier`, proving the order is not only in the legacy runtime file store.
+
+Gates run by Codex:
+
+| Gate | Result |
+|------|--------|
+| `git fetch origin` / checkout / pull | Branch `cursor/skin-script-rpa-fulfillment-5261`, starting HEAD `85b4cfe` |
+| `npx wrangler whoami` | Authenticated as `skyler@marinerxcapital.com` with MarinerX Capital D1 write access |
+| `npm ci` | success; existing audit output remains 1 moderate / 7 high |
+| `npm run setup:d1` | success after Windows helper fix; remote D1 migration idempotent |
+| `npm test` | 220 pass / 0 fail |
+| `npm run build` | success; 58 app routes generated |
+| `python -m pip install -e ".[dev]"` | success |
+| `python -m playwright install chromium` | success |
+| `python -m pytest -q` | 12 pass |
+| `python -m ruff check app tests` | pass |
+| `npm run smoke:routes -- https://dewtheoryco.com` | all clear |
+| D1 readback | `orders` + `fulfillment_jobs` rows present for `ord_1788210773973` after redeploy |
+| `docker build services/skin-script-rpa` | blocked locally: `docker` command not found on PATH |
+
+Remaining external tasks:
+
+- TASK-02 portal reconnaissance: needs authorized Skin Script wholesale credentials and headed browser/MFA.
+- TASK-03 verified supplier mappings: depends on real portal SKUs/URLs/prices from TASK-02.
+- TASK-04 storage-state bootstrap: needs human MFA and secure secret-store destination.
+- TASK-05 RPA container deploy and HMAC secrets: needs approved container host and secret values.
+- TASK-06 real portal dry-run/live validation: needs TASK-02 through TASK-05 complete plus owner authorization before any real purchase.
+- TASK-07 PR #8 merge: still blocked pending owner approval; do not merge.
 
 ### Chronology (this revamp)
 

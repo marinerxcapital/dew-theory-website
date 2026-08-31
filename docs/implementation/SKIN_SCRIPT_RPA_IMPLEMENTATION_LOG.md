@@ -2,6 +2,50 @@
 
 ---
 
+## 2026-08-31 Codex TASK-01 — D1 provision + checkout durable verification
+
+**Signed:** Codex  
+**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Base SHA:** `85b4cfefdff2feabda4bb57be13898d2708f0fd7`  
+**Code/config SHA:** `7346633`  
+**Timestamp (UTC):** 2026-08-31T21:17:00Z
+
+### Implemented this session
+
+| Item | Path / detail |
+|------|----------------|
+| Remote D1 binding | `wrangler.jsonc` `DEW_THEORY_D1.database_id` set to `cd55d01f-2c27-4b53-a8aa-9b10555d3b17` |
+| Windows setup helper fix | `scripts/setup-d1-commerce.mjs` now runs Wrangler through `node_modules/wrangler/bin/wrangler.js`, handles paths with spaces, skips create when a real ID is configured, and applies migrations idempotently |
+| Mock checkout durable write | `app/api/checkout/route.js` mock-paid path now awaits `persistPaidOrderWithJob()` and returns durable job metadata |
+
+### Tests run (exact)
+
+| Command | Result | Timestamp |
+|---------|--------|-----------|
+| `npm ci` | success; 8 existing audit findings (1 moderate, 7 high) | 2026-08-31T20:53Z |
+| `npm run setup:d1` | success after helper fix; remote D1 migration idempotent | 2026-08-31T20:57Z |
+| `npm test` | 220 pass / 0 fail | 2026-08-31T21:08Z |
+| `npm run build` | success; 58 app routes generated | 2026-08-31T21:09Z |
+| `python -m pip install -e ".[dev]"` | success | 2026-08-31T20:58Z |
+| `python -m playwright install chromium` | success | 2026-08-31T21:00Z |
+| `python -m pytest -q` | 12 pass | 2026-08-31T21:01Z |
+| `python -m ruff check app tests` | pass | 2026-08-31T21:01Z |
+| `npm run smoke:routes -- https://dewtheoryco.com` | all clear | 2026-08-31T21:17Z |
+| `docker build services/skin-script-rpa` | not run: `docker` command not found on PATH | 2026-08-31T21:13Z |
+
+### Production verification
+
+- Cloudflare D1 `dew-theory-commerce` created in region `ENAM`.
+- Remote migration processed 14 queries and produced 8 commerce tables.
+- Production checkout `ord_1788210773973` returned durable job `fj_1788210774554_5y45fov`.
+- After redeploying Worker version `30e07650-5d65-4ee1-a4fc-c7f0edf005ae`, remote D1 still returned order `ord_1788210773973` status `paid` and fulfillment job status `queued_for_supplier`.
+
+### External blockers (remaining)
+
+TASK-02 through TASK-07 remain blocked on Skin Script credentials/MFA, real SKUs and prices, secure storage-state handling, RPA container host/secrets, live purchase authorization, and owner approval to merge PR #8.
+
+---
+
 ## 2026-08-31 Session 3 — Integration tests + setup:d1 auth fix
 
 **Signed:** Cursor Cloud Agent  

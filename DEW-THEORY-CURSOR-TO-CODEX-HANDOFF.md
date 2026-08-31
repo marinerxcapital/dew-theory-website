@@ -24,34 +24,7 @@ Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfi
 
 ---
 
-# CODEX REMAINING TASKS
-
-## TASK-01: Provision Cloudflare D1 commerce database
-
-**Blocker:** Cursor Cloud Agent VM has no Cloudflare auth (`wrangler whoami` reports not authenticated; `CLOUDFLARE_API_TOKEN` unset).
-
-**Prerequisite completed by Cursor:** `scripts/setup-d1-commerce.mjs` (remote requires auth; `npm run setup:d1:local` for dev-only local schema), `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
-
-**Commands (operator):**
-```bash
-npm ci
-npx wrangler login
-npm run setup:d1
-# Update wrangler.jsonc DEW_THEORY_D1.database_id from wrangler output if needed
-npm run deploy
-```
-
-**Secret names:** none (D1 is binding, not secret)
-
-**External access:** Cloudflare dashboard / Wrangler OAuth for MarinerX account
-
-**Acceptance:** Paid order survives Worker restart; `data/runtime/commerce.json` not sole production store
-
-**Verify:** Place test order via Stripe test mode; restart Worker; confirm order + fulfillment_job in D1
-
-**Rollback:** Worker can run with file fallback if D1 binding removed (not recommended for prod)
-
----
+# CODEX REMAINING EXTERNALLY BLOCKED TASKS
 
 ## TASK-02: Authenticated Skin Script portal reconnaissance
 
@@ -143,3 +116,13 @@ docker build -t dew-theory-skin-script-rpa services/skin-script-rpa
 **Acceptance:** One real supplier order with captured confirmation ID; no duplicate on webhook replay
 
 **Rollback:** `SKIN_SCRIPT_RPA_ENABLED=false`, `AUTO_FULFILL=false`
+
+---
+
+## TASK-07: Merge PR #8
+
+**Blocker:** Requires explicit owner approval after gates are green.
+
+**PR:** https://github.com/marinerxcapital/dew-theory-website/pull/8
+
+**Acceptance:** PR #8 merged only after owner approval; do not merge from this handoff alone.

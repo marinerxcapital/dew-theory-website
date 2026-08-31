@@ -1,10 +1,20 @@
 # Active Work — Dew Theory
 
-**Signed:** Cursor Cloud Agent  
-**Last updated (UTC):** 2026-08-31T17:02:00Z  
-**Head SHA:** `99bef7d`  
+**Signed:** Codex  
+**Last updated (UTC):** 2026-08-31T21:17:00Z  
+**Head SHA:** `7346633` code/config; docs update pending  
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
-**PR:** #8 (draft, CI green on prior push)
+**PR:** #8 (draft; do not merge without owner approval)
+
+## Completed (Codex — 2026-08-31T21:17Z)
+
+- [x] Remote D1 database `dew-theory-commerce` provisioned in Cloudflare.
+- [x] `wrangler.jsonc` `DEW_THEORY_D1.database_id` set to `cd55d01f-2c27-4b53-a8aa-9b10555d3b17`.
+- [x] Remote D1 migration applied and table readback verified.
+- [x] `scripts/setup-d1-commerce.mjs` fixed for Windows path/shim execution and idempotent reruns.
+- [x] Mock-paid checkout now writes durable order + fulfillment job when Stripe keys are absent.
+- [x] Worker `dew-theory` deployed from commit `7346633`; current version `30e07650-5d65-4ee1-a4fc-c7f0edf005ae`.
+- [x] Production mock paid order `ord_1788210773973` and fulfillment job `fj_1788210774554_5y45fov` verified in D1 after redeploy.
 
 ## Completed (session 3 — 2026-08-31T17:02Z)
 
@@ -28,12 +38,12 @@
 
 | # | Task | Blocker |
 |---|------|---------|
-| 1 | D1 commerce DB provision (remote) | `wrangler login` / `CLOUDFLARE_API_TOKEN` not available in VM |
 | 2 | Portal reconnaissance | No authenticated Skin Script portal access |
 | 3 | Verified SKU mappings | Depends on TASK-02 |
 | 4 | Session bootstrap (MFA) | Interactive headed browser + human MFA |
 | 5 | RPA container deploy + secrets | No container host credentials |
 | 6 | Live dry-run / validation | TASK-01–05 + owner authorization |
+| 7 | PR #8 merge | Requires green gates and explicit owner approval |
 
 See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
 
