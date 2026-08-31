@@ -3,9 +3,9 @@
 **Signed:** Codex  
 **Last updated (UTC):** 2026-08-31T21:17:00Z  
 **Head SHA:** `7346633` code/config; docs update pending  
-**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Branch:** `codex/skin-script-rpa-task01-closeout`  
 **Original PR:** #8 (already merged at `20b7b1c` from older head `1056dba`)  
-**Active draft PR:** #9 (do not merge without owner approval)
+**Active draft PR:** #10 (do not merge without owner approval)
 
 ## Completed (Codex — 2026-08-31T21:17Z)
 
@@ -44,11 +44,11 @@
 | 4 | Session bootstrap (MFA) | Interactive headed browser + human MFA |
 | 5 | RPA container deploy + secrets | No container host credentials |
 | 6 | Live dry-run / validation | TASK-01–05 + owner authorization |
-| 7 | PR #9 merge | Requires green gates and explicit owner approval |
+| 7 | PR #10 merge | Requires green gates and explicit owner approval |
 
 See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
 
 ## Next code-capable (future sessions)
 
 - Admin UI for supplier mapping verification (after real SKUs known)
-- Merge PR #9 when owner approves
+- Merge PR #10 when owner approves

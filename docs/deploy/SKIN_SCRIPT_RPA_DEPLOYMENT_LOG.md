@@ -6,10 +6,10 @@
 
 **Signed:** Codex  
 **Timestamp (UTC):** 2026-08-31T21:17:00Z  
-**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Branch:** `codex/skin-script-rpa-task01-closeout`  
 **Code/config SHA:** `7346633`  
 **Status:** TASK-01 deployed and live-verified; RPA container not deployed
-**PR status:** Original PR #8 is already merged from older head `1056dba`; replacement draft PR #9 carries the post-merge RPA work and must not be merged without owner approval.
+**PR status:** Original PR #8 is already merged from older head `1056dba`; dirty PR #9 was superseded; replacement draft PR #10 carries the post-merge RPA work and must not be merged without owner approval.
 
 ### Cloudflare resources
 

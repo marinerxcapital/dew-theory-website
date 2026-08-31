@@ -5,7 +5,7 @@
 ## 2026-08-31 Codex TASK-01 — D1 provision + checkout durable verification
 
 **Signed:** Codex  
-**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Branch:** `codex/skin-script-rpa-task01-closeout`  
 **Base SHA:** `85b4cfefdff2feabda4bb57be13898d2708f0fd7`  
 **Code/config SHA:** `7346633`  
 **Timestamp (UTC):** 2026-08-31T21:17:00Z
@@ -42,7 +42,7 @@
 
 ### External blockers (remaining)
 
-TASK-02 through TASK-07 remain blocked on Skin Script credentials/MFA, real SKUs and prices, secure storage-state handling, RPA container host/secrets, live purchase authorization, and owner approval to merge replacement PR #9. Original PR #8 is already merged from older head `1056dba`.
+TASK-02 through TASK-07 remain blocked on Skin Script credentials/MFA, real SKUs and prices, secure storage-state handling, RPA container host/secrets, live purchase authorization, and owner approval to merge replacement PR #10. Original PR #8 is already merged from older head `1056dba`; dirty PR #9 was superseded by clean PR #10.
 
 ---
 
