@@ -275,7 +275,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **PR:** #8 (draft)  
 **Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`  
-**Current SHA:** pending commit (session 2); base `e916c56` merge + local changes  
+**Current SHA:** `78589f8a` (`78589f8`) — session 2 E2E + failure injection + operator scripts  
 **Signed:** Cursor Cloud Agent  
 **Timestamp (UTC):** 2026-08-31T16:55:00Z
 
