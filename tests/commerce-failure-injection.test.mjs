@@ -238,6 +238,45 @@ describe('financial cap state machine', () => {
   });
 });
 
+describe('claimFulfillmentJob locking', () => {
+  beforeEach(() => {
+    resetCommerceBackendForTests();
+    process.env.STORE_BACKEND = 'file';
+  });
+
+  it('blocks concurrent claim from another worker while lock is held', async () => {
+    const order = paidOrder();
+    const { job } = await persistPaidOrderWithJob(order);
+
+    const first = await claimFulfillmentJob(job.id, 'worker-a');
+    assert.equal(first.ok, true);
+    assert.equal(first.job.locked_by, 'worker-a');
+
+    const second = await claimFulfillmentJob(job.id, 'worker-b');
+    assert.equal(second.ok, false);
+    assert.equal(second.code, 'job_locked');
+  });
+
+  it('schedules retry for retryable network_error failures', async () => {
+    const order = paidOrder();
+    const { job } = await persistPaidOrderWithJob(order);
+    await claimFulfillmentJob(job.id, 'worker-retry');
+
+    const failure = await completeFulfillmentFailure({
+      job_id: job.id,
+      order_id: order.id,
+      error_code: 'network_error',
+      error_message: 'Connection reset',
+      stage: 'login'
+    });
+    assert.equal(failure.ok, false);
+    assert.equal(failure.blocked, false);
+    assert.equal(failure.job.status, 'queued_for_supplier');
+    assert.ok(failure.job.next_attempt_at);
+    assert.equal(failure.job.completed_at, null);
+  });
+});
+
 describe('shouldAutoFulfill RPA gate', () => {
   const saved = {};
 

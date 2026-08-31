@@ -2,6 +2,42 @@
 
 ---
 
+## 2026-08-31 Session 3 — Integration tests + setup:d1 auth fix
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
+**Base SHA:** `c4e31083ad6c01e74f231b7da00f2fa49f7e125b`  
+**Timestamp (UTC):** 2026-08-31T17:02:00Z
+
+### Implemented this session
+
+| Item | Path / detail |
+|------|----------------|
+| Stripe→commerce integration tests | `tests/stripe-commerce-integration.test.mjs` (2 tests) |
+| RPA adapter mock service tests | `tests/rpa-adapter-integration.test.mjs` (4 tests) |
+| Mock RPA HTTP helper | `tests/helpers/mock-rpa-server.mjs` — HMAC validation |
+| Job claim lock + retry tests | `tests/commerce-failure-injection.test.mjs` (+2 tests) |
+| setup:d1 auth fix | Detect "not authenticated" despite exit 0; `--remote` for prod |
+| Local D1 dev script | `npm run setup:d1:local` — no Cloudflare auth required |
+
+### Tests run (exact)
+
+| Command | Result | Timestamp |
+|---------|--------|-----------|
+| `npm test` | 220 pass / 0 fail | 2026-08-31T17:02Z |
+| `npm run build` | success | 2026-08-31T17:02Z |
+| `python3 -m pytest -q` | 12 pass | 2026-08-31T17:02Z |
+| `python3 -m ruff check app tests` | pass | 2026-08-31T17:02Z |
+| `node scripts/check-project-continuity.mjs` | OK | 2026-08-31T17:02Z |
+| `npm run setup:d1` (no auth) | exit 2 | 2026-08-31T17:02Z |
+| `npm run setup:d1:local` | success | 2026-08-31T17:02Z |
+
+### External blockers (unchanged)
+
+See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` TASK-01 through TASK-06.
+
+---
+
 ## 2026-08-31 Session 2 — E2E, failure injection, operator scripts
 
 **Signed:** Cursor Cloud Agent  

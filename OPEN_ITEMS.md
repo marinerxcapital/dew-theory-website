@@ -181,7 +181,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **Cloudflare edge cache** — R2 ISR + D1 tag cache already used in production deploy path;
   optional private photo bucket `dew-theory-consultation-photos` (see `docs/DEPLOY_DEWTHEORYCO.md`).
 - **Skin Script live credentials.** Adapters ready; use `SKIN_SCRIPT_MODE=mock` + CSV until partner answers.
-- **Skin Script RPA production (2026-08-31).** Architecture + E2E mock tests complete on `cursor/skin-script-rpa-fulfillment-5261` (PR #8, CI green). Requires D1 provisioning (`npm run setup:d1` with wrangler login), portal reconnaissance, verified mappings (`npm run seed:mappings` then verify), session bootstrap, RPA deploy — see `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` (6 Codex-only tasks).
+- **Skin Script RPA production (2026-08-31).** Architecture + 220 Node tests + 12 Python E2E tests on `cursor/skin-script-rpa-fulfillment-5261` (PR #8). Remote D1 requires `wrangler login` then `npm run setup:d1`; local dev schema via `npm run setup:d1:local`. Portal recon, verified mappings, session bootstrap, RPA deploy — see `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` (6 Codex-only tasks).
 - **xAI assist optional.** `XAI_API_KEY` for messy feed mapping only.
 - **Admin production secrets** must remain non-default on Worker.
 

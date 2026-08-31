@@ -12,13 +12,15 @@ Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfi
 - **Mock portal:** Dynamic HTTP server `services/mock-supplier-portal/server.py` with scenario matrix (captcha, MFA, OOS, price drift, address, payment)
 - **Playwright E2E:** 9 tests in `services/skin-script-rpa/tests/test_worker_e2e.py` against mock portal
 - **Node failure-injection:** 9 tests in `tests/commerce-failure-injection.test.mjs` (idempotency, HMAC replay/skew, cancel, kill switch)
-- **Operator scripts:** `scripts/setup-d1-commerce.mjs` (`npm run setup:d1`), `scripts/seed-supplier-mapping-templates.mjs` (`npm run seed:mappings`)
-- **Tests (session 2):** `npm test` 212/212; `npm run build` success; `python3 -m pytest -q` 12/12; `ruff check` pass
+- **Operator scripts:** `scripts/setup-d1-commerce.mjs` (`npm run setup:d1`, `npm run setup:d1:local`), `scripts/seed-supplier-mapping-templates.mjs` (`npm run seed:mappings`)
+- **Integration tests (session 3):** Stripe→commerce persistence, RPA adapter↔mock HMAC service, job claim lock + retry scheduling
+- **setup:d1 fix:** Detect wrangler "not authenticated" (exit 0 bug); `--remote` for prod, `--local` for dev schema
+- **Tests (session 3):** `npm test` 220/220; `npm run build` success; `python3 -m pytest -q` 12/12; `ruff check` pass
 - **Memory system:** `AGENTS.md`, `.cursor/rules/`, `AI_PROJECT_INSTRUCTIONS.md`, continuity script
 - **CI:** `.github/workflows/ci.yml` — 6/6 green (node, python-rpa, docker-rpa × push/PR)
 - **Docs:** Full `docs/SKIN_SCRIPT_RPA_*` suite + ADR-001
 
-**Signed:** Cursor Cloud Agent · **Last updated (UTC):** 2026-08-31T16:55:00Z
+**Signed:** Cursor Cloud Agent · **Last updated (UTC):** 2026-08-31T17:02:00Z
 
 ---
 
@@ -26,9 +28,9 @@ Evidence-based summary of work completed on branch `cursor/skin-script-rpa-fulfi
 
 ## TASK-01: Provision Cloudflare D1 commerce database
 
-**Blocker:** Cursor Cloud Agent VM has no `wrangler` auth (`wrangler whoami` fails).
+**Blocker:** Cursor Cloud Agent VM has no Cloudflare auth (`wrangler whoami` reports not authenticated; `CLOUDFLARE_API_TOKEN` unset).
 
-**Prerequisite completed by Cursor:** `scripts/setup-d1-commerce.mjs`, `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
+**Prerequisite completed by Cursor:** `scripts/setup-d1-commerce.mjs` (remote requires auth; `npm run setup:d1:local` for dev-only local schema), `migrations/001_commerce_schema.sql`, `wrangler.jsonc` binding stub
 
 **Commands (operator):**
 ```bash

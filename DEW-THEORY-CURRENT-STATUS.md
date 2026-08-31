@@ -275,9 +275,9 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **PR:** #8 (draft)  
 **Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`  
-**Current SHA:** `b06abc8` (head); feature commit `78589f8`  
+**Current SHA:** pending session 3 commit (base `c4e3108`)  
 **Signed:** Cursor Cloud Agent  
-**Timestamp (UTC):** 2026-08-31T17:00:00Z
+**Timestamp (UTC):** 2026-08-31T17:02:00Z
 
 | Area | Status |
 |------|--------|
@@ -288,26 +288,41 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 | RPA adapter (`SKIN_SCRIPT_MODE=rpa`) | Implemented |
 | Verified supplier mappings | Templates via `npm run seed:mappings` (verified=0 until Codex) |
 | Mock supplier portal | **Dynamic server** `services/mock-supplier-portal/server.py` + scenario matrix |
-| Playwright E2E | **9 E2E tests** against mock portal (dry-run, submit, blocked scenarios) |
-| Node failure-injection | **9 tests** in `tests/commerce-failure-injection.test.mjs` |
+| Playwright E2E | **9 E2E tests** against mock portal |
+| Node failure-injection | **11 tests** in `tests/commerce-failure-injection.test.mjs` |
+| Stripe→commerce integration | **2 tests** in `tests/stripe-commerce-integration.test.mjs` |
+| RPA adapter integration | **4 tests** in `tests/rpa-adapter-integration.test.mjs` |
+| setup:d1 operator script | Fixed auth detection; `--remote` prod / `--local` dev |
 | Agent memory system | `AGENTS.md`, `.cursor/rules/`, continuity script |
 | CI | `.github/workflows/ci.yml` — **6/6 green** on push `c22eb17` (2026-08-31T17:00Z) |
 | Production deploy | **Not deployed** — see Codex handoff |
 
-**Tests (session 2 — 2026-08-31T16:43Z):**
+**Tests (session 3 — 2026-08-31T17:02Z):**
 
 | Gate | Result |
 |------|--------|
-| `npm test` | **212 pass / 0 fail** |
+| `npm test` | **220 pass / 0 fail** |
 | `npm run build` | **success** |
-| `python3 -m pytest -q` (RPA) | **12 pass** (3 unit + 9 E2E) |
+| `python3 -m pytest -q` (RPA) | **12 pass** |
 | `python3 -m ruff check app tests` | **pass** |
 | `node scripts/check-project-continuity.mjs` | **OK** |
-| `docker build services/skin-script-rpa` | not run locally (no docker); CI docker-rpa **pass** on `1056dba` |
+| `npm run setup:d1` (no auth) | **exit 2** (correct — requires wrangler login) |
+| `npm run setup:d1:local` | **success** (local D1 schema only) |
+| `docker build services/skin-script-rpa` | not run locally (no docker); CI docker-rpa pass on prior push |
 
 **Real portal verification:** Not performed — selectors remain contract placeholders; Codex TASK-02.
 
 **Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — **6 remaining external tasks** (unchanged).
+
+### 2026-08-31 Session 3 — Integration tests + setup:d1 fix (Cursor)
+
+**Signed:** Cursor Cloud Agent · **Timestamp:** 2026-08-31T17:02:00Z
+
+- Stripe→commerce integration tests (`markOrderPaidFromSessionAsync` → durable job)
+- RPA adapter integration tests with mock HMAC HTTP server
+- Job claim lock + network_error retry scheduling tests
+- Fixed `setup:d1` false-positive auth (wrangler whoami exit 0 when unauthenticated)
+- Added `npm run setup:d1:local` for dev-only local D1 schema
 
 ### 2026-08-31 Session 2 — E2E + failure injection (Cursor)
 

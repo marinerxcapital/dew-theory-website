@@ -18,12 +18,18 @@ function hasWrangler() {
 
 function whoami() {
   try {
-    execSync(`"${WRANGLER}" whoami`, { stdio: 'pipe', encoding: 'utf8' });
+    const out = execSync(`"${WRANGLER}" whoami`, { stdio: 'pipe', encoding: 'utf8' });
+    if (/not authenticated/i.test(out)) return false;
+    // Authenticated sessions include an account email or Account ID line
+    if (!/@/.test(out) && !/Account ID/i.test(out)) return false;
     return true;
   } catch {
     return false;
   }
 }
+
+const useLocal = process.argv.includes('--local');
+const remoteArgs = useLocal ? [] : ['--remote'];
 
 console.log('[setup-d1-commerce] Dew Theory commerce D1 provisioning helper');
 console.log(`Timestamp: ${new Date().toISOString()}`);
@@ -33,14 +39,21 @@ if (!hasWrangler()) {
   process.exit(1);
 }
 
-if (!whoami()) {
+if (!useLocal && !whoami()) {
   console.error('ERROR: wrangler not authenticated. Run: npx wrangler login');
-  console.error('Then re-run: node scripts/setup-d1-commerce.mjs');
+  console.error('For local-only dev schema: npm run setup:d1:local');
+  console.error('Then re-run: npm run setup:d1');
   process.exit(2);
 }
 
+if (useLocal) {
+  console.log('Mode: LOCAL D1 (dev only — not production). Skipping remote auth check.');
+} else {
+  console.log('Mode: REMOTE D1 (Cloudflare production account).');
+}
+
 console.log('Creating database dew-theory-commerce (skip if already exists)...');
-const create = spawnSync(WRANGLER, ['d1', 'create', 'dew-theory-commerce'], {
+const create = spawnSync(WRANGLER, ['d1', 'create', 'dew-theory-commerce', ...remoteArgs], {
   encoding: 'utf8'
 });
 console.log(create.stdout || create.stderr);
@@ -55,7 +68,7 @@ if (idMatch) {
 console.log('\nApplying migration...');
 const apply = spawnSync(
   WRANGLER,
-  ['d1', 'execute', 'dew-theory-commerce', '--file', MIGRATION],
+  ['d1', 'execute', 'dew-theory-commerce', ...remoteArgs, '--file', MIGRATION],
   { encoding: 'utf8', cwd: ROOT }
 );
 if (apply.status !== 0) {
