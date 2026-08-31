@@ -273,7 +273,8 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 ### 2026-08-31 Skin Script RPA fulfillment architecture (Cursor)
 
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
-**PR:** #8 (draft)  
+**Original PR:** #8 (now merged at `20b7b1c` from older head `1056dba`)  
+**Replacement PR:** #9 (draft, carries post-merge RPA session work + Codex TASK-01)  
 **Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`  
 **Current SHA:** `99bef7d`  
 **Signed:** Cursor Cloud Agent  
@@ -312,7 +313,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 
 **Real portal verification:** Not performed — selectors remain contract placeholders; Codex TASK-02.
 
-**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — TASK-02 through TASK-07 remain externally blocked.
+**Codex handoff:** `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` — TASK-02 through TASK-07 remain externally blocked; active approval gate is draft PR #9, not already-merged PR #8.
 
 ### 2026-08-31 Session 3 — Integration tests + setup:d1 fix (Cursor)
 
@@ -381,7 +382,7 @@ Remaining external tasks:
 - TASK-04 storage-state bootstrap: needs human MFA and secure secret-store destination.
 - TASK-05 RPA container deploy and HMAC secrets: needs approved container host and secret values.
 - TASK-06 real portal dry-run/live validation: needs TASK-02 through TASK-05 complete plus owner authorization before any real purchase.
-- TASK-07 PR #8 merge: still blocked pending owner approval; do not merge.
+- TASK-07 PR #9 merge: still blocked pending owner approval; do not merge.
 
 ### Chronology (this revamp)
 

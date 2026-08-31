@@ -119,10 +119,12 @@ docker build -t dew-theory-skin-script-rpa services/skin-script-rpa
 
 ---
 
-## TASK-07: Merge PR #8
+## TASK-07: Merge replacement PR #9
 
 **Blocker:** Requires explicit owner approval after gates are green.
 
-**PR:** https://github.com/marinerxcapital/dew-theory-website/pull/8
+**Original PR:** https://github.com/marinerxcapital/dew-theory-website/pull/8 — already merged at `20b7b1c` from older head `1056dba`
 
-**Acceptance:** PR #8 merged only after owner approval; do not merge from this handoff alone.
+**Active draft PR:** https://github.com/marinerxcapital/dew-theory-website/pull/9
+
+**Acceptance:** PR #9 merged only after owner approval; do not merge from this handoff alone.

@@ -42,7 +42,7 @@
 
 ### External blockers (remaining)
 
-TASK-02 through TASK-07 remain blocked on Skin Script credentials/MFA, real SKUs and prices, secure storage-state handling, RPA container host/secrets, live purchase authorization, and owner approval to merge PR #8.
+TASK-02 through TASK-07 remain blocked on Skin Script credentials/MFA, real SKUs and prices, secure storage-state handling, RPA container host/secrets, live purchase authorization, and owner approval to merge replacement PR #9. Original PR #8 is already merged from older head `1056dba`.
 
 ---
 

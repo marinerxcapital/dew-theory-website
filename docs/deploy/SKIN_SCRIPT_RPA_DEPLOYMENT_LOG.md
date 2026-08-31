@@ -9,6 +9,7 @@
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **Code/config SHA:** `7346633`  
 **Status:** TASK-01 deployed and live-verified; RPA container not deployed
+**PR status:** Original PR #8 is already merged from older head `1056dba`; replacement draft PR #9 carries the post-merge RPA work and must not be merged without owner approval.
 
 ### Cloudflare resources
 
