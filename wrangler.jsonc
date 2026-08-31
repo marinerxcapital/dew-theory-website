@@ -58,7 +58,7 @@
     {
       "binding": "DEW_THEORY_D1",
       "database_name": "dew-theory-commerce",
-      "database_id": "00000000-0000-0000-0000-000000000001"
+      "database_id": "cd55d01f-2c27-4b53-a8aa-9b10555d3b17"
     }
   ],
   // Cloudflare Images binding (next/image on Workers)

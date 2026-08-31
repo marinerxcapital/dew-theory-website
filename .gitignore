@@ -42,7 +42,8 @@ agent-ops-dashboard/data/
 services/skin-script-rpa/.env
 services/skin-script-rpa/traces/
 services/skin-script-rpa/screenshots/
-services/skin-script-rpa/**/__pycache__/
+services/mock-supplier-portal/**/__pycache__/
+services/mock-supplier-portal/**/*.pyc
 services/skin-script-rpa/**/*.pyc
 services/skin-script-rpa/*.egg-info/
 services/skin-script-rpa/**/*.egg-info/
