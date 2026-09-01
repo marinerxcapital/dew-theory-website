@@ -1,13 +1,13 @@
 import Rule from '@/components/Rule';
 import CatalogSyncPanel from '@/components/admin/CatalogSyncPanel';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 
 export const metadata = {
   title: 'Catalog sync'
 };
 
 export default async function AdminSyncPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
 
   return (
     <section className="mx-auto max-w-shell px-6 py-12 lg:px-10">

@@ -1,92 +1,48 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
-const nav = [
-  { href: '/admin', label: 'Overview', exact: true },
-  { href: '/admin/products', label: 'Products' },
-  { href: '/admin/import', label: 'CSV import' },
-  { href: '/admin/sync', label: 'Catalog sync' },
-  { href: '/admin/orders', label: 'Orders' },
-  { href: '/admin/appointments', label: 'Appointments' },
-  { href: '/admin/consultations', label: 'Consultations' },
-  { href: '/admin/discounts', label: 'Discounts' },
-  { href: '/admin/analytics', label: 'Analytics' },
-  { href: '/admin/emails', label: 'Emails' }
-];
+import AdminNav from './AdminNav';
 
 export default function AdminShell({ admin, children }) {
-  const pathname = usePathname();
-  const isLogin = pathname === '/admin/login';
+  const isLogin = !admin;
 
-  if (isLogin || !admin) {
+  if (isLogin) {
     return (
-      <div className="pt-24">
-        <a href="#admin-main" className="skip-link">
-          Skip to admin content
-        </a>
-        <div id="admin-main" tabIndex={-1}>
-          {children}
-        </div>
+      <div className="pt-20">
+        <a href="#admin-main" className="skip-link">Skip to admin content</a>
+        <div id="admin-main" tabIndex={-1}>{children}</div>
       </div>
     );
   }
 
   return (
-    <div className="pt-24">
-      <a href="#admin-main" className="skip-link">
-        Skip to admin content
-      </a>
-      <div className="border-b border-chrome/20 bg-pearl/70">
-        <div className="mx-auto flex max-w-shell flex-wrap items-center justify-between gap-4 px-6 py-4 lg:px-10">
-          <div>
-            <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
-              Admin
+    <div className="min-h-screen pt-20">
+      <a href="#admin-main" className="skip-link">Skip to admin content</a>
+      <header className="border-b border-sage-deep/15 bg-ivory/90 backdrop-blur-sm">
+        <div className="mx-auto max-w-shell px-4 py-4 sm:px-6 lg:px-10">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-sage-deep">
+                Dew Theory · Owner
+              </p>
+              <p className="font-display text-xl font-normal text-forest">Owner console</p>
+            </div>
+            <p className="font-body text-xs font-light text-muted">
+              {admin.name}
+              <span className="hidden sm:inline"> · {admin.email}</span>
             </p>
-            <p className="font-display text-lg font-normal text-graphite">Dew Theory</p>
           </div>
-          <p className="font-body text-xs font-light text-charcoal/60">
-            {admin.name} · {admin.role}
-          </p>
+          <div className="mt-4">
+            <AdminNav admin={admin} />
+          </div>
         </div>
-        <nav
-          aria-label="Admin"
-          className="mx-auto flex max-w-shell gap-1 overflow-x-auto overscroll-x-contain px-4 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-6 lg:px-10 [&::-webkit-scrollbar]:hidden"
-        >
-          {nav.map((item) => {
-            const active = item.exact
-              ? pathname === item.href
-              : pathname === item.href || pathname.startsWith(item.href + '/');
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`whitespace-nowrap px-3 py-2 font-label text-[0.64rem] font-light uppercase tracking-lockup ${
-                  active ? 'border-b-2 border-graphite text-graphite' : 'text-chrome hover:text-charcoal'
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-          <form action="/api/admin/logout" method="POST" className="ml-auto shrink-0">
-            <button
-              type="submit"
-              className="whitespace-nowrap px-3 py-2 font-label text-[0.64rem] font-light uppercase tracking-lockup text-chrome hover:text-charcoal"
-            >
-              Sign out
-            </button>
-          </form>
-        </nav>
-      </div>
-      <div
+      </header>
+      <main
         id="admin-main"
         tabIndex={-1}
-        className="mx-auto max-w-shell px-6 py-12 lg:px-10"
+        className="mx-auto max-w-shell px-4 py-8 sm:px-6 lg:px-10 lg:py-12"
       >
         {children}
-      </div>
+      </main>
     </div>
   );
 }

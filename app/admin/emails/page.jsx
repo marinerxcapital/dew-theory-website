@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 
 export default async function AdminEmailsPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const store = readStore();
   const emails = (store.outbound_emails || []).slice(0, 100);
   const interest = (store.membership_interest || []).slice(0, 50);

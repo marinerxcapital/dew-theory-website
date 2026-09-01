@@ -1,44 +1,98 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
+import AdminPageHeader from '@/components/admin/AdminPageHeader';
+import SystemStatusBadge from '@/components/admin/SystemStatusBadge';
+import {
+  commerceGetOrder,
+  commerceGetFulfillmentJobByOrder,
+  commerceListFulfillmentAttempts
+} from '@/lib/commerce';
 import { readStore } from '@/lib/store';
 import { formatMoney } from '@/lib/shipping';
+import { getAutomationMode } from '@/lib/admin/dashboard';
 import OrderStatusForm from '@/components/admin/OrderStatusForm';
 
 export default async function AdminOrderDetailPage({ params }) {
-  await requireAdmin();
-  const order = readStore().orders.find((o) => o.id === params.id);
+  await requireOwnerAdmin();
+  const automation = getAutomationMode();
+
+  let order = await commerceGetOrder(params.id);
+  let source = 'commerce';
+  if (!order) {
+    order = readStore().orders.find((o) => o.id === params.id);
+    source = order ? 'legacy_file' : null;
+  }
   if (!order) notFound();
 
+  const job = await commerceGetFulfillmentJobByOrder(params.id);
+  const attempts = job ? await commerceListFulfillmentAttempts(job.id) : [];
+
+  const timeline = [];
+  if (order.created_at) timeline.push({ at: order.created_at, label: 'Order created' });
+  if (['paid', 'fulfilled', 'submitted_to_skin_script'].includes(order.status)) {
+    timeline.push({ at: order.updated_at || order.created_at, label: 'Payment completed' });
+  }
+  if (job?.created_at) timeline.push({ at: job.created_at, label: 'Fulfillment job queued' });
+  if (job?.started_at) timeline.push({ at: job.started_at, label: 'Worker started' });
+  if (job?.status === 'dry_run_ready') timeline.push({ at: job.updated_at, label: 'Dry-run ready' });
+  if (job?.status === 'submitted') timeline.push({ at: job.completed_at || job.updated_at, label: 'Supplier submitted' });
+  if (job?.supplier_order_id) timeline.push({ at: job.completed_at, label: `Supplier order ${job.supplier_order_id}` });
+
   return (
-    <div>
-      <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
-        <Link href="/admin/orders" className="hover:text-charcoal">
-          ← Orders
-        </Link>
-      </p>
-      <h1 className="mt-3 font-display text-3xl font-normal text-graphite">Order {order.id}</h1>
-      <p className="mt-2 font-body text-sm font-light text-charcoal/70">
-        {new Date(order.created_at).toLocaleString()} · {order.status}
-        {order.submitted_to_skin_script_at && (
-          <> · Skin Script marked {new Date(order.submitted_to_skin_script_at).toLocaleString()}</>
-        )}
+    <>
+      <p className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+        <Link href="/admin/orders" className="hover:text-forest">← Orders</Link>
       </p>
 
-      <div className="mt-10 grid gap-12 lg:grid-cols-2">
+      <AdminPageHeader
+        title={`Order ${order.id}`}
+        subtitle={`${new Date(order.created_at).toLocaleString()} · ${order.status} · source: ${source}`}
+        automation={automation}
+      />
+
+      {job && (
+        <div className="mb-8 glass-1 p-4">
+          <h2 className="font-display text-lg text-forest mb-2">Fulfillment</h2>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <SystemStatusBadge status={job.status} label={job.status} />
+            {job.supplier_order_id && (
+              <span className="text-xs text-muted">Supplier order: {job.supplier_order_id}</span>
+            )}
+          </div>
+          {(job.error_message || job.error_code) && (
+            <p className="text-sm text-muted">{job.error_code}: {job.error_message}</p>
+          )}
+          {attempts.length > 0 && (
+            <ul className="mt-3 space-y-2 text-xs text-muted">
+              {attempts.map((a) => (
+                <li key={a.id}>
+                  Attempt {a.attempt_number}: {a.stage} → {a.result}
+                  {a.error_summary ? ` (${a.error_summary})` : ''}
+                </li>
+              ))}
+            </ul>
+          )}
+          <Link href="/admin/fulfillment" className="mt-2 inline-block text-sm text-sage-deep hover:underline">
+            Fulfillment center →
+          </Link>
+        </div>
+      )}
+
+      <div className="grid gap-12 lg:grid-cols-2">
         <div>
-          <h2 className="font-display text-xl font-normal text-graphite">Line items</h2>
+          <h2 className="font-display text-xl text-forest">Line items</h2>
           <ul className="mt-4 divide-y divide-chrome/20 border-y border-chrome/20">
             {(order.items || []).map((li, i) => (
-              <li key={i} className="py-3 font-body text-sm font-light">
+              <li key={i} className="py-3 text-sm">
                 <div className="flex justify-between gap-4">
-                  <span className="text-graphite">
+                  <span className="text-forest">
                     {li.name}
                     {li.variant ? ` (${li.variant})` : ''}
                   </span>
                   <span className="shrink-0">{formatMoney((li.unit_price || 0) * (li.quantity || 0))}</span>
                 </div>
-                <p className="mt-1 font-body text-xs font-light text-chrome">
+                <p className="mt-1 text-xs text-muted">
                   {li.product_id || li.sku || '—'}
                   {li.skin_script_sku ? ` · SS ${li.skin_script_sku}` : ''}
                   {' · '}
@@ -46,17 +100,14 @@ export default async function AdminOrderDetailPage({ params }) {
                 </p>
               </li>
             ))}
-            {!(order.items || []).length && (
-              <li className="py-4 font-body text-sm font-light text-charcoal/50">No line items.</li>
-            )}
           </ul>
-          <dl className="mt-6 space-y-2 font-body text-sm font-light text-charcoal/80">
+          <dl className="mt-6 space-y-2 text-sm text-forest/80">
             <div className="flex justify-between">
               <dt>Subtotal</dt>
               <dd>{formatMoney(order.subtotal)}</dd>
             </div>
             {order.discount_amount > 0 && (
-              <div className="flex justify-between text-chrome">
+              <div className="flex justify-between text-muted">
                 <dt>Discount ({order.discount_code})</dt>
                 <dd>−{formatMoney(order.discount_amount)}</dd>
               </div>
@@ -65,7 +116,7 @@ export default async function AdminOrderDetailPage({ params }) {
               <dt>Shipping</dt>
               <dd>{formatMoney(order.shipping_fee || 0)}</dd>
             </div>
-            <div className="flex justify-between border-t border-chrome/20 pt-2 font-label text-[0.7rem] font-light uppercase tracking-lockup text-graphite">
+            <div className="flex justify-between border-t border-chrome/20 pt-2 font-label text-[0.7rem] uppercase tracking-lockup text-forest">
               <dt>Total</dt>
               <dd>{formatMoney(order.total)}</dd>
             </div>
@@ -74,8 +125,8 @@ export default async function AdminOrderDetailPage({ params }) {
 
         <div className="space-y-8">
           <div>
-            <h2 className="font-display text-xl font-normal text-graphite">Ship to</h2>
-            <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/75">
+            <h2 className="font-display text-xl text-forest">Ship to</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
               {order.customer?.name}
               <br />
               {order.customer?.email}
@@ -98,17 +149,33 @@ export default async function AdminOrderDetailPage({ params }) {
               {order.shipping_address?.postal_code}
             </p>
           </div>
-          {order.customer_notes && (
+
+          {timeline.length > 0 && (
             <div>
-              <h2 className="font-display text-xl font-normal text-graphite">Customer note</h2>
-              <p className="mt-3 whitespace-pre-wrap font-body text-sm font-light leading-relaxed text-charcoal/75">
-                {order.customer_notes}
-              </p>
+              <h2 className="font-display text-xl text-forest">Timeline</h2>
+              <ol className="mt-3 space-y-2 text-sm">
+                {timeline.map((e, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="text-muted shrink-0">{new Date(e.at).toLocaleString()}</span>
+                    <span>{e.label}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           )}
-          <OrderStatusForm orderId={order.id} current={order.status} order={order} />
+
+          {order.customer_notes && (
+            <div>
+              <h2 className="font-display text-xl text-forest">Customer note</h2>
+              <p className="mt-3 whitespace-pre-wrap text-sm text-muted">{order.customer_notes}</p>
+            </div>
+          )}
+
+          {source === 'legacy_file' && (
+            <OrderStatusForm orderId={order.id} current={order.status} order={order} />
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 }

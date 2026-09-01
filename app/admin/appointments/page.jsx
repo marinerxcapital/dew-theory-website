@@ -1,10 +1,10 @@
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 import { formatMoney } from '@/lib/shipping';
 import AppointmentStatusForm from '@/components/admin/AppointmentStatusForm';
 
 export default async function AdminAppointmentsPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const { appointments } = readStore();
 
   return (

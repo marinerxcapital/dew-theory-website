@@ -77,6 +77,8 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Live design as of 2026-08-29 | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. Public offering surface is exactly Shop (products) + Virtual Consultation. Primary menu is Shop / Virtual Consult (+ Shop-by-type catalog). |
 | Deploy blocker this session | TASK-01 cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
 
+**Admin Command Center (branch `cursor/admin-command-center-e021`, 2026-09-01):** Emily-only owner console at `/admin` with durable commerce KPIs, fulfillment center, Stripe/RPA integration health, attention queue. Data authority documented in `docs/ADMIN_COMMAND_CENTER_ARCHITECTURE.md`. Not yet verified on production until Worker redeploy.
+
 **Live smoke (production, 2026-08-31):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` present). `npm run smoke:routes -- https://dewtheoryco.com` passed for retained routes and all 8 public legal PDFs. Cloudflare deployment readback shows Worker version `30e07650-5d65-4ee1-a4fc-c7f0edf005ae`.
 
 ---

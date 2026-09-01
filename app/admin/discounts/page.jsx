@@ -1,9 +1,9 @@
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 import DiscountManager from '@/components/admin/DiscountManager';
 
 export default async function AdminDiscountsPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const { discount_codes } = readStore();
 
   return (

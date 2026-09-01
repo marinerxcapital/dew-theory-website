@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 import { formatMoney } from '@/lib/shipping';
 import ProductStockToggle from '@/components/admin/ProductStockToggle';
 
 export default async function AdminProductsPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const { products } = readStore();
 
   return (

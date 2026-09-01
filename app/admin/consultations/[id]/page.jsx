@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import {
   consultationForAdmin,
   getConsultationById
@@ -9,7 +9,7 @@ import { getProducts } from '@/lib/products-server.js';
 import ConsultationDetail from '@/components/admin/ConsultationDetail';
 
 export default async function AdminConsultationDetailPage({ params }) {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const c = getConsultationById(params.id);
   if (!c) notFound();
 

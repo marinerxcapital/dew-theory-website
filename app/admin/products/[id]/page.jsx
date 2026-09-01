@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
 import ProductForm from '@/components/admin/ProductForm';
 
 export default async function EditProductPage({ params }) {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const product = readStore().products.find((p) => p.id === params.id);
   if (!product) notFound();
 
