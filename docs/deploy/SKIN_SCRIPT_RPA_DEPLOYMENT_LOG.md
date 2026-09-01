@@ -2,6 +2,25 @@
 
 ---
 
+## 2026-09-01 Codex — D1 verified-mapping seed (no Worker deploy)
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T03:37:00Z
+**Status:** D1 data seeded; Worker NOT redeployed (RPA container host still undecided)
+
+### Completed
+
+- Seeded 8 `verified=1` supplier mappings to remote D1 `dew-theory-commerce` via new `npm run seed:verified-mappings:d1` (`wrangler d1 execute --remote`).
+- Verified readback: 8 rows, `verified=1`, correct SKUs / wholesale prices / product URLs.
+- Re-probed container hosts: Cloudflare Containers + Cloudchamber `Unauthorized` (Workers Paid plan); Railway `skyler@certamaris.com` (CertaMaris workspace only); no local Docker.
+
+### Not completed
+
+- RPA container deploy + Worker HMAC secrets: blocked pending owner-designated container host.
+- Worker redeploy: not performed. `main` @ `30e2bd0` is ahead of production Worker `30e07650` (`7346633`), but Worker config is unchanged and RPA mode remains gated on the container.
+
+---
+
 ## 2026-08-31 Codex TASK-01
 
 **Signed:** Codex  

@@ -69,6 +69,7 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
 | Live production SHA (verified deployed) | `7346633` (2026-08-31, Skin Script RPA TASK-01 D1 provision + durable mock checkout) |
+| `main` HEAD (merged, not yet deployed) | `30e2bd0` (PR #12 verified SKUs + live portal dry-run; PR #11 WooCommerce portal flow) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Current Worker version ID | `30e07650-5d65-4ee1-a4fc-c7f0edf005ae` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
@@ -444,6 +445,45 @@ Remaining external tasks:
 - TASK-05: Deploy RPA container + Worker HMAC secrets
 - TASK-06: Add saved payment method; map editable client dropship address fields; controlled live order
 - TASK-07: Merge session 5 PR (PR #11 already merged session 4 only)
+
+### 2026-09-01 Codex — D1 verified-mapping seed + RPA config fix
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T03:37:00Z
+**Base branch:** `main` @ `30e2bd0` (PR #12 merged)
+**Work branch:** `codex/skin-script-rpa-d1-seed-config-fix`
+
+Completed this session:
+
+- Confirmed `main` @ `30e2bd0` contains PR #12 (verified SKUs + live portal dry-run) and PR #11 (WooCommerce portal flow); re-ran the full local gates.
+- Seeded **8 `verified=1` supplier mappings** into production D1 `dew-theory-commerce` (`cd55d01f-2c27-4b53-a8aa-9b10555d3b17`) and verified readback (SKU + wholesale price + product URL per line item).
+- Added operator script `npm run seed:verified-mappings:d1` (`scripts/seed-verified-mappings-d1.mjs`). The existing `seed:verified-mappings` path uses the commerce backend, which cannot resolve the D1 binding from plain Node and silently falls back to `data/runtime/commerce.json`; the new script targets remote D1 via `wrangler d1 execute --remote`.
+- Fixed `services/skin-script-rpa/app/config.py` to prefer `SKIN_SCRIPT_*` aliases over generic env names. On Windows the ambient `USERNAME` env var is always set to the OS account and was shadowing `SKIN_SCRIPT_USERNAME`, breaking one config test.
+
+Gates (re-run this session):
+
+| Gate | Result |
+|------|--------|
+| `npm test` | **223 pass / 0 fail** (78 suites) |
+| `npm run build` | **success** (58 routes) |
+| `npm run continuity` | `[continuity] OK` |
+| `python -m pytest -q` | **15 pass** |
+| `python -m ruff check app tests` | **All checks passed** |
+| `npm run smoke:routes -- https://dewtheoryco.com` | **all clear** (22 checks incl. 8 legal PDFs) |
+
+Production truth (re-verified, not assumed):
+
+- Production Worker `dew-theory` current version `30e07650-5d65-4ee1-a4fc-c7f0edf005ae` (deployed 2026-08-31T21:16:59Z from `7346633`). `main` @ `30e2bd0` is merged but **not yet deployed** — Worker config unchanged and RPA mode still gated on the container host.
+- D1 `dew-theory-commerce` now has 8 `supplier_mappings` rows with `verified=1`.
+
+Container host (TASK-05) re-probe — still blocked:
+
+- Local `docker`: not installed.
+- Cloudflare Containers: `Unauthorized — requires Workers Paid plan`.
+- Cloudflare Cloudchamber: `Unauthorized`.
+- Railway CLI: authenticated as `skyler@certamaris.com` (CertaMaris workspace only; no Dew Theory project).
+
+Remaining owner-blocked tasks (unchanged): TASK-05 container host + Worker HMAC/portal secrets; saved payment method on the Skin Script account; headed client-dropship address mapping; and one controlled live supplier order.
 
 ### Chronology (this revamp)
 

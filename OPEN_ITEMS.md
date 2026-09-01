@@ -181,7 +181,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **Cloudflare edge cache** — R2 ISR + D1 tag cache already used in production deploy path;
   optional private photo bucket `dew-theory-consultation-photos` (see `docs/DEPLOY_DEWTHEORYCO.md`).
 - **Skin Script live credentials.** Adapters ready; use `SKIN_SCRIPT_MODE=mock` + CSV until partner answers.
-- **Skin Script RPA production (2026-08-31).** D1 live. Authenticated portal recon complete (2026-09-01). Live dry-run verified. RPA container deploy + saved payment method on account remain before production live orders. See handoff.
+- **Skin Script RPA production (2026-08-31).** D1 live; 8 `verified=1` supplier mappings seeded (2026-09-01 Codex). Authenticated portal recon complete; live dry-run verified. RPA container deploy + saved payment method on account remain before production live orders. Container host is undecided: Cloudflare Containers/Cloudchamber `Unauthorized` (Workers Paid plan), Railway only `skyler@certamaris.com` (CertaMaris workspace), no local Docker. See handoff.
 - **xAI assist optional.** `XAI_API_KEY` for messy feed mapping only.
 - **Admin production secrets** must remain non-default on Worker.
 

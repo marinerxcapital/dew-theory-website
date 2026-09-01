@@ -2,6 +2,18 @@
 
 ---
 
+## 2026-09-01 Codex — remote D1 seed script + RPA config fix
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T03:37:00Z
+
+| Change | Path |
+|--------|------|
+| Remote D1 verified-mapping seed script | `scripts/seed-verified-mappings-d1.mjs` + `npm run seed:verified-mappings:d1` |
+| Config alias precedence fix | `services/skin-script-rpa/app/config.py` (prefer `SKIN_SCRIPT_*` over generic env names) |
+
+Reasoning: `seed:verified-mappings` uses the commerce backend, which cannot resolve the D1 binding from plain Node and silently falls back to `data/runtime/commerce.json`. The new script targets remote D1 via `wrangler d1 execute --remote` with idempotent `INSERT ... ON CONFLICT DO UPDATE`. The config fix resolves a Windows-only test failure where the ambient `USERNAME` env var shadowed `SKIN_SCRIPT_USERNAME`.
+
 ---
 
 ## 2026-09-01 Session 5 — Authenticated portal + verified mappings + live dry-run
