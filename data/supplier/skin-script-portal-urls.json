@@ -1,9 +1,11 @@
 {
   "_meta": {
-    "source": "Public skinscript.com URL verification (HTTP 200/301) on 2026-08-31",
+    "verified_at": "2026-09-01",
+    "portal_login_url": "https://skinscriptrx.com/my-account/",
     "portal_base_url": "https://skinscript.com",
-    "login_url": "https://skinscript.com/my-account/",
-    "note": "SKUs and wholesale prices require authenticated portal access. URLs are verified public slugs; verified=0 until owner confirms SKU/price after login."
+    "account_name": "Emily",
+    "source": "Authenticated portal recon via skinscriptrx.com login (WooCommerce Store API + product pages)",
+    "note": "SKUs are variant-level (e.g. 1010240 for 6.4oz). Wholesale prices from portal cart API."
   },
   "products": [
     {
@@ -11,57 +13,74 @@
       "supplier_slug": "green-tea-citrus-cleanser",
       "supplier_product_url": "https://skinscript.com/product/green-tea-citrus-cleanser/",
       "supplier_product_name": "Green Tea Citrus Cleanser",
-      "expected_wholesale_price": 16
+      "skin_script_sku": "1010240",
+      "variant": "6.4 oz",
+      "expected_wholesale_price": 18,
+      "verified": true
     },
     {
       "product_id": "mandelic-brightening-serum",
       "supplier_slug": "mandelic-brightening-serum",
       "supplier_product_url": "https://skinscript.com/product/mandelic-brightening-serum/",
       "supplier_product_name": "Mandelic Brightening Serum",
-      "expected_wholesale_price": 22
+      "skin_script_sku": "1310440",
+      "expected_wholesale_price": 24,
+      "verified": true
     },
     {
       "product_id": "hydrating-skin-serum",
       "supplier_slug": "ageless-hydrating-serum",
       "supplier_product_url": "https://skinscript.com/product/ageless-hydrating-serum/",
       "supplier_product_name": "Ageless Skin Hydrating Serum",
-      "expected_wholesale_price": 24
+      "skin_script_sku": "1310340",
+      "expected_wholesale_price": 22.5,
+      "verified": true
     },
     {
       "product_id": "ageless-moisturizer",
       "supplier_slug": "ageless-skin-moisturizer",
       "supplier_product_url": "https://skinscript.com/product/ageless-skin-moisturizer/",
       "supplier_product_name": "Ageless Skin Moisturizer",
-      "expected_wholesale_price": 18
+      "skin_script_sku": "1510240",
+      "expected_wholesale_price": 15,
+      "verified": true
     },
     {
       "product_id": "botanical-bloom-hydrating-mask",
       "supplier_slug": "botanical-bloom-hydrating-mask",
       "supplier_product_url": "https://skinscript.com/product/botanical-bloom-hydrating-mask/",
       "supplier_product_name": "Botanical Bloom Hydrating Mask",
-      "expected_wholesale_price": 20
+      "skin_script_sku": "2110640",
+      "expected_wholesale_price": 24,
+      "verified": true
     },
     {
       "product_id": "lip-treatment-peppermint-pomegranate",
       "supplier_slug": "new-ageless-lip-treatment",
       "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/",
       "supplier_product_name": "Ageless Lip Treatment",
-      "expected_wholesale_price": 12,
-      "variant_note": "Live portal slug is new-ageless-lip-treatment; confirm Peppermint/Pomegranate variants after login"
+      "skin_script_sku": "1410240",
+      "expected_wholesale_price": 8,
+      "variant_note": "Confirm Peppermint/Pomegranate variant SKU if portal requires selection",
+      "verified": true
     },
     {
       "product_id": "cucumber-hydration-toner",
       "supplier_slug": "cucumber-hydration-toner",
       "supplier_product_url": "https://skinscript.com/product/cucumber-hydration-toner/",
       "supplier_product_name": "Cucumber Hydration Toner",
-      "expected_wholesale_price": 14
+      "skin_script_sku": "1210140",
+      "expected_wholesale_price": 14,
+      "verified": true
     },
     {
       "product_id": "sheer-protection-spf",
       "supplier_slug": "sheer-protection-spf-30",
       "supplier_product_url": "https://skinscript.com/product/sheer-protection-spf-30/",
       "supplier_product_name": "Sheer Protection SPF 30",
-      "expected_wholesale_price": 15
+      "skin_script_sku": "1610140",
+      "expected_wholesale_price": 17,
+      "verified": true
     }
   ]
 }

@@ -6,8 +6,8 @@ from playwright.async_api import async_playwright
 
 
 async def main():
-    base = "https://skinscript.com"
-    login_url = f"{base}/my-account/"
+    base = os.environ.get("SKIN_SCRIPT_PORTAL_BASE_URL", "https://skinscript.com").rstrip("/")
+    login_url = os.environ.get("SKIN_SCRIPT_LOGIN_URL", f"{base}/my-account/")
     username = os.environ["SKIN_SCRIPT_USERNAME"]
     password = os.environ["SKIN_SCRIPT_PASSWORD"]
     storage = "/tmp/skin-script-storage.json"

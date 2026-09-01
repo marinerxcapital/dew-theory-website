@@ -21,7 +21,12 @@ describe('skin-script portal URL registry', () => {
   it('uses skinscript.com product URLs', () => {
     for (const p of portal.products) {
       assert.match(p.supplier_product_url, /^https:\/\/skinscript\.com\/product\//);
-      assert.ok(p.supplier_slug, `slug missing for ${p.product_id}`);
+      assert.ok(p.skin_script_sku, `SKU missing for ${p.product_id}`);
     }
+  });
+
+  it('marks verified products with portal SKUs', () => {
+    const verified = portal.products.filter((p) => p.verified);
+    assert.equal(verified.length, 8);
   });
 });

@@ -388,7 +388,8 @@ Remaining external tasks:
 
 **Signed:** Cursor Cloud Agent  
 **Timestamp (UTC):** 2026-08-31T23:30:00Z  
-**Branch:** `cursor/skin-script-rpa-completion-e021` (from `codex/skin-script-rpa-task01-closeout` @ `3405a3e`)
+**Branch:** `cursor/skin-script-rpa-completion-e021` (from `codex/skin-script-rpa-task01-closeout` @ `3405a3e`)  
+**Merged:** PR #11 → `main` @ `5d2ec20`
 
 | Area | Status |
 |------|--------|
@@ -396,27 +397,53 @@ Remaining external tasks:
 | Storage-state loading | Implemented in `worker.py` |
 | Python `SKIN_SCRIPT_*` env aliases | Implemented in `app/config.py` |
 | Public product URL registry | `data/supplier/skin-script-portal-urls.json` — 8/8 catalog URLs verified (HTTP 200/301) |
-| Portal login attempt | **Failed** — WooCommerce reports password incorrect for authorized email (no MFA observed) |
-| SKU/price verification | **Blocked** — wholesale data hidden until login succeeds |
+| Portal login attempt | **Failed** on `skinscript.com` — password incorrect (wrong login domain) |
+| SKU/price verification | **Blocked** until correct login domain |
 | RPA container deploy | **Not deployed** |
 
-**Tests (this session):**
+### 2026-09-01 Cursor Cloud — Authenticated portal + verified SKUs + live dry-run (session 5)
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-09-01T01:30:00Z  
+**Branch:** `cursor/skin-script-rpa-completion-e021`  
+**HEAD:** verify with `git rev-parse HEAD` after pull  
+**Base on main:** `5d2ec20` (PR #11 merged) + session 5 commits pending merge
+
+| Area | Status |
+|------|--------|
+| Portal login | **Success** via `https://skinscriptrx.com/my-account/` → session on `skinscript.com` (“Hi, Emily!”) |
+| MFA / CAPTCHA | Not observed on login |
+| Verified SKU mappings | **8/8** products — variant SKUs + wholesale prices in `data/supplier/skin-script-portal-urls.json` |
+| `npm run seed:verified-mappings` | Implemented — seeds `verified=1` D1/file templates |
+| Live portal dry-run | **VERIFIED** — RPA worker returns `dry_run_ready` (green tea cleanser, SKU `1010240`) |
+| Storage-state bootstrap | Session saved to `STORAGE_STATE_PATH`; container secret mount pending (TASK-04 partial) |
+| RPA container deploy | **Not deployed** (TASK-05) |
+| Live supplier order | **Not done** — no saved payment method on account; client dropship address fields often readonly in headless checkout |
+
+**Tests (session 5):**
 
 | Gate | Result |
 |------|--------|
-| `npm test` | 222 pass / 0 fail |
-| `npm run build` | success |
+| `npm test` | 223 pass / 0 fail |
 | `python3 -m pytest -q` | 15 pass |
 | `python3 -m ruff check .` | pass |
-| Production apex smoke | HTTP 200; `Shop Skin Script` present |
+| `npm run continuity` | OK |
+| Live dry-run (portal) | `dry_run_ready` — metadata `skus: [1010240]`, `dropship_mode: ship_to_client` |
 
-**Skin Script portal discoveries (no secrets):**
+**Skin Script portal discoveries (session 5 — no secrets):**
 
-- Portal: `https://skinscript.com` (WooCommerce professional store)
-- Login: `https://skinscript.com/my-account/` — fields `#username`, `#password`, `button.woocommerce-form-login__submit`
-- Product URL pattern: `https://skinscript.com/product/{slug}/`
-- Lip treatment live slug: `new-ageless-lip-treatment` (variant selection pending login)
-- Hydrating serum live slug: `ageless-hydrating-serum` (catalog id `hydrating-skin-serum`)
+- Login entry: `https://skinscriptrx.com/my-account/` (not `skinscript.com/my-account/`)
+- Portal base after auth: `https://skinscript.com`
+- Cart API: `/wp-json/wc/store/v1/cart`
+- Dropship: `#order-srx-srx_drop_ship_select` → “Yes - Ship direct to client”
+- Payment: NMI gateway; **no saved payment methods** on Emily account
+- Checkout `total_cents` in dry-run metadata is **grand total** (product + shipping/fees), not line subtotal alone
+
+**Remaining owner / Codex tasks:**
+
+- TASK-05: Deploy RPA container + Worker HMAC secrets
+- TASK-06: Add saved payment method; map editable client dropship address fields; controlled live order
+- TASK-07: Merge session 5 PR (PR #11 already merged session 4 only)
 
 ### Chronology (this revamp)
 

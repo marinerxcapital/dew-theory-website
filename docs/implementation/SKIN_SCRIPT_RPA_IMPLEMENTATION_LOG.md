@@ -2,6 +2,38 @@
 
 ---
 
+---
+
+## 2026-09-01 Session 5 — Authenticated portal + verified mappings + live dry-run
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/skin-script-rpa-completion-e021`  
+**Timestamp (UTC):** 2026-09-01T01:15:00Z
+
+### Completed
+
+- Login via `skinscriptrx.com/my-account/` (canonical entry from password manager)
+- Verified SKUs + wholesale prices for 8 catalog products in `data/supplier/skin-script-portal-urls.json`
+- `npm run seed:verified-mappings` script
+- WooCommerce flow: cart API verification, dropship select, improved cart clear
+- **Live dry-run:** RPA worker returned `dry_run_ready` against real portal
+
+### Blockers remaining
+
+- No saved payment methods on Skin Script account (live orders)
+- Client dropship address fields often readonly in headless checkout — needs headed mapping for production live fill
+- RPA container not deployed (TASK-05)
+
+### Tests
+
+| Command | Result |
+|---------|--------|
+| `npm test` | 223 pass |
+| `python3 -m pytest -q` | 15 pass |
+| Live dry-run (green tea) | `dry_run_ready` |
+
+---
+
 ## 2026-08-31 Session 4 — WooCommerce portal + URL mapping (Cursor)
 
 **Signed:** Cursor Cloud Agent  

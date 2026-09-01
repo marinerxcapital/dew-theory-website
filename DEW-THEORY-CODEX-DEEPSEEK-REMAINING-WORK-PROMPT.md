@@ -1,120 +1,77 @@
 # Dew Theory — Codex / DeepSeek-V4 Pro Remaining Work Prompt
 
-Copy everything below this line into your Codex session running DeepSeek-V4 Pro.
+Copy everything below this line into your Codex session.
 
 ---
 
 ## Identity
 
-You are Codex running DeepSeek-V4 Pro at maximum available intelligence. Execute remaining work — do not re-audit or redo completed Cursor implementation.
+You are Codex running DeepSeek-V4 Pro. Continue from Cursor's verified state — do not redo completed work.
 
-## Repository Context
+## Repository State
 
 | Item | Value |
 |------|-------|
-| Repository | `https://github.com/marinerxcapital/dew-theory-website` |
+| Repository | `marinerxcapital/dew-theory-website` |
 | Branch | `cursor/skin-script-rpa-completion-e021` |
-| HEAD | Run `git rev-parse HEAD` after checkout |
-| Base merged | PR #8 @ `20b7b1c` on `main` |
-| Active PR | New PR from `cursor/skin-script-rpa-completion-e021` (or update PR #10) |
-| D1 | `dew-theory-commerce` / `cd55d01f-2c27-4b53-a8aa-9b10555d3b17` |
+| main | `5d2ec20` (PR #11 merged — session 4) |
+| Session 5 PR | Pending merge — verified SKUs + live dry-run |
+| HEAD | Run `git rev-parse HEAD` after pull |
 
-## Cursor Completion Summary — DO NOT REDO
+## Cursor Completed — DO NOT REDO
 
-- Durable commerce + D1 (TASK-01 VERIFIED by Codex)
-- Fulfillment job outbox, state machine, HMAC RPA adapter
-- Mock portal + 222 Node / 15 Python tests passing
-- WooCommerce portal flow (`portal_flows.py`, `selectors-woocommerce.json`)
-- Storage-state loading in RPA worker
-- Public URL map: `data/supplier/skin-script-portal-urls.json` (8 products)
-- `npm run seed:portal-urls` for unverified URL templates
-- Login selectors discovered for skinscript.com WooCommerce
+- TASK-01 D1 provisioned and production-verified (Codex)
+- TASK-02 Authenticated portal recon (skinscriptrx.com login)
+- TASK-03 Verified SKUs + wholesale prices for 8 products
+- WooCommerce RPA portal flow + mock portal CI (15 Python / 223 Node tests)
+- `npm run seed:verified-mappings` for verified=1 D1/file mappings
+- **Live portal dry-run** returns `dry_run_ready` (RPA worker against skinscript.com)
+- PR #11 merged (session 4 WooCommerce flow + URL registry)
 
 ## Remaining Tasks
-
-### TASK-02 — Authenticated portal reconnaissance
-
-| Field | Detail |
-|-------|--------|
-| CURRENT STATUS | BLOCKED — password incorrect |
-| WHY CURSOR COULD NOT COMPLETE | Portal rejected authorized email password at `/my-account/` |
-| DEPENDENCIES | Owner resets password or provides working `SKIN_SCRIPT_PASSWORD` |
-| FILES | `data/supplier/skin-script-portal-urls.json`, `selectors-woocommerce.json`, mappings |
-| COMMANDS | `python3 scripts/skin-script-portal-recon.py` with env from `.env.local` |
-| EXPECTED | Capture SKU text from `.sku`, wholesale prices, cart/checkout field names |
-| TESTS | Update mappings; optional live integration test behind env flag |
-| ACCEPTANCE | Selectors match live DOM; no fabricated SKUs |
-
-### TASK-03 — Verify supplier mappings
-
-| Field | Detail |
-|-------|--------|
-| CURRENT STATUS | URL-only templates (verified=0) |
-| WHY CURSOR COULD NOT COMPLETE | Wholesale SKU/price hidden without login |
-| DEPENDENCIES | TASK-02 |
-| FILES | `lib/suppliers/skin-script/mapping.js`, D1 `supplier_mappings` |
-| COMMANDS | `npm run seed:portal-urls` then upsert verified=1 with real SKU/price |
-| ACCEPTANCE | RPA dry-run passes mapping validation for all 8 products |
-
-### TASK-04 — Session bootstrap
-
-| Field | Detail |
-|-------|--------|
-| CURRENT STATUS | CLI exists; storage-state load implemented |
-| WHY CURSOR COULD NOT COMPLETE | Cannot complete MFA/login without valid password |
-| DEPENDENCIES | TASK-02 password fix |
-| COMMANDS | `cd services/skin-script-rpa && python -m app.cli bootstrap-session` (headed) |
-| SECRET NAMES | `SKIN_SCRIPT_STORAGE_STATE` / mount path in container |
-| ACCEPTANCE | Worker loads storage state; logout link visible in session |
 
 ### TASK-05 — Deploy RPA container + Worker secrets
 
 | Field | Detail |
 |-------|--------|
-| CURRENT STATUS | Dockerfile + CI docker-rpa green; not deployed |
-| WHY CURSOR COULD NOT COMPLETE | No approved container host; no Wrangler OAuth in Cursor Cloud |
-| DEPENDENCIES | Owner picks Railway/Fly/ECS under Dew Theory (not CertaMaris) |
+| STATUS | NOT DEPLOYED |
+| WHY CURSOR COULD NOT | No approved container host; no Wrangler OAuth in Cursor Cloud |
 | FILES | `services/skin-script-rpa/Dockerfile`, `wrangler.jsonc`, `ENV.md` |
-| COMMANDS | `docker build -t dew-theory-skin-script-rpa services/skin-script-rpa` |
-| ENV NOTE | Container: `HMAC_SECRET`, `PORTAL_BASE_URL`, `USERNAME`, `PASSWORD`. Worker: `SKIN_SCRIPT_RPA_HMAC_SECRET`, `SKIN_SCRIPT_RPA_SERVICE_URL` |
+| ENV | Container: `HMAC_SECRET`, `PORTAL_BASE_URL=https://skinscript.com`, `LOGIN_URL=https://skinscriptrx.com/my-account/`, `USERNAME`, `PASSWORD`, `EXPECTED_ACCOUNT_NAME=Emily`. Worker: `SKIN_SCRIPT_RPA_*` |
 | ACCEPTANCE | `/health` 200; signed dry-run job from Worker |
 
-### TASK-06 — Dry-run then controlled live validation
+### TASK-06 — Live supplier order (partial)
 
 | Field | Detail |
 |-------|--------|
-| CURRENT STATUS | Mock portal only |
-| WHY CURSOR COULD NOT COMPLETE | Needs TASK-02–05 + explicit live-order authorization |
-| COMMANDS | `SKIN_SCRIPT_DRY_RUN=true` first; then single controlled order |
+| STATUS | Dry-run LIVE VERIFIED; live order NOT DONE |
+| BLOCKERS | (1) No saved payment methods on Skin Script account. (2) Client dropship address fields may be readonly in headless checkout — map editable client-address inputs in headed session. (3) TASK-05 deploy required for production Worker path. |
+| OWNER ACTION | Add saved card or approved payment method on Skin Script wholesale account; authorize one controlled test order |
 | ACCEPTANCE | One supplier order ID captured; idempotent replay does not duplicate |
+
+### TASK-04 — Session bootstrap (minor)
+
+| Field | Detail |
+|-------|--------|
+| STATUS | Storage-state loading implemented; session file saved during recon |
+| REMAINING | Mount storage state in container secret store; optional headed `bootstrap-session` refresh |
 
 ### TASK-07 — PR merge
 
-| Field | Detail |
-|-------|--------|
-| CURRENT STATUS | OWNER ACTION REQUIRED |
-| WHY | Draft PR requires owner approval |
-| ACCEPTANCE | Merge after CI green + review |
+| STATUS | PR #11 merged (session 4). Merge session 5 PR when CI green. |
 
-## Memory Requirement
+## Portal Reference (no secrets)
 
-After each task, update: `DEW-THEORY-CURRENT-STATUS.md`, `docs/memory/ACTIVE_WORK.md`, `OPEN_ITEMS.md`, `docs/implementation/SKIN_SCRIPT_RPA_IMPLEMENTATION_LOG.md`, `docs/deploy/SKIN_SCRIPT_RPA_DEPLOYMENT_LOG.md`, `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
+- Login: `https://skinscriptrx.com/my-account/`
+- Portal base: `https://skinscript.com`
+- Dropship select: `#order-srx-srx_drop_ship_select` → `Yes - Ship direct to client`
+- Checkout: WooCommerce blocks; Place Order button text `Place Order`
+- Payment: NMI (`wc-payment-method-options-nmi`); account currently has no saved methods
 
-## Source Truth
+## Memory
 
-`git fetch origin && git checkout cursor/skin-script-rpa-completion-e021 && git log -5 --oneline`
+Update `DEW-THEORY-CURRENT-STATUS.md`, implementation log, deployment log, `OPEN_ITEMS.md` after each milestone.
 
-## Preservation Requirement
+## Preservation
 
-Do not revert WooCommerce portal flow, URL registry, storage-state loading, or D1 configuration.
-
-## Completion Requirement
-
-Execute work with evidence (test output, D1 readback, health checks) — not audit-only.
-
-## Owner Actions (immediate)
-
-1. **Reset Skin Script portal password** for wholesale account email (authorized for Dew Theory) — Cursor login failed with "password incorrect"
-2. **Approve PR merge** when ready
-3. **Approve RPA container host** (Railway/Fly/ECS under MarinerX/Dew Theory)
-4. **Authorize single live supplier test order** after dry-run passes
+Do not revert verified SKU registry, WooCommerce portal flow, or D1 configuration.

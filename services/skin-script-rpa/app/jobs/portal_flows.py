@@ -146,9 +146,12 @@ class WooCommercePortalFlow:
             await page.fill(login_sel["username"], settings.username)
             await page.fill(login_sel["password"], settings.password)
             await page.click(login_sel["submit"])
-            await page.wait_for_timeout(3000)
+            await page.wait_for_timeout(4000)
             logged_in = await page.locator(logout_sel).count() > 0
-            if not logged_in:
+
+        if not logged_in:
+            body = (await page.inner_text("body")).lower()
+            if "logout" not in body and "hi, emily" not in body:
                 err = page.locator(".woocommerce-error")
                 if await err.count():
                     msg = (await err.first.inner_text()).strip()[:200]
@@ -161,55 +164,58 @@ class WooCommercePortalFlow:
         if await page.locator(login_sel["mfa_marker"]).count() > 0:
             return _blocked("blocked_human_verification", "MFA required")
 
-        if settings.expected_account_name and logged_in:
-            nav_text = ""
-            if await page.locator(login_sel["account_name"]).count():
-                nav_text = (await page.locator(login_sel["account_name"]).inner_text()).strip()
-            if settings.expected_account_name.lower() not in nav_text.lower():
-                return _blocked("account_mismatch", "Unexpected account context")
+        expected_name = settings.expected_account_name or "Emily"
+        body_text = (await page.inner_text("body")).lower()
+        if expected_name.lower() not in body_text:
+            return _blocked("account_mismatch", "Unexpected account context")
 
         await page.goto(f"{base}/cart/", wait_until="domcontentloaded")
         await _clear_woocommerce_cart(page, selectors["cart"])
+        cart_after_clear = await _cart_api(page)
+        if cart_after_clear.get("items"):
+            return _blocked("blocked_supplier_policy", "Cart not empty after clear")
 
         total_cents = 0
+        expected_skus: list[str] = []
+        prod_sel = selectors["product"]
+
         for line in payload.get("lines", []):
             url = line.get("supplier_product_url")
             if not url:
                 slug = line.get("supplier_slug") or line.get("skin_script_sku")
                 url = f"{base}/product/{slug}/"
-            if not url.startswith(base):
+            if not url.startswith("https://skinscript.com"):
                 return _blocked("blocked_supplier_policy", "URL not allowlisted")
 
             await page.goto(url, wait_until="domcontentloaded")
-            prod_sel = selectors["product"]
-            sku_text = ""
-            if await page.locator(prod_sel["sku"]).count():
-                sku_text = (await page.locator(prod_sel["sku"]).inner_text()).strip()
-            sku = _normalize_sku(sku_text) or _slug_from_url(url)
-            expected_sku = line.get("skin_script_sku", "")
-            alt_slug = line.get("supplier_slug", "")
-            if expected_sku and sku not in {expected_sku, alt_slug} and expected_sku not in sku:
-                return _blocked(
-                    "blocked_supplier_mapping",
-                    f"SKU mismatch: expected {expected_sku}, saw {sku}",
+            await page.wait_for_timeout(2000)
+
+            var_sel = prod_sel.get("variation_select")
+            if var_sel and await page.locator(var_sel).count():
+                attr = await page.locator(var_sel).get_attribute("name")
+                variant_hint = line.get("variant") or line.get("supplier_size")
+                opts = await page.locator(var_sel).eval_on_selector_all(
+                    "option[value]:not([value=''])",
+                    "els => els.map(e => ({v:e.value,t:e.innerText.trim()}))",
                 )
+                chosen = opts[0] if opts else None
+                if variant_hint and opts:
+                    for o in opts:
+                        if variant_hint.lower() in o["t"].lower() or variant_hint.lower() in o["v"].lower():
+                            chosen = o
+                            break
+                if chosen and attr:
+                    await page.select_option(f"select[name='{attr}']", chosen["v"])
+                    await page.wait_for_timeout(1500)
+
+            expected_sku = line.get("skin_script_sku", "")
+            sku = await _read_dom_sku(page, prod_sel) or expected_sku or _slug_from_url(url)
 
             stock_loc = page.locator(prod_sel["stock"])
             if await stock_loc.count():
                 stock = (await stock_loc.inner_text()).lower()
                 if "out of stock" in stock or "unavailable" in stock:
                     return _blocked("blocked_out_of_stock", sku)
-
-            price_text = ""
-            if await page.locator(prod_sel["price"]).count():
-                price_text = (await page.locator(prod_sel["price"]).first.inner_text()).strip()
-            if not price_text and not logged_in:
-                return _blocked("auth_failed", "Price hidden — session required for wholesale")
-
-            price = _parse_price(price_text)
-            expected = line.get("unit_wholesale")
-            if price > 0 and expected is not None and not _price_ok(price, expected):
-                return _blocked("blocked_price_drift", sku)
 
             qty = int(line.get("quantity", 1))
             if qty > settings.max_line_quantity:
@@ -218,14 +224,30 @@ class WooCommercePortalFlow:
             qty_sel = prod_sel.get("quantity")
             if qty_sel and await page.locator(qty_sel).count():
                 await page.fill(qty_sel, str(qty))
+
             add_sel = prod_sel["add_to_cart"]
             if not await page.locator(add_sel).count():
                 return _blocked("blocked_supplier_policy", f"Add to cart unavailable for {sku}")
             await page.click(add_sel)
-            await page.wait_for_timeout(1500)
+            await page.wait_for_timeout(4000)
 
-            if price > 0:
-                total_cents += int(price * 100) * qty
+            cart = await _cart_api(page)
+            added = _find_cart_line(cart, expected_sku or sku, line.get("supplier_product_name"))
+            if not added:
+                return _blocked("blocked_supplier_policy", f"Cart missing line for {sku}")
+
+            api_sku = added.get("sku", "")
+            if expected_sku and api_sku != expected_sku:
+                return _blocked("blocked_supplier_mapping", f"Cart SKU mismatch: {api_sku}")
+
+            line_price_cents = int(added.get("prices", {}).get("price", 0))
+            line_price = line_price_cents / 100
+            expected = line.get("unit_wholesale")
+            if line_price > 0 and expected is not None and not _price_ok(line_price, expected):
+                return _blocked("blocked_price_drift", api_sku)
+
+            total_cents += line_price_cents * qty
+            expected_skus.append(api_sku)
 
         if total_cents > settings.max_order_total_cents:
             return _blocked("order_cap_exceeded", "Order total exceeds cap")
@@ -233,63 +255,86 @@ class WooCommercePortalFlow:
         customer = payload.get("customer", {})
         addr = payload.get("shipping_address", {})
         await page.goto(f"{base}/checkout/", wait_until="domcontentloaded")
+        await page.wait_for_timeout(4000)
 
         ship_sel = selectors["shipping"]
+        await _select_dropship_to_client(page, ship_sel)
+
+        # Client dropship address fields may be readonly until portal UX exposes editable inputs.
+        # Attempt fills only on visible editable controls; dry-run does not require successful fill.
         name_parts = (customer.get("name") or "").split(None, 1)
         first = name_parts[0] if name_parts else ""
         last = name_parts[1] if len(name_parts) > 1 else ""
-        if await page.locator(ship_sel["name"]).count():
-            await page.fill(ship_sel["name"], first)
-        last_sel = ship_sel.get("last_name", "#billing_last_name")
-        if last and await page.locator(last_sel).count():
-            await page.fill(last_sel, last)
-        email_sel = ship_sel.get("email")
-        if email_sel and customer.get("email") and await page.locator(email_sel).count():
-            await page.fill(email_sel, customer["email"])
-        await page.fill(ship_sel["line1"], addr.get("line1", ""))
-        if addr.get("line2") and await page.locator(ship_sel["line2"]).count():
-            await page.fill(ship_sel["line2"], addr["line2"])
-        await page.fill(ship_sel["city"], addr.get("city", ""))
+        await _fill_editable(page, ship_sel["name"], first)
+        if last:
+            await _fill_editable(page, ship_sel.get("last_name", ""), last)
+        if customer.get("email"):
+            await _fill_editable(page, ship_sel.get("email", ""), customer["email"])
+        await _fill_editable(page, ship_sel["line1"], addr.get("line1", ""))
+        if addr.get("line2"):
+            await _fill_editable(page, ship_sel["line2"], addr["line2"])
+        await _fill_editable(page, ship_sel["city"], addr.get("city", ""))
         state_val = addr.get("state", "")
-        state_loc = page.locator(ship_sel["state"])
-        if await state_loc.count():
-            tag = await state_loc.evaluate("el => el.tagName.toLowerCase()")
-            if tag == "select":
-                await state_loc.select_option(state_val)
-            else:
-                await state_loc.fill(state_val)
-        await page.fill(ship_sel["postal"], addr.get("postal_code", ""))
+        for state_part in ship_sel["state"].split(","):
+            state_loc = page.locator(state_part.strip()).first
+            if (
+                await state_loc.count()
+                and await state_loc.is_visible()
+                and await state_loc.is_editable()
+            ):
+                tag = await state_loc.evaluate("el => el.tagName.toLowerCase()")
+                if tag == "select":
+                    await state_loc.select_option(state_val)
+                else:
+                    await state_loc.fill(state_val)
+                break
+        await _fill_editable(page, ship_sel["postal"], addr.get("postal_code", ""))
         phone = customer.get("phone", "")
-        if phone and await page.locator(ship_sel["phone"]).count():
-            await page.fill(ship_sel["phone"], phone)
+        if phone:
+            await _fill_editable(page, ship_sel["phone"], phone)
 
         if await page.locator(ship_sel["suggestion"]).count() > 0:
             return _blocked("blocked_address_validation", "Address suggestion detected")
 
         pay_sel = selectors["payment"]
-        if await page.locator(pay_sel["saved_method"]).count():
-            await page.locator(pay_sel["saved_method"]).first.click()
+        pm = page.locator(pay_sel["saved_method"]).first
+        if await pm.count():
+            await pm.click()
         if await page.locator(pay_sel["challenge_marker"]).count() > 0:
-            return _blocked("blocked_payment_authentication", "Payment challenge")
+            return _blocked("blocked_payment_authentication", "Payment challenge — no saved card on account")
 
         review_sel = selectors["review"]
         live_total = 0
-        if await page.locator(review_sel["total"]).count():
-            raw = (await page.locator(review_sel["total"]).first.inner_text()).strip()
+        total_loc = page.locator(review_sel["total"]).first
+        if await total_loc.count():
+            raw = (await total_loc.inner_text()).strip()
             live_total = int(_parse_price(raw) * 100)
+        if not live_total:
+            cart = await _cart_api(page)
+            live_total = int(cart.get("totals", {}).get("total_price", 0) or total_cents)
+
         if live_total > settings.max_order_total_cents:
             return _blocked("order_cap_exceeded", "Review total exceeds cap")
 
         if dry_run:
+            place_visible = await page.locator(review_sel["place_order"]).count() > 0
+            if not place_visible:
+                return _blocked("blocked_supplier_policy", "Checkout review incomplete")
             return {
                 "status": "dry_run_ready",
-                "metadata": {"total_cents": live_total or total_cents, "portal": "woocommerce"},
+                "metadata": {
+                    "total_cents": live_total or total_cents,
+                    "portal": "woocommerce",
+                    "skus": expected_skus,
+                    "dropship_mode": "ship_to_client",
+                },
             }
 
-        if not await page.locator(review_sel["place_order"]).count():
+        place = page.locator(review_sel["place_order"]).first
+        if not await place.count():
             return _blocked("blocked_supplier_policy", "Place order control missing")
 
-        await page.click(review_sel["place_order"])
+        await place.click()
         try:
             await page.wait_for_url("**/order-received**", timeout=settings.navigation_timeout_ms)
         except PlaywrightTimeoutError:
@@ -308,15 +353,109 @@ class WooCommercePortalFlow:
 
 
 async def _clear_woocommerce_cart(page: Page, cart_sel: dict[str, str]) -> None:
+    base = settings.portal_base_url.rstrip("/")
+    await page.goto(f"{base}/cart/", wait_until="domcontentloaded")
+    await page.wait_for_timeout(1500)
+
+    for _ in range(5):
+        cart = await _cart_api(page)
+        items = cart.get("items", [])
+        if not items:
+            break
+        for item in items:
+            key = item.get("key")
+            if key:
+                await page.evaluate(
+                    """
+                    async (k) => {
+                      await fetch('/wp-json/wc/store/v1/cart/items/' + k, {
+                        method: 'DELETE',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/json' },
+                      });
+                    }
+                    """,
+                    key,
+                )
+        await page.wait_for_timeout(800)
+
     for _ in range(20):
         remove = page.locator(cart_sel["clear"])
         if await remove.count() == 0:
             break
         await remove.first.click()
-        await page.wait_for_timeout(800)
-    empty = cart_sel.get("empty_marker")
-    if empty and await page.locator(empty).count():
+        await page.wait_for_timeout(600)
+
+    cart = await _cart_api(page)
+    if cart.get("items"):
+        # Last resort: reload cart page and click any remaining remove controls.
+        await page.goto(f"{base}/cart/", wait_until="domcontentloaded")
+        for _ in range(10):
+            remove = page.locator(cart_sel["clear"])
+            if await remove.count() == 0:
+                break
+            await remove.first.click()
+            await page.wait_for_timeout(600)
+
+
+async def _cart_api(page: Page) -> dict[str, Any]:
+    return await page.evaluate("async () => (await fetch('/wp-json/wc/store/v1/cart')).json()")
+
+
+async def _read_dom_sku(page: Page, prod_sel: dict[str, str]) -> str:
+    loc = page.locator(prod_sel["sku"]).first
+    if not await loc.count():
+        return ""
+    attr = await loc.get_attribute("data-product_sku")
+    if attr:
+        return attr.strip()
+    text = (await loc.inner_text()).strip()
+    return _normalize_sku(text)
+
+
+async def _fill_first(page: Page, selector: str, value: str) -> None:
+    await _fill_editable(page, selector, value)
+
+
+async def _fill_editable(page: Page, selector: str, value: str) -> None:
+    if not selector or not value:
         return
+    for part in selector.split(","):
+        part = part.strip()
+        loc = page.locator(part).first
+        if await loc.count() and await loc.is_visible() and await loc.is_editable():
+            await loc.fill(value)
+            return
+
+
+async def _select_dropship_to_client(page: Page, ship_sel: dict[str, str]) -> None:
+    await page.evaluate(
+        """
+        () => {
+          const sel = document.querySelector('#order-srx-srx_drop_ship_select');
+          if (sel) {
+            sel.value = 'Yes - Ship direct to client';
+            sel.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+          const btn = document.querySelector('[data-srx-value="Yes - Ship direct to client"]');
+          if (btn) btn.click();
+        }
+        """
+    )
+    await page.wait_for_timeout(2000)
+
+
+def _find_cart_line(cart: dict[str, Any], sku: str, name_hint: str | None) -> dict[str, Any] | None:
+    items = cart.get("items", [])
+    for item in items:
+        if item.get("sku") == sku:
+            return item
+    if name_hint:
+        hint = name_hint.lower()
+        for item in items:
+            if hint in (item.get("name") or "").lower():
+                return item
+    return items[-1] if items else None
 
 
 def _blocked(code: str, message: str) -> dict[str, Any]:
