@@ -125,8 +125,8 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - Membership **terms/prices** — structure + interest API live; Emily sets `MEMBERSHIP_PACKAGES_JSON` price_cents to sell.
 - Domain name — **production uses dewtheoryco.com** (Cloudflare Worker); confirm as canonical brand domain.
 - **Virtual consultation go-live checklist (owner actions):**
-  1. Create Stripe Product/Price → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
-  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` includes consultation metadata sessions
+  1. ~~Create Stripe Product/Price~~ → done in test account via `npm run stripe:bootstrap` → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
+  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` — registered in test Stripe; push `STRIPE_WEBHOOK_SECRET` to Worker
   3. Scheduler URL that mints unique Zoom meetings → `CONSULTATION_SCHEDULING_URL`
   4. Drop `RESEND_API_KEY` + verified `EMAIL_FROM` (code sends; without key emails log to store)
   5. Optional R2 private bucket for consultation photos
@@ -226,7 +226,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Membership interest + package shells | Done 2026-07-31 — no invented prices |
 | Admin weekly analytics + outbound email log | Done 2026-07-31 |
 | Path-gate AIDesigner to `/` only | Done 2026-07-31 |
-| **Stripe live keys** | **Owner only** — code ready, not connected |
+| **Stripe live keys** | **Worker secrets pending** — test keys verified locally; push via Codex prompt `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md` |
 
 ### Definition of Done notes
 
