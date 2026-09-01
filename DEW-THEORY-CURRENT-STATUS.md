@@ -562,6 +562,35 @@ Remaining owner/external blockers (unchanged):
 - Stripe webhook registration + live Stripe keys.
 - Emily owner login + TOTP live verification (owner-only; not performed without owner credentials).
 
+### 2026-09-01 Codex (DeepSeek-V4) — production re-verification pass
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T12:40:00Z
+**Branch:** `main` @ `51a8c68` (docs closeout on top of deployed code SHA `458ea59`)
+
+No source-code changes made this pass; the already-merged Admin Command Center and durable commerce/RPA architecture were re-audited and left intact.
+
+Re-verified current truth:
+
+- Git: clean `main` @ `51a8c68`; all feature PRs merged (only prompt-doc drafts #10/#13 remain). Latest main CI green (`33507553238`).
+- Production Worker `dew-theory` active version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702` (created `2026-09-01T12:18:12Z`).
+- D1 bindings `DEW_THEORY_D1` (`dew-theory-commerce` `cd55d01f-2c27-4b53-a8aa-9b10555d3b17`) + `NEXT_TAG_CACHE_D1`; R2 buckets `dew-theory-opennext-cache` + `dew-theory-consultation-photos`; 8 `verified=1` supplier mappings live.
+- Worker secrets present: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` (names only). All `SKIN_SCRIPT_*`, Stripe, Resend, and TOTP secrets absent.
+- Admin owner-auth audit verdict: **SECURE** (fail-closed owner-only; no first-admin fallback; dev password rejected in production). Two low hardening notes recorded in `OPEN_ITEMS.md`.
+- Live smoke `npm run smoke:routes -- https://dewtheoryco.com` all clear; `/admin*` routes correctly 307 → `/admin/login`.
+
+Gates (re-run this pass):
+
+| Gate | Result |
+|------|--------|
+| `npm test` | 228 pass / 0 fail |
+| `npm run build` | success |
+| `npm run continuity` | `[continuity] OK` |
+| `python -m pytest -q` (RPA) | 15 pass |
+| `python -m ruff check .` | All checks passed |
+
+RPA container deploy blocker refined: `flyctl` is installable (`winget`/`scoop`/`choco` present) but zero Fly auth exists on this machine and GitHub repo secrets + variables are both empty, so neither local CLI nor CI can deploy. `fly.toml` / `Dockerfile` / `deploy-production.yml` are complete and deploy-ready pending owner Fly auth + portal/HMAC secret values.
+
 ### Chronology (this revamp)
 
 1. Verified repo `marinerxcapital/dew-theory-website`, branch `main` @ `e9f64da`, clean tree
