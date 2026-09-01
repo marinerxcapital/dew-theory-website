@@ -69,7 +69,7 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
 | Live production SHA (verified deployed) | `458ea5923c11d282e7b5299a5a29d94fa41436e7` (2026-09-01, admin command center + RPA deploy automation + verified SKUs) |
-| `main` HEAD | `9428777` (docs-only memory closeout; deployed code SHA is `458ea59` — no redeploy required) |
+| `main` HEAD | `4f327eb` (docs-only memory closeout commits; deployed code SHA is `458ea59` — no redeploy required) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Current Worker version ID | `c9a82bb3-2c27-46f3-93ca-9f1df99b7702` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
