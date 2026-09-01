@@ -14,7 +14,10 @@ NEXT_PUBLIC_SITE_URL=https://dewtheoryco.com
 # Admin portal (production: must set all three; default password rejected)
 ADMIN_EMAIL=admin@dewtheory.local
 ADMIN_PASSWORD=dew-admin-dev
+# Owner-only admin (Emily) — login email must match this exactly in production
+ADMIN_OWNER_EMAIL=
 ADMIN_SESSION_SECRET=change-me-to-a-long-random-string
+# ADMIN_REQUIRE_TOTP=true
 
 # Google Calendar (optional — freebusy + event create when all four set)
 # GOOGLE_CALENDAR_ID=

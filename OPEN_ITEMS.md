@@ -68,6 +68,8 @@ respected (canvas short-circuits; caustic/dew hidden under reduce). See
   admin-editable — not a confirmed client number.
 - **Admin gate.** `/admin/*` requires httpOnly session cookie + row in `Admins` (local file store
   until Supabase Auth). Dev credentials: `ADMIN_EMAIL` / `ADMIN_PASSWORD` (defaults in `ENV.md`).
+  **Owner-only (2026-09-01):** `ADMIN_OWNER_EMAIL` must match login; non-owner Admins rows rejected.
+  Command center on branch `cursor/admin-command-center-e021` — **not production-verified** until Worker redeploy.
 - **Overnight polish (engineering).** Availability adapter, appointment/order status machines, CSV
   dry-run, atomic store writes, robots/sitemap/404, funnel events, unit tests — see `POLISH_PROGRESS.md`.
   Unresolved *business* decisions remain below; nothing was invented to close them.

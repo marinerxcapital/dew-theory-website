@@ -1,8 +1,8 @@
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import CsvImport from '@/components/admin/CsvImport';
 
 export default async function AdminImportPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
   return (
     <div>
       <h1 className="font-display text-3xl font-normal text-graphite">Skin Script CSV import</h1>

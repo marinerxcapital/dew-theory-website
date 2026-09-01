@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { listConsultations } from '@/lib/consultations/service.js';
 import { nextActionLabel } from '@/lib/consultations/statuses.js';
 
 export default async function AdminConsultationsPage({ searchParams }) {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const filter = searchParams?.filter || 'all';
   let items = listConsultations();
 

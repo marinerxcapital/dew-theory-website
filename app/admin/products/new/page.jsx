@@ -1,8 +1,8 @@
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import ProductForm from '@/components/admin/ProductForm';
 
 export default async function NewProductPage() {
-  await requireAdmin();
+  await requireOwnerAdmin();
   return (
     <div>
       <h1 className="font-display text-3xl font-normal text-graphite">Add product</h1>

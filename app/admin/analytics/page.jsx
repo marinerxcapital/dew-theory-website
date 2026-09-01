@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { requireAdmin } from '@/lib/require-admin';
+import { requireOwnerAdmin } from '@/lib/require-admin';
 import { readStore } from '@/lib/store';
+import { commerceListOrders } from '@/lib/commerce';
 import { formatMoney } from '@/lib/shipping';
 import {
   parseDateRange,
@@ -8,19 +9,25 @@ import {
   countEventsByType,
   weeklyEventSummary
 } from '@/lib/analytics';
+import AdminPageHeader from '@/components/admin/AdminPageHeader';
 
 const PAIDISH = new Set(['paid', 'fulfilled', 'submitted_to_skin_script']);
 
 export default async function AdminAnalyticsPage({ searchParams }) {
-  await requireAdmin();
+  await requireOwnerAdmin();
   const fromYmd = typeof searchParams?.from === 'string' ? searchParams.from : '';
   const toYmd = typeof searchParams?.to === 'string' ? searchParams.to : '';
   const { from, to } = parseDateRange(fromYmd || null, toYmd || null);
 
   const store = readStore();
-  const events = filterByCreatedAt(store.events || [], from, to, 'at');
-  const allOrders = filterByCreatedAt(store.orders || [], from, to, 'created_at');
+  const commerceOrders = await commerceListOrders();
+  const mergedOrders = new Map();
+  for (const o of store.orders || []) mergedOrders.set(o.id, o);
+  for (const o of commerceOrders) mergedOrders.set(o.id, o);
+  const allOrdersSource = Array.from(mergedOrders.values());
+  const allOrders = filterByCreatedAt(allOrdersSource, from, to, 'created_at');
   const orders = allOrders.filter((o) => PAIDISH.has(o.status));
+  const events = filterByCreatedAt(store.events || [], from, to, 'at');
   const revenue = orders.reduce((s, o) => s + Number(o.total || 0), 0);
   const aov = orders.length ? revenue / orders.length : 0;
 
@@ -78,7 +85,10 @@ export default async function AdminAnalyticsPage({ searchParams }) {
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-normal text-graphite">Analytics</h1>
+      <AdminPageHeader
+        title="Analytics"
+        subtitle="Revenue and orders from durable commerce (merged with legacy file orders). Shop funnel events remain in file analytics store."
+      />
       <p className="mt-2 font-body text-sm font-light text-charcoal/70">
         From site data (Orders, Appointments, DiscountCodes, events) — not static mock UI numbers.
         First-party funnel only; optional third-party traffic analytics later.
