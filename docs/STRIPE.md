@@ -5,7 +5,24 @@
 | Env | Path | Behavior |
 |---|---|---|
 | `STRIPE_SECRET_KEY` **unset** | **Mock** | `POST /api/checkout` writes order as `paid` immediately, returns `{ order_id, mock: true }`. No Stripe redirect. No webhooks. |
-| `STRIPE_SECRET_KEY` **set** | **Stripe Checkout** | Creates Checkout Session with full metadata; order starts as `pending_payment`. Success URL: `/cart/confirmation?session_id={CHECKOUT_SESSION_ID}`. |
+| `STRIPE_SECRET_KEY` **set** | **Stripe Checkout** | Creates Checkout Session with full metadata; order starts as `pending_payment`. Success URL: `/cart/confirmation?session_id={CHECKOUT_SESSION_ID}`. Automatic tax when `STRIPE_TAX_ENABLED` (default true). |
+
+## Bootstrap (owner / CI)
+
+```bash
+# Requires STRIPE_SECRET_KEY in env or .env.local
+npm run stripe:bootstrap
+# Production webhook:
+npm run stripe:bootstrap -- --webhook-url https://dewtheoryco.com/api/webhooks/stripe
+```
+
+Creates Virtual Consultation product/price if missing and writes `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID` to `.env.local`.
+
+## Stripe Tax
+
+- Code: `lib/stripe/config.js` → `automatic_tax: { enabled: true }` on Checkout when configured
+- **Dashboard required:** Stripe → Settings → Tax → enable before tax appears on sessions
+- Disable temporarily: `STRIPE_TAX_ENABLED=false`
 
 ## Session metadata (Stripe path)
 
@@ -65,4 +82,6 @@ See `.env.example` (or `ENV.md` if example is gitignored globally).
 - `STRIPE_SECRET_KEY`
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (optional client use later)
 - `STRIPE_WEBHOOK_SECRET`
+- `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
+- `STRIPE_TAX_ENABLED` (default true when Stripe configured — requires Tax enabled in Dashboard)
 - `NEXT_PUBLIC_SITE_URL` (success/cancel URLs)

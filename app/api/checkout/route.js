@@ -9,6 +9,11 @@ import {
 import { resolveDiscountCode } from '@/lib/discounts';
 import { getProducts } from '@/lib/products-server';
 import { buildSessionMetadata } from '@/lib/stripe-orders';
+import {
+  getStripeCheckoutExtensions,
+  getStripeClient,
+  productPriceData
+} from '@/lib/stripe/config';
 import { maybeAutoFulfill } from '@/lib/dropship/fulfill-order';
 import { persistPaidOrderWithJob } from '@/lib/fulfillment/jobs';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
@@ -98,31 +103,29 @@ export async function POST(request) {
 
     const stripeKey = process.env.STRIPE_SECRET_KEY;
     if (stripeKey) {
-      const Stripe = (await import('stripe')).default;
-      const stripe = new Stripe(stripeKey);
+      const stripe = await getStripeClient();
+      if (!stripe) {
+        return jsonError({ error: 'Stripe misconfigured', code: 'stripe_not_configured' }, 503);
+      }
       const origin =
         process.env.NEXT_PUBLIC_SITE_URL ||
         request.headers.get('origin') ||
         'http://localhost:3000';
 
       const line_items = items.map((i) => ({
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: i.variant ? `${i.name} (${i.variant})` : i.name
-          },
-          unit_amount: Math.round(Number(i.unit_price) * 100)
-        },
+        price_data: productPriceData({
+          name: i.variant ? `${i.name} (${i.variant})` : i.name,
+          unitAmountCents: Math.round(Number(i.unit_price) * 100)
+        }),
         quantity: i.quantity
       }));
 
       if (totals.shipping_fee > 0) {
         line_items.push({
-          price_data: {
-            currency: 'usd',
-            product_data: { name: 'Shipping' },
-            unit_amount: Math.round(totals.shipping_fee * 100)
-          },
+          price_data: productPriceData({
+            name: 'Shipping',
+            unitAmountCents: Math.round(totals.shipping_fee * 100)
+          }),
           quantity: 1
         });
       }
@@ -144,7 +147,7 @@ export async function POST(request) {
           totals,
           idempotencyKey
         }),
-        shipping_address_collection: { allowed_countries: ['US', 'CA'] }
+        ...getStripeCheckoutExtensions()
       };
 
       if (discountCode?.stripe_promotion_code_id) {
