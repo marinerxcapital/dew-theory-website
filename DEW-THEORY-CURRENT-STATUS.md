@@ -485,6 +485,46 @@ Container host (TASK-05) re-probe — still blocked:
 
 Remaining owner-blocked tasks (unchanged): TASK-05 container host + Worker HMAC/portal secrets; saved payment method on the Skin Script account; headed client-dropship address mapping; and one controlled live supplier order.
 
+### 2026-09-01 Cursor Cloud — E2E stack verify + deploy automation (session 6)
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-09-01T04:20:00Z  
+**Base:** `main` @ `0c80486` (PR #14 merged — D1 seed + config fix)
+
+| Area | Status |
+|------|--------|
+| Full stack E2E (local) | **VERIFIED** — Node `rpa-adapter` → local RPA service (HMAC) → live portal `dry_run_ready` |
+| Production D1 mappings | 8 rows `verified=1` (Codex session) |
+| RPA container public deploy | **Not done** — no `FLY_API_TOKEN` / `CLOUDFLARE_API_TOKEN` in this environment |
+| Worker production deploy | **Not done** — `wrangler whoami` unauthenticated on Cloud Agent VM |
+| Live supplier order | **Not done** — no saved payment method on Skin Script account |
+
+**Added this session:**
+
+- `scripts/e2e-rpa-live-stack.mjs` + `npm run e2e:rpa-live` — operator full-stack dry-run test
+- `scripts/skin-script-checkout-probe.py` — payment/address field probe
+- `services/skin-script-rpa/fly.toml` — Fly.io deploy template (Dew Theory org)
+- `services/skin-script-rpa/.dockerignore` — exclude `.env` from image builds
+- `.github/workflows/deploy-production.yml` — manual Worker + RPA deploy (needs repo secrets)
+
+**Gates:**
+
+| Gate | Result |
+|------|--------|
+| `npm test` | 223 pass |
+| `npm run build` | success |
+| `npm run continuity` | OK |
+| `python3 -m pytest -q` | 15 pass |
+| E2E stack (`e2e:rpa-live` vs local RPA) | `dry_run_ready` |
+
+**To finish production (requires secrets Skyler adds to GitHub or local wrangler/fly auth):**
+
+1. GitHub Actions secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `FLY_API_TOKEN`
+2. Run workflow **Deploy Production** → deploy Worker + RPA on Fly
+3. `wrangler secret put` for `SKIN_SCRIPT_RPA_*` + portal credentials
+4. Emily adds saved payment method on Skin Script portal
+5. Controlled live order with `SKIN_SCRIPT_DRY_RUN=false`
+
 ### Chronology (this revamp)
 
 1. Verified repo `marinerxcapital/dew-theory-website`, branch `main` @ `e9f64da`, clean tree

@@ -2,6 +2,29 @@
 
 ---
 
+## 2026-09-01 Cursor Cloud — E2E verify + deploy automation (no cloud deploy)
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-09-01T04:20:00Z  
+**Base:** `main` @ `0c80486`
+
+### Completed
+
+- Verified full stack locally: Node RPA adapter (HMAC) → uvicorn RPA service → live portal `dry_run_ready`
+- Added `fly.toml`, `.dockerignore`, `deploy-production.yml` GitHub Actions workflow, `e2e-rpa-live-stack.mjs`
+
+### Not completed (environment)
+
+- Worker deploy: `wrangler whoami` not authenticated on Cloud Agent VM
+- Fly deploy: `fly auth whoami` — no access token
+- Docker image build: overlayfs restriction on Cloud Agent VM (uvicorn path used instead)
+
+### Owner next step
+
+Add GitHub Actions secrets and run **Deploy Production** workflow, or authenticate wrangler/fly locally under MarinerX / Dew Theory accounts.
+
+---
+
 ## 2026-09-01 Codex — D1 verified-mapping seed (no Worker deploy)
 
 **Signed:** Codex
