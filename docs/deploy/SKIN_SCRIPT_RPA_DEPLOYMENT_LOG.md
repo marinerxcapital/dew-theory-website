@@ -2,6 +2,26 @@
 
 ---
 
+## 2026-09-01 Codex — Worker redeployed (RPA container still blocked)
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T12:21:00Z
+**Status:** Worker `dew-theory` redeployed from `main` `458ea59` → version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`; RPA container still not deployed
+
+### Completed
+
+- Merged admin-command-center PR #16 and deploy-automation PR #15 (already merged) into `main`.
+- Deployed Worker; `DEW_THEORY_D1` (`dew-theory-commerce`) and `NEXT_TAG_CACHE_D1` bindings active; 8 `verified=1` supplier mappings confirmed in remote D1.
+- `SKIN_SCRIPT_MODE=mock` and `AUTO_FULFILL=false` remain the production runtime defaults, so no accidental live supplier orders.
+
+### Not completed (owner/external)
+
+- RPA container deploy to Fly.io: no `flyctl` CLI and no `FLY_API_TOKEN`; GitHub Actions `FLY_API_TOKEN` secret still needed.
+- `SKIN_SCRIPT_RPA_*` Worker secrets (HMAC, service URL, portal credentials): values are owner-supplied and were not set.
+- Emily saved payment method on Skin Script portal; controlled live supplier order.
+
+---
+
 ## 2026-09-01 Cursor Cloud — E2E verify + deploy automation (no cloud deploy)
 
 **Signed:** Cursor Cloud Agent  

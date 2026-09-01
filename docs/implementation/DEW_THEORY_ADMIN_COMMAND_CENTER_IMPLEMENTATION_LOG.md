@@ -47,3 +47,28 @@ Code complete on branch; production Worker not redeployed by this agent.
 - Live supplier order (saved payment on Skin Script portal)
 
 See `docs/DEW-THEORY-FINAL-CODEX-COMPLETION-PROMPT.md`.
+
+---
+
+## 2026-09-01 Codex — production deploy closeout
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T12:21:00Z
+**Merged SHA:** `458ea5923c11d282e7b5299a5a29d94fa41436e7` (PR #16)
+**Worker version:** `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`
+
+### Completed
+
+- Squash-merged PR #16 into `main`.
+- Deployed `main` to Worker `dew-theory`; D1 + R2 bindings active.
+- Verified unauthenticated gate, route presence, `noindex`, `robots.txt` exclusions, no secret leakage on `/admin/login`, and 8 `verified=1` D1 supplier mappings.
+- Local gates: `npm test` 228/0, `npm run build` success, `npm run continuity` OK; main CI green (`33506245873`).
+
+### Remaining
+
+- Owner-only live login + TOTP verification.
+- RPA service deploy (Fly) + HMAC/portal Worker secrets.
+- Stripe webhook + live keys.
+- Emily saved payment method + controlled live supplier order.
+
+See `docs/deploy/ADMIN_COMMAND_CENTER_DEPLOYMENT_LOG.md`.

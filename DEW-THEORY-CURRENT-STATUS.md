@@ -68,18 +68,18 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `7346633` (2026-08-31, Skin Script RPA TASK-01 D1 provision + durable mock checkout) |
-| `main` HEAD (merged, not yet deployed) | `30e2bd0` (PR #12 verified SKUs + live portal dry-run; PR #11 WooCommerce portal flow) |
+| Live production SHA (verified deployed) | `458ea5923c11d282e7b5299a5a29d94fa41436e7` (2026-09-01, admin command center + RPA deploy automation + verified SKUs) |
+| `main` HEAD | `458ea5923c11d282e7b5299a5a29d94fa41436e7` (deployed this session; no longer behind production) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `30e07650-5d65-4ee1-a4fc-c7f0edf005ae` |
+| Current Worker version ID | `c9a82bb3-2c27-46f3-93ca-9f1df99b7702` |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
 | Live design as of 2026-08-29 | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. Public offering surface is exactly Shop (products) + Virtual Consultation. Primary menu is Shop / Virtual Consult (+ Shop-by-type catalog). |
-| Deploy blocker this session | TASK-01 cleared in Codex environment via existing Wrangler OAuth for `skyler@marinerxcapital.com`; no secret values exposed |
+| Deploy blocker this session | Worker deployed via existing Wrangler OAuth `skyler@marinerxcapital.com`; RPA container + live order remain owner-blocked |
 
-**Admin Command Center (branch `cursor/admin-command-center-e021`, 2026-09-01):** Emily-only owner console at `/admin` with durable commerce KPIs, fulfillment center, Stripe/RPA integration health, attention queue. Data authority documented in `docs/ADMIN_COMMAND_CENTER_ARCHITECTURE.md`. Not yet verified on production until Worker redeploy.
+**Admin Command Center (PR #16, 2026-09-01):** Emily-only owner console at `/admin` with durable commerce KPIs, fulfillment center, Stripe/RPA integration health, attention queue. Data authority documented in `docs/ADMIN_COMMAND_CENTER_ARCHITECTURE.md`. Merged and live on production this session; unauthenticated gate, `noindex`, `robots.txt` exclusions, and no-secret-leak HTML verified. Owner login + TOTP live check remains owner-only.
 
-**Live smoke (production, 2026-08-31):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` present). `npm run smoke:routes -- https://dewtheoryco.com` passed for retained routes and all 8 public legal PDFs. Cloudflare deployment readback shows Worker version `30e07650-5d65-4ee1-a4fc-c7f0edf005ae`.
+**Live smoke (production, 2026-09-01):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` present). `npm run smoke:routes -- https://dewtheoryco.com` passed for retained routes and all 8 public legal PDFs. Cloudflare deployment readback shows Worker version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`.
 
 ---
 
@@ -526,6 +526,41 @@ Remaining owner-blocked tasks (unchanged): TASK-05 container host + Worker HMAC/
 3. `wrangler secret put` for `SKIN_SCRIPT_RPA_*` + portal credentials
 4. Emily adds saved payment method on Skin Script portal
 5. Controlled live order with `SKIN_SCRIPT_DRY_RUN=false`
+
+### 2026-09-01 Codex — Admin Command Center merge + production deploy closeout
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-01T12:21:00Z
+**Base:** `main` @ `9a3302e` (PR #15 deploy automation merged)
+**Merged:** PR #16 (`feat(admin): Emily-only command center with durable commerce ops`) → `main` @ `458ea5923c11d282e7b5299a5a29d94fa41436e7`
+
+Completed this session:
+
+- Merged admin-command-center PR #16 (squash). PR #15 deploy automation and PR #14 D1 verified-mapping seed were already merged before this session.
+- Deployed Worker `dew-theory` from `main` `458ea59` → **version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`**. Deploy readback confirmed `DEW_THEORY_D1` (`dew-theory-commerce`) + `NEXT_TAG_CACHE_D1` D1 bindings, R2 buckets, and custom domains `dewtheoryco.com` / `www`.
+- Verified production:
+  - `npm run smoke:routes -- https://dewtheoryco.com` → all clear (22 checks incl. 8 legal PDFs).
+  - `/admin` and the new command-center routes (`/admin/fulfillment`, `/admin/integrations`, `/admin/system`, `/admin/orders`) return 307 → `/admin/login?next=...` when unauthenticated.
+  - `/admin/login` returns 200 with no admin secret markers (`dew-admin-dev`, `admin@dewtheory.local`, `sk_live`, `sk_test`, `ADMIN_PASSWORD`) in the HTML.
+  - `robots.txt` disallows `/admin` and `/api`; admin layout metadata is `robots: { index: false, follow: false }`.
+  - D1 `dew-theory-commerce` readback: 8 `supplier_mappings` rows with `verified=1`.
+  - Homepage still serves consultation+products surface (`Shop Skin Script` + `virtual consultation` + `Emily's picks`).
+
+Gates (re-run this session):
+
+| Gate | Result |
+|------|--------|
+| `npm test` | 228 pass / 0 fail |
+| `npm run build` | success |
+| `npm run continuity` | `[continuity] OK` |
+| Main CI (push `458ea59`) | green — run `33506245873` |
+
+Remaining owner/external blockers (unchanged):
+
+- RPA service deploy to Fly.io: no `flyctl` CLI and no `FLY_API_TOKEN` in this environment; GitHub Actions secret needed.
+- Emily saved payment method on Skin Script portal; controlled live supplier order (TASK-06).
+- Stripe webhook registration + live Stripe keys.
+- Emily owner login + TOTP live verification (owner-only; not performed without owner credentials).
 
 ### Chronology (this revamp)
 

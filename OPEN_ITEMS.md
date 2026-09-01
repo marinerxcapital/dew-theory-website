@@ -183,7 +183,9 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **Cloudflare edge cache** — R2 ISR + D1 tag cache already used in production deploy path;
   optional private photo bucket `dew-theory-consultation-photos` (see `docs/DEPLOY_DEWTHEORYCO.md`).
 - **Skin Script live credentials.** Adapters ready; use `SKIN_SCRIPT_MODE=mock` + CSV until partner answers.
-- **Skin Script RPA production (2026-08-31).** D1 live; 8 `verified=1` supplier mappings seeded (2026-09-01 Codex). Authenticated portal recon complete; live dry-run verified. RPA container deploy + saved payment method on account remain before production live orders. Container host is undecided: Cloudflare Containers/Cloudchamber `Unauthorized` (Workers Paid plan), Railway only `skyler@certamaris.com` (CertaMaris workspace), no local Docker. See handoff.
+- **Skin Script RPA production (2026-09-01).** D1 live; 8 `verified=1` supplier mappings confirmed. Worker `dew-theory` redeployed `main` `458ea59` (admin command center + deploy automation + verified SKUs) as version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`. Authenticated portal recon complete; live dry-run verified. **Still blocked:** RPA container deploy (no `flyctl`/`FLY_API_TOKEN`), `SKIN_SCRIPT_RPA_*` Worker secrets, Emily saved payment method on the portal, controlled live supplier order, and Stripe webhook + live keys. See `docs/deploy/ADMIN_COMMAND_CENTER_DEPLOYMENT_LOG.md`.
+
+- **Admin Command Center production verification (2026-09-01).** PR #16 merged and deployed. Unauthenticated gate, route presence, `noindex`, `robots.txt` exclusions, no-secret-leak HTML, and D1 mappings verified by Codex. **Still owner-only:** Emily login + TOTP live check and authenticated integration-panel review require owner credentials.
 - **xAI assist optional.** `XAI_API_KEY` for messy feed mapping only.
 - **Admin production secrets** must remain non-default on Worker.
 
