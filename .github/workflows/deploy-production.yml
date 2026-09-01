@@ -1,0 +1,65 @@
+# Manual production deploy — requires repository secrets (Settings → Secrets → Actions):
+#   CLOUDFLARE_API_TOKEN — Workers deploy (MarinerX account, dew-theory)
+#   CLOUDFLARE_ACCOUNT_ID — MarinerX Capital account ID
+# Optional RPA (Fly.io under Dew Theory org):
+#   FLY_API_TOKEN
+#   FLY_APP — default dew-theory-skin-script-rpa
+
+name: Deploy Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_worker:
+        description: Deploy Cloudflare Worker (dewtheoryco.com)
+        type: boolean
+        default: true
+      deploy_rpa:
+        description: Deploy Skin Script RPA to Fly.io
+        type: boolean
+        default: false
+
+jobs:
+  deploy-worker:
+    if: inputs.deploy_worker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Deploy Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "CLOUDFLARE_API_TOKEN not set — skip Worker deploy"
+            exit 1
+          fi
+          npx opennextjs-cloudflare build
+          npx wrangler deploy
+
+  deploy-rpa:
+    if: inputs.deploy_rpa
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/skin-script-rpa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy RPA to Fly.io
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP: ${{ secrets.FLY_APP || 'dew-theory-skin-script-rpa' }}
+        run: |
+          if [ -z "$FLY_API_TOKEN" ]; then
+            echo "FLY_API_TOKEN not set — add Fly token for Dew Theory org"
+            exit 1
+          fi
+          flyctl deploy --remote-only --app "$FLY_APP"

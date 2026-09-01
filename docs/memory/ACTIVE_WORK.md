@@ -1,28 +1,30 @@
 # Active Work — Dew Theory
 
-**Signed:** Codex
-**Last updated (UTC):** 2026-09-01T03:37:00Z
-**Branch:** `main` @ `30e2bd0` (PR #12 merged) → work branch `codex/skin-script-rpa-d1-seed-config-fix`
+**Signed:** Cursor Cloud Agent  
+**Last updated (UTC):** 2026-09-01T04:20:00Z  
+**Branch:** `main` @ `0c80486` (PR #14 merged)
 
 ## Status
 
-- Skin Script authenticated recon **complete** (Cursor); verified SKUs + wholesale for 8/8 products; live portal dry-run **verified** (`dry_run_ready`).
-- Production D1 `dew-theory-commerce` now has **8 `verified=1` supplier mappings** (seeded this session).
-- Storefront healthy: 223 Node tests, 15 Python tests, build 58 routes, route smoke all clear.
+- D1: **8 verified supplier mappings** in production (`npm run seed:verified-mappings:d1`)
+- Portal: authenticated recon + live dry-run **verified**
+- **Full stack E2E verified locally:** Worker adapter → RPA service (HMAC) → live portal `dry_run_ready`
+- Deploy automation added (GitHub Actions + Fly.toml) — **awaiting repo secrets**
 
-## Remaining (owner / infrastructure)
+## Remaining (infrastructure secrets — not code)
 
-1. **RPA container deploy (TASK-05)** — no owner-designated host. Cloudflare Containers/Cloudchamber `Unauthorized` (Workers Paid plan); Railway only `skyler@certamaris.com` (CertaMaris workspace); no local Docker.
-2. **Worker HMAC/portal secrets** — pending container URL + owner credentials.
-3. **Saved payment method** on Skin Script account — required before live supplier orders.
-4. **Client dropship address UX** — checkout locks some fields; headed session needed to map editable client-address inputs.
+1. **GitHub repo secrets** → `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `FLY_API_TOKEN` (Dew Theory org, not CertaMaris)
+2. Run **Deploy Production** workflow (Worker + optional RPA on Fly)
+3. `wrangler secret put` — `SKIN_SCRIPT_RPA_HMAC_SECRET`, `SKIN_SCRIPT_RPA_SERVICE_URL`, portal credentials
+4. **Saved payment method** on Skin Script wholesale account (Emily)
+5. One **controlled live supplier order** after above
 
 ## Commands
 
 ```bash
-npm run seed:verified-mappings:d1   # seed verified=1 mappings to production D1 (wrangler auth)
-npm run seed:verified-mappings      # file-backend only (local dev)
+npm run seed:verified-mappings:d1   # production D1 (wrangler auth)
+npm run e2e:rpa-live                # full stack dry-run (local RPA service required)
 npm run continuity
 ```
 
-See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
+See `DEW-THEORY-CODEX-FULL-TAKEOVER-PROMPT.md` and `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
