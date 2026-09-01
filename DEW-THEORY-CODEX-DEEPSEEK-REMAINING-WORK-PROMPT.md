@@ -14,17 +14,19 @@ You are Codex running DeepSeek-V4 Pro. Continue from Cursor's verified state —
 |------|-------|
 | Repository | `marinerxcapital/dew-theory-website` |
 | Branch | `cursor/skin-script-rpa-completion-e021` |
-| PR | #11 (draft) |
+| main | `5d2ec20` (PR #11 merged — session 4) |
+| Session 5 PR | Pending merge — verified SKUs + live dry-run |
 | HEAD | Run `git rev-parse HEAD` after pull |
 
 ## Cursor Completed — DO NOT REDO
 
 - TASK-01 D1 provisioned and production-verified (Codex)
-- WooCommerce RPA portal flow + mock portal CI (15 Python / 222 Node tests)
-- **Authenticated login** via `https://skinscriptrx.com/my-account/`
-- **Verified SKUs + wholesale prices** for 8 products in `data/supplier/skin-script-portal-urls.json`
+- TASK-02 Authenticated portal recon (skinscriptrx.com login)
+- TASK-03 Verified SKUs + wholesale prices for 8 products
+- WooCommerce RPA portal flow + mock portal CI (15 Python / 223 Node tests)
 - `npm run seed:verified-mappings` for verified=1 D1/file mappings
 - **Live portal dry-run** returns `dry_run_ready` (RPA worker against skinscript.com)
+- PR #11 merged (session 4 WooCommerce flow + URL registry)
 
 ## Remaining Tasks
 
@@ -35,7 +37,7 @@ You are Codex running DeepSeek-V4 Pro. Continue from Cursor's verified state —
 | STATUS | NOT DEPLOYED |
 | WHY CURSOR COULD NOT | No approved container host; no Wrangler OAuth in Cursor Cloud |
 | FILES | `services/skin-script-rpa/Dockerfile`, `wrangler.jsonc`, `ENV.md` |
-| ENV | Container: `HMAC_SECRET`, `PORTAL_BASE_URL`, `LOGIN_URL`, `USERNAME`, `PASSWORD`, `EXPECTED_ACCOUNT_NAME=Emily`. Worker: `SKIN_SCRIPT_RPA_*` |
+| ENV | Container: `HMAC_SECRET`, `PORTAL_BASE_URL=https://skinscript.com`, `LOGIN_URL=https://skinscriptrx.com/my-account/`, `USERNAME`, `PASSWORD`, `EXPECTED_ACCOUNT_NAME=Emily`. Worker: `SKIN_SCRIPT_RPA_*` |
 | ACCEPTANCE | `/health` 200; signed dry-run job from Worker |
 
 ### TASK-06 — Live supplier order (partial)
@@ -56,7 +58,7 @@ You are Codex running DeepSeek-V4 Pro. Continue from Cursor's verified state —
 
 ### TASK-07 — PR merge
 
-| STATUS | OWNER ACTION REQUIRED — approve and merge PR #11 |
+| STATUS | PR #11 merged (session 4). Merge session 5 PR when CI green. |
 
 ## Portal Reference (no secrets)
 

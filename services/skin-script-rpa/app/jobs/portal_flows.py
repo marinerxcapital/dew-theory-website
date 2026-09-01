@@ -171,6 +171,9 @@ class WooCommercePortalFlow:
 
         await page.goto(f"{base}/cart/", wait_until="domcontentloaded")
         await _clear_woocommerce_cart(page, selectors["cart"])
+        cart_after_clear = await _cart_api(page)
+        if cart_after_clear.get("items"):
+            return _blocked("blocked_supplier_policy", "Cart not empty after clear")
 
         total_cents = 0
         expected_skus: list[str] = []
@@ -350,23 +353,49 @@ class WooCommercePortalFlow:
 
 
 async def _clear_woocommerce_cart(page: Page, cart_sel: dict[str, str]) -> None:
-    await page.goto(f"{settings.portal_base_url.rstrip('/')}/cart/", wait_until="domcontentloaded")
+    base = settings.portal_base_url.rstrip("/")
+    await page.goto(f"{base}/cart/", wait_until="domcontentloaded")
     await page.wait_for_timeout(1500)
-    cart = await _cart_api(page)
-    for item in cart.get("items", []):
-        key = item.get("key")
-        if key:
-            await page.evaluate(
-                "async (k) => await fetch('/wp-json/wc/store/v1/cart/items/' + k, {method: 'DELETE'})",
-                key,
-            )
-    await page.wait_for_timeout(800)
+
+    for _ in range(5):
+        cart = await _cart_api(page)
+        items = cart.get("items", [])
+        if not items:
+            break
+        for item in items:
+            key = item.get("key")
+            if key:
+                await page.evaluate(
+                    """
+                    async (k) => {
+                      await fetch('/wp-json/wc/store/v1/cart/items/' + k, {
+                        method: 'DELETE',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/json' },
+                      });
+                    }
+                    """,
+                    key,
+                )
+        await page.wait_for_timeout(800)
+
     for _ in range(20):
         remove = page.locator(cart_sel["clear"])
         if await remove.count() == 0:
             break
         await remove.first.click()
         await page.wait_for_timeout(600)
+
+    cart = await _cart_api(page)
+    if cart.get("items"):
+        # Last resort: reload cart page and click any remaining remove controls.
+        await page.goto(f"{base}/cart/", wait_until="domcontentloaded")
+        for _ in range(10):
+            remove = page.locator(cart_sel["clear"])
+            if await remove.count() == 0:
+                break
+            await remove.first.click()
+            await page.wait_for_timeout(600)
 
 
 async def _cart_api(page: Page) -> dict[str, Any]:

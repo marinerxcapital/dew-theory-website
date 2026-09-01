@@ -26,7 +26,7 @@
 
 | Command | Result |
 |---------|--------|
-| `npm test` | 222 pass |
+| `npm test` | 223 pass |
 | `python3 -m pytest -q` | 15 pass |
 | Live dry-run (green tea) | `dry_run_ready` |
 
