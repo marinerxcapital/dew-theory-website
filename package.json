@@ -18,6 +18,7 @@
     "seed:mappings": "node scripts/seed-supplier-mapping-templates.mjs",
     "seed:portal-urls": "node scripts/seed-portal-url-mappings.mjs",
     "seed:verified-mappings": "node scripts/seed-verified-supplier-mappings.mjs",
+    "seed:verified-mappings:d1": "node scripts/seed-verified-mappings-d1.mjs",
     "setup:d1": "node scripts/setup-d1-commerce.mjs",
     "setup:d1:local": "node scripts/setup-d1-commerce.mjs --local",
     "ops:dashboard": "node agent-ops-dashboard/server.mjs",
