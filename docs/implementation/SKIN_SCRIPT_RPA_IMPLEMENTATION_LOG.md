@@ -2,6 +2,8 @@
 
 ---
 
+---
+
 ## 2026-09-01 Session 5 — Authenticated portal + verified mappings + live dry-run
 
 **Signed:** Cursor Cloud Agent  

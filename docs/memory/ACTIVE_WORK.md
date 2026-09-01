@@ -12,7 +12,7 @@ Skin Script authenticated recon **complete**. Verified SKU mappings for 8/8 prod
 1. **RPA container deploy (TASK-05)** — choose Railway/Fly/ECS; set HMAC secrets on Worker
 2. **Saved payment method** on Skin Script account — required before live supplier orders
 3. **Client dropship address UX** — checkout locks some fields; may need headed session to map client-address inputs for production live orders
-4. **PR #11 merge** — session 4 merged; session 5 PR pending owner approval
+4. **PR #12 merge** — session 5 verified SKUs + live dry-run; owner approval
 
 ## Commands
 
