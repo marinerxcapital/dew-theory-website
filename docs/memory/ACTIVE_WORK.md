@@ -1,35 +1,24 @@
 # Active Work — Dew Theory
 
-**Last updated:** 2026-08-31 (Cursor Cloud Agent)  
-**Branch:** `cursor/skin-script-rpa-completion-e021`  
-**HEAD:** (see git after push)
+**Last updated:** 2026-09-01 (Cursor Cloud Agent)  
+**Branch:** `cursor/skin-script-rpa-completion-e021`
 
-## In progress
+## Status
 
-Skin Script RPA — WooCommerce portal flow implemented; live auth blocked by incorrect portal password.
+Skin Script authenticated recon **complete**. Verified SKU mappings for 8/8 products. Live portal **dry-run verified** (`dry_run_ready`).
 
-## Completed this session (Cursor)
+## Remaining (owner / infrastructure)
 
-- WooCommerce portal profile + `selectors-woocommerce.json` for skinscript.com
-- `portal_flows.py` (mock vs WooCommerce); storage-state loading in worker
-- Python config accepts `SKIN_SCRIPT_*` env aliases
-- Public portal URL registry: `data/supplier/skin-script-portal-urls.json` (8/8 catalog products)
-- `npm run seed:portal-urls` script
-- Portal recon operator scripts (`scripts/skin-script-portal-recon.py`)
-- Tests: 222 Node / 15 Python pass; build + continuity gates
+1. **RPA container deploy (TASK-05)** — choose Railway/Fly/ECS; set HMAC secrets on Worker
+2. **Saved payment method** on Skin Script account — required before live supplier orders
+3. **Client dropship address UX** — checkout locks some fields; may need headed session to map client-address inputs for production live orders
+4. **PR #11 merge** — owner approval
 
-## Blocked — owner action
+## Commands
 
-1. **Portal password incorrect** — `emilyberit1@gmail.com` rejected at https://skinscript.com/my-account/ (WooCommerce error). Reset password or confirm correct wholesale account.
-2. **PR #10 merge** — owner approval required
-3. **RPA container deploy (TASK-05)** — choose Dew Theory host (Railway/Fly/ECS); set HMAC secrets
-4. **Verified SKU mappings (TASK-03)** — requires successful login for SKU/price capture
-5. **Session bootstrap (TASK-04)** — after password fix + headed MFA if any
+```bash
+npm run seed:verified-mappings   # verified=1 templates from portal registry
+npm run continuity
+```
 
-## Next (Codex after owner fixes password)
-
-1. Login → capture real SKUs → `verified=1` mappings
-2. `bootstrap-session` → storage state in secret store
-3. Deploy RPA container → Worker secrets → dry-run → controlled live order
-
-See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md` and `DEW-THEORY-CODEX-DEEPSEEK-REMAINING-WORK-PROMPT.md`.
+See `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.

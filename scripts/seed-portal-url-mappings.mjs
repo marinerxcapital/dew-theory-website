@@ -20,7 +20,7 @@ const rows = [];
 for (const p of portal.products || []) {
   const row = await commerceUpsertSupplierMapping({
     product_id: p.product_id,
-    skin_script_sku: p.supplier_slug,
+    skin_script_sku: p.skin_script_sku || p.supplier_slug,
     supplier_product_url: p.supplier_product_url,
     supplier_product_name: p.supplier_product_name,
     supplier_size: p.supplier_size || null,
