@@ -575,7 +575,7 @@ Re-verified current truth:
 - Git: clean `main` @ `51a8c68`; all feature PRs merged (only prompt-doc drafts #10/#13 remain). Latest main CI green (`33507553238`).
 - Production Worker `dew-theory` active version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702` (created `2026-09-01T12:18:12Z`).
 - D1 bindings `DEW_THEORY_D1` (`dew-theory-commerce` `cd55d01f-2c27-4b53-a8aa-9b10555d3b17`) + `NEXT_TAG_CACHE_D1`; R2 buckets `dew-theory-opennext-cache` + `dew-theory-consultation-photos`; 8 `verified=1` supplier mappings live.
-- Worker secrets present: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` (names only). All `SKIN_SCRIPT_*`, Stripe, Resend, and TOTP secrets absent.
+- Worker secrets present: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` (names only). Stripe, `SKIN_SCRIPT_*`, Resend, and TOTP secrets **still absent on Worker** (test Stripe wired locally on branch `cursor/stripe-wire-e021` — see `docs/implementation/STRIPE_WIRE_IMPLEMENTATION_LOG.md`).
 - Admin owner-auth audit verdict: **SECURE** (fail-closed owner-only; no first-admin fallback; dev password rejected in production). Two low hardening notes recorded in `OPEN_ITEMS.md`.
 - Live smoke `npm run smoke:routes -- https://dewtheoryco.com` all clear; `/admin*` routes correctly 307 → `/admin/login`.
 

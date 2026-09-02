@@ -119,14 +119,14 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 
 ## 4. Unresolved decisions (carried over)
 
-- **Stripe live billing** — owner connects `STRIPE_*` keys + webhook + VC Price ID. Code fully wired; mock checkout without keys.
+- **Stripe billing** — **CODE COMPLETE + TEST ACCOUNT WIRED (2026-09-01, branch `cursor/stripe-wire-e021`).** Test keys in local `.env.local` only; VC price `price_1UAs0SHduoXRObFl9oFsdRuX`; webhook registered for `https://dewtheoryco.com/api/webhooks/stripe`. **Production Worker still needs** `wrangler secret put` for all `STRIPE_*` vars — see `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md`. Enable Stripe Tax in Dashboard before live tax lines.
 - Studio name and address.
 - Deposit percentage and cancellation cutoff — **UI/env wired** (`BOOKING_DEPOSIT_PERCENT`, `BOOKING_CANCEL_HOURS`); Emily must set values.
 - Membership **terms/prices** — structure + interest API live; Emily sets `MEMBERSHIP_PACKAGES_JSON` price_cents to sell.
 - Domain name — **production uses dewtheoryco.com** (Cloudflare Worker); confirm as canonical brand domain.
 - **Virtual consultation go-live checklist (owner actions):**
-  1. Create Stripe Product/Price → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
-  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` includes consultation metadata sessions
+  1. ~~Create Stripe Product/Price~~ → done in test account via `npm run stripe:bootstrap` → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
+  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` — registered in test Stripe; push `STRIPE_WEBHOOK_SECRET` to Worker
   3. Scheduler URL that mints unique Zoom meetings → `CONSULTATION_SCHEDULING_URL`
   4. Drop `RESEND_API_KEY` + verified `EMAIL_FROM` (code sends; without key emails log to store)
   5. Optional R2 private bucket for consultation photos
@@ -226,7 +226,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Membership interest + package shells | Done 2026-07-31 — no invented prices |
 | Admin weekly analytics + outbound email log | Done 2026-07-31 |
 | Path-gate AIDesigner to `/` only | Done 2026-07-31 |
-| **Stripe live keys** | **Owner only** — code ready, not connected |
+| **Stripe live keys** | **Worker secrets pending** — test keys verified locally; push via Codex prompt `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md` |
 
 ### Definition of Done notes
 

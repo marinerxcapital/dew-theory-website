@@ -3,6 +3,8 @@ import { markOrderPaidFromSession } from '@/lib/stripe-orders';
 import { mutateStore, readStore } from '@/lib/store';
 import { markConsultationPaidFromSession } from '@/lib/consultations/service.js';
 import { sendPaymentReceivedEmail } from '@/lib/consultations/emails.js';
+import { getStripeClient } from '@/lib/stripe/config.js';
+import { commerceUpsertWebhookEvent, commerceMarkWebhookProcessed } from '@/lib/commerce/index.js';
 
 /**
  * Stripe webhook — checkout.session.completed for shop orders + virtual consultations.
@@ -39,8 +41,17 @@ export async function POST(request) {
     );
   }
 
-  const Stripe = (await import('stripe')).default;
-  const stripe = new Stripe(stripeKey);
+  const stripe = await getStripeClient();
+  if (!stripe) {
+    return NextResponse.json(
+      {
+        error: 'Stripe not configured',
+        code: 'stripe_not_configured',
+        hint: 'Mock checkout is used when STRIPE_SECRET_KEY is unset. Webhooks only apply with live/test Stripe keys.'
+      },
+      { status: 503 }
+    );
+  }
 
   const signature = request.headers.get('stripe-signature');
   if (!signature) {
@@ -87,6 +98,15 @@ export async function POST(request) {
     s.webhook_events = s.webhook_events.slice(0, 200);
     return s;
   });
+
+  commerceUpsertWebhookEvent({
+    id: event.id,
+    type: event.type,
+    event_type: event.type,
+    processed: 0,
+    payload: { type: event.type, livemode: event.livemode },
+    at: new Date().toISOString()
+  }).catch(() => {});
 
   try {
     switch (event.type) {
@@ -181,6 +201,7 @@ function markProcessed(eventId) {
     if (e) e.processed = true;
     return s;
   });
+  commerceMarkWebhookProcessed(eventId).catch(() => {});
 }
 
 export const runtime = 'nodejs';

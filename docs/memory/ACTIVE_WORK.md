@@ -18,7 +18,7 @@
 2. `wrangler secret put` — `SKIN_SCRIPT_RPA_HMAC_SECRET`, `SKIN_SCRIPT_RPA_SERVICE_URL`, portal credentials (owner-supplied values)
 3. **Saved payment method** on Skin Script wholesale account (Emily)
 4. One **controlled live supplier order** after above
-5. **Stripe webhook** registration + live `STRIPE_*` keys (owner)
+5. **Stripe Worker secrets** — test account wired locally (`cursor/stripe-wire-e021`); push `STRIPE_*` to Worker via `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md`
 
 ## Commands
 

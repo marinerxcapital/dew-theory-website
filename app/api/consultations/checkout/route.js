@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getConsultationConfig, getSiteUrl } from '@/lib/consultations/config.js';
+import { getStripeCheckoutExtensions, getStripeClient } from '@/lib/stripe/config.js';
 import {
   attachStripeSession,
   createPendingConsultation,
@@ -107,8 +108,10 @@ export async function POST(request) {
       });
     }
 
-    const Stripe = (await import('stripe')).default;
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const stripe = await getStripeClient();
+    if (!stripe) {
+      return jsonError({ error: 'Stripe misconfigured', code: 'stripe_not_configured' }, 503);
+    }
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -131,7 +134,8 @@ export async function POST(request) {
           consultation_id: consultation.id,
           service_type: 'virtual_consultation'
         }
-      }
+      },
+      ...getStripeCheckoutExtensions()
     });
 
     attachStripeSession(consultation.id, session);
