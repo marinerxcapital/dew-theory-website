@@ -40,3 +40,17 @@
 - RPA service deploy to Fly.io: no `flyctl` CLI / `FLY_API_TOKEN`.
 - Emily saved payment method on Skin Script portal; live supplier order.
 - Stripe webhook registration + live Stripe keys.
+
+---
+
+## 2026-09-02 Codex — Stripe wiring deploy + panel pre-verification
+
+**Signed:** Codex
+**Timestamp (UTC):** 2026-09-02T04:35:00Z
+**Merged SHA:** `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (PR #17)
+**Worker version:** `ffac28e6-b77a-42da-a668-ba6154556378`
+
+- Merged `cursor/stripe-wire-e021` (Stripe Checkout + Tax + webhook bootstrap) and deployed `dew-theory`.
+- `/admin/integrations` route verified present (307 → `/admin/login` when unauthenticated). The Stripe health panel itself is server-side and sanitized by construction (`lib/admin/stripe-health.js` returns only status/mode/booleans, never key values), but a **live "healthy" readback requires owner login**.
+- Webhook endpoint on production returns 503 `stripe_not_configured` until `STRIPE_SECRET_KEY` + `STRIPE_WEBHOOK_SECRET` are set; this is the expected fail-closed state.
+- Owner-only follow-up: set 5 Stripe secrets, enable Stripe Tax (or `STRIPE_TAX_ENABLED=false`), then re-verify `/admin/integrations` shows Stripe `healthy` and a test `checkout.session.completed` marks the order paid in D1.
