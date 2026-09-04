@@ -12,7 +12,9 @@
 
 ## 2. Final commit SHA
 
-Recorded at push/deploy time in ACTIVE_WORK / CURRENT-STATUS (see git log on branch).
+`a57df22950691dcb2a7c8a1f3ea45add69ecd8f7`  
+PR: https://github.com/marinerxcapital/dew-theory-website/pull/19  
+Worker version ID: `f4a7283e-7953-4852-8102-5c7212ec4c9f` (deployed 2026-09-04)
 
 ## 3. Major features completed
 
@@ -89,11 +91,14 @@ Public VC funnel live. Checkout mock path honest; production mock gated unless `
 
 ## 13. Deployment status
 
-Wrangler OAuth available (`skyler@marinerxcapital.com`). Code deploy of this branch is capable after commit/push. **Stripe secrets must be put interactively by owner** (values never invented). Fly RPA still blocked without Fly auth token.
+**Deployed to production** from this branch via `npm run deploy` (Wrangler OAuth `skyler@marinerxcapital.com`).  
+Worker `dew-theory` version `f4a7283e-7953-4852-8102-5c7212ec4c9f` on dewtheoryco.com / www.  
+Bindings confirmed: `DEW_THEORY_D1`, consultation photos R2. Vars still `SKIN_SCRIPT_MODE=mock`, `AUTO_FULFILL=false`.  
+**Stripe secrets must still be put interactively by owner** (values never invented). Fly RPA still blocked without Fly auth token.
 
 ## 14. Production smoke status
 
-Public storefront + legal PDFs + admin gate: **verified**. Paid Stripe path + webhook reconciliation: **not verifiable** until secrets.
+Post-deploy: public storefront + legal PDFs + admin gate **verified** (smoke:routes all clear; admin 307; webhook still 503 until secrets). Paid Stripe path + webhook reconciliation: **not verifiable** until secrets.
 
 ## 15. Remaining owner actions
 
