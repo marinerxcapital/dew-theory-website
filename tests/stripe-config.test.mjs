@@ -33,7 +33,8 @@ describe('stripe config', () => {
   it('productPriceData sets exclusive tax behavior when tax on', () => {
     process.env.STRIPE_SECRET_KEY = 'sk_test_x';
     const pd = productPriceData({ name: 'Serum', unitAmountCents: 3200 });
-    assert.equal(pd.product_data.tax_behavior, 'exclusive');
+    assert.equal(pd.tax_behavior, 'exclusive');
+    assert.equal(pd.product_data.tax_behavior, undefined);
     delete process.env.STRIPE_SECRET_KEY;
   });
 });
