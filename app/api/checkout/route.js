@@ -8,7 +8,10 @@ import {
 } from '@/lib/checkout';
 import { resolveDiscountCode } from '@/lib/discounts';
 import { getProducts } from '@/lib/products-server';
-import { buildSessionMetadata } from '@/lib/stripe-orders';
+import {
+  buildSessionMetadata,
+  persistPendingCheckoutOrder
+} from '@/lib/stripe-orders';
 import {
   getStripeCheckoutExtensions,
   getStripeClient,
@@ -16,6 +19,7 @@ import {
 } from '@/lib/stripe/config';
 import { maybeAutoFulfill } from '@/lib/dropship/fulfill-order';
 import { persistPaidOrderWithJob } from '@/lib/fulfillment/jobs';
+import { commerceFindOrderByIdempotencyKey } from '@/lib/commerce';
 import { mutateStore, readStore, trackEvent } from '@/lib/store';
 
 function jsonError(payload, status = 400) {
@@ -43,11 +47,12 @@ export async function POST(request) {
       normalizeIdempotencyKey(request.headers.get('idempotency-key')) ||
       normalizeIdempotencyKey(body.idempotency_key);
 
-    // Return cached response for same idempotency key (24h window stored on order)
+    // Return cached response for same idempotency key (durable commerce first)
     if (idempotencyKey) {
-      const existing = readStore().orders.find(
-        (o) => o.idempotency_key === idempotencyKey
-      );
+      const existingDurable = await commerceFindOrderByIdempotencyKey(idempotencyKey);
+      const existing =
+        existingDurable ||
+        readStore().orders.find((o) => o.idempotency_key === idempotencyKey);
       if (existing) {
         return NextResponse.json({
           order_id: existing.id,
@@ -172,22 +177,32 @@ export async function POST(request) {
         idempotencyKey ? { idempotencyKey: `dew_checkout_${idempotencyKey}` } : undefined
       );
 
-      mutateStore((s) => {
-        s.orders.unshift({
-          id: orderId,
-          stripe_session_id: session.id,
-          stripe_checkout_url: session.url,
-          idempotency_key: idempotencyKey,
-          customer,
-          items,
-          ...totals,
-          status: 'pending_payment',
-          shipping_address,
-          customer_notes,
-          created_at: new Date().toISOString()
-        });
-        return s;
-      });
+      const pendingOrder = {
+        id: orderId,
+        stripe_session_id: session.id,
+        stripe_checkout_url: session.url,
+        idempotency_key: idempotencyKey,
+        customer,
+        items,
+        ...totals,
+        status: 'pending_payment',
+        shipping_address,
+        customer_notes,
+        created_at: new Date().toISOString()
+      };
+
+      // Await durable write BEFORE returning Checkout URL (Workers multi-isolate safe).
+      try {
+        await persistPendingCheckoutOrder(pendingOrder);
+      } catch (err) {
+        return jsonError(
+          {
+            error: err.message || 'Could not persist pending order',
+            code: 'pending_order_persist_failed'
+          },
+          503
+        );
+      }
 
       return NextResponse.json({
         url: session.url,

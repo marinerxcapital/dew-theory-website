@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
-import { markOrderPaidFromSession } from '@/lib/stripe-orders';
+import { markOrderPaidFromSessionAsync } from '@/lib/stripe-orders';
 import { mutateStore, readStore } from '@/lib/store';
 import { markConsultationPaidFromSession } from '@/lib/consultations/service.js';
 import { sendPaymentReceivedEmail } from '@/lib/consultations/emails.js';
 import { getStripeClient } from '@/lib/stripe/config.js';
-import { commerceUpsertWebhookEvent, commerceMarkWebhookProcessed } from '@/lib/commerce/index.js';
+import {
+  commerceGetWebhookEvent,
+  commerceMarkWebhookProcessed,
+  commerceUpsertOrder,
+  commerceUpsertWebhookEvent,
+  commerceFindOrderByStripeSession,
+  commerceGetOrder
+} from '@/lib/commerce/index.js';
 
 /**
  * Stripe webhook — checkout.session.completed for shop orders + virtual consultations.
@@ -76,9 +83,15 @@ export async function POST(request) {
     );
   }
 
-  // Idempotency: skip fully processed event IDs
-  const prior = (readStore().webhook_events || []).find((e) => e.id === event.id && e.processed);
-  if (prior) {
+  // Durable-first idempotency (Workers multi-isolate safe)
+  const priorDurable = await commerceGetWebhookEvent(event.id).catch(() => null);
+  if (priorDurable?.processed) {
+    return NextResponse.json({ received: true, code: 'event_replay_skipped', id: event.id });
+  }
+
+  const priorLocal = (readStore().webhook_events || []).find((e) => e.id === event.id && e.processed);
+  if (priorLocal) {
+    await commerceMarkWebhookProcessed(event.id).catch(() => {});
     return NextResponse.json({ received: true, code: 'event_replay_skipped', id: event.id });
   }
 
@@ -99,14 +112,14 @@ export async function POST(request) {
     return s;
   });
 
-  commerceUpsertWebhookEvent({
+  await commerceUpsertWebhookEvent({
     id: event.id,
     type: event.type,
     event_type: event.type,
     processed: 0,
     payload: { type: event.type, livemode: event.livemode },
     at: new Date().toISOString()
-  }).catch(() => {});
+  });
 
   try {
     switch (event.type) {
@@ -138,7 +151,7 @@ export async function POST(request) {
                 await sendPaymentReceivedEmail({ consultation, intakeToken });
               }
             }
-            markProcessed(event.id);
+            await markProcessed(event.id);
             return NextResponse.json({
               received: true,
               consultation_id: consultation?.id,
@@ -146,12 +159,32 @@ export async function POST(request) {
             });
           }
 
-          const { order } = markOrderPaidFromSession(session);
-          markProcessed(event.id);
+          // Prefer durable pending order; fail closed (500 → Stripe retry) if missing
+          // so we do not persist a sparse paid order when checkout write lagged.
+          let result;
+          try {
+            result = await markOrderPaidFromSessionAsync(session, {
+              allowSparseCreate: false
+            });
+          } catch (err) {
+            if (err?.code === 'pending_order_missing') {
+              return NextResponse.json(
+                {
+                  error: 'Pending order not yet durable; retry',
+                  code: 'pending_order_missing'
+                },
+                { status: 500 }
+              );
+            }
+            throw err;
+          }
+
+          await markProcessed(event.id);
           return NextResponse.json({
             received: true,
-            order_id: order?.id,
-            code: 'order_marked_paid'
+            order_id: result.order?.id,
+            code: 'order_marked_paid',
+            resolve_source: result.resolve_source
           });
         }
         return NextResponse.json({
@@ -162,10 +195,17 @@ export async function POST(request) {
       }
       case 'checkout.session.async_payment_failed': {
         const session = event.data.object;
+        let failed =
+          (await commerceFindOrderByStripeSession(session.id).catch(() => null)) ||
+          (session.metadata?.order_id
+            ? await commerceGetOrder(session.metadata.order_id).catch(() => null)
+            : null);
+
         mutateStore((s) => {
           const oIdx = s.orders.findIndex((o) => o.stripe_session_id === session.id);
           if (oIdx >= 0 && s.orders[oIdx].status === 'pending_payment') {
             s.orders[oIdx] = { ...s.orders[oIdx], status: 'payment_failed' };
+            failed = s.orders[oIdx];
           }
           if (Array.isArray(s.consultations)) {
             const cIdx = s.consultations.findIndex((c) => c.stripe_session_id === session.id);
@@ -179,11 +219,16 @@ export async function POST(request) {
           }
           return s;
         });
-        markProcessed(event.id);
+
+        if (failed && failed.status === 'pending_payment') {
+          await commerceUpsertOrder({ ...failed, status: 'payment_failed' }).catch(() => {});
+        }
+
+        await markProcessed(event.id);
         return NextResponse.json({ received: true, code: 'payment_failed_recorded' });
       }
       default:
-        markProcessed(event.id);
+        await markProcessed(event.id);
         return NextResponse.json({ received: true, code: 'event_ignored', type: event.type });
     }
   } catch (err) {
@@ -194,14 +239,14 @@ export async function POST(request) {
   }
 }
 
-function markProcessed(eventId) {
+async function markProcessed(eventId) {
   mutateStore((s) => {
     if (!s.webhook_events) return s;
     const e = s.webhook_events.find((x) => x.id === eventId);
     if (e) e.processed = true;
     return s;
   });
-  commerceMarkWebhookProcessed(eventId).catch(() => {});
+  await commerceMarkWebhookProcessed(eventId).catch(() => {});
 }
 
 export const runtime = 'nodejs';

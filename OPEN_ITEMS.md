@@ -14,12 +14,9 @@ revamp lives on branch `cursor/brand-revamp-editorial-5502` — see
 `DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md` until merged + deployed.
 
 Engineering complete for storefront UX brand remapping; business facts below remain unresolved.
-Membership remains **interest-list only** (live `/membership` route — not a redirect).
+Membership interest-list / package shells remain **code/history only** — public `/membership` is **unpublished (404)** after owner-removal passes (see §1 and `DEW-THEORY-CURRENT-STATUS.md`). Do not treat Membership as a live customer-facing route.
 
-**Production deploy blocker — PARTIAL.** Last live Worker deploy (2026-08-16) succeeded for
-main SHA `1e56d6c` (legal PDFs + hero motion). The **editorial brand revamp is not yet live**
-as of 2026-08-25 because Cursor Cloud lacked Cloudflare auth. Codex (or an authenticated agent)
-must merge + `npm run deploy` and verify https://dewtheoryco.com.
+**Historical note (2026-08-25):** an earlier deploy-blocker paragraph claimed the editorial revamp was not live; later Codex deploys shipped brand + owner simplifications. Re-verify live SHA in `DEW-THEORY-CURRENT-STATUS.md` before acting.
 
 Historical Sephora notes remain in `docs/SEPHORA_INSPIRED_REDESIGN_2026-08.md` (superseded for
 color tokens).
@@ -58,10 +55,14 @@ respected (canvas short-circuits; caustic/dew hidden under reduce). See
   (`data/products.json`), with ingredients and usage researched from Skin Script's own product pages
   and authorized retailers — not invented. Emily should still read through it; manufacturers revise
   formulas periodically.
-- **Customer-facing pages.** Shop, Product Detail, Cart/Checkout, About, Services, Book, Contact,
-  and **Virtual Consultation** are live storefront routes. Studio + Membership public nav items
-  removed (permanent redirects to About / Services). Admin portal, analytics, CSV import, and
-  **admin consultations** built.
+- **Customer-facing pages (reconciled 2026-09-04 Wave 0).** **Live public surface:** Shop,
+  Product Detail (`/shop/[id]`), Cart/Checkout, **Virtual Consultation**, and the 8 public legal
+  pages. **Not live public** (application 404 per `tests/public-removals.test.mjs` + production):
+  `/book`, `/services`, `/membership`, `/about`, `/contact`, `/faq`, `/quiz`, `/routine` (and
+  `/studio` redirects away). Earlier copy here wrongly listed About/Services/Book/Membership as
+  live full routes — that reflected pre-removal engineering, not the current consultation+shop
+  product surface. Admin portal, analytics, CSV import, and **admin consultations** remain built
+  behind `/admin` auth.
 - **Cart + shipping math.** Client cart (localStorage) + server re-price; `$7` / free at `$49+`
   pre-discount subtotal via `SHIPPING_THRESHOLD_BASIS` in `lib/shipping.js`.
 - **Launch promo mechanism.** `DEW15` (15% placeholder value) seeded in store; percentage is
@@ -69,7 +70,7 @@ respected (canvas short-circuits; caustic/dew hidden under reduce). See
 - **Admin gate.** `/admin/*` requires httpOnly session cookie + row in `Admins` (local file store
   until Supabase Auth). Dev credentials: `ADMIN_EMAIL` / `ADMIN_PASSWORD` (defaults in `ENV.md`).
   **Owner-only (2026-09-01):** `ADMIN_OWNER_EMAIL` must match login; non-owner Admins rows rejected.
-  Command center on branch `cursor/admin-command-center-e021` — **not production-verified** until Worker redeploy.
+  Admin Command Center (PR #16) merged + deployed; unauthenticated `/admin` → login verified. Owner login + TOTP live check remains owner-only.
 - **Overnight polish (engineering).** Availability adapter, appointment/order status machines, CSV
   dry-run, atomic store writes, robots/sitemap/404, funnel events, unit tests — see `POLISH_PROGRESS.md`.
   Unresolved *business* decisions remain below; nothing was invented to close them.
@@ -112,7 +113,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | `app/studio/page.jsx` | Working hours (Mon–Sat); address intentionally "pending" (route redirects; content kept) |
 | `app/contact/page.jsx` | `hello@dewtheory.studio` email — domain not confirmed |
 | About credentials block | License board/number not provided |
-| Membership page | Live `/membership` interest list + package shells; prices null until `MEMBERSHIP_PACKAGES_JSON` |
+| Membership page | Interest API + package shells exist in code/history; public `/membership` is **404** (unpublished). Prices still null until `MEMBERSHIP_PACKAGES_JSON` if Emily reintroduces the page |
 | Virtual consultation price/duration | From Stripe Price ID / env only — never hardcode; set before live sell |
 
 ---
@@ -125,11 +126,12 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - Membership **terms/prices** — structure + interest API live; Emily sets `MEMBERSHIP_PACKAGES_JSON` price_cents to sell.
 - Domain name — **production uses dewtheoryco.com** (Cloudflare Worker); confirm as canonical brand domain.
 - **Virtual consultation go-live checklist (owner actions):**
-  1. ~~Create Stripe Product/Price~~ → done in test account via `npm run stripe:bootstrap` → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`
-  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` — registered in test Stripe; push `STRIPE_WEBHOOK_SECRET` to Worker
-  3. Scheduler URL that mints unique Zoom meetings → `CONSULTATION_SCHEDULING_URL`
+  1. ~~Create Stripe Product/Price~~ → done in test account via `npm run stripe:bootstrap` → `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID` (also `wrangler secret put STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`)
+  2. Webhook `https://dewtheoryco.com/api/webhooks/stripe` — registered in test Stripe; push `STRIPE_WEBHOOK_SECRET` (+ `STRIPE_SECRET_KEY`) to Worker
+  3. Scheduler URL that mints unique Zoom meetings → `CONSULTATION_SCHEDULING_URL` (Worker var/secret)
   4. Drop `RESEND_API_KEY` + verified `EMAIL_FROM` (code sends; without key emails log to store)
   5. Optional R2 private bucket for consultation photos
+  6. Production mock VC checkout is **off** unless `ALLOW_MOCK_CHECKOUT=true` (local/dev still mocks when Stripe secret unset; success page discloses mock)
 - **Skin Script live sync.** No confirmed API. CSV/manual + mock adapters live. Partner questions unchanged in `docs/SKIN_SCRIPT_SYNC.md`.
 - **Visitor analytics provider** — first-party weekly funnel in admin is live; optional third-party later.
 - **Admin 2FA** — **implemented** via `ADMIN_TOTP_SECRET` (base32 TOTP); optional until secret set.
@@ -203,18 +205,18 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | Shop | Done — category filter, 8 products |
 | Product Detail | Done — `/shop/[id]`, actives, variants, add to cart |
 | Cart / Checkout | Done — shipping math, promo `DEW15`, Stripe or local mock |
-| About Emily | Done — approved bio copy (2026-07 mobile pass); no empty media placeholder |
-| Services | Done — menu from `lib/services.js` + VC promo card |
-| Book Now | Done — 3-step flow + `/api/book` |
-| Studio | Nav removed; 308 → `/about`; page file retained |
-| Membership | Nav removed; 308 → `/services`; page file retained |
-| Contact | Done — form → store messages |
+| About Emily | Approved bio existed; **public `/about` unpublished (404)** after consultation+products-only pass |
+| Services | Built historically from `lib/services.js`; **public `/services` unpublished (404)** after owner removals |
+| Book Now | Built historically (`/api/book` may remain); **public `/book` unpublished (404)** |
+| Studio | Unpublished; `/studio` redirects (not a live offering page) |
+| Membership | Interest/package shells in code/history; **public `/membership` unpublished (404)** |
+| Contact | Built historically; **public `/contact` unpublished (404)** — support via mailto where required |
 | Virtual Consultation | Done — public page, Stripe/mock checkout, intake+photos, admin plan, emails |
 | Admin Portal | Done — auth, products, orders, appointments, **consultations**, discounts |
 | Analytics Dashboard | Done — `/admin/analytics` from real store data |
 | Skin Script CSV import | Done — `/admin/import` + `data/sample-import.csv` |
 | Privacy / Shipping / Returns | Done — honest scaffolds; final legal copy still Emily |
-| FAQ | Done — `/faq` + home teaser |
+| FAQ | Built historically; **public `/faq` unpublished (404)** |
 | Free-ship meter · routine upsell · gift notes · sticky mobile CTA | Done 2026-07-25 |
 | Production host | **https://dewtheoryco.com** (Cloudflare Worker `dew-theory`) |
 | Noise Shimmer hero | Done 2026-07-30 — commit `3eeadca`, live verified |

@@ -58,7 +58,11 @@ async function resolveConsultation(sessionId) {
 }
 
 export default async function VirtualConsultationSuccessPage({ searchParams }) {
-  const sessionId = searchParams?.session_id || '';
+  const sp = await searchParams;
+  const sessionId = sp?.session_id || '';
+  const isMock =
+    sp?.mock === '1' ||
+    String(sessionId).startsWith('cs_mock_');
   const consultation = await resolveConsultation(sessionId);
   const summary = consultationPublicSummary(consultation);
   const cfg = getConsultationConfig();
@@ -80,15 +84,27 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
   return (
     <section className="mx-auto max-w-shell px-6 pb-24 pt-32 sm:pt-36 lg:px-10">
       <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70">
-        Confirmed
+        {isMock ? 'Dev / simulated' : 'Confirmed'}
       </p>
       <h1 className="mt-6 font-display text-[clamp(2rem,4.5vw,3rem)] font-normal text-graphite">
-        Payment received
+        {isMock ? 'Simulated checkout complete' : 'Payment received'}
       </h1>
+      {isMock ? (
+        <p
+          className="mt-5 max-w-xl border border-chrome/25 bg-pearl/50 px-5 py-4 font-body text-sm font-light leading-relaxed text-charcoal/80"
+          role="status"
+        >
+          This was a <strong className="font-normal">mock checkout</strong> — no card was charged.
+          Stripe is not configured on this environment. Intake and scheduling flows may still run
+          for local testing.
+        </p>
+      ) : null}
       <p className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75">
         {summary
-          ? `Thank you${summary.client_name ? `, ${summary.client_name.split(' ')[0]}` : ''}. Your virtual consultation is paid${summary.public_ref ? ` (ref ${summary.public_ref})` : ''}.`
-          : 'If payment completed, you will receive a confirmation email with your secure intake link shortly. If something looks wrong, contact us with your receipt.'}
+          ? `Thank you${summary.client_name ? `, ${summary.client_name.split(' ')[0]}` : ''}. Your virtual consultation is ${isMock ? 'marked paid for testing' : 'paid'}${summary.public_ref ? ` (ref ${summary.public_ref})` : ''}.`
+          : isMock
+            ? 'Mock session recorded. Configure Stripe for live card checkout.'
+            : 'If payment completed, you will receive a confirmation email with your secure intake link shortly. If something looks wrong, contact us with your receipt.'}
       </p>
 
       <div className="mt-10 max-w-lg space-y-4">

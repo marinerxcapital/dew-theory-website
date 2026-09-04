@@ -68,10 +68,11 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (2026-09-02, Stripe test wiring + webhook/Tax bootstrap, PR #17) |
-| `main` HEAD | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` — deployed this session (no docs-only gap) |
+| Live production SHA (verified deployed) | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (2026-09-02, Stripe test wiring + webhook/Tax bootstrap, PR #17) — re-verify with Wrangler before acting |
+| `main` HEAD | `a11626fc4e5aa67d4c5ea0269ea6d1c0e0b89370` (docs closeout on top of PR #17 `04d6534`; docs-only gap vs last Stripe deploy SHA) |
+| SuperGrok work branch | `cursor/supergrok-wave0-durable-orders-e021` (Wave 2 durable pending-checkout **code on branch** — not claimed production-deployed) |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` |
+| Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` (as of Stripe PR #17 deploy closeout; re-verify) |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
 | Live design as of 2026-08-29 | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. Public offering surface is exactly Shop (products) + Virtual Consultation. Primary menu is Shop / Virtual Consult (+ Shop-by-type catalog). |
@@ -82,6 +83,8 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 **Live smoke (production, 2026-09-01):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` present). `npm run smoke:routes -- https://dewtheoryco.com` passed for retained routes and all 8 public legal PDFs. Cloudflare deployment readback shows Worker version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`.
 
 **Stripe wiring merged + deployed (PR #17, 2026-09-02):** Cursor's `cursor/stripe-wire-e021` (shared `lib/stripe/config.js`, Checkout + Tax extensions, webhook durable-event persistence, `npm run stripe:bootstrap`) was squash-merged into `main` and deployed. Live verification: `npm run smoke:routes -- https://dewtheoryco.com` all clear; `POST /api/webhooks/stripe` returns 503 `stripe_not_configured` (fail-closed); `POST /api/checkout` returns 400 `cart_empty` for empty carts; `/admin/integrations` 307 → `/admin/login`; `/admin/login` has no Stripe secret markers; homepage surface unchanged. **Stripe secrets are NOT set on the Worker** (values exist only in the owner's `.env.local`/Stripe Dashboard, which is not present in this checkout) — live Stripe checkout, webhook-paid D1 write, and the admin Stripe "healthy" panel remain owner-gated until `wrangler secret put` is run for `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`, and `STRIPE_TAX_ENABLED`. See `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md`.
+
+**SuperGrok Wave 0 re-verify (2026-09-04 ~10:25 ET):** Canonical clone `Desktop\dew-theory` on branch `cursor/supergrok-wave0-durable-orders-e021`. Gates: `npm test` 232 pass; RPA pytest 15 pass; ruff clean; continuity OK; live `smoke:routes` all clear; webhook still 503 `stripe_not_configured`; `/admin` 307 → login; wrangler vars `SKIN_SCRIPT_MODE=mock` + `AUTO_FULFILL=false`; Stripe secrets still NOT SET; Fly RPA still not deployed. Wave 2 durable pending-checkout persist is **code on branch only**.
 
 ---
 

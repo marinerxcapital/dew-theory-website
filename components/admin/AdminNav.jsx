@@ -11,9 +11,12 @@ const NAV = [
   { href: '/admin/integrations', label: 'Integrations' },
   { href: '/admin/analytics', label: 'Analytics' },
   { href: '/admin/products', label: 'Products' },
+  { href: '/admin/discounts', label: 'Discounts' },
+  { href: '/admin/appointments', label: 'Appointments' },
   { href: '/admin/consultations', label: 'Consultations' },
   { href: '/admin/emails', label: 'Emails' },
   { href: '/admin/import', label: 'Import' },
+  { href: '/admin/sync', label: 'Sync' },
   { href: '/admin/system', label: 'System' }
 ];
 

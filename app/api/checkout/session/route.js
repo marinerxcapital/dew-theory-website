@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import {
-  findOrderByStripeSession,
-  markOrderPaidFromSession
+  findOrderByStripeSessionAsync,
+  markOrderPaidFromSessionAsync
 } from '@/lib/stripe-orders';
 
 /**
@@ -29,12 +29,15 @@ export async function GET(request) {
         session.payment_status === 'no_payment_required' ||
         session.status === 'complete'
       ) {
-        const { order } = markOrderPaidFromSession(session);
+        const { order } = await markOrderPaidFromSessionAsync(session, {
+          allowSparseCreate: true
+        });
         return NextResponse.json({
           order_id: order.id,
           status: order.status,
           total: order.total,
-          code: 'session_paid'
+          code: 'session_paid',
+          sparse: Boolean(order.sparse)
         });
       }
       return NextResponse.json(
@@ -53,8 +56,8 @@ export async function GET(request) {
     }
   }
 
-  // No Stripe key: local lookup only (mock path does not create stripe_session_id usually)
-  const order = findOrderByStripeSession(sessionId);
+  // No Stripe key: local/durable lookup only (mock path does not create stripe_session_id usually)
+  const order = await findOrderByStripeSessionAsync(sessionId);
   if (!order) {
     return NextResponse.json(
       {
