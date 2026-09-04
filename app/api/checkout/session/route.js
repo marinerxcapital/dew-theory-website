@@ -3,6 +3,7 @@ import {
   findOrderByStripeSessionAsync,
   markOrderPaidFromSessionAsync
 } from '@/lib/stripe-orders';
+import { getStripeClient } from '@/lib/stripe/config';
 
 /**
  * Resolve Stripe Checkout session → mark order paid, return order id.
@@ -21,8 +22,8 @@ export async function GET(request) {
   // Stripe configured: verify then mark paid
   if (process.env.STRIPE_SECRET_KEY) {
     try {
-      const Stripe = (await import('stripe')).default;
-      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+      const stripe = await getStripeClient();
+      if (!stripe) throw new Error('Stripe not configured');
       const session = await stripe.checkout.sessions.retrieve(sessionId);
       if (
         session.payment_status === 'paid' ||

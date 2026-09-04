@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { requireAdminApi } from '@/lib/admin-auth';
 import { audit, mutateStore } from '@/lib/store';
+import { getStripeClient } from '@/lib/stripe/config';
 
 export async function POST(request) {
   const gate = await requireAdminApi(request);
@@ -37,8 +38,8 @@ export async function POST(request) {
     let stripeId = null;
     if (process.env.STRIPE_SECRET_KEY) {
       try {
-        const Stripe = (await import('stripe')).default;
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+        const stripe = await getStripeClient();
+        if (!stripe) throw new Error('Stripe not configured');
         const coupon =
           body.type === 'percentage'
             ? await stripe.coupons.create({ percent_off: body.value, duration: 'once' })

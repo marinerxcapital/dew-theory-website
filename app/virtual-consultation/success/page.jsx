@@ -7,6 +7,7 @@ import {
 import { getConsultationConfig, getSiteUrl } from '@/lib/consultations/config.js';
 import { mutateStore } from '@/lib/store.js';
 import { sendPaymentReceivedEmail } from '@/lib/consultations/emails.js';
+import { getStripeClient } from '@/lib/stripe/config.js';
 
 export const metadata = {
   title: 'Consultation confirmed',
@@ -25,8 +26,8 @@ async function resolveConsultation(sessionId) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (stripeKey && !sessionId.startsWith('cs_mock_')) {
     try {
-      const Stripe = (await import('stripe')).default;
-      const stripe = new Stripe(stripeKey);
+      const stripe = await getStripeClient();
+      if (!stripe) return consultation;
       const session = await stripe.checkout.sessions.retrieve(sessionId);
       if (
         session.payment_status === 'paid' ||
