@@ -28,6 +28,7 @@ describe('stripe config', () => {
     const ext = getStripeCheckoutExtensions({ STRIPE_SECRET_KEY: 'sk_test_x' });
     assert.ok(ext.shipping_address_collection);
     assert.equal(ext.automatic_tax?.enabled, true);
+    assert.equal(ext.customer_update, undefined);
   });
 
   it('productPriceData sets exclusive tax behavior when tax on', () => {
