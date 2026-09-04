@@ -76,6 +76,10 @@ XAI_MODEL=grok-3
 # XAI_API_BASE=https://api.x.ai/v1
 
 # ── Virtual consultation ──
+# Owner go-live (Worker secrets / Dashboard) — factual checklist:
+#   1. STRIPE_VIRTUAL_CONSULTATION_PRICE_ID — Stripe Price ID (authoritative amount; never hardcode in UI)
+#   2. CONSULTATION_SCHEDULING_URL — external scheduler that mints unique Zoom meetings
+#   3. RESEND_API_KEY (+ verified EMAIL_FROM) — without key, emails log to store only
 # Stripe Price ID for the virtual consultation (authoritative price — do not hardcode in UI)
 STRIPE_VIRTUAL_CONSULTATION_PRICE_ID=
 # Admin notification recipient (defaults to ADMIN_EMAIL)
@@ -88,6 +92,9 @@ CONSULTATION_TIMEZONE=America/Chicago
 # CONSULTATION_DISPLAY_PRICE_CENTS=9500
 # CONSULTATION_DURATION_MINUTES=45
 # CONSULTATION_PHOTO_MAX_BYTES=10485760
+# Mock VC checkout: allowed only when STRIPE_SECRET_KEY is unset AND
+# (NODE_ENV !== production OR ALLOW_MOCK_CHECKOUT=true). Success UI discloses mock.
+# ALLOW_MOCK_CHECKOUT=true
 # Transactional email (optional — without RESEND_API_KEY emails are logged to store)
 # RESEND_API_KEY=
 # EMAIL_FROM=Dew Theory <noreply@dewtheoryco.com>

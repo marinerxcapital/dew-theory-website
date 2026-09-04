@@ -102,6 +102,9 @@ export async function POST(request) {
 
       return NextResponse.json({
         mock: true,
+        mode: 'mock',
+        disclosure:
+          'Simulated checkout — no card was charged. Stripe is not configured on this environment.',
         consultation_id: consultation.id,
         public_ref: consultation.public_ref,
         url: `${site}/virtual-consultation/success?session_id=${mockSession.id}&mock=1`
@@ -154,6 +157,7 @@ export async function POST(request) {
 
     return NextResponse.json({
       mock: false,
+      mode: 'stripe',
       consultation_id: consultation.id,
       public_ref: consultation.public_ref,
       url: session.url,

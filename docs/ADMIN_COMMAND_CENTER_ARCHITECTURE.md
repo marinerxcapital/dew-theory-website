@@ -14,14 +14,13 @@ Owner-only operational control plane for Emily (`/admin`).
 
 | Domain | Source |
 |--------|--------|
-| Orders (commerce) | D1 / file commerce backend (`lib/commerce`) |
+| Paid shop orders / fulfillment / supplier mappings / webhook event mirror | **D1** commerce (`lib/commerce` → `DEW_THEORY_D1`; file backend fallback for local) |
+| Pending Stripe checkout (`pending_payment`) | **Was** `lib/store.js` gap (ephemeral / multi-isolate unsafe). **SuperGrok Wave 2** fixes to durable D1 pending persist (`persistPendingCheckoutOrder`) — **code on branch** `cursor/supergrok-wave0-durable-orders-e021`; not claimed production-deployed until merge + deploy + verify |
+| Catalog seed | `data/products.json` (admin runtime product edits may also use file store) |
 | Fulfillment jobs / attempts | D1 commerce |
-| Supplier mappings | D1 commerce |
-| Webhook events | D1 commerce |
 | Audit log (commerce ops) | D1 commerce |
-| Product catalog (admin products) | File store (`readStore`) |
-| Shop funnel events | File store `events` |
-| Consultations / appointments | File store |
+| Shop funnel events | File store `events` (`lib/store.js`) |
+| Consultations / appointments | `lib/store.js` — **ephemeral risk** on Workers (isolate-local / non-durable unless separately persisted) |
 | Email log | File store `outbound_emails` |
 | Stripe health | Live read-only Stripe API + env presence |
 | RPA health | Server-side probe to configured RPA URL (`/health`, `/ready`) |

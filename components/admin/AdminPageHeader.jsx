@@ -34,6 +34,16 @@ export default function AdminPageHeader({
           <span className="text-muted">·</span>
           <span>Mode {automation.modeLabel}</span>
           <span className="text-muted">·</span>
+          <span>Auto-fulfill {automation.autoFulfill ? 'on' : 'off'}</span>
+          <span className="text-muted">·</span>
+          <span>
+            {automation.automationLive
+              ? 'Live automation'
+              : automation.supplierMode === 'mock'
+                ? 'Mock / manual queue'
+                : 'Automation not live'}
+          </span>
+          <span className="text-muted">·</span>
           <span>Purchasing {automation.purchasingAllowed ? 'allowed' : 'blocked'}</span>
           {automation.killSwitch && (
             <>

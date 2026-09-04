@@ -56,3 +56,6 @@ DewTheory_SkinScript_Product_Implementation_Package.zip
 generated_video (1).mp4
 tmp-hero-work/
 _package_extract/
+
+# SuperGrok local deliverables (image package ZIP kept on disk, not in git)
+dist/

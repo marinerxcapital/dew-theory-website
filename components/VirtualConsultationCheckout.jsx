@@ -148,7 +148,8 @@ export default function VirtualConsultationCheckout() {
           </span>
           <span className="mt-0.5 block">
             When Stripe is configured, checkout runs on Stripe&apos;s hosted page (no card fields on
-            this form). If keys are missing, the server returns a clear error instead of charging.
+            this form). Local/dev without Stripe may use a clearly labeled mock checkout — never a
+            silent live charge. Production without keys returns an error instead of charging.
           </span>
         </li>
       </ul>

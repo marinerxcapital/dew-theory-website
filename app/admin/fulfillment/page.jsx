@@ -25,6 +25,12 @@ export default async function AdminFulfillmentPage({ searchParams }) {
   const automation = getAutomationMode();
   const filtered = jobs.filter((j) => matchesFilter(j, filter));
 
+  const subtitle = automation.automationLive
+    ? 'Durable fulfillment jobs — Skin Script RPA automation pipeline from commerce backend.'
+    : automation.supplierMode === 'mock'
+      ? 'Durable fulfillment jobs — mock / manual owner queue (Skin Script RPA not live).'
+      : 'Durable fulfillment jobs — owner queue / automation disabled.';
+
   const counts = {
     queued: jobs.filter((j) => String(j.status).includes('queued')).length,
     processing: jobs.filter((j) => String(j.status).includes('processing')).length,
@@ -37,7 +43,7 @@ export default async function AdminFulfillmentPage({ searchParams }) {
     <>
       <AdminPageHeader
         title="Fulfillment"
-        subtitle="Durable fulfillment jobs — Skin Script automation pipeline from commerce backend."
+        subtitle={subtitle}
         automation={automation}
       />
 

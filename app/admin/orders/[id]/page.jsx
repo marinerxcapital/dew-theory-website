@@ -6,12 +6,14 @@ import SystemStatusBadge from '@/components/admin/SystemStatusBadge';
 import {
   commerceGetOrder,
   commerceGetFulfillmentJobByOrder,
-  commerceListFulfillmentAttempts
+  commerceListFulfillmentAttempts,
+  commerceGetSupplierMapping
 } from '@/lib/commerce';
 import { readStore } from '@/lib/store';
 import { formatMoney } from '@/lib/shipping';
 import { getAutomationMode } from '@/lib/admin/dashboard';
 import OrderStatusForm from '@/components/admin/OrderStatusForm';
+import ManualFulfillmentPanel from '@/components/admin/ManualFulfillmentPanel';
 
 export default async function AdminOrderDetailPage({ params }) {
   await requireOwnerAdmin();
@@ -27,6 +29,19 @@ export default async function AdminOrderDetailPage({ params }) {
 
   const job = await commerceGetFulfillmentJobByOrder(params.id);
   const attempts = job ? await commerceListFulfillmentAttempts(job.id) : [];
+
+  let panelOrder = order;
+  if (source === 'commerce' && Array.isArray(order.items)) {
+    const enriched = await Promise.all(
+      order.items.map(async (li) => {
+        if (li.skin_script_sku || li.portal_sku || !li.product_id) return li;
+        const mapping = await commerceGetSupplierMapping(li.product_id).catch(() => null);
+        if (!mapping?.skin_script_sku) return li;
+        return { ...li, mapping_sku: mapping.skin_script_sku, skin_script_sku: mapping.skin_script_sku };
+      })
+    );
+    panelOrder = { ...order, items: enriched };
+  }
 
   const timeline = [];
   if (order.created_at) timeline.push({ at: order.created_at, label: 'Order created' });
@@ -176,6 +191,16 @@ export default async function AdminOrderDetailPage({ params }) {
           )}
         </div>
       </div>
+
+      {source === 'commerce' && (
+        <div className="mt-10">
+          <ManualFulfillmentPanel
+            order={panelOrder}
+            automationLive={Boolean(automation.automationLive)}
+            modeLabel={automation.modeLabel || automation.supplierMode || 'Mock'}
+          />
+        </div>
+      )}
     </>
   );
 }
