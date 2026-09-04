@@ -1,31 +1,31 @@
 # Active Work — Dew Theory
 
-**Signed:** Codex (DeepSeek-V4 re-verify)  
-**Last updated (UTC):** 2026-09-01T12:40:00Z  
-**Branch:** `main` @ `51a8c68` (docs closeout on top of deployed code SHA `458ea59`)
+**Signed:** Cursor (SuperGrok master prompt author)  
+**Last updated (UTC):** 2026-09-04T13:50:00Z  
+**Branch:** `main` @ `a11626f` (audit baseline); prompt on `cursor/supergrok-master-prompt-e021`
 
 ## Status
 
-- D1: **8 verified supplier mappings** in production (`npm run seed:verified-mappings:d1`)
-- Portal: authenticated recon + live dry-run **verified** (local RPA service)
-- **Admin Command Center merged + deployed:** Worker `dew-theory` version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702` from deployed code SHA `458ea59`
-- **Worker production deploy complete** (unauthenticated admin gate, `noindex`, `robots.txt`, no-secret HTML, routes smoke, D1/R2 bindings all re-verified)
-- **Admin owner-auth audit: SECURE** — two low hardening notes recorded in `OPEN_ITEMS.md`
+- Full repository audit completed for SuperGrok handoff (2026-09-04).
+- Master prompt: `docs/handoffs/DEW-THEORY-SUPERGROK-MASTER-EXECUTION-PROMPT.md`
+- Live probes: homepage 200; `/admin` 307→login; Stripe webhook **503** (secrets unset); robots disallow admin.
+- Deployed Stripe code (PR #17) present; Worker Stripe secrets still owner-gated.
+- RPA Fly app configured, not deployed; production `SKIN_SCRIPT_MODE=mock`, `AUTO_FULFILL=false`.
+- Highest eng risk called out for SuperGrok: **pending Stripe orders in ephemeral `lib/store.js` on Workers**.
 
-## Remaining (infrastructure secrets — not code)
+## Remaining (for SuperGrok / owner)
 
-1. **Fly.io RPA deploy** → owner supplies `fly auth login` (or `FLY_API_TOKEN`); `flyctl` is installable but zero Fly auth + zero GitHub repo secrets exist. Config (`fly.toml`/`Dockerfile`) is deploy-ready.
-2. `wrangler secret put` — `SKIN_SCRIPT_RPA_HMAC_SECRET`, `SKIN_SCRIPT_RPA_SERVICE_URL`, portal credentials (owner-supplied values)
-3. **Saved payment method** on Skin Script wholesale account (Emily)
-4. One **controlled live supplier order** after above
-5. **Stripe Worker secrets** — test account wired locally (`cursor/stripe-wire-e021`); push `STRIPE_*` to Worker via `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md`
+1. Durable pending-order persistence (D1) before live Stripe traffic
+2. `wrangler secret put` Stripe + RPA secrets + `npm run deploy`
+3. Fly RPA deploy + Emily saved payment + authorized live order
+4. Skin Script product-image ZIP package for ChatGPT transforms
+5. Reconcile stale OPEN_ITEMS / status SHA rows
 
 ## Commands
 
 ```bash
-npm run seed:verified-mappings:d1   # production D1 (wrangler auth)
-npm run e2e:rpa-live                # full stack dry-run (local RPA service required)
-npm run continuity
+npm test && npm run build && npm run continuity
+npm run smoke:routes -- https://dewtheoryco.com
 ```
 
-See `DEW-THEORY-CODEX-FULL-TAKEOVER-PROMPT.md` and `DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md`.
+See `docs/handoffs/DEW-THEORY-SUPERGROK-MASTER-EXECUTION-PROMPT.md`.
