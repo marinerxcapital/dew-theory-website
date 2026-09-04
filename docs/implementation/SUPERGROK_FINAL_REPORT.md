@@ -12,9 +12,10 @@
 
 ## 2. Final commit SHA
 
-`a57df22950691dcb2a7c8a1f3ea45add69ecd8f7`  
+Feature commit: `a57df22950691dcb2a7c8a1f3ea45add69ecd8f7`  
+Docs closeout: `2d56148e658b3c1a597c8174d479a7c53a9d1bd6`  
 PR: https://github.com/marinerxcapital/dew-theory-website/pull/19  
-Worker version ID: `f4a7283e-7953-4852-8102-5c7212ec4c9f` (deployed 2026-09-04)
+Worker version ID: `f4a7283e-7953-4852-8102-5c7212ec4c9f` (deployed from `a57df22`, 2026-09-04)
 
 ## 3. Major features completed
 
