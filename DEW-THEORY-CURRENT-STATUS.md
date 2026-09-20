@@ -108,8 +108,8 @@ Storefront UX polish against the 2026-09-19 live audit. No invented reviews, tes
 
 | Gate | Result |
 |------|--------|
-| `npm test` | re-run after rebase |
-| `node scripts/check-project-continuity.mjs` | re-run after rebase |
+| `npm test` | **262 pass / 0 fail** (after rebase onto PR #24) |
+| `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
 | Production deploy | **Not done this pass** |
 
 ---
