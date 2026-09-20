@@ -6,7 +6,7 @@
 
 **Signed:** Cursor Cloud Agent  
 **Branch:** `cursor/skin-script-rpa-go-live-17c7`  
-**Base:** `main` @ `d6886bb`
+**Base:** `main` @ `6e518e0` (rebased over PR #21 secrets-closeout + PR #24 catalog honesty)
 
 | Change | Path |
 |--------|------|
@@ -22,7 +22,9 @@ Gates:
 | `npm test` | **248 pass / 0 fail** (88 suites) |
 | `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
 
-No Fly deploy. No live Skin Script order.
+Local render check (`SKIN_SCRIPT_MODE=mock AUTO_FULFILL=false`, `http://localhost:3010`): `/shipping` includes “Automated supplier purchasing is not live.”; `/cart/confirmation` says Emily fulfills manually and has no “auto-fulfill” hedge. Admin authenticated surfaces were not opened (no owner credentials).
+
+Rebase re-run: `npm test` **257 pass / 0 fail** (includes PR #24 catalog-honesty suites). Continuity OK. No Fly deploy. No live Skin Script order. Rebased onto `origin/main` 2026-09-20 after PR #21 and #24; doc conflicts resolved keeping fulfillment honesty plus catalog/secrets notes.
 
 ---
 
