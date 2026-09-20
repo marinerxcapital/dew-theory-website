@@ -62,8 +62,9 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 ## 2026-09-20 Cursor Cloud — allowlist catalog autonomy (code on branch)
 
 **Signed:** Cursor Cloud Agent  
-**Branch:** `cursor/catalog-allowlist-sync-a147`  
-**Base `main`:** `2022a24ce2394720eaf3b296358b423b569f7452` (re-verify after merge)
+**Branch:** `cursor/catalog-allowlist-sync-a147` @ `07fbab511b30f2b4469723fc54f2a713b1445d74`  
+**Base `main`:** `2022a24ce2394720eaf3b296358b423b569f7452` (re-verify after merge)  
+**PR:** https://github.com/marinerxcapital/dew-theory-website/pull/25
 
 Allowlist-only Skin Script → Dew Theory catalog sync is **code complete on this branch**. It does not publish the full wholesale catalog. Production Worker is unchanged this session (`SKIN_SCRIPT_MODE=mock` still means cron **skips**, it does not apply mock as live).
 
