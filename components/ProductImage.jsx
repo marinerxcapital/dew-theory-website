@@ -35,6 +35,7 @@ export default function ProductImage({
         hasCustomSize ? '' : 'aspect-[52/77]'
       } ${framed ? 'rounded-[2px] border border-chrome/15 bg-surface' : 'bg-pearl'} ${className}`}
     >
+      <div className="product-image-skeleton" aria-hidden="true" />
       {!photo && (
         <div
           className="absolute inset-0 bg-gradient-to-b from-pearl via-ivory/80 to-pearl"

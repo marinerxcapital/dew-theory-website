@@ -1,13 +1,9 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 import ShopGrid from '@/components/ShopGrid';
+import TrustStrip from '@/components/TrustStrip';
 import { getProducts } from '@/lib/products-server';
 import { isShopVisible } from '@/lib/shop';
-import {
-  formatMoney,
-  FREE_SHIPPING_THRESHOLD_USD,
-  FLAT_SHIPPING_USD
-} from '@/lib/shipping';
 
 export const metadata = {
   title: 'Shop Skin Script Skincare',
@@ -59,15 +55,11 @@ export default function ShopPage() {
             ? 'Products will appear here once the catalog is ready.'
             : `${count} professional formulation${count === 1 ? '' : 's'} — the same actives Emily uses in treatment.`}
         </p>
-        {count > 0 && (
-          <p
-            data-reveal
-            className="mt-5 inline-flex max-w-xl border border-border bg-surface-light px-4 py-3 font-body text-xs font-normal leading-relaxed text-charcoal"
-          >
-            Free shipping at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal (before
-            discount). Below that, {formatMoney(FLAT_SHIPPING_USD)} flat.
-          </p>
-        )}
+        {count > 0 ? (
+          <div data-reveal className="mt-6">
+            <TrustStrip />
+          </div>
+        ) : null}
 
         <div data-reveal className="mt-8 grid gap-3">
           <Link

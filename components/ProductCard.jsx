@@ -8,7 +8,8 @@ export default function ProductCard({
   product,
   compact = false,
   showQuickAdd = true,
-  revealIndex
+  revealIndex,
+  priority = false
 }) {
   const oos = isOutOfStock(product);
   const badge = stockLabel(product);
@@ -20,7 +21,7 @@ export default function ProductCard({
     <article
       data-reveal
       data-stagger={typeof revealIndex === 'number' ? String(revealIndex % 8) : undefined}
-      className="group flex h-full flex-col overflow-hidden rounded-[2px] border border-border bg-white transition-[border-color,box-shadow] duration-300 hover:border-ink/30 hover:shadow-card"
+      className="product-card group flex h-full flex-col overflow-hidden rounded-[2px] border border-border bg-white transition-[border-color,box-shadow] duration-300 hover:border-ink/30 hover:shadow-card"
     >
       <Link
         href={`/shop/${product.id}`}
@@ -30,6 +31,7 @@ export default function ProductCard({
         <div className={`relative bg-surface-light ${oos ? 'opacity-55' : ''}`}>
           <ProductImage
             product={product}
+            priority={priority}
             sizes={
               compact
                 ? '(max-width: 768px) 70vw, 20vw'

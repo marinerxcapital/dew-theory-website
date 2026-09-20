@@ -58,7 +58,7 @@ export default function MotionRoot() {
           io.unobserve(el);
         }
       },
-      { root: null, rootMargin: '0px 0px -4% 0px', threshold: 0.01 }
+      { root: null, rootMargin: '180px 0px 20% 0px', threshold: 0.01 }
     );
 
     const arm = (el) => {

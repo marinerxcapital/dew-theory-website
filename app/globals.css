@@ -649,6 +649,31 @@ article:hover [data-product-image-frame] .media-zoom-target {
   display: none;
 }
 
+/* Product image placeholder — visible before next/image paints (esp. below-fold). */
+.product-image-skeleton {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      110deg,
+      var(--color-ivory) 0%,
+      var(--color-stone) 42%,
+      var(--color-ivory) 78%
+    );
+  background-size: 200% 100%;
+  animation: product-skel 1.35s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-image-skeleton {
+    animation: none;
+    background: var(--color-ivory);
+  }
+}
+@keyframes product-skel {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
 /* Reveal base state — no-JS and reduced-motion users still see everything.
    With js-motion: CSS transitions driven by IntersectionObserver (.is-inview). */
 [data-reveal] { opacity: 1; transform: none; }
@@ -659,6 +684,12 @@ article:hover [data-product-image-frame] .media-zoom-target {
     opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
+}
+/* Product cards stay painted so below-fold grids are not empty white. */
+.js-motion article.product-card[data-reveal] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
 }
 .js-motion [data-reveal].is-inview {
   opacity: 1;

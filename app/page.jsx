@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Hero from '@/components/Hero';
 import ProductRail from '@/components/ProductRail';
 import StickyCtaBar from '@/components/StickyCtaBar';
+import TrustStrip from '@/components/TrustStrip';
 import { getFeaturedProducts } from '@/lib/products-server';
 
 export const metadata = {
@@ -46,6 +47,12 @@ export default function Home() {
     <>
       <Hero />
       <StickyCtaBar />
+
+      <section className="border-b border-border bg-ivory py-8 sm:py-10" aria-label="How Dew Theory works">
+        <div className="mx-auto max-w-shell px-5 sm:px-6 lg:px-10">
+          <TrustStrip />
+        </div>
+      </section>
 
       {/* Emily's Picks — this is what you need */}
       <section className="border-b border-border bg-ivory py-14 sm:py-16">
