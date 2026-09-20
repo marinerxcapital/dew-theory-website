@@ -181,6 +181,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 
 ## 6. Blocked on access / owner secrets
 
+- **PR #20 secret-exposure closeout (2026-09-20).** Draft handoff PR #20 was closed without merge and branch `cursor/codex-handoff-desktop-e021` was deleted. It had committed filled credential files. **Owner action:** if the Raw GitHub URL for that copy-paste file was ever opened/fetched/shared, rotate Worker Stripe secrets (`STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`) and the other named secrets from the filled handoff (admin password/session, `CRON_SECRET`, `SKIN_SCRIPT_RPA_HMAC_SECRET`). Do not restore the branch. Values must never be committed.
 - **Live Stripe / Supabase / Google Calendar keys** — env drop-in (see `ENV.md`).
 - **Cloudflare edge cache** — R2 ISR + D1 tag cache already used in production deploy path;
   optional private photo bucket `dew-theory-consultation-photos` (see `docs/DEPLOY_DEWTHEORYCO.md`).

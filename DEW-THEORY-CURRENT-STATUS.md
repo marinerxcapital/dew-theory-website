@@ -69,8 +69,9 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
 | Live production SHA (verified deployed) | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (2026-09-02, Stripe test wiring + webhook/Tax bootstrap, PR #17) — re-verify with Wrangler before acting |
-| `main` HEAD | `a11626fc4e5aa67d4c5ea0269ea6d1c0e0b89370` (docs closeout on top of PR #17 `04d6534`; docs-only gap vs last Stripe deploy SHA) |
-| SuperGrok work branch | `cursor/supergrok-wave0-durable-orders-e021` (Wave 2 durable pending-checkout **code on branch** — not claimed production-deployed) |
+| `main` HEAD | Re-verify with `git rev-parse HEAD` (this checkout: `d6886bb` after PR #19 + Stripe Worker transport/tax fixes). Historical docs-closeout SHA `a11626f` is stale. |
+| Draft handoff PRs | **Closed 2026-09-20:** #20 (secrets — do not merge; branch deleted), #13, #18, #10 (superseded). See `docs/memory/ACTIVE_WORK.md`. |
+| SuperGrok work branch | Wave 2 durable pending-checkout **merged via PR #19**; follow-up Stripe Worker transport/tax fixes on `main`. |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` (as of Stripe PR #17 deploy closeout; re-verify) |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |

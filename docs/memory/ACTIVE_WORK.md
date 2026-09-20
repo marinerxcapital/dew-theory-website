@@ -1,11 +1,18 @@
 # Active Work — Dew Theory
 
 **Signed:** SuperGrok (Lead Orchestrator / Memory)  
-**Last updated (ET):** 2026-09-04 ~10:30 ET  
+**Last updated (ET):** 2026-09-20 (security cleanup note) / prior Wave 0: 2026-09-04 ~10:30 ET  
 **Canonical clone:** `C:\Users\Skyler B. Brown\Desktop\dew-theory` (do **not** use `Desktop\Projects\dew-theory` — stale at `e9f64da`)  
-**Branch:** `cursor/supergrok-wave0-durable-orders-e021` (SuperGrok work)  
-**`main` HEAD:** `a11626fc4e5aa67d4c5ea0269ea6d1c0e0b89370`  
-**Latest feature on `main`:** PR #17 Stripe wiring `04d6534` (deployed; docs closeout `a11626f` may sit ahead of live Worker)
+**Branch:** `cursor/supergrok-wave0-durable-orders-e021` (SuperGrok work; Wave 2 later merged via PR #19)  
+**`main` HEAD (re-verify):** `d6886bb7b8889ef7145b24ea43fd63a20fd3b5a0`  
+**Latest feature on `main`:** PR #19 durable pending Stripe orders + follow-up Stripe Worker transport/tax fixes
+
+## Security cleanup (2026-09-20)
+
+- **Closed PR #20 without merge** (draft Codex handoff that committed filled credential files under `docs/handoffs/`). Remote branch `cursor/codex-handoff-desktop-e021` **deleted**.
+- **Do not restore that branch.** If the Raw GitHub URL for the copy-paste handoff was ever fetched or shared, **rotate Worker Stripe secrets** (`STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`) plus admin password/session, `CRON_SECRET`, and `SKIN_SCRIPT_RPA_HMAC_SECRET`. Never put values in git.
+- Also closed obsolete draft-only handoffs: PR #13 (Codex takeover prompt), PR #18 (SuperGrok master prompt), PR #10 (RPA/D1 closeout — fully superseded on `main`).
+- Scan of remaining remotes found **no other filled COPYPASTE/FILLED handoff files**. Remaining `sk_test_` / `ADMIN_PASSWORD=` hits on `main` are documented placeholders (`ENV.md`, `.env.example`, unit-test dummies). One stale non-PR branch `supergrok/mobile-consultation-production` has a filled `CRON_SECRET=` assignment in `Dew Theory - Architecture To Implement.txt` — do not merge that file; treat as suspect.
 
 ## Wave 0 verification (2026-09-04)
 
