@@ -97,7 +97,7 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 
 **Signed:** Cursor Cloud Agent  
 **Branch:** `cursor/skin-script-rpa-go-live-17c7`  
-**Base `main` (after rebase):** `6e518e0` (PR #24) on `243858d` (PR #21) / `d6886bb`  
+**Base `main` (after rebase):** `8f7786a` (PR #23) on `6e518e0` (PR #24) / `243858d` (PR #21)  
 **This session did not deploy Worker or Fly.**
 
 | Area | Status |
