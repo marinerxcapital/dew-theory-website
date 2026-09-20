@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "note": "Canonical product catalog for Dew Theory. Wholesale/retail figures are from the client's product line document. Ingredient, usage, and skin-type data were researched against Skin Script's own product pages and multiple authorized Skin Script retailers, then paraphrased — they are NOT invented, but should still be read and confirmed by Emily before publishing, since formulas are occasionally revised by the manufacturer. See OPEN_ITEMS.md for the two unresolved items (SPF retail price, lip treatment SKU structure).",
-    "pricing_rule": "retail_price = wholesale_price x 2, applied uniformly. Confirmed against 7 of 8 client-supplied pairs; the 8th (SPF) had no retail figure in the source document and was computed with the same formula — flagged for confirmation, not treated as given fact.",
+    "note": "Canonical product catalog for Dew Theory. Wholesale/retail figures are from the client's product line document. Ingredient, usage, and skin-type data were researched against Skin Script's own product pages and multiple authorized Skin Script retailers, then paraphrased — they are NOT invented, but should still be read and confirmed by Emily before publishing, since formulas are occasionally revised by the manufacturer. 2026-09-19 Emily confirmation pass: she has not confirmed the remaining catalog decisions. Engineered defaults stay in place and stay explicitly unconfirmed — Sheer Protection SPF retail ($30, retail_price_confirmed=false), Lip Treatment as one Peppermint/Pomegranate product (see manufacturer_name_note + OPEN_ITEMS.md §2), Botanical Bloom size 2 oz (size_confirmed=false), and DEW15 15% as a launch-promo placeholder only. Do not flip honesty flags to true or claim Emily approved these without a new owner answer.",
+    "pricing_rule": "retail_price = wholesale_price x 2, applied uniformly. Confirmed against 7 of 8 client-supplied pairs; the 8th (SPF) had no retail figure in the source document and was computed with the same formula — flagged for confirmation, not treated as given fact. Emily still must confirm the SPF retail; retail_price_confirmed remains false until she does.",
     "shipping_rule": {
       "flat_rate_usd": 7,
       "free_shipping_threshold_usd": 49,
@@ -131,6 +131,7 @@
       "category": "Mask",
       "size": "2 oz",
       "size_confirmed": false,
+      "size_note": "Size was not given in the client product list. 2 oz is the engineered default from authorized-retailer listings — not an Emily-confirmed size. 2026-09-19 confirmation still pending; do not flip size_confirmed to true without her answer. See OPEN_ITEMS.md §2.",
       "wholesale_price": 24,
       "retail_price": 48,
       "retail_price_confirmed": true,
@@ -261,7 +262,7 @@
       "id": "lip-treatment-peppermint-pomegranate",
       "name": "Peppermint & Pomegranate Lip Treatment",
       "category": "Lip Treatment",
-      "manufacturer_name_note": "Skin Script sells this as 'Ageless Lip Treatment' in two separate scent SKUs, Peppermint and Pomegranate, at the same price. Modeled here as one product with a required scent variant — confirm against OPEN_ITEMS.md whether two SKUs are preferred instead.",
+      "manufacturer_name_note": "Skin Script sells this as 'Ageless Lip Treatment' in two separate scent SKUs, Peppermint and Pomegranate, at the same price. Modeled here as one product with a required scent variant — confirm against OPEN_ITEMS.md §2 whether two SKUs are preferred instead. 2026-09-19: Emily has not confirmed SKU structure; keep the single-product + variants model until she does.",
       "size": "0.27 oz",
       "wholesale_price": 8,
       "retail_price": 16,
@@ -312,7 +313,7 @@
       "wholesale_price": 15,
       "retail_price": 30,
       "retail_price_confirmed": false,
-      "retail_price_note": "No retail figure was given in the source document for this item — every other product listed a retail price. Computed here at 2x wholesale to match the confirmed pattern. Confirm before publishing.",
+      "retail_price_note": "No retail figure was given in the source document for this item — every other product listed a retail price. Computed here at $30 (2x the $15 wholesale) to match the confirmed 7-of-8 pattern. Emily still must confirm this retail before it is treated as approved. 2026-09-19 confirmation pending — do not flip retail_price_confirmed to true without that confirmation.",
       "skin_types": [
         "all — best for normal, dry, combination, sensitive; less ideal for acne-prone due to nut oils"
       ],

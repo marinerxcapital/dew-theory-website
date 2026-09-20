@@ -193,6 +193,12 @@ export default function DiscountManager({ initial }) {
                     Referrer id: {c.referrer_customer_id}
                   </p>
                 )}
+                {(c.note || c.rate_confirmed === false || String(c.code).toUpperCase() === 'DEW15') && (
+                  <p className="mt-1 font-body text-[0.65rem] font-light text-charcoal/55">
+                    {c.note ||
+                      'Launch promo placeholder — rate pending Emily confirmation'}
+                  </p>
+                )}
                 {c.stripe_promotion_code_id && (
                   <p className="mt-1 font-body text-[0.65rem] font-light text-chrome">
                     Stripe: {c.stripe_promotion_code_id}

@@ -79,23 +79,31 @@ respected (canvas short-circuits; caustic/dew hidden under reduce). See
 
 ## 2. New — from the pricing/catalog pass
 
-- **Sheer Protection SPF has no retail price in the source document.** Every other product listed
-  one; this is the only gap. Computed at $30 (2× the $15 wholesale) to match the confirmed pattern —
-  not a given figure. Confirm before publishing.
-- **Discount code specifics are unset.** The client asked for "some sort of discount for the launch
-  or some sort of referral code" without specifying a percentage/amount, or whether referral codes pay
-  out anything to the referrer. The mechanism is designed (Stripe Promotion Codes + admin UI) but the
-  numbers are admin-configurable — needs the client's input before the first code goes live. Seeded
-  `DEW15` at 15% is a **placeholder only**.
-- **Shipping threshold basis.** Recommended default is to compare the $49 free-shipping threshold
-  against the pre-discount subtotal (`SHIPPING_THRESHOLD_BASIS = 'pre_discount'`). Not a confirmed
-  decision — one-line change if client wants post-discount.
-- **Lip Treatment is two SKUs in Skin Script's real catalog** (Peppermint and Pomegranate, same price),
-  but the client's product list gave one wholesale/retail pair. Modeled as one product with a required
-  scent variant. Confirm this matches how the client wants to sell it.
-- **Botanical Bloom Hydrating Mask size** wasn't given; retailers list 2 oz. Placeholder, flagged in
-  `data/products.json`.
-- **Sheer Protection SPF formula conflict.** Catalog uses majority/manufacturer zinc-oxide version.
+**Status 2026-09-19 (Emily confirmation pass):** Emily did not answer the confirmation prompt.
+Engineered defaults below remain in `data/products.json` / the seeded store. They are **not**
+Emily-approved. Do not treat any of these as confirmed business facts, and do not flip honesty
+flags to `true`, until she explicitly confirms them.
+
+- **Sheer Protection SPF retail (pending Emily).** No retail price in the source document — every
+  other product listed one. Catalog still uses the engineered default **$30** (2× the $15 wholesale)
+  with `retail_price_confirmed: false`. Emily still must confirm before publishing this as an
+  approved price.
+- **Launch promo / DEW15 rate (pending Emily).** The client asked for "some sort of discount for the
+  launch or some sort of referral code" without a percentage, amount, or referrer payout. Mechanism
+  is live (Stripe Promotion Codes + admin UI). Seeded `DEW15` at 15% is a **placeholder launch promo
+  only** — not an Emily-approved marketing rate. Admin may change the number; copy must not present
+  15% as owner-confirmed.
+- **Shipping threshold basis.** Recommended default is still to compare the $49 free-shipping
+  threshold against the pre-discount subtotal (`SHIPPING_THRESHOLD_BASIS = 'pre_discount'`). Not a
+  confirmed Emily decision — one-line change if she wants post-discount.
+- **Lip Treatment SKU structure (pending Emily).** Skin Script's catalog has two scent SKUs
+  (Peppermint and Pomegranate, same price); the client list gave one wholesale/retail pair. Still
+  modeled as **one product** with a required scent variant. See `manufacturer_name_note` on
+  `lip-treatment-peppermint-pomegranate`. Confirm whether two SKUs are preferred.
+- **Botanical Bloom Hydrating Mask size (pending Emily).** Still **2 oz** with
+  `size_confirmed: false` (authorized retailers list 2 oz). Placeholder until Emily confirms.
+- **Sheer Protection SPF formula conflict.** Catalog uses the majority/manufacturer zinc-oxide
+  version (unchanged).
 
 ---
 

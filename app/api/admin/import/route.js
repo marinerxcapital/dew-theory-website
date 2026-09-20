@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { requireAdminApi } from '@/lib/admin-auth';
 import { planImport } from '@/lib/csv-import';
+import { parseHonestyFlag } from '@/lib/product-admin';
 import { revalidateProductSurfaces } from '@/lib/revalidate-storefront';
 import { audit, mutateStore, readStore } from '@/lib/store';
 
@@ -56,6 +57,7 @@ export async function POST(request) {
             ? Number(raw.retail_price)
             : wholesale * 2;
 
+        const existing = s.products.find((p) => p.id === id);
         const payload = {
           id,
           name: String(raw.name).slice(0, 200),
@@ -63,7 +65,11 @@ export async function POST(request) {
           size: raw.size || '',
           wholesale_price: Math.round(wholesale * 100) / 100,
           retail_price: Math.round(retail * 100) / 100,
-          retail_price_confirmed: true,
+          // CSV must not flip catalog honesty flags unless the row says so.
+          retail_price_confirmed: parseHonestyFlag(
+            raw.retail_price_confirmed,
+            existing?.retail_price_confirmed ?? false
+          ),
           description_short: raw.description_short || raw.description || '',
           how_to_use: raw.how_to_use || '',
           key_actives: raw.key_actives || [],
@@ -75,6 +81,21 @@ export async function POST(request) {
           active: raw.active !== false,
           variants: raw.variants || null
         };
+        if (raw.size_confirmed != null || existing?.size_confirmed != null) {
+          payload.size_confirmed = parseHonestyFlag(
+            raw.size_confirmed,
+            existing?.size_confirmed ?? false
+          );
+        }
+        if (existing?.retail_price_note && raw.retail_price_note == null) {
+          payload.retail_price_note = existing.retail_price_note;
+        }
+        if (existing?.size_note && raw.size_note == null) {
+          payload.size_note = existing.size_note;
+        }
+        if (existing?.manufacturer_name_note && raw.manufacturer_name_note == null) {
+          payload.manufacturer_name_note = existing.manufacturer_name_note;
+        }
 
         const idx = s.products.findIndex((p) => p.id === id);
         if (idx >= 0) {

@@ -14,9 +14,12 @@ Maps 1:1 to future Supabase tables (Addendum §9A). Adapter swap target:
 | name | string | |
 | category | string | |
 | size | string | |
+| size_confirmed | boolean\|optional | `false` until Emily confirms (Botanical Bloom 2 oz). Omit or `true` only when the size is a given fact |
+| size_note | string\|optional | Honesty note when size is an engineered default |
 | wholesale_price | number | |
 | retail_price | number | default wholesale × 2 |
-| retail_price_confirmed | boolean | |
+| retail_price_confirmed | boolean | `true` only when the retail figure was supplied or Emily later confirms. SPF stays `false` at the $30 engineered default |
+| retail_price_note | string\|optional | Honesty note when retail is computed, not given |
 | description_short | string | |
 | how_to_use | string | |
 | key_actives | string[] | |
@@ -29,6 +32,7 @@ Maps 1:1 to future Supabase tables (Addendum §9A). Adapter swap target:
 | active | boolean | shop visibility |
 | images | string[] | image URLs or public paths; empty → category placeholder SVG via `lib/product-image.js` (max 8) |
 | variants | array\|null | e.g. lip treatment shades |
+| manufacturer_name_note | string\|optional | Catalog matching / SKU-structure honesty (see OPEN_ITEMS.md §2) |
 
 ## Orders
 
@@ -77,6 +81,8 @@ Maps 1:1 to future Supabase tables (Addendum §9A). Adapter swap target:
 | active | boolean | |
 | stripe_promotion_code_id | string\|null | |
 | created_at | ISO | |
+| note | string\|optional | Honesty / operator note (DEW15 seed: launch-promo placeholder) |
+| rate_confirmed | boolean\|optional | `false` until Emily confirms the promo rate |
 
 ## Admins
 
