@@ -69,10 +69,11 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
 | Live production SHA (verified deployed) | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (2026-09-02, Stripe test wiring + webhook/Tax bootstrap, PR #17) — re-verify with Wrangler before acting |
-| `main` HEAD | Re-verify with `git rev-parse HEAD` (this checkout: `243858d` after PR #21 secrets-closeout docs on `d6886bb` Stripe Worker transport/tax fixes). Historical docs-closeout SHA `a11626f` is stale. |
+| `main` HEAD | Re-verify with `git rev-parse HEAD`. This polish rebase sits on `6e518e0` (PR #24 catalog honesty) after PR #21 secrets-closeout docs `243858d` on `d6886bb` Stripe Worker transport/tax fixes. Historical docs-closeout SHA `a11626f` is stale. |
 | Draft handoff PRs | **Closed 2026-09-20:** #20 (secrets — do not merge; branch deleted), #13, #18, #10 (superseded). See `docs/memory/ACTIVE_WORK.md`. |
 | SuperGrok work branch | Wave 2 durable pending-checkout **merged via PR #19**; follow-up Stripe Worker transport/tax fixes on `main`. |
-| Catalog honesty branch | `cursor/catalog-emily-confirmation-d4bc` — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15. Defaults remain engineered and explicitly unconfirmed. |
+| Catalog honesty | PR #24 merged — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15. Defaults remain engineered and explicitly unconfirmed. |
+| Site polish branch | `cursor/site-polish-ux-68ea` — PR #23 storefront UX polish. |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` (as of Stripe PR #17 deploy closeout; re-verify) |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
@@ -88,7 +89,28 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 
 **SuperGrok Wave 0 re-verify (2026-09-04 ~10:25 ET):** Canonical clone `Desktop\dew-theory` on branch `cursor/supergrok-wave0-durable-orders-e021`. Gates: `npm test` 232 pass; RPA pytest 15 pass; ruff clean; continuity OK; live `smoke:routes` all clear; webhook still 503 `stripe_not_configured`; `/admin` 307 → login; wrangler vars `SKIN_SCRIPT_MODE=mock` + `AUTO_FULFILL=false`; Stripe secrets still NOT SET; Fly RPA still not deployed. Wave 2 durable pending-checkout persist is **code on branch only**.
 
-**2026-09-19 Emily catalog confirmation pass (docs/honesty only):** Emily did not answer the confirmation prompt. Engineered defaults stay in `data/products.json`: Sheer Protection SPF retail **$30** with `retail_price_confirmed: false`; lip treatment remains one Peppermint/Pomegranate product; Botanical Bloom remains **2 oz** with `size_confirmed: false`; `DEW15` remains a 15% launch-promo placeholder (`rate_confirmed: false`). `OPEN_ITEMS.md` §2 dated 2026-09-19. Storefront does not label unconfirmed prices as confirmed. Admin product/discount copy now says “unconfirmed” / “launch promo placeholder,” not Emily-approved. Branch: `cursor/catalog-emily-confirmation-d4bc` @ `104a9d06f57935ff94c0b3464958047dceffc09a`. Gates this pass: `npm test` **250 pass / 0 fail**; `node scripts/check-project-continuity.mjs` **OK**. No new prices invented. No production deploy this pass.
+**2026-09-19 Emily catalog confirmation pass (docs/honesty only):** Emily did not answer the confirmation prompt. Engineered defaults stay in `data/products.json`: Sheer Protection SPF retail **$30** with `retail_price_confirmed: false`; lip treatment remains one Peppermint/Pomegranate product; Botanical Bloom remains **2 oz** with `size_confirmed: false`; `DEW15` remains a 15% launch-promo placeholder (`rate_confirmed: false`). `OPEN_ITEMS.md` §2 dated 2026-09-19. Storefront does not label unconfirmed prices as confirmed. Admin product/discount copy now says “unconfirmed” / “launch promo placeholder,” not Emily-approved. Merged via PR #24 @ `6e518e0`. No new prices invented.
+
+### 2026-09-20 site polish (PR #23)
+
+**Branch:** `cursor/site-polish-ux-68ea` · **PR:** #23  
+**Rebased onto:** `origin/main` @ `6e518e0` (PR #24 catalog honesty + PR #21 secrets-closeout docs)  
+**Signed:** Cursor Cloud Agent · **Timestamp (UTC):** 2026-09-20
+
+Storefront UX polish against the 2026-09-19 live audit. No invented reviews, testimonials, credentials, or prices. Catalog honesty flags from PR #24 are preserved.
+
+- Checkout lists missing required shipping fields (inline + summary); phone remains optional
+- `/shipping` + cart shipping copy: $7 / $49+ pre-discount; carrier/transit confirmed per order
+- `/privacy` separates live handling from unpublished banner / retention / request procedures
+- Honest trust strip on home + shop (Skin Script actives, Emily consult, shipping threshold)
+- Empty bag Shop CTA + free-shipping meter; product-card skeletons + first-row `priority`
+- Footer still omits unpublished About; eight public legal Help links unchanged
+
+| Gate | Result |
+|------|--------|
+| `npm test` | re-run after rebase |
+| `node scripts/check-project-continuity.mjs` | re-run after rebase |
+| Production deploy | **Not done this pass** |
 
 ---
 
