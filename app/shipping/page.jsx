@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import LegalPdfActions from '@/components/LegalPdfActions';
+import {
+  formatMoney,
+  FREE_SHIPPING_THRESHOLD_USD,
+  FLAT_SHIPPING_USD
+} from '@/lib/shipping';
 
 export const metadata = {
   title: 'Shipping',
@@ -25,65 +30,60 @@ export default function ShippingPage() {
           data-reveal
           className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          Rates below match what the bag and checkout already calculate. The full Shipping &amp;
-          Delivery Policy PDF is the authoritative printable document.
+          Rates below match the bag and checkout. The Shipping &amp; Delivery Policy PDF is the
+          authoritative printable document.
         </p>
         <LegalPdfActions documentId="shipping" />
       </div>
 
       <div className="mt-16 space-y-6" data-reveal-group="ship-body">
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-ink">Rates (live in cart)</h2>
+          <h2 className="font-display text-xl font-normal text-ink">Rates</h2>
           <ul className="mt-4 max-w-2xl space-y-3 font-body text-sm font-normal leading-relaxed text-muted">
             <li>
-              <span className="text-ink/90">Flat shipping:</span> $7 per order when the free
-              threshold is not met.
+              <span className="text-ink/90">Flat shipping:</span>{' '}
+              {formatMoney(FLAT_SHIPPING_USD)} per order when the free threshold is not met.
             </li>
             <li>
-              <span className="text-ink/90">Free shipping:</span> waived when order subtotal is
-              $49 or more.
-            </li>
-            <li>
-              The free-shipping threshold is compared against the{' '}
-              <span className="text-ink/90">pre-discount</span> subtotal (before promo codes).
-              That basis is the current implementation; it can be flipped if Emily prefers
-              post-discount.
+              <span className="text-ink/90">Free shipping:</span> waived when the product
+              subtotal is {formatMoney(FREE_SHIPPING_THRESHOLD_USD)} or more, before promo codes.
             </li>
           </ul>
           <p className="mt-5 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            Shipping appears as its own line at checkout. Server-side re-pricing confirms the fee
-            before payment so the total you see is not only a client estimate.
+            Shipping is its own line at checkout. The server re-prices the order before payment so
+            the total is not only a browser estimate.
           </p>
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">Address at checkout</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            Product checkout collects a complete shipping address (street, city, state, postal
-            code) so the order can be fulfilled. Incomplete addresses are rejected before payment
-            proceeds.
+            Checkout asks for a complete U.S. shipping address (street, city, state, postal code)
+            before payment. Incomplete addresses are returned with a list of what is missing.
           </p>
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-ink">Skin Script fulfillment</h2>
+          <h2 className="font-display text-xl font-normal text-ink">How orders ship</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            Catalog products are Skin Script actives sold through Dew Theory. Live ship-from
-            location, carrier, tracking format, and partial-ship rules depend on the Skin Script
-            partner process and are not invented on this page.
-          </p>
-          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            Until those operational details are confirmed, treat published transit estimates as
-            forthcoming — not a promise of a specific number of business days.
+            Catalog products are Skin Script actives sold through Dew Theory. Carrier, tracking,
+            and ship-from details are confirmed on each order after checkout — we do not publish a
+            standard transit window yet.
           </p>
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">Questions</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            For an order in progress, use the contact form and choose order / shipping so Emily
-            can look up what you need. Final policy language on international shipping, holds,
-            and damaged-in-transit handling will be added when operations are set.
+            For an order already placed, email{' '}
+            <a
+              href="mailto:hello@dewtheory.studio"
+              className="text-ink underline-offset-4 hover:underline"
+            >
+              hello@dewtheory.studio
+            </a>
+            . International shipping, holds, and damaged-in-transit handling will be listed here
+            once those operations are set.
           </p>
         </div>
       </div>

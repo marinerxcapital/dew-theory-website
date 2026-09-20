@@ -55,12 +55,14 @@ export default function FreeShippingMeter({ subtotal = 0, className = '' }) {
       <p className="mt-3 font-body text-xs font-normal leading-relaxed text-muted">
         {unlocked ? (
           <>
-            Free shipping applied — subtotal is {formatMoney(threshold)}+ before discount.
+            Free shipping applied — product subtotal is {formatMoney(threshold)}+ before
+            discount.
           </>
         ) : (
           <>
-            You&apos;re <span className="text-ink">{formatMoney(remaining)}</span> away from free
-            shipping. Otherwise {formatMoney(FLAT_SHIPPING_USD)} flat.
+            <span className="text-ink">{formatMoney(remaining)}</span> away from free shipping
+            on a {formatMoney(threshold)}+ product subtotal (before discount). Below that,{' '}
+            {formatMoney(FLAT_SHIPPING_USD)} flat.
           </>
         )}
       </p>

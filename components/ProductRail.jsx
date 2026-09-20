@@ -44,7 +44,7 @@ export default function ProductRail({ products = [], label = 'Products' }) {
       <div ref={scrollerRef} className="product-rail" tabIndex={0} aria-label={label}>
         {products.map((p, i) => (
           <div key={p.id} className="min-w-0">
-            <ProductCard product={p} compact revealIndex={i} />
+            <ProductCard product={p} compact revealIndex={i} priority={i < 4} />
           </div>
         ))}
       </div>

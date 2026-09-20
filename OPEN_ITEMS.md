@@ -177,8 +177,8 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 | SEO: production `metadataBase` default dewtheoryco.com; OG dimensions | Done |
 | Sitemap: static storefront + policy pages + shop-visible products | Done |
 | Robots: disallow admin/api/private consultation token routes | Done |
-| Policy scaffolds: `/privacy`, `/shipping`, `/returns` + footer links | Done (honest; final legal still Emily) |
-| Trust UI: cart/booking/VC checkout/contact error + trust strips | Done |
+| Policy scaffolds: `/privacy`, `/shipping`, `/returns` + footer links | Done (honest; 2026-09-20 copy tighten on privacy/shipping — live vs unpublished, no unpublished contact form). Final legal still Emily. |
+| Trust UI: cart/booking/VC checkout/contact error + trust strips | Done (2026-09-20: home/shop factual strip only — no reviews/ratings) |
 | Consultation photos: R2 → FS → memory fallback (`CONSULTATION_PHOTOS_R2`) | Done (bucket create ops-optional) |
 | Services mobile circular glow artifact | Done earlier |
 | Light pearl nav restored (not dark graphite) | Done earlier |

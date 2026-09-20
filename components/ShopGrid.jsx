@@ -330,7 +330,7 @@ export default function ShopGrid({ products = [] }) {
                 data-reveal-group="shop"
               >
                 {filtered.map((p, i) => (
-                  <ProductCard key={p.id} product={p} revealIndex={i} />
+                  <ProductCard key={p.id} product={p} revealIndex={i} priority={i < 4} />
                 ))}
               </div>
             )}

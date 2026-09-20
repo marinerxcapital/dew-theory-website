@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useCart } from '@/components/CartProvider';
 import FreeShippingMeter from '@/components/FreeShippingMeter';
 import ProductImage from '@/components/ProductImage';
@@ -17,6 +17,12 @@ import {
 import { isShopVisible } from '@/lib/shop';
 import { getCheckoutLegalDocuments } from '@/lib/legal-documents';
 import LegalDocLinks from '@/components/LegalDocLinks';
+import {
+  GUEST_CHECKOUT_FIELDS,
+  collectGuestCheckoutIssues,
+  fieldErrorsFromCheckoutResponse,
+  fieldErrorsFromIssues
+} from '@/lib/checkout';
 
 const NOTE_MAX = 400;
 
@@ -38,6 +44,8 @@ export default function CartView() {
   const [codeLoading, setCodeLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState('');
+  const [missingFields, setMissingFields] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [orderNote, setOrderNote] = useState('');
   const [guest, setGuest] = useState({
     name: '',
@@ -59,6 +67,13 @@ export default function CartView() {
       }),
     [items]
   );
+
+  useEffect(() => {
+    if (!checkoutError) return undefined;
+    const summary = document.getElementById('checkout-field-summary');
+    summary?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    return undefined;
+  }, [checkoutError, missingFields]);
 
   async function applyCode(e) {
     e.preventDefault();
@@ -113,11 +128,49 @@ export default function CartView() {
     updateQuantity(productId, variant, Math.min(maxQty, Math.floor(n)));
   }
 
+  function clearCheckoutMessages() {
+    setCheckoutError('');
+    setMissingFields([]);
+    setFieldErrors({});
+  }
+
+  function showGuestIssues(issues, banner) {
+    setMissingFields(issues.map((issue) => issue.label));
+    setFieldErrors(fieldErrorsFromIssues(issues));
+    setCheckoutError(banner);
+    const first = issues[0]?.field;
+    if (first && typeof document !== 'undefined') {
+      document.getElementById(`guest-${first}`)?.focus();
+    }
+  }
+
+  function onGuestChange(key, value) {
+    setGuest((g) => ({ ...g, [key]: value }));
+    if (fieldErrors[key]) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next[key];
+        return next;
+      });
+      setMissingFields((prev) =>
+        prev.filter((label) => label !== GUEST_CHECKOUT_FIELDS.find((f) => f.key === key)?.label)
+      );
+    }
+  }
+
   async function startCheckout(e) {
     e.preventDefault();
-    setCheckoutError('');
+    clearCheckoutMessages();
     if (!items.length) {
       setCheckoutError('Your cart is empty');
+      return;
+    }
+    const issues = collectGuestCheckoutIssues(guest);
+    if (issues.length) {
+      showGuestIssues(
+        issues,
+        'Add the missing shipping details before checkout.'
+      );
       return;
     }
     setCheckoutLoading(true);
@@ -154,6 +207,16 @@ export default function CartView() {
       });
       const data = await res.json();
       if (!res.ok) {
+        const mapped = fieldErrorsFromCheckoutResponse(data);
+        const mappedIssues = Object.entries(mapped).map(([field, error]) => ({
+          field,
+          label: GUEST_CHECKOUT_FIELDS.find((f) => f.key === field)?.label || field,
+          error
+        }));
+        if (mappedIssues.length) {
+          showGuestIssues(mappedIssues, data.error || 'Add the missing shipping details before checkout.');
+          return;
+        }
         const detail =
           Array.isArray(data.details) && data.details[0]?.error
             ? data.details[0].error
@@ -212,9 +275,11 @@ export default function CartView() {
           data-reveal
           className="mt-6 max-w-lg font-body text-base font-normal leading-relaxed text-muted"
         >
-          Start with Skin Script, or book a virtual consultation for a personalized plan. Free shipping at{' '}
-          {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal (before discount).
+          Start with Skin Script, or book a virtual consultation for a personalized plan.
         </p>
+        <div data-reveal className="mt-8 max-w-md">
+          <FreeShippingMeter subtotal={0} />
+        </div>
         <div data-reveal className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/shop"
@@ -400,35 +465,49 @@ export default function CartView() {
             )}
           </form>
 
-          <form onSubmit={startCheckout} className="mt-10 space-y-4 border-t border-chrome/20 pt-8">
+          <form
+            onSubmit={startCheckout}
+            noValidate
+            className="mt-10 space-y-4 border-t border-chrome/20 pt-8"
+          >
             <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
               Shipping details
             </p>
-            {[
-              ['name', 'Full name', 'text'],
-              ['email', 'Email', 'email'],
-              ['phone', 'Phone', 'tel'],
-              ['line1', 'Address', 'text'],
-              ['city', 'City', 'text'],
-              ['state', 'State', 'text'],
-              ['postal_code', 'Postal code', 'text']
-            ].map(([key, label, type]) => (
-              <div key={key}>
-                <label htmlFor={`guest-${key}`} className="sr-only">
-                  {label}
+            {GUEST_CHECKOUT_FIELDS.map((field) => {
+              const invalid = Boolean(fieldErrors[field.key]);
+              const placeholder = field.required ? field.label : `${field.label} (optional)`;
+              return (
+              <div key={field.key}>
+                <label htmlFor={`guest-${field.key}`} className="sr-only">
+                  {placeholder}
                 </label>
                 <input
-                  id={`guest-${key}`}
-                  type={type}
-                  required
-                  placeholder={label}
+                  id={`guest-${field.key}`}
+                  type={field.type}
+                  autoComplete={field.autoComplete}
+                  required={field.required}
+                  aria-invalid={invalid || undefined}
+                  aria-describedby={invalid ? `guest-${field.key}-error` : undefined}
+                  placeholder={placeholder}
                   disabled={checkoutLoading}
-                  value={guest[key]}
-                  onChange={(e) => setGuest((g) => ({ ...g, [key]: e.target.value }))}
-                  className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal disabled:opacity-60"
+                  value={guest[field.key]}
+                  onChange={(e) => onGuestChange(field.key, e.target.value)}
+                  className={`w-full bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal disabled:opacity-60 ${
+                    invalid ? 'border border-promo/45' : 'border border-chrome/30'
+                  }`}
                 />
+                {invalid ? (
+                  <p
+                    id={`guest-${field.key}-error`}
+                    className="mt-1.5 font-body text-xs font-light text-promo"
+                    role="alert"
+                  >
+                    {fieldErrors[field.key]}
+                  </p>
+                ) : null}
               </div>
-            ))}
+              );
+            })}
 
             <div>
               <label
@@ -454,8 +533,10 @@ export default function CartView() {
 
             {checkoutError && (
               <div
+                id="checkout-field-summary"
                 className="border border-chrome/30 bg-pearl/70 p-4"
                 role="alert"
+                aria-live="polite"
               >
                 <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
                   Checkout issue
@@ -463,6 +544,13 @@ export default function CartView() {
                 <p className="mt-2 font-body text-xs font-light leading-relaxed text-charcoal/80">
                   {checkoutError}
                 </p>
+                {missingFields.length > 0 ? (
+                  <ul className="mt-3 list-disc space-y-1 pl-4 font-body text-xs font-light leading-relaxed text-charcoal/80">
+                    {missingFields.map((label) => (
+                      <li key={label}>{label}</li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
             )}
 
@@ -505,8 +593,9 @@ export default function CartView() {
                     Shipping
                   </span>
                   <span className="mt-0.5 block">
-                    Free at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ subtotal (pre-discount);
-                    otherwise {formatMoney(FLAT_SHIPPING_USD)} flat.
+                    Free at {formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ product subtotal (before
+                    discount); otherwise {formatMoney(FLAT_SHIPPING_USD)} flat. Carrier and tracking
+                    are confirmed with each order — a standard transit window is not published yet.
                   </span>
                 </span>
               </li>

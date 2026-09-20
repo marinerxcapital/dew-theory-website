@@ -25,8 +25,8 @@ export default function PrivacyPage() {
           data-reveal
           className="mt-6 max-w-xl font-body text-base font-normal leading-relaxed text-muted"
         >
-          This page describes how the site works today with data you provide. The full Privacy
-          Policy PDF is the authoritative printable document — use the links below.
+          This page describes how the live site handles data you provide. The Privacy Policy PDF
+          is the authoritative printable document.
         </p>
         <LegalPdfActions documentId="privacy" />
       </div>
@@ -86,15 +86,20 @@ export default function PrivacyPage() {
         </div>
 
         <div data-reveal className="glass-1 p-8 md:p-10">
-          <h2 className="font-display text-xl font-normal text-ink">
-            What this page does not claim yet
-          </h2>
+          <h2 className="font-display text-xl font-normal text-ink">Live today</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            We do not invent third-party analytics vendors, ad networks, or a privacy-officer name.
-            Cookie banners, formal retention periods, and GDPR/CCPA request procedures will be
-            published when Emily confirms the full policy. First-party funnel events may be recorded
-            to understand storefront flow; any additional analytics provider will be named here only
-            after it is actually in use.
+            Cart data stays on your device until checkout. Payments, when configured, go through
+            Stripe. Consultation intake and photos stay private. Admin sign-in uses an httpOnly
+            cookie. First-party funnel events may be recorded to understand storefront flow.
+          </p>
+        </div>
+
+        <div data-reveal className="glass-1 p-8 md:p-10">
+          <h2 className="font-display text-xl font-normal text-ink">Not published yet</h2>
+          <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
+            There is no cookie-consent banner and no published retention schedule. Formal
+            GDPR/CCPA request steps will appear here when Emily confirms them. We do not name
+            analytics vendors, ad networks, or a privacy officer until one is actually in use.
           </p>
         </div>
       </div>

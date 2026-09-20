@@ -1,12 +1,11 @@
 # Active Work — Dew Theory
 
-**Signed:** SuperGrok (Lead Orchestrator / Memory)  
-**Last updated (ET):** 2026-09-20 (security cleanup + catalog honesty rebase) / prior Wave 0: 2026-09-04 ~10:30 ET  
-**Canonical clone:** `C:\Users\Skyler B. Brown\Desktop\dew-theory` (do **not** use `Desktop\Projects\dew-theory` — stale at `e9f64da`)  
-**Branch:** `cursor/supergrok-wave0-durable-orders-e021` (SuperGrok work; Wave 2 later merged via PR #19)  
-**`main` HEAD (re-verify):** `243858d26dbf1a74f31fd9fd491bf3635eed7985` (PR #21 secrets-closeout docs on `d6886bb`)  
-**Latest feature on `main`:** PR #19 durable pending Stripe orders + Stripe Worker transport/tax fixes + PR #21 secrets-closeout docs  
-**Honesty branch:** `cursor/catalog-emily-confirmation-d4bc` — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15 rate. Defaults remain engineered and explicitly unconfirmed.
+**Signed:** Cursor Cloud Agent (site polish rebase)  
+**Last updated (UTC):** 2026-09-20  
+**Current branch:** `cursor/site-polish-ux-68ea` (PR #23 — storefront UX polish)  
+**`origin/main` (rebase base):** `6e518e0` (PR #24 catalog honesty) after PR #21 secrets-closeout docs `243858d`  
+**Catalog honesty:** Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15 rate. Defaults remain engineered and explicitly unconfirmed (PR #24).  
+**Canonical clone:** `C:\Users\Skyler B. Brown\Desktop\dew-theory` (do **not** use `Desktop\Projects\dew-theory` — stale at `e9f64da`)
 
 ## Security cleanup (2026-09-20)
 
