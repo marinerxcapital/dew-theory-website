@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "purpose": "Curated Dew Theory shop SKUs eligible for autonomous Skin Script catalog sync. Products that are not listed, or that have sync_enabled=false, are never auto-listed or price-refreshed.",
+    "how_to_add": "Add one object with product_id (Dew slug), skin_script_sku (wholesale portal variant SKU), sync_enabled=true, and the verified skinscript.com product URL. No code change required. Do not add SKUs that are not on this list.",
+    "pricing_rule": "retail = wholesale × 2 when the live source omits retail. Sync updates wholesale/retail/availability/SKU only — it does not rewrite Emily-facing copy.",
+    "source": "Initial eight IDs match data/products.json. Variant SKUs and product URLs match data/supplier/skin-script-portal-urls.json (authenticated portal recon, 2026-09-01).",
+    "not_a_full_catalog": "This is not the full Skin Script wholesale catalog. Expanding later is a data change, not a rewrite."
+  },
+  "products": [
+    {
+      "product_id": "green-tea-citrus-cleanser",
+      "skin_script_sku": "1010240",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/green-tea-citrus-cleanser/"
+    },
+    {
+      "product_id": "mandelic-brightening-serum",
+      "skin_script_sku": "1310440",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/mandelic-brightening-serum/"
+    },
+    {
+      "product_id": "botanical-bloom-hydrating-mask",
+      "skin_script_sku": "2110640",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/botanical-bloom-hydrating-mask/"
+    },
+    {
+      "product_id": "ageless-moisturizer",
+      "skin_script_sku": "1510240",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/ageless-skin-moisturizer/"
+    },
+    {
+      "product_id": "hydrating-skin-serum",
+      "skin_script_sku": "1310340",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/ageless-hydrating-serum/"
+    },
+    {
+      "product_id": "lip-treatment-peppermint-pomegranate",
+      "skin_script_sku": "1410240",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/"
+    },
+    {
+      "product_id": "sheer-protection-spf",
+      "skin_script_sku": "1610140",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/sheer-protection-spf-30/"
+    },
+    {
+      "product_id": "cucumber-hydration-toner",
+      "skin_script_sku": "1210140",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/cucumber-hydration-toner/"
+    }
+  ]
+}

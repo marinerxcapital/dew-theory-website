@@ -75,6 +75,21 @@ describe('RPA adapter mock service integration', () => {
     assert.equal(result.status, 'accepted');
   });
 
+  it('lists allowlisted catalog drafts via signed POST', async () => {
+    const adapter = createRpaSkinScriptAdapter();
+    const drafts = await adapter.listCatalog();
+    assert.ok(drafts.length >= 8);
+    assert.ok(drafts.every((d) => d.skin_script_sku && d.wholesale_price != null));
+    assert.ok(mock.requests.some((r) => r.path === '/v1/catalog/list'));
+    assert.ok(mock.requests.some((r) => r.auth.ok === true && r.path === '/v1/catalog/list'));
+  });
+
+  it('fails closed when RPA catalog is not configured', async () => {
+    process.env.SKIN_SCRIPT_RPA_ENABLED = 'false';
+    const adapter = createRpaSkinScriptAdapter();
+    await assert.rejects(() => adapter.listCatalog(), (err) => err.code === 'rpa_not_configured');
+  });
+
   it('checks inventory via signed POST', async () => {
     const adapter = createRpaSkinScriptAdapter();
     const rows = await adapter.getInventory(['SS-A', 'SS-B']);

@@ -74,5 +74,10 @@
   "observability": {
     "enabled": true
   },
+  // Daily catalog sync (06:00 UTC). Handler POSTs /api/cron/catalog-sync.
+  // Apply is skipped unless SKIN_SCRIPT_MODE is a configured live source.
+  "triggers": {
+    "crons": ["0 6 * * *"]
+  },
   "workers_dev": true
 }

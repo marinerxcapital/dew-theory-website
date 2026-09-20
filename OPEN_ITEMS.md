@@ -140,7 +140,7 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
   4. Drop `RESEND_API_KEY` + verified `EMAIL_FROM` (code sends; without key emails log to store)
   5. Optional R2 private bucket for consultation photos
   6. Production mock VC checkout is **off** unless `ALLOW_MOCK_CHECKOUT=true` (local/dev still mocks when Stripe secret unset; success page discloses mock)
-- **Skin Script live sync.** No confirmed API. CSV/manual + mock adapters live. Partner questions unchanged in `docs/SKIN_SCRIPT_SYNC.md`.
+- **Skin Script live sync.** Allowlist-only planner + Worker cron are in code (`data/catalog-allowlist.json`, daily `0 6 * * *` → `POST /api/cron/catalog-sync`). Production still `SKIN_SCRIPT_MODE=mock`, so cron **skips** (`catalog_source_mock`) until owner sets RPA (Fly + HMAC + portal session) **or** `SKIN_SCRIPT_FEED_URL` + `SKIN_SCRIPT_MODE=csv_feed`. No official partner HTTP API. See `docs/SKIN_SCRIPT_SYNC.md` owner checklist.
 - **Visitor analytics provider** — first-party weekly funnel in admin is live; optional third-party later.
 - **Admin 2FA** — **implemented** via `ADMIN_TOTP_SECRET` (base32 TOTP); optional until secret set.
 - **Google Calendar** — **freebusy + event create implemented**; set `GOOGLE_CALENDAR_*` to go live (mock fallback if unset or API fails).

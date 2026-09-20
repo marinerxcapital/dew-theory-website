@@ -117,5 +117,19 @@ function defaultHandler(path, method, body) {
       }
     };
   }
+  if (path === '/v1/catalog/list' && method === 'POST') {
+    return {
+      body: {
+        drafts: (body.items || []).map((item) => ({
+          id: item.product_id || item.id,
+          name: item.product_id || item.sku,
+          skin_script_sku: item.sku || item.skin_script_sku,
+          wholesale_price: 16,
+          stock_status: 'in_stock'
+        })),
+        errors: []
+      }
+    };
+  }
   return { status: 404, body: { code: 'not_found' } };
 }

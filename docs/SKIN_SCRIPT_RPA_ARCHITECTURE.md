@@ -21,7 +21,7 @@ Customer checkout → Stripe payment → webhook (signature verified)
 | Fulfillment jobs | `lib/fulfillment/jobs.js` |
 | State machine | `lib/fulfillment/state-machine.js` |
 | Verified mappings | `lib/suppliers/skin-script/mapping.js` |
-| RPA adapter | `lib/suppliers/skin-script/rpa-adapter.js` |
+| RPA adapter | `lib/suppliers/skin-script/rpa-adapter.js` (fulfillment + allowlisted `POST /v1/catalog/list`) |
 | HMAC auth | `lib/internal/hmac-auth.js` |
 | RPA service | `services/skin-script-rpa/` |
 | Mock portal (CI) | `services/mock-supplier-portal/` |
@@ -40,6 +40,10 @@ Production purchase requires:
 - `SKIN_SCRIPT_RPA_ENABLED=true`
 - `SKIN_SCRIPT_DRY_RUN=false`
 - Verified supplier mappings for every line item
+
+Allowlisted catalog refresh (no purchase): `POST /v1/catalog/list` reads
+wholesale price + availability for `data/catalog-allowlist.json` only. See
+`docs/SKIN_SCRIPT_SYNC.md`.
 
 ## Idempotency keys
 

@@ -2,6 +2,30 @@
 
 ---
 
+## 2026-09-20 Cursor Cloud — allowlist catalog sync (no purchase)
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/catalog-allowlist-sync-a147`  
+**Base:** `main` @ `2022a24`
+
+| Change | Path |
+|--------|------|
+| Curated 8-SKU allowlist | `data/catalog-allowlist.json`, `lib/catalog-allowlist.js` |
+| Planner skips off-list SKUs; commerce-only updates | `lib/catalog-sync.js` |
+| Fail-closed live source + cron skip | `lib/catalog-sync-readiness.js`, `lib/catalog-sync-cron.js` |
+| RPA read-only catalog | `POST /v1/catalog/list` — no add-to-cart / place-order |
+| Worker daily cron | `wrangler.jsonc` `0 6 * * *` + `scripts/attach-scheduled-handler.mjs` |
+| Admin `/admin/sync` | allowlist, last sync, dry-run vs apply, SKU results |
+
+No live purchase orders. No invented Skin Script HTTP API. Production `SKIN_SCRIPT_MODE=mock` still causes cron to skip.
+
+| Gate | Result |
+|------|--------|
+| `npm test` | **290 pass / 0 fail** (101 suites) |
+| `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
+
+---
+
 ## 2026-09-20 Cursor Cloud — honesty labels, job completion, go-live runbook
 
 **Signed:** Cursor Cloud Agent  

@@ -59,6 +59,32 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 
 ---
 
+## 2026-09-20 Cursor Cloud — allowlist catalog autonomy (code on branch)
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/catalog-allowlist-sync-a147`  
+**Base `main`:** `2022a24ce2394720eaf3b296358b423b569f7452` (re-verify after merge)
+
+Allowlist-only Skin Script → Dew Theory catalog sync is **code complete on this branch**. It does not publish the full wholesale catalog. Production Worker is unchanged this session (`SKIN_SCRIPT_MODE=mock` still means cron **skips**, it does not apply mock as live).
+
+| Piece | Status |
+|-------|--------|
+| Allowlist | `data/catalog-allowlist.json` — 8 current shop SKUs |
+| Live source | RPA `/v1/catalog/list` or `SKIN_SCRIPT_FEED_URL`; HTTP adapter still a stub |
+| Cron | wrangler `0 6 * * *` → `POST /api/cron/catalog-sync` with `CRON_SECRET` |
+| Admin | `/admin/sync` — allowlist, last sync, dry-run vs apply, SKU results |
+| Fly / portal secrets | **Still owner-blocked** — autonomy stays skipped until set |
+| Live supplier order | **Not part of this work** |
+
+Owner checklist: `docs/SKIN_SCRIPT_SYNC.md`.
+
+| Gate | Result |
+|------|--------|
+| `npm test` | **290 pass / 0 fail** (101 suites) |
+| `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
+| Production deploy | **Not done** |
+| Live Skin Script order | **Not done** |
+
 ## CURRENT PRODUCTION STATE
 
 | Item | Verified value (re-check before acting) |

@@ -108,6 +108,22 @@ Password is env-based (`ADMIN_PASSWORD`), not stored in the document.
 First-party funnel: `{ type, …payload, at }`. Types: product_view, add_to_cart,
 checkout_*, booking_*.
 
+## CatalogSync (runtime)
+
+`store.catalog_sync` — last autonomous / admin catalog sync (not a product row).
+
+| Field | Type | Notes |
+|-------|------|--------|
+| last_run_at | ISO\|null | Any dry-run, apply, or skipped cron |
+| last_apply_at | ISO\|null | Last successful apply |
+| last_dry_run_at | ISO\|null | |
+| last_source / last_adapter | string\|null | `mock` \| `csv_feed` \| `rpa` \| `http` |
+| skipped | boolean | Production cron skip when live source is not ready |
+| code | string | `applied`, `dry_run`, `catalog_source_mock`, `rpa_not_configured`, … |
+| last_totals | object | drafts / create / update / skip / error counts |
+
+Curated publish list is **not** in the runtime store. It is `data/catalog-allowlist.json`.
+
 ## Integrity
 
 - Writes are atomic (temp + rename).

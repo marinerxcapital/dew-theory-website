@@ -1,37 +1,22 @@
 import { NextResponse } from 'next/server';
-import { runCatalogSync } from '@/lib/catalog-sync';
+import { authorizeCronRequest, runCatalogSyncCron } from '@/lib/catalog-sync-cron';
 
 /**
  * POST /api/cron/catalog-sync
  * Header: Authorization: Bearer $CRON_SECRET  OR  x-cron-secret: $CRON_SECRET
+ *
+ * Applies only when a live source + secrets are ready. Otherwise returns 200
+ * with skipped=true and a clear code (never silently applies mock as live).
  */
 export async function POST(request) {
-  const secret = process.env.CRON_SECRET;
-  if (!secret) {
-    return NextResponse.json(
-      { error: 'CRON_SECRET not configured', code: 'cron_unconfigured' },
-      { status: 503 }
-    );
-  }
-
-  const auth = request.headers.get('authorization') || '';
-  const bearer = auth.startsWith('Bearer ') ? auth.slice(7) : '';
-  const headerSecret = request.headers.get('x-cron-secret') || '';
-  if (bearer !== secret && headerSecret !== secret) {
-    return NextResponse.json({ error: 'Unauthorized', code: 'cron_unauthorized' }, { status: 401 });
+  const gate = authorizeCronRequest(request.headers, process.env);
+  if (!gate.ok) {
+    return NextResponse.json({ error: gate.error, code: gate.code }, { status: gate.status });
   }
 
   try {
-    const result = await runCatalogSync({
-      dry_run: false,
-      adminId: 'cron',
-      revalidate: true
-    });
-    return NextResponse.json({
-      ok: true,
-      totals: result.totals,
-      touchedIds: result.touchedIds || []
-    });
+    const result = await runCatalogSyncCron();
+    return NextResponse.json(result);
   } catch (err) {
     return NextResponse.json(
       { error: err?.message || 'Cron sync failed', code: err?.code || 'cron_failed' },

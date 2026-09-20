@@ -46,6 +46,7 @@ SKIN_SCRIPT_MODE=mock
 SKIN_SCRIPT_API_BASE=
 SKIN_SCRIPT_API_KEY=
 SKIN_SCRIPT_ACCOUNT_ID=
+# Authorized wholesale CSV/JSON export URL or local path (csv_feed). Not a public retail scrape.
 SKIN_SCRIPT_FEED_URL=
 # RPA production fulfillment (see docs/SKIN_SCRIPT_RPA_ARCHITECTURE.md)
 SKIN_SCRIPT_RPA_ENABLED=false
@@ -67,7 +68,10 @@ FULFILLMENT_MAX_ATTEMPTS=3
 # STORE_BACKEND=file
 # Auto-submit paid orders to supplier adapter (default true for mock; false on production Worker)
 AUTO_FULFILL=true
-# Cron: POST /api/cron/catalog-sync with Authorization: Bearer $CRON_SECRET
+# Cron: Worker trigger 0 6 * * * POSTs /api/cron/catalog-sync with Authorization: Bearer $CRON_SECRET
+# Production apply is skipped unless SKIN_SCRIPT_MODE is rpa/csv_feed/http AND that source is configured.
+# Never treats mock as live. Override only for an explicit local mock apply:
+# CATALOG_SYNC_ALLOW_MOCK_APPLY=false
 CRON_SECRET=
 
 # ── xAI assist (optional — mapping / error classification only) ──

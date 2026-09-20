@@ -5,13 +5,22 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 
 from app.config import settings
-from app.domain.models import CreateJobRequest, InventoryCheckRequest, InventoryRow, JobResponse
+from app.domain.models import (
+    CatalogListRequest,
+    CatalogListResponse,
+    CreateJobRequest,
+    InventoryCheckRequest,
+    InventoryRow,
+    JobResponse,
+)
+from app.jobs.catalog import CatalogWorker
 from app.jobs.store import job_store
 from app.jobs.worker import FulfillmentWorker
 from app.security.hmac import verify_hmac
 
 app = FastAPI(title="Dew Theory Skin Script RPA", version="0.1.0")
 worker = FulfillmentWorker()
+catalog_worker = CatalogWorker()
 
 
 @app.middleware("http")
@@ -133,6 +142,27 @@ async def inventory_check(req: InventoryCheckRequest):
         InventoryRow(sku=sku, stock_status="in_stock", quantity=25).model_dump() for sku in req.skus
     ]
     return {"rows": rows}
+
+
+@app.post("/v1/catalog/list")
+async def catalog_list(req: CatalogListRequest):
+    """Read-only allowlisted price/availability. Never creates a purchase order."""
+    payload = [item.model_dump() for item in req.items]
+    result = await catalog_worker.list_catalog(payload)
+    if not result.get("ok"):
+        return JSONResponse(
+            status_code=503,
+            content=CatalogListResponse(
+                drafts=[],
+                errors=result.get("errors") or [],
+                code=result.get("code"),
+                error=result.get("error"),
+            ).model_dump(),
+        )
+    return CatalogListResponse(
+        drafts=result.get("drafts") or [],
+        errors=result.get("errors") or [],
+    ).model_dump()
 
 
 def main() -> None:

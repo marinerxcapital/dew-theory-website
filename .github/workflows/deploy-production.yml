@@ -42,6 +42,7 @@ jobs:
             exit 1
           fi
           npx opennextjs-cloudflare build
+          node scripts/attach-scheduled-handler.mjs
           npx wrangler deploy
 
   deploy-rpa:

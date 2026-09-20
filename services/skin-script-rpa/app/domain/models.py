@@ -66,3 +66,30 @@ class InventoryRow(BaseModel):
     sku: str
     stock_status: str
     quantity: int | None = None
+
+
+class CatalogItem(BaseModel):
+    product_id: str | None = None
+    sku: str = ""
+    skin_script_sku: str | None = None
+    supplier_product_url: str | None = None
+
+
+class CatalogListRequest(BaseModel):
+    items: list[CatalogItem] = Field(default_factory=list)
+
+
+class CatalogDraft(BaseModel):
+    id: str | None = None
+    name: str
+    skin_script_sku: str
+    wholesale_price: float
+    stock_status: str = "in_stock"
+    retail_price: float | None = None
+
+
+class CatalogListResponse(BaseModel):
+    drafts: list[CatalogDraft] = Field(default_factory=list)
+    errors: list[dict[str, Any]] = Field(default_factory=list)
+    code: str | None = None
+    error: str | None = None
