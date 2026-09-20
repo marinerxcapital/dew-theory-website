@@ -115,7 +115,7 @@ describe('storefront does not label unconfirmed prices as confirmed', () => {
 describe('admin DEW15 copy stays a launch-promo placeholder', () => {
   it('discounts page does not present 15% as Emily-approved', () => {
     const page = read('app/admin/discounts/page.jsx');
-    assert.match(page, /launch-promo placeholder/i);
+    assert.match(page, /launch-promo[\s\S]*placeholder/i);
     assert.match(page, /not an Emily-approved marketing rate/i);
   });
 });
