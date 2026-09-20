@@ -15,7 +15,14 @@
 | Owner go-live checklist (no credentials) | `docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md` |
 | PR #10 disposition | Superseded — do not merge |
 
-Gates: `npm test` (recorded after run). No Fly deploy. No live Skin Script order.
+Gates:
+
+| Command | Result |
+|---------|--------|
+| `npm test` | **248 pass / 0 fail** (88 suites) |
+| `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
+
+No Fly deploy. No live Skin Script order.
 
 ---
 

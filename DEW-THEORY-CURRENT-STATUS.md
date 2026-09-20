@@ -111,7 +111,12 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 
 **Live probe (2026-09-20):** `POST /api/webhooks/stripe` → 400 `missing_signature`.
 
-**2026-09-19 Emily catalog confirmation pass (docs/honesty only):** Emily did not answer the confirmation prompt. Engineered defaults stay in `data/products.json`: Sheer Protection SPF retail **$30** with `retail_price_confirmed: false`; lip treatment remains one Peppermint/Pomegranate product; Botanical Bloom remains **2 oz** with `size_confirmed: false`; `DEW15` remains a 15% launch-promo placeholder (`rate_confirmed: false`). `OPEN_ITEMS.md` §2 dated 2026-09-19. Storefront does not label unconfirmed prices as confirmed. Admin product/discount copy now says “unconfirmed” / “launch promo placeholder,” not Emily-approved. Merged via PR #24 @ `6e518e0`. No new prices invented.
+| Gate | Result |
+|------|--------|
+| `npm test` (PR #22 fulfillment session) | **248 pass / 0 fail** |
+| `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
+
+**2026-09-19 Emily catalog confirmation pass (docs/honesty only, merged PR #24):** Emily did not answer the confirmation prompt. Engineered defaults stay in `data/products.json`: Sheer Protection SPF retail **$30** with `retail_price_confirmed: false`; lip treatment remains one Peppermint/Pomegranate product; Botanical Bloom remains **2 oz** with `size_confirmed: false`; `DEW15` remains a 15% launch-promo placeholder (`rate_confirmed: false`). `OPEN_ITEMS.md` §2 dated 2026-09-19. Storefront does not label unconfirmed prices as confirmed. Admin product/discount copy now says “unconfirmed” / “launch promo placeholder,” not Emily-approved. Catalog-honesty gates: `npm test` **250 pass / 0 fail**; continuity **OK**. Merged via PR #24 @ `6e518e0`. No new prices invented.
 
 ### 2026-09-20 site polish (PR #23)
 
