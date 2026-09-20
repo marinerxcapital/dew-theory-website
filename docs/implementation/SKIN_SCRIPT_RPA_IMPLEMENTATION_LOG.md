@@ -24,6 +24,8 @@ No live purchase orders. No invented Skin Script HTTP API. Production `SKIN_SCRI
 | `npm test` | **290 pass / 0 fail** (101 suites) |
 | `node scripts/check-project-continuity.mjs` | `[continuity] OK` |
 
+CI `python-rpa` on PR #25 failed ruff I001/SIM103 in `app/jobs/catalog.py` (import sort + inline URL check). Fixed before merge; no purchase-path change.
+
 ---
 
 ## 2026-09-20 Cursor Cloud — honesty labels, job completion, go-live runbook

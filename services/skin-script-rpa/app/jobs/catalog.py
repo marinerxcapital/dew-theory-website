@@ -5,14 +5,12 @@ import re
 from pathlib import Path
 from typing import Any
 
-from playwright.async_api import Page
+from playwright.async_api import Page, async_playwright
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError
-from playwright.async_api import async_playwright
 
 from app.browser.pages import LoginPage, ProductPage, load_selectors
 from app.config import settings
 from app.jobs.portal_flows import _parse_price, _read_dom_sku, load_profile_selectors
-
 
 WHOLESALE_PORTAL_PREFIX = "https://skinscript.com"
 
@@ -24,9 +22,7 @@ def catalog_url_allowed(url: str, portal_base: str) -> bool:
     base = portal_base.rstrip("/")
     if url.startswith(f"{base}/") or url == base:
         return True
-    if url.startswith(f"{WHOLESALE_PORTAL_PREFIX}/"):
-        return True
-    return False
+    return url.startswith(f"{WHOLESALE_PORTAL_PREFIX}/")
 
 
 def _stock_status(raw: str) -> str | None:
