@@ -68,12 +68,12 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | GitHub | `https://github.com/marinerxcapital/dew-theory-website` |
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
-| Live production SHA (verified deployed) | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (2026-09-02, Stripe test wiring + webhook/Tax bootstrap, PR #17) — re-verify with Wrangler before acting |
-| `main` HEAD | Re-verify with `git rev-parse HEAD`. This polish rebase sits on `6e518e0` (PR #24 catalog honesty) after PR #21 secrets-closeout docs `243858d` on `d6886bb` Stripe Worker transport/tax fixes. Historical docs-closeout SHA `a11626f` is stale. |
+| Live production SHA (verified deployed) | Last recorded Worker deploy SHA `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (PR #17). `main` has since moved (Stripe Worker fixes, PR #19, PR #21 secrets-closeout, PR #24 catalog honesty, PR #23 site polish). Re-verify with Wrangler before acting — this session did not deploy. |
+| `main` HEAD (2026-09-20 rebase) | `8f7786a` (PR #23 site polish) on `6e518e0` (PR #24 catalog honesty) / `243858d` (PR #21 secrets-closeout). |
 | Draft handoff PRs | **Closed 2026-09-20:** #20 (secrets — do not merge; branch deleted), #13, #18, #10 (superseded). See `docs/memory/ACTIVE_WORK.md`. |
 | SuperGrok work branch | Wave 2 durable pending-checkout **merged via PR #19**; follow-up Stripe Worker transport/tax fixes on `main`. |
 | Catalog honesty | PR #24 merged — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15. Defaults remain engineered and explicitly unconfirmed. |
-| Site polish branch | `cursor/site-polish-ux-68ea` — PR #23 storefront UX polish. |
+| Site polish | PR #23 merged — checkout validation, honest storefront copy, trust strip, card skeletons. |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` (as of Stripe PR #17 deploy closeout; re-verify) |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
@@ -85,9 +85,31 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 
 **Live smoke (production, 2026-09-01):** `https://dewtheoryco.com` and `www` return HTTP 200 over HTTPS and serve the consultation+products-only build (`Shop Skin Script` + `Virtual Consultation` present). `npm run smoke:routes -- https://dewtheoryco.com` passed for retained routes and all 8 public legal PDFs. Cloudflare deployment readback shows Worker version `c9a82bb3-2c27-46f3-93ca-9f1df99b7702`.
 
-**Stripe wiring merged + deployed (PR #17, 2026-09-02):** Cursor's `cursor/stripe-wire-e021` (shared `lib/stripe/config.js`, Checkout + Tax extensions, webhook durable-event persistence, `npm run stripe:bootstrap`) was squash-merged into `main` and deployed. Live verification: `npm run smoke:routes -- https://dewtheoryco.com` all clear; `POST /api/webhooks/stripe` returns 503 `stripe_not_configured` (fail-closed); `POST /api/checkout` returns 400 `cart_empty` for empty carts; `/admin/integrations` 307 → `/admin/login`; `/admin/login` has no Stripe secret markers; homepage surface unchanged. **Stripe secrets are NOT set on the Worker** (values exist only in the owner's `.env.local`/Stripe Dashboard, which is not present in this checkout) — live Stripe checkout, webhook-paid D1 write, and the admin Stripe "healthy" panel remain owner-gated until `wrangler secret put` is run for `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`, and `STRIPE_TAX_ENABLED`. See `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md`.
+**Stripe wiring merged + deployed (PR #17, 2026-09-02):** Cursor's `cursor/stripe-wire-e021` (shared `lib/stripe/config.js`, Checkout + Tax extensions, webhook durable-event persistence, `npm run stripe:bootstrap`) was squash-merged into `main` and deployed. Later `main` commits include Stripe Workers fetch transport, tax behavior, and customer-update guards (`a108823`, `4051918`, `d6886bb`).
 
-**SuperGrok Wave 0 re-verify (2026-09-04 ~10:25 ET):** Canonical clone `Desktop\dew-theory` on branch `cursor/supergrok-wave0-durable-orders-e021`. Gates: `npm test` 232 pass; RPA pytest 15 pass; ruff clean; continuity OK; live `smoke:routes` all clear; webhook still 503 `stripe_not_configured`; `/admin` 307 → login; wrangler vars `SKIN_SCRIPT_MODE=mock` + `AUTO_FULFILL=false`; Stripe secrets still NOT SET; Fly RPA still not deployed. Wave 2 durable pending-checkout persist is **code on branch only**.
+**Live webhook re-verify (2026-09-20):** `POST https://dewtheoryco.com/api/webhooks/stripe` with empty JSON returns **400 `missing_signature`** (fail-closed on unsigned posts). This is **not** the 2026-09-04 `503 stripe_not_configured` — `STRIPE_WEBHOOK_SECRET` (and likely other Stripe secrets) appear set on the live Worker. Owner should still confirm Dashboard endpoint + a test-card paid → D1 write.
+
+**Skin Script fulfillment (2026-09-20):** Production vars remain `SKIN_SCRIPT_MODE=mock` + `AUTO_FULFILL=false` in `wrangler.jsonc`. Admin + customer copy now labels owner/manual queue when RPA is not live. Durable paid → job outbox remains; auto-submit is off. Fly RPA is not deployed. Owner steps: `docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md`. **Draft PR #10 is superseded** (D1 closeout already on `main` via later PRs; merging #10 would revert Admin Command Center / Stripe / WooCommerce portal).
+
+**SuperGrok Wave 0 re-verify (2026-09-04 ~10:25 ET):** Historical. Wave 2 durable pending-checkout later merged via PR #19 (`d22c091`). Webhook `503 stripe_not_configured` is **stale** as of 2026-09-20 (`400 missing_signature`). Wrangler vars `SKIN_SCRIPT_MODE=mock` + `AUTO_FULFILL=false` still the committed production defaults. Fly RPA still not deployed.
+
+### 2026-09-20 Cursor Cloud — Skin Script fulfillment honesty + PR #10 disposition
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/skin-script-rpa-go-live-17c7`  
+**Base `main` (after rebase):** `6e518e0` (PR #24) on `243858d` (PR #21) / `d6886bb`  
+**This session did not deploy Worker or Fly.**
+
+| Area | Status |
+|------|--------|
+| Fulfillment path | Paid → durable job (`persistPaidOrderWithJob`). `AUTO_FULFILL=false` skips adapter. Admin manual panel records PO/tracking without Skin Script calls. |
+| Production labels | Admin Command Center / orders / confirmation / `/shipping` say owner/mock queue when `SKIN_SCRIPT_MODE=mock` and RPA is not live. No customer “auto-fulfill is enabled” hedge. |
+| Job completion bug | `fulfillOrder` now reloads the job after `ensureFulfillmentJobForPaidOrder` and writes failures to commerce when the order is D1/file-backend only. |
+| PR #10 | **Superseded — close, do not merge.** Head `3405a3e` vs `main` would delete Admin Command Center, Stripe wiring, WooCommerce portal, verified mappings. D1 closeout already on `main`. |
+| Owner runbook | `docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md` |
+| Fly / live PO | Still owner-blocked. No credentials invented. No live Skin Script order. |
+
+**Live probe (2026-09-20):** `POST /api/webhooks/stripe` → 400 `missing_signature`.
 
 **2026-09-19 Emily catalog confirmation pass (docs/honesty only):** Emily did not answer the confirmation prompt. Engineered defaults stay in `data/products.json`: Sheer Protection SPF retail **$30** with `retail_price_confirmed: false`; lip treatment remains one Peppermint/Pomegranate product; Botanical Bloom remains **2 oz** with `size_confirmed: false`; `DEW15` remains a 15% launch-promo placeholder (`rate_confirmed: false`). `OPEN_ITEMS.md` §2 dated 2026-09-19. Storefront does not label unconfirmed prices as confirmed. Admin product/discount copy now says “unconfirmed” / “launch promo placeholder,” not Emily-approved. Merged via PR #24 @ `6e518e0`. No new prices invented.
 
@@ -308,7 +330,7 @@ Commit `415f0881275dbb856c332ebedd67289cb8241289` (`feat: limit public site to c
 
 **Branch:** `cursor/skin-script-rpa-fulfillment-5261`  
 **Original PR:** #8 (now merged at `20b7b1c` from older head `1056dba`)  
-**Replacement PR:** #10 (draft, carries post-merge RPA session work + Codex TASK-01)  
+**Replacement PR:** #10 (draft, 2026-08-31 D1 closeout) — **superseded 2026-09-20**; do not merge (later Admin/Stripe/portal work is already on `main`)  
 **Starting SHA:** `69d66d1af4f36b6bf73098e8d636fb8cf8728144`  
 **Current SHA:** `99bef7d`  
 **Signed:** Cursor Cloud Agent  

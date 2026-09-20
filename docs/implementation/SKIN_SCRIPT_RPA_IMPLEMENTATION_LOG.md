@@ -2,6 +2,23 @@
 
 ---
 
+## 2026-09-20 Cursor Cloud — honesty labels, job completion, go-live runbook
+
+**Signed:** Cursor Cloud Agent  
+**Branch:** `cursor/skin-script-rpa-go-live-17c7`  
+**Base:** `main` @ `d6886bb`
+
+| Change | Path |
+|--------|------|
+| Reload fulfillment job after ensure; persist failures for commerce-only orders | `lib/dropship/fulfill-order.js` |
+| Honest automation labels (mock + `AUTO_FULFILL=false` is owner queue, not live RPA) | `lib/admin/dashboard.js`, admin pages, `CartConfirmation`, `/shipping` |
+| Owner go-live checklist (no credentials) | `docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md` |
+| PR #10 disposition | Superseded — do not merge |
+
+Gates: `npm test` (recorded after run). No Fly deploy. No live Skin Script order.
+
+---
+
 ## 2026-09-01 Codex — remote D1 seed script + RPA config fix
 
 **Signed:** Codex

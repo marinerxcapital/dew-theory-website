@@ -28,6 +28,9 @@ Requires headed browser + legitimate MFA. Saves storage state to configured path
 
 Set `SKIN_SCRIPT_DRY_RUN=true` — workflow runs through review, does not click Place Order.
 
+Owner remaining go-live steps (Fly auth, Worker secrets, Emily payment method, first live order):
+[`docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md`](deploy/SKIN_SCRIPT_RPA_GO_LIVE.md).
+
 ## Production enablement checklist
 
 1. Provision `dew-theory-commerce` D1 and apply `migrations/001_commerce_schema.sql`

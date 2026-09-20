@@ -6,6 +6,7 @@ import {
   FREE_SHIPPING_THRESHOLD_USD,
   FLAT_SHIPPING_USD
 } from '@/lib/shipping';
+import { getCustomerFulfillmentCopy } from '@/lib/admin/dashboard';
 
 export const metadata = {
   title: 'Shipping',
@@ -16,6 +17,7 @@ export const metadata = {
 };
 
 export default function ShippingPage() {
+  const fulfillmentCopy = getCustomerFulfillmentCopy();
   return (
     <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="ship-head">
@@ -66,9 +68,9 @@ export default function ShippingPage() {
         <div data-reveal className="glass-1 p-8 md:p-10">
           <h2 className="font-display text-xl font-normal text-ink">How orders ship</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
-            Catalog products are Skin Script actives sold through Dew Theory. Carrier, tracking,
-            and ship-from details are confirmed on each order after checkout — we do not publish a
-            standard transit window yet.
+            Catalog products are Skin Script actives sold through Dew Theory.{' '}
+            {fulfillmentCopy.shippingBlurb} Carrier, tracking, and ship-from details are confirmed
+            on each order after checkout — we do not publish a standard transit window yet.
           </p>
         </div>
 

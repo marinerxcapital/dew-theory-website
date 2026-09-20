@@ -11,7 +11,12 @@ import { formatMoney } from '@/lib/shipping';
  * - ?order=ord_… (local mock checkout)
  * - ?session_id=cs_… (Stripe Checkout success_url)
  */
-export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
+export default function CartConfirmation({
+  orderId: initialOrder,
+  sessionId,
+  automationLive = false,
+  fulfillmentCopy = null
+}) {
   const { clearCart } = useCart();
   const [orderId, setOrderId] = useState(initialOrder || null);
   const [status, setStatus] = useState(sessionId ? 'resolving' : 'ready');
@@ -103,9 +108,13 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
         <div data-reveal className="mt-6 max-w-lg">
           <p className="font-body text-base font-light leading-relaxed text-charcoal/75">
             {pathKind === 'stripe'
-              ? 'Payment received. Your order is in — Emily will fulfill it through Skin Script.'
+              ? fulfillmentCopy?.confirmationLead ||
+                (automationLive
+                  ? 'Payment received. Your order is in — the studio is submitting the Skin Script wholesale purchase.'
+                  : 'Payment received. Your order is in — Emily will fulfill it manually through her Skin Script wholesale account.')
               : pathKind === 'mock'
-                ? 'Your order is recorded for admin review (local checkout path — no card charged on this page). Emily will fulfill it through Skin Script.'
+                ? fulfillmentCopy?.confirmationMockLead ||
+                  'Your order is recorded for admin review (local checkout path — no card charged on this page). Emily will fulfill it manually through Skin Script.'
                 : 'Your order is in. Emily will fulfill it manually through Skin Script.'}{' '}
             You&apos;ll get a confirmation email with details when that path is configured. No live
             tracking link; we&apos;ll update you when it ships.
@@ -145,8 +154,10 @@ export default function CartConfirmation({ orderId: initialOrder, sessionId }) {
               Next · 2
             </span>
             <span className="mt-1 block">
-              Emily fulfills Skin Script wholesale manually unless auto-fulfill is enabled. Watch
-              for ship updates from the studio.
+              {fulfillmentCopy?.nextStep ||
+                (automationLive
+                  ? 'The studio is processing your Skin Script wholesale order. Watch for ship updates from Dew Theory.'
+                  : 'Emily fulfills Skin Script wholesale manually through her studio account. Watch for ship updates from the studio.')}
             </span>
           </li>
           <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">

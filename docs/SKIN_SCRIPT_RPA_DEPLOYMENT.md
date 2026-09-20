@@ -30,3 +30,6 @@ Health: `GET /health`, `GET /ready`
 3. Revert Worker deploy if needed — D1 data retained
 
 See `docs/deploy/SKIN_SCRIPT_RPA_DEPLOYMENT_LOG.md` for session history.
+
+**Owner remaining steps (Fly auth, Worker secrets, Emily payment method, first live order):**
+[`docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md`](deploy/SKIN_SCRIPT_RPA_GO_LIVE.md).

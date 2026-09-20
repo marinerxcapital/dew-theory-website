@@ -12,6 +12,12 @@ import {
 import { resetMockDropshipLedger } from '../lib/suppliers/skin-script/mock-adapter.js';
 import { mutateStore, readStore } from '../lib/store.js';
 import { ORDER_STATUSES } from '../lib/order-status.js';
+import {
+  commerceGetFulfillmentJobByOrder,
+  commerceGetOrder,
+  resetCommerceBackendForTests
+} from '../lib/commerce/index.js';
+import { persistPaidOrderWithJob } from '../lib/fulfillment/jobs.js';
 
 describe('resolveLineSku', () => {
   it('uses line then product catalog then derived SKU', () => {
@@ -43,6 +49,8 @@ describe('ORDER_STATUSES dropship states', () => {
 describe('fulfillOrder mock path', () => {
   before(() => {
     resetMockDropshipLedger();
+    resetCommerceBackendForTests();
+    process.env.STORE_BACKEND = 'file';
   });
 
   it('fails safely when line has no product mapping', async () => {
@@ -97,6 +105,11 @@ describe('fulfillOrder mock path', () => {
     assert.ok(r1.order.supplier_order_id);
     assert.equal(r1.order.status, 'submitted_to_skin_script');
 
+    const job = await commerceGetFulfillmentJobByOrder(id);
+    assert.ok(job?.id, 'fulfillment job must exist after submit');
+    assert.equal(job.status, 'submitted_to_skin_script');
+    assert.equal(job.supplier_order_id, r1.order.supplier_order_id);
+
     const r2 = await fulfillOrder(id);
     assert.equal(r2.ok, true);
     assert.equal(r2.idempotent, true);
@@ -108,10 +121,53 @@ describe('shouldAutoFulfill', () => {
   it('defaults true', () => {
     const prev = process.env.AUTO_FULFILL;
     delete process.env.AUTO_FULFILL;
-    assert.equal(shouldAutoFulfill(), true);
+    assert.equal(shouldAutoFulfill({}), true);
     process.env.AUTO_FULFILL = 'false';
     assert.equal(shouldAutoFulfill(), false);
     if (prev === undefined) delete process.env.AUTO_FULFILL;
     else process.env.AUTO_FULFILL = prev;
+  });
+
+  it('is off for production-honest mock + AUTO_FULFILL=false', () => {
+    assert.equal(
+      shouldAutoFulfill({ SKIN_SCRIPT_MODE: 'mock', AUTO_FULFILL: 'false' }),
+      false
+    );
+  });
+
+  it('is off when RPA mode is set but kill switch is not true', () => {
+    assert.equal(
+      shouldAutoFulfill({ SKIN_SCRIPT_MODE: 'rpa', SKIN_SCRIPT_RPA_ENABLED: 'false' }),
+      false
+    );
+  });
+});
+
+describe('fulfillOrder commerce-only failure', () => {
+  it('writes failed_supplier to durable order + job when store has no row', async () => {
+    resetCommerceBackendForTests();
+    process.env.STORE_BACKEND = 'file';
+    const id = `ord_commerce_only_fail_${Date.now()}`;
+    await persistPaidOrderWithJob({
+      id,
+      status: 'paid',
+      customer: { name: 'T', email: 't@example.com' },
+      items: [{ name: 'Ghost item no id', quantity: 1, unit_price: 10 }],
+      shipping_address: { line1: '1', city: 'A', state: 'TX', postal_code: '78701' },
+      created_at: new Date().toISOString()
+    });
+
+    const r = await fulfillOrder(id);
+    assert.equal(r.ok, false);
+    assert.equal(r.code, 'sku_missing');
+
+    const durable = await commerceGetOrder(id);
+    assert.equal(durable.status, 'failed_supplier');
+    assert.ok(durable.fulfillment_error);
+
+    const job = await commerceGetFulfillmentJobByOrder(id);
+    assert.ok(job?.id);
+    assert.equal(job.error_code, 'sku_missing');
+    assert.equal(job.status, 'blocked_supplier_mapping');
   });
 });

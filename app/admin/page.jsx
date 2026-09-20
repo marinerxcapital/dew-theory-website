@@ -34,7 +34,11 @@ export default async function AdminCommandCenterPage({ searchParams }) {
     <>
       <AdminPageHeader
         title="Command Center"
-        subtitle="Operational overview — durable commerce, fulfillment automation, and integration health."
+        subtitle={
+          data.automation.automationLive
+            ? 'Operational overview — durable commerce, live Skin Script RPA, and integration health.'
+            : 'Operational overview — durable commerce, owner fulfillment queue, and integration health. Skin Script RPA is not live.'
+        }
         overallStatus={data.overallStatus}
         refreshedAt={data.refreshedAt}
         automation={data.automation}

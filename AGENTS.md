@@ -35,6 +35,7 @@ Update as applicable:
 - `docs/SKIN_SCRIPT_RPA_SECURITY.md`
 - `docs/SKIN_SCRIPT_RPA_TESTING.md`
 - `docs/SKIN_SCRIPT_RPA_DEPLOYMENT.md`
+- `docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md`
 - `docs/SKIN_SCRIPT_RPA_TROUBLESHOOTING.md`
 
 ## Never

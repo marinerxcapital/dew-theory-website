@@ -2,6 +2,27 @@
 
 ---
 
+## 2026-09-20 Cursor Cloud — no deploy; go-live runbook + PR #10 closeout
+
+**Signed:** Cursor Cloud Agent  
+**Timestamp (UTC):** 2026-09-20  
+**Status:** Code/docs only. Worker not redeployed. Fly not deployed.
+
+### Completed
+
+- Owner runbook `docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md` lists remaining Fly auth, Worker `SKIN_SCRIPT_RPA_*` secrets, Emily payment method, first controlled live order.
+- Draft PR #10 (`codex/skin-script-rpa-task01-closeout` @ `3405a3e`) is **superseded** by `main`. Two-dot diff vs `d6886bb` would delete Admin Command Center, Stripe, WooCommerce portal, verified mappings.
+- Live webhook probe: `POST /api/webhooks/stripe` → 400 `missing_signature` (secret present; unsigned fail-closed).
+
+### Not completed (owner)
+
+- Fly.io RPA container
+- Worker RPA HMAC / service URL secrets
+- Saved portal payment method
+- Controlled live supplier purchase
+
+---
+
 ## 2026-09-01 Codex — Worker redeployed (RPA container still blocked)
 
 **Signed:** Codex

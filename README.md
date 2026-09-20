@@ -55,8 +55,11 @@ Map columns, review retail (auto wholesale × 2), **Dry-run** then **Confirm**. 
 ### Skin Script sync + auto dropship (mock-ready)
 
 - Admin → **Catalog sync** (`/admin/sync`) — dry-run / apply via supplier adapters (`mock` default).
-- Paid mock checkout can **auto-submit** a dropship PO (`AUTO_FULFILL`, default on) →
-  `submitted_to_skin_script` + `supplier_order_id`. Admin retry: order detail → Auto-submit.
+- Paid mock checkout can **auto-submit** a dropship PO when `AUTO_FULFILL` is not `false`
+  (local default on; **production Worker `wrangler.jsonc` sets `AUTO_FULFILL=false`**) →
+  `submitted_to_skin_script` + `supplier_order_id`. Production default is owner manual
+  fulfillment — see [`docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md`](docs/deploy/SKIN_SCRIPT_RPA_GO_LIVE.md).
+  Admin retry: order detail → Auto-submit (mock only) or Manual owner fulfillment.
 - Live partner API: set `SKIN_SCRIPT_*` env after rep confirms (see [`docs/SKIN_SCRIPT_SYNC.md`](docs/SKIN_SCRIPT_SYNC.md)).
 - Optional xAI assist: `XAI_API_KEY` for messy feed mapping only (validated before write).
 

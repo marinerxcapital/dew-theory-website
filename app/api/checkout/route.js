@@ -250,7 +250,7 @@ export async function POST(request) {
         .catch(() => {});
     }
 
-    // Automated dropship when AUTO_FULFILL is not disabled (default on)
+    // Automated dropship only when AUTO_FULFILL is not false (production Worker default is false)
     let fulfill = null;
     try {
       fulfill = await maybeAutoFulfill(orderId);

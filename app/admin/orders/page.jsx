@@ -29,13 +29,19 @@ export default async function AdminOrdersPage({ searchParams }) {
     <>
       <AdminPageHeader
         title="Orders"
-        subtitle="Durable commerce orders (authoritative) merged with legacy file-store orders. Skin Script fulfillment runs via RPA when enabled."
+        subtitle={
+          automation.automationLive
+            ? 'Durable commerce orders (authoritative) merged with legacy file-store orders. Skin Script RPA purchasing is live.'
+            : 'Durable commerce orders (authoritative) merged with legacy file-store orders. Skin Script RPA is not live — owner manual queue.'
+        }
         automation={automation}
       />
 
       <p className="mb-4 text-sm text-muted">
-        Automation mode: <strong className="text-forest">{automation.modeLabel}</strong>. Paid orders queue
-        fulfillment jobs; supplier submission requires verified mappings and RPA purchasing allowed.
+        Mode: <strong className="text-forest">{automation.modeLabel}</strong>.{' '}
+        {automation.automationLive
+          ? 'Paid orders queue fulfillment jobs for the RPA worker when purchasing is allowed.'
+          : 'Paid orders stay on the owner queue. Use the order-detail manual fulfillment panel. No live supplier purchase runs from this Worker.'}
       </p>
 
       <nav aria-label="Filter by status" className="flex flex-wrap gap-2">
