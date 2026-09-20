@@ -69,9 +69,10 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 | Origin | `origin` → GitHub above |
 | Default / production branch | `main` |
 | Live production SHA (verified deployed) | `04d653456d4046ff1a1a27bcccc39e95336ea1dd` (2026-09-02, Stripe test wiring + webhook/Tax bootstrap, PR #17) — re-verify with Wrangler before acting |
-| `main` HEAD | Re-verify with `git rev-parse HEAD` (this checkout: `d6886bb` after PR #19 + Stripe Worker transport/tax fixes). Historical docs-closeout SHA `a11626f` is stale. |
+| `main` HEAD | Re-verify with `git rev-parse HEAD` (this checkout: `243858d` after PR #21 secrets-closeout docs on `d6886bb` Stripe Worker transport/tax fixes). Historical docs-closeout SHA `a11626f` is stale. |
 | Draft handoff PRs | **Closed 2026-09-20:** #20 (secrets — do not merge; branch deleted), #13, #18, #10 (superseded). See `docs/memory/ACTIVE_WORK.md`. |
 | SuperGrok work branch | Wave 2 durable pending-checkout **merged via PR #19**; follow-up Stripe Worker transport/tax fixes on `main`. |
+| Catalog honesty branch | `cursor/catalog-emily-confirmation-d4bc` — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15. Defaults remain engineered and explicitly unconfirmed. |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
 | Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` (as of Stripe PR #17 deploy closeout; re-verify) |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
@@ -86,6 +87,8 @@ PDRN is **not** in `lib/services.js` and is **not** a catalog SKU. Homepage trea
 **Stripe wiring merged + deployed (PR #17, 2026-09-02):** Cursor's `cursor/stripe-wire-e021` (shared `lib/stripe/config.js`, Checkout + Tax extensions, webhook durable-event persistence, `npm run stripe:bootstrap`) was squash-merged into `main` and deployed. Live verification: `npm run smoke:routes -- https://dewtheoryco.com` all clear; `POST /api/webhooks/stripe` returns 503 `stripe_not_configured` (fail-closed); `POST /api/checkout` returns 400 `cart_empty` for empty carts; `/admin/integrations` 307 → `/admin/login`; `/admin/login` has no Stripe secret markers; homepage surface unchanged. **Stripe secrets are NOT set on the Worker** (values exist only in the owner's `.env.local`/Stripe Dashboard, which is not present in this checkout) — live Stripe checkout, webhook-paid D1 write, and the admin Stripe "healthy" panel remain owner-gated until `wrangler secret put` is run for `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_VIRTUAL_CONSULTATION_PRICE_ID`, and `STRIPE_TAX_ENABLED`. See `docs/DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md`.
 
 **SuperGrok Wave 0 re-verify (2026-09-04 ~10:25 ET):** Canonical clone `Desktop\dew-theory` on branch `cursor/supergrok-wave0-durable-orders-e021`. Gates: `npm test` 232 pass; RPA pytest 15 pass; ruff clean; continuity OK; live `smoke:routes` all clear; webhook still 503 `stripe_not_configured`; `/admin` 307 → login; wrangler vars `SKIN_SCRIPT_MODE=mock` + `AUTO_FULFILL=false`; Stripe secrets still NOT SET; Fly RPA still not deployed. Wave 2 durable pending-checkout persist is **code on branch only**.
+
+**2026-09-19 Emily catalog confirmation pass (docs/honesty only):** Emily did not answer the confirmation prompt. Engineered defaults stay in `data/products.json`: Sheer Protection SPF retail **$30** with `retail_price_confirmed: false`; lip treatment remains one Peppermint/Pomegranate product; Botanical Bloom remains **2 oz** with `size_confirmed: false`; `DEW15` remains a 15% launch-promo placeholder (`rate_confirmed: false`). `OPEN_ITEMS.md` §2 dated 2026-09-19. Storefront does not label unconfirmed prices as confirmed. Admin product/discount copy now says “unconfirmed” / “launch promo placeholder,” not Emily-approved. Branch: `cursor/catalog-emily-confirmation-d4bc` @ `104a9d06f57935ff94c0b3464958047dceffc09a`. Gates this pass: `npm test` **250 pass / 0 fail**; `node scripts/check-project-continuity.mjs` **OK**. No new prices invented. No production deploy this pass.
 
 ---
 

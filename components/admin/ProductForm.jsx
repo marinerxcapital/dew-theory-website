@@ -109,7 +109,7 @@ export default function ProductForm({ product = null }) {
       )}
       {[
         ['name', 'Name', 'text'],
-        ['size', 'Size', 'text'],
+        ['size', `Size${product?.size_confirmed === false ? ' · unconfirmed' : ''}`, 'text'],
         ['description_short', 'Short description', 'text'],
         ['how_to_use', 'How to use', 'text'],
         ['skin_script_sku', 'Skin Script SKU (optional)', 'text'],
@@ -147,6 +147,7 @@ export default function ProductForm({ product = null }) {
         <div>
           <label className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
             Retail ($) — auto ×2, editable
+            {product?.retail_price_confirmed === false ? ' · unconfirmed' : ''}
           </label>
           <input
             type="number"

@@ -1,11 +1,12 @@
 # Active Work — Dew Theory
 
 **Signed:** SuperGrok (Lead Orchestrator / Memory)  
-**Last updated (ET):** 2026-09-20 (security cleanup note) / prior Wave 0: 2026-09-04 ~10:30 ET  
+**Last updated (ET):** 2026-09-20 (security cleanup + catalog honesty rebase) / prior Wave 0: 2026-09-04 ~10:30 ET  
 **Canonical clone:** `C:\Users\Skyler B. Brown\Desktop\dew-theory` (do **not** use `Desktop\Projects\dew-theory` — stale at `e9f64da`)  
 **Branch:** `cursor/supergrok-wave0-durable-orders-e021` (SuperGrok work; Wave 2 later merged via PR #19)  
-**`main` HEAD (re-verify):** `d6886bb7b8889ef7145b24ea43fd63a20fd3b5a0`  
-**Latest feature on `main`:** PR #19 durable pending Stripe orders + follow-up Stripe Worker transport/tax fixes
+**`main` HEAD (re-verify):** `243858d26dbf1a74f31fd9fd491bf3635eed7985` (PR #21 secrets-closeout docs on `d6886bb`)  
+**Latest feature on `main`:** PR #19 durable pending Stripe orders + Stripe Worker transport/tax fixes + PR #21 secrets-closeout docs  
+**Honesty branch:** `cursor/catalog-emily-confirmation-d4bc` — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15 rate. Defaults remain engineered and explicitly unconfirmed.
 
 ## Security cleanup (2026-09-20)
 
@@ -50,6 +51,7 @@
 4. Saved payment method on Skin Script wholesale account (Emily).
 5. One **controlled live supplier order** after 2–4.
 6. Finish / review Wave 2 durable pending-checkout on this branch; merge + deploy only after gates.
+7. **Emily catalog confirmation (2026-09-19 still pending):** SPF retail $30, lip one-SKU + variants, Botanical Bloom 2 oz, DEW15 15% launch-promo placeholder. Do not flip honesty flags without her answer.
 
 ## Next exact commands
 

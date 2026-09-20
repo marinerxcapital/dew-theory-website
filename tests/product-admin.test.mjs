@@ -77,6 +77,50 @@ describe('validateAndNormalizeProduct — create', () => {
     );
     assert.equal(r.product.active, false);
   });
+
+  it('does not mark retail as confirmed unless explicitly true', () => {
+    const created = validateAndNormalizeProduct(
+      { id: 'serum-a', name: 'A', wholesale_price: 10 },
+      { isNew: true }
+    );
+    assert.equal(created.product.retail_price_confirmed, false);
+
+    const preserved = validateAndNormalizeProduct(
+      {
+        id: 'sheer-protection-spf',
+        name: 'Sheer Protection SPF 30',
+        wholesale_price: 15,
+        retail_price: 30,
+        retail_price_confirmed: false,
+        retail_price_note: 'Emily still must confirm'
+      },
+      { isNew: false }
+    );
+    assert.equal(preserved.product.retail_price_confirmed, false);
+    assert.match(preserved.product.retail_price_note, /Emily still must confirm/);
+
+    const confirmed = validateAndNormalizeProduct(
+      { id: 'serum-a', name: 'A', wholesale_price: 10, retail_price_confirmed: true },
+      { isNew: true }
+    );
+    assert.equal(confirmed.product.retail_price_confirmed, true);
+  });
+
+  it('preserves size_confirmed false on update', () => {
+    const r = validateAndNormalizeProduct(
+      {
+        id: 'botanical-bloom-hydrating-mask',
+        name: 'Botanical Bloom Hydrating Mask',
+        wholesale_price: 24,
+        size: '2 oz',
+        size_confirmed: false,
+        size_note: 'pending Emily'
+      },
+      { isNew: false }
+    );
+    assert.equal(r.product.size_confirmed, false);
+    assert.match(r.product.size_note, /pending Emily/);
+  });
 });
 
 describe('isShopVisible reflects active + discontinued', () => {

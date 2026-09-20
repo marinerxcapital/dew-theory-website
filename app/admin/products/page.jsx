@@ -46,6 +46,11 @@ export default async function AdminProductsPage() {
               </div>
               <p className="shrink-0 font-label text-sm font-light tracking-wide2 text-charcoal">
                 {formatMoney(p.retail_price)}
+                {p.retail_price_confirmed === false ? (
+                  <span className="ml-2 font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
+                    unconfirmed
+                  </span>
+                ) : null}
               </p>
             </div>
             <div className="mt-4 flex flex-col gap-3 border-t border-chrome/15 pt-3">
@@ -93,7 +98,14 @@ export default async function AdminProductsPage() {
                   )}
                 </td>
                 <td className="py-4 pr-4 text-charcoal/70">{p.category}</td>
-                <td className="py-4 pr-4">{formatMoney(p.retail_price)}</td>
+                <td className="py-4 pr-4">
+                  {formatMoney(p.retail_price)}
+                  {p.retail_price_confirmed === false ? (
+                    <span className="ml-2 font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
+                      unconfirmed
+                    </span>
+                  ) : null}
+                </td>
                 <td className="py-4 pr-4">
                   <ProductStockToggle
                     productId={p.id}
