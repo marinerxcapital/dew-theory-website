@@ -18,6 +18,15 @@
 **D1:** supplier_mappings verified_active=35 (preinstall backup in .artifacts/final-catalog/)
 **AUTO_FULFILL:** false (unchanged)
 **Live Skin Script PO:** NOT placed
+
+## 2026-09-21 production deploy (local Wrangler; Actions billing bypass)
+
+**main SHA:** `600f8ef`
+**Worker Version ID:** `104d8a4a-e70a-4625-9953-3fd290199ed6`
+**Live catalog:** 35 products with sage media + category carousels + PDP galleries
+**D1 mappings:** 35 verified active
+**AUTO_FULFILL:** false | **SKIN_SCRIPT_MODE:** mock
+**Note:** GitHub Actions still billing-locked; deploy used local `npm run deploy`.
 ## CURRENT BRAND SYSTEM
 
 ### Authoritative five colors (do not alter hex values)
