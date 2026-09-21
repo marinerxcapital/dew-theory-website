@@ -4,26 +4,21 @@
     "how_to_add": "Add one object with product_id (Dew slug), skin_script_sku (wholesale portal variant SKU), sync_enabled=true, and the verified skinscript.com product URL. No code change required. Do not add SKUs that are not on this list.",
     "pricing_rule": "retail = wholesale × 2 when the live source omits retail. Sync updates wholesale/retail/availability/SKU only — it does not rewrite Emily-facing copy.",
     "source": "Initial eight IDs match data/products.json. Variant SKUs and product URLs match data/supplier/skin-script-portal-urls.json (authenticated portal recon, 2026-09-01).",
-    "not_a_full_catalog": "This is not the full Skin Script wholesale catalog. Expanding later is a data change, not a rewrite."
+    "not_a_full_catalog": "This is not the full Skin Script wholesale catalog. Expanding later is a data change, not a rewrite.",
+    "note": "Expanded curated allowlist 35 SKUs (2026-09-20). Sync-enabled only for verified retail variants."
   },
   "products": [
     {
-      "product_id": "green-tea-citrus-cleanser",
-      "skin_script_sku": "1010240",
-      "sync_enabled": true,
-      "supplier_product_url": "https://skinscript.com/product/green-tea-citrus-cleanser/"
+      "product_id": "acai-berry-moisturizer",
+      "skin_script_sku": "1510440",
+      "supplier_product_url": "https://skinscript.com/product/acai-berry-moisturizer/",
+      "sync_enabled": true
     },
     {
-      "product_id": "mandelic-brightening-serum",
-      "skin_script_sku": "1310440",
-      "sync_enabled": true,
-      "supplier_product_url": "https://skinscript.com/product/mandelic-brightening-serum/"
-    },
-    {
-      "product_id": "botanical-bloom-hydrating-mask",
-      "skin_script_sku": "2110640",
-      "sync_enabled": true,
-      "supplier_product_url": "https://skinscript.com/product/botanical-bloom-hydrating-mask/"
+      "product_id": "advanced-renewal-serum",
+      "skin_script_sku": "1310540",
+      "supplier_product_url": "https://skinscript.com/product/advanced-renewal-serum/",
+      "sync_enabled": true
     },
     {
       "product_id": "ageless-moisturizer",
@@ -32,10 +27,118 @@
       "supplier_product_url": "https://skinscript.com/product/ageless-skin-moisturizer/"
     },
     {
+      "product_id": "barrier-balancing-moisturizer",
+      "skin_script_sku": "1510740",
+      "supplier_product_url": "https://skinscript.com/product/barrier-balancing-moisturizer/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "blemish-spot-treatment",
+      "skin_script_sku": "1310840",
+      "supplier_product_url": "https://skinscript.com/product/blemish-spot-treatment/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "botanical-bloom-hydrating-mask",
+      "skin_script_sku": "2110640",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/botanical-bloom-hydrating-mask/"
+    },
+    {
+      "product_id": "charcoal-clay-cleanser",
+      "skin_script_sku": "1010340",
+      "supplier_product_url": "https://skinscript.com/product/charcoal-clay-cleanser/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "citrus-c-nourishing-cream",
+      "skin_script_sku": "1310140",
+      "supplier_product_url": "https://skinscript.com/product/citrus-c-nourishing-cream/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "clarifying-toner-pads",
+      "skin_script_sku": "1110240",
+      "supplier_product_url": "https://skinscript.com/product/clarifying-toner-pads/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "cucumber-hydration-toner",
+      "skin_script_sku": "1210140",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/cucumber-hydration-toner/"
+    },
+    {
+      "product_id": "discovery-kit",
+      "skin_script_sku": "5010420",
+      "supplier_product_url": "https://skinscript.com/product/discovery-kit/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "everyday-balance-travel-kit",
+      "skin_script_sku": "4010900",
+      "supplier_product_url": "https://skinscript.com/product/everyday-balance-travel-kit/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "fresh-face-travel-kit",
+      "skin_script_sku": "4010800",
+      "supplier_product_url": "https://skinscript.com/product/fresh-face-travel-kit/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "fully-quenched-travel-kit",
+      "skin_script_sku": "4011000",
+      "supplier_product_url": "https://skinscript.com/product/fully-quenched-travel-kit/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "glycolic-and-retinol-pads",
+      "skin_script_sku": "1110140",
+      "supplier_product_url": "https://skinscript.com/product/glycolic-and-retinol-pads/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "glycolic-cleanser",
+      "skin_script_sku": "1010440",
+      "supplier_product_url": "https://skinscript.com/product/glycolic-cleanser/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "green-tea-citrus-cleanser",
+      "skin_script_sku": "1010240",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/green-tea-citrus-cleanser/"
+    },
+    {
+      "product_id": "honey-brightening-cleanser",
+      "skin_script_sku": "1010640",
+      "supplier_product_url": "https://skinscript.com/product/honey-brightening-cleanser/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "hydrating-moisturizer",
+      "skin_script_sku": "1510640",
+      "supplier_product_url": "https://skinscript.com/product/hydrating-moisturizer/",
+      "sync_enabled": true
+    },
+    {
       "product_id": "hydrating-skin-serum",
       "skin_script_sku": "1310340",
       "sync_enabled": true,
       "supplier_product_url": "https://skinscript.com/product/ageless-hydrating-serum/"
+    },
+    {
+      "product_id": "light-aloe-moisturizer",
+      "skin_script_sku": "1510140",
+      "supplier_product_url": "https://skinscript.com/product/light-aloe-moisturizer/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "lip-balm-with-spf-15",
+      "skin_script_sku": "1410140",
+      "supplier_product_url": "https://skinscript.com/product/lip-balm-with-spf-15/",
+      "sync_enabled": true
     },
     {
       "product_id": "lip-treatment-peppermint-pomegranate",
@@ -44,16 +147,76 @@
       "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/"
     },
     {
+      "product_id": "mandelic-brightening-serum",
+      "skin_script_sku": "1310440",
+      "sync_enabled": true,
+      "supplier_product_url": "https://skinscript.com/product/mandelic-brightening-serum/"
+    },
+    {
+      "product_id": "mint-refining-toner",
+      "skin_script_sku": "1210240",
+      "supplier_product_url": "https://skinscript.com/product/mint-refining-toner/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "peptide-eye-serum",
+      "skin_script_sku": "1310640",
+      "supplier_product_url": "https://skinscript.com/product/peptide-eye-serum/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "peptide-moisturizer",
+      "skin_script_sku": "1510540",
+      "supplier_product_url": "https://skinscript.com/product/peptide-moisturizer/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "pomegranate-antioxidant-cleanser",
+      "skin_script_sku": "1010140",
+      "supplier_product_url": "https://skinscript.com/product/pomegranate-antioxidant-cleanser/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "raspberry-refining-cleanser",
+      "skin_script_sku": "1010540",
+      "supplier_product_url": "https://skinscript.com/product/raspberry-refining-cleansers/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "raspberry-scrub",
+      "skin_script_sku": "1110540",
+      "supplier_product_url": "https://skinscript.com/product/raspberry-scrub/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "retinol-exfoliating-scrub",
+      "skin_script_sku": "1110440",
+      "supplier_product_url": "https://skinscript.com/product/retinol-exfoliating-scrub-mask/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "revitalizing-cucumber-treatment",
+      "skin_script_sku": "1110640",
+      "supplier_product_url": "https://skinscript.com/product/revitalizing-cucumber-treatment/",
+      "sync_enabled": true
+    },
+    {
       "product_id": "sheer-protection-spf",
       "skin_script_sku": "1610140",
       "sync_enabled": true,
       "supplier_product_url": "https://skinscript.com/product/sheer-protection-spf-30/"
     },
     {
-      "product_id": "cucumber-hydration-toner",
-      "skin_script_sku": "1210140",
-      "sync_enabled": true,
-      "supplier_product_url": "https://skinscript.com/product/cucumber-hydration-toner/"
+      "product_id": "tri-peptide-eye-cream",
+      "skin_script_sku": "1310740",
+      "supplier_product_url": "https://skinscript.com/product/tri-peptide-eye-cream/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "triple-c-serum",
+      "skin_script_sku": "1310940",
+      "supplier_product_url": "https://skinscript.com/product/vitamin-c-green-tea-serum/",
+      "sync_enabled": true
     }
   ]
 }

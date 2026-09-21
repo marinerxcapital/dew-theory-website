@@ -6,9 +6,23 @@ import { usePathname, useSearchParams } from 'next/navigation';
 const DESKTOP_LINKS = [
   { href: '/shop', label: 'Shop' },
   { href: '/shop?type=Cleanser', label: 'Cleansers', match: 'Cleanser' },
-  { href: '/shop?type=Serum', label: 'Treatments', matchTypes: ['Serum', 'Exfoliant', 'Toner', 'Mask'] },
+  {
+    href: '/shop?type=Serum',
+    label: 'Treatments',
+    matchTypes: [
+      'Serum',
+      'Exfoliant',
+      'Toner',
+      'Mask',
+      'Enzyme',
+      'Eye Treatment',
+      'Lip Treatment',
+      'Spot Treatment'
+    ]
+  },
   { href: '/shop?type=Moisturizer', label: 'Moisturizers', match: 'Moisturizer' },
   { href: '/shop?type=SPF', label: 'SPF', match: 'SPF' },
+  { href: '/shop?type=Kit', label: 'Kits', match: 'Kit' },
   { href: '/virtual-consultation', label: 'Virtual Consult' }
 ];
 
