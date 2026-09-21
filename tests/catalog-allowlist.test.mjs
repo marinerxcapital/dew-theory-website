@@ -30,12 +30,12 @@ const INITIAL_IDS = [
 ];
 
 describe('catalog allowlist data', () => {
-  it('lists the current 8 shop SKUs as sync-enabled', () => {
+  it('includes the original 8 shop SKUs and only sync-enabled verified rows', () => {
     const loaded = loadCatalogAllowlist();
-    assert.equal(loaded.products.length, 8);
-    assert.equal(getEnabledAllowlistEntries().length, 8);
-    const ids = loaded.products.map((p) => p.product_id).sort();
-    assert.deepEqual(ids, [...INITIAL_IDS].sort());
+    assert.ok(loaded.products.length >= 8);
+    assert.equal(getEnabledAllowlistEntries().length, loaded.products.length);
+    const ids = new Set(loaded.products.map((p) => p.product_id));
+    for (const id of INITIAL_IDS) assert.ok(ids.has(id), `missing original id ${id}`);
     assert.ok(loaded.products.every((p) => p.sync_enabled && p.skin_script_sku && p.supplier_product_url));
   });
 

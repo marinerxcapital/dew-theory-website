@@ -253,3 +253,9 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - **Not done without credentials / Emily:** live Stripe payment test, Google Calendar slots,
   Supabase-backed tables, Resend production email, real treatment menu prices, deposit %,
   Emily portrait/studio photos, final returns legal language.
+
+## 2026-09-20 catalog expansion honesty
+
+- Newly added storefront products use portal-verified wholesale x 2 retail with retail_price_confirmed=false until Emily approves.
+- Ageless Lip Treatment remains one product (Peppermint/Pomegranate variants); Lip Balm with SPF 15 is a separate verified SKU.
+- AUTO_FULFILL remains false; RPA live order remains owner-gated.

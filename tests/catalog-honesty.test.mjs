@@ -61,8 +61,16 @@ describe('catalog honesty flags (2026-09-19 confirmation still pending)', () => 
     assert.deepEqual(lip.variants, ['Peppermint', 'Pomegranate']);
     assert.match(String(lip.manufacturer_name_note), /OPEN_ITEMS\.md/);
     assert.match(String(lip.manufacturer_name_note), /2026-09-19/);
-    const extraLip = catalog.products.filter((p) => p.category === 'Lip Treatment');
-    assert.equal(extraLip.length, 1, 'do not split lip into two catalog SKUs without Emily');
+    assert.equal(
+      catalog.products.filter((p) => p.id === 'lip-treatment-peppermint-pomegranate').length,
+      1,
+      'keep a single Peppermint/Pomegranate lip treatment product id'
+    );
+    assert.equal(
+      catalog.products.filter((p) => /pomegranate lip treatment$/i.test(p.name) && p.id !== 'lip-treatment-peppermint-pomegranate').length,
+      0,
+      'do not add a separate Pomegranate-only Ageless Lip SKU without Emily'
+    );
   });
 
   it('keeps Botanical Bloom at 2 oz with size unconfirmed', () => {

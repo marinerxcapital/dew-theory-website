@@ -10,48 +10,32 @@ import {
   SKIN_SCRIPT_IMAGE_BY_ID
 } from '../lib/product-image.js';
 
-const EXPECTED = {
-  'green-tea-citrus-cleanser':
-    '/images/products/skin-script/00-green-tea-citrus-cleanser.webp',
-  'mandelic-brightening-serum':
-    '/images/products/skin-script/01-mandelic-brightening-serum.webp',
-  'hydrating-skin-serum':
-    '/images/products/skin-script/02-ageless-skin-hydrating-serum.webp',
-  'ageless-moisturizer':
-    '/images/products/skin-script/03-ageless-skin-moisturizer.webp',
-  'botanical-bloom-hydrating-mask':
-    '/images/products/skin-script/04-botanical-bloom-hydrating-mask.webp',
-  'lip-treatment-peppermint-pomegranate':
-    '/images/products/skin-script/05-ageless-lip-treatment.webp',
-  'cucumber-hydration-toner':
-    '/images/products/skin-script/06-cucumber-hydration-toner.webp',
-  'sheer-protection-spf':
-    '/images/products/skin-script/07-sheer-protection-spf-30.webp'
-};
-
 describe('product-image mapping', () => {
-  it('maps all eight catalog products to WebP Skin Script paths', () => {
-    assert.equal(catalog.products.length, 8);
+  it('maps all catalog products to sage WebP paths via image_webp/images', () => {
+    assert.ok(catalog.products.length >= 8);
     for (const p of catalog.products) {
-      const expected = EXPECTED[p.id];
-      assert.ok(expected, `unexpected product id ${p.id}`);
-      assert.equal(productImageSrc(p), expected);
-      assert.ok(isProductPhotoSrc(productImageSrc(p)));
-      assert.equal(isSvgSrc(productImageSrc(p)), false);
-      assert.match(productImageSrc(p), /\.webp$/);
+      const src = productImageSrc(p);
+      assert.ok(isProductPhotoSrc(src), `missing photo for ${p.id}`);
+      assert.equal(isSvgSrc(src), false);
+      assert.match(src, /\.webp$/);
+      assert.match(src, /\/images\/products\/skin-script\//);
+      assert.ok(p.image_webp, `${p.id} missing image_webp`);
+      assert.ok(Array.isArray(p.images) && p.images.length >= 1, `${p.id} needs gallery images`);
+      assert.ok(p.images.length <= 8, `${p.id} gallery exceeds 8`);
+      assert.match(p.image_alt || '', /sage background/i);
     }
   });
 
   it('prefers image_webp and converts PNG paths to WebP', () => {
     assert.equal(
-      preferWebpSrc('/images/products/skin-script/00-green-tea-citrus-cleanser.png'),
-      '/images/products/skin-script/00-green-tea-citrus-cleanser.webp'
+      preferWebpSrc('/images/products/skin-script/demo/demo.png'),
+      '/images/products/skin-script/demo/demo.webp'
     );
     assert.equal(
       productImageSrc({
-        images: ['/images/products/skin-script/00-green-tea-citrus-cleanser.png']
+        images: ['/images/products/skin-script/demo/demo.png']
       }),
-      '/images/products/skin-script/00-green-tea-citrus-cleanser.webp'
+      '/images/products/skin-script/demo/demo.webp'
     );
   });
 

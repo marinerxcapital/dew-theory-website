@@ -6,6 +6,18 @@
 
 ---
 
+
+## 2026-09-20 SuperGrok — verified catalog + sage media + carousel (branch)
+
+**Branch:** `supergrok/dew-theory-full-skin-script-catalog-carousel-20260920`
+**Base main:** `7c14d76`
+**Storefront products:** 35 (8 original + 27 newly portal-verified retail/kit SKUs)
+**Professional/training exclusions:** not published
+**Media:** Dew Theory sage WebP (832x1232) from DewTheory_Sage_Images_Compact.zip — no recompression
+**UX:** CategoryProductCarousel on /shop + ProductGallery on PDP
+**D1:** supplier_mappings verified_active=35 (preinstall backup in .artifacts/final-catalog/)
+**AUTO_FULFILL:** false (unchanged)
+**Live Skin Script PO:** NOT placed
 ## CURRENT BRAND SYSTEM
 
 ### Authoritative five colors (do not alter hex values)

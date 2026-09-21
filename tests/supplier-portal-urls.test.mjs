@@ -27,6 +27,8 @@ describe('skin-script portal URL registry', () => {
 
   it('marks verified products with portal SKUs', () => {
     const verified = portal.products.filter((p) => p.verified);
-    assert.equal(verified.length, 8);
+    assert.ok(verified.length >= 8);
+    assert.equal(verified.length, portal.products.length);
+    assert.equal(verified.length, catalog.products.length);
   });
 });

@@ -77,8 +77,16 @@ describe('fulfillOrder mock path', () => {
   it('submits paid order and is idempotent', async () => {
     resetMockDropshipLedger();
     const products = readStore().products;
-    const p = products[0];
+    const p =
+      products.find((x) => x.id === 'green-tea-citrus-cleanser') ||
+      products.find((x) => x.skin_script_sku) ||
+      products[0];
     assert.ok(p, 'need product in store');
+    // Prefer portal variant SKU; never use derived SS-* mock placeholders as fulfillment truth.
+    const sku =
+      p.skin_script_sku && !String(p.skin_script_sku).startsWith('SS-')
+        ? String(p.skin_script_sku)
+        : '1010240';
 
     const id = `ord_test_ok_${Date.now()}`;
     mutateStore((s) => {
@@ -91,7 +99,8 @@ describe('fulfillOrder mock path', () => {
             product_id: p.id,
             name: p.name,
             quantity: 1,
-            unit_price: p.retail_price
+            unit_price: p.retail_price,
+            skin_script_sku: sku
           }
         ],
         shipping_address: { line1: '1 Pearl', city: 'Austin', state: 'TX', postal_code: '78701' },

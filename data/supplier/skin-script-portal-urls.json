@@ -5,36 +5,32 @@
     "portal_base_url": "https://skinscript.com",
     "account_name": "Emily",
     "source": "Authenticated portal recon via skinscriptrx.com login (WooCommerce Store API + product pages)",
-    "note": "SKUs are variant-level (e.g. 1010240 for 6.4oz). Wholesale prices from portal cart API."
+    "note": "Verified portal registry 35 products (2026-09-20)."
   },
   "products": [
     {
-      "product_id": "green-tea-citrus-cleanser",
-      "supplier_slug": "green-tea-citrus-cleanser",
-      "supplier_product_url": "https://skinscript.com/product/green-tea-citrus-cleanser/",
-      "supplier_product_name": "Green Tea Citrus Cleanser",
-      "skin_script_sku": "1010240",
-      "variant": "6.4 oz",
-      "expected_wholesale_price": 18,
-      "verified": true
+      "product_id": "acai-berry-moisturizer",
+      "skin_script_sku": "1510440",
+      "supplier_product_url": "https://skinscript.com/product/acai-berry-moisturizer/",
+      "supplier_product_name": "Acai Berry Moisturizer",
+      "supplier_size": "1.7 oz.",
+      "variant": "1.7 oz.",
+      "expected_wholesale_price": 20.5,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
     },
     {
-      "product_id": "mandelic-brightening-serum",
-      "supplier_slug": "mandelic-brightening-serum",
-      "supplier_product_url": "https://skinscript.com/product/mandelic-brightening-serum/",
-      "supplier_product_name": "Mandelic Brightening Serum",
-      "skin_script_sku": "1310440",
-      "expected_wholesale_price": 24,
-      "verified": true
-    },
-    {
-      "product_id": "hydrating-skin-serum",
-      "supplier_slug": "ageless-hydrating-serum",
-      "supplier_product_url": "https://skinscript.com/product/ageless-hydrating-serum/",
-      "supplier_product_name": "Ageless Skin Hydrating Serum",
-      "skin_script_sku": "1310340",
-      "expected_wholesale_price": 22.5,
-      "verified": true
+      "product_id": "advanced-renewal-serum",
+      "skin_script_sku": "1310540",
+      "supplier_product_url": "https://skinscript.com/product/advanced-renewal-serum/",
+      "supplier_product_name": "Advanced Renewal Serum",
+      "supplier_size": "1 oz.",
+      "variant": "1 oz.",
+      "expected_wholesale_price": 35,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
     },
     {
       "product_id": "ageless-moisturizer",
@@ -46,6 +42,30 @@
       "verified": true
     },
     {
+      "product_id": "barrier-balancing-moisturizer",
+      "skin_script_sku": "1510740",
+      "supplier_product_url": "https://skinscript.com/product/barrier-balancing-moisturizer/",
+      "supplier_product_name": "Barrier Balancing Moisturizer",
+      "supplier_size": "1.7 oz.",
+      "variant": "1.7 oz.",
+      "expected_wholesale_price": 18,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "blemish-spot-treatment",
+      "skin_script_sku": "1310840",
+      "supplier_product_url": "https://skinscript.com/product/blemish-spot-treatment/",
+      "supplier_product_name": "Blemish Spot Treatment",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 14,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
       "product_id": "botanical-bloom-hydrating-mask",
       "supplier_slug": "botanical-bloom-hydrating-mask",
       "supplier_product_url": "https://skinscript.com/product/botanical-bloom-hydrating-mask/",
@@ -53,6 +73,190 @@
       "skin_script_sku": "2110640",
       "expected_wholesale_price": 24,
       "verified": true
+    },
+    {
+      "product_id": "charcoal-clay-cleanser",
+      "skin_script_sku": "1010340",
+      "supplier_product_url": "https://skinscript.com/product/charcoal-clay-cleanser/",
+      "supplier_product_name": "Charcoal Clay Cleanser",
+      "supplier_size": "6.4 oz.",
+      "variant": "6.4 oz.",
+      "expected_wholesale_price": 18,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "citrus-c-nourishing-cream",
+      "skin_script_sku": "1310140",
+      "supplier_product_url": "https://skinscript.com/product/citrus-c-nourishing-cream/",
+      "supplier_product_name": "Citrus-C Nourishing Cream",
+      "supplier_size": "1 oz.",
+      "variant": "1 oz.",
+      "expected_wholesale_price": 26,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "clarifying-toner-pads",
+      "skin_script_sku": "1110240",
+      "supplier_product_url": "https://skinscript.com/product/clarifying-toner-pads/",
+      "supplier_product_name": "Clarifying Toner Pads",
+      "supplier_size": "2 oz.",
+      "variant": "2 oz.",
+      "expected_wholesale_price": 14,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "cucumber-hydration-toner",
+      "supplier_slug": "cucumber-hydration-toner",
+      "supplier_product_url": "https://skinscript.com/product/cucumber-hydration-toner/",
+      "supplier_product_name": "Cucumber Hydration Toner",
+      "skin_script_sku": "1210140",
+      "expected_wholesale_price": 14,
+      "verified": true
+    },
+    {
+      "product_id": "discovery-kit",
+      "skin_script_sku": "5010420",
+      "supplier_product_url": "https://skinscript.com/product/discovery-kit/",
+      "supplier_product_name": "Discovery Kit",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 75,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "everyday-balance-travel-kit",
+      "skin_script_sku": "4010900",
+      "supplier_product_url": "https://skinscript.com/product/everyday-balance-travel-kit/",
+      "supplier_product_name": "Everyday Balance Travel Kit",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 32.5,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "fresh-face-travel-kit",
+      "skin_script_sku": "4010800",
+      "supplier_product_url": "https://skinscript.com/product/fresh-face-travel-kit/",
+      "supplier_product_name": "Fresh Face Travel Kit",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 31,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "fully-quenched-travel-kit",
+      "skin_script_sku": "4011000",
+      "supplier_product_url": "https://skinscript.com/product/fully-quenched-travel-kit/",
+      "supplier_product_name": "Fully Quenched Travel Kit",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 35,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "glycolic-and-retinol-pads",
+      "skin_script_sku": "1110140",
+      "supplier_product_url": "https://skinscript.com/product/glycolic-and-retinol-pads/",
+      "supplier_product_name": "Glycolic and Retinol Pads",
+      "supplier_size": "2 oz.",
+      "variant": "2 oz.",
+      "expected_wholesale_price": 18,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "glycolic-cleanser",
+      "skin_script_sku": "1010440",
+      "supplier_product_url": "https://skinscript.com/product/glycolic-cleanser/",
+      "supplier_product_name": "Glycolic Cleanser",
+      "supplier_size": "6.4 oz.",
+      "variant": "6.4 oz.",
+      "expected_wholesale_price": 20,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "green-tea-citrus-cleanser",
+      "supplier_slug": "green-tea-citrus-cleanser",
+      "supplier_product_url": "https://skinscript.com/product/green-tea-citrus-cleanser/",
+      "supplier_product_name": "Green Tea Citrus Cleanser",
+      "skin_script_sku": "1010240",
+      "variant": "6.4 oz",
+      "expected_wholesale_price": 18,
+      "verified": true
+    },
+    {
+      "product_id": "honey-brightening-cleanser",
+      "skin_script_sku": "1010640",
+      "supplier_product_url": "https://skinscript.com/product/honey-brightening-cleanser/",
+      "supplier_product_name": "Honey Brightening Cleanser",
+      "supplier_size": "6.4 oz.",
+      "variant": "6.4 oz.",
+      "expected_wholesale_price": 21,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "hydrating-moisturizer",
+      "skin_script_sku": "1510640",
+      "supplier_product_url": "https://skinscript.com/product/hydrating-moisturizer/",
+      "supplier_product_name": "Hydrating Moisturizer",
+      "supplier_size": "1.7 oz.",
+      "variant": "1.7 oz.",
+      "expected_wholesale_price": 18,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "hydrating-skin-serum",
+      "supplier_slug": "ageless-hydrating-serum",
+      "supplier_product_url": "https://skinscript.com/product/ageless-hydrating-serum/",
+      "supplier_product_name": "Ageless Skin Hydrating Serum",
+      "skin_script_sku": "1310340",
+      "expected_wholesale_price": 22.5,
+      "verified": true
+    },
+    {
+      "product_id": "light-aloe-moisturizer",
+      "skin_script_sku": "1510140",
+      "supplier_product_url": "https://skinscript.com/product/light-aloe-moisturizer/",
+      "supplier_product_name": "Light Aloe Moisturizer",
+      "supplier_size": "2 oz.",
+      "variant": "2 oz.",
+      "expected_wholesale_price": 13,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "lip-balm-with-spf-15",
+      "skin_script_sku": "1410140",
+      "supplier_product_url": "https://skinscript.com/product/lip-balm-with-spf-15/",
+      "supplier_product_name": "Lip Balm with SPF 15",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 3.25,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
     },
     {
       "product_id": "lip-treatment-peppermint-pomegranate",
@@ -65,13 +269,109 @@
       "verified": true
     },
     {
-      "product_id": "cucumber-hydration-toner",
-      "supplier_slug": "cucumber-hydration-toner",
-      "supplier_product_url": "https://skinscript.com/product/cucumber-hydration-toner/",
-      "supplier_product_name": "Cucumber Hydration Toner",
-      "skin_script_sku": "1210140",
-      "expected_wholesale_price": 14,
+      "product_id": "mandelic-brightening-serum",
+      "supplier_slug": "mandelic-brightening-serum",
+      "supplier_product_url": "https://skinscript.com/product/mandelic-brightening-serum/",
+      "supplier_product_name": "Mandelic Brightening Serum",
+      "skin_script_sku": "1310440",
+      "expected_wholesale_price": 24,
       "verified": true
+    },
+    {
+      "product_id": "mint-refining-toner",
+      "skin_script_sku": "1210240",
+      "supplier_product_url": "https://skinscript.com/product/mint-refining-toner/",
+      "supplier_product_name": "Mint Refining Toner",
+      "supplier_size": "3.3 oz.",
+      "variant": "3.3 oz.",
+      "expected_wholesale_price": 14,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "peptide-eye-serum",
+      "skin_script_sku": "1310640",
+      "supplier_product_url": "https://skinscript.com/product/peptide-eye-serum/",
+      "supplier_product_name": "Peptide Eye Serum",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 20,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "peptide-moisturizer",
+      "skin_script_sku": "1510540",
+      "supplier_product_url": "https://skinscript.com/product/peptide-moisturizer/",
+      "supplier_product_name": "Peptide Moisturizer",
+      "supplier_size": "1.7 oz.",
+      "variant": "1.7 oz.",
+      "expected_wholesale_price": 30.5,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "pomegranate-antioxidant-cleanser",
+      "skin_script_sku": "1010140",
+      "supplier_product_url": "https://skinscript.com/product/pomegranate-antioxidant-cleanser/",
+      "supplier_product_name": "Pomegranate Antioxidant Cleanser",
+      "supplier_size": "6.4 oz.",
+      "variant": "6.4 oz.",
+      "expected_wholesale_price": 18,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "raspberry-refining-cleanser",
+      "skin_script_sku": "1010540",
+      "supplier_product_url": "https://skinscript.com/product/raspberry-refining-cleansers/",
+      "supplier_product_name": "Raspberry Refining Cleanser",
+      "supplier_size": "6.4 oz.",
+      "variant": "6.4 oz.",
+      "expected_wholesale_price": 18.5,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "raspberry-scrub",
+      "skin_script_sku": "1110540",
+      "supplier_product_url": "https://skinscript.com/product/raspberry-scrub/",
+      "supplier_product_name": "Raspberry Scrub",
+      "supplier_size": "4 oz.",
+      "variant": "4 oz.",
+      "expected_wholesale_price": 18,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "retinol-exfoliating-scrub",
+      "skin_script_sku": "1110440",
+      "supplier_product_url": "https://skinscript.com/product/retinol-exfoliating-scrub-mask/",
+      "supplier_product_name": "Retinol Exfoliating Scrub",
+      "supplier_size": "1.7 oz.",
+      "variant": "1.7 oz.",
+      "expected_wholesale_price": 24.5,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "revitalizing-cucumber-treatment",
+      "skin_script_sku": "1110640",
+      "supplier_product_url": "https://skinscript.com/product/revitalizing-cucumber-treatment/",
+      "supplier_product_name": "Revitalizing Cucumber Treatment",
+      "supplier_size": "2 oz.",
+      "variant": "2 oz.",
+      "expected_wholesale_price": 26,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
     },
     {
       "product_id": "sheer-protection-spf",
@@ -81,6 +381,30 @@
       "skin_script_sku": "1610140",
       "expected_wholesale_price": 17,
       "verified": true
+    },
+    {
+      "product_id": "tri-peptide-eye-cream",
+      "skin_script_sku": "1310740",
+      "supplier_product_url": "https://skinscript.com/product/tri-peptide-eye-cream/",
+      "supplier_product_name": "Tri-Peptide Eye Cream",
+      "supplier_size": null,
+      "variant": null,
+      "expected_wholesale_price": 20,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
+    },
+    {
+      "product_id": "triple-c-serum",
+      "skin_script_sku": "1310940",
+      "supplier_product_url": "https://skinscript.com/product/vitamin-c-green-tea-serum/",
+      "supplier_product_name": "Triple C Serum",
+      "supplier_size": "1 oz.",
+      "variant": "1 oz.",
+      "expected_wholesale_price": 24,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
     }
   ]
 }

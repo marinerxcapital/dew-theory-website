@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
+import CategoryProductCarousel from '@/components/CategoryProductCarousel';
 import ShopGrid from '@/components/ShopGrid';
 import TrustStrip from '@/components/TrustStrip';
 import { getProducts } from '@/lib/products-server';
 import { isShopVisible } from '@/lib/shop';
+import { presentCategories } from '@/lib/shop-filters';
 
 export const metadata = {
   title: 'Shop Skin Script Skincare',
@@ -31,6 +33,7 @@ export default function ShopPage() {
   const all = getProducts();
   const visible = all.filter(isShopVisible);
   const count = visible.length;
+  const categories = presentCategories(visible);
 
   return (
     <section className="relative mx-auto max-w-shell px-5 pb-20 pt-10 sm:px-6 sm:pb-28 sm:pt-12 lg:px-10">
@@ -82,16 +85,44 @@ export default function ShopPage() {
         </div>
       </div>
 
-      <div className="mt-10 sm:mt-12">
-        <Suspense
-          fallback={
-            <p className="font-body text-sm text-muted" role="status">
-              Loading collection…
-            </p>
-          }
-        >
-          <ShopGrid products={all} />
-        </Suspense>
+      {categories.length > 0 ? (
+        <div className="mt-12 space-y-14 sm:mt-16" data-reveal-group="shop-carousels">
+          {categories.map((cat) => {
+            const items = visible.filter((p) => p.category === cat);
+            if (!items.length) return null;
+            return (
+              <div key={cat} data-reveal>
+                <CategoryProductCarousel products={items} categoryLabel={cat} />
+                <div className="mt-4">
+                  <Link
+                    href={`/shop?type=${encodeURIComponent(cat)}`}
+                    className="font-label text-[0.62rem] uppercase tracking-lockup text-ink underline-offset-4 hover:underline"
+                  >
+                    View all {cat}
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+
+      <div className="mt-14 sm:mt-16">
+        <h2 className="font-display text-2xl font-normal text-ink sm:text-3xl">Browse all</h2>
+        <p className="mt-2 max-w-xl font-body text-sm text-muted">
+          Filter and sort the full collection — carousels are for discovery; this grid is always available.
+        </p>
+        <div className="mt-6">
+          <Suspense
+            fallback={
+              <p className="font-body text-sm text-muted" role="status">
+                Loading collection…
+              </p>
+            }
+          >
+            <ShopGrid products={all} />
+          </Suspense>
+        </div>
       </div>
     </section>
   );

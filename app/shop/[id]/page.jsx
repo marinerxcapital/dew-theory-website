@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import AddToCart from '@/components/AddToCart';
 import JsonLd from '@/components/JsonLd';
 import ProductCard from '@/components/ProductCard';
-import ProductImage from '@/components/ProductImage';
+import ProductGallery from '@/components/ProductGallery';
 import ProductViewTracker from '@/components/ProductViewTracker';
 import EmilyPairsWith from '@/components/EmilyPairsWith';
 import { PRODUCTS } from '@/lib/products';
@@ -186,14 +186,8 @@ export default async function ProductDetailPage({ params }) {
         className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-14"
         data-reveal-group="pdp"
       >
-        <div data-reveal className="relative bg-surface-light lg:sticky lg:top-28">
-          <ProductImage
-            product={product}
-            priority
-            framed
-            quality={75}
-            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 560px"
-          />
+        <div data-reveal className="relative lg:sticky lg:top-28">
+          <ProductGallery product={product} priority />
           {badge ? (
             <span className="absolute left-4 top-4 z-[2] border border-border bg-white/95 px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ink">
               {badge}
