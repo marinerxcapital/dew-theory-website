@@ -1,3 +1,4 @@
+1dc3424af886038ee8f8d485f54029a25ec287ac fix: defer shared cart startup until streamed content hydrates
 6d1234831af5306cb213600b7e9b9a6beff3a5f2 wip: preserve edge QA, font hints and verified release blockers
 4bd78d4a03ffc295fab3f68780fb68f5eea04f81 perf: reduce font and rail startup work with guarded QA previews
 13567ff8819fa9484ec29af9432ce2f13f595c1d fix: preserve verified green QA and isolated release packaging

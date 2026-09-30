@@ -42,3 +42,5 @@ Deployment path: Cloudflare Worker dew-theory via OpenNext/Wrangler. Verified ro
 
 Open owner items: Shipping operations wording; Returns placeholders; Acai Berry manufacturer description hidden until supplied; consultation price display; hello@dewtheory.studio versus dewtheoryco.com; 27 records lack supplied concern/active content; authentic Stripe test-account handoff is unavailable without test credentials. Authenticated admin production content needs appropriate access. Cart drawer and cookie banner are absent from canonical source; do not invent consent/legal behavior. Consult resume-state.md and executed reports for current gates; unfinished tests are not passing evidence.
 
+
+September 30 release hold: candidate 54592990 at 0%, original 2815c88a at 100%. Full crawl 294 cases/axe0/overflow0 but four hydration errors; mobile Lighthouse 87/82/86, A100, CLS0, LCP >3.2s. CI account billing lock verified. Source 1dc3424 published exactly as 92c65047 in draft PR #27. Required gates still block main/public release. Continue from docs/revamp/resume-state.md; never infer deployment from preview upload.

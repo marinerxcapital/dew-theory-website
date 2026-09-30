@@ -87,6 +87,7 @@ M	components/AnnouncementBar.jsx
 M	components/BookingFlow.jsx
 A	components/CardTilt.jsx
 M	components/CartConfirmation.jsx
+M	components/CartProvider.jsx
 M	components/CartView.jsx
 A	components/CompleteRoutine.jsx
 A	components/Concierge.jsx
@@ -181,6 +182,8 @@ M	docs/memory/ACTIVE_WORK.md
 M	docs/memory/README.md
 A	docs/revamp/after-crawl.log
 A	docs/revamp/after/edge-final/results.json
+A	docs/revamp/after/font-hints/results.json
+A	docs/revamp/after/hydration-transition/results.json
 A	docs/revamp/after/results.json
 A	docs/revamp/app-route-inventory.json
 A	docs/revamp/archived-leftovers.json
@@ -201,9 +204,13 @@ A	docs/revamp/build-release.log
 A	docs/revamp/build-unified-final.log
 A	docs/revamp/build.log
 A	docs/revamp/cache-font-hints.log
+A	docs/revamp/cache-hydration.log
 A	docs/revamp/catalog-image-integrity.json
 A	docs/revamp/ci-annotations.json
 A	docs/revamp/ci-check-readback.json
+A	docs/revamp/commerce-edge/results.json
+A	docs/revamp/commerce-hydration-transition.log
+A	docs/revamp/commerce-hydration-transition/results.json
 A	docs/revamp/commerce.log
 A	docs/revamp/commerce/cart-empty.png
 A	docs/revamp/commerce/cart-filled.png
@@ -215,17 +222,24 @@ A	docs/revamp/commerce/quiz-step-4.png
 A	docs/revamp/commerce/results.json
 A	docs/revamp/commerce/routine-am.png
 A	docs/revamp/commerce/routine-pm.png
+A	docs/revamp/commits-local.txt
 A	docs/revamp/concurrency-reconciliation.json
 A	docs/revamp/continuity-addendum.md
+A	docs/revamp/contrast-hydration-transition.log
 A	docs/revamp/contrast-resume-final.log
 A	docs/revamp/contrast.log
 A	docs/revamp/customer-e2e.log
 A	docs/revamp/decision-log.md
 A	docs/revamp/edge-final-crawl.log
 A	docs/revamp/edge-preview-crawl.log
+A	docs/revamp/files-checkpoint.tsv
+A	docs/revamp/final-report.md
 A	docs/revamp/font-hints-crawl.log
+A	docs/revamp/hydration-debug-node.log
+A	docs/revamp/hydration-debug-parallel.json
 A	docs/revamp/hydration-debug-parallel.log
 A	docs/revamp/hydration-debug.log
+A	docs/revamp/hydration-transition-crawl.log
 A	docs/revamp/inline-client-errors.log
 R100	public/images/products/skin-script/00-green-tea-citrus-cleanser.png	docs/revamp/legacy-assets/00-green-tea-citrus-cleanser.png.retired
 R100	public/images/products/skin-script/00-green-tea-citrus-cleanser.webp	docs/revamp/legacy-assets/00-green-tea-citrus-cleanser.webp.retired
@@ -262,6 +276,8 @@ A	docs/revamp/lighthouse-font-preview/product.json
 A	docs/revamp/lighthouse-font-preview/shop.html
 A	docs/revamp/lighthouse-font-preview/shop.json
 A	docs/revamp/lighthouse-font-preview/summary.json
+A	docs/revamp/lighthouse-hydration-transition.log
+A	docs/revamp/lighthouse-hydration-transition/summary.json
 A	docs/revamp/lighthouse-inline-preview.log
 A	docs/revamp/lighthouse-inline-preview/home.html
 A	docs/revamp/lighthouse-inline-preview/home.json
@@ -303,12 +319,14 @@ A	docs/revamp/lighthouse/shop.json
 A	docs/revamp/lighthouse/summary.json
 A	docs/revamp/lint-font-hints.log
 A	docs/revamp/lint-font.log
+A	docs/revamp/lint-hydration-transition.log
 A	docs/revamp/lint-resume-final.log
 A	docs/revamp/lint.log
 A	docs/revamp/local-server.log
 A	docs/revamp/opennext-build.log
 A	docs/revamp/opennext-font-hints.log
 A	docs/revamp/opennext-font.log
+A	docs/revamp/opennext-hydration-transition.log
 A	docs/revamp/opennext-inline-complete.log
 A	docs/revamp/opennext-inline-css.log
 A	docs/revamp/opennext-rail.log
@@ -339,6 +357,9 @@ A	docs/revamp/provider-font-hints-upload.log
 A	docs/revamp/provider-font-hints-zero.log
 A	docs/revamp/provider-font-upload.log
 A	docs/revamp/provider-font-zero-traffic.log
+A	docs/revamp/provider-hydration-readback.json
+A	docs/revamp/provider-hydration-upload.log
+A	docs/revamp/provider-hydration-zero.log
 A	docs/revamp/provider-inline-upload.log
 A	docs/revamp/provider-inline-zero-traffic.log
 A	docs/revamp/provider-preview-reupload.log
@@ -356,6 +377,7 @@ A	docs/revamp/provider-vars-comparison.json
 A	docs/revamp/provider-webp-upload.log
 A	docs/revamp/provider-webp-zero-traffic.log
 A	docs/revamp/provider-zero-traffic-preview.log
+A	docs/revamp/publication-update.json
 A	docs/revamp/qa-final-green-server.log
 A	docs/revamp/qa-final-server.log
 A	docs/revamp/qa-initial-crawl.json
@@ -369,9 +391,11 @@ A	docs/revamp/qa-server.log
 A	docs/revamp/quarantine-font-hints.log
 A	docs/revamp/release-gates.json
 A	docs/revamp/release-gates.log
+A	docs/revamp/release-hydration-transition-gates.log
 A	docs/revamp/resume-state.md
 A	docs/revamp/routes.json
 A	docs/revamp/scheduled-handler.log
+A	docs/revamp/screenshot-comparison.md
 A	docs/revamp/source-final-check.log
 A	docs/revamp/source-release-integrity.json
 A	docs/revamp/source-release-integrity.log
@@ -381,8 +405,10 @@ A	docs/revamp/stripe-handoff-real.log
 A	docs/revamp/style-inventory.md
 A	docs/revamp/typecheck-font-hints.log
 A	docs/revamp/typecheck-font.log
+A	docs/revamp/typecheck-hydration-transition.log
 A	docs/revamp/typecheck-resume-final.log
 A	docs/revamp/typecheck.log
+A	docs/revamp/unit-hydration-transition.log
 A	docs/revamp/unit-resume-final.log
 A	docs/revamp/unit-tests.log
 A	eslint.config.mjs
