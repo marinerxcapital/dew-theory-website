@@ -175,6 +175,11 @@ const orgLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${journal.variable}`}>
+      <head>
+        {/* Explicit roman hints: the edge adapter emits an empty font manifest. */}
+        <link rel="preload" href="/_next/static/media/639ca701a395c351-s.p.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/_next/static/media/de42cfb9a3b980ae-s.p.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body className="relative bg-ivory font-body font-normal text-forest antialiased">
         <JsonLd data={orgLd} />
         <CartProvider>

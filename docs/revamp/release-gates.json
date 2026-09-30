@@ -1,5 +1,5 @@
 {
-  "time": "2026-09-30T07:06:38.818Z",
+  "time": "2026-09-30T13:56:23.765Z",
   "releaseReady": false,
   "checks": [
     {
@@ -12,8 +12,102 @@
     },
     {
       "name": "render, accessibility, metadata and chrome",
-      "pass": true,
-      "detail": []
+      "pass": false,
+      "detail": [
+        {
+          "route": "/consultation/results",
+          "width": 768,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/consultation/results",
+          "expectedCanonical": "https://dewtheoryco.com/consultation/results"
+        },
+        {
+          "route": "/admin/emails",
+          "width": 1440,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/admin/login",
+          "expectedCanonical": "https://dewtheoryco.com/admin/login"
+        },
+        {
+          "route": "/admin/orders",
+          "width": 390,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/admin/login",
+          "expectedCanonical": "https://dewtheoryco.com/admin/login"
+        },
+        {
+          "route": "/shop/acai-berry-moisturizer",
+          "width": 390,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/shop/acai-berry-moisturizer",
+          "expectedCanonical": "https://dewtheoryco.com/shop/acai-berry-moisturizer"
+        },
+        {
+          "route": "/shop/barrier-balancing-moisturizer",
+          "width": 390,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/shop/barrier-balancing-moisturizer",
+          "expectedCanonical": "https://dewtheoryco.com/shop/barrier-balancing-moisturizer"
+        },
+        {
+          "route": "/shop/glycolic-and-retinol-pads",
+          "width": 390,
+          "status": 200,
+          "errors": [],
+          "missing": [],
+          "axe": 0,
+          "expectedCanonical": "https://dewtheoryco.com/shop/glycolic-and-retinol-pads"
+        },
+        {
+          "route": "/shop/light-aloe-moisturizer",
+          "width": 768,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/shop/light-aloe-moisturizer",
+          "expectedCanonical": "https://dewtheoryco.com/shop/light-aloe-moisturizer"
+        },
+        {
+          "route": "/shop/triple-c-serum",
+          "width": 768,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/shop/triple-c-serum",
+          "expectedCanonical": "https://dewtheoryco.com/shop/triple-c-serum"
+        }
+      ]
     },
     {
       "name": "active UI has no raw hex outside token file",
@@ -68,27 +162,27 @@
       "detail": [
         {
           "page": "home",
-          "performance": 83,
+          "performance": 84,
           "accessibility": 100,
-          "lcpMs": 3339.1710000000003,
-          "cls": 0,
-          "tbtMs": 303.5
+          "lcpMs": 3430.627,
+          "cls": 0.00008901146790361748,
+          "tbtMs": 263
         },
         {
           "page": "shop",
-          "performance": 91,
-          "accessibility": 54,
-          "lcpMs": 3155.14,
-          "cls": 0.00008901146790361748,
-          "tbtMs": 102
+          "performance": 78,
+          "accessibility": 100,
+          "lcpMs": 3222.4685,
+          "cls": 0,
+          "tbtMs": 573.5
         },
         {
           "page": "product",
-          "performance": 63,
-          "accessibility": 54,
-          "lcpMs": 10782.611499999999,
+          "performance": 85,
+          "accessibility": 100,
+          "lcpMs": 3378.552,
           "cls": 0,
-          "tbtMs": 361.5160000000001
+          "tbtMs": 268.5
         }
       ]
     },

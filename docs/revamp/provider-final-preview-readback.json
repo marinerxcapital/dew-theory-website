@@ -1,0 +1,192 @@
+[
+  {
+    "id": "fd63b2a5-99eb-4385-9159-5436ed198e89",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "a2c4a9a2-732f-4f55-8623-3be2f29e13d2",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T04:26:15.257479Z"
+  },
+  {
+    "id": "277eef99-1b6f-43f5-a006-378456d02a66",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "429ebc61-4a9f-4a7e-80c1-14d418f9706b",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T06:29:24.818033Z"
+  },
+  {
+    "id": "879932c9-0559-41ce-99f8-29af2db54da9",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "193d9fc2-ecc8-498d-a30d-81f5b195bc81",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-28T20:29:09.532578Z"
+  },
+  {
+    "id": "6d6a9187-d588-4e09-b8fa-718b49444b6d",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-28T21:03:41.056326Z"
+  },
+  {
+    "id": "91278799-58fb-47c8-879a-35c0f8b669eb",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/message": "QA override preview only; existing production version remains at 100 percent",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      },
+      {
+        "version_id": "fc74e3d9-cd45-425a-9d2a-d16dc4961b7a",
+        "percentage": 0
+      }
+    ],
+    "created_on": "2026-09-30T06:53:26.531943Z"
+  },
+  {
+    "id": "95309eef-b319-4903-b39a-36d77667292b",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/message": "Inlined CSS QA override only; original production stays 100 percent",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      },
+      {
+        "version_id": "619e9d73-0b62-4532-b419-86a1f08c7900",
+        "percentage": 0
+      }
+    ],
+    "created_on": "2026-09-30T07:01:57.634258Z"
+  },
+  {
+    "id": "3a7aefc5-41e1-4553-924b-72752cce19dc",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/message": "SOFT100 font QA override; original remains public",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      },
+      {
+        "version_id": "4e2f84c0-323a-4eed-98fc-051708ecbb24",
+        "percentage": 0
+      }
+    ],
+    "created_on": "2026-09-30T07:15:27.934418Z"
+  },
+  {
+    "id": "dba592ec-fd46-4920-81dc-0faa02f76ff9",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/message": "Measured-rail QA override; public remains original",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      },
+      {
+        "version_id": "c6331dfe-86a6-4f6d-8b25-f1b5ec80b08b",
+        "percentage": 0
+      }
+    ],
+    "created_on": "2026-09-30T07:23:30.475023Z"
+  },
+  {
+    "id": "430211d3-1f93-4784-b346-6b53fb9757af",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/message": "Optimized WebP QA override only; public stays original",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      },
+      {
+        "version_id": "07b9547a-b13f-43e5-8065-c7c17d135458",
+        "percentage": 0
+      }
+    ],
+    "created_on": "2026-09-30T12:35:10.278324Z"
+  },
+  {
+    "id": "452d52b7-9f7b-4513-8f03-9f269a850a4d",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/message": "Seeded stable candidate QA only; original remains public",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      },
+      {
+        "version_id": "864730bb-b517-4ff2-b279-e4a8a6240f31",
+        "percentage": 0
+      }
+    ],
+    "created_on": "2026-09-30T13:05:05.318594Z"
+  }
+]

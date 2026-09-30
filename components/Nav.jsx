@@ -5,10 +5,11 @@ import { usePathname } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import Wordmark from './Wordmark';
 import AnnouncementBar from './AnnouncementBar';
-import GlobalSearch from './GlobalSearch';
+import dynamic from 'next/dynamic';
 import { IconAccount, IconBag, IconClose, IconMenu, IconSearch } from './Icons';
 import { useCart } from '@/components/CartProvider';
 import { BAG_ADDED_EVENT } from '@/components/bag-signal';
+const GlobalSearch = dynamic(() => import('./GlobalSearch'), { ssr: false });
 
 /**
  * Public shell header, rebuilt to the approved pearl/editorial mockups:

@@ -1,0 +1,55 @@
+
+ ⛅️ wrangler 4.112.0 (update available 4.144.0)
+───────────────────────────────────────────────
+╭ Deploy Worker Versions by splitting traffic between multiple versions
+│
+├ Fetching latest deployment
+│
+├ Your current deployment has 2 version(s):
+│
+│ (100%) 2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│       Created:  2026-09-28T21:03:39.073128Z
+│           Tag:  -
+│       Message:  -
+│
+│ (0%) 07b9547a-b13f-43e5-8065-c7c17d135458
+│       Created:  2026-09-30T12:27:50.731952Z
+│           Tag:  green-webp
+│       Message:  Right-sized thumbnail and decode QA candidate; no public traffic
+│
+├ Fetching versions
+│
+├ Which version(s) do you want to deploy?
+├ 2 Worker Version(s) selected
+│
+├     Worker Version 1:  2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│              Created:  2026-09-28T21:03:39.073128Z
+│                  Tag:  -
+│              Message:  -
+│
+├     Worker Version 2:  864730bb-b517-4ff2-b279-e4a8a6240f31
+│              Created:  2026-09-30T12:57:53.667943Z
+│                  Tag:  green-stable
+│              Message:  Stable CSS and optimized media QA candidate; no public traffic
+│
+├ What percentage of traffic should Worker Version 1 receive?
+├ 100% of traffic
+├
+├ What percentage of traffic should Worker Version 2 receive?
+├ 0% of traffic
+├
+├ Add a deployment message
+│ Deployment message Seeded stable candidate QA only; original remains public
+│
+├ Deploying 2 version(s)
+│
+├ Syncing non-versioned settings
+│
+│ Synced non-versioned settings:
+│                      logpush:  false
+│                observability:  enabled:             true
+│                                head_sampling_rate:  1
+│               tail_consumers:  <skipped>
+│     streaming_tail_consumers:  <skipped>
+│
+╰  SUCCESS  Deployed dew-theory version 2815c88a-6d37-4ead-b0e6-c6bbde9da72f at 100% and version 864730bb-b517-4ff2-b279-e4a8a6240f31 at 0% (2.16 sec)

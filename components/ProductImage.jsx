@@ -49,7 +49,7 @@ export default function ProductImage({
         sizes={sizes}
         priority={priority}
         fetchPriority={priority ? "high" : "auto"}
-        decoding={priority ? "sync" : "async"}
+        decoding="async"
         quality={quality}
         unoptimized={unoptimized}
         className={`media-zoom-target ${photo ? 'object-cover object-center' : 'object-cover'}`}

@@ -85,7 +85,7 @@ export default function ProductGallery({ product, priority = true }) {
             sizes="(max-width: 768px) 100vw, 40vw"
             priority={priority && active === 0}
             fetchPriority={priority && active === 0 ? "high" : "auto"}
-            decoding={priority && active === 0 ? "sync" : "async"}
+            decoding="async"
           />
         ) : (
           
@@ -129,9 +129,14 @@ export default function ProductGallery({ product, priority = true }) {
                   style={{ width: 64, height: Math.round(64 * (1232 / 832)) }}
                 >
                   
-                  <img
+                  <Image
                     src={src}
                     alt=""
+                    width={64}
+                    height={95}
+                    sizes="64px"
+                    quality={60}
+                    unoptimized={isSvgSrc(src) || !isLocalImageSrc(src)}
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />

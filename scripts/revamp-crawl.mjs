@@ -16,7 +16,13 @@ fs.writeFileSync('docs/revamp/routes.json',JSON.stringify(routes,null,2));
 const browser=await chromium.launch({channel:'chrome',headless:true}); const results=[];
 try {
 await Promise.all([390,768,1440].map(async width => {
- const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce',extraHTTPHeaders:override?{'Cloudflare-Workers-Version-Overrides':`dew-theory="${override}"`}:undefined});
+ const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+ if(override) await context.route('**/*',async request=>{
+  const headers={...request.request().headers()};
+  delete headers['cloudflare-workers-version-overrides'];
+  if(new URL(request.request().url()).origin===new URL(base).origin)headers['cloudflare-workers-version-overrides']=`dew-theory="${override}"`;
+  await request.continue({headers});
+ });
  const page=await context.newPage();
  for(const route of routes) {
   const errors=[]; const missing=[]; const onError=e=>errors.push(e.message); const onConsole=m=>{if(m.type()==='error') errors.push(m.text().slice(0,240));};
@@ -29,7 +35,8 @@ await Promise.all([390,768,1440].map(async width => {
    const axe=stage==='before'?null:await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
    // Expand offscreen content only for the exported full-page evidence.
    const captureStyle=await page.addStyleTag({content:'* { content-visibility: visible !important; }'});
-   await page.screenshot({path:path.join(dir,`${route.replace(/[^a-z0-9]+/gi,'_')||'home'}-${width}.png`),fullPage:true,animations:'disabled'});
+   const captureHeight=await page.evaluate(()=>document.documentElement.scrollHeight);
+   await page.screenshot({path:path.join(dir,`${route.replace(/[^a-z0-9]+/gi,'_')||'home'}-${width}.png`),fullPage:true,clip:{x:0,y:0,width,height:captureHeight},animations:'disabled'});
    await captureStyle.evaluate(el=>el.remove());
    results.push({route,width,status:response?.status(),...metrics,errors,missing,violations:axe?.violations.map(v=>({id:v.id,impact:v.impact,description:v.description,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary})).slice(0,15)}))||[]});
   }catch(e){results.push({route,width,failure:e.message,errors});}

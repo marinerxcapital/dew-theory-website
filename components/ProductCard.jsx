@@ -55,7 +55,7 @@ export default function ProductCard({
     >
       <Link prefetch={false}
         href={`/shop/${product.id}`}
-        className="flex flex-1 flex-col focus-visible:outline-none"
+        className="flex flex-1 flex-col"
       >
         <div className={`relative bg-void ${oos ? 'opacity-55' : ''}`}>
           <ProductImage

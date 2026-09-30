@@ -1,0 +1,112 @@
+[
+  {
+    "name": "axe cart-empty",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "add to bag",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "$12 flat below $49",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "quantity changes",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "free shipping at threshold",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "exact $49 shipping math",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "axe cart-filled",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "axe quiz-step-1",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "axe quiz-step-2",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "axe quiz-step-3",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "axe quiz-step-4",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "axe quiz-result",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "quiz to bag",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "axe routine-am",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "AM routine to bag",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "axe routine-pm",
+    "pass": true,
+    "detail": "[]"
+  },
+  {
+    "name": "PM routine to bag",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "consultation empty validation",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "consultation complete validation",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "duplicate booking heading removed",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "production developer copy hidden",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "simulated Stripe test-mode redirect contract",
+    "pass": true,
+    "detail": "Browser/API contract fixture; external Stripe test account not verified"
+  }
+]

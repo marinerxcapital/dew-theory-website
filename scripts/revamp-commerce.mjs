@@ -4,8 +4,13 @@ import AxeBuilder from '@axe-core/playwright';
 import { PRODUCTS } from '../lib/products.js';
 import { isShopVisible } from '../lib/shop.js';
 import { calculateShipping } from '../lib/shipping.js';
-const BASE=process.argv[2]||'http://localhost:3101',dir='docs/revamp/commerce';fs.mkdirSync(dir,{recursive:true});
+const BASE=process.argv[2]||'http://localhost:3101',dir=process.argv[4]||'docs/revamp/commerce';fs.mkdirSync(dir,{recursive:true});
 const browser=await chromium.launch({channel:'chrome'});const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});const page=await context.newPage();const results=[];
+if(process.argv[3])await context.route('**/*',async route=>{
+ const headers={...route.request().headers()};
+ if(new URL(route.request().url()).origin===new URL(BASE).origin)headers['cloudflare-workers-version-overrides']=`dew-theory="${process.argv[3]}"`;
+ await route.continue({headers});
+});
 const check=(name,pass,detail='')=>{results.push({name,pass,detail});console.log(pass?'PASS':'FAIL',name);};
 const capture=async name=>{await page.screenshot({path:`${dir}/${name}.png`,fullPage:true});const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();check(`axe ${name}`,axe.violations.length===0,JSON.stringify(axe.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))));};
 try {

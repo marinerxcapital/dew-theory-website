@@ -31,6 +31,8 @@ export default function Wordmark({
           width={width}
           height={height}
           priority={priority}
+          fetchPriority={priority ? 'high' : 'low'}
+          decoding="async"
           sizes={sizes}
           className="relative z-[1] block h-full w-full object-contain object-left"
           onError={() => setFailed(true)}

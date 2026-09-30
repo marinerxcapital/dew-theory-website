@@ -146,7 +146,7 @@ export default function Hero({ product = null }) {
                   fill
                   priority
                   fetchPriority="high"
-                  decoding="sync"
+                  decoding="async"
                   sizes="(max-width: 1023px) 78vw, 34vw"
                   quality={85}
                   className="object-contain"

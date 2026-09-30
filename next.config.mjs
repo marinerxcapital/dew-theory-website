@@ -16,7 +16,7 @@ const nextConfig = {
     '/*': ['./docs/**/*', './tests/**/*', './.next-qa*/**/*', './.revamp-git-objects/**/*', './data/runtime/**/*', './.env*', './.dev.vars']
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -38,7 +38,6 @@ const nextConfig = {
   poweredByHeader: false,
   // Tree-shake large client packages when imported from barrel paths.
   experimental: {
-    inlineCss: true,
     optimizePackageImports: ['gsap']
   },
   async redirects() {

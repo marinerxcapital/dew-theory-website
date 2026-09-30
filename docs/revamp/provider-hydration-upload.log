@@ -1,0 +1,45 @@
+
+ ⛅️ wrangler 4.112.0 (update available 4.144.0)
+───────────────────────────────────────────────
+🌀 Building list of assets...
+✨ Read 451 files from the assets directory C:\Users\Skyler B. Brown\Desktop\dew-theory-codex\.open-next\assets
+🌀 Starting asset upload...
+🌀 Found 8 new or modified static assets to upload. Proceeding with upload...
++ /BUILD_ID
++ /_next/static/chunks/app/consultation/results/page-19154b1813248f7f.js
++ /_next/static/chunks/app/cart/confirmation/page-7c253361cc35232d.js
++ /_next/static/chunks/webpack-67e5e2807406ab5c.js
++ /_next/static/chunks/app/favorites/page-6fa1dedb6edd2eab.js
++ /_next/static/chunks/app/layout-2869e6636c2c5406.js
++ /_next/static/chunks/app/skin-concerns/[slug]/page-8c9c18a467672d28.js
++ /_next/static/chunks/527-0f7a18d45cbcd3ce.js
+Uploaded 2 of 8 assets
+Uploaded 5 of 8 assets
+Uploaded 8 of 8 assets
+✨ Success! Uploaded 8 files (283 already uploaded) (1.19 sec)
+
+Total Upload: 9712.67 KiB / gzip: 1646.55 KiB
+Worker Startup Time: 24 ms
+Your Worker has access to the following bindings:
+Binding                                                            Resource                  
+env.NEXT_CACHE_DO_QUEUE (DOQueueHandler)                           Durable Object            
+env.NEXT_TAG_CACHE_D1 (dew-theory-tag-cache)                       D1 Database               
+env.DEW_THEORY_D1 (dew-theory-commerce)                            D1 Database               
+env.NEXT_INC_CACHE_R2_BUCKET (dew-theory-opennext-cache)           R2 Bucket                 
+env.CONSULTATION_PHOTOS_R2 (dew-theory-consultation-photos)        R2 Bucket                 
+env.WORKER_SELF_REFERENCE (dew-theory)                             Worker                    
+env.IMAGES                                                         Images                    
+env.ASSETS                                                         Assets                    
+env.NEXT_PUBLIC_SITE_URL ("https://dewtheoryco.com")               Environment Variable      
+env.SKIN_SCRIPT_MODE ("mock")                                      Environment Variable      
+env.AUTO_FULFILL ("false")                                         Environment Variable      
+
+Uploaded dew-theory (11.82 sec)
+Worker Version ID: 54592990-4358-4771-af41-58ce70bb75d9
+
+To deploy this version to production traffic use the command wrangler versions deploy
+
+Changes to non-versioned settings (config properties 'logpush' or 'tail_consumers') take effect after your next deployment using the command wrangler versions deploy
+
+Changes to triggers (routes, custom domains, cron schedules, etc) must be applied with the command wrangler triggers deploy
+

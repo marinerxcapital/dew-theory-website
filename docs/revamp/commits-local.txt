@@ -1,0 +1,11 @@
+6d1234831af5306cb213600b7e9b9a6beff3a5f2 wip: preserve edge QA, font hints and verified release blockers
+4bd78d4a03ffc295fab3f68780fb68f5eea04f81 perf: reduce font and rail startup work with guarded QA previews
+13567ff8819fa9484ec29af9432ce2f13f595c1d fix: preserve verified green QA and isolated release packaging
+d6ed4890e49020be226e2061af2ac54ed43dfa70 docs: append green system and Cloudflare release continuity
+e26d902e98fc7bdc3e47b78370e5bde686963308 fix: complete green accessibility and media performance repairs
+9dbf7efc633e98d8395c372108c4edd478ead9a9 fix: validate green system metadata, contrast and source integrity
+92a0989efd78f64ca2faacad7ef3c4a0c6688e3c wip: preserve green revamp and current local serving snapshot
+fa0e6bd8a310e83dc10c38389cae99e24b8a6f2a docs: record UI/UX production deploy dadf6eba / fc42be8
+fc42be843141415a40382c25916a03d1abefeb83 feat(storefront): complete UI/UX transformation — editorial home, restored guidance routes, commerce polish
+b2e192c001dec92fbf5a14e1af8c1708a8f0d144 merge: zero-touch official SRP + shipping + lip split (local only, no GitHub)
+bee2c49041cc1e5e63ef8674c6ef23df551c53ef feat(catalog): official SRP, $12 shipping, lip SKU split, zero-touch release tooling

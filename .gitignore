@@ -76,3 +76,4 @@ dist/
 /.revamp-tools/
 /.revamp-github-hostkey
 /.revamp-git-upload/
+/docs/revamp/after/**/*.png

@@ -1,0 +1,55 @@
+
+ ⛅️ wrangler 4.112.0 (update available 4.144.0)
+───────────────────────────────────────────────
+╭ Deploy Worker Versions by splitting traffic between multiple versions
+│
+├ Fetching latest deployment
+│
+├ Your current deployment has 2 version(s):
+│
+│ (100%) 2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│       Created:  2026-09-28T21:03:39.073128Z
+│           Tag:  -
+│       Message:  -
+│
+│ (0%) 59db36af-bf6e-4354-b107-576059447ccd
+│       Created:  2026-09-30T13:39:39.284502Z
+│           Tag:  -
+│       Message:  Green roman font hints QA; zero public traffic
+│
+├ Fetching versions
+│
+├ Which version(s) do you want to deploy?
+├ 2 Worker Version(s) selected
+│
+├     Worker Version 1:  2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│              Created:  2026-09-28T21:03:39.073128Z
+│                  Tag:  -
+│              Message:  -
+│
+├     Worker Version 2:  54592990-4358-4771-af41-58ce70bb75d9
+│              Created:  2026-09-30T14:03:30.44179Z
+│                  Tag:  -
+│              Message:  Streamed hydration startup transition QA only
+│
+├ What percentage of traffic should Worker Version 1 receive?
+├ 100% of traffic
+├
+├ What percentage of traffic should Worker Version 2 receive?
+├ 0% of traffic
+├
+├ Add a deployment message
+│ Deployment message Hydration transition QA only; original remains public
+│
+├ Deploying 2 version(s)
+│
+├ Syncing non-versioned settings
+│
+│ Synced non-versioned settings:
+│                      logpush:  false
+│                observability:  enabled:             true
+│                                head_sampling_rate:  1
+│               tail_consumers:  <skipped>
+│     streaming_tail_consumers:  <skipped>
+│
+╰  SUCCESS  Deployed dew-theory version 2815c88a-6d37-4ead-b0e6-c6bbde9da72f at 100% and version 54592990-4358-4771-af41-58ce70bb75d9 at 0% (1.25 sec)

@@ -1,0 +1,8 @@
+[
+  {
+    "url": "https://dewtheoryco.com/journal/order-of-operations",
+    "width": 1440,
+    "phase": "navigation",
+    "message": "QA_HYDRATION_DETAIL {\"type\":\"main\",\"tag\":5,\"expectedText\":null,\"expectedClass\":\"min-h-[50vh]\",\"actualName\":\"#comment\",\"actualValue\":\"$\",\"next\":\"<div class=\\\"bg-void\\\"><header class=\\\"border-b border-border\\\"><div class=\\\"mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-10 lg:py-20\\\"><p class=\\\"font-body text-micro font-medium uppercase tracking-eyebrow text-muted\\\">Routine · Edition 01</p><h1 class=\\\"mt-4 font-display text-[clamp(2.3rem,5.2vw,4.1rem)] font-normal leading-[0.98] tracking-hero text-ink\\\">Order of operations</h1><p class=\\\"mt-6 max-w-measure font-body text-[1.0625rem] font-normal leading-[1.7] text-muted\\\">The sequence matters more than the shelf. Thinnest to thickest, water before oil, actives where they can actually work.</p></div></header><div class=\\\"border-b border-border\\\"><div class=\\\"mx-auto grid max-w-shell gap-14 px-5 py-section-sm sm:px-6 lg:grid-cols-[0.28fr_0.72fr] lg:px-10 lg:py-section-md\\\"><nav aria-label=\\\"On this page\\\" \",\"parent\":\"main\"}"
+  }
+]

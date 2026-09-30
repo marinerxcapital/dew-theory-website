@@ -20,6 +20,7 @@ export default function PdpMediaStage({ children, className = '' }) {
     const el = hostRef.current;
     if (!el) return undefined;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return undefined;
 
     let frame = 0;
     let ticking = false;
