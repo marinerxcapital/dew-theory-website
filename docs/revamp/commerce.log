@@ -1,0 +1,22 @@
+PASS axe cart-empty
+PASS add to bag
+PASS $12 flat below $49
+PASS quantity changes
+PASS free shipping at threshold
+PASS exact $49 shipping math
+PASS axe cart-filled
+PASS axe quiz-step-1
+PASS axe quiz-step-2
+PASS axe quiz-step-3
+PASS axe quiz-step-4
+PASS axe quiz-result
+PASS quiz to bag
+PASS axe routine-am
+PASS AM routine to bag
+PASS axe routine-pm
+PASS PM routine to bag
+PASS consultation empty validation
+PASS consultation complete validation
+PASS duplicate booking heading removed
+PASS production developer copy hidden
+PASS simulated Stripe test-mode redirect contract

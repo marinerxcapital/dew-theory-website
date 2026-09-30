@@ -1,12 +1,13 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import LegalPageShell from '@/components/LegalPageShell';
 
-export const metadata = {
+export const metadata = withPageMetadata('/aesthetic-disclaimer', {
   title: 'Aesthetic Services & Skincare Disclaimer',
   description:
-    'Dew Theory aesthetic services and skincare disclaimer. View or download the full FIXED V2 PDF.',
+    'Dew Theory aesthetic services and skincare disclaimer. View or download the full PDF.',
   alternates: { canonical: '/aesthetic-disclaimer' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function AestheticDisclaimerPage() {
   return (

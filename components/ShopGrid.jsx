@@ -6,9 +6,14 @@ import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import {
   SORT_OPTIONS,
+  AVAILABILITY_OPTIONS,
   collectConcerns,
   collectSkinTypes,
+  collectPriceBounds,
+  formatPriceChip,
+  formatPriceRange,
   presentCategories,
+  presentRoutineSteps,
   filterProducts,
   sortProducts,
   parseShopParams,
@@ -22,7 +27,7 @@ function emptyState(filters, clearAll) {
   return (
     <div
       id="shop-product-grid"
-      className="mt-6 rounded-[2px] border border-border bg-white p-10 text-center sm:mt-8"
+      className="mt-6 rounded-card border border-border bg-white p-10 text-center sm:mt-8"
       role="status"
     >
       <p className="font-display text-xl font-normal text-ink">No products match</p>
@@ -58,12 +63,16 @@ export default function ShopGrid({ products = [] }) {
   const categories = useMemo(() => presentCategories(catalog), [catalog]);
   const concerns = useMemo(() => collectConcerns(catalog), [catalog]);
   const skinTypes = useMemo(() => collectSkinTypes(catalog), [catalog]);
+  const routineSteps = useMemo(() => presentRoutineSteps(catalog), [catalog]);
+  const priceBounds = useMemo(() => collectPriceBounds(catalog), [catalog]);
 
   const state = useMemo(() => parseShopParams(searchParams), [searchParams]);
   const q = searchParams.get('q') || '';
+  const ingredient = searchParams.get('ingredient') || '';
 
   const filtered = useMemo(() => {
     let list = filterProducts(catalog, state);
+    if (ingredient) list = list.filter(p => (p.key_actives || []).some(a => (typeof a === "string" ? a : a.name) === ingredient));
     if (q.trim()) {
       const { flat } = searchStorefront(q, { catalog, limit: 50 });
       const ids = new Set(
@@ -78,18 +87,19 @@ export default function ShopGrid({ products = [] }) {
       );
     }
     return sortProducts(list, state.sort);
-  }, [catalog, state, q]);
+  }, [catalog, state, q, ingredient]);
 
-  const activeCount = countActiveFilters(state) + (q ? 1 : 0);
+  const activeCount = countActiveFilters(state) + (q ? 1 : 0) + (ingredient ? 1 : 0);
 
   const pushState = useCallback(
     (next) => {
       const params = shopStateToParams(next);
       if (q) params.set('q', q);
+      if (ingredient) params.set('ingredient', ingredient);
       const qs = params.toString();
       router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
     },
-    [pathname, q, router]
+    [pathname, q, router, ingredient]
   );
 
   const clearAll = () => {
@@ -100,6 +110,20 @@ export default function ShopGrid({ products = [] }) {
   const setFilter = (key, value) => {
     const next = { ...state, [key]: value || '' };
     pushState(next);
+  };
+
+  /**
+   * Price is committed on blur or Enter rather than on every keystroke — a
+   * navigation per digit would thrash the router and the URL history.
+   * `null` clears the bound; anything non-numeric is ignored.
+   */
+  const commitPrice = (key, raw) => {
+    const trimmed = String(raw).trim();
+    const parsed = trimmed === '' ? null : Number(trimmed);
+    const value = parsed === null || Number.isFinite(parsed) ? parsed : null;
+    const current = state[key];
+    if ((value ?? null) === (current ?? null)) return;
+    pushState({ ...state, [key]: value });
   };
 
   useEffect(() => {
@@ -117,7 +141,7 @@ export default function ShopGrid({ products = [] }) {
 
   if (!products.length) {
     return (
-      <div className="rounded-[2px] border border-border bg-white p-10 text-center" role="status">
+      <div className="rounded-card border border-border bg-white p-10 text-center" role="status">
         <p className="font-display text-xl font-normal text-ink">No products yet</p>
         <p className="mx-auto mt-3 max-w-md font-body text-sm text-muted">
           The collection will appear here once products are added to the catalog.
@@ -128,7 +152,7 @@ export default function ShopGrid({ products = [] }) {
 
   if (!catalog.length) {
     return (
-      <div className="rounded-[2px] border border-border bg-white p-10 text-center" role="status">
+      <div className="rounded-card border border-border bg-white p-10 text-center" role="status">
         <p className="font-display text-xl font-normal text-ink">Nothing available</p>
         <p className="mx-auto mt-3 max-w-md font-body text-sm text-muted">
           All listed items are currently discontinued or inactive.
@@ -148,7 +172,7 @@ export default function ShopGrid({ products = [] }) {
             type="button"
             aria-pressed={!state.type}
             onClick={() => setFilter('type', '')}
-            className="filter-chip rounded-[2px] px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+            className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
           >
             All
           </button>
@@ -158,7 +182,7 @@ export default function ShopGrid({ products = [] }) {
               type="button"
               aria-pressed={state.type === c}
               onClick={() => setFilter('type', state.type === c ? '' : c)}
-              className="filter-chip rounded-[2px] px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+              className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
             >
               {c}
             </button>
@@ -177,7 +201,7 @@ export default function ShopGrid({ products = [] }) {
               type="button"
               aria-pressed={state.concern === c}
               onClick={() => setFilter('concern', state.concern === c ? '' : c)}
-              className="filter-chip rounded-[2px] px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+              className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
             >
               {c}
             </button>
@@ -196,7 +220,7 @@ export default function ShopGrid({ products = [] }) {
               type="button"
               aria-pressed={state.skin === s}
               onClick={() => setFilter('skin', state.skin === s ? '' : s)}
-              className="filter-chip rounded-[2px] px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+              className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
             >
               {s}
             </button>
@@ -219,13 +243,99 @@ export default function ShopGrid({ products = [] }) {
               type="button"
               aria-pressed={state.time === t.id || (!state.time && !t.id)}
               onClick={() => setFilter('time', t.id)}
-              className="filter-chip rounded-[2px] px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+              className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
             >
               {t.label}
             </button>
           ))}
         </div>
       </fieldset>
+
+      {routineSteps.length > 0 ? (
+        <fieldset>
+          <legend className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+            Routine step
+          </legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {routineSteps.map((step) => (
+              <button
+                key={`${idPrefix}-step-${step}`}
+                type="button"
+                aria-pressed={state.step === step}
+                onClick={() => setFilter('step', state.step === step ? '' : step)}
+                className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+              >
+                {step}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      ) : null}
+
+      <fieldset>
+        <legend className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+          Availability
+        </legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {AVAILABILITY_OPTIONS.map((option) => (
+            <button
+              key={`${idPrefix}-availability-${option.id || 'any'}`}
+              type="button"
+              aria-pressed={state.availability === option.id || (!state.availability && !option.id)}
+              onClick={() => setFilter('availability', option.id)}
+              className="filter-chip rounded-card px-3 py-2 font-label text-[0.6rem] uppercase tracking-lockup text-muted"
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      {priceBounds ? (
+        <fieldset>
+          <legend className="font-label text-[0.62rem] uppercase tracking-lockup text-muted">
+            Price
+          </legend>
+          <div className="mt-3 flex items-center gap-2">
+            <label className="sr-only" htmlFor={`${idPrefix}-price-min`}>
+              Minimum price
+            </label>
+            <input
+              id={`${idPrefix}-price-min`}
+              key={`${idPrefix}-min-${state.minPrice ?? ''}`}
+              defaultValue={state.minPrice ?? ''}
+              inputMode="numeric"
+              placeholder={String(priceBounds.min)}
+              onBlur={(e) => commitPrice('minPrice', e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') e.currentTarget.blur();
+              }}
+              className="min-h-[44px] w-20 border border-border bg-transparent px-3 py-2 font-body text-sm text-ink"
+            />
+            <span aria-hidden="true" className="font-label text-[0.6rem] text-muted">
+              to
+            </span>
+            <label className="sr-only" htmlFor={`${idPrefix}-price-max`}>
+              Maximum price
+            </label>
+            <input
+              id={`${idPrefix}-price-max`}
+              key={`${idPrefix}-max-${state.maxPrice ?? ''}`}
+              defaultValue={state.maxPrice ?? ''}
+              inputMode="numeric"
+              placeholder={String(priceBounds.max)}
+              onBlur={(e) => commitPrice('maxPrice', e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') e.currentTarget.blur();
+              }}
+              className="min-h-[44px] w-20 border border-border bg-transparent px-3 py-2 font-body text-sm text-ink"
+            />
+          </div>
+          <p className="mt-2 font-body text-xs text-muted">
+            {formatPriceRange(priceBounds)}
+          </p>
+        </fieldset>
+      ) : null}
     </div>
   );
 
@@ -243,6 +353,20 @@ export default function ShopGrid({ products = [] }) {
       key: 'time',
       label: state.time.toUpperCase(),
       clear: () => setFilter('time', '')
+    });
+  if (state.step)
+    chips.push({ key: 'step', label: state.step, clear: () => setFilter('step', '') });
+  if (state.availability)
+    chips.push({
+      key: 'availability',
+      label: state.availability === 'in-stock' ? 'In stock' : 'Out of stock',
+      clear: () => setFilter('availability', '')
+    });
+  if (state.minPrice != null || state.maxPrice != null)
+    chips.push({
+      key: 'price',
+      label: formatPriceChip(state.minPrice, state.maxPrice),
+      clear: () => pushState({ ...state, minPrice: null, maxPrice: null })
     });
 
   return (
@@ -268,7 +392,7 @@ export default function ShopGrid({ products = [] }) {
             <select
               value={state.sort || 'featured'}
               onChange={(e) => setFilter('sort', e.target.value)}
-              className="min-h-[40px] rounded-[2px] border border-border bg-white px-3 py-2 font-body text-sm text-ink"
+              className="min-h-[40px] rounded-card border border-border bg-white px-3 py-2 font-body text-sm text-ink"
             >
               {SORT_OPTIONS.map((o) => (
                 <option key={o.id} value={o.id}>
@@ -330,7 +454,7 @@ export default function ShopGrid({ products = [] }) {
                 data-reveal-group="shop"
               >
                 {filtered.map((p, i) => (
-                  <ProductCard key={p.id} product={p} revealIndex={i} priority={i < 4} />
+                  <ProductCard key={p.id} product={p} revealIndex={i} priority={i === 0} />
                 ))}
               </div>
             )}
@@ -341,11 +465,11 @@ export default function ShopGrid({ products = [] }) {
         <div className="fixed inset-0 z-[70] lg:hidden" role="dialog" aria-modal="true" aria-label="Filters">
           <button
             type="button"
-            className="absolute inset-0 bg-ink/40"
+            className="absolute inset-0 bg-void/75"
             aria-label="Close filters"
             onClick={() => setDrawerOpen(false)}
           />
-          <div className="absolute inset-x-0 bottom-0 max-h-[85dvh] overflow-y-auto rounded-t-[8px] bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-card-hover">
+          <div className="absolute inset-x-0 bottom-0 max-h-[85dvh] overflow-y-auto rounded-card bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-card-hover">
             <div className="mb-6 flex items-center justify-between">
               <p className="font-display text-2xl text-ink">Filter</p>
               <button

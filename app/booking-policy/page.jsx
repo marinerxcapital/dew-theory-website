@@ -1,12 +1,13 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import LegalPageShell from '@/components/LegalPageShell';
 
-export const metadata = {
+export const metadata = withPageMetadata('/booking-policy', {
   title: 'Booking, Cancellation & No-Show Policy',
   description:
-    'Dew Theory booking, cancellation, and no-show policy. View or download the full FIXED V2 PDF.',
+    'Dew Theory booking, cancellation, and no-show policy. View or download the full PDF.',
   alternates: { canonical: '/booking-policy' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function BookingPolicyPage() {
   return (

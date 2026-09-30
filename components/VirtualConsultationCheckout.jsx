@@ -47,17 +47,17 @@ export default function VirtualConsultationCheckout() {
   return (
     <form
       onSubmit={onSubmit}
-      className="glass-1 mx-auto max-w-lg rounded-[3px] p-7 sm:p-9"
+      className="glass-1 mx-auto max-w-lg rounded-card p-7 sm:p-9"
       aria-labelledby="vc-book-heading"
       aria-busy={loading}
     >
-      <h2
+      <h3
         id="vc-book-heading"
         className="font-display text-2xl font-normal text-graphite sm:text-[1.75rem]"
       >
-        Book your consultation
-      </h2>
-      <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal/70">
+        Your details
+      </h3>
+      <p className="mt-3 font-body text-sm font-light leading-relaxed text-charcoal">
         After checkout you&apos;ll schedule Zoom and complete a private intake with photos.
       </p>
 
@@ -107,7 +107,7 @@ export default function VirtualConsultationCheckout() {
             Review before you agree
           </p>
           <LegalDocLinks dense className="mt-3" documents={legalDocs} />
-          <p className="mt-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/60">
+          <p className="mt-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal">
             Photo &amp; intake authorization covers clinical consultation use only — it is not a
             marketing or publicity release.
           </p>
@@ -124,7 +124,7 @@ export default function VirtualConsultationCheckout() {
             className="mt-1"
             required
           />
-          <span className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <span className="font-body text-sm font-light leading-relaxed text-charcoal">
             I understand this is aesthetic skincare guidance (not medical diagnosis), and I agree to
             the consultation terms and privacy practices for intake and photos linked above.
           </span>
@@ -133,7 +133,7 @@ export default function VirtualConsultationCheckout() {
 
       {/* Trust notes — private photos + payment path; no invented price */}
       <ul className="mt-6 space-y-2.5 border border-chrome/20 bg-pearl/40 px-4 py-4">
-        <li className="font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+        <li className="font-body text-[0.7rem] font-light leading-relaxed text-charcoal">
           <span className="font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
             Private photos
           </span>
@@ -142,14 +142,15 @@ export default function VirtualConsultationCheckout() {
             galleries.
           </span>
         </li>
-        <li className="font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+        <li className="font-body text-[0.7rem] font-light leading-relaxed text-charcoal">
           <span className="font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
             Secure payment
           </span>
           <span className="mt-0.5 block">
-            When Stripe is configured, checkout runs on Stripe&apos;s hosted page (no card fields on
-            this form). Local/dev without Stripe may use a clearly labeled mock checkout — never a
-            silent live charge. Production without keys returns an error instead of charging.
+            Secure payment: checkout runs on Stripe&apos;s hosted page. No card fields on this form.
+            {process.env.NODE_ENV !== 'production' ? (
+              <span className="mt-2 block">Local/dev without Stripe may use a clearly labeled mock checkout. Production without keys returns an error instead of charging.</span>
+            ) : null}
           </span>
         </li>
       </ul>
@@ -159,7 +160,7 @@ export default function VirtualConsultationCheckout() {
           <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
             Checkout issue
           </p>
-          <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/80">
+          <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal">
             {error}
           </p>
         </div>
@@ -174,7 +175,7 @@ export default function VirtualConsultationCheckout() {
       </button>
 
       {loading && (
-        <p className="mt-3 text-center font-body text-xs font-light text-charcoal/55" aria-live="polite">
+        <p className="mt-3 text-center font-body text-xs font-light text-charcoal" aria-live="polite">
           Redirecting to payment — keep this tab open.
         </p>
       )}

@@ -1,0 +1,26 @@
+[
+  {
+    "page": "home",
+    "performance": 87,
+    "accessibility": 100,
+    "lcpMs": 3295.082,
+    "cls": 0.00008901146790361748,
+    "tbtMs": 234
+  },
+  {
+    "page": "shop",
+    "performance": 71,
+    "accessibility": 100,
+    "lcpMs": 3525.506,
+    "cls": 0.00008901146790361748,
+    "tbtMs": 750.9999999999998
+  },
+  {
+    "page": "product",
+    "performance": 81,
+    "accessibility": 100,
+    "lcpMs": 3826.4979999999996,
+    "cls": 0.00008901146790361748,
+    "tbtMs": 266.5
+  }
+]

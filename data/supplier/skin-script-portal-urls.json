@@ -259,14 +259,28 @@
       "notes": "Verified via authenticated WC Store variation product endpoint (Agent D)."
     },
     {
-      "product_id": "lip-treatment-peppermint-pomegranate",
-      "supplier_slug": "new-ageless-lip-treatment",
-      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/",
-      "supplier_product_name": "Ageless Lip Treatment",
+      "product_id": "lip-treatment-peppermint",
       "skin_script_sku": "1410240",
+      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/",
+      "supplier_product_name": "Ageless Lip Treatment — Peppermint",
+      "supplier_size": null,
+      "variant": "Peppermint",
       "expected_wholesale_price": 8,
-      "variant_note": "Confirm Peppermint/Pomegranate variant SKU if portal requires selection",
-      "verified": true
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Official SRP August 2026; exact SKU 1410240"
+    },
+    {
+      "product_id": "lip-treatment-pomegranate",
+      "skin_script_sku": "1410340",
+      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/",
+      "supplier_product_name": "Ageless Lip Treatment — Pomegranate",
+      "supplier_size": null,
+      "variant": "Pomegranate",
+      "expected_wholesale_price": 8,
+      "verified": true,
+      "verified_at": "2026-09-20",
+      "notes": "Official SRP August 2026; exact SKU 1410340"
     },
     {
       "product_id": "mandelic-brightening-serum",

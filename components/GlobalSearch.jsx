@@ -130,17 +130,15 @@ export default function GlobalSearch({
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
-          className="w-full rounded-[2px] border border-border bg-surface-light py-2.5 pl-9 pr-3 font-body text-sm text-ink placeholder:text-muted/80 focus:border-ink focus:bg-white focus:outline-none"
+          className="w-full rounded-card border border-border bg-surface-light py-2.5 pl-9 pr-3 font-body text-sm text-ink placeholder:text-muted focus:border-ink focus:bg-white focus:outline-none"
         />
       </div>
 
       {open && query.trim() ? (
         <div
-          id={listId}
-          role="listbox"
-          aria-label="Search results"
-          className="absolute left-0 right-0 top-[calc(100%+0.35rem)] z-[60] max-h-[min(70vh,28rem)] overflow-y-auto rounded-[2px] border border-border bg-white shadow-card-hover"
+          className="absolute left-0 right-0 top-[calc(100%+0.35rem)] z-[60] max-h-[min(70vh,28rem)] overflow-y-auto rounded-card border border-border bg-white shadow-card-hover"
         >
+          <div id={listId} role="listbox" aria-label="Search results">
           {flat.length === 0 ? (
             <div className="px-4 py-5" role="option" aria-selected="false">
               <p className="font-body text-sm text-charcoal">No matches for “{query.trim()}”.</p>
@@ -157,11 +155,11 @@ export default function GlobalSearch({
             </div>
           ) : (
             SEARCH_GROUP_ORDER.filter((g) => results.groups[g]?.length).map((group) => (
-              <div key={group} className="border-b border-border last:border-0">
+              <div key={group} role="group" aria-label={group} className="border-b border-border last:border-0">
                 <p className="px-4 pb-1 pt-3 font-label text-[0.58rem] uppercase tracking-lockup text-muted">
                   {group}
                 </p>
-                <ul>
+                <ul role="presentation">
                   {results.groups[group].map((item) => {
                     const idx = flat.findIndex((f) => f.id === item.id);
                     const active = idx === activeIndex;
@@ -192,6 +190,7 @@ export default function GlobalSearch({
               </div>
             ))
           )}
+          </div>
           {flat.length > 0 ? (
             <div className="border-t border-border px-4 py-2.5">
               <button

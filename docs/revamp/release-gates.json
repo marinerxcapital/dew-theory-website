@@ -1,0 +1,110 @@
+{
+  "time": "2026-09-30T07:06:38.818Z",
+  "releaseReady": false,
+  "checks": [
+    {
+      "name": "complete route/viewport crawl",
+      "pass": true,
+      "detail": {
+        "routes": 98,
+        "cases": 294
+      }
+    },
+    {
+      "name": "render, accessibility, metadata and chrome",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "active UI has no raw hex outside token file",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "release assets and privacy",
+      "pass": true,
+      "detail": {
+        "references": 115,
+        "missing": [],
+        "altered": [],
+        "runtimeFiles": [],
+        "legalAltered": []
+      }
+    },
+    {
+      "name": "concurrent source and protected data preserved",
+      "pass": true,
+      "detail": {
+        "sourceChanges": []
+      }
+    },
+    {
+      "name": "local commerce smoke",
+      "pass": true,
+      "detail": {
+        "checks": 22
+      }
+    },
+    {
+      "name": "real Stripe test handoff",
+      "pass": true,
+      "detail": {
+        "base": "https://dewtheoryco.com",
+        "externalStripe": true,
+        "testMode": true,
+        "charged": false,
+        "apiStatus": 200,
+        "checkoutHost": "checkout.stripe.com",
+        "liveMode": false,
+        "mockMode": false,
+        "hostedTitle": "Dew Theory sandbox",
+        "hostedTestBanner": false,
+        "hostedPageLoaded": true
+      }
+    },
+    {
+      "name": "mobile Lighthouse release targets",
+      "pass": false,
+      "detail": [
+        {
+          "page": "home",
+          "performance": 83,
+          "accessibility": 100,
+          "lcpMs": 3339.1710000000003,
+          "cls": 0,
+          "tbtMs": 303.5
+        },
+        {
+          "page": "shop",
+          "performance": 91,
+          "accessibility": 54,
+          "lcpMs": 3155.14,
+          "cls": 0.00008901146790361748,
+          "tbtMs": 102
+        },
+        {
+          "page": "product",
+          "performance": 63,
+          "accessibility": 54,
+          "lcpMs": 10782.611499999999,
+          "cls": 0,
+          "tbtMs": 361.5160000000001
+        }
+      ]
+    },
+    {
+      "name": "unit recorded test gate",
+      "pass": true,
+      "detail": {
+        "expectedPass": 396
+      }
+    },
+    {
+      "name": "contrast recorded test gate",
+      "pass": true,
+      "detail": {
+        "expectedPass": 20
+      }
+    }
+  ]
+}

@@ -154,19 +154,19 @@ export default function DiscountManager({ initial }) {
           className="w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light"
         />
         {error && (
-          <p className="font-body text-xs font-light text-charcoal/70" role="alert">
+          <p className="font-body text-xs font-light text-charcoal" role="alert">
             {error}
           </p>
         )}
         {msg && (
-          <p className="font-body text-xs font-light text-charcoal/60" role="status">
+          <p className="font-body text-xs font-light text-charcoal" role="status">
             {msg}
           </p>
         )}
         <button
           type="submit"
           disabled={loading}
-          className="border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+          className="border border-graphite bg-green-300 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink disabled:opacity-60"
         >
           Create
         </button>
@@ -178,7 +178,7 @@ export default function DiscountManager({ initial }) {
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="font-display text-lg font-normal text-graphite">{c.code}</p>
-                <p className="mt-1 font-body text-xs font-light text-charcoal/60">
+                <p className="mt-1 font-body text-xs font-light text-charcoal">
                   {c.type === 'percentage' ? `${c.value}%` : `$${c.value}`} ·{' '}
                   <span className="text-charcoal">
                     redemptions {c.uses_count ?? 0}
@@ -194,7 +194,7 @@ export default function DiscountManager({ initial }) {
                   </p>
                 )}
                 {(c.note || c.rate_confirmed === false || String(c.code).toUpperCase() === 'DEW15') && (
-                  <p className="mt-1 font-body text-[0.65rem] font-light text-charcoal/55">
+                  <p className="mt-1 font-body text-[0.65rem] font-light text-charcoal">
                     {c.note ||
                       'Launch promo placeholder — rate pending Emily confirmation'}
                   </p>
@@ -224,7 +224,7 @@ export default function DiscountManager({ initial }) {
             </div>
             {editId === c.id && (
               <div className="mt-3 flex flex-wrap items-end gap-2 border-t border-chrome/15 pt-3">
-                <label className="font-body text-xs font-light text-charcoal/70">
+                <label className="font-body text-xs font-light text-charcoal">
                   Value
                   <input
                     type="number"
@@ -235,7 +235,7 @@ export default function DiscountManager({ initial }) {
                     className="mt-1 block w-24 border border-chrome/30 bg-pearl/90 px-2 py-2"
                   />
                 </label>
-                <label className="font-body text-xs font-light text-charcoal/70">
+                <label className="font-body text-xs font-light text-charcoal">
                   Max uses
                   <input
                     type="number"
@@ -250,7 +250,7 @@ export default function DiscountManager({ initial }) {
                   type="button"
                   disabled={loading}
                   onClick={() => saveEdit(c.id)}
-                  className="border border-graphite bg-graphite px-4 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-pearl"
+                  className="border border-graphite bg-green-300 px-4 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-ink"
                 >
                   Save
                 </button>
@@ -259,7 +259,7 @@ export default function DiscountManager({ initial }) {
           </li>
         ))}
         {!codes.length && (
-          <li className="py-8 font-body text-sm font-light text-charcoal/50">No discount codes yet.</li>
+          <li className="py-8 font-body text-sm font-light text-charcoal">No discount codes yet.</li>
         )}
       </ul>
     </div>

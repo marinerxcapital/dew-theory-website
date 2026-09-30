@@ -1,0 +1,55 @@
+
+ ⛅️ wrangler 4.112.0 (update available 4.144.0)
+───────────────────────────────────────────────
+╭ Deploy Worker Versions by splitting traffic between multiple versions
+│
+├ Fetching latest deployment
+│
+├ Your current deployment has 2 version(s):
+│
+│ (100%) 2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│       Created:  2026-09-28T21:03:39.073128Z
+│           Tag:  -
+│       Message:  -
+│
+│ (0%) 619e9d73-0b62-4532-b419-86a1f08c7900
+│       Created:  2026-09-30T07:01:27.942098Z
+│           Tag:  green-inline-css
+│       Message:  CSS-inlined QA candidate, no public traffic
+│
+├ Fetching versions
+│
+├ Which version(s) do you want to deploy?
+├ 2 Worker Version(s) selected
+│
+├     Worker Version 1:  2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│              Created:  2026-09-28T21:03:39.073128Z
+│                  Tag:  -
+│              Message:  -
+│
+├     Worker Version 2:  4e2f84c0-323a-4eed-98fc-051708ecbb24
+│              Created:  2026-09-30T07:14:23.429Z
+│                  Tag:  green-font
+│              Message:  SOFT100 variable-weight font QA candidate; no public traffic
+│
+├ What percentage of traffic should Worker Version 1 receive?
+├ 100% of traffic
+├
+├ What percentage of traffic should Worker Version 2 receive?
+├ 0% of traffic
+├
+├ Add a deployment message
+│ Deployment message SOFT100 font QA override; original remains public
+│
+├ Deploying 2 version(s)
+│
+├ Syncing non-versioned settings
+│
+│ Synced non-versioned settings:
+│                      logpush:  false
+│                observability:  enabled:             true
+│                                head_sampling_rate:  1
+│               tail_consumers:  <skipped>
+│     streaming_tail_consumers:  <skipped>
+│
+╰  SUCCESS  Deployed dew-theory version 2815c88a-6d37-4ead-b0e6-c6bbde9da72f at 100% and version 4e2f84c0-323a-4eed-98fc-051708ecbb24 at 0% (1.52 sec)

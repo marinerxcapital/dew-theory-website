@@ -44,10 +44,12 @@ describe('site polish honesty', () => {
     assert.ok(shop.includes('TrustStrip'));
   });
 
-  it('footer Help stays the eight public legal routes and omits About', () => {
+  it('footer Help stays the eight public legal routes', () => {
     const footer = read('components/Footer.jsx');
     assert.ok(footer.includes('getFooterLegalLinks'));
-    assert.ok(!footer.includes("'/about'") && !footer.includes('"/about"'));
+    // 2026-09-26: About became a published route in the pearl/editorial handoff
+    // (DT-14), so the footer may link it — but the Help column must still be
+    // sourced from the legal registry and nothing may present it as "About Emily".
     assert.ok(!/About Emily/i.test(footer));
     const hrefs = getFooterLegalLinks().map((l) => l.href).sort();
     assert.deepEqual(hrefs, [
@@ -62,7 +64,7 @@ describe('site polish honesty', () => {
     ]);
   });
 
-  it('product cards request early images and keep a visible skeleton', () => {
+  it('product grid prioritizes its lead image and retains skeletons without preloading off-screen rails', () => {
     const card = read('components/ProductCard.jsx');
     const image = read('components/ProductImage.jsx');
     const grid = read('components/ShopGrid.jsx');
@@ -71,8 +73,8 @@ describe('site polish honesty', () => {
     assert.ok(card.includes('priority'));
     assert.ok(card.includes('product-card'));
     assert.ok(image.includes('product-image-skeleton'));
-    assert.ok(grid.includes('priority={i < 4}'));
-    assert.ok(rail.includes('priority={i < 4}'));
+    assert.ok(grid.includes('priority={i === 0}'));
+    assert.ok(rail.includes('priority={false}'));
     assert.ok(css.includes('.product-image-skeleton'));
     assert.ok(css.includes('article.product-card[data-reveal]'));
   });
@@ -87,8 +89,10 @@ describe('site polish honesty', () => {
     assert.ok(src.includes('checkout-field-summary'));
   });
 
-  it('nav does not reintroduce unpublished About', () => {
+  it('nav links About as a published route', () => {
     const nav = read('components/Nav.jsx');
-    assert.ok(!nav.includes("'/about'") && !nav.includes('"/about"'));
+    assert.ok(nav.includes("'/about'"), 'About is a published route in the approved handoff');
+    assert.ok(!nav.includes("'/services'") && !nav.includes("'/membership'"));
+    assert.ok(!nav.includes("'/book'"), 'nav must not link the retired /book route');
   });
 });

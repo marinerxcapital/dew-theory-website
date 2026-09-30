@@ -36,13 +36,14 @@ export default function AdminShell({ admin, children }) {
           </div>
         </div>
       </header>
-      <main
+      <section
+        aria-label="Owner console"
         id="admin-main"
         tabIndex={-1}
         className="mx-auto max-w-shell px-4 py-8 sm:px-6 lg:px-10 lg:py-12"
       >
         {children}
-      </main>
+      </section>
     </div>
   );
 }

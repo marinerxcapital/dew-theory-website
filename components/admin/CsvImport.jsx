@@ -113,17 +113,17 @@ export default function CsvImport() {
           onChange={onFile}
           className="mt-3 block w-full font-body text-sm font-light"
         />
-        <p className="mt-3 font-body text-xs font-light text-charcoal/55">
+        <p className="mt-3 font-body text-xs font-light text-charcoal">
           Expected columns (flexible names): name, category, size, wholesale_price, description,
           ingredients, sku. Retail = wholesale × 2, editable per row. Sample file:{' '}
-          <code className="text-charcoal/70">data/sample-import.csv</code>. Dry-run before commit.
+          <code className="text-charcoal">data/sample-import.csv</code>. Dry-run before commit.
         </p>
       </div>
 
       {headers.length > 0 && (
         <div>
           <h2 className="font-display text-xl font-normal text-graphite">Column mapping</h2>
-          <p className="mt-1 font-body text-xs font-light text-charcoal/60">{mapped} fields mapped</p>
+          <p className="mt-1 font-body text-xs font-light text-charcoal">{mapped} fields mapped</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {TARGET_FIELDS.map((field) => (
               <div key={field}>
@@ -154,7 +154,7 @@ export default function CsvImport() {
           <h2 className="font-display text-lg font-normal text-graphite">
             Bad rows ({bad.length}) — skipped
           </h2>
-          <ul className="mt-3 space-y-1 font-body text-xs font-light text-charcoal/70">
+          <ul className="mt-3 space-y-1 font-body text-xs font-light text-charcoal">
             {bad.slice(0, 20).map((b) => (
               <li key={b.row}>
                 Row {b.row}: {b.reason}
@@ -215,30 +215,30 @@ export default function CsvImport() {
               type="button"
               onClick={() => runImport(false)}
               disabled={loading}
-              className="border border-graphite bg-graphite px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+              className="border border-graphite bg-green-300 px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink disabled:opacity-60"
             >
               {loading ? 'Importing…' : 'Confirm import'}
             </button>
           </div>
-          <p className="mt-3 font-body text-xs font-light text-charcoal/55">
+          <p className="mt-3 font-body text-xs font-light text-charcoal">
             Local preview: {localPlan.total} rows ready (server dry-run reports create vs update).
           </p>
         </div>
       )}
 
       {error && (
-        <p className="font-body text-sm font-light text-charcoal/70" role="alert">
+        <p className="font-body text-sm font-light text-charcoal" role="alert">
           {error}
         </p>
       )}
       {dryResult && (
-        <p className="font-body text-sm font-light text-charcoal/75" role="status">
+        <p className="font-body text-sm font-light text-charcoal" role="status">
           Dry-run: would create {dryResult.wouldCreate}, update {dryResult.wouldUpdate}
           {dryResult.bad?.length ? `, skip ${dryResult.bad.length} bad` : ''}. Nothing written.
         </p>
       )}
       {result && (
-        <p className="font-body text-sm font-light text-charcoal/75">
+        <p className="font-body text-sm font-light text-charcoal">
           Imported {result.created} new, updated {result.updated} existing products.
         </p>
       )}

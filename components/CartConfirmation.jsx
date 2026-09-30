@@ -81,10 +81,10 @@ export default function CartConfirmation({
 
       {status === 'resolving' && (
         <div data-reveal className="mt-6 max-w-lg" aria-busy="true" aria-live="polite">
-          <p className="font-body text-base font-light leading-relaxed text-charcoal/75">
+          <p className="font-body text-base font-light leading-relaxed text-charcoal">
             Confirming your Stripe payment and recording the order…
           </p>
-          <p className="mt-3 font-body text-sm font-light text-charcoal/55">
+          <p className="mt-3 font-body text-sm font-light text-charcoal">
             This usually finishes in a few seconds. Keep this tab open.
           </p>
         </div>
@@ -96,7 +96,7 @@ export default function CartConfirmation({
             <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
               Payment confirmation
             </p>
-            <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/80">
+            <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal">
               {error} If you were charged, Emily can match your order from the payment email —
               contact the studio with your receipt or card statement last four.
             </p>
@@ -106,7 +106,7 @@ export default function CartConfirmation({
 
       {status === 'ready' && (
         <div data-reveal className="mt-6 max-w-lg">
-          <p className="font-body text-base font-light leading-relaxed text-charcoal/75">
+          <p className="font-body text-base font-light leading-relaxed text-charcoal">
             {pathKind === 'stripe'
               ? fulfillmentCopy?.confirmationLead ||
                 (automationLive
@@ -139,7 +139,7 @@ export default function CartConfirmation({
           data-reveal
           className="mt-8 max-w-lg space-y-4 border border-chrome/20 bg-pearl/40 p-5 sm:p-6"
         >
-          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
               Next · 1
             </span>
@@ -149,7 +149,7 @@ export default function CartConfirmation({
               configured.
             </span>
           </li>
-          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
               Next · 2
             </span>
@@ -160,7 +160,7 @@ export default function CartConfirmation({
                   : 'Emily fulfills Skin Script wholesale manually through her studio account. Watch for ship updates from the studio.')}
             </span>
           </li>
-          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
               Next · 3
             </span>
@@ -176,7 +176,7 @@ export default function CartConfirmation({
           <>
             <Link
               href="mailto:hello@dewtheory.studio"
-              className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+              className="sweep border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink"
             >
               Contact studio
             </Link>
@@ -191,7 +191,7 @@ export default function CartConfirmation({
           <>
             <Link
               href="/shop"
-              className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+              className="sweep border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink"
             >
               Continue shopping
             </Link>

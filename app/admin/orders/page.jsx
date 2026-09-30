@@ -54,7 +54,7 @@ export default async function AdminOrdersPage({ searchParams }) {
               href={href}
               className={`border px-3 py-2 font-label text-[0.58rem] uppercase tracking-lockup ${
                 active
-                  ? 'border-forest bg-forest text-ivory'
+                  ? 'border-forest bg-green-300 text-ivory'
                   : 'border-chrome/30 text-muted hover:border-forest/40'
               }`}
             >

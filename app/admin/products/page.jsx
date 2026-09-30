@@ -13,7 +13,7 @@ export default async function AdminProductsPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <div className="min-w-0">
           <h1 className="font-display text-2xl font-normal text-graphite sm:text-3xl">Products</h1>
-          <p className="mt-2 font-body text-sm font-light text-charcoal/70">
+          <p className="mt-2 font-body text-sm font-light text-charcoal">
             Full CRUD. Retail auto ×2 on wholesale change. Inactive / discontinued stay off the shop.
           </p>
         </div>
@@ -26,7 +26,7 @@ export default async function AdminProductsPage() {
           </Link>
           <Link
             href="/admin/products/new"
-            className="border border-graphite bg-graphite px-5 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl"
+            className="border border-graphite bg-green-300 px-5 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink"
           >
             Add product
           </Link>
@@ -97,7 +97,7 @@ export default async function AdminProductsPage() {
                     </span>
                   )}
                 </td>
-                <td className="py-4 pr-4 text-charcoal/70">{p.category}</td>
+                <td className="py-4 pr-4 text-charcoal">{p.category}</td>
                 <td className="py-4 pr-4">
                   {formatMoney(p.retail_price)}
                   {p.retail_price_confirmed === false ? (

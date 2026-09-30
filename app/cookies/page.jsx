@@ -1,12 +1,13 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import LegalPageShell from '@/components/LegalPageShell';
 
-export const metadata = {
+export const metadata = withPageMetadata('/cookies', {
   title: 'Cookie & Tracking Technologies Notice',
   description:
-    'Dew Theory cookie and tracking technologies notice. View or download the full FIXED V2 PDF.',
+    'Dew Theory cookie and tracking technologies notice. View or download the full PDF.',
   alternates: { canonical: '/cookies' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function CookiesPage() {
   return (

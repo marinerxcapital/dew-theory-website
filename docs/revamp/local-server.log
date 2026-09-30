@@ -1,0 +1,20 @@
+
+> dew-theory@0.1.0 start
+> next start --port 3100
+
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3100
+   - Network:      http://100.106.244.59:3100
+
+ ✓ Starting...
+▲ [WARNING] 				You have defined bindings to the following internal Durable Objects:
+
+  				- {"name":"NEXT_CACHE_DO_QUEUE","class_name":"DOQueueHandler"}
+  				These will not work in local development, but they should work in production.
+  
+  				If you want to develop these locally, you can define your DO in a separate Worker, with a separate configuration file.
+  				For detailed instructions, refer to the Durable Objects section here: https://developers.cloudflare.com/workers/wrangler/api#supported-bindings
+
+
+ ✓ Ready in 3.3s
+workerd/server/server.c++:3354: warning: A DurableObjectNamespace in the config referenced the class "DOQueueHandler", but no such Durable Object class is exported from the worker. Please make sure the class name matches, it is exported, and the class extends 'DurableObject'. Attempts to call to this Durable Object class will fail at runtime, but historically this was not a startup-time error. Future versions of workerd may make this a startup-time error.

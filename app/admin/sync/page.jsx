@@ -1,3 +1,4 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Rule from '@/components/Rule';
 import CatalogSyncPanel from '@/components/admin/CatalogSyncPanel';
 import { requireOwnerAdmin } from '@/lib/require-admin';
@@ -5,9 +6,9 @@ import { getEnabledAllowlistEntries, loadCatalogAllowlist } from '@/lib/catalog-
 import { evaluateCatalogSyncReadiness } from '@/lib/catalog-sync-readiness.js';
 import { readStore } from '@/lib/store.js';
 
-export const metadata = {
+export const metadata = withPageMetadata('/admin/sync', {
   title: 'Catalog sync'
-};
+});
 
 export default async function AdminSyncPage() {
   await requireOwnerAdmin();
@@ -22,7 +23,7 @@ export default async function AdminSyncPage() {
       <h1 className="mt-6 font-display text-[clamp(2rem,4vw,2.8rem)] font-normal text-graphite">
         Catalog sync
       </h1>
-      <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal/75">
+      <p className="mt-4 max-w-2xl font-body text-sm font-light leading-relaxed text-charcoal">
         Autonomous refresh is allowlist-only — the current eight shop SKUs, not the full wholesale
         catalog. Live sources are RPA (wholesale portal) or an authorized CSV/JSON feed. Mock is
         local/dev only and is never treated as live. See docs/SKIN_SCRIPT_SYNC.md.

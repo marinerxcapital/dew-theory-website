@@ -1,10 +1,11 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import { getAdminFromCookies } from '@/lib/admin-auth';
 import AdminShell from '@/components/admin/AdminShell';
 
-export const metadata = {
+export const metadata = withPageMetadata('/admin/login', {
   title: 'Admin — Dew Theory',
   robots: { index: false, follow: false }
-};
+});
 
 export default async function AdminLayout({ children }) {
   const admin = await getAdminFromCookies();

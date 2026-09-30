@@ -141,10 +141,16 @@
       "sync_enabled": true
     },
     {
-      "product_id": "lip-treatment-peppermint-pomegranate",
+      "product_id": "lip-treatment-peppermint",
       "skin_script_sku": "1410240",
-      "sync_enabled": true,
-      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/"
+      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/",
+      "sync_enabled": true
+    },
+    {
+      "product_id": "lip-treatment-pomegranate",
+      "skin_script_sku": "1410340",
+      "supplier_product_url": "https://skinscript.com/product/new-ageless-lip-treatment/",
+      "sync_enabled": true
     },
     {
       "product_id": "mandelic-brightening-serum",

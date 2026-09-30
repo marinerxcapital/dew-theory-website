@@ -1,0 +1,4 @@
+{
+  "compilerOptions": {"allowJs": true, "checkJs": true, "noEmit": true, "target": "ES2022", "module": "NodeNext", "moduleResolution": "NodeNext", "skipLibCheck": true},
+  "include": ["lib/design-tokens.js", "lib/page-metadata.js"]
+}

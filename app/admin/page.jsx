@@ -57,8 +57,8 @@ export default async function AdminCommandCenterPage({ searchParams }) {
             href={`/admin?range=${r.key}`}
             className={`rounded-sm px-3 py-1.5 font-label text-[0.62rem] uppercase tracking-lockup ${
               range === r.key
-                ? 'bg-forest text-ivory'
-                : 'bg-stone/30 text-forest/70 hover:bg-stone/50'
+                ? 'bg-green-300 text-ivory'
+                : 'bg-stone/30 text-forest hover:bg-stone/50'
             }`}
           >
             {r.label}

@@ -48,3 +48,24 @@ Commerce IDs, prices, SKUs, and fulfillment fields were **not** changed.
 git revert <commit>
 # or restore from .dewtheory-backups/product-assets/<timestamp>
 ```
+# 2026-09-29 Skin Script 252-source autonomous catalog package
+
+The local autonomous production package completed asset QA for the full Skin Script source set.
+
+- Source ZIP SHA256: `b74ae4fd8cd13a82459153465e06f2c2cf8ecb9b0b7c4f942a358911d2e3d5a7`
+- Canonical output directory:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\output\final_catalog`
+- Final ZIP:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\output\DEW_THEORY_SKINSCRIPT_FINAL_252_CATALOG.zip`
+- Final ZIP SHA256: `85c6f3261e79f2ad284fe0335710b60dcb1bac3da2429c063c0b1d7ec61f348e`
+- Count: 252 standalone PNGs, one per manifest source assignment.
+- QA: `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\work\FINAL_QA_REPORT.json`
+  passed with 252 expected / 252 existing / 0 errors.
+- Ledger: `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\manifests\PROGRESS_LEDGER.csv`
+- Deployment: not performed; these assets are not yet wired into the live storefront.
+- Professional visual QA regenerated sources 119, 128, 135, and 238 for better readability and
+  cleaner presentation.
+
+Source duplicate note: source 049 and source 082 are byte-identical in the source ZIP. Source 082
+was rendered on approved background `D` to avoid a byte-identical final PNG while preserving source
+pixels.

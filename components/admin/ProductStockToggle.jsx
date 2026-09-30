@@ -35,7 +35,7 @@ export default function ProductStockToggle({ productId, stockStatus, active }) {
           </option>
         ))}
       </select>
-      <label className="flex items-center gap-1.5 font-body text-xs font-light text-charcoal/70">
+      <label className="flex items-center gap-1.5 font-body text-xs font-light text-charcoal">
         <input
           type="checkbox"
           checked={active !== false}

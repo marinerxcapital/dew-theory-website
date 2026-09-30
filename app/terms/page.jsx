@@ -1,12 +1,13 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import LegalPageShell from '@/components/LegalPageShell';
 
-export const metadata = {
+export const metadata = withPageMetadata('/terms', {
   title: 'Terms of Use & Sale',
   description:
-    'Dew Theory terms of use and sale. View or download the full FIXED V2 PDF policy.',
+    'Dew Theory terms of use and sale. View or download the full PDF policy.',
   alternates: { canonical: '/terms' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function TermsPage() {
   return (

@@ -6,6 +6,362 @@
 
 ---
 
+## 2026-09-29 (eve) — Skin Script SUPPLY AND DEPLOYMENT response package — RECEIVED, VERIFIED, STILL BLOCKED
+
+Received `Desktop\DewTheory_SkinScript_DEEPSEEK_SUPPLY_AND_DEPLOYMENT_PARTIAL.zip`
+(144,864,625 bytes, 18:04 local), the ChatGPT session's response to the 2026-09-29 supply
+request. Extracted to `Desktop\DewTheory_SkinScript_DEEPSEEK_SUPPLY_AND_DEPLOYMENT_PARTIAL\`
+(immutable). GitHub not used.
+
+Package verification:
+
+- `scripts/VERIFY_PACKAGE.ps1` → **PASS** (136 checksummed files, 252 source rows, 43 immutable
+  approved PNGs; full deployment blocked).
+- `catalog/scripts/verify_handoff.py --root .\catalog` → integrity **PASS** (83 content files).
+- Catalog subtree byte-identical to the prior ALL-IN-ONE control (master/mapping JSON + all 43
+  PNG SHA256 equal). New supply material: both WORK_CONTINUATION_LEDGERs (original 78,685-byte V1 +
+  updated 88,696-byte), SUPPLIED_APPROVED_ASSET_RECEIPT (43 rows), SOURCE_FILENAME_CROSSWALK
+  (252 rows), DECISION_AND_BLOCKER_REGISTER, DEEPSEEK_REPORTED_SITE_HINTS (explicitly
+  unverified), 6 authorized backgrounds (reference-only), future-receipt templates.
+- Ledger cross-check: 71–75 `PASS_PRIOR_CHECKPOINT`; 76–113 `PASS` with per-source visual QA
+  notes; 114 `BLOCKED_SOURCE_FIDELITY` (Drug Facts graphic; 3 rejected attempts); 115–252
+  `PENDING_WORK_GENERATION`. No new approved finals for any missing source — 209 still missing.
+
+Decision register applied to local work:
+
+- **D1** (catalog expansion): OPEN — operating rule preserved: stage unmatched SKUs; no product
+  creation. (36-product storefront untouched.)
+- **D2** (aspect): IMPLEMENTATION_DIRECTIVE_NO_CROP — prepared, NOT applied:
+  `work\skinscript-image-deployment-20260929\D2_NO_CROP_STAGED_PATCH.md` (minimal `object-fit:
+  contain` in ProductImage.jsx / ProductGallery.jsx; visually inert for existing same-aspect
+  webp; letterboxes 3:4 PNGs without crop). Applies at release time only.
+- **D3** (alt sizes/samples): Sources 104–106, 108–110, 113 stay staged/unused pending exact
+  variant records. Sources 103/107 (3.3 oz) and 111 (2 oz) primaries re-verified against site
+  sellable sizes; 112 stays a swatch (nonvariant).
+- **D4** (Source 82): OPEN_SUPPLIER_RECONCILIATION — parent SKU 3010108 retained; no standalone
+  reparenting.
+- **D5** (Source 94): OPEN_SUPPLIER_RECONCILIATION — printed 8 fl oz / 120 ml preserved; no
+  size correction.
+- **D6** (Sources 72/75): OPEN_SIZE_VERIFICATION — visual approval retained, size_verified
+  still NOT_VERIFIED.
+- **D7**: SUPPLIED — all 43 approved finals + updated ledger received.
+
+Local revalidation performed:
+
+- `build-bindings.mjs` inspected for index/fuzzy joins, hardcoded fallbacks, family-SKU
+  collisions, size flattening and destructive writes — none found
+  (`work\skinscript-image-deployment-20260929\BUILD_BINDINGS_INSPECTION.md`); re-pointed at the
+  new supply catalog with receipt+crosswalk cross-checks and re-run: 43 staged,
+  **11 VERIFIED product bindings, 4 VERIFIED source bindings** (103, 107, 111 primaries;
+  112 swatch). DEEPSEEK_REPORTED_SITE_HINTS left as unverified history; every binding stands on
+  local evidence (products.json, allowlist, supplier registry, official wholesale table).
+- Before-state re-check: `data/products.json` projection-equal to the 2026-09-29 export;
+  115/115 serving-tree image hashes match `before-state/SHA256SUMS.before-state.txt`
+  (file regenerated as plain text; earlier copy had JSON-stringify formatting).
+- Deployment gate re-run from the new catalog with the working bindings →
+  **exit 2, BLOCKED** (report: `work\skinscript-image-deployment-20260929\
+  DEPLOYMENT_GATE_REPORT_2026-09-29_SUPPLY.json`). Blocker categories unchanged: 209
+  missing/unapproved sources; size_verified 72/75; 248 unproven source bindings; 5
+  release-validation gates NOT_RUN.
+
+No website files, pricing, Stripe, checkout, fulfillment, auth, admin, consultations, quiz,
+routes, SEO or serving-tree assets changed. No deployment attempted. Blockers unchanged in
+substance; see `docs/deploy/SKIN_SCRIPT_IMAGE_DEPLOYMENT_LOG_2026-09-29.md` § supply response.
+
+**Timestamp:** 2026-09-29 (evening session). **Agent:** Codex, DeepSeek V4 Pro. **GitHub:** not used.
+
+
+## 2026-09-29 — Skin Script 252-source image deployment — PREPARATION COMPLETE, DEPLOYMENT BLOCKED BY CONTROL GATES
+
+Executed the consolidated control package
+`Desktop\DewTheory_SkinScript_CODEX_ALL_IN_ONE_PARTIAL.zip` (extracted to
+`Desktop\DewTheory_SkinScript_CODEX_ALL_IN_ONE_PARTIAL\`) against the canonical local checkout
+`Desktop\DewTheory\working\dew-theory-wt-zero-touch`. Image-asset and storefront-mapping work only;
+no artwork changed, no storefront wired, no deployment performed, no GitHub used.
+
+Package truth (supersedes the morning 252-PNG production claim): **43 approved immutable PNGs
+(Sources 71–113 only), 252 source records, 87 canonical SKU groups, 209 missing/unapproved
+sources.** The morning session's `work\dewtheory-codex-package-20260928\...\output\final_catalog`
+252 PNGs are session-generated outputs that the control package does not approve (its own manifest
+keeps Sources 1–70 and 114–252 missing/unapproved and its QA flagged perceptual duplicates); they
+must not be deployed.
+
+Verification:
+
+- `py scripts/verify_handoff.py --root .` → integrity **PASS** (83 files; 43 PNGs byte-identical).
+- `--deployment-gate` → **exit 2, BLOCKED** (209 missing sources; size_verified 72/75; no bindings).
+- Deterministic bindings built and gate re-run with working
+  `work\skinscript-image-deployment-20260929\SITE_BINDINGS.json` → still **BLOCKED** (expected).
+
+Deterministic mapping results (evidence: `data/products.json`,
+`data/catalog-allowlist.json`, `data/supplier/skin-script-portal-urls.json` (WC recon 2026-09-20),
+`.artifacts/final-catalog/official-wholesale-august-2026.json`):
+
+- 87 product bindings: **11 VERIFIED** (8 exact SKU-string matches — 5010420 discovery-kit,
+  4010800/4010900/4011000 travel kits, 1410140 lip balm, 1310640 peptide eye serum, 1310740
+  tri-peptide eye cream, 1310840 blemish spot treatment; plus 3 proven family-key translations:
+  image-pack 1210100→official 1210140 cucumber toner 3.3 oz, 1210200→1210240 mint toner 3.3 oz,
+  1610100→1610140 SPF 30 2 oz). 76 canonical SKUs have no storefront product.
+- 252 source bindings: **4 VERIFIED** (sources 103, 107, 111 primary fronts; 112 SPF swatch via
+  NON_VARIANT_PRODUCT). 39 of 43 approved images have no proven site target (32 products not sold;
+  7 alt-size/sample views with no sellable variant record).
+- Source 82 (Lemon Honey kit component) and Source 94 (printed 8 fl oz/120 ml label) remain
+  unresolved — the storefront sells neither product.
+
+Staged release (no serving-tree changes): 43 approved PNGs SHA256-verified into
+`work\skinscript-image-deployment-20260929\staged-assets\`; deploy manifest, before-state export
+(`before-state\catalog-before-state.json` + `SHA256SUMS.before-state.txt`), catalog comparison,
+rollback plan, and gate report in the same directory. Approved PNGs are 1536×2048 (3:4) vs the
+serving architecture 832×1232 (52:77) — a no-crop aspect strategy is required at release time;
+no re-encoding authorized.
+
+Baseline: `npm ci` + `npm test` → **374 pass / 0 fail** (127 suites), recorded in
+`work\skinscript-image-deployment-20260929\baseline-npm-test.log`.
+
+Blocker summary: (1) 209 missing approved PNGs (must be supplied, never generated); (2) 76
+canonical SKU groups have no storefront product (enzymes/pro kits/manual not sold); (3) 39 approved
+images have no proven site binding; (4–6) sources 82, 94, 72/75 evidence gaps; (7) dimension/aspect
+translation; (8) five release-validation gates NOT_RUN (no partial publishing permitted). Full
+detail: `docs/deploy/SKIN_SCRIPT_IMAGE_DEPLOYMENT_LOG_2026-09-29.md` and
+`OPEN_ITEMS.md` § "2026-09-29 — Skin Script image deployment blockers".
+
+Live site untouched: `dewtheoryco.com` unchanged; existing noir imagery, Stripe, cart/checkout,
+fulfillment, auth, admin, consultations, Skin Quiz, routes, SEO all preserved.
+
+**Timestamp:** 2026-09-29 (session). **Agent:** Codex, DeepSeek V4 Pro. **GitHub:** not used.
+
+
+## 2026-09-29 — Skin Script autonomous 252-source catalog package — ASSET QA COMPLETE, NOT DEPLOYED
+
+Executed the attached `Dew Theory x Skin Script` autonomous production package locally in the
+canonical orphaned checkout `Desktop\DewTheory\working\dew-theory-wt-zero-touch`.
+
+Output status:
+
+- Source ZIP:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\assets\source\SkinScript_Product_Image_Pack_2026-09-20_compact(2).zip`
+- Source ZIP SHA256: `b74ae4fd8cd13a82459153465e06f2c2cf8ecb9b0b7c4f942a358911d2e3d5a7`
+- Canonical PNG output:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\output\final_catalog`
+- Final PNG count: **252**
+- Final ZIP:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\output\DEW_THEORY_SKINSCRIPT_FINAL_252_CATALOG.zip`
+- Final ZIP SHA256: `85c6f3261e79f2ad284fe0335710b60dcb1bac3da2429c063c0b1d7ec61f348e`
+- Ledger:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\manifests\PROGRESS_LEDGER.csv`
+- QA report:
+  `work\dewtheory-codex-package-20260928\DEW_THEORY_SKINSCRIPT_CODEX_AUTONOMOUS_PRODUCTION_PACKAGE_V1\work\FINAL_QA_REPORT.json`
+
+QA:
+
+- Sources 1-70 were audited fail-closed and regenerated where existing outputs could not be proven
+  correct.
+- Sources 71-252 were processed sequentially.
+- Final QA passed: expected_count `252`, existing_count `252`, errors `[]`.
+- Professional visual QA regenerated four low-contrast/plate-risk outputs: sources 119, 128, 135,
+  and 238.
+- Five perceptual-similarity pairs were retained as source-distinct assignments.
+- Source 049 and source 082 were byte-identical in the source ZIP; source 082 was regenerated on
+  approved packaged background `D` to avoid a byte-identical final PNG while preserving source pixels.
+
+Operational notes:
+
+- GitHub was not used.
+- No storefront wiring or deployment was performed.
+- To recover disk space on a full local drive, generated/rebuildable `.next`, `.open-next`,
+  `.wrangler`, and `node_modules` were removed. Run `npm ci` before any Node-based test/build/deploy
+  work.
+
+## 2026-09-28 — glass logo replacement + restrained glow — DEPLOYED, VERIFIED
+
+Replaced customer-facing website logo usage with the supplied glass/chrome Dew Theory wordmark. The
+first pass derived transparency from a JPEG; the final live pass replaced that with the newly
+supplied true-alpha PNG as the canonical asset:
+`public/logo-dewtheory-glass-wordmark-transparent.png` plus lossless WebP alias. Legacy public logo
+URLs were overwritten as compatibility aliases so old direct logo paths use the same true-alpha
+artwork.
+
+Changed surfaces:
+
+- `components/Wordmark.jsx` now defaults to the true-alpha transparent glass logo and preserves
+  intrinsic proportions (`3000x1000`).
+- `components/Nav.jsx` and `components/Footer.jsx` use the new logo through the reusable Wordmark.
+- `app/layout.jsx`, home/shop/virtual-consultation metadata, `public/site.webmanifest`, and
+  `public/_headers` now point at/cache the new canonical asset.
+- `app/globals.css` adds a restrained champagne/warm-white/sage glow via alpha-masked CSS
+  pseudo-elements and `drop-shadow`, with a static `prefers-reduced-motion` fallback.
+
+Verification:
+
+- `npm test` passed: **374 pass / 0 fail**.
+- `npm run build` passed; only existing OpenNext/Workers local Durable Object warnings appeared.
+- `npm run deploy` completed through OpenNext + Wrangler 4.141.0 using the authenticated Cloudflare
+  account `skyler@marinerxcapital.com`; Worker `dew-theory` deployed to `dewtheoryco.com`,
+  `www.dewtheoryco.com`, and `dew-theory.marinerx-capital.workers.dev`.
+- **Current Version ID:** `2815c88a-6d37-4ead-b0e6-c6bbde9da72f`.
+- Live smoke passed: `npm run smoke:routes -- https://dewtheoryco.com` returned all clear for the
+  homepage, shop, virtual consultation, cart, legal HTML pages, admin login, and all 8 public legal
+  PDFs.
+- Live HEAD probes returned 200 for apex, www, `logo-dewtheory-glass-wordmark-transparent.png`,
+  `logo-dewtheory-glass-wordmark-transparent.webp`, compatibility `logo-dewtheory-glass-20260928.png`,
+  and `site.webmanifest`; canonical PNG served
+  `image/png` with `Cache-Control: public, max-age=31536000, immutable`.
+- Local visual QA at `http://127.0.0.1:3456/` captured desktop/mobile clear nav, scrolled solid nav,
+  and footer: `.brand-wordmark` background is transparent, the logo image resolves to
+  `/logo-dewtheory-glass-wordmark-transparent.png`, no console errors were emitted, reduced motion
+  disables the breathing animation, and screenshots show no visible image rectangle.
+- Live browser QA at `https://dewtheoryco.com/` captured desktop/mobile clear nav, scrolled solid
+  nav, footer, and reduced-motion mode: deployed DOM/CSS uses
+  `/logo-dewtheory-glass-wordmark-transparent.png`, `.brand-wordmark` remains transparent, scrolled
+  nav enters `data-state="solid"`, reduced motion disables `brand-wordmark-breathe`, and no console
+  errors were emitted.
+- Pixel/asset sanity: canonical PNG corners are alpha `0`; outer edge has `0` non-transparent pixels,
+  confirming transparent areas reveal the live page surface rather than a baked box.
+
+**Timestamp:** 2026-09-28T21:04:03Z. **Signature:** Codex. **Model:** Codex, GPT-5-based coding
+agent. **GitHub:** not used. **Source:** local working copy
+`Desktop\DewTheory\working\dew-theory-wt-zero-touch`.
+
+
+## 2026-09-26 — UI/UX Transformation (spectral editorial system) — DEPLOYED, VERIFIED
+## 2026-09-26 — CLINICAL NOIR (live) + continuation pass — DEPLOYED, VERIFIED
+
+### 2026-09-26 — incident: `cd2a7f4c` rolled back; audit findings recorded
+
+Another session deployed `cd2a7f4c-58a2-4fea-a99d-8752320c505c` (21:43:53Z), which served **503
+`error code: 1102`** on `/virtual-consultation` (6/6 and 3/3 consecutive), 503/200/500 flapping on
+`/api/availability`, and 503→200 flapping on `/shop` and `/routine`, while static routes stayed
+200. Rolled back to the last verified-good version **`41fbbdec-d3cd-4026-a49b-67d6b5192cde`**
+(`npx wrangler rollback --name dew-theory`); consultation then returned 200 x10, `smoke-routes`
+all clear, and the 42-link internal sweep found zero broken links. Root cause is **unproven** —
+re-promote `cd2a7f4c` only after re-running `smoke-routes` + `verify-ui` on the candidate.
+
+Full audit: **`docs/AUDIT_2026-09-26_FINDINGS.md`** — outstanding items are HSTS not set (F3), a
+retired ivory/sage token block still present in `app/globals.css` alongside the noir layer (F4),
+8 MB of unreferenced product imagery under `public/` (F5), seven unimported components (F6),
+`lib/spectral.js` still carrying the retired palette (F7), stale root screenshots/polish docs (F8),
+`/privacy` duplicating `LegalPageShell` (F9), and no Git metadata so incident diffs are impossible
+(F10). Also: `opennextjs-cloudflare build` hits `EPERM` on `.open-next` while another session holds
+it, so this session deployed from `working\dew-theory-deploy-20260926`.
+
+**Direction change (owner-confirmed):** a separate workstream replaced the spectral editorial
+system with **CLINICAL NOIR** — `#050505` void ground, hot pink (`#FF1F8F` / `#FF4FA8`) as the
+single accent, white as precision, Fraunces + Inter typography. That direction **supersedes**
+the Virtual Consultation and MAX UI/UX directives; the section below is now historical.
+Its own record: `reports/DewTheory_CLINICAL_NOIR_Revamp_Report_2026-09-26.md`.
+
+| Item | Verified value |
+|---|---|
+| Live Worker version | `41fbbdec-d3cd-4026-a49b-67d6b5192cde` (2026-09-26T21:24:42Z) — restored by rollback after `cd2a7f4c` (21:43:53Z) served 503s; see the incident note above |
+| Rollback target | `b9bda07c-325e-48c1-b575-bd1ee429b531` (noir), then `72210705-…` (spectral) |
+| Product imagery | 116 of 135 assets re-lit onto the void with a pink rim; filenames and 832x1232 dimensions preserved; `PRODUCT_IMAGE_REVISION = noir-20260926` cache token |
+| Live markers | `bg-void`, `noir-20260926`, "hot pink rim light" alt text present; "sage background" and the ivory hero copy absent |
+
+**Continuation pass (this session)** finished the structural items the noir sweep did not cover,
+on top of the noir system — full detail in
+`docs/CONTINUATION_2026-09-26_PDP_TIMELINE_AND_FILTERS.md`:
+
+- PDP **routine-position timeline** (`components/RoutinePlacement.jsx`, `lib/routine.js`) with
+  `aria-current="step"` and AM/PM labels taken from catalog copy only.
+- PDP **skin-concern chips** above the fold.
+- Shop filters extended with **routine step**, **availability**, and **price** in the desktop
+  rail, mobile drawer, and active-chip row.
+
+Gates: `npm test` **315 pass / 0 fail** (110 suites); `npm run build` success (37 PDPs);
+`smoke-routes` all clear; `verify-ui` **48/48 clean** at 8 viewports x 6 pages.
+Live filter checks: `?step=Mask` 1 product, `?step=Cleanser` 6, `?availability=in-stock` 34,
+`?availability=out-of-stock` 1, `?min=40&max=60` 12 — no console errors.
+
+Bundled runtime data was hash-verified byte-identical to the pre-session snapshot
+(`backups\runtime-pre-continuation-20260926\`), so no local telemetry shipped.
+
+**Still open:** three manufacturer label panels remain on the sage plate (colour-keying them
+would destroy the Drug Facts text — measured panel fill is within 14 RGB of the plate colour);
+Emily portrait and hero/lifestyle imagery untouched; policy pages carry the token layer only;
+checkout not re-driven end to end (payment/intake/fulfillment code untouched); no Git commit.
+
+**Signed:** Codex · **Timestamp (UTC):** 2026-09-26T~16:30Z
+**Source:** local working copy `Desktop\DewTheory\working\dew-theory-wt-zero-touch`
+**GitHub:** intentionally not used. This checkout has **no working Git linkage** (its `.git` file
+pointed at a removed `Desktop\dew-theory\.git\worktrees\...`), so `git` commands fail and **no SHA
+exists for this work**. Treat this section plus `docs/PRODUCTION_DEPLOY_LOG_2026-09-26.md` as the
+record of truth.
+
+**Deployed Worker version:** `72210705-42d0-4032-a5a2-b7726f942f5b`
+**Previous live version (rollback target):** `676ef571-3bf1-4d63-830a-611a12a7f96d`
+**Framework:** Next.js `^15.5.26` (from `^15.5.20`)
+
+### What shipped
+
+- **Homepage rebuilt** to the directive hierarchy: hero → trust strip → two ways to start → shop by
+  skin goal → featured product story → personalization hub → meet Emily → Emily's picks → the Dew
+  Edit → browse-all band → final consultation CTA.
+- **Spectral product visual system** (`lib/spectral.js`): six family worlds (hydration, barrier,
+  brightening, clarifying, aging, SPF) plus category worlds (eye, lip, masks, sets) and a quiet
+  neutral fallback. Every family maps only to `conditions_addressed` values that exist in
+  `data/products.json`; a test enforces this.
+- **Hero rebuilt**: quiet pearl ground with restrained iridescence, eyebrow plus a
+  `Your skin. / Less guessing.` headline, two CTAs (Shop skincare / Book a consultation), and a real
+  catalog product floating in a dissolving spectral field (photo scaled past the frame, four-sided
+  mask, soft shadow, iridescent cast). Product name, category and price come from the catalog record.
+- **Consultation page restored and restructured** (it was missing from the working copy): hero →
+  value proposition → how it works → what we'll cover → what you'll receive → meet Emily → booking
+  UI → preparation → FAQ → final CTA. Payment, intake, photo-upload, cancelled-checkout state and the
+  scope disclaimer keep their existing behaviour.
+- **Dew Theory Concierge** added (`components/Concierge.jsx`, wired in `app/layout.jsx`): accessible
+  drawer with quiz / routine / consultation / shop-by-concern; hidden on `/admin` and `/cart*`.
+- **Shop-by-skin-goal tiles** generated from the spectral families, each linking to the real
+  `conditions_addressed` value so the tile and the PLP filter cannot disagree.
+- **Product cards**: spectral family accent edge, family-dot eyebrow, restrained Emily's-pick badge.
+- **Sitemap**: `/skin-quiz` and `/routine` added (49 URLs).
+
+### Repairs required first
+
+| Problem | Resolution |
+|---|---|
+| `node_modules` was a dangling junction to the removed old repo path | Junction removed, `npm ci` re-run |
+| `app/page.jsx` deleted mid-refactor | Homepage rebuilt |
+| `app/virtual-consultation/page.jsx` missing | Restored and upgraded |
+| `tests/public-removals.test.mjs` asserted `/routine` and `/quiz` unpublished while both are live | Contract corrected; the test now also asserts the published guidance pages exist |
+| Hero/featured images rendered broken live | `quality={82}` was outside `images.qualities: [60,70,75,85]`, so `/_next/image` returned 400. Set to 85 and added a regression test over every rendered `quality` |
+| Local preview/smoke runs appended to `data/runtime/store.json`, which is bundled into the Worker, so local telemetry was baked into the first four deploys | Both runtime files restored from the pre-session snapshot and redeployed (products stayed at 36 throughout) |
+
+### Gates
+
+| Gate | Result |
+|---|---|
+| `npm ci` | success (tree at lockfile) |
+| `npm test` | **301 pass / 0 fail** |
+| `npm run build` | success (92 pages, 36 PDPs) |
+| OpenNext build + local preview | success |
+| `smoke-routes` (local preview) | all clear |
+| `smoke-checkout` (local preview) | storefront + mock order + idempotency PASS; admin login 401 (no local admin secret — expected) |
+| `npm run deploy` | success |
+| `smoke-routes` (production) | all clear |
+| `verify-ui` (production, 8 viewports x 6 pages) | 48/48 clean: no overflow, no broken images, no heading jumps, no console errors |
+
+### Security delta
+
+`next` `^15.5.20` to `^15.5.26` clears the **critical** Next advisory set (App Router Server Actions
+DoS, image-optimizer SSRF/RCE, cache confusion). Remaining audit findings are Node-only tooling
+libraries (`sharp`, `undici`, `qs`, `nanoid`, `brace-expansion`) not reached by the Worker runtime.
+`npm audit fix --force` was not run.
+
+### Rollback
+
+`npx wrangler rollback --name dew-theory` → previous live `676ef571-3bf1-4d63-830a-611a12a7f96d`.
+Local snapshot: `Desktop\DewTheory\backups\wt-zero-touch-snapshot-20260926-prehome`.
+
+### Still open after this session
+
+- Homepage copy uses the directive's approved headline (`Your skin. / Less guessing.`) and eyebrow
+  (`Professional skincare · personalized by Emily`). The brand motif `this and no stress` is no
+  longer on the homepage hero; re-add if the owner prefers the prior voice.
+- No verified portrait of Emily exists in the repo, so “Meet Emily” still uses the abstract
+  botanical plate rather than a photograph. A real portrait is an owner-supplied asset.
+- `/about` remains unpublished by owner decision (Nav/Footer still must not link it).
+- The working copy has no Git history; this work is **not committed anywhere**. Committing requires a
+  restored repository or a fresh `git init`.
 
 ## 2026-09-20 SuperGrok — verified catalog + sage media + carousel (branch)
 
@@ -27,6 +383,17 @@
 **D1 mappings:** 35 verified active
 **AUTO_FULFILL:** false | **SKIN_SCRIPT_MODE:** mock
 **Note:** GitHub Actions still billing-locked; deploy used local `npm run deploy`.
+
+## 2026-09-21 zero-touch NO-GITHUB wave (local only)
+
+**Branch:** `supergrok/dew-theory-zero-touch-no-github`
+**GitHub:** intentionally not used (billing removed from critical path)
+**Official SRP:** August 2026 Suggested Retail Price List applied to checkout-enabled products
+**Shipping:** Skin Script drop-ship policy `` under ``; free at `+`
+**Lips:** Peppermint `1410240` and Pomegranate `1410340` as separate products
+**Discovery Kit:** blocked (missing official SRP)
+**Stripe persistent catalog sync:** BLOCKED_EXTERNAL until local Stripe secret available
+**AUTO_FULFILL:** false
 ## CURRENT BRAND SYSTEM
 
 ### Authoritative five colors (do not alter hex values)
@@ -123,10 +490,11 @@ Owner checklist: `docs/SKIN_SCRIPT_SYNC.md`.
 | Catalog honesty | PR #24 merged — Emily did **not** confirm SPF retail, lip SKU structure, mask size, or DEW15. Defaults remain engineered and explicitly unconfirmed. |
 | Site polish | PR #23 merged — checkout validation, honest storefront copy, trust strip, card skeletons. |
 | Worker | `dew-theory` (Cloudflare Workers via OpenNext) |
-| Current Worker version ID | `ffac28e6-b77a-42da-a668-ba6154556378` (as of Stripe PR #17 deploy closeout; re-verify) |
+| Current Worker version ID | `72210705-42d0-4032-a5a2-b7726f942f5b` (2026-09-26 spectral editorial transformation; previous `676ef571-3bf1-4d63-830a-611a12a7f96d` is the rollback target) |
 | Revamp branch | `cursor/brand-revamp-editorial-5502` |
 | Revamp commit (implementation) | `e4e036df18fccccbf36157de343419fce07218f1` on `cursor/brand-revamp-editorial-5502` (PR #7); squash merge `17d4849a0c3bb502d2341552ee5573a12f46472f` has an empty tree diff vs this audited head |
-| Live design as of 2026-08-29 | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. Public offering surface is exactly Shop (products) + Virtual Consultation. Primary menu is Shop / Virtual Consult (+ Shop-by-type catalog). |
+| Live design as of 2026-09-26 | **Spectral editorial homepage live**: pearl/iridescent hero (`Your skin. / Less guessing.`, Shop skincare + Book a consultation), trust strip, two ways to start, shop by skin goal, featured product story, personalization hub (quiz + routine + Emily), meet Emily, Emily's picks, Dew Edit, consultation CTA. Consultation page rebuilt with the 10-section flow. Concierge drawer live. Nav/Footer unchanged. |
+| Live design as of 2026-08-29 (historical) | **Only consultation + products live**: sage `#93A890` hero with two CTAs (`Shop Skin Script`, `Virtual Consultation`), then `Emily's picks` product rail. |
 | Deploy blocker this session | Worker deployed via existing Wrangler OAuth `skyler@marinerxcapital.com`; Stripe live/test keys + Tax, RPA container, and live order remain owner-blocked |
 
 **Admin Command Center (PR #16, 2026-09-01):** Emily-only owner console at `/admin` with durable commerce KPIs, fulfillment center, Stripe/RPA integration health, attention queue. Data authority documented in `docs/ADMIN_COMMAND_CENTER_ARCHITECTURE.md`. Merged and live on production this session; unauthenticated gate, `noindex`, `robots.txt` exclusions, and no-secret-leak HTML verified. Owner login + TOTP live check remains owner-only.
@@ -221,9 +589,13 @@ See `ENV.md` / `.env.example`. Key names: `NEXT_PUBLIC_SITE_URL`, `STRIPE_SECRET
 
 ### Public route inventory
 
-`/`, `/shop`, `/shop/[id]`, `/cart`, `/cart/confirmation`, `/virtual-consultation` (+ intake/plan/success), legal: `/privacy` `/terms` `/shipping` `/returns` `/booking-policy` `/aesthetic-disclaimer` `/cookies` `/accessibility`, `/admin/*`.
+`/`, `/shop`, `/shop/[id]`, `/skin-quiz`, `/routine`, `/cart`, `/cart/confirmation`, `/virtual-consultation` (+ intake/plan/success), legal: `/privacy` `/terms` `/shipping` `/returns` `/booking-policy` `/aesthetic-disclaimer` `/cookies` `/accessibility`, `/admin/*`.
 
-**Unpublished (return the application 404):** `/routine`, `/services`, `/membership`, `/book`, `/quiz`, `/about`, `/contact`, `/faq`. `/studio` 308-redirects to `/`.
+**Published alias:** `/quiz` 307-redirects to `/skin-quiz` (kept for legacy internal links).
+
+**Unpublished (return the application 404):** `/services`, `/membership`, `/book`, `/about`, `/contact`, `/faq`. `/studio` 308-redirects to `/`.
+
+> Corrected 2026-09-26: an earlier revision of this file listed `/routine` and `/quiz` as unpublished. Both are live (`app/routine/page.jsx` is a real page; `app/quiz/page.jsx` is a redirect), the Footer links `/routine`, and `/skin-quiz` + `/routine` are in the sitemap.
 
 ### What this revamp changed
 
@@ -710,3 +1082,20 @@ RPA container deploy blocker refined: `flyctl` is installable (`winget`/`scoop`/
 8. PR #7 merged; `npm run deploy` shipped revamp as Worker `c76d0236-07e4-47b1-9e49-e413664e80e9`
 9. Brand logo replacement committed (`bb3a48c`) and deployed as Worker `2f3d66be-106a-4c52-9060-26b5ee3a94bf`; verified live on apex + www
 10. Owner simplification committed (`4b69747`) and deployed as Worker `98313824-e97d-480a-ba84-059be65de309`; verified live on apex + www
+
+## September 2026 — Green system revamp
+
+Authoritative active colors live in app/globals.css (dt-green 50, 100, 200, 300, 400, 700, 900); Tailwind reads their RGB channels. Page 100; raised cards and photos 50; bands 100/200; panels 300; body 900; controls and links 700. Strong decorative borders 400, input boundaries 700 for AA. Hairline uses green 900 at 14%; green shadows 6–12%; frosted surfaces 50 at 68%; radius 10/16/24/pill; 2px green-700 focus with green-50 offset.
+
+Use the single root Nav, announcement and four-column Footer on every route, including shop and admin; admin keeps its authenticated owner navigation inside the shared shell. Tagline Clinical · Precise · Personal. Consultation nav points to /virtual-consultation; /consultation permanently redirects. Shared ProductCard, MeetEmily, button/chip/form roles and loading/error components must remain shared.
+
+Typography: next/font Fraunces variable SOFT 100 for display/product names; Figtree for UI/body/tabular prices; Newsreader for journal prose only. Roman preload; swap. US English. Respect reduced motion; continuous loaded-image animation is avoided, glass hover interaction retained.
+
+Never fabricate reviews, ratings, medical claims, stock people, awards or results. Preserve product names, IDs/slugs, prices, stock, ingredient facts, shipping ($12 below $49 product subtotal), Stripe/checkout/secrets/webhooks. Do not rewrite legal/policy wording or PDFs. Existing missing manufacturer facts remain empty. Sizes normalize oz without trailing period or duplicates; no size is invented. Alt: Skin Script [Name] product photo. Image cache revision green-20260929; original product artwork and logo originals unchanged. Staged catalog artwork is excluded from this release.
+
+Worktree C:\Users\Skyler B. Brown\Desktop\dew-theory-codex; branch revamp/green-system. A DeepSeek V4 Pro session was active in the canonical main source. Never edit/clean/install/kill processes there. Local Git objects live on C using scripts/git-green.ps1 because D is full. Main serving source: Desktop\DewTheory\working\dew-theory-wt-zero-touch, with orphaned Git metadata; old valid Git hub is D:\OffloadedProjects\dew-theory and has dirty work. Preserve both. Hash manifest and concurrency comparisons are in docs/revamp. Route list: docs/revamp/routes.json, including 35 visible products, 7 concern details, 4 journal articles, protected/post-checkout states and intentional 404.
+
+Deployment path: Cloudflare Worker dew-theory via OpenNext/Wrangler. Verified rollback Worker version 2815c88a-6d37-4ead-b0e6-c6bbde9da72f (100%, 2026-09-28T21:03:41Z). Do not deploy a missing-image build or a stale source over concurrent work. Verify 115 catalog references in final .open-next/assets; read back active version after deployment. Roll back to the recorded version if production fails. No environment/secrets changes are part of the revamp. Latest resume authorizes the specifically listed branch/PR/main release actions; do not add unrelated GitHub work.
+
+Open owner items: Shipping operations wording; Returns placeholders; Acai Berry manufacturer description hidden until supplied; consultation price display; hello@dewtheory.studio versus dewtheoryco.com; 27 records lack supplied concern/active content; authentic Stripe test-account handoff is unavailable without test credentials. Authenticated admin production content needs appropriate access. Cart drawer and cookie banner are absent from canonical source; do not invent consent/legal behavior. Consult resume-state.md and executed reports for current gates; unfinished tests are not passing evidence.
+

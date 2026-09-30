@@ -1,168 +1,179 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
-import Wordmark from './Wordmark';
+import { IconArrowRight } from './Icons';
+import { productImageAlt, productImageSrc } from '@/lib/product-image';
+import { formatMoney } from '@/lib/shipping';
 
 /**
- * Full-bleed landing hero — brand-first composition with dew-field motion.
- * Motion is CSS + a lightweight canvas (no GSAP on the critical path).
- * Respects prefers-reduced-motion.
+ * Pearl editorial hero — the DT-01 composition.
+ *
+ * Left: an oversized didone headline, a tracked uppercase support line, and one
+ * filled plus one outlined action. Right: a real catalog product standing on a
+ * restrained refraction field (light through glass, not a gradient panel).
+ *
+ * The product record is passed from the server page, so name, category, price
+ * and image are never hardcoded. The reveal is scoped to `.js-motion` (set by
+ * MotionRoot only when motion is enabled), so with JS disabled or
+ * reduced-motion on the copy is plain and visible.
+ *
+ * @param {{ product?: object }} props
  */
-export default function Hero() {
-  const canvasRef = useRef(null);
-  const sectionRef = useRef(null);
+export default function Hero({ product = null }) {
+  const rootRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const section = sectionRef.current;
-    if (!canvas || !section) return undefined;
+    const root = rootRef.current;
+    if (!root) return undefined;
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return undefined;
-
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return undefined;
-
-    let raf = 0;
-    let running = true;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    /** @type {{ x: number, y: number, r: number, vy: number, vx: number, a: number, life: number }[]} */
-    let drops = [];
-
-    const resize = () => {
-      const { width, height } = section.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.floor(width * dpr));
-      canvas.height = Math.max(1, Math.floor(height * dpr));
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = width < 640 ? 28 : width < 1024 ? 42 : 56;
-      drops = Array.from({ length: count }, () => spawn(width, height, true));
+    const reveal = () => {
+      root.querySelectorAll('[data-reveal-blur]').forEach((el) => {
+        el.dataset.revealed = 'true';
+      });
     };
 
-    const spawn = (w, h, randomY = false) => ({
-      x: Math.random() * w,
-      y: randomY ? Math.random() * h : h + Math.random() * 40,
-      r: 0.9 + Math.random() * 3.2,
-      vy: -(0.14 + Math.random() * 0.42),
-      vx: (Math.random() - 0.5) * 0.22,
-      a: 0.18 + Math.random() * 0.42,
-      life: 0.45 + Math.random() * 0.55
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reveal();
+      return undefined;
+    }
+
+    // Two frames so the hidden initial state is committed before the reveal
+    // transition runs — otherwise the browser collapses both states into a
+    // single paint and the blur-to-sharp never renders.
+    let inner = 0;
+    const outer = window.requestAnimationFrame(() => {
+      inner = window.requestAnimationFrame(reveal);
     });
 
-    const draw = () => {
-      if (!running) return;
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      for (let i = 0; i < drops.length; i += 1) {
-        const d = drops[i];
-        d.y += d.vy;
-        d.x += d.vx + Math.sin((d.y + i * 12) * 0.008) * 0.15;
-        d.life -= 0.0008;
-
-        if (d.y < -12 || d.life <= 0) {
-          drops[i] = spawn(w, h, false);
-          continue;
-        }
-
-        const g = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, d.r * 3.2);
-        g.addColorStop(0, `rgba(237,237,230,${d.a})`);
-        g.addColorStop(0.45, `rgba(147,168,144,${d.a * 0.45})`);
-        g.addColorStop(1, 'rgba(30,43,34,0)');
-        ctx.beginPath();
-        ctx.fillStyle = g;
-        ctx.arc(d.x, d.y, d.r * 3.2, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${Math.min(0.85, d.a + 0.25)})`;
-        ctx.arc(d.x - d.r * 0.35, d.y - d.r * 0.4, d.r * 0.45, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    draw();
-
-    const onResize = () => resize();
-    window.addEventListener('resize', onResize, { passive: true });
-
-    const onVis = () => {
-      if (document.hidden) {
-        running = false;
-        cancelAnimationFrame(raf);
-      } else if (!running) {
-        running = true;
-        draw();
-      }
-    };
-    document.addEventListener('visibilitychange', onVis);
-
     return () => {
-      running = false;
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', onResize);
-      document.removeEventListener('visibilitychange', onVis);
+      window.cancelAnimationFrame(outer);
+      if (inner) window.cancelAnimationFrame(inner);
     };
   }, []);
 
   return (
     <section
-      ref={sectionRef}
-      className="hero-stage relative isolate min-h-[min(92svh,58rem)] overflow-hidden border-b border-border"
+      ref={rootRef}
+      className="relative isolate overflow-hidden border-b border-border bg-void"
       aria-label="Dew Theory"
     >
-      <canvas
-        ref={canvasRef}
-        className="hero-stage__dew pointer-events-none absolute inset-0 z-[1]"
+      {/* Light the product performs in — glass wash, spectral streaks, a bright
+          bloom behind the bottle, and a soft shadow beneath it. Decorative. */}
+      <div className="hero-art" aria-hidden="true">
+        <div className="hero-art__glass" />
+        <div className="hero-art__streak" />
+        <div
+          className="hero-art__bloom"
+          style={{ right: '6%', top: '14%', width: '34rem', height: '34rem' }}
+        />
+        <div
+          className="hero-art__shadow"
+          style={{ bottom: '4%', width: '26rem', height: '3.25rem' }}
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-32 bg-gradient-to-b from-transparent to-void"
         aria-hidden="true"
       />
 
-      <div className="relative z-[2] mx-auto flex min-h-[min(92svh,58rem)] w-full max-w-shell flex-col justify-end px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:justify-center lg:px-10 lg:pb-20 lg:pt-24">
-        <div className="hero-stage__copy max-w-xl lg:max-w-2xl">
-          <Wordmark
-            src="/logo-dewtheory-20260825.webp"
-            priority
-            className="hero-stage__brand-logo h-auto w-[min(78vw,42rem)] object-contain object-left"
-          />
-
-          <p className="hero-stage__rule mt-4 font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew-dark sm:mt-5 sm:text-[0.68rem]">
-            Skin — Care
+      <div className="relative z-[1] mx-auto grid w-full max-w-shell items-center gap-12 px-5 pb-14 pt-12 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:pb-20 lg:pt-14">
+        {/* Copy — columns 1–6 */}
+        <div className="min-w-0 lg:col-span-6">
+          <p
+            data-reveal-blur
+            className="reveal-blur font-body text-micro font-medium uppercase tracking-eyebrow text-muted"
+          >
+            Professional skincare · personalized
           </p>
 
-          <h1 className="hero-stage__headline mt-7 max-w-lg font-display text-[clamp(1.55rem,3.6vw,2.35rem)] font-normal leading-[1.15] tracking-[-0.01em] text-ink sm:mt-8">
-            this and no stress
+          <h1 className="mt-5 font-display font-normal leading-[0.92] tracking-hero text-ink">
+            <span
+              data-reveal-blur
+              style={{ transitionDelay: '80ms' }}
+              className="reveal-blur block"
+            >
+              Your skin.
+            </span>
+            <span
+              data-reveal-blur
+              style={{ transitionDelay: '180ms' }}
+              className="reveal-blur block"
+            >
+              Understood.
+            </span>
           </h1>
 
-          <p className="hero-stage__lede mt-4 max-w-md font-body text-base font-normal leading-relaxed text-charcoal/90 sm:mt-5 sm:text-[1.05rem]">
-            Professional Skin Script actives for home — or a virtual consultation with Emily for a
-            plan built around your skin.
+          <p
+            data-reveal-blur
+            style={{ transitionDelay: '280ms' }}
+            className="reveal-blur mt-6 max-w-md font-body text-[1.0625rem] font-normal leading-[1.65] text-muted"
+          >
+            Personalized skincare guidance for real skin, and intentional routines that work.
           </p>
 
-          <div className="hero-stage__cta mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
-            <Link
-              href="/shop"
-              className="btn-primary w-full min-h-[48px] px-9 py-4 text-center font-label text-[0.72rem] font-normal uppercase tracking-lockup sm:w-auto"
-            >
-              Shop Skin Script
-            </Link>
-            <Link
+          <div
+            data-reveal-blur
+            style={{ transitionDelay: '380ms' }}
+            className="reveal-blur mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center"
+          >
+            <Link prefetch={false}
               href="/virtual-consultation"
-              className="btn-dew-outline w-full min-h-[48px] bg-ivory/80 px-9 py-4 text-center font-label text-[0.72rem] font-normal uppercase tracking-lockup backdrop-blur-[2px] sm:w-auto"
+              className="btn-primary inline-flex w-full min-h-[56px] items-center justify-center gap-3 px-9 py-4 font-body text-[0.7rem] font-medium uppercase tracking-lockup sm:w-auto"
             >
-              Virtual Consultation
+              Start a consultation
+              <IconArrowRight className="h-4 w-4" />
+            </Link>
+            <Link prefetch={false}
+              href="/shop"
+              className="btn-ghost inline-flex w-full min-h-[56px] items-center justify-center gap-3 px-9 py-4 font-body text-[0.7rem] font-medium uppercase tracking-lockup sm:w-auto"
+            >
+              Shop skincare
+              <IconArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
-      </div>
 
-      <div className="hero-stage__scroll pointer-events-none absolute bottom-5 left-1/2 z-[2] hidden -translate-x-1/2 sm:block" aria-hidden="true">
-        <span className="scroll-cue block h-8 w-px" />
+        {/* Product — columns 7–12 */}
+        {product ? (
+          <div className="relative lg:col-span-6 lg:col-start-7">
+            <div className="relative mx-auto w-[min(78vw,24rem)] lg:mx-0 lg:ml-auto lg:w-[min(34vw,30rem)]">
+              <div className="relative overflow-hidden" style={{ aspectRatio: '52 / 77' }}>
+                <Image
+                  src={productImageSrc(product)}
+                  alt={productImageAlt(product)}
+                  fill
+                  priority
+                  fetchPriority="high"
+                  decoding="sync"
+                  sizes="(max-width: 1023px) 78vw, 34vw"
+                  quality={85}
+                  className="object-contain"
+                />
+              </div>
+
+              <Link prefetch={false}
+                href={`/shop/${product.id}`}
+                data-reveal-blur
+                style={{ transitionDelay: '520ms' }}
+                className="reveal-blur mt-6 flex w-full items-baseline justify-between gap-4 border-t border-hairline pt-4 transition-opacity hover:opacity-70"
+              >
+                <span>
+                  <span className="block font-body text-micro font-medium uppercase tracking-eyebrow text-muted">
+                    {product.category}
+                  </span>
+                  <span className="mt-1.5 block font-display text-[1.35rem] font-normal leading-snug text-ink">
+                    {product.name}
+                  </span>
+                </span>
+                <span className="shrink-0 font-body text-[0.8rem] font-medium text-ink">
+                  {formatMoney(product.retail_price)}
+                </span>
+              </Link>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );

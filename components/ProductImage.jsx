@@ -33,7 +33,7 @@ export default function ProductImage({
       data-product-image-frame
       className={`media-zoom relative w-full overflow-hidden ${
         hasCustomSize ? '' : 'aspect-[52/77]'
-      } ${framed ? 'rounded-[2px] border border-chrome/15 bg-surface' : 'bg-pearl'} ${className}`}
+      } ${framed ? 'rounded-card border border-chrome/15 bg-surface' : 'bg-pearl'} ${className}`}
     >
       <div className="product-image-skeleton" aria-hidden="true" />
       {!photo && (
@@ -48,6 +48,8 @@ export default function ProductImage({
         fill
         sizes={sizes}
         priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding={priority ? "sync" : "async"}
         quality={quality}
         unoptimized={unoptimized}
         className={`media-zoom-target ${photo ? 'object-cover object-center' : 'object-cover'}`}

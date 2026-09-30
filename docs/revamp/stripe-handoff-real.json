@@ -1,0 +1,13 @@
+{
+  "base": "https://dewtheoryco.com",
+  "externalStripe": true,
+  "testMode": true,
+  "charged": false,
+  "apiStatus": 200,
+  "checkoutHost": "checkout.stripe.com",
+  "liveMode": false,
+  "mockMode": false,
+  "hostedTitle": "Dew Theory sandbox",
+  "hostedTestBanner": false,
+  "hostedPageLoaded": true
+}

@@ -26,20 +26,12 @@ export default function LegalPdfActions({ documentId, className = '' }) {
       <a
         href={doc.pdfPath}
         download={doc.fileName}
-        className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-ink/70 underline-offset-4 hover:text-ink hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dew"
+        className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-ink underline-offset-4 hover:text-ink hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dew"
       >
         Download PDF
         <span className="sr-only"> — {doc.title}</span>
       </a>
-      <a
-        href={doc.pdfPath}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-label text-[0.66rem] font-normal uppercase tracking-lockup text-ink/70 underline-offset-4 hover:text-ink hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dew"
-      >
-        Print / PDF
-        <span className="sr-only"> — open {doc.title} to print</span>
-      </a>
+
     </div>
   );
 }

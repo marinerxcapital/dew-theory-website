@@ -59,3 +59,20 @@ _package_extract/
 
 # SuperGrok local deliverables (image package ZIP kept on disk, not in git)
 dist/
+
+# Revamp evidence remains on disk; large captures are excluded from Git on the full D: object store.
+/docs/revamp/before/*.png
+/docs/revamp/after/*.png
+/docs/revamp/*.png
+/.next-qa/
+/.revamp-git-objects/
+/.next-qa2/
+/.next-qa3/
+/.next-qa4/
+/.next-qa5/
+/.next-qa6/
+/.next-qa7/
+/.revamp-fixture-quarantine/
+/.revamp-tools/
+/.revamp-github-hostkey
+/.revamp-git-upload/

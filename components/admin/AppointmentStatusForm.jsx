@@ -72,7 +72,7 @@ export default function AppointmentStatusForm({ appointmentId, current }) {
         {loading ? '…' : terminal ? 'Final' : 'Save'}
       </button>
       {msg && (
-        <p className="w-full font-body text-[0.65rem] font-light text-charcoal/60" role="status">
+        <p className="w-full font-body text-[0.65rem] font-light text-charcoal" role="status">
           {msg}
         </p>
       )}

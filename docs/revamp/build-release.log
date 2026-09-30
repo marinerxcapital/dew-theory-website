@@ -1,0 +1,184 @@
+
+> dew-theory@0.1.0 build
+> next build
+
+▲ [WARNING] 				You have defined bindings to the following internal Durable Objects:
+
+  				- {"name":"NEXT_CACHE_DO_QUEUE","class_name":"DOQueueHandler"}
+  				These will not work in local development, but they should work in production.
+  
+  				If you want to develop these locally, you can define your DO in a separate Worker, with a separate configuration file.
+  				For detailed instructions, refer to the Durable Objects section here: https://developers.cloudflare.com/workers/wrangler/api#supported-bindings
+
+
+   ▲ Next.js 15.5.26
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+workerd/server/server.c++:3354: warning: A DurableObjectNamespace in the config referenced the class "DOQueueHandler", but no such Durable Object class is exported from the worker. Please make sure the class name matches, it is exported, and the class extends 'DurableObject'. Attempts to call to this Durable Object class will fail at runtime, but historically this was not a startup-time error. Future versions of workerd may make this a startup-time error.
+   Creating an optimized production build ...
+▲ [WARNING] 				You have defined bindings to the following internal Durable Objects:
+
+  				- {"name":"NEXT_CACHE_DO_QUEUE","class_name":"DOQueueHandler"}
+  				These will not work in local development, but they should work in production.
+  
+  				If you want to develop these locally, you can define your DO in a separate Worker, with a separate configuration file.
+  				For detailed instructions, refer to the Durable Objects section here: https://developers.cloudflare.com/workers/wrangler/api#supported-bindings
+
+
+workerd/server/server.c++:3354: warning: A DurableObjectNamespace in the config referenced the class "DOQueueHandler", but no such Durable Object class is exported from the worker. Please make sure the class name matches, it is exported, and the class extends 'DurableObject'. Attempts to call to this Durable Object class will fail at runtime, but historically this was not a startup-time error. Future versions of workerd may make this a startup-time error.
+▲ [WARNING] 				You have defined bindings to the following internal Durable Objects:
+
+  				- {"name":"NEXT_CACHE_DO_QUEUE","class_name":"DOQueueHandler"}
+  				These will not work in local development, but they should work in production.
+  
+  				If you want to develop these locally, you can define your DO in a separate Worker, with a separate configuration file.
+  				For detailed instructions, refer to the Durable Objects section here: https://developers.cloudflare.com/workers/wrangler/api#supported-bindings
+
+
+workerd/server/server.c++:3354: warning: A DurableObjectNamespace in the config referenced the class "DOQueueHandler", but no such Durable Object class is exported from the worker. Please make sure the class name matches, it is exported, and the class extends 'DurableObject'. Attempts to call to this Durable Object class will fail at runtime, but historically this was not a startup-time error. Future versions of workerd may make this a startup-time error.
+▲ [WARNING] 				You have defined bindings to the following internal Durable Objects:
+
+  				- {"name":"NEXT_CACHE_DO_QUEUE","class_name":"DOQueueHandler"}
+  				These will not work in local development, but they should work in production.
+  
+  				If you want to develop these locally, you can define your DO in a separate Worker, with a separate configuration file.
+  				For detailed instructions, refer to the Durable Objects section here: https://developers.cloudflare.com/workers/wrangler/api#supported-bindings
+
+
+workerd/server/server.c++:3354: warning: A DurableObjectNamespace in the config referenced the class "DOQueueHandler", but no such Durable Object class is exported from the worker. Please make sure the class name matches, it is exported, and the class extends 'DurableObject'. Attempts to call to this Durable Object class will fail at runtime, but historically this was not a startup-time error. Future versions of workerd may make this a startup-time error.
+ ✓ Compiled successfully in 39.0s
+   Linting and checking validity of types ...
+
+ ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+   Collecting page data ...
+   Generating static pages (0/121) ...
+   Generating static pages (30/121) 
+   Generating static pages (60/121) 
+   Generating static pages (90/121) 
+ ✓ Generating static pages (121/121)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                        Size  First Load JS  Revalidate  Expire
+┌ ○ /                                           3.23 kB         127 kB          1m      1y
+├ ○ /_not-found                                   239 B         103 kB
+├ ○ /about                                        187 B         106 kB
+├ ○ /accessibility                                212 B         106 kB
+├ ƒ /account                                      598 B         107 kB
+├ ƒ /account/login                              1.91 kB         108 kB
+├ ƒ /account/reset                              1.34 kB         107 kB
+├ ƒ /admin                                        187 B         106 kB
+├ ƒ /admin/analytics                              212 B         106 kB
+├ ƒ /admin/appointments                         1.05 kB         104 kB
+├ ƒ /admin/consultations                          212 B         106 kB
+├ ƒ /admin/consultations/[id]                   3.04 kB         109 kB
+├ ƒ /admin/discounts                            2.19 kB         105 kB
+├ ƒ /admin/emails                                 212 B         106 kB
+├ ƒ /admin/fulfillment                            212 B         106 kB
+├ ƒ /admin/import                               3.15 kB         113 kB
+├ ƒ /admin/integrations                           239 B         103 kB
+├ ƒ /admin/login                                1.31 kB         104 kB
+├ ƒ /admin/orders                                 212 B         106 kB
+├ ƒ /admin/orders/[id]                             3 kB         109 kB
+├ ƒ /admin/products                               816 B         107 kB
+├ ƒ /admin/products/[id]                        2.09 kB         112 kB
+├ ƒ /admin/products/new                         2.09 kB         112 kB
+├ ƒ /admin/sync                                 2.53 kB         105 kB
+├ ƒ /admin/system                                 239 B         103 kB
+├ ○ /aesthetic-disclaimer                         212 B         106 kB
+├ ƒ /api/admin/appointments/[id]                  239 B         103 kB
+├ ƒ /api/admin/consultations                      239 B         103 kB
+├ ƒ /api/admin/consultations/[id]                 239 B         103 kB
+├ ƒ /api/admin/discounts                          239 B         103 kB
+├ ƒ /api/admin/discounts/[id]                     239 B         103 kB
+├ ƒ /api/admin/import                             239 B         103 kB
+├ ƒ /api/admin/login                              239 B         103 kB
+├ ƒ /api/admin/logout                             239 B         103 kB
+├ ƒ /api/admin/orders/[id]                        239 B         103 kB
+├ ƒ /api/admin/orders/[id]/fulfill                239 B         103 kB
+├ ƒ /api/admin/orders/[id]/fulfillment            239 B         103 kB
+├ ƒ /api/admin/orders/[id]/manual-fulfill         239 B         103 kB
+├ ƒ /api/admin/products                           239 B         103 kB
+├ ƒ /api/admin/products/[id]                      239 B         103 kB
+├ ƒ /api/admin/sync/catalog                       239 B         103 kB
+├ ƒ /api/availability                             239 B         103 kB
+├ ƒ /api/book                                     239 B         103 kB
+├ ƒ /api/checkout                                 239 B         103 kB
+├ ƒ /api/checkout/session                         239 B         103 kB
+├ ƒ /api/consultations/checkout                   239 B         103 kB
+├ ƒ /api/consultations/intake/[token]             239 B         103 kB
+├ ƒ /api/consultations/photos/[id]                239 B         103 kB
+├ ƒ /api/consultations/photos/upload              239 B         103 kB
+├ ƒ /api/contact                                  239 B         103 kB
+├ ƒ /api/cron/catalog-sync                        239 B         103 kB
+├ ƒ /api/customer/favorites                       239 B         103 kB
+├ ƒ /api/customer/login                           239 B         103 kB
+├ ƒ /api/customer/logout                          239 B         103 kB
+├ ƒ /api/customer/recover                         239 B         103 kB
+├ ƒ /api/customer/register                        239 B         103 kB
+├ ƒ /api/customer/reset                           239 B         103 kB
+├ ƒ /api/discount/validate                        239 B         103 kB
+├ ƒ /api/events                                   239 B         103 kB
+├ ƒ /api/membership/interest                      239 B         103 kB
+├ ƒ /api/webhooks/stripe                          239 B         103 kB
+├ ○ /booking-policy                               212 B         106 kB
+├ ○ /cart                                       7.96 kB         132 kB
+├ ƒ /cart/confirmation                          3.79 kB         117 kB
+├ ○ /consultation                                 239 B         103 kB
+├ ● /consultation/[step]                        3.33 kB         106 kB
+├   ├ /consultation/concerns
+├   ├ /consultation/feel
+├   ├ /consultation/reaction
+├   └ [+5 more paths]
+├ ƒ /consultation/results                       2.74 kB         121 kB
+├ ○ /contact                                     1.5 kB         108 kB
+├ ○ /cookies                                      212 B         106 kB
+├ ƒ /favorites                                  2.77 kB         121 kB
+├ ○ /help                                         187 B         106 kB
+├ ○ /how-it-works                                 187 B         106 kB
+├ ○ /ingredients                                1.09 kB         107 kB          1m      1y
+├ ○ /journal                                      187 B         106 kB
+├ ● /journal/[slug]                               187 B         106 kB
+├   ├ /journal/order-of-operations
+├   ├ /journal/introducing-an-active
+├   ├ /journal/dry-or-dehydrated
+├   └ /journal/the-step-that-protects-the-rest
+├ ○ /privacy                                      212 B         106 kB
+├ ○ /quiz                                         239 B         103 kB
+├ ○ /returns                                      212 B         106 kB
+├ ○ /robots.txt                                   239 B         103 kB
+├ ○ /routine                                    2.58 kB         128 kB          1m      1y
+├ ○ /search                                     3.06 kB         116 kB
+├ ○ /shipping                                     212 B         106 kB
+├ ○ /shop                                       7.11 kB         131 kB          1m      1y
+├ ● /shop/[id]                                  4.41 kB         126 kB
+├   ├ /shop/green-tea-citrus-cleanser
+├   ├ /shop/mandelic-brightening-serum
+├   ├ /shop/botanical-bloom-hydrating-mask
+├   └ [+33 more paths]
+├ ○ /sitemap.xml                                  239 B         103 kB
+├ ○ /skin-concerns                                187 B         106 kB          1m      1y
+├ ● /skin-concerns/[slug]                        2.6 kB         121 kB          1m      1y
+├   ├ /skin-concerns/breakouts-congestion                                       1m      1y
+├   ├ /skin-concerns/uneven-tone                                                1m      1y
+├   ├ /skin-concerns/dry-dehydrated                                             1m      1y
+├   └ [+4 more paths]
+├ ○ /skin-quiz                                  2.89 kB         128 kB          1m      1y
+├ ○ /terms                                        212 B         106 kB
+├ ƒ /virtual-consultation                       3.79 kB         110 kB
+├ ƒ /virtual-consultation/intake/[token]        6.34 kB         112 kB
+├ ƒ /virtual-consultation/plan/[token]            212 B         106 kB
+└ ƒ /virtual-consultation/success                 212 B         106 kB
++ First Load JS shared by all                    103 kB
+  ├ chunks/1255-0f12d1d68e0b5948.js             46.4 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js         54.2 kB
+  └ other shared chunks (total)                 2.01 kB
+
+
+ƒ Middleware                                    32.4 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

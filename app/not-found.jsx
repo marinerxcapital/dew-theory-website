@@ -1,9 +1,12 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 
-export const metadata = {
-  title: 'Page not found'
-};
+export const metadata = withPageMetadata('/404', {
+  title: 'Page not found',
+  description: 'This page is not on the shelf. Browse the Dew Theory catalog or return home.',
+  robots: { index: false, follow: true }
+});
 
 export default function NotFound() {
   return (
@@ -12,14 +15,14 @@ export default function NotFound() {
       <h1 className="mt-10 font-display text-4xl font-normal text-graphite sm:text-5xl">
         This page is not on the shelf
       </h1>
-      <p className="mt-6 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/70">
+      <p className="mt-6 max-w-md font-body text-sm font-light leading-relaxed text-charcoal">
         The link may be old, or the product may have been pulled. Nothing here was invented — just
         gone.
       </p>
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
           href="/shop"
-          className="border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+          className="border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink"
         >
           Shop
         </Link>

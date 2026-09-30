@@ -23,7 +23,7 @@ export default function LegalPageShell({
   const title = doc?.title || 'Legal';
 
   return (
-    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
+    <section className="mx-auto max-w-measure px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group={`${documentId}-head`}>
         <Rule left="Policies" right={eyebrowRight} data-reveal />
         <h1

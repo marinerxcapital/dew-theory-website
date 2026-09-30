@@ -23,7 +23,7 @@ export default function StickyCtaBar({
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white/95 px-4 py-3 shadow-[0_-8px_30px_-18px_rgba(0,0,0,0.25)] backdrop-blur-md lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white/95 px-4 py-3 shadow-card backdrop-blur-md lg:hidden"
       style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
     >
       <div className="mx-auto max-w-shell">

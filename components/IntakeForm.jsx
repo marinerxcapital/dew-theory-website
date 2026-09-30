@@ -7,10 +7,10 @@ import { getVirtualConsultationLegalDocuments } from '@/lib/legal-documents';
 
 const emptyProduct = () => ({ brand: '', product_name: '', frequency: '', notes: '' });
 
-export default function IntakeForm({ token }) {
-  const [loading, setLoading] = useState(true);
+export default function IntakeForm({ token, initialError = '' }) {
+  const [loading, setLoading] = useState(!initialError);
   const [meta, setMeta] = useState(null);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(initialError);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [uploadStatus, setUploadStatus] = useState({});
@@ -110,8 +110,8 @@ export default function IntakeForm({ token }) {
   }, [token]);
 
   useEffect(() => {
-    load();
-  }, [load]);
+    if (!initialError) load();
+  }, [load, initialError]);
 
   function setField(key, value) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -169,7 +169,7 @@ export default function IntakeForm({ token }) {
 
   if (loading) {
     return (
-      <p className="font-body text-sm font-light text-charcoal/70" role="status">
+      <p className="font-body text-sm font-light text-charcoal" role="status">
         Loading secure intake…
       </p>
     );
@@ -177,18 +177,18 @@ export default function IntakeForm({ token }) {
 
   if (error && !meta) {
     return (
-      <div className="glass-1 max-w-lg rounded-[3px] p-8" role="alert">
-        <p className="font-display text-xl text-graphite">Intake unavailable</p>
-        <p className="mt-3 font-body text-sm font-light text-charcoal/70">{error}</p>
+      <div className="glass-1 max-w-lg rounded-card p-8" role="alert">
+        <h1 className="font-display text-xl text-graphite">Intake unavailable</h1>
+        <p className="mt-3 font-body text-sm font-light text-charcoal">{error}</p>
       </div>
     );
   }
 
   if (done) {
     return (
-      <div className="glass-1 max-w-lg rounded-[3px] p-8" role="status">
+      <div className="glass-1 max-w-lg rounded-card p-8" role="status">
         <p className="font-display text-2xl text-graphite">Intake received</p>
-        <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
+        <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal">
           Thank you. Emily will review your information and photos before your appointment.
           {meta?.public_ref ? ` Reference: ${meta.public_ref}.` : ''}
         </p>
@@ -206,13 +206,13 @@ export default function IntakeForm({ token }) {
   return (
     <form onSubmit={onSubmit} className="max-w-2xl space-y-12">
       <header>
-        <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70">
+        <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal">
           Secure intake
         </p>
         <h1 className="mt-4 font-display text-[clamp(1.8rem,4vw,2.6rem)] font-normal text-graphite">
           Virtual consultation intake
         </h1>
-        <p className="mt-3 font-body text-sm font-light text-charcoal/70">
+        <p className="mt-3 font-body text-sm font-light text-charcoal">
           {meta?.public_ref ? `Ref ${meta.public_ref}. ` : ''}
           Submit at least 24 hours before your appointment when possible.
         </p>
@@ -370,6 +370,7 @@ export default function IntakeForm({ token }) {
           {form.products.map((p, i) => (
             <div key={i} className="mt-3 grid gap-2 sm:grid-cols-2">
               <input
+                aria-label={`Brand, current product ${i + 1}`}
                 placeholder="Brand"
                 className={fieldClass}
                 value={p.brand}
@@ -380,6 +381,7 @@ export default function IntakeForm({ token }) {
                 }}
               />
               <input
+                aria-label={`Product name, current product ${i + 1}`}
                 placeholder="Product name"
                 className={fieldClass}
                 value={p.product_name}
@@ -390,6 +392,7 @@ export default function IntakeForm({ token }) {
                 }}
               />
               <input
+                aria-label={`Frequency, current product ${i + 1}`}
                 placeholder="Frequency"
                 className={fieldClass}
                 value={p.frequency}
@@ -400,6 +403,7 @@ export default function IntakeForm({ token }) {
                 }}
               />
               <input
+                aria-label={`Notes / reaction, current product ${i + 1}`}
                 placeholder="Notes / reaction"
                 className={fieldClass}
                 value={p.notes}
@@ -413,7 +417,7 @@ export default function IntakeForm({ token }) {
           ))}
           <button
             type="button"
-            className="mt-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal/70"
+            className="mt-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-charcoal"
             onClick={() => setField('products', [...form.products, emptyProduct()])}
           >
             + Add product
@@ -549,7 +553,7 @@ export default function IntakeForm({ token }) {
         <h2 id="photos-h" className="font-display text-xl text-graphite">
           Photos
         </h2>
-        <p className="font-body text-sm font-light text-charcoal/70">
+        <p className="font-body text-sm font-light text-charcoal">
           Natural daylight, no filters. Required slots must be uploaded before final submit.
         </p>
         <ul className="space-y-4">
@@ -557,7 +561,7 @@ export default function IntakeForm({ token }) {
             const existing = photos.filter((p) => p.slot === slot);
             const required = REQUIRED_PHOTO_SLOTS.includes(slot);
             return (
-              <li key={slot} className="glass-1 rounded-[2px] p-4">
+              <li key={slot} className="glass-1 rounded-card p-4">
                 <label className="block">
                   <span className={labelClass}>
                     {PHOTO_SLOT_LABELS[slot] || slot}
@@ -572,7 +576,7 @@ export default function IntakeForm({ token }) {
                     aria-describedby={`upload-status-${slot}`}
                   />
                 </label>
-                <p id={`upload-status-${slot}`} className="mt-2 font-body text-xs text-charcoal/60" aria-live="polite">
+                <p id={`upload-status-${slot}`} className="mt-2 font-body text-xs text-charcoal" aria-live="polite">
                   {uploadStatus[slot] ||
                     (existing.length
                       ? `${existing.length} file${existing.length > 1 ? 's' : ''} uploaded`
@@ -614,7 +618,7 @@ export default function IntakeForm({ token }) {
             'I understand when to seek care from a licensed medical professional.'
           ]
         ].map(([key, label]) => (
-          <label key={key} className="flex items-start gap-3 font-body text-sm font-light text-charcoal/80">
+          <label key={key} className="flex items-start gap-3 font-body text-sm font-light text-charcoal">
             <input
               type="checkbox"
               className="mt-1"

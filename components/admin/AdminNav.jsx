@@ -31,8 +31,8 @@ export default function AdminNav({ admin }) {
       ? pathname === item.href
       : pathname === item.href || pathname.startsWith(item.href + '/');
     return active
-      ? 'bg-forest text-ivory'
-      : 'text-forest/80 hover:bg-sage/20 hover:text-forest';
+      ? 'bg-green-300 text-ivory'
+      : 'text-forest hover:bg-sage/20 hover:text-forest';
   };
 
   return (
