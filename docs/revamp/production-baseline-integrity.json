@@ -1,0 +1,793 @@
+{
+  "images": [
+    {
+      "src": "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__03__gallery04.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__02__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__03__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__03__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__02__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__02__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__02__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__03__pump.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__03__gallery04.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/discovery-kit/discovery-kit__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/discovery-kit/discovery-kit__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/discovery-kit/discovery-kit__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__04__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__04__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__04__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__02__back.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__03__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__03__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__03__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/mint-refining-toner/mint-refining-toner__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/mint-refining-toner/mint-refining-toner__02__gallery01.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/mint-refining-toner/mint-refining-toner__03__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__02__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__03__gallery04.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__02__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__03__gallery03.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__04__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__05__pump.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-scrub/raspberry-scrub__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-scrub/raspberry-scrub__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/raspberry-scrub/raspberry-scrub__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__02__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/triple-c-serum/triple-c-serum__01__primary.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/triple-c-serum/triple-c-serum__03__swatch.webp",
+      "status": 200,
+      "sha256Equal": true
+    },
+    {
+      "src": "/images/products/skin-script/triple-c-serum/triple-c-serum__02__gallery02.webp",
+      "status": 200,
+      "sha256Equal": true
+    }
+  ],
+  "apiStatus": 404,
+  "count": 0,
+  "prices": [
+    {
+      "id": "green-tea-citrus-cleanser",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "mandelic-brightening-serum",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "botanical-bloom-hydrating-mask",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "ageless-moisturizer",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "hydrating-skin-serum",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "lip-treatment-peppermint",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "lip-treatment-pomegranate",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "sheer-protection-spf",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "cucumber-hydration-toner",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": true
+    },
+    {
+      "id": "acai-berry-moisturizer",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "advanced-renewal-serum",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "barrier-balancing-moisturizer",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "blemish-spot-treatment",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "charcoal-clay-cleanser",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "citrus-c-nourishing-cream",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "clarifying-toner-pads",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "everyday-balance-travel-kit",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "fresh-face-travel-kit",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "fully-quenched-travel-kit",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "glycolic-and-retinol-pads",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "glycolic-cleanser",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "honey-brightening-cleanser",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "hydrating-moisturizer",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "light-aloe-moisturizer",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "lip-balm-with-spf-15",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "mint-refining-toner",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "peptide-eye-serum",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "peptide-moisturizer",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "pomegranate-antioxidant-cleanser",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "raspberry-refining-cleanser",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "raspberry-scrub",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "retinol-exfoliating-scrub",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "revitalizing-cucumber-treatment",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "tri-peptide-eye-cream",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    },
+    {
+      "id": "triple-c-serum",
+      "found": false,
+      "priceEqual": false,
+      "stockEqual": false
+    }
+  ]
+}

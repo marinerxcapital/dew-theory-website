@@ -66,7 +66,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
         <h1 className="mt-2 font-display text-3xl font-normal text-graphite">
           {c.client_name || 'Client'}
         </h1>
-        <p className="mt-2 font-body text-sm font-light text-charcoal/70">
+        <p className="mt-2 font-body text-sm font-light text-charcoal">
           {c.client_email}
           {c.appointment_start
             ? ` · Appt ${new Date(c.appointment_start).toLocaleString()}`
@@ -77,7 +77,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
         </p>
       </header>
 
-      <section className="glass-1 space-y-4 rounded-[3px] p-6">
+      <section className="glass-1 space-y-4 rounded-card p-6">
         <h2 className="font-display text-xl text-graphite">Status</h2>
         <div className="flex flex-wrap items-end gap-3">
           <label className="block">
@@ -100,7 +100,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
             type="button"
             disabled={busy}
             onClick={() => patch({ action: 'status', status })}
-            className="border border-graphite bg-graphite px-4 py-2 font-label text-[0.62rem] uppercase tracking-lockup text-pearl"
+            className="border border-graphite bg-green-300 px-4 py-2 font-label text-[0.62rem] uppercase tracking-lockup text-ink"
           >
             Save status
           </button>
@@ -132,7 +132,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
         {Array.isArray(c.internal_notes) && c.internal_notes.length > 0 ? (
           <ul className="space-y-2 border-t border-chrome/15 pt-4">
             {c.internal_notes.map((n) => (
-              <li key={n.id} className="font-body text-xs font-light text-charcoal/70">
+              <li key={n.id} className="font-body text-xs font-light text-charcoal">
                 <span className="text-chrome">{new Date(n.created_at).toLocaleString()}</span> — {n.text}
               </li>
             ))}
@@ -140,12 +140,12 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
         ) : null}
       </section>
 
-      <section className="glass-1 rounded-[3px] p-6">
+      <section className="glass-1 rounded-card p-6">
         <h2 className="font-display text-xl text-graphite">Intake</h2>
         {!intake ? (
-          <p className="mt-3 font-body text-sm font-light text-charcoal/60">Not submitted yet.</p>
+          <p className="mt-3 font-body text-sm font-light text-charcoal">Not submitted yet.</p>
         ) : (
-          <dl className="mt-4 space-y-3 font-body text-sm font-light text-charcoal/80">
+          <dl className="mt-4 space-y-3 font-body text-sm font-light text-charcoal">
             {[
               ['Age', intake.age],
               ['Concerns', intake.skin_concerns],
@@ -174,10 +174,10 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
         )}
       </section>
 
-      <section className="glass-1 rounded-[3px] p-6">
+      <section className="glass-1 rounded-card p-6">
         <h2 className="font-display text-xl text-graphite">Photos</h2>
         {photos.length === 0 ? (
-          <p className="mt-3 font-body text-sm font-light text-charcoal/60">No photos uploaded.</p>
+          <p className="mt-3 font-body text-sm font-light text-charcoal">No photos uploaded.</p>
         ) : (
           <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {photos.map((p) => (
@@ -185,13 +185,13 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
                 <p className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
                   {PHOTO_SLOT_LABELS[p.slot] || p.slot}
                 </p>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+                
                 <img
                   src={`/api/consultations/photos/${p.id}`}
                   alt={PHOTO_SLOT_LABELS[p.slot] || p.slot}
-                  className="mt-2 aspect-square w-full rounded-[2px] object-cover"
+                  className="mt-2 aspect-square w-full rounded-card object-cover"
                 />
-                <p className="mt-1 font-body text-[0.65rem] text-charcoal/50">
+                <p className="mt-1 font-body text-[0.65rem] text-charcoal">
                   {new Date(p.created_at).toLocaleString()}
                 </p>
               </li>
@@ -200,7 +200,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
         )}
       </section>
 
-      <section className="glass-1 space-y-4 rounded-[3px] p-6">
+      <section className="glass-1 space-y-4 rounded-card p-6">
         <h2 className="font-display text-xl text-graphite">Skincare plan</h2>
         {[
           ['overview', 'Overview / summary'],
@@ -292,7 +292,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
           ))}
           <button
             type="button"
-            className="mt-3 font-label text-[0.62rem] uppercase tracking-lockup text-charcoal/70"
+            className="mt-3 font-label text-[0.62rem] uppercase tracking-lockup text-charcoal"
             onClick={() =>
               setPlan((p) => ({
                 ...p,
@@ -326,7 +326,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
             type="button"
             disabled={busy}
             onClick={() => patch({ action: 'publish_plan', plan, publish: true })}
-            className="border border-graphite bg-graphite px-4 py-2 font-label text-[0.62rem] uppercase tracking-lockup text-pearl"
+            className="border border-graphite bg-green-300 px-4 py-2 font-label text-[0.62rem] uppercase tracking-lockup text-ink"
           >
             Publish & email plan
           </button>
@@ -334,7 +334,7 @@ export default function ConsultationDetail({ consultation: initial, catalog = []
       </section>
 
       {message ? (
-        <p className="font-body text-sm text-charcoal/70" role="status">
+        <p className="font-body text-sm text-charcoal" role="status">
           {message}
         </p>
       ) : null}

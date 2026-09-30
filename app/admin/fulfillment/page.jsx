@@ -53,7 +53,7 @@ export default async function AdminFulfillmentPage({ searchParams }) {
             key={f}
             href={`/admin/fulfillment?filter=${f}`}
             className={`rounded-sm px-3 py-1.5 font-label text-[0.62rem] uppercase tracking-lockup capitalize ${
-              filter === f ? 'bg-forest text-ivory' : 'bg-stone/30 text-forest/70 hover:bg-stone/50'
+              filter === f ? 'bg-green-300 text-ivory' : 'bg-stone/30 text-forest hover:bg-stone/50'
             }`}
           >
             {f}

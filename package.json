@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/quarantine-release-artifacts.mjs traces",
     "start": "next start",
-    "preview": "opennextjs-cloudflare build && node scripts/attach-scheduled-handler.mjs && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && node scripts/attach-scheduled-handler.mjs && opennextjs-cloudflare deploy",
+    "preview": "opennextjs-cloudflare build && node scripts/quarantine-release-artifacts.mjs worker && node scripts/attach-scheduled-handler.mjs && node scripts/revamp-build-integrity.mjs && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && node scripts/quarantine-release-artifacts.mjs worker && node scripts/attach-scheduled-handler.mjs && node scripts/revamp-build-integrity.mjs && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "test": "node --test --test-concurrency=1 tests/*.test.mjs",
     "smoke": "node scripts/smoke-checkout.mjs",
@@ -24,21 +24,32 @@
     "setup:d1": "node scripts/setup-d1-commerce.mjs",
     "setup:d1:local": "node scripts/setup-d1-commerce.mjs --local",
     "ops:dashboard": "node agent-ops-dashboard/server.mjs",
-    "ops:emit": "node agent-ops-dashboard/emit.mjs"
+    "ops:emit": "node agent-ops-dashboard/emit.mjs",
+    "lint": "eslint app components lib scripts/revamp-*.mjs",
+    "typecheck": "tsc -p tsconfig.green.json",
+    "contrast": "node --test tests/green-system.test.mjs"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.20.1",
     "@stripe/stripe-js": "^9.10.0",
     "gsap": "3.12.5",
-    "next": "^15.5.20",
+    "next": "^15.5.26",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "stripe": "^22.3.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
     "autoprefixer": "10.4.20",
+    "eslint": "^9.39.5",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "lighthouse": "^13.5.0",
     "postcss": "^8.5.19",
     "tailwindcss": "3.4.17",
+    "typescript": "^7.0.2",
     "wrangler": "^4.112.0"
   },
   "overrides": {

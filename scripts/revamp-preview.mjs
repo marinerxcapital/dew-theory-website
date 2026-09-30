@@ -1,0 +1,2 @@
+import { chromium } from '@playwright/test';
+const browser=await chromium.launch({channel:'chrome'});const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>console.log('ERROR',e.message));await page.goto('http://localhost:3100',{waitUntil:'networkidle',timeout:120000});await page.screenshot({path:'docs/revamp/local-home.png',fullPage:true});console.log(await page.locator('h1').allTextContents());await browser.close();

@@ -1,18 +1,19 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import LegalPdfActions from '@/components/LegalPdfActions';
 
-export const metadata = {
+export const metadata = withPageMetadata('/returns', {
   title: 'Returns',
   description:
-    'Dew Theory returns, refunds, and exchanges. View or download the full FIXED V2 Returns Policy PDF.',
+    'Dew Theory returns, refunds, and exchanges. View or download the full Returns Policy PDF.',
   alternates: { canonical: '/returns' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function ReturnsPage() {
   return (
-    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
+    <section className="mx-auto max-w-measure px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="returns-head">
         <Rule left="Policies" right="Returns" data-reveal />
         <h1

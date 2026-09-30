@@ -207,7 +207,7 @@ export default function ProductForm({ product = null }) {
       </label>
 
       {error && (
-        <p className="font-body text-xs font-light text-charcoal/70" role="alert">
+        <p className="font-body text-xs font-light text-charcoal" role="alert">
           {error}
         </p>
       )}
@@ -216,7 +216,7 @@ export default function ProductForm({ product = null }) {
         <button
           type="submit"
           disabled={loading}
-          className="border border-graphite bg-graphite px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+          className="border border-graphite bg-green-300 px-8 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink disabled:opacity-60"
         >
           {loading ? 'Saving…' : 'Save'}
         </button>

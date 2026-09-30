@@ -1,0 +1,719 @@
+
+> dew-theory@0.1.0 test
+> node --test --test-concurrency=1 tests/*.test.mjs
+
+▶ productionAuthConfigured
+  ✔ is true outside production (3.407ms)
+  ✔ rejects production without credentials (0.4538ms)
+  ✔ rejects production default password (0.3389ms)
+  ✔ rejects production default session secret (0.4061ms)
+  ✔ accepts production with non-default env (0.462ms)
+✔ productionAuthConfigured (7.7812ms)
+▶ resolveExpectedCredentials
+  ✔ falls back to dev defaults outside production (0.7224ms)
+  ✔ returns null in production with default password (0.4416ms)
+  ✔ returns env pair when production is configured (0.4532ms)
+✔ resolveExpectedCredentials (2.1876ms)
+▶ safeAdminNextPath
+  ✔ defaults to /admin (0.747ms)
+  ✔ allows relative admin paths (0.5223ms)
+  ✔ blocks open redirects (0.4872ms)
+✔ safeAdminNextPath (2.3233ms)
+▶ admin status model
+  ✔ worstStatus picks critical over healthy (1.4594ms)
+✔ admin status model (3.4575ms)
+▶ admin date range
+  ✔ parseAdminRange defaults to 30d (2.6396ms)
+  ✔ inRange respects bounds (0.4748ms)
+✔ admin date range (3.5305ms)
+▶ owner-only admin policy
+  ✔ requires owner email match and owner role (0.5904ms)
+  ✔ resolveOwnerEmail uses ADMIN_OWNER_EMAIL (0.3981ms)
+✔ owner-only admin policy (1.5102ms)
+▶ automation honesty labels
+  ✔ labels production mock + AUTO_FULFILL=false as owner queue, not live RPA (1.1238ms)
+  ✔ does not call mock mode a kill switch (0.3974ms)
+  ✔ only reports Production RPA when mode=rpa, enabled, and not dry-run (0.536ms)
+  ✔ customer copy never mentions auto-fulfill when RPA is not live (0.7864ms)
+✔ automation honesty labels (3.5445ms)
+▶ parseDateRange / filterByCreatedAt
+  ✔ parses ymd bounds (1.6668ms)
+  ✔ filters items by created_at (3.2275ms)
+✔ parseDateRange / filterByCreatedAt (7.3917ms)
+▶ log redact
+  ✔ does not throw on nested objects with email (2.8531ms)
+✔ log redact (3.2095ms)
+▶ validateAppointmentStatusTransition
+  ✔ allows confirmed → completed (4.1414ms)
+  ✔ allows confirmed → cancelled (0.4139ms)
+  ✔ allows confirmed → no_show (0.3542ms)
+  ✔ allows no-op same status (0.7359ms)
+  ✔ rejects completed → cancelled (terminal) (2.386ms)
+  ✔ rejects cancelled → confirmed (0.4999ms)
+  ✔ rejects no_show → completed (0.3951ms)
+  ✔ rejects confirmed → pending (not in forward set) (1.0269ms)
+  ✔ rejects unknown target status (0.4748ms)
+  ✔ rejects empty status (0.5034ms)
+  ✔ allows pending → confirmed and cancelled (0.3803ms)
+✔ validateAppointmentStatusTransition (15.2265ms)
+▶ allowedNextStatuses / terminal
+  ✔ confirmed offers outcomes plus current (2.1611ms)
+  ✔ completed is terminal in UI (0.4014ms)
+✔ allowedNextStatuses / terminal (2.981ms)
+▶ MockAvailabilityAdapter
+  ✔ returns only future slots within window (5.3367ms)
+  ✔ skips closed days (Sunday by default) (0.6301ms)
+  ✔ uses configured hours (1.9174ms)
+✔ MockAvailabilityAdapter (10.2228ms)
+▶ excludeBookedSlots / groupSlotsByDay
+  ✔ removes confirmed appointments (0.9324ms)
+  ✔ groups by day label (47.734ms)
+✔ excludeBookedSlots / groupSlotsByDay (49.4477ms)
+▶ getAvailabilityAdapter / Google adapter
+  ✔ defaults to mock without Google env (1.1858ms)
+  ✔ Google adapter reports not configured without env (0.5287ms)
+  ✔ listBookableSlots returns source + slots (1.1995ms)
+✔ getAvailabilityAdapter / Google adapter (3.5311ms)
+▶ validateBookingRequest — service
+  ✔ requires service_id (1.8536ms)
+  ✔ rejects unknown service (0.5141ms)
+  ✔ accepts known service (0.6169ms)
+✔ validateBookingRequest — service (5.3397ms)
+▶ validateBookingRequest — slots
+  ✔ requires start_time (0.7153ms)
+  ✔ rejects invalid date (0.3297ms)
+  ✔ rejects past slots (0.4067ms)
+  ✔ rejects slot taken by another guest (0.7081ms)
+  ✔ returns duplicate for same email + same slot (0.473ms)
+  ✔ ignores cancelled appointments for slot conflict (0.4745ms)
+✔ validateBookingRequest — slots (4.0883ms)
+▶ validateBookingRequest — customer sanitization
+  ✔ requires name (0.7639ms)
+  ✔ requires valid email (0.5462ms)
+  ✔ normalizes email to lowercase and trims (0.3627ms)
+  ✔ truncates long notes (0.4225ms)
+✔ validateBookingRequest — customer sanitization (2.5609ms)
+▶ buildAppointment
+  ✔ builds confirmed appointment from validated parts (2.2319ms)
+✔ buildAppointment (2.4563ms)
+▶ catalog allowlist data
+  ✔ includes the original 8 shop SKUs and only sync-enabled verified rows (3.4808ms)
+  ✔ matches products.json ids and portal variant SKUs (0.7835ms)
+✔ catalog allowlist data (7.1159ms)
+▶ allowlist lookup
+  ✔ matches by Dew product id or Skin Script SKU (1.6214ms)
+  ✔ treats sync_enabled=false as not allowlisted for sync (0.6036ms)
+✔ allowlist lookup (2.6933ms)
+▶ planCatalogSync allowlist enforcement
+  ✔ skips and never creates SKUs that are not on the allowlist (12.3295ms)
+  ✔ skips sync_disabled allowlist rows even if the feed has them (13.3524ms)
+  ✔ updates commerce fields only and preserves editorial copy (8.3275ms)
+  ✔ records allowlisted SKUs missing from the feed (0.6771ms)
+✔ planCatalogSync allowlist enforcement (35.8345ms)
+▶ catalog honesty flags (2026-09-19 confirmation still pending)
+  ✔ uses official August 2026 SRP for Sheer Protection SPF (2.3162ms)
+  ✔ publishes Peppermint and Pomegranate lip treatments as separate official SKUs (0.8359ms)
+  ✔ keeps Botanical Bloom at 2 oz with size unconfirmed (0.8147ms)
+✔ catalog honesty flags (2026-09-19 confirmation still pending) (7.0335ms)
+▶ OPEN_ITEMS.md §2 2026-09-19 status
+  ✔ records pending Emily confirmation and does not claim approval (6.6998ms)
+✔ OPEN_ITEMS.md §2 2026-09-19 status (7.0575ms)
+▶ storefront does not label unconfirmed prices as confirmed
+  ✔ public shop/cart surfaces omit confirmation / Emily-approved price copy (18.3784ms)
+  ✔ cart promo field does not claim DEW15 15% is Emily-approved (1.3277ms)
+✔ storefront does not label unconfirmed prices as confirmed (20.2404ms)
+▶ admin DEW15 copy stays a launch-promo placeholder
+  ✔ discounts page does not present 15% as Emily-approved (2.8235ms)
+✔ admin DEW15 copy stays a launch-promo placeholder (3.4514ms)
+▶ authorizeCronRequest
+  ✔ fails closed when CRON_SECRET is missing (8.3496ms)
+  ✔ rejects a missing or wrong bearer (1.5756ms)
+  ✔ accepts Bearer or x-cron-secret (1.5541ms)
+✔ authorizeCronRequest (16.313ms)
+▶ evaluateCatalogSyncReadiness
+  ✔ does not treat mock as a live source (1.0729ms)
+  ✔ allows explicit mock apply only when flagged (0.5948ms)
+  ✔ fails closed for rpa without Fly/HMAC secrets (0.7389ms)
+  ✔ fails closed for csv_feed without SKIN_SCRIPT_FEED_URL (0.536ms)
+  ✔ is ready when rpa secrets are present (1.7389ms)
+✔ evaluateCatalogSyncReadiness (6.435ms)
+▶ worker cron wiring
+  ✔ declares a daily wrangler cron trigger (4.4004ms)
+✔ worker cron wiring (5.9291ms)
+▶ runCatalogSyncCron
+  ✔ skips apply in production mock mode instead of using mock as live (1.0661ms)
+  ✔ skips rpa when the service is not deployed (0.5936ms)
+✔ runCatalogSyncCron (2.2574ms)
+▶ mock adapter listCatalog
+  ✔ returns drafts with skin_script_sku and source sync fields (5.7868ms)
+✔ mock adapter listCatalog (9.5561ms)
+▶ getSkinScriptAdapter factory
+  ✔ defaults to mock (12.4294ms)
+  ✔ rejects unknown mode (2.9298ms)
+✔ getSkinScriptAdapter factory (16.0985ms)
+▶ planCatalogSync
+  ✔ plans creates for empty store (5.4446ms)
+  ✔ skips unchanged products (4.266ms)
+  ✔ errors on missing sku (0.6137ms)
+✔ planCatalogSync (11.0889ms)
+▶ deterministicMapRow
+  ✔ maps messy aliases (0.7308ms)
+✔ deterministicMapRow (1.2039ms)
+▶ CategoryProductCarousel source contract
+  ✔ implements ring slots and reduced-motion handling (2.3579ms)
+  ✔ does not clone products to fake a third visible card (2.8333ms)
+✔ CategoryProductCarousel source contract (9.6639ms)
+▶ guest checkout validation
+  ✔ lists every missing required field with a human label (5.3368ms)
+  ✔ rejects invalid email even when other fields are present (0.9276ms)
+  ✔ accepts a complete guest payload without requiring phone (1.0732ms)
+  ✔ maps API shipping_incomplete details onto guest keys (1.1328ms)
+  ✔ validateCustomer requires name and a valid email (0.7359ms)
+✔ guest checkout validation (12.3573ms)
+{"ts":"2026-09-30T13:43:38.931Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775818879","fulfillment_job_id":"fj_1790775818909_fnghqpz"}
+{"ts":"2026-09-30T13:43:39.105Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775819058","fulfillment_job_id":"fj_1790775819085_ytno9eb"}
+{"ts":"2026-09-30T13:43:39.156Z","level":"info","msg":"fulfillment.completed","order_id":"ord_fail_inj_1790775819058","job_id":"fj_1790775819085_ytno9eb","supplier_order_id":"SS-ORD-1790775819105"}
+{"ts":"2026-09-30T13:43:39.222Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775819168","fulfillment_job_id":"fj_1790775819201_3ogfc2c"}
+{"ts":"2026-09-30T13:43:39.298Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775819241","fulfillment_job_id":"fj_1790775819273_afnhsee"}
+{"ts":"2026-09-30T13:43:39.347Z","level":"info","msg":"fulfillment.completed","order_id":"ord_fail_inj_1790775819241","job_id":"fj_1790775819273_afnhsee","supplier_order_id":"SS-ORD-1790775819298"}
+{"ts":"2026-09-30T13:43:39.464Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775819384","fulfillment_job_id":"fj_1790775819431_vdei7xj"}
+{"ts":"2026-09-30T13:43:39.557Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_fail_inj_1790775819384","job_id":"fj_1790775819431_vdei7xj","error_code":"order_cap_exceeded"}
+{"ts":"2026-09-30T13:43:39.739Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775819577","fulfillment_job_id":"fj_1790775819655_dr5po0b"}
+{"ts":"2026-09-30T13:43:39.952Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_fail_inj_1790775819855","fulfillment_job_id":"fj_1790775819924_yuk88ub"}
+{"ts":"2026-09-30T13:43:40.049Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_fail_inj_1790775819855","job_id":"fj_1790775819924_yuk88ub","error_code":"network_error"}
+▶ duplicate fulfillment job creation
+  ✔ persistPaidOrderWithJob is idempotent on repeated calls (75.124ms)
+✔ duplicate fulfillment job creation (78.2611ms)
+▶ HMAC nonce and clock skew
+  ✔ rejects duplicate nonce (replay) (98.5126ms)
+  ✔ rejects timestamp outside allowed clock skew (2.9208ms)
+✔ HMAC nonce and clock skew (102.1334ms)
+▶ fulfillment blocked after supplier submission
+  ✔ blocks retry when order already has supplier_order_id (110.5943ms)
+✔ fulfillment blocked after supplier submission (111.0085ms)
+▶ cancelFulfillmentJob
+  ✔ cancels job when no supplier order exists (72.9138ms)
+  ✔ fails when supplier order already submitted (113.9169ms)
+✔ cancelFulfillmentJob (187.3808ms)
+▶ validateVerifiedMappingsForLines
+  ✔ passes when mapping is verified and active (23.4818ms)
+✔ validateVerifiedMappingsForLines (27.211ms)
+▶ financial cap state machine
+  ✔ treats cap errors as non-retryable in state machine and records failure without retry schedule (187.2721ms)
+✔ financial cap state machine (187.6582ms)
+▶ claimFulfillmentJob locking
+  ✔ blocks concurrent claim from another worker while lock is held (277.604ms)
+  ✔ schedules retry for retryable network_error failures (195.0453ms)
+✔ claimFulfillmentJob locking (478.9092ms)
+▶ shouldAutoFulfill RPA gate
+  ✔ returns false when SKIN_SCRIPT_MODE=rpa and SKIN_SCRIPT_RPA_ENABLED is not true (1.8542ms)
+✔ shouldAutoFulfill RPA gate (2.0921ms)
+{"ts":"2026-09-30T13:43:40.869Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_commerce_1790775820578","fulfillment_job_id":"fj_1790775820684_lff91sz"}
+▶ fulfillment state machine
+  ✔ allows paid → queued_for_supplier (5.947ms)
+  ✔ blocks invalid transitions (0.4537ms)
+  ✔ classifies retryable vs blocked errors (2.71ms)
+✔ fulfillment state machine (11.9468ms)
+▶ commerce file backend
+  ✔ creates idempotent fulfillment job for paid order (361.045ms)
+✔ commerce file backend (361.8112ms)
+▶ verified supplier mapping
+  ✔ rejects unverified mappings in production mode (35.2858ms)
+✔ verified supplier mapping (35.9434ms)
+▶ HMAC auth
+  ✔ signs and verifies requests (91.2283ms)
+  ✔ rejects replay (33.4172ms)
+✔ HMAC auth (125.2847ms)
+▶ consultation photo mime detection
+  ✔ detects jpeg/png/webp/heic (2.4548ms)
+  ✔ rejects empty and unknown buffers (0.5708ms)
+  ✔ allows only configured MIME types (0.7596ms)
+  ✔ re-exports detectMime from photos.js (0.5083ms)
+✔ consultation photo mime detection (7.5249ms)
+▶ consultation photo slots
+  ✔ validates allowed slots (0.8055ms)
+  ✔ reports missing required slots (2.1257ms)
+  ✔ builds opaque object keys from slot (1.8962ms)
+✔ consultation photo slots (5.6004ms)
+▶ consultation questionnaire
+  ✔ has the eight steps the mockup shows (1.9862ms)
+  ✔ gives every step a prompt, a helper and at least two options (0.674ms)
+  ✔ maps every concern option to a real concern family (2.0307ms)
+  ✔ never asks for medical information (0.6958ms)
+  ✔ walks forward and backward through the whole set (0.7346ms)
+✔ consultation questionnaire (9.1155ms)
+▶ consultation answer encoding
+  ✔ round-trips answers through the URL (2.7259ms)
+  ✔ drops unknown keys and values rather than trusting the URL (0.6075ms)
+  ✔ ignores oversize input instead of parsing it (0.6622ms)
+✔ consultation answer encoding (4.6888ms)
+▶ consultation recommendation mapping
+  ✔ derives only real concern families (1.0745ms)
+  ✔ recommends only products that declare a selected concern (1.4405ms)
+  ✔ keeps the routine inside the pace the visitor chose (0.5091ms)
+  ✔ produces nothing when no concern was selected (0.2918ms)
+✔ consultation recommendation mapping (3.955ms)
+▶ consultation routes exist
+  ✔ ships the landing, the step template and the results page (1.7361ms)
+  ✔ links the nav directly to paid consultation (0.9945ms)
+  ✔ keeps the paid 1:1 booking route reachable (2.9906ms)
+✔ consultation routes exist (6.1611ms)
+▶ consultation tokens
+  ✔ creates matching hash pairs (4.6559ms)
+✔ consultation tokens (10.9027ms)
+▶ intake schema
+  ✔ rejects incomplete intake (4.3322ms)
+  ✔ accepts valid intake with consent (1.1401ms)
+  ✔ requires all consent flags (0.9124ms)
+✔ intake schema (9.8291ms)
+▶ consultation statuses
+  ✔ blocks intake when payment pending (1.3003ms)
+  ✔ labels next actions (2.6ms)
+  ✔ lists required photo slots (0.5794ms)
+✔ consultation statuses (5.5313ms)
+▶ parseCsv
+  ✔ handles quoted commas (4.1088ms)
+✔ parseCsv (6.8032ms)
+▶ sample-import.csv end-to-end parse
+  ✔ parses sample file into 2 valid products (4.1389ms)
+✔ sample-import.csv end-to-end parse (4.5515ms)
+▶ buildImportPreview bad rows
+  ✔ reports missing name and bad wholesale (0.6041ms)
+✔ buildImportPreview bad rows (1.0667ms)
+▶ planImport
+  ✔ counts create vs update (0.6576ms)
+✔ planImport (0.9869ms)
+▶ customer password hashing
+  ✔ round-trips a password (123.2647ms)
+  ✔ rejects the wrong password (97.3773ms)
+  ✔ uses a fresh salt each time (165.0154ms)
+  ✔ fails closed on malformed stored records instead of throwing (2.3113ms)
+  ✔ enforces a minimum length server-side (0.7635ms)
+  ✔ stays within the Cloudflare Workers PBKDF2 cap (0.5916ms)
+  ✔ embeds the iteration count in the hash so it can be raised later (45.4476ms)
+✔ customer password hashing (441.1495ms)
+▶ customer schema
+  ✔ declares only additive statements (2.1023ms)
+  ✔ normalises and validates emails (0.8891ms)
+✔ customer schema (3.6489ms)
+▶ customer registration
+  ✔ creates an account and rejects a duplicate address (136.6934ms)
+  ✔ rejects a weak password and a bad address (2.0345ms)
+✔ customer registration (139.3397ms)
+▶ customer authentication
+  ✔ accepts the right password and rejects the wrong one (184.4803ms)
+  ✔ returns the same error for an unknown address (no enumeration) (47.4217ms)
+✔ customer authentication (243.799ms)
+▶ sessions
+  ✔ stores only a hash of the bearer value (79.0519ms)
+  ✔ treats an expired session as absent and removes it (102.5265ms)
+  ✔ revokes sessions on demand (129.156ms)
+  ✔ keeps reset grants in a separate namespace from logins (68.9731ms)
+✔ sessions (380.5245ms)
+▶ favorites cross-account isolation
+  ✔ never returns one account favorites to another (145.7499ms)
+  ✔ is idempotent when saving the same product twice (66.9282ms)
+  ✔ returns an empty list for an unknown customer id (3.7948ms)
+✔ favorites cross-account isolation (216.9375ms)
+▶ password reset
+  ✔ issues a token only for a real account, and always reports success (54.4548ms)
+  ✔ changes the password and revokes every prior session (199.9925ms)
+  ✔ rejects a reused or unknown reset token (130.1626ms)
+✔ password reset (385.2169ms)
+▶ protected route sources
+  ✔ never takes a customer identifier from the URL (13.4279ms)
+  ✔ has a page for every shipped account route (6.554ms)
+✔ protected route sources (20.4652ms)
+▶ applyDiscount — percentage
+  ✔ applies 15% correctly (2.4022ms)
+  ✔ rounds to cents (0.5097ms)
+  ✔ caps percentage at 100% (0.9312ms)
+  ✔ ignores zero or negative percentage (0.4642ms)
+✔ applyDiscount — percentage (7.4823ms)
+▶ applyDiscount — fixed
+  ✔ subtracts fixed amount (0.6389ms)
+  ✔ cannot exceed subtotal (0.4553ms)
+  ✔ ignores zero or negative fixed (0.429ms)
+✔ applyDiscount — fixed (2.2666ms)
+▶ applyDiscount — inactive / null
+  ✔ returns zero for inactive (0.7446ms)
+  ✔ returns zero for null/undefined code (1.1424ms)
+  ✔ treats missing active as active (truthy default for resolved codes) (1.5556ms)
+✔ applyDiscount — inactive / null (8.1287ms)
+▶ resolveDiscountCode — case-insensitive
+  ✔ matches lowercase input to stored code (1.4453ms)
+  ✔ matches mixed case (0.6917ms)
+  ✔ rejects empty code (1.0806ms)
+  ✔ rejects unknown code (0.6159ms)
+✔ resolveDiscountCode — case-insensitive (7.1403ms)
+▶ resolveDiscountCode — inactive / expired / max_uses
+  ✔ rejects inactive even if code string matches (0.4765ms)
+  ✔ rejects expired codes (1.5202ms)
+  ✔ rejects when uses_count >= max_uses (0.6593ms)
+  ✔ allows code under max_uses with future expiry (0.4191ms)
+  ✔ allows unlimited max_uses (null) (0.3852ms)
+✔ resolveDiscountCode — inactive / expired / max_uses (4.5363ms)
+▶ resolveDiscountCode → applyDiscount integration
+  ✔ resolved percentage flows into cartTotals (1.4173ms)
+  ✔ resolved fixed flows into cartTotals under free-ship threshold (0.4206ms)
+✔ resolveDiscountCode → applyDiscount integration (2.0879ms)
+{"ts":"2026-09-30T13:43:45.245Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_test_nosku_1790775825093","fulfillment_job_id":"fj_1790775825215_4sec9fp"}
+{"ts":"2026-09-30T13:43:45.403Z","level":"warn","msg":"fulfillment.alert","type":"fulfillment_alert","order_id":"ord_test_nosku_1790775825093","fulfillment_job_id":"fj_1790775825215_4sec9fp","error_code":"sku_missing","error_message":"Missing skin_script_sku for: Ghost item no id","affected_skus":[],"admin_url":"https://dewtheoryco.com/admin/orders/ord_test_nosku_1790775825093","timestamp":"2026-09-30T13:43:45.403Z"}
+{"ts":"2026-09-30T13:43:45.405Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_test_nosku_1790775825093","job_id":"fj_1790775825215_4sec9fp","error_code":"sku_missing"}
+{"ts":"2026-09-30T13:43:45.519Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_test_ok_1790775825433","fulfillment_job_id":"fj_1790775825499_jkj07pp"}
+{"ts":"2026-09-30T13:43:45.632Z","level":"info","msg":"fulfillment.completed","order_id":"ord_test_ok_1790775825433","job_id":"fj_1790775825499_jkj07pp","supplier_order_id":"SSPO_ord_test_ok_1790775825433"}
+{"ts":"2026-09-30T13:43:45.632Z","level":"info","msg":"dropship.fulfilled","order_id":"ord_test_ok_1790775825433","supplier_order_id":"SSPO_ord_test_ok_1790775825433","adapter":"skin-script-mock"}
+{"ts":"2026-09-30T13:43:45.703Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_commerce_only_fail_1790775825655","fulfillment_job_id":"fj_1790775825685_2d8xxcv"}
+{"ts":"2026-09-30T13:43:45.829Z","level":"warn","msg":"fulfillment.alert","type":"fulfillment_alert","order_id":"ord_commerce_only_fail_1790775825655","fulfillment_job_id":"fj_1790775825685_2d8xxcv","error_code":"sku_missing","error_message":"Missing skin_script_sku for: Ghost item no id","affected_skus":[],"admin_url":"https://dewtheoryco.com/admin/orders/ord_commerce_only_fail_1790775825655","timestamp":"2026-09-30T13:43:45.829Z"}
+{"ts":"2026-09-30T13:43:45.830Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_commerce_only_fail_1790775825655","job_id":"fj_1790775825685_2d8xxcv","error_code":"sku_missing"}
+▶ resolveLineSku
+  ✔ uses line then product catalog then derived SKU (1.6918ms)
+✔ resolveLineSku (3.72ms)
+▶ sanitizeSupplierRaw
+  ✔ strips secrets (0.5741ms)
+✔ sanitizeSupplierRaw (0.8673ms)
+▶ ORDER_STATUSES dropship states
+  ✔ includes queued and failed_supplier (0.5605ms)
+✔ ORDER_STATUSES dropship states (0.8771ms)
+▶ fulfillOrder mock path
+  ✔ fails safely when line has no product mapping (336.3127ms)
+  ✔ submits paid order and is idempotent (221.6628ms)
+✔ fulfillOrder mock path (562.0918ms)
+▶ shouldAutoFulfill
+  ✔ defaults true (0.702ms)
+  ✔ is off for production-honest mock + AUTO_FULFILL=false (0.3392ms)
+  ✔ is off when RPA mode is set but kill switch is not true (0.457ms)
+✔ shouldAutoFulfill (2.1205ms)
+▶ fulfillOrder commerce-only failure
+  ✔ writes failed_supplier to durable order + job when store has no row (210.1953ms)
+✔ fulfillOrder commerce-only failure (210.4252ms)
+▶ email + booking policy
+  ✔ exposes email config without requiring Resend (2.2121ms)
+  ✔ booking policy is honest without env (0.8173ms)
+  ✔ reads deposit env when set (0.5808ms)
+✔ email + booking policy (6.3834ms)
+▶ GoogleCalendarAdapter configuration
+  ✔ is not configured without env (5ms)
+  ✔ is configured when all fields set (3.9215ms)
+  ✔ factory returns mock without credentials (1.3409ms)
+  ✔ listBookableSlots still works (8.3676ms)
+✔ GoogleCalendarAdapter configuration (39.3587ms)
+▶ green token WCAG contrast
+  ✔ 900 on 50: 13.61 >= 4.5 (12.926ms)
+  ✔ 900 on 100: 12.21 >= 4.5 (0.9941ms)
+  ✔ 900 on 200: 10.76 >= 4.5 (0.4017ms)
+  ✔ 900 on 300: 8.92 >= 4.5 (0.3404ms)
+  ✔ 900 on 400: 6.56 >= 4.5 (2.5144ms)
+  ✔ 700 on 50: 6.99 >= 4.5 (0.3399ms)
+  ✔ 700 on 100: 6.26 >= 4.5 (0.51ms)
+  ✔ 700 on 200: 5.52 >= 4.5 (0.6115ms)
+  ✔ 50 on 700: 6.99 >= 4.5 (8.2982ms)
+  ✔ 50 on 900: 13.61 >= 4.5 (17.0737ms)
+  ✔ 700 on 50: 6.99 >= 3 (0.454ms)
+  ✔ 700 on 100: 6.26 >= 3 (0.5669ms)
+  ✔ 700 on 200: 5.52 >= 3 (0.1809ms)
+  ✔ 700 on 300: 4.58 >= 3 (0.6595ms)
+✔ green token WCAG contrast (54.1949ms)
+▶ green release integrity
+  ✔ every catalog record has real required fields and resolvable images (52.0655ms)
+  ✔ shipping rules remain $12 below $49 (0.6409ms)
+  ✔ sizes and alt text are normalized without inventing missing sizes (1.6677ms)
+  ✔ Acai placeholder is hidden (0.4389ms)
+  ✔ header and footer are shared by every public route (1.2319ms)
+  ✔ developer booking notes are production guarded (1.8454ms)
+✔ green release integrity (58.8301ms)
+▶ homepage hierarchy
+  ✔ composes the consultation-led section order (2.7447ms)
+  ✔ drives hero, featured story, and picks from the live catalog (4.0376ms)
+  ✔ states no reviews, ratings, or invented credentials (15.5987ms)
+✔ homepage hierarchy (33.0763ms)
+▶ spectral family system
+  ✔ maps only to concerns that exist in the real catalog (1.8668ms)
+  ✔ resolves a family for every shop-visible product (1.9039ms)
+✔ spectral family system (4.8143ms)
+▶ virtual consultation page
+  ✔ keeps the existing payment, intake, and disclaimer path intact (1.6888ms)
+  ✔ presents guidance before paperwork (3.8229ms)
+✔ virtual consultation page (6.5034ms)
+▶ next/image quality allowlist
+  ✔ every rendered quality is inside the configured allowlist (526.4918ms)
+✔ next/image quality allowlist (534.0863ms)
+▶ journal content
+  ✔ has at least one entry (2.882ms)
+  ✔ every entry has the required shape (2.8523ms)
+  ✔ slugs are unique and resolvable (0.6416ms)
+  ✔ asserts no publish dates (0.5492ms)
+  ✔ topics are non-empty strings (0.6144ms)
+✔ journal content (11.3552ms)
+▶ legal documents registry
+  ✔ exposes public legal routes without duplicates (3.9068ms)
+  ✔ footer links are public HTML routes only (1.5533ms)
+  ✔ keeps internal attorney docs out of public pdf paths and footer (4.2833ms)
+  ✔ serves FIXED V2 public PDFs with PDF headers (36.7106ms)
+  ✔ checkout links cover terms, privacy, shipping, returns (0.588ms)
+  ✔ virtual consultation docs include required set and gate consumer health (0.4492ms)
+  ✔ booking docs exclude minor consent while disabled (0.4416ms)
+  ✔ membership docs are pre-launch and not in footer (0.6303ms)
+  ✔ records missing complete package from archive (0.4354ms)
+  ✔ has no stale cropped-logo public pdf filenames in public/legal/pdfs (1.7975ms)
+✔ legal documents registry (54.7614ms)
+▶ resolveManualFulfillAction
+  ✔ maps known actions to durable statuses (1.8464ms)
+  ✔ rejects unknown action (0.4601ms)
+✔ resolveManualFulfillAction (5.6633ms)
+▶ buildManualFulfillmentUpdate
+  ✔ applies mark_submitted with vendor id and tracking (1.0408ms)
+  ✔ marks needs review without requiring vendor id (0.5197ms)
+  ✔ rejects unknown status string (0.4619ms)
+✔ buildManualFulfillmentUpdate (2.6176ms)
+▶ autoFulfill alignment
+  ✔ computeAutoFulfillEnabled matches shouldAutoFulfill (0.7385ms)
+✔ autoFulfill alignment (1.1898ms)
+▶ membership packages
+  ✔ returns default packages without prices (2.3498ms)
+  ✔ formats missing price honestly (0.9452ms)
+✔ membership packages (6.151ms)
+▶ order path — cart → paid order → fulfillment status
+  ✔ re-prices cart lines from catalog and rejects client unit_price (2.8711ms)
+  ✔ rejects unknown SKU (0.4997ms)
+  ✔ prices Peppermint lip treatment at official SRP (0.5776ms)
+  ✔ writes mock paid order and transitions admin fulfillment status (134.2945ms)
+✔ order path — cart → paid order → fulfillment status (141.3168ms)
+▶ validateOrderStatus
+  ✔ accepts known statuses including submitted_to_skin_script (2.3843ms)
+  ✔ rejects unknown (0.593ms)
+✔ validateOrderStatus (6.827ms)
+▶ filterOrdersByStatus
+  ✔ returns all when filter all (0.9123ms)
+  ✔ filters paid (2.9617ms)
+  ✔ filters submitted_to_skin_script (0.5532ms)
+✔ filterOrdersByStatus (5.2875ms)
+▶ routine timeline
+  ✔ covers real catalog categories only, cleanser first and SPF last (16.4036ms)
+  ✔ stays a superset of the layering order used for recommendations (0.5884ms)
+  ✔ places a serum and reports neighbours plus its AM/PM label (0.68ms)
+  ✔ has no position for a bundle and no time label where copy states none (0.8388ms)
+✔ routine timeline (29.8993ms)
+▶ pdp routine placement wiring
+  ✔ mounts the placement timeline and the above-fold concern chips (0.6107ms)
+  ✔ renders the current step as aria-current rather than colour alone (1.0067ms)
+✔ pdp routine placement wiring (2.0776ms)
+▶ shop filter dimensions
+  ✔ filters by routine step, availability, and price (3.5541ms)
+  ✔ round-trips the new dimensions through the URL (7.1106ms)
+  ✔ ignores an availability value that is not a real dimension (1.8297ms)
+  ✔ derives price bounds and step options from the real catalog (1.2107ms)
+  ✔ labels the price chip and range without inventing a currency style (0.7159ms)
+✔ shop filter dimensions (15.3379ms)
+▶ shop grid exposes the new controls
+  ✔ renders routine step, availability, and price fields (0.5503ms)
+  ✔ commits price on blur or Enter instead of per keystroke (0.3296ms)
+✔ shop grid exposes the new controls (1.193ms)
+▶ defaultRetailFromWholesale
+  ✔ doubles wholesale (1.5172ms)
+  ✔ returns null for invalid (0.3623ms)
+✔ defaultRetailFromWholesale (4.1229ms)
+▶ validateAndNormalizeProduct — create
+  ✔ requires id and name (1.0271ms)
+  ✔ rejects bad slug (0.4668ms)
+  ✔ rejects duplicate id (0.4441ms)
+  ✔ auto retail ×2 when retail omitted (0.4964ms)
+  ✔ keeps explicit retail (0.3964ms)
+  ✔ rejects negative prices (0.4002ms)
+  ✔ accepts active false (0.4226ms)
+  ✔ does not mark retail as confirmed unless explicitly true (1.6158ms)
+  ✔ preserves size_confirmed false on update (0.4592ms)
+✔ validateAndNormalizeProduct — create (6.8998ms)
+▶ isShopVisible reflects active + discontinued
+  ✔ hides inactive (0.4749ms)
+  ✔ hides discontinued (0.3489ms)
+  ✔ shows in-stock active (0.2161ms)
+✔ isShopVisible reflects active + discontinued (1.8317ms)
+▶ product-image mapping
+  ✔ maps all catalog products to pearl WebP paths via image_webp/images (14.2175ms)
+  ✔ prefers image_webp, converts PNG paths to WebP, and stamps the imagery revision (2.0271ms)
+  ✔ cache-busts local product media exactly once and leaves other sources alone (1.0589ms)
+  ✔ falls back by id when images[] empty (0.9033ms)
+  ✔ uses category placeholder when unknown product (0.7153ms)
+  ✔ prefers explicit image_alt (0.9723ms)
+✔ product-image mapping (26.543ms)
+▶ manufacturer label panels
+  ✔ flags exactly the documented panel assets, with or without the cache token (3.5573ms)
+  ✔ every documented panel is a real gallery image in the catalog (2.7792ms)
+  ✔ describes the panel instead of claiming a studio background (3.7766ms)
+✔ manufacturer label panels (11.289ms)
+▶ product alt text
+  ✔ never describes the retired dark art direction (2.2428ms)
+  ✔ gives every product a non-empty, name-bearing alt (0.7393ms)
+✔ product alt text (5.5324ms)
+▶ product imagery
+  ✔ resolves every referenced image on disk (24.2015ms)
+  ✔ ships real packaging as alpha cut-outs, not plates (341.061ms)
+  ✔ has no unreferenced leftovers at the skin-script root (1.5265ms)
+✔ product imagery (367.6079ms)
+▶ public product DTO
+  ✔ strips wholesale and internal flags from toPublicProduct (2.5928ms)
+  ✔ client PRODUCTS seed never includes wholesale_price (1.2972ms)
+✔ public product DTO (7.6234ms)
+▶ owner-removal regression
+  ✔ removed route page files no longer exist (13.302ms)
+  ✔ published guidance routes still exist (2.4123ms)
+  ✔ handoff content routes exist (4.4246ms)
+  ✔ navigation and footer do not link removed routes (1.6913ms)
+  ✔ sitemap omits removed routes (1.0854ms)
+  ✔ sticky CTA is a single Shop action without booking (1.6251ms)
+✔ owner-removal regression (28.0057ms)
+▶ routine kits
+  ✔ defines starter kits with real ids (1.5358ms)
+  ✔ resolves barrier kit subtotal (0.6855ms)
+  ✔ lists only resolvable kits (0.4163ms)
+✔ routine kits (6.2524ms)
+▶ suggestRoutineComplements
+  ✔ suggests later routine steps after a cleanser (1.9228ms)
+  ✔ returns empty for unknown product (2.7902ms)
+✔ suggestRoutineComplements (7.0349ms)
+▶ suggestMissingRoutineSteps
+  ✔ fills missing categories from cart (0.891ms)
+✔ suggestMissingRoutineSteps (1.1971ms)
+▶ ROUTINE_ORDER
+  ✔ starts with cleanser and ends with SPF (0.4191ms)
+✔ ROUTINE_ORDER (0.7058ms)
+{"ts":"2026-09-30T13:43:53.324Z","level":"info","msg":"rpa.create_dropship_order","order_id":"ord_rpa_int_1","line_count":1}
+{"ts":"2026-09-30T13:43:53.454Z","level":"info","msg":"rpa.create_dropship_order","order_id":"ord_rpa_int_2","line_count":1}
+▶ RPA adapter mock service integration
+  ✔ submits dry-run job with valid HMAC headers (154.902ms)
+  ✔ returns supplier order id on live submit path (54.0594ms)
+  ✔ lists allowlisted catalog drafts via signed POST (43.6157ms)
+  ✔ fails closed when RPA catalog is not configured (8.3946ms)
+  ✔ checks inventory via signed POST (40.7545ms)
+  ✔ respects kill switch when RPA disabled (4.6989ms)
+✔ RPA adapter mock service integration (310.0951ms)
+▶ search
+  ✔ indexes products and finds cleanser by name (13.6302ms)
+  ✔ does not surface quiz/about/contact/faq as public results (1.001ms)
+  ✔ returns empty for nonsense query (2.1374ms)
+  ✔ buildSearchIndex excludes unpublished service/routine/membership routes (1.0447ms)
+✔ search (21.7359ms)
+▶ shop filters
+  ✔ filters by category type (1.1787ms)
+  ✔ sorts price ascending (37.336ms)
+  ✔ sorts name A-Z (51.9004ms)
+  ✔ parses shop params (116.2091ms)
+  ✔ collects concerns from catalog (10.9861ms)
+  ✔ filters PM excludes SPF (0.8043ms)
+✔ shop filters (245.5567ms)
+▶ calculateShipping — pre_discount basis (production default)
+  ✔ exports confirmed constants (2.2676ms)
+  ✔ charges $12 below threshold (0.5371ms)
+  ✔ waives shipping at exactly $49 (0.4067ms)
+  ✔ waives shipping above $49 (0.452ms)
+  ✔ uses pre-discount subtotal even when post-discount is under threshold (0.3595ms)
+  ✔ charges when pre-discount is under threshold even if post is higher (n/a) (0.4366ms)
+✔ calculateShipping — pre_discount basis (production default) (7.7448ms)
+▶ calculateShipping — post_discount basis flip
+  ✔ can flip to post_discount via third argument (0.5586ms)
+  ✔ falls back to pre when post is null under post_discount (0.4873ms)
+✔ calculateShipping — post_discount basis flip (1.5779ms)
+▶ formatMoney
+  ✔ formats whole dollars without cents (0.8996ms)
+  ✔ keeps cents when needed (2.3288ms)
+✔ formatMoney (4.0936ms)
+▶ discount + shipping matrix (cartTotals)
+  ✔ no discount, under threshold → $12 ship (1.2333ms)
+  ✔ no discount, at threshold → free ship (0.3638ms)
+  ✔ 15% off on $56: free ship on pre_discount (promo cannot remove free ship) (0.5378ms)
+  ✔ 15% off on $56 with post_discount basis → shipping returns (0.4307ms)
+  ✔ fixed $10 off under threshold still pays flat ship (pre basis) (0.3599ms)
+  ✔ fixed discount cannot exceed subtotal (0.3385ms)
+  ✔ inactive discount is ignored (0.3366ms)
+  ✔ multi-line subtotal drives shipping (0.2957ms)
+✔ discount + shipping matrix (cartTotals) (6.2907ms)
+▶ site polish honesty
+  ✔ shipping page stays customer-facing and does not point at unpublished contact (4.7335ms)
+  ✔ privacy page distinguishes live handling from unpublished procedures (2.6919ms)
+  ✔ trust strip uses confirmed facts only — no reviews or ratings (4.1632ms)
+  ✔ footer Help stays the eight public legal routes (5.6898ms)
+  ✔ product grid prioritizes its lead image and retains skeletons without preloading off-screen rails (5.5297ms)
+  ✔ empty bag still points to shop and shows the free-shipping meter (2.113ms)
+  ✔ nav links About as a published route (1.1676ms)
+✔ site polish honesty (33.4668ms)
+▶ skin concern taxonomy
+  ✔ claims only conditions that exist in the catalog (2.589ms)
+  ✔ leaves no catalog condition unclaimed (0.5984ms)
+  ✔ does not claim the same condition in two families (0.6228ms)
+  ✔ has unique slugs and every family resolves to at least one product (0.8142ms)
+  ✔ only assigns products that declare the family condition (0.9552ms)
+✔ skin concern taxonomy (9.3817ms)
+▶ skin quiz
+  ✔ defines four inclusive chapters (27.6878ms)
+  ✔ scores a teen breakout path with real catalog ids (1.688ms)
+  ✔ scores mature dry path without forcing strong actives (3.9772ms)
+  ✔ allows mandelic on active pigment path when not sensitive (1.0864ms)
+  ✔ encodes and decodes answers (0.9257ms)
+✔ skin quiz (39.4806ms)
+▶ emily pairs + routine template
+  ✔ returns complementary products for a cleanser (85.516ms)
+  ✔ builds AM template with SPF (3.5616ms)
+✔ emily pairs + routine template (100.897ms)
+{"ts":"2026-09-30T13:43:56.180Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_1790775836104","fulfillment_job_id":"fj_1790775836159_6jzhz4t"}
+[email] {
+  to: 'integration@test.example.com',
+  subject: 'Order received — ord_1790775836104',
+  tags: [ 'order_confirmed' ]
+}
+{"ts":"2026-09-30T13:43:56.675Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_1790775836373","fulfillment_job_id":"fj_1790775836507_j05daj5"}
+[email] {
+  to: 'integration@test.example.com',
+  subject: 'Order received — ord_1790775836373',
+  tags: [ 'order_confirmed' ]
+}
+{"ts":"2026-09-30T13:43:56.889Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_1790775836104","job_id":"fj_1790775836159_6jzhz4t","error_code":"empty_lines"}
+[email] {
+  to: 'integration@test.example.com',
+  subject: 'Order received — ord_1790775836373',
+  tags: [ 'order_confirmed' ]
+}
+{"ts":"2026-09-30T13:43:58.119Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_1790775836373","job_id":"fj_1790775836507_j05daj5","error_code":"empty_lines"}
+{"ts":"2026-09-30T13:43:58.300Z","level":"warn","msg":"fulfillment.failed","order_id":"ord_1790775836373","job_id":"fj_1790775836507_j05daj5","error_code":"empty_lines"}
+{"ts":"2026-09-30T13:43:58.368Z","level":"info","msg":"fulfillment.job_created","order_id":"ord_pending_1790775837625","fulfillment_job_id":"fj_1790775838338_o0zkpm4"}
+[email] {
+  to: 'pending@test.example.com',
+  subject: 'Order received — ord_pending_1790775837625',
+  tags: [ 'order_confirmed' ]
+}
+{"ts":"2026-09-30T13:43:58.623Z","level":"info","msg":"fulfillment.completed","order_id":"ord_pending_1790775837625","job_id":"fj_1790775838338_o0zkpm4","supplier_order_id":"SSPO_ord_pending_1790775837625"}
+{"ts":"2026-09-30T13:43:58.624Z","level":"info","msg":"dropship.fulfilled","order_id":"ord_pending_1790775837625","supplier_order_id":"SSPO_ord_pending_1790775837625","adapter":"skin-script-mock"}
+▶ markOrderPaidFromSessionAsync → durable commerce
+  ✔ persists paid order and fulfillment job to commerce backend (218.9167ms)
+  ✔ is idempotent when the same Stripe session is processed twice (713.3319ms)
+✔ markOrderPaidFromSessionAsync → durable commerce (1204.031ms)
+▶ pending checkout → durable → webhook (Workers-safe)
+  ✔ preserves line items when pending exists only in durable commerce (1072.2267ms)
+  ✔ refuses sparse create when allowSparseCreate is false (107.81ms)
+  ✔ durable webhook event mark is readable for replay skip (80.0882ms)
+✔ pending checkout → durable → webhook (Workers-safe) (1330.1439ms)
+▶ stripe config
+  ✔ detects configured keys (1.8733ms)
+  ✔ tax enabled by default when stripe configured (0.5157ms)
+  ✔ checkout extensions include US/CA shipping (0.6671ms)
+  ✔ productPriceData sets exclusive tax behavior when tax on (0.8275ms)
+✔ stripe config (8.4409ms)
+▶ skin-script portal URL registry
+  ✔ covers every catalog product (3.195ms)
+  ✔ uses skinscript.com product URLs (6.0832ms)
+  ✔ marks verified products with portal SKUs (1.4972ms)
+✔ skin-script portal URL registry (14.793ms)
+▶ totp
+  ✔ decodes base32 (2.7229ms)
+  ✔ generates 6-digit codes (2.2421ms)
+  ✔ verifies current window (1.9414ms)
+  ✔ rejects empty secret (0.4703ms)
+✔ totp (10.5857ms)
+ℹ tests 396
+ℹ suites 130
+ℹ pass 396
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24349.4051

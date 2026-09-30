@@ -82,7 +82,7 @@ export default function OrderStatusForm({ orderId, current, order }) {
     <div className="space-y-6">
       <form onSubmit={save} className="glass-1 p-6">
         <h2 className="font-display text-xl font-normal text-graphite">Fulfillment status</h2>
-        <p className="mt-2 font-body text-xs font-light text-charcoal/60">
+        <p className="mt-2 font-body text-xs font-light text-charcoal">
           Manual status change, or use Auto-submit to Skin Script (mock/http adapter) below.
         </p>
         <select
@@ -99,27 +99,27 @@ export default function OrderStatusForm({ orderId, current, order }) {
         <button
           type="submit"
           disabled={loading}
-          className="mt-4 border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+          className="mt-4 border border-graphite bg-green-300 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink disabled:opacity-60"
         >
           {loading ? 'Saving…' : 'Update status'}
         </button>
-        {msg && <p className="mt-2 font-body text-xs font-light text-charcoal/60">{msg}</p>}
+        {msg && <p className="mt-2 font-body text-xs font-light text-charcoal">{msg}</p>}
       </form>
 
       <div className="glass-1 p-6">
         <h2 className="font-display text-xl font-normal text-graphite">Auto-submit to Skin Script</h2>
-        <p className="mt-2 font-body text-xs font-light text-charcoal/60">
+        <p className="mt-2 font-body text-xs font-light text-charcoal">
           Calls the supplier adapter with line SKUs. Idempotent if already submitted. Requires each
           product to have <code className="text-[0.7rem]">skin_script_sku</code>.
         </p>
         {order?.supplier_order_id && (
-          <p className="mt-3 font-body text-sm font-light text-charcoal/80">
+          <p className="mt-3 font-body text-sm font-light text-charcoal">
             Supplier PO: <span className="font-medium">{order.supplier_order_id}</span>
             {order.supplier_status ? ` · ${order.supplier_status}` : ''}
           </p>
         )}
         {order?.fulfillment_error && (
-          <p className="mt-2 font-body text-xs font-light text-charcoal/70" role="alert">
+          <p className="mt-2 font-body text-xs font-light text-charcoal" role="alert">
             Last error{order.fulfillment_error_code ? ` (${order.fulfillment_error_code})` : ''}:{' '}
             {order.fulfillment_error}
           </p>

@@ -9,27 +9,63 @@ function read(rel) {
   return readFileSync(new URL(rel, root), 'utf8');
 }
 
+/**
+ * Routes the owner removed and that must stay unpublished.
+ * `/routine` and `/quiz` are deliberately NOT here: the routine builder is a
+ * live page and `/quiz` is a published alias that redirects to `/skin-quiz`.
+ *
+ * 2026-09-26: `/about` and `/contact` moved OUT of this list. The approved
+ * pearl/editorial handoff requires both as real published routes (DT-14 and
+ * DT-17), so the storefront now ships them. `/services`, `/membership`, `/book`
+ * and `/faq` remain retired — the handoff's guidance/help surface is served by
+ * `/how-it-works` and `/help` instead.
+ */
 const UNPUBLISHED_ROUTES = [
-  '/routine',
   '/services',
   '/membership',
   '/book',
-  '/quiz',
-  '/about',
-  '/contact',
   '/faq'
 ];
 
 const UNPUBLISHED_PAGES = [
-  'app/routine/page.jsx',
   'app/services/page.jsx',
   'app/membership/page.jsx',
   'app/book/page.jsx',
-  'app/quiz/page.jsx',
-  'app/about/page.jsx',
-  'app/contact/page.jsx',
   'app/faq/page.jsx',
   'app/studio/page.jsx'
+];
+
+/** Guidance routes the storefront publishes and links. */
+const PUBLISHED_GUIDANCE_PAGES = [
+  'app/page.jsx',
+  'app/skin-quiz/page.jsx',
+  'app/routine/page.jsx',
+  'app/quiz/page.jsx',
+  'app/virtual-consultation/page.jsx'
+];
+
+/**
+ * Content routes required by the approved handoff mockups. These must exist as
+ * real pages, not redirects or placeholders.
+ */
+const PUBLISHED_CONTENT_PAGES = [
+  'app/about/page.jsx',
+  'app/contact/page.jsx',
+  'app/help/page.jsx',
+  'app/how-it-works/page.jsx',
+  'app/ingredients/page.jsx',
+  'app/journal/page.jsx',
+  'app/journal/[slug]/page.jsx',
+  'app/search/page.jsx',
+  'app/skin-concerns/page.jsx',
+  'app/skin-concerns/[slug]/page.jsx',
+  'app/account/page.jsx',
+  'app/account/login/page.jsx',
+  'app/account/reset/page.jsx',
+  'app/favorites/page.jsx',
+  'app/consultation/page.jsx',
+  'app/consultation/[step]/page.jsx',
+  'app/consultation/results/page.jsx'
 ];
 
 describe('owner-removal regression', () => {
@@ -37,6 +73,20 @@ describe('owner-removal regression', () => {
     for (const rel of UNPUBLISHED_PAGES) {
       const abs = fileURLToPath(new URL(rel, root));
       assert.ok(!existsSync(abs), `route page should be unpublished: ${rel}`);
+    }
+  });
+
+  it('published guidance routes still exist', () => {
+    for (const rel of PUBLISHED_GUIDANCE_PAGES) {
+      const abs = fileURLToPath(new URL(rel, root));
+      assert.ok(existsSync(abs), `route page must stay published: ${rel}`);
+    }
+  });
+
+  it('handoff content routes exist', () => {
+    for (const rel of PUBLISHED_CONTENT_PAGES) {
+      const abs = fileURLToPath(new URL(rel, root));
+      assert.ok(existsSync(abs), `content route must be published: ${rel}`);
     }
   });
 

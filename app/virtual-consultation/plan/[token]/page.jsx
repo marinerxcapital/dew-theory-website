@@ -1,30 +1,32 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import { getConsultationByPlanToken } from '@/lib/consultations/service.js';
 
-export const metadata = {
+export const metadata = withPageMetadata('/virtual-consultation', {
   title: 'Your skincare plan',
   robots: { index: false, follow: false }
-};
+});
 
 function Block({ title, body }) {
   if (!body) return null;
   return (
     <section className="mt-10">
       <h2 className="font-display text-xl font-normal text-graphite">{title}</h2>
-      <div className="mt-4 whitespace-pre-wrap font-body text-sm font-light leading-relaxed text-charcoal/80">
+      <div className="mt-4 whitespace-pre-wrap font-body text-sm font-light leading-relaxed text-charcoal">
         {body}
       </div>
     </section>
   );
 }
 
-export default function PlanPage({ params }) {
-  const result = getConsultationByPlanToken(params?.token);
+export default async function PlanPage({ params }) {
+  const { token } = await params;
+  const result = getConsultationByPlanToken(token);
   if (!result || result.plan?.status !== 'published') {
     return (
       <section className="mx-auto max-w-shell px-6 pb-24 pt-32 lg:px-10">
         <h1 className="font-display text-2xl text-graphite">Plan not available</h1>
-        <p className="mt-4 font-body text-sm font-light text-charcoal/70">
+        <p className="mt-4 font-body text-sm font-light text-charcoal">
           This link is invalid, expired, or the plan has not been published yet.
         </p>
         <Link href="mailto:hello@dewtheory.studio" className="mt-8 inline-block font-label text-[0.7rem] uppercase tracking-lockup">
@@ -40,7 +42,7 @@ export default function PlanPage({ params }) {
 
   return (
     <article className="mx-auto max-w-shell px-6 pb-24 pt-32 sm:pt-36 lg:px-10">
-      <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70">
+      <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal">
         Personalized plan
       </p>
       <h1 className="mt-5 font-display text-[clamp(2rem,4.5vw,3rem)] font-normal text-graphite">
@@ -73,7 +75,7 @@ export default function PlanPage({ params }) {
                   ? `/shop/${p.product_id}`
                   : p.product_url || null;
                 return (
-                  <li key={`${p.product_id || i}`} className="glass-1 rounded-[3px] p-5">
+                  <li key={`${p.product_id || i}`} className="glass-1 rounded-card p-5">
                     <p className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
                       {p.routine_phase || 'routine'}
                     </p>
@@ -81,12 +83,12 @@ export default function PlanPage({ params }) {
                       {p.display_name || p.product_id}
                     </p>
                     {p.usage_instructions ? (
-                      <p className="mt-2 font-body text-sm font-light text-charcoal/75">
+                      <p className="mt-2 font-body text-sm font-light text-charcoal">
                         {p.usage_instructions}
                       </p>
                     ) : null}
                     {p.note ? (
-                      <p className="mt-1 font-body text-sm font-light text-charcoal/65">{p.note}</p>
+                      <p className="mt-1 font-body text-sm font-light text-charcoal">{p.note}</p>
                     ) : null}
                     {href ? (
                       <Link
@@ -106,7 +108,7 @@ export default function PlanPage({ params }) {
         </section>
       ) : null}
 
-      <p className="mt-14 max-w-xl font-body text-xs font-light leading-relaxed text-charcoal/55">
+      <p className="mt-14 max-w-xl font-body text-xs font-light leading-relaxed text-charcoal">
         Virtual consultations provide aesthetic skincare guidance and do not replace evaluation,
         diagnosis, or treatment by a licensed medical professional. Questions?{' '}
         <Link href="mailto:hello@dewtheory.studio" className="underline decoration-chrome/40">

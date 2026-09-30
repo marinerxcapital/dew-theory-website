@@ -1,38 +1,36 @@
 import './globals.css';
-import { Bodoni_Moda, Jost, Karla } from 'next/font/google';
+import { Figtree, Newsreader } from 'next/font/google';
+import localFont from 'next/font/local';
+import { PAGE_GREEN } from '@/lib/design-tokens';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import MotionRoot from '@/components/MotionRoot';
 import MotionBackground from '@/components/MotionBackground';
+import AmbientGlow from '@/components/AmbientGlow';
+import CardTilt from '@/components/CardTilt';
 import ScrollTop from '@/components/ScrollTop';
+import Concierge from '@/components/Concierge';
 import JsonLd from '@/components/JsonLd';
 import { CartProvider } from '@/components/CartProvider';
 
-const display = Bodoni_Moda({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  weight: ['400'],
+/** Green display, UI and journal fonts; original roman glyphs, swap loading. */
+const display = localFont({
+  src: './fonts/Fraunces-SOFT100-variable.woff2',
+  weight: '100 900',
+  style: 'normal',
   variable: '--font-display',
   display: 'swap',
   preload: true,
-  adjustFontFallback: true
+  adjustFontFallback: 'Times New Roman'
 });
-const label = Jost({
+const body = Figtree({
   subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-label',
-  display: 'swap',
-  preload: true,
-  adjustFontFallback: true
-});
-const body = Karla({
-  subsets: ['latin'],
-  weight: ['400'],
   variable: '--font-body',
   display: 'swap',
   preload: true,
   adjustFontFallback: true
 });
+
+const journal = Newsreader({ subsets: ['latin'], style: 'normal', variable: '--font-journal', display: 'swap', preload: false });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dewtheoryco.com';
 
@@ -44,8 +42,8 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#EDEDE6' },
-    { media: '(prefers-color-scheme: dark)', color: '#1E2B22' }
+    { media: '(prefers-color-scheme: light)', color: PAGE_GREEN },
+    { media: '(prefers-color-scheme: dark)', color: PAGE_GREEN }
   ],
   viewportFit: 'cover',
   colorScheme: 'light'
@@ -95,7 +93,7 @@ export const metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: '/logo-dewtheory-og-20260825.png',
+        url: '/og-green.png',
         width: 1200,
         height: 630,
         alt: 'Dew Theory — clinical skin care'
@@ -106,11 +104,11 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Dew Theory — Professional Skin Script Skincare',
     description: SITE_DESCRIPTION,
-    images: ['/logo-dewtheory-og-20260825.png']
+    images: ['/og-green.png']
   },
   icons: {
-    icon: [{ url: '/logo-dewtheory-mark-20260825.webp', type: 'image/webp' }],
-    apple: [{ url: '/logo-dewtheory-mark-20260825.webp', type: 'image/webp' }]
+    icon: [{ url: '/favicon-green.png', type: 'image/png' }],
+    apple: [{ url: '/apple-touch-icon-green.png', type: 'image/png' }]
   },
   manifest: '/site.webmanifest',
   formatDetection: {
@@ -130,7 +128,7 @@ const orgLd = {
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/logo-dewtheory-og-20260825.png`
+        url: `${siteUrl}/logo-dewtheory-glass-wordmark-transparent.png`
       },
       description: SITE_DESCRIPTION
     },
@@ -158,7 +156,7 @@ const orgLd = {
       url: siteUrl,
       description:
         'Licensed aesthetician Emily Mitchener — Skin Script professional skincare and virtual skin consultations.',
-      image: `${siteUrl}/logo-dewtheory-og-20260825.png`,
+      image: `${siteUrl}/logo-dewtheory-glass-wordmark-transparent.png`,
       priceRange: '$$',
       makesOffer: [
         {
@@ -176,12 +174,18 @@ const orgLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${display.variable} ${label.variable} ${body.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${journal.variable}`}>
+      <head>
+        {/* Explicit roman hints: the edge adapter emits an empty font manifest. */}
+        <link rel="preload" href="/_next/static/media/639ca701a395c351-s.p.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/_next/static/media/de42cfb9a3b980ae-s.p.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body className="relative bg-ivory font-body font-normal text-forest antialiased">
         <JsonLd data={orgLd} />
         <CartProvider>
           <MotionBackground />
-          <MotionRoot />
+          <AmbientGlow />
+          <CardTilt />
           <div className="relative z-[1]">
             <Nav />
             <main id="main" tabIndex={-1} className="min-h-[50vh]">
@@ -189,6 +193,7 @@ export default function RootLayout({ children }) {
             </main>
             <Footer />
             <ScrollTop />
+            <Concierge />
           </div>
         </CartProvider>
       </body>

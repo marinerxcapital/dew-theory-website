@@ -1,0 +1,2 @@
+import fs from 'node:fs';
+export default [{ ignores: ['node_modules/**','.next/**','.next-qa/**','.open-next/**','.revamp-git-objects/**','docs/**','public/**','services/**','agent-ops-dashboard/**'] },{ files: ['app/**/*.{js,jsx}','components/**/*.{js,jsx}','lib/**/*.js','scripts/revamp-*.mjs'], languageOptions: { ecmaVersion: 'latest', sourceType: 'module', parserOptions: { ecmaFeatures: { jsx: true } } }, rules: { 'no-dupe-args':'error','no-dupe-keys':'error','no-duplicate-case':'error','no-unreachable':'error','valid-typeof':'error' } }];

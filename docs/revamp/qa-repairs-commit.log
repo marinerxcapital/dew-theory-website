@@ -1,0 +1,32 @@
+[revamp/green-system 9dbf7ef] fix: validate green system metadata, contrast and source integrity
+ 71 files changed, 10572 insertions(+), 2085 deletions(-)
+ create mode 100644 docs/revamp/after-crawl.log
+ create mode 100644 docs/revamp/after/results.json
+ create mode 100644 docs/revamp/archived-leftovers.json
+ create mode 100644 docs/revamp/build.log
+ create mode 100644 docs/revamp/catalog-image-integrity.json
+ create mode 100644 docs/revamp/contrast.log
+ rename public/images/products/skin-script/00-green-tea-citrus-cleanser.png => docs/revamp/legacy-assets/00-green-tea-citrus-cleanser.png.retired (100%)
+ rename public/images/products/skin-script/00-green-tea-citrus-cleanser.webp => docs/revamp/legacy-assets/00-green-tea-citrus-cleanser.webp.retired (100%)
+ rename public/images/products/skin-script/01-mandelic-brightening-serum.png => docs/revamp/legacy-assets/01-mandelic-brightening-serum.png.retired (100%)
+ rename public/images/products/skin-script/01-mandelic-brightening-serum.webp => docs/revamp/legacy-assets/01-mandelic-brightening-serum.webp.retired (100%)
+ rename public/images/products/skin-script/02-ageless-skin-hydrating-serum.png => docs/revamp/legacy-assets/02-ageless-skin-hydrating-serum.png.retired (100%)
+ rename public/images/products/skin-script/02-ageless-skin-hydrating-serum.webp => docs/revamp/legacy-assets/02-ageless-skin-hydrating-serum.webp.retired (100%)
+ rename public/images/products/skin-script/03-ageless-skin-moisturizer.png => docs/revamp/legacy-assets/03-ageless-skin-moisturizer.png.retired (100%)
+ rename public/images/products/skin-script/03-ageless-skin-moisturizer.webp => docs/revamp/legacy-assets/03-ageless-skin-moisturizer.webp.retired (100%)
+ rename public/images/products/skin-script/04-botanical-bloom-hydrating-mask.png => docs/revamp/legacy-assets/04-botanical-bloom-hydrating-mask.png.retired (100%)
+ rename public/images/products/skin-script/04-botanical-bloom-hydrating-mask.webp => docs/revamp/legacy-assets/04-botanical-bloom-hydrating-mask.webp.retired (100%)
+ rename public/images/products/skin-script/05-ageless-lip-treatment.png => docs/revamp/legacy-assets/05-ageless-lip-treatment.png.retired (100%)
+ rename public/images/products/skin-script/05-ageless-lip-treatment.webp => docs/revamp/legacy-assets/05-ageless-lip-treatment.webp.retired (100%)
+ rename public/images/products/skin-script/06-cucumber-hydration-toner.png => docs/revamp/legacy-assets/06-cucumber-hydration-toner.png.retired (100%)
+ rename public/images/products/skin-script/06-cucumber-hydration-toner.webp => docs/revamp/legacy-assets/06-cucumber-hydration-toner.webp.retired (100%)
+ rename public/images/products/skin-script/07-sheer-protection-spf-30.png => docs/revamp/legacy-assets/07-sheer-protection-spf-30.png.retired (100%)
+ rename public/images/products/skin-script/07-sheer-protection-spf-30.webp => docs/revamp/legacy-assets/07-sheer-protection-spf-30.webp.retired (100%)
+ rename app/faq/page.jsx => docs/revamp/legacy-assets/page.jsx.retired (100%)
+ create mode 100644 docs/revamp/lint.log
+ create mode 100644 docs/revamp/local-server.log
+ create mode 100644 docs/revamp/provider-secret-names.json
+ create mode 100644 docs/revamp/typecheck.log
+ create mode 100644 eslint.config.mjs
+ create mode 100644 tests/green-system.test.mjs
+ create mode 100644 tsconfig.green.json

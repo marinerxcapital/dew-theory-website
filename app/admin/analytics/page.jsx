@@ -89,7 +89,7 @@ export default async function AdminAnalyticsPage({ searchParams }) {
         title="Analytics"
         subtitle="Revenue and orders from durable commerce (merged with legacy file orders). Shop funnel events remain in file analytics store."
       />
-      <p className="mt-2 font-body text-sm font-light text-charcoal/70">
+      <p className="mt-2 font-body text-sm font-light text-charcoal">
         From site data (Orders, Appointments, DiscountCodes, events) — not static mock UI numbers.
         First-party funnel only; optional third-party traffic analytics later.
       </p>
@@ -120,7 +120,7 @@ export default async function AdminAnalyticsPage({ searchParams }) {
       </div>
 
       <form method="get" className="mt-6 flex flex-wrap items-end gap-3 glass-1 p-4">
-        <label className="font-body text-xs font-light text-charcoal/70">
+        <label className="font-body text-xs font-light text-charcoal">
           From
           <input
             type="date"
@@ -129,7 +129,7 @@ export default async function AdminAnalyticsPage({ searchParams }) {
             className="mt-1 block border border-chrome/30 bg-pearl/90 px-2 py-2"
           />
         </label>
-        <label className="font-body text-xs font-light text-charcoal/70">
+        <label className="font-body text-xs font-light text-charcoal">
           To
           <input
             type="date"
@@ -140,7 +140,7 @@ export default async function AdminAnalyticsPage({ searchParams }) {
         </label>
         <button
           type="submit"
-          className="border border-graphite bg-graphite px-4 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-pearl"
+          className="border border-graphite bg-green-300 px-4 py-2 font-label text-[0.6rem] font-light uppercase tracking-lockup text-ink"
         >
           Apply
         </button>
@@ -182,13 +182,13 @@ export default async function AdminAnalyticsPage({ searchParams }) {
                 key={s.label}
                 className="flex justify-between border-b border-chrome/15 py-2 font-body text-sm font-light"
               >
-                <span className="text-charcoal/75">{s.label}</span>
+                <span className="text-charcoal">{s.label}</span>
                 <span className="text-graphite">{s.n}</span>
               </li>
             ))}
           </ul>
           {shopFunnel.every((s) => s.n === 0) && (
-            <p className="mt-3 font-body text-xs font-light text-charcoal/50">
+            <p className="mt-3 font-body text-xs font-light text-charcoal">
               No funnel events in this range yet.
             </p>
           )}
@@ -201,13 +201,13 @@ export default async function AdminAnalyticsPage({ searchParams }) {
                 key={s.label}
                 className="flex justify-between border-b border-chrome/15 py-2 font-body text-sm font-light"
               >
-                <span className="text-charcoal/75">{s.label}</span>
+                <span className="text-charcoal">{s.label}</span>
                 <span className="text-graphite">{s.n}</span>
               </li>
             ))}
           </ul>
           {bookFunnel.every((s) => s.n === 0) && (
-            <p className="mt-3 font-body text-xs font-light text-charcoal/50">
+            <p className="mt-3 font-body text-xs font-light text-charcoal">
               No booking events in this range yet.
             </p>
           )}
@@ -221,13 +221,13 @@ export default async function AdminAnalyticsPage({ searchParams }) {
             {[...byProduct.values()].map((p) => (
               <li key={p.name} className="flex justify-between py-3 font-body text-sm font-light">
                 <span>{p.name}</span>
-                <span className="text-charcoal/70">
+                <span className="text-charcoal">
                   {p.units} u · {formatMoney(p.revenue)}
                 </span>
               </li>
             ))}
             {!byProduct.size && (
-              <li className="py-3 text-sm text-charcoal/50">No order line items yet.</li>
+              <li className="py-3 text-sm text-charcoal">No order line items yet.</li>
             )}
           </ul>
         </section>
@@ -237,13 +237,13 @@ export default async function AdminAnalyticsPage({ searchParams }) {
             {[...byCategory.entries()].map(([cat, v]) => (
               <li key={cat} className="flex justify-between py-3 font-body text-sm font-light">
                 <span>{cat}</span>
-                <span className="text-charcoal/70">
+                <span className="text-charcoal">
                   {v.units} u · {formatMoney(v.revenue)}
                 </span>
               </li>
             ))}
             {!byCategory.size && (
-              <li className="py-3 text-sm text-charcoal/50">No category sales yet.</li>
+              <li className="py-3 text-sm text-charcoal">No category sales yet.</li>
             )}
           </ul>
         </section>
@@ -255,13 +255,13 @@ export default async function AdminAnalyticsPage({ searchParams }) {
           {[...byService.entries()].map(([name, v]) => (
             <li key={name} className="flex justify-between py-3 font-body text-sm font-light">
               <span>{name}</span>
-              <span className="text-charcoal/70">
+              <span className="text-charcoal">
                 {v.count} booked · {v.cancelled} cancelled · {v.no_show} no-show
               </span>
             </li>
           ))}
           {!byService.size && (
-            <li className="py-3 text-sm text-charcoal/50">No appointments in this range.</li>
+            <li className="py-3 text-sm text-charcoal">No appointments in this range.</li>
           )}
         </ul>
       </section>
@@ -275,13 +275,13 @@ export default async function AdminAnalyticsPage({ searchParams }) {
                 {d.code}
                 {d.referrer_customer_id ? ` (ref ${d.referrer_customer_id})` : ''}
               </span>
-              <span className="text-charcoal/70">
+              <span className="text-charcoal">
                 {d.uses_count} redemptions · {d.active ? 'active' : 'off'}
               </span>
             </li>
           ))}
           {!store.discount_codes.length && (
-            <li className="py-3 text-sm text-charcoal/50">No discount codes configured.</li>
+            <li className="py-3 text-sm text-charcoal">No discount codes configured.</li>
           )}
         </ul>
       </section>

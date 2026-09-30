@@ -232,7 +232,7 @@ describe('resolveDiscountCode → applyDiscount integration', () => {
     const r = resolveDiscountCode('take10', catalog);
     const t = cartTotals([{ unit_price: 40, quantity: 1 }], r.discount, 'pre_discount');
     assert.equal(t.discount_amount, 10);
-    assert.equal(t.shipping_fee, 7);
-    assert.equal(t.total, 37);
+    assert.equal(t.shipping_fee, 12);
+    assert.equal(t.total, 42);
   });
 });

@@ -11,14 +11,14 @@ export default async function AdminEmailsPage() {
   return (
     <div>
       <h1 className="font-display text-3xl font-normal text-graphite">Outbound email</h1>
-      <p className="mt-2 max-w-2xl font-body text-sm font-light text-charcoal/70">
+      <p className="mt-2 max-w-2xl font-body text-sm font-light text-charcoal">
         Messages recorded when Resend sends (or logs without <code>RESEND_API_KEY</code>). Booking,
         order, consultation, and membership interest share this log.
       </p>
 
       <h2 className="mt-10 font-display text-xl font-normal text-graphite">Recent messages</h2>
       {emails.length === 0 ? (
-        <p className="mt-4 font-body text-sm font-light text-charcoal/60">No outbound email yet.</p>
+        <p className="mt-4 font-body text-sm font-light text-charcoal">No outbound email yet.</p>
       ) : (
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[40rem] text-left font-body text-sm font-light">
@@ -34,7 +34,7 @@ export default async function AdminEmailsPage() {
             <tbody>
               {emails.map((em) => (
                 <tr key={em.id} className="border-b border-chrome/10">
-                  <td className="py-2 pr-3 text-charcoal/60">
+                  <td className="py-2 pr-3 text-charcoal">
                     {em.created_at ? new Date(em.created_at).toLocaleString() : '—'}
                   </td>
                   <td className="py-2 pr-3">
@@ -43,7 +43,7 @@ export default async function AdminEmailsPage() {
                   </td>
                   <td className="py-2 pr-3">{em.to}</td>
                   <td className="py-2 pr-3">{em.subject}</td>
-                  <td className="py-2 text-charcoal/60">
+                  <td className="py-2 text-charcoal">
                     {(em.tags || []).join(', ') || '—'}
                   </td>
                 </tr>
@@ -57,7 +57,7 @@ export default async function AdminEmailsPage() {
         Membership interest
       </h2>
       {interest.length === 0 ? (
-        <p className="mt-4 font-body text-sm font-light text-charcoal/60">No interest entries yet.</p>
+        <p className="mt-4 font-body text-sm font-light text-charcoal">No interest entries yet.</p>
       ) : (
         <ul className="mt-4 space-y-2">
           {interest.map((row) => (
@@ -66,9 +66,9 @@ export default async function AdminEmailsPage() {
               className="border border-chrome/15 bg-pearl/50 px-4 py-3 font-body text-sm font-light"
             >
               <span className="text-graphite">{row.name}</span>
-              <span className="text-charcoal/50"> · </span>
+              <span className="text-charcoal"> · </span>
               <span>{row.email}</span>
-              <span className="ml-2 text-charcoal/50">
+              <span className="ml-2 text-charcoal">
                 {row.created_at ? new Date(row.created_at).toLocaleDateString() : ''}
               </span>
             </li>

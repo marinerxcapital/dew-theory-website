@@ -1,11 +1,15 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import AddToCart from '@/components/AddToCart';
+import FavoriteToggle from '@/components/customer/FavoriteToggle';
 import JsonLd from '@/components/JsonLd';
 import ProductCard from '@/components/ProductCard';
 import ProductGallery from '@/components/ProductGallery';
+import PdpMediaStage from '@/components/PdpMediaStage';
 import ProductViewTracker from '@/components/ProductViewTracker';
 import EmilyPairsWith from '@/components/EmilyPairsWith';
+import RoutinePlacement from '@/components/RoutinePlacement';
 import { PRODUCTS } from '@/lib/products';
 import { productImageAlt, productImageSrc } from '@/lib/product-image';
 import { getProduct, getProducts } from '@/lib/products-server';
@@ -16,6 +20,8 @@ import {
   FLAT_SHIPPING_USD
 } from '@/lib/shipping';
 import { isShopVisible, stockLabel } from '@/lib/shop';
+import { getCustomerFromCookies } from '@/lib/customers/guards';
+import { listFavorites } from '@/lib/customers/store';
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ id: p.id }));
@@ -29,7 +35,7 @@ export async function generateMetadata({ params }) {
   const desc =
     product.description_short ||
     `${product.name} — Skin Script professional skincare at Dew Theory.`;
-  return {
+  return withPageMetadata(`/shop/${product.id}`, {
     title: `${product.name} | Skin Script`,
     description: desc,
     alternates: { canonical: `/shop/${product.id}` },
@@ -47,7 +53,7 @@ export async function generateMetadata({ params }) {
       images: [img]
     },
     robots: { index: true, follow: true }
-  };
+  });
 }
 
 export const revalidate = 60;
@@ -75,6 +81,20 @@ export default async function ProductDetailPage({ params }) {
   const { id } = await params;
   const product = getProduct(id);
   if (!product) notFound();
+
+  /* Whether this product is already saved, resolved server-side for the
+     signed-in customer only. Signed-out visitors get an unlit control that
+     routes to sign-in rather than pretending the save succeeded. */
+  let initiallySaved = false;
+  try {
+    const session = await getCustomerFromCookies();
+    if (session) {
+      const saved = await listFavorites(session.customer.id);
+      initiallySaved = saved.some((f) => f.product_id === product.id);
+    }
+  } catch {
+    initiallySaved = false;
+  }
 
   const actives = product.key_actives || product.active_ingredients || [];
   const badge = stockLabel(product);
@@ -177,7 +197,7 @@ export default async function ProductDetailPage({ params }) {
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <span className="text-ink/70">{product.name}</span>
+            <span className="text-ink">{product.name}</span>
           </li>
         </ol>
       </nav>
@@ -187,7 +207,9 @@ export default async function ProductDetailPage({ params }) {
         data-reveal-group="pdp"
       >
         <div data-reveal className="relative lg:sticky lg:top-28">
-          <ProductGallery product={product} priority />
+          <PdpMediaStage>
+            <ProductGallery product={product} priority />
+          </PdpMediaStage>
           {badge ? (
             <span className="absolute left-4 top-4 z-[2] border border-border bg-white/95 px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-ink">
               {badge}
@@ -213,7 +235,49 @@ export default async function ProductDetailPage({ params }) {
             {product.description_short}
           </p>
 
-          <AddToCart product={product} className="mt-8" />
+          {product.conditions_addressed?.length > 0 ? (
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Skin concerns addressed">
+              {product.conditions_addressed.map((concern) => (
+                <li
+                  key={concern}
+                  className="border border-border px-3 py-1.5 font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted"
+                >
+                  {concern}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <AddToCart product={product} />
+            <FavoriteToggle productId={product.id} initiallySaved={initiallySaved} />
+          </div>
+
+          {/* Benefit row — the first three recorded actives. Labels and copy come
+              from the catalog record itself; nothing here is invented, and no
+              icon is used as a stand-in for a claim the data does not make. */}
+          {actives.length ? (
+            <ul className="mt-10 grid gap-px border border-border bg-border sm:grid-cols-3">
+              {actives.slice(0, 3).map((active) => {
+                const rawName =
+                  typeof active === 'string' ? active : active?.name || '';
+                const label = rawName.split('(')[0].trim().slice(0, 34);
+                const detail = typeof active === 'object' ? active.function : null;
+                return (
+                  <li key={rawName} className="bg-void p-6">
+                    <p className="font-body text-[0.66rem] font-medium uppercase tracking-eyebrow text-ink">
+                      {label}
+                    </p>
+                    {detail ? (
+                      <p className="mt-3 font-body text-[0.88rem] leading-[1.65] text-muted">
+                        {detail}
+                      </p>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : null}
 
           <div className="mt-5 border border-border bg-surface-light px-4 py-3">
             <p className="font-body text-xs leading-relaxed text-charcoal">
@@ -298,6 +362,8 @@ export default async function ProductDetailPage({ params }) {
           </div>
         </div>
       </div>
+
+      <RoutinePlacement product={product} />
 
       <EmilyPairsWith product={product} catalog={all} limit={4} />
 

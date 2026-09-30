@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, startTransition, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { cartTotals } from '@/lib/discounts';
 import { productById } from '@/lib/products';
 
@@ -61,9 +61,12 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     const data = load();
-    setItems(data.items);
-    setDiscountCode(data.discountCode);
-    setHydrated(true);
+    // Let streamed page boundaries hydrate before the shared shell updates.
+    startTransition(() => {
+      setItems(data.items);
+      setDiscountCode(data.discountCode);
+      setHydrated(true);
+    });
   }, []);
 
   useEffect(() => {

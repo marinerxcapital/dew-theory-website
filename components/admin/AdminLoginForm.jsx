@@ -98,25 +98,25 @@ export default function AdminLoginForm() {
             className="mt-2 w-full border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light tracking-[0.2em] text-charcoal"
             placeholder="000000"
           />
-          <p className="mt-2 font-body text-xs font-light text-charcoal/55">
+          <p className="mt-2 font-body text-xs font-light text-charcoal">
             Enter the 6-digit code from your authenticator app (ADMIN_TOTP_SECRET is enabled).
           </p>
         </div>
       )}
       {error && (
-        <p className="font-body text-xs font-light text-charcoal/70" role="alert">
+        <p className="font-body text-xs font-light text-charcoal" role="alert">
           {error}
         </p>
       )}
       <button
         type="submit"
         disabled={loading}
-        className="w-full border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+        className="w-full border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink disabled:opacity-60"
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
       {process.env.NODE_ENV !== 'production' && (
-        <p className="font-body text-xs font-light text-charcoal/50">
+        <p className="font-body text-xs font-light text-charcoal">
           Dev default: admin@dewtheory.local / dew-admin-dev (override with ADMIN_EMAIL /
           ADMIN_PASSWORD). Defaults are rejected in production — set env vars. Optional 2FA:
           ADMIN_TOTP_SECRET (base32).

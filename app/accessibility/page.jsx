@@ -1,12 +1,13 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import LegalPageShell from '@/components/LegalPageShell';
 
-export const metadata = {
+export const metadata = withPageMetadata('/accessibility', {
   title: 'Accessibility Statement',
   description:
-    'Dew Theory accessibility statement. View or download the full FIXED V2 PDF.',
+    'Dew Theory accessibility statement. View or download the full PDF.',
   alternates: { canonical: '/accessibility' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function AccessibilityPage() {
   return (

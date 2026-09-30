@@ -46,7 +46,7 @@ export default function FreeShippingMeter({ subtotal = 0, className = '' }) {
       >
         <div
           className={`h-full rounded-full transition-[width] duration-500 ease-out ${
-            unlocked ? 'bg-dew' : 'bg-ink'
+            unlocked ? 'bg-pink' : 'bg-surface-light'
           }`}
           style={{ width: `${pct}%` }}
         />

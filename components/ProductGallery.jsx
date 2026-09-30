@@ -6,6 +6,8 @@ import {
   PRODUCT_IMAGE_ASPECT,
   PRODUCT_IMAGE_HEIGHT,
   PRODUCT_IMAGE_WIDTH,
+  documentPanelAlt,
+  isDocumentPanel,
   isLocalImageSrc,
   isSvgSrc,
   productImageAlt,
@@ -41,6 +43,8 @@ export default function ProductGallery({ product, priority = true }) {
   const alt = productImageAlt(product);
   const local = isLocalImageSrc(current);
   const svg = isSvgSrc(current);
+  const documentPanel = isDocumentPanel(current);
+  const activeAlt = documentPanel ? documentPanelAlt(product) : alt;
 
   const go = useCallback(
     (dir) => {
@@ -66,22 +70,26 @@ export default function ProductGallery({ product, priority = true }) {
         {product?.name || 'Product'} image gallery
       </p>
       <div
-        className="relative overflow-hidden rounded-[2px] border border-border bg-surface-light"
+        className={`relative overflow-hidden rounded-card border border-border ${
+          documentPanel ? 'doc-panel-surface' : 'bg-surface-light'
+        }`}
         style={{ aspectRatio: PRODUCT_IMAGE_ASPECT }}
       >
         {local && !svg ? (
           <Image
             src={current}
-            alt={alt}
+            alt={activeAlt}
             width={PRODUCT_IMAGE_WIDTH}
             height={PRODUCT_IMAGE_HEIGHT}
             className="h-full w-full object-cover"
             sizes="(max-width: 768px) 100vw, 40vw"
             priority={priority && active === 0}
+            fetchPriority={priority && active === 0 ? "high" : "auto"}
+            decoding="async"
           />
         ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={current} alt={alt} className="h-full w-full object-cover" />
+          
+          <img src={current} alt={activeAlt} className="h-full w-full object-cover" />
         )}
         {n > 1 ? (
           <>
@@ -115,15 +123,20 @@ export default function ProductGallery({ product, priority = true }) {
                   onClick={() => setActive(i)}
                   aria-label={`Show image ${i + 1} of ${n}`}
                   aria-current={selected ? 'true' : undefined}
-                  className={`relative overflow-hidden rounded-[2px] border ${
+                  className={`relative overflow-hidden rounded-card border ${
                     selected ? 'border-ink' : 'border-border'
                   }`}
                   style={{ width: 64, height: Math.round(64 * (1232 / 832)) }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  
+                  <Image
                     src={src}
                     alt=""
+                    width={64}
+                    height={95}
+                    sizes="64px"
+                    quality={60}
+                    unoptimized={isSvgSrc(src) || !isLocalImageSrc(src)}
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
@@ -136,6 +149,7 @@ export default function ProductGallery({ product, priority = true }) {
       {n > 1 ? (
         <p className="mt-2 font-label text-[0.58rem] uppercase tracking-lockup text-muted" aria-live="polite">
           Image {active + 1} of {n}
+          {documentPanel ? ' · Manufacturer label panel' : ''}
         </p>
       ) : null}
     </div>

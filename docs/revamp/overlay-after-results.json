@@ -1,0 +1,52 @@
+[
+  {
+    "state": "search",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "state": "mobile-menu",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "state": "mobile-focus-trap",
+    "width": 390,
+    "pass": true
+  },
+  {
+    "state": "concierge",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "state": "search",
+    "width": 768,
+    "violations": []
+  },
+  {
+    "state": "mobile-menu",
+    "width": 768,
+    "violations": []
+  },
+  {
+    "state": "mobile-focus-trap",
+    "width": 768,
+    "pass": true
+  },
+  {
+    "state": "concierge",
+    "width": 768,
+    "violations": []
+  },
+  {
+    "state": "search",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "state": "concierge",
+    "width": 1440,
+    "violations": []
+  }
+]

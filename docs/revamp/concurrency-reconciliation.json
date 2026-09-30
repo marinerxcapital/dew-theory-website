@@ -1,0 +1,36 @@
+{
+  "source_changed_since_snapshot": [],
+  "source_missing": [],
+  "protected_files": [
+    {
+      "path": "lib/shipping.js",
+      "unchanged_normalized": true
+    },
+    {
+      "path": "lib/stripe/config.js",
+      "unchanged_normalized": true
+    },
+    {
+      "path": "app/api/checkout/route.js",
+      "unchanged_normalized": true
+    },
+    {
+      "path": "app/api/checkout/session/route.js",
+      "unchanged_normalized": true
+    },
+    {
+      "path": "app/api/webhooks/stripe/route.js",
+      "unchanged_normalized": true
+    },
+    {
+      "path": "app/api/consultations/checkout/route.js",
+      "unchanged_normalized": true
+    },
+    {
+      "path": "wrangler.jsonc",
+      "unchanged_normalized": true
+    }
+  ],
+  "catalog_protected_projection_equal": true,
+  "legal_pdfs_match": true
+}

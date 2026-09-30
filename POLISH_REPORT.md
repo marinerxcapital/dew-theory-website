@@ -1,5 +1,14 @@
 # Overnight Polish Report — Dew Theory
 
+> **2026-09-28 — production deploy note.** The newly supplied true-alpha glass/chrome Dew Theory PNG
+> is now the canonical website logo with transparent background integration and restrained
+> champagne/sage wordmark glow. Deployed locally through OpenNext + Wrangler to Worker `dew-theory`,
+> Current Version ID `2815c88a-6d37-4ead-b0e6-c6bbde9da72f`, on `dewtheoryco.com` and
+> `www.dewtheoryco.com`. Verification: `npm test` 374/0, `npm run build`, `npm run deploy`, live
+> `smoke:routes` all clear, live canonical asset HEAD probes 200, and live
+> desktop/mobile/reduced-motion browser QA with no console errors. Signed: Codex. Model: Codex,
+> GPT-5-based coding agent.
+
 > **2026-08-16 — production deploy note.** The 2026-08 Sephora-inspired redesign (PR #1), FIXED V2
 > legal PDFs (PR #5), and full-bleed landing hero motion (PR #6) are merged and deployed to
 > `https://dewtheoryco.com`. Deployed main SHA `1e56d6c96d0075811e806af952673e1d6a09e4ba`,

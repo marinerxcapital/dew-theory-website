@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Charcoal Clay Cleanser",
+    "size_or_variant": "Travel",
+    "srp_usd": 14.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Charcoal Clay Cleanser",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Glycolic Cleanser",
+    "size_or_variant": "Travel",
+    "srp_usd": 15.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Glycolic Cleanser",
+    "size_or_variant": "Retail",
+    "srp_usd": 40.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Green Tea Citrus Cleanser",
+    "size_or_variant": "Travel",
+    "srp_usd": 14.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Green Tea Citrus Cleanser",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Honey Brightening Cleanser",
+    "size_or_variant": "Travel",
+    "srp_usd": 16.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Honey Brightening Cleanser",
+    "size_or_variant": "Retail",
+    "srp_usd": 42.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Pomegranate Antioxidant Cleanser",
+    "size_or_variant": "Travel",
+    "srp_usd": 14.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Pomegranate Antioxidant Cleanser",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Raspberry Refining Cleanser",
+    "size_or_variant": "Travel",
+    "srp_usd": 14.5,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Raspberry Refining Cleanser",
+    "size_or_variant": "Retail",
+    "srp_usd": 37.0,
+    "section": "Cleansers"
+  },
+  {
+    "name": "Clarifying Toner Pads",
+    "size_or_variant": "Retail",
+    "srp_usd": 28.0,
+    "section": "Exfoliants"
+  },
+  {
+    "name": "Glycolic and Retinol Pads",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Exfoliants"
+  },
+  {
+    "name": "Raspberry Scrub",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Exfoliants"
+  },
+  {
+    "name": "Retinol Exfoliating Scrub",
+    "size_or_variant": "Retail",
+    "srp_usd": 49.0,
+    "section": "Exfoliants"
+  },
+  {
+    "name": "Revitalizing Cucumber Treatment",
+    "size_or_variant": "Retail",
+    "srp_usd": 52.0,
+    "section": "Exfoliants"
+  },
+  {
+    "name": "Cucumber Hydration Toner",
+    "size_or_variant": "Travel",
+    "srp_usd": 18.0,
+    "section": "Toners"
+  },
+  {
+    "name": "Cucumber Hydration Toner",
+    "size_or_variant": "Retail",
+    "srp_usd": 28.0,
+    "section": "Toners"
+  },
+  {
+    "name": "Mint Refining Toner",
+    "size_or_variant": "Travel",
+    "srp_usd": 18.0,
+    "section": "Toners"
+  },
+  {
+    "name": "Mint Refining Toner",
+    "size_or_variant": "Retail",
+    "srp_usd": 28.0,
+    "section": "Toners"
+  },
+  {
+    "name": "Botanical Bloom Hydrating Mask",
+    "size_or_variant": "Retail",
+    "srp_usd": 48.0,
+    "section": "Retail Mask"
+  },
+  {
+    "name": "Sheer Protection SPF 30",
+    "size_or_variant": "Retail",
+    "srp_usd": 34.0,
+    "section": "SPF"
+  },
+  {
+    "name": "Advanced Renewal Serum",
+    "size_or_variant": "Retail",
+    "srp_usd": 70.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Ageless Skin Hydrating Serum",
+    "size_or_variant": "Retail",
+    "srp_usd": 45.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Blemish Spot Treatment",
+    "size_or_variant": "Retail",
+    "srp_usd": 28.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Citrus C Nourishing Cream",
+    "size_or_variant": "Retail",
+    "srp_usd": 52.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Mandelic Brightening Serum",
+    "size_or_variant": "Retail",
+    "srp_usd": 48.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Peptide Eye Serum",
+    "size_or_variant": "Retail",
+    "srp_usd": 40.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Tri-Peptide Eye Cream",
+    "size_or_variant": "Retail",
+    "srp_usd": 40.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Triple C Serum",
+    "size_or_variant": "Retail",
+    "srp_usd": 48.0,
+    "section": "Serums"
+  },
+  {
+    "name": "Acai Berry Moisturizer",
+    "size_or_variant": "Retail",
+    "srp_usd": 41.0,
+    "section": "Moisturizers"
+  },
+  {
+    "name": "Ageless Skin Moisturizer",
+    "size_or_variant": "Retail",
+    "srp_usd": 30.0,
+    "section": "Moisturizers"
+  },
+  {
+    "name": "Barrier Balancing Moisturizer",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Moisturizers"
+  },
+  {
+    "name": "Hydrating Moisturizer",
+    "size_or_variant": "Retail",
+    "srp_usd": 36.0,
+    "section": "Moisturizers"
+  },
+  {
+    "name": "Light Aloe Moisturizer",
+    "size_or_variant": "Retail",
+    "srp_usd": 26.0,
+    "section": "Moisturizers"
+  },
+  {
+    "name": "Peptide Moisturizer",
+    "size_or_variant": "Retail",
+    "srp_usd": 61.0,
+    "section": "Moisturizers"
+  },
+  {
+    "name": "Everyday Balance Travel Kit",
+    "size_or_variant": "Kit",
+    "srp_usd": 65.0,
+    "section": "Travel Kits"
+  },
+  {
+    "name": "Fresh Face Travel Kit",
+    "size_or_variant": "Kit",
+    "srp_usd": 62.0,
+    "section": "Travel Kits"
+  },
+  {
+    "name": "Fully Quenched Travel Kit",
+    "size_or_variant": "Kit",
+    "srp_usd": 70.0,
+    "section": "Travel Kits"
+  },
+  {
+    "name": "Lip Balm SPF 15",
+    "size_or_variant": "Retail",
+    "srp_usd": 6.5,
+    "section": "Lips"
+  },
+  {
+    "name": "Ageless Lip Treatment",
+    "size_or_variant": "Peppermint or Pomegranate",
+    "srp_usd": 16.0,
+    "section": "Lips"
+  }
+]

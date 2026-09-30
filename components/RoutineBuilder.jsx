@@ -83,7 +83,7 @@ export default function RoutineBuilder({ catalog = [] }) {
           </p>
         </div>
         <div
-          className="inline-flex rounded-[2px] border border-border bg-white p-1"
+          className="inline-flex rounded-card border border-border bg-white p-1"
           role="tablist"
           aria-label="Morning or evening"
         >
@@ -119,7 +119,7 @@ export default function RoutineBuilder({ catalog = [] }) {
           return (
             <li
               key={step.category}
-              className="overflow-hidden rounded-[2px] border border-border bg-white"
+              className="overflow-hidden rounded-card border border-border bg-white"
             >
               <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:p-6">
                 <div className="flex items-center gap-4 sm:w-44 sm:shrink-0">
@@ -147,7 +147,7 @@ export default function RoutineBuilder({ catalog = [] }) {
                     href={`/shop/${step.product.id}`}
                     className="flex min-w-0 flex-1 items-center gap-4"
                   >
-                    <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-[2px] bg-surface-light">
+                    <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-card bg-surface-light">
                       <ProductImage
                         product={step.product}
                         sizes="56px"
@@ -202,13 +202,13 @@ export default function RoutineBuilder({ catalog = [] }) {
                         key={p.id}
                         type="button"
                         onClick={() => pickProduct(step.category, p)}
-                        className={`flex gap-3 rounded-[2px] border p-3 text-left transition-colors ${
+                        className={`flex gap-3 rounded-card border p-3 text-left transition-colors ${
                           step.product?.id === p.id
                             ? 'border-dew bg-white'
                             : 'border-border bg-white hover:border-dew/40'
                         }`}
                       >
-                        <div className="relative h-16 w-11 shrink-0 overflow-hidden rounded-[2px]">
+                        <div className="relative h-16 w-11 shrink-0 overflow-hidden rounded-card">
                           <ProductImage
                             product={p}
                             sizes="44px"
@@ -234,17 +234,17 @@ export default function RoutineBuilder({ catalog = [] }) {
         })}
       </ol>
 
-      <div className="mt-10 flex flex-col gap-6 rounded-[2px] bg-ink p-8 text-white sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-6 rounded-card border border-border bg-surface-light p-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-white/55">
+          <p className="font-label text-[0.62rem] font-medium uppercase tracking-lockup text-muted">
             {slot === 'am' ? 'Morning' : 'Evening'} bag · {selectedProducts.length} step
             {selectedProducts.length === 1 ? '' : 's'}
           </p>
-          <p className="mt-2 font-display text-3xl font-normal text-white">
+          <p className="mt-2 font-display text-3xl font-normal text-ink">
             {formatMoney(subtotal)}
           </p>
           {!completeRequired && (
-            <p className="mt-2 font-body text-xs font-normal text-white/60">
+            <p className="mt-2 font-body text-xs font-normal text-muted">
               Add required steps for a complete {slot === 'am' ? 'morning' : 'evening'} path.
             </p>
           )}
@@ -263,7 +263,7 @@ export default function RoutineBuilder({ catalog = [] }) {
                 : `Add ${slot === 'am' ? 'morning' : 'evening'} routine`}
           </button>
           <Link
-            href="/quiz"
+            href="/skin-quiz"
             className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-dew-soft hover:text-white"
           >
             Prefer the Skin Quiz →
@@ -279,7 +279,7 @@ export default function RoutineBuilder({ catalog = [] }) {
           book a virtual consultation
         </Link>{' '}
         or{' '}
-        <Link href="/quiz" className="text-dew underline underline-offset-2">
+          <Link href="/skin-quiz" className="text-dew underline underline-offset-2">
           take the Skin Quiz
         </Link>
         .

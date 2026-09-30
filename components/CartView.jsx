@@ -246,7 +246,7 @@ export default function CartView() {
       >
         <Rule left="Bag" right="Loading" />
         <p className="mt-8 font-display text-2xl font-normal text-graphite">Opening your bag…</p>
-        <p className="mt-3 max-w-md font-body text-sm font-light leading-relaxed text-charcoal/60">
+        <p className="mt-3 max-w-md font-body text-sm font-light leading-relaxed text-charcoal">
           Restoring items saved on this device. This only takes a moment.
         </p>
       </section>
@@ -343,7 +343,7 @@ export default function CartView() {
                   product={thumbProduct}
                   framed
                   sizes="80px"
-                  className="!rounded-[2px]"
+                  className="!rounded-card"
                 />
               </Link>
               <div className="min-w-0">
@@ -398,7 +398,7 @@ export default function CartView() {
         >
           <h2 className="font-display text-2xl font-normal text-graphite">Summary</h2>
 
-          <dl className="mt-8 space-y-3 font-body text-sm font-light text-charcoal/80">
+          <dl className="mt-8 space-y-3 font-body text-sm font-light text-charcoal">
             <div className="flex justify-between gap-4">
               <dt>Subtotal</dt>
               <dd className="shrink-0">{formatMoney(totals.subtotal)}</dd>
@@ -457,7 +457,7 @@ export default function CartView() {
             )}
             {codeError && (
               <p
-                className="mt-2 border border-chrome/25 bg-pearl/60 px-3 py-2 font-body text-xs font-light text-charcoal/75"
+                className="mt-2 border border-chrome/25 bg-pearl/60 px-3 py-2 font-body text-xs font-light text-charcoal"
                 role="alert"
               >
                 {codeError}
@@ -526,7 +526,7 @@ export default function CartView() {
                 placeholder="Delivery instructions or a short gift message"
                 className="mt-2 w-full resize-y border border-chrome/30 bg-pearl/90 px-3 py-3 font-body text-sm font-light text-charcoal disabled:opacity-60"
               />
-              <p className="mt-1 text-right font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome/70">
+              <p className="mt-1 text-right font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome">
                 {orderNote.length}/{NOTE_MAX}
               </p>
             </div>
@@ -541,11 +541,11 @@ export default function CartView() {
                 <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
                   Checkout issue
                 </p>
-                <p className="mt-2 font-body text-xs font-light leading-relaxed text-charcoal/80">
+                <p className="mt-2 font-body text-xs font-light leading-relaxed text-charcoal">
                   {checkoutError}
                 </p>
                 {missingFields.length > 0 ? (
-                  <ul className="mt-3 list-disc space-y-1 pl-4 font-body text-xs font-light leading-relaxed text-charcoal/80">
+                  <ul className="mt-3 list-disc space-y-1 pl-4 font-body text-xs font-light leading-relaxed text-charcoal">
                     {missingFields.map((label) => (
                       <li key={label}>{label}</li>
                     ))}
@@ -557,14 +557,14 @@ export default function CartView() {
             <button
               type="submit"
               disabled={checkoutLoading || !items.length}
-              className="sweep w-full min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:cursor-not-allowed disabled:opacity-60"
+              className="sweep w-full min-h-[48px] border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink disabled:cursor-not-allowed disabled:opacity-60"
             >
               {checkoutLoading ? 'Starting checkout…' : 'Checkout'}
             </button>
 
             {/* Trust strip — near CTA; values from lib/shipping.js only */}
             <ul className="space-y-2.5 border border-chrome/20 bg-pearl/40 px-4 py-4">
-              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal">
                 <span
                   className="mt-0.5 shrink-0 font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome"
                   aria-hidden="true"
@@ -581,7 +581,7 @@ export default function CartView() {
                   </span>
                 </span>
               </li>
-              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal">
                 <span
                   className="mt-0.5 shrink-0 font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome"
                   aria-hidden="true"
@@ -599,7 +599,7 @@ export default function CartView() {
                   </span>
                 </span>
               </li>
-              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal/65">
+              <li className="flex gap-3 font-body text-[0.7rem] font-light leading-relaxed text-charcoal">
                 <span
                   className="mt-0.5 shrink-0 font-label text-[0.55rem] font-light uppercase tracking-lockup text-chrome"
                   aria-hidden="true"
@@ -648,7 +648,7 @@ export default function CartView() {
           </h2>
           <p
             data-reveal
-            className="mt-3 max-w-xl font-body text-sm font-light leading-relaxed text-charcoal/70"
+            className="mt-3 max-w-xl font-body text-sm font-light leading-relaxed text-charcoal"
           >
             Suggestions follow standard order of operations (cleanser → treatments → moisturizer →
             SPF) — not a medical protocol.

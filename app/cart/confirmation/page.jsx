@@ -1,11 +1,12 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import CartConfirmation from '@/components/CartConfirmation';
 import { getAutomationMode, getCustomerFulfillmentCopy } from '@/lib/admin/dashboard';
 
-export const metadata = {
+export const metadata = withPageMetadata('/cart/confirmation', {
   title: 'Order confirmed',
   description: 'Your Dew Theory order is confirmed.',
   robots: { index: false, follow: false }
-};
+});
 
 export default function ConfirmationPage({ searchParams }) {
   const orderId = searchParams?.order || null;

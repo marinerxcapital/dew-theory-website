@@ -1,0 +1,30 @@
+
+ ⛅️ wrangler 4.112.0 (update available 4.144.0)
+───────────────────────────────────────────────
+╭ Deploy Worker Versions by splitting traffic between multiple versions
+│
+├ Fetching latest deployment
+│
+├ Your current deployment has 2 version(s):
+│
+│ (100%) 2815c88a-6d37-4ead-b0e6-c6bbde9da72f
+│       Created:  2026-09-28T21:03:39.073128Z
+│           Tag:  -
+│       Message:  -
+│
+│ (0%) 4e2f84c0-323a-4eed-98fc-051708ecbb24
+│       Created:  2026-09-30T07:14:23.429Z
+│           Tag:  green-font
+│       Message:  SOFT100 variable-weight font QA candidate; no public traffic
+│
+├ Fetching versions
+│
+
+X [ERROR] A request to the Cloudflare API (/accounts/b31d3d49151af98fe1125aa40c5fa6c8/workers/scripts/dew-theory/versions/2e98c3cd-6e5b-4451-996a-5b0f21d71cd0) failed.
+
+  The requested Worker version could not be found, please check the ID being passed and try again. [code: 100146]
+  
+  If you think this is a bug, please open an issue at: https://github.com/cloudflare/workers-sdk/issues/new/choose
+
+
+🪵  Logs were written to "C:\Users\Skyler B. Brown\.wrangler\logs\wrangler-2026-09-30_07-22-27_597.log"

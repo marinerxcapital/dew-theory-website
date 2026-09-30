@@ -31,7 +31,7 @@ export default function LegalDocLinks({ documents = [], className = '', dense = 
           {doc.pdfPath ? (
             <>
               {' '}
-              <span className="text-muted/80" aria-hidden="true">
+              <span className="text-muted" aria-hidden="true">
                 ·
               </span>{' '}
               <a

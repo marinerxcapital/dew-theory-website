@@ -15,15 +15,15 @@ import { cartTotals, applyDiscount } from '../lib/discounts.js';
 
 describe('calculateShipping — pre_discount basis (production default)', () => {
   it('exports confirmed constants', () => {
-    assert.equal(FLAT_SHIPPING_USD, 7);
+    assert.equal(FLAT_SHIPPING_USD, 12);
     assert.equal(FREE_SHIPPING_THRESHOLD_USD, 49);
     assert.equal(SHIPPING_THRESHOLD_BASIS, 'pre_discount');
   });
 
-  it('charges $7 below threshold', () => {
-    assert.equal(calculateShipping(0), 7);
-    assert.equal(calculateShipping(48.99), 7);
-    assert.equal(calculateShipping(1), 7);
+  it('charges $12 below threshold', () => {
+    assert.equal(calculateShipping(0), 12);
+    assert.equal(calculateShipping(48.99), 12);
+    assert.equal(calculateShipping(1), 12);
   });
 
   it('waives shipping at exactly $49', () => {
@@ -41,27 +41,27 @@ describe('calculateShipping — pre_discount basis (production default)', () => 
   });
 
   it('charges when pre-discount is under threshold even if post is higher (n/a)', () => {
-    assert.equal(calculateShipping(40, 40, 'pre_discount'), 7);
+    assert.equal(calculateShipping(40, 40, 'pre_discount'), 12);
   });
 });
 
 describe('calculateShipping — post_discount basis flip', () => {
   it('can flip to post_discount via third argument', () => {
     // pre $56 free if pre; post $47.6 pays shipping if post basis
-    assert.equal(calculateShipping(56, 47.6, 'post_discount'), 7);
+    assert.equal(calculateShipping(56, 47.6, 'post_discount'), 12);
     assert.equal(calculateShipping(56, 49, 'post_discount'), 0);
     assert.equal(calculateShipping(40, 50, 'post_discount'), 0);
   });
 
   it('falls back to pre when post is null under post_discount', () => {
     assert.equal(calculateShipping(49, null, 'post_discount'), 0);
-    assert.equal(calculateShipping(48, null, 'post_discount'), 7);
+    assert.equal(calculateShipping(48, null, 'post_discount'), 12);
   });
 });
 
 describe('formatMoney', () => {
   it('formats whole dollars without cents', () => {
-    assert.equal(formatMoney(7), '$7');
+    assert.equal(formatMoney(12), '$12');
     assert.equal(formatMoney(49), '$49');
   });
 
@@ -74,12 +74,12 @@ describe('formatMoney', () => {
 describe('discount + shipping matrix (cartTotals)', () => {
   const lines = (subtotal) => [{ unit_price: subtotal, quantity: 1 }];
 
-  it('no discount, under threshold → $7 ship', () => {
+  it('no discount, under threshold → $12 ship', () => {
     const t = cartTotals(lines(48), null, 'pre_discount');
     assert.equal(t.subtotal, 48);
     assert.equal(t.discount_amount, 0);
-    assert.equal(t.shipping_fee, 7);
-    assert.equal(t.total, 55);
+    assert.equal(t.shipping_fee, 12);
+    assert.equal(t.total, 60);
   });
 
   it('no discount, at threshold → free ship', () => {
@@ -93,23 +93,23 @@ describe('discount + shipping matrix (cartTotals)', () => {
     assert.equal(t.subtotal, 56);
     assert.equal(t.discount_amount, 8.4);
     assert.equal(t.shipping_fee, 0); // pre still 56 ≥ 49
-    assert.equal(t.total, 47.6);
+    assert.equal(t.total, 47.6); // 56 - 8.4 + $0 shipping
     assert.equal(t.discount_code, 'DEW15');
   });
 
   it('15% off on $56 with post_discount basis → shipping returns', () => {
     const t = cartTotals(lines(56), { type: 'percentage', value: 15, code: 'DEW15', active: true }, 'post_discount');
     assert.equal(t.discount_amount, 8.4);
-    assert.equal(t.shipping_fee, 7); // post 47.6 < 49
-    assert.equal(t.total, 54.6);
+    assert.equal(t.shipping_fee, 12); // post 47.6 < 49
+    assert.equal(t.total, 59.6);
   });
 
   it('fixed $10 off under threshold still pays flat ship (pre basis)', () => {
     const t = cartTotals(lines(40), { type: 'fixed', value: 10, code: 'TEN', active: true }, 'pre_discount');
     assert.equal(t.subtotal, 40);
     assert.equal(t.discount_amount, 10);
-    assert.equal(t.shipping_fee, 7);
-    assert.equal(t.total, 37);
+    assert.equal(t.shipping_fee, 12);
+    assert.equal(t.total, 42);
   });
 
   it('fixed discount cannot exceed subtotal', () => {

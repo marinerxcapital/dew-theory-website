@@ -173,7 +173,7 @@ export default function ManualFulfillmentPanel({ order, automationLive = false, 
             type="button"
             disabled={Boolean(loading)}
             onClick={() => submit(a.id)}
-            className="rounded-sm border border-forest bg-forest px-4 py-2.5 font-label text-[0.62rem] uppercase tracking-lockup text-ivory disabled:opacity-60"
+            className="rounded-sm border border-forest bg-green-300 px-4 py-2.5 font-label text-[0.62rem] uppercase tracking-lockup text-ivory disabled:opacity-60"
           >
             {loading === a.id ? 'Saving…' : a.label}
           </button>

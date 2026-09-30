@@ -1,0 +1,162 @@
+[
+  {
+    "id": "530f0aba-b442-418c-a623-ae71a81cebbb",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "7171e256-77d5-4167-930a-e29728914142",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T01:28:38.096629Z"
+  },
+  {
+    "id": "24370874-a0b9-4359-8d6f-941d1f040d91",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "62c8028a-6cdb-4a1c-ba82-6a67109e2b83",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T01:34:36.231503Z"
+  },
+  {
+    "id": "c824109c-9774-4817-a29b-e33b6a0fda7a",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "60fc07ed-1fe8-4d68-9c57-d879ec27c41d",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T03:11:02.323015Z"
+  },
+  {
+    "id": "dcc8d9e4-c39b-4aec-afe3-5a3e67b431bd",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "356899ab-fce7-4aa6-b8b0-5b702dba77ae",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T03:32:43.266982Z"
+  },
+  {
+    "id": "bddf37df-52fe-4e96-a21e-6d1169a2a68d",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "ad2a776c-464a-4a92-8951-4cc7aab6281b",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T03:41:36.129941Z"
+  },
+  {
+    "id": "0b147a1a-6178-4ff8-bc1b-18bc9bedbe80",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "c8c68e3b-6def-4bb4-94ef-ce735390db37",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T04:08:25.416001Z"
+  },
+  {
+    "id": "fd63b2a5-99eb-4385-9159-5436ed198e89",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "a2c4a9a2-732f-4f55-8623-3be2f29e13d2",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T04:26:15.257479Z"
+  },
+  {
+    "id": "277eef99-1b6f-43f5-a006-378456d02a66",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "429ebc61-4a9f-4a7e-80c1-14d418f9706b",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-27T06:29:24.818033Z"
+  },
+  {
+    "id": "879932c9-0559-41ce-99f8-29af2db54da9",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "193d9fc2-ecc8-498d-a30d-81f5b195bc81",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-28T20:29:09.532578Z"
+  },
+  {
+    "id": "6d6a9187-d588-4e09-b8fa-718b49444b6d",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "skyler@marinerxcapital.com",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2815c88a-6d37-4ead-b0e6-c6bbde9da72f",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-09-28T21:03:41.056326Z"
+  }
+]

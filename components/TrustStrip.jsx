@@ -24,7 +24,7 @@ const ITEMS = [
 export default function TrustStrip({ className = '' }) {
   return (
     <ul
-      className={`grid gap-px overflow-hidden rounded-[2px] border border-border bg-border sm:grid-cols-3 ${className}`.trim()}
+      className={`grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-3 ${className}`.trim()}
     >
       {ITEMS.map((item) => (
         <li key={item.id} className="bg-ivory px-5 py-5 sm:px-6">

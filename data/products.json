@@ -1,1152 +1,1352 @@
-{
-  "_meta": {
-    "note": "Canonical product catalog for Dew Theory. Wholesale/retail figures are from the client's product line document. Ingredient, usage, and skin-type data were researched against Skin Script's own product pages and multiple authorized Skin Script retailers, then paraphrased — they are NOT invented, but should still be read and confirmed by Emily before publishing, since formulas are occasionally revised by the manufacturer. 2026-09-19 Emily confirmation pass: she has not confirmed the remaining catalog decisions. Engineered defaults stay in place and stay explicitly unconfirmed — Sheer Protection SPF retail ($30, retail_price_confirmed=false), Lip Treatment as one Peppermint/Pomegranate product (see manufacturer_name_note + OPEN_ITEMS.md §2), Botanical Bloom size 2 oz (size_confirmed=false), and DEW15 15% as a launch-promo placeholder only. Do not flip honesty flags to true or claim Emily approved these without a new owner answer.",
-    "pricing_rule": "retail_price = wholesale_price x 2, applied uniformly. Confirmed against 7 of 8 client-supplied pairs; the 8th (SPF) had no retail figure in the source document and was computed with the same formula — flagged for confirmation, not treated as given fact. Emily still must confirm the SPF retail; retail_price_confirmed remains false until she does.",
-    "shipping_rule": {
-      "flat_rate_usd": 7,
-      "free_shipping_threshold_usd": 49,
-      "applies_to": "order subtotal before discount codes (recommended default — see OPEN_ITEMS.md)"
-    },
-    "sources_researched": "skinscriptrx.com (manufacturer) and authorized retailers including artofskincare.com, skincarebyalana.com, naturalbeautyspa.com, incidecoder.com. All product marketing copy below is paraphrased, not copied.",
-    "product_images": {
-      "package": "DewTheory_Sage_Images_Compact.zip",
-      "installed_on": "2026-09-20",
-      "public_base": "/images/products/skin-script",
-      "dimensions": "832x1232",
-      "aspect_ratio": "52:77",
-      "note": "Sage-background WebP from compact pack; no recompression. Primary+gallery per verified retail product."
-    }
-  },
-  "categories": [
-    "Cleanser",
-    "Toner",
-    "Serum",
-    "Moisturizer",
-    "Exfoliant",
-    "Mask",
-    "Eye Treatment",
-    "Lip Treatment",
-    "Spot Treatment",
-    "SPF",
-    "Kit"
-  ],
-  "products": [
-    {
-      "id": "green-tea-citrus-cleanser",
-      "name": "Green Tea Citrus Cleanser",
-      "category": "Cleanser",
-      "size": "6.4 oz",
-      "wholesale_price": 16,
-      "retail_price": 32,
-      "retail_price_confirmed": true,
-      "skin_types": [
-        "normal",
-        "combination",
-        "oily"
-      ],
-      "not_recommended_for": [
-        "dry",
-        "sensitive",
-        "rosacea-prone"
-      ],
-      "key_actives": [
-        {
-          "name": "Green Tea (Camellia Sinensis) Leaf Extract + EGCG",
-          "function": "Antioxidant; helps limit acne-causing bacteria while protecting the skin's healthy microbiome."
-        },
-        {
-          "name": "Grape Seed Extract",
-          "function": "Polyphenol-rich antioxidant; supports skin balance and calms redness."
-        },
-        {
-          "name": "Grapefruit & Lemon Peel Oil",
-          "function": "Vitamin C source; clarifies and brightens, contributes the citrus scent."
-        },
-        {
-          "name": "Wild Cherry Bark Extract",
-          "function": "Soothing, anti-inflammatory."
-        }
-      ],
-      "how_to_use": "Apply to damp skin, massage in circular motions for about 60 seconds to emulsify and lift impurities, then rinse with warm water.",
-      "conditions_addressed": [
-        "excess oil",
-        "congestion / buildup",
-        "dullness"
-      ],
-      "description_short": "A foaming gel cleanser built around green tea and citrus extracts — clarifies oily and combination skin without over-stripping it.",
-      "images": [
-        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__01__primary.webp",
-        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__02__gallery02.webp",
-        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__03__gallery04.webp",
-        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__04__swatch.webp"
-      ],
-      "image_alt": "Skin Script Green Tea Citrus Cleanser on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__01__primary.webp",
-      "skin_script_sku": "1010240"
-    },
-    {
-      "id": "mandelic-brightening-serum",
-      "name": "Mandelic Brightening Serum",
-      "category": "Exfoliant",
-      "category_note": "Named 'serum' by the manufacturer, but functions as a leave-on chemical exfoliant — categorized as Exfoliant per client instruction.",
-      "size": "1 oz",
-      "wholesale_price": 20,
-      "retail_price": 40,
-      "retail_price_confirmed": true,
-      "skin_types": [
-        "all — introduce gradually"
-      ],
-      "key_actives": [
-        {
-          "name": "L-Mandelic Acid (5%)",
-          "function": "Larger-molecule AHA; exfoliates, brightens, improves texture with a lower irritation profile than glycolic acid."
-        },
-        {
-          "name": "Azeloglicina® / Potassium Azelaoyl Diglycinate (3%)",
-          "function": "Tyrosinase inhibitor; fades dark spots, calms redness, regulates oil."
-        },
-        {
-          "name": "Niacinamide",
-          "function": "Barrier support, tone-evening, calming."
-        },
-        {
-          "name": "BioFense™ (Lactobacillus Ferment)",
-          "function": "Probiotic microbiome support, reduces acne-related redness."
-        },
-        {
-          "name": "Synovea® HR (Hexylresorcinol)",
-          "function": "Brightener; works with niacinamide for cellular support."
-        }
-      ],
-      "how_to_use": "After cleansing and toning, apply 3–5 drops to face, neck, and chest once daily (AM or PM). Layer with moisturizer. Apply SPF in the morning when using this product. Start with a lower frequency and build up if no dryness or sensitivity occurs.",
-      "conditions_addressed": [
-        "hyperpigmentation",
-        "uneven tone",
-        "enlarged pores",
-        "mild breakouts"
-      ],
-      "description_short": "A mandelic-acid leave-on exfoliant that brightens and refines texture while regulating oil — gentler than glycolic-based options.",
-      "images": [
-        "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__01__primary.webp",
-        "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__02__gallery02.webp",
-        "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__03__swatch.webp"
-      ],
-      "image_alt": "Skin Script Mandelic Brightening Serum on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__01__primary.webp",
-      "skin_script_sku": "1310440"
-    },
-    {
-      "id": "botanical-bloom-hydrating-mask",
-      "name": "Botanical Bloom Hydrating Mask",
-      "category": "Mask",
-      "size": "2 oz",
-      "size_confirmed": false,
-      "size_note": "Size was not given in the client product list. 2 oz is the engineered default from authorized-retailer listings — not an Emily-confirmed size. 2026-09-19 confirmation still pending; do not flip size_confirmed to true without her answer. See OPEN_ITEMS.md §2.",
-      "wholesale_price": 24,
-      "retail_price": 48,
-      "retail_price_confirmed": true,
-      "skin_types": [
-        "all — especially dry, sensitive, or dull"
-      ],
-      "key_actives": [
-        {
-          "name": "Super Floral Complex (rose, orchid stem cells, daisy extract)",
-          "function": "Brightens, calms, and helps fade dark spots."
-        },
-        {
-          "name": "Triple HA Complex (three molecular weights of hyaluronic acid)",
-          "function": "Multi-depth hydration and plumping."
-        },
-        {
-          "name": "Luminescine®",
-          "function": "Absorbs UV energy and re-emits it as visible light, giving an immediate luminous effect."
-        }
-      ],
-      "how_to_use": "Apply a generous layer after cleansing, avoiding the eye area. Leave on 10–15 minutes and rinse with lukewarm water, or apply thinly as an overnight treatment. Use 1–3 times per week.",
-      "conditions_addressed": [
-        "dryness",
-        "dullness",
-        "sensitivity",
-        "uneven tone"
-      ],
-      "description_short": "A hyaluronic-acid-rich hydrating mask built around a rose, orchid, and daisy botanical complex.",
-      "images": [
-        "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__01__primary.webp",
-        "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__02__swatch.webp"
-      ],
-      "image_alt": "Skin Script Botanical Bloom Hydrating Mask on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__01__primary.webp",
-      "skin_script_sku": "2110640"
-    },
-    {
-      "id": "ageless-moisturizer",
-      "name": "Ageless Moisturizer",
-      "category": "Moisturizer",
-      "size": "2 oz",
-      "wholesale_price": 12,
-      "retail_price": 24,
-      "retail_price_confirmed": true,
-      "skin_types": [
-        "normal",
-        "combination",
-        "sensitive"
-      ],
-      "key_actives": [
-        {
-          "name": "Aloe Barbadensis Leaf Juice",
-          "function": "Hydrates, soothes, calms irritation."
-        },
-        {
-          "name": "Sodium Hyaluronate",
-          "function": "Humectant; binds moisture and builds a hydration reservoir in the skin."
-        },
-        {
-          "name": "Ubiquinone (CoQ10)",
-          "function": "Antioxidant; reduces lipid peroxidation and visible wrinkle depth."
-        },
-        {
-          "name": "AD-RESYL® (Ophiopogon Japonicus Root Extract)",
-          "function": "Barrier support and redness reduction."
-        }
-      ],
-      "how_to_use": "After cleansing and toning, apply a thin layer to face, neck, and chest morning and evening.",
-      "conditions_addressed": [
-        "dehydration",
-        "oil/water imbalance",
-        "early signs of aging"
-      ],
-      "description_short": "A lightweight, fast-absorbing daily moisturizer with a satin, matte-leaning finish.",
-      "images": [
-        "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__01__primary.webp",
-        "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__02__gallery02.webp",
-        "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__03__swatch.webp"
-      ],
-      "image_alt": "Skin Script Ageless Moisturizer on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__01__primary.webp",
-      "skin_script_sku": "1510240"
-    },
-    {
-      "id": "hydrating-skin-serum",
-      "name": "Hydrating Skin Serum",
-      "category": "Serum",
-      "manufacturer_name_note": "Sold by Skin Script as 'Ageless Skin Hydrating Serum' — matched via a second retailer's product-page URL. Confirm this is the intended item, not the similarly named Ageless Moisturizer.",
-      "size": "1 oz",
-      "wholesale_price": 20,
-      "retail_price": 40,
-      "retail_price_confirmed": true,
-      "skin_types": [
-        "dry",
-        "dehydrated",
-        "mature",
-        "combination",
-        "acneic/milia-prone"
-      ],
-      "key_actives": [
-        {
-          "name": "Hyaluronic Acid + Sodium Hyaluronate",
-          "function": "Multi-depth hydration, plumping."
-        },
-        {
-          "name": "Phospholipids + Sphingolipids",
-          "function": "Restore the skin's lipid barrier."
-        },
-        {
-          "name": "Palmitoyl Tripeptide-38 (Matrixyl Synthe'6)",
-          "function": "Signals collagen and hyaluronic acid production; smooths fine lines."
-        },
-        {
-          "name": "Cassia Alata Leaf Extract (DN-AGE)",
-          "function": "Protects against UV-related DNA damage; supports cellular repair."
-        }
-      ],
-      "how_to_use": "After cleansing and toning, apply 1–2 pumps to the face morning and evening, then follow with moisturizer. Pairs well with retinol or exfoliating acids — apply after those actives have absorbed.",
-      "conditions_addressed": [
-        "dehydration",
-        "fine lines",
-        "compromised barrier",
-        "dryness from active ingredients"
-      ],
-      "description_short": "A barrier-focused hydrating serum combining hyaluronic acid with skin-identical lipids and a peptide complex.",
-      "images": [
-        "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__01__primary.webp",
-        "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__02__gallery02.webp",
-        "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__03__swatch.webp"
-      ],
-      "image_alt": "Skin Script Hydrating Skin Serum on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__01__primary.webp",
-      "skin_script_sku": "1310340"
-    },
-    {
-      "id": "lip-treatment-peppermint-pomegranate",
-      "name": "Peppermint & Pomegranate Lip Treatment",
-      "category": "Lip Treatment",
-      "manufacturer_name_note": "Skin Script sells this as 'Ageless Lip Treatment' in two separate scent SKUs, Peppermint and Pomegranate, at the same price. Modeled here as one product with a required scent variant — confirm against OPEN_ITEMS.md §2 whether two SKUs are preferred instead. 2026-09-19: Emily has not confirmed SKU structure; keep the single-product + variants model until she does.",
-      "size": "0.27 oz",
-      "wholesale_price": 8,
-      "retail_price": 16,
-      "retail_price_confirmed": true,
-      "variants": [
-        "Peppermint",
-        "Pomegranate"
-      ],
-      "skin_types": [
-        "all"
-      ],
-      "key_actives": [
-        {
-          "name": "Maxi-Lip™ (Palmitoyl Tripeptide-1)",
-          "function": "Biomimetic peptide; stimulates collagen synthesis for firmness."
-        },
-        {
-          "name": "HydraSynol®",
-          "function": "Deep, long-lasting hydration."
-        },
-        {
-          "name": "Dermaxyl™ (ceramide + peptide complex)",
-          "function": "Repairs and strengthens the lip barrier."
-        },
-        {
-          "name": "Synoxyl® AZ (Acetyl Zingerone)",
-          "function": "Antioxidant; firming."
-        }
-      ],
-      "how_to_use": "Glide a small amount onto lips. Reapply as needed.",
-      "conditions_addressed": [
-        "dry or chapped lips",
-        "fine vertical lip lines",
-        "thinning lips"
-      ],
-      "description_short": "A peptide lip treatment that plumps and hydrates rather than just coating — available in Peppermint or Pomegranate.",
-      "images": [
-        "/images/products/skin-script/lip-treatment-peppermint-pomegranate/lip-treatment-peppermint-pomegranate__01__primary.webp",
-        "/images/products/skin-script/lip-treatment-peppermint-pomegranate/lip-treatment-peppermint-pomegranate__02__gallery02.webp",
-        "/images/products/skin-script/lip-treatment-peppermint-pomegranate/lip-treatment-peppermint-pomegranate__03__gallery03.webp",
-        "/images/products/skin-script/lip-treatment-peppermint-pomegranate/lip-treatment-peppermint-pomegranate__04__swatch.webp"
-      ],
-      "image_alt": "Skin Script Peppermint & Pomegranate Lip Treatment on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/lip-treatment-peppermint-pomegranate/lip-treatment-peppermint-pomegranate__01__primary.webp",
-      "skin_script_sku": "1410240"
-    },
-    {
-      "id": "sheer-protection-spf",
-      "name": "Sheer Protection SPF 30",
-      "category": "SPF",
-      "size": "2 oz",
-      "wholesale_price": 15,
-      "retail_price": 30,
-      "retail_price_confirmed": false,
-      "retail_price_note": "No retail figure was given in the source document for this item — every other product listed a retail price. Computed here at $30 (2x the $15 wholesale) to match the confirmed 7-of-8 pattern. Emily still must confirm this retail before it is treated as approved. 2026-09-19 confirmation pending — do not flip retail_price_confirmed to true without that confirmation.",
-      "skin_types": [
-        "all — best for normal, dry, combination, sensitive; less ideal for acne-prone due to nut oils"
-      ],
-      "key_actives": [
-        {
-          "name": "Zinc Oxide (13.5%)",
-          "function": "Mineral, broad-spectrum UVA/UVB filter; sits on the skin's surface rather than being absorbed."
-        },
-        {
-          "name": "Kukui Nut Oil & Macadamia Oil",
-          "function": "Fatty acids; nourishing, easily absorbed."
-        },
-        {
-          "name": "Bisabolol, Sandalwood Extract, Phellodendron Amurense Bark Extract",
-          "function": "Calming, anti-inflammatory."
-        }
-      ],
-      "how_to_use": "Apply in the morning after moisturizer, at least 30 minutes before sun exposure. Reapply every 2 hours. Not waterproof or sweatproof.",
-      "conditions_addressed": [
-        "daily sun protection",
-        "redness-prone skin"
-      ],
-      "description_short": "A mineral, zinc-oxide sunscreen formulated to sit sheer rather than leave a white cast.",
-      "source_conflict_note": "One lower-authority source described a chemical-filter (octinoxate/octocrylene) version of this product. The large majority of sources — including the manufacturer's own product page — describe a 13.5% zinc-oxide-only mineral formula. This entry follows the majority/manufacturer version; flagged in case Skin Script has multiple SPF 30 SKUs.",
-      "images": [
-        "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__01__primary.webp",
-        "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__02__gallery03.webp",
-        "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__03__swatch.webp"
-      ],
-      "image_alt": "Skin Script Sheer Protection SPF 30 on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__01__primary.webp",
-      "skin_script_sku": "1610140"
-    },
-    {
-      "id": "cucumber-hydration-toner",
-      "name": "Cucumber Hydration Toner",
-      "category": "Toner",
-      "size": "3.3 oz",
-      "wholesale_price": 12,
-      "retail_price": 24,
-      "retail_price_confirmed": true,
-      "skin_types": [
-        "all"
-      ],
-      "key_actives": [
-        {
-          "name": "Cucumber (Cucumis Sativus) Fruit Extract & Seed Oil",
-          "function": "Cooling, soothing."
-        },
-        {
-          "name": "Deuterium Oxide (Heavy Water)",
-          "function": "High molecular weight; reduces trans-epidermal water loss."
-        },
-        {
-          "name": "Sodium PCA",
-          "function": "Natural moisturizing factor component; humectant."
-        },
-        {
-          "name": "Hyaluronic Acid + Honey + Fructooligosaccharides",
-          "function": "Hydration plus prebiotic microbiome support."
-        }
-      ],
-      "how_to_use": "After cleansing and exfoliating, spritz onto skin or apply with a cotton round, morning and evening.",
-      "conditions_addressed": [
-        "dehydration",
-        "irritation",
-        "poor serum absorption"
-      ],
-      "description_short": "A cucumber-based hydrating toner that preps skin to absorb the serums and moisturizer that follow it.",
-      "images": [
-        "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__01__primary.webp",
-        "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__02__gallery01.webp",
-        "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__03__gallery02.webp"
-      ],
-      "image_alt": "Skin Script Cucumber Hydration Toner on Dew Theory sage background",
-      "image_webp": "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__01__primary.webp",
-      "skin_script_sku": "1210140"
-    },
-    {
-      "id": "acai-berry-moisturizer",
-      "name": "Acai Berry Moisturizer",
-      "category": "Moisturizer",
-      "size": "1.7 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 20.5,
-      "retail_price": 41,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Acai Berry Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1510440",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__01__primary.webp",
-        "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__02__gallery02.webp",
-        "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__01__primary.webp",
-      "image_alt": "Skin Script Acai Berry Moisturizer on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "advanced-renewal-serum",
-      "name": "Advanced Renewal Serum",
-      "category": "Serum",
-      "size": "1 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 35,
-      "retail_price": 70,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Advanced Renewal Serum — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1310540",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__01__primary.webp",
-        "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__02__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__01__primary.webp",
-      "image_alt": "Skin Script Advanced Renewal Serum on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "barrier-balancing-moisturizer",
-      "name": "Barrier Balancing Moisturizer",
-      "category": "Moisturizer",
-      "size": "1.7 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18,
-      "retail_price": 36,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Barrier Balancing Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1510740",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__01__primary.webp",
-        "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__02__swatch.webp",
-        "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__03__pump.webp"
-      ],
-      "image_webp": "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__01__primary.webp",
-      "image_alt": "Skin Script Barrier Balancing Moisturizer on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "blemish-spot-treatment",
-      "name": "Blemish Spot Treatment",
-      "category": "Spot Treatment",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 14,
-      "retail_price": 28,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Blemish Spot Treatment — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "out_of_stock",
-      "skin_script_sku": "1310840",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__01__primary.webp",
-        "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__02__gallery02.webp",
-        "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__01__primary.webp",
-      "image_alt": "Skin Script Blemish Spot Treatment on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "charcoal-clay-cleanser",
-      "name": "Charcoal Clay Cleanser",
-      "category": "Cleanser",
-      "size": "6.4 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18,
-      "retail_price": 36,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Charcoal Clay Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1010340",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__01__primary.webp",
-        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__02__gallery02.webp",
-        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__03__gallery04.webp",
-        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__04__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__01__primary.webp",
-      "image_alt": "Skin Script Charcoal Clay Cleanser on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "citrus-c-nourishing-cream",
-      "name": "Citrus-C Nourishing Cream",
-      "category": "Serum",
-      "size": "1 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 26,
-      "retail_price": 52,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Citrus-C Nourishing Cream — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1310140",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__01__primary.webp",
-        "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__02__gallery02.webp",
-        "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__01__primary.webp",
-      "image_alt": "Skin Script Citrus-C Nourishing Cream on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "clarifying-toner-pads",
-      "name": "Clarifying Toner Pads",
-      "category": "Exfoliant",
-      "size": "2 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 14,
-      "retail_price": 28,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Clarifying Toner Pads — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1110240",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__01__primary.webp",
-        "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__02__gallery01.webp"
-      ],
-      "image_webp": "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__01__primary.webp",
-      "image_alt": "Skin Script Clarifying Toner Pads on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "discovery-kit",
-      "name": "Discovery Kit",
-      "category": "Kit",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 75,
-      "retail_price": 150,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Discovery Kit — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "5010420",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/discovery-kit/discovery-kit__01__primary.webp",
-        "/images/products/skin-script/discovery-kit/discovery-kit__02__gallery01.webp",
-        "/images/products/skin-script/discovery-kit/discovery-kit__03__gallery02.webp"
-      ],
-      "image_webp": "/images/products/skin-script/discovery-kit/discovery-kit__01__primary.webp",
-      "image_alt": "Skin Script Discovery Kit on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "everyday-balance-travel-kit",
-      "name": "Everyday Balance Travel Kit",
-      "category": "Kit",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 32.5,
-      "retail_price": 65,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Everyday Balance Travel Kit — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "4010900",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__01__primary.webp",
-        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__02__gallery01.webp",
-        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__03__gallery02.webp",
-        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__04__gallery03.webp"
-      ],
-      "image_webp": "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__01__primary.webp",
-      "image_alt": "Skin Script Everyday Balance Travel Kit on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "fresh-face-travel-kit",
-      "name": "Fresh Face Travel Kit",
-      "category": "Kit",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 31,
-      "retail_price": 62,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Fresh Face Travel Kit — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "4010800",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__01__primary.webp",
-        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__02__gallery01.webp",
-        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__03__gallery02.webp",
-        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__04__gallery03.webp"
-      ],
-      "image_webp": "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__01__primary.webp",
-      "image_alt": "Skin Script Fresh Face Travel Kit on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "fully-quenched-travel-kit",
-      "name": "Fully Quenched Travel Kit",
-      "category": "Kit",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 35,
-      "retail_price": 70,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Fully Quenched Travel Kit — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "4011000",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__01__primary.webp",
-        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__02__gallery01.webp",
-        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__03__gallery02.webp",
-        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__04__gallery03.webp"
-      ],
-      "image_webp": "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__01__primary.webp",
-      "image_alt": "Skin Script Fully Quenched Travel Kit on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "glycolic-and-retinol-pads",
-      "name": "Glycolic and Retinol Pads",
-      "category": "Exfoliant",
-      "size": "2 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18,
-      "retail_price": 36,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Glycolic and Retinol Pads — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1110140",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__01__primary.webp",
-        "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__02__back.webp",
-        "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__03__gallery01.webp"
-      ],
-      "image_webp": "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__01__primary.webp",
-      "image_alt": "Skin Script Glycolic and Retinol Pads on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "glycolic-cleanser",
-      "name": "Glycolic Cleanser",
-      "category": "Cleanser",
-      "size": "6.4 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 20,
-      "retail_price": 40,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Glycolic Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1010440",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__01__primary.webp",
-        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__02__gallery02.webp",
-        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__03__gallery03.webp",
-        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__04__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__01__primary.webp",
-      "image_alt": "Skin Script Glycolic Cleanser on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "honey-brightening-cleanser",
-      "name": "Honey Brightening Cleanser",
-      "category": "Cleanser",
-      "size": "6.4 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 21,
-      "retail_price": 42,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Honey Brightening Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1010640",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__01__primary.webp",
-        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__02__gallery02.webp",
-        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__03__gallery03.webp",
-        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__04__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__01__primary.webp",
-      "image_alt": "Skin Script Honey Brightening Cleanser on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "hydrating-moisturizer",
-      "name": "Hydrating Moisturizer",
-      "category": "Moisturizer",
-      "size": "1.7 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18,
-      "retail_price": 36,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Hydrating Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1510640",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__01__primary.webp",
-        "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__02__gallery02.webp",
-        "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__01__primary.webp",
-      "image_alt": "Skin Script Hydrating Moisturizer on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "light-aloe-moisturizer",
-      "name": "Light Aloe Moisturizer",
-      "category": "Moisturizer",
-      "size": "2 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 13,
-      "retail_price": 26,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Light Aloe Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1510140",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__01__primary.webp",
-        "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__02__gallery02.webp",
-        "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__01__primary.webp",
-      "image_alt": "Skin Script Light Aloe Moisturizer on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "lip-balm-with-spf-15",
-      "name": "Lip Balm with SPF 15",
-      "category": "Lip Treatment",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 3.25,
-      "retail_price": 6.5,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Lip Balm with SPF 15 — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1410140",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__01__primary.webp",
-        "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__02__gallery01.webp",
-        "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__03__gallery02.webp"
-      ],
-      "image_webp": "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__01__primary.webp",
-      "image_alt": "Skin Script Lip Balm with SPF 15 on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "mint-refining-toner",
-      "name": "Mint Refining Toner",
-      "category": "Toner",
-      "size": "3.3 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 14,
-      "retail_price": 28,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Mint Refining Toner — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1210240",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/mint-refining-toner/mint-refining-toner__01__primary.webp",
-        "/images/products/skin-script/mint-refining-toner/mint-refining-toner__02__gallery01.webp",
-        "/images/products/skin-script/mint-refining-toner/mint-refining-toner__03__gallery02.webp"
-      ],
-      "image_webp": "/images/products/skin-script/mint-refining-toner/mint-refining-toner__01__primary.webp",
-      "image_alt": "Skin Script Mint Refining Toner on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "peptide-eye-serum",
-      "name": "Peptide Eye Serum",
-      "category": "Eye Treatment",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 20,
-      "retail_price": 40,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Peptide Eye Serum — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1310640",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__01__primary.webp",
-        "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__02__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__01__primary.webp",
-      "image_alt": "Skin Script Peptide Eye Serum on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "peptide-moisturizer",
-      "name": "Peptide Moisturizer",
-      "category": "Moisturizer",
-      "size": "1.7 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 30.5,
-      "retail_price": 61,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Peptide Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1510540",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__01__primary.webp",
-        "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__02__gallery02.webp",
-        "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__01__primary.webp",
-      "image_alt": "Skin Script Peptide Moisturizer on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "pomegranate-antioxidant-cleanser",
-      "name": "Pomegranate Antioxidant Cleanser",
-      "category": "Cleanser",
-      "size": "6.4 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18,
-      "retail_price": 36,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Pomegranate Antioxidant Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1010140",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__01__primary.webp",
-        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__02__gallery03.webp",
-        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__03__gallery04.webp",
-        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__04__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__01__primary.webp",
-      "image_alt": "Skin Script Pomegranate Antioxidant Cleanser on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "raspberry-refining-cleanser",
-      "name": "Raspberry Refining Cleanser",
-      "category": "Cleanser",
-      "size": "6.4 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18.5,
-      "retail_price": 37,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Raspberry Refining Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1010540",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__01__primary.webp",
-        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__02__gallery02.webp",
-        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__03__gallery03.webp",
-        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__04__swatch.webp",
-        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__05__pump.webp"
-      ],
-      "image_webp": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__01__primary.webp",
-      "image_alt": "Skin Script Raspberry Refining Cleanser on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "raspberry-scrub",
-      "name": "Raspberry Scrub",
-      "category": "Exfoliant",
-      "size": "4 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 18,
-      "retail_price": 36,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Raspberry Scrub — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1110540",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/raspberry-scrub/raspberry-scrub__01__primary.webp",
-        "/images/products/skin-script/raspberry-scrub/raspberry-scrub__02__gallery02.webp",
-        "/images/products/skin-script/raspberry-scrub/raspberry-scrub__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/raspberry-scrub/raspberry-scrub__01__primary.webp",
-      "image_alt": "Skin Script Raspberry Scrub on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "retinol-exfoliating-scrub",
-      "name": "Retinol Exfoliating Scrub",
-      "category": "Exfoliant",
-      "size": "1.7 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 24.5,
-      "retail_price": 49,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Retinol Exfoliating Scrub — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1110440",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__01__primary.webp",
-        "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__02__gallery02.webp",
-        "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__01__primary.webp",
-      "image_alt": "Skin Script Retinol Exfoliating Scrub on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "revitalizing-cucumber-treatment",
-      "name": "Revitalizing Cucumber Treatment",
-      "category": "Exfoliant",
-      "size": "2 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 26,
-      "retail_price": 52,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Revitalizing Cucumber Treatment — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1110640",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__01__primary.webp",
-        "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__02__gallery02.webp",
-        "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__01__primary.webp",
-      "image_alt": "Skin Script Revitalizing Cucumber Treatment on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "tri-peptide-eye-cream",
-      "name": "Tri-Peptide Eye Cream",
-      "category": "Eye Treatment",
-      "size": "",
-      "size_confirmed": false,
-      "wholesale_price": 20,
-      "retail_price": 40,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Tri-Peptide Eye Cream — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1310740",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__01__primary.webp",
-        "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__02__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__01__primary.webp",
-      "image_alt": "Skin Script Tri-Peptide Eye Cream on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    },
-    {
-      "id": "triple-c-serum",
-      "name": "Triple C Serum",
-      "category": "Serum",
-      "size": "1 oz.",
-      "size_confirmed": true,
-      "wholesale_price": 24,
-      "retail_price": 48,
-      "retail_price_confirmed": false,
-      "retail_price_note": "Computed as verified Skin Script wholesale × 2; Emily confirmation pending.",
-      "skin_types": [],
-      "key_actives": [],
-      "how_to_use": "",
-      "conditions_addressed": [],
-      "description_short": "Triple C Serum — Skin Script professional formula, sold retail at Dew Theory.",
-      "stock_status": "in_stock",
-      "skin_script_sku": "1310940",
-      "active": true,
-      "images": [
-        "/images/products/skin-script/triple-c-serum/triple-c-serum__01__primary.webp",
-        "/images/products/skin-script/triple-c-serum/triple-c-serum__02__gallery02.webp",
-        "/images/products/skin-script/triple-c-serum/triple-c-serum__03__swatch.webp"
-      ],
-      "image_webp": "/images/products/skin-script/triple-c-serum/triple-c-serum__01__primary.webp",
-      "image_alt": "Skin Script Triple C Serum on Dew Theory sage background",
-      "source": "skin-script-portal-verified-2026-09-20"
-    }
-  ]
-}
+{
+  "_meta": {
+    "note": "Canonical product catalog for Dew Theory. Wholesale/retail figures are from the client's product line document. Ingredient, usage, and skin-type data were researched against Skin Script's own product pages and multiple authorized Skin Script retailers, then paraphrased — they are NOT invented, but should still be read and confirmed by Emily before publishing, since formulas are occasionally revised by the manufacturer. 2026-09-19 Emily confirmation pass: she has not confirmed the remaining catalog decisions. Engineered defaults stay in place and stay explicitly unconfirmed — Sheer Protection SPF retail ($30, retail_price_confirmed=false), Lip Treatment as one Peppermint/Pomegranate product (see manufacturer_name_note + OPEN_ITEMS.md §2), Botanical Bloom size 2 oz (size_confirmed=false), and DEW15 15% as a launch-promo placeholder only. Do not flip honesty flags to true or claim Emily approved these without a new owner answer.",
+    "pricing_rule": "Customer price = official Skin Script Suggested Retail Price (August 2026). Integrity check: official SRP should equal exact verified wholesale × 2.",
+    "shipping_rule": {
+      "flat_rate_usd": 12,
+      "free_shipping_threshold_usd": 49,
+      "applies_to": "order subtotal before discount codes (Skin Script drop-ship policy)",
+      "source": "Skin Script Training Manual / Drop Ship Policy — re-verified 2026-09-20"
+    },
+    "sources_researched": "skinscriptrx.com (manufacturer) and authorized retailers including artofskincare.com, skincarebyalana.com, naturalbeautyspa.com, incidecoder.com. All product marketing copy below is paraphrased, not copied.",
+    "product_images": {
+      "package": "DewTheory_Sage_Images_Compact.zip",
+      "installed_on": "2026-09-20",
+      "public_base": "/images/products/skin-script",
+      "dimensions": "832x1232",
+      "aspect_ratio": "52:77",
+      "note": "Sage-background WebP from compact pack; no recompression. Primary+gallery per verified retail product."
+    }
+  },
+  "categories": [
+    "Cleanser",
+    "Toner",
+    "Serum",
+    "Moisturizer",
+    "Exfoliant",
+    "Mask",
+    "Eye Treatment",
+    "Lip Treatment",
+    "Spot Treatment",
+    "SPF",
+    "Kit"
+  ],
+  "products": [
+    {
+      "id": "green-tea-citrus-cleanser",
+      "name": "Green Tea Citrus Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 oz",
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "skin_types": [
+        "normal",
+        "combination",
+        "oily"
+      ],
+      "not_recommended_for": [
+        "dry",
+        "sensitive",
+        "rosacea-prone"
+      ],
+      "key_actives": [
+        {
+          "name": "Green Tea (Camellia Sinensis) Leaf Extract + EGCG",
+          "function": "Antioxidant; helps limit acne-causing bacteria while protecting the skin's healthy microbiome."
+        },
+        {
+          "name": "Grape Seed Extract",
+          "function": "Polyphenol-rich antioxidant; supports skin balance and calms redness."
+        },
+        {
+          "name": "Grapefruit & Lemon Peel Oil",
+          "function": "Vitamin C source; clarifies and brightens, contributes the citrus scent."
+        },
+        {
+          "name": "Wild Cherry Bark Extract",
+          "function": "Soothing, anti-inflammatory."
+        }
+      ],
+      "how_to_use": "Apply to damp skin, massage in circular motions for about 60 seconds to emulsify and lift impurities, then rinse with warm water.",
+      "conditions_addressed": [
+        "excess oil",
+        "congestion / buildup",
+        "dullness"
+      ],
+      "description_short": "A foaming gel cleanser built around green tea and citrus extracts — clarifies oily and combination skin without over-stripping it.",
+      "images": [
+        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__01__primary.webp",
+        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__02__gallery02.webp",
+        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__03__gallery04.webp",
+        "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__04__swatch.webp"
+      ],
+      "image_alt": "Skin Script Green Tea Citrus Cleanser product photo",
+      "image_webp": "/images/products/skin-script/green-tea-citrus-cleanser/green-tea-citrus-cleanser__01__primary.webp",
+      "skin_script_sku": "1010240",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "mandelic-brightening-serum",
+      "name": "Mandelic Brightening Serum",
+      "category": "Exfoliant",
+      "category_note": "Named 'serum' by the manufacturer, but functions as a leave-on chemical exfoliant — categorized as Exfoliant per client instruction.",
+      "size": "1 oz",
+      "wholesale_price": 24,
+      "retail_price": 48,
+      "retail_price_confirmed": true,
+      "skin_types": [
+        "all — introduce gradually"
+      ],
+      "key_actives": [
+        {
+          "name": "L-Mandelic Acid (5%)",
+          "function": "Larger-molecule AHA; exfoliates, brightens, improves texture with a lower irritation profile than glycolic acid."
+        },
+        {
+          "name": "Azeloglicina® / Potassium Azelaoyl Diglycinate (3%)",
+          "function": "Tyrosinase inhibitor; fades dark spots, calms redness, regulates oil."
+        },
+        {
+          "name": "Niacinamide",
+          "function": "Barrier support, tone-evening, calming."
+        },
+        {
+          "name": "BioFense™ (Lactobacillus Ferment)",
+          "function": "Probiotic microbiome support, reduces acne-related redness."
+        },
+        {
+          "name": "Synovea® HR (Hexylresorcinol)",
+          "function": "Brightener; works with niacinamide for cellular support."
+        }
+      ],
+      "how_to_use": "After cleansing and toning, apply 3–5 drops to face, neck, and chest once daily (AM or PM). Layer with moisturizer. Apply SPF in the morning when using this product. Start with a lower frequency and build up if no dryness or sensitivity occurs.",
+      "conditions_addressed": [
+        "hyperpigmentation",
+        "uneven tone",
+        "enlarged pores",
+        "mild breakouts"
+      ],
+      "description_short": "A mandelic-acid leave-on exfoliant that brightens and refines texture while regulating oil — gentler than glycolic-based options.",
+      "images": [
+        "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__01__primary.webp",
+        "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__02__gallery02.webp",
+        "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__03__swatch.webp"
+      ],
+      "image_alt": "Skin Script Mandelic Brightening Serum product photo",
+      "image_webp": "/images/products/skin-script/mandelic-brightening-serum/mandelic-brightening-serum__01__primary.webp",
+      "skin_script_sku": "1310440",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 48,
+      "computed_2x_wholesale": 48,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "botanical-bloom-hydrating-mask",
+      "name": "Botanical Bloom Hydrating Mask",
+      "category": "Mask",
+      "size": "2 oz",
+      "size_confirmed": false,
+      "size_note": "Size was not given in the client product list. 2 oz is the engineered default from authorized-retailer listings — not an Emily-confirmed size. 2026-09-19 confirmation still pending; do not flip size_confirmed to true without her answer. See OPEN_ITEMS.md §2.",
+      "wholesale_price": 24,
+      "retail_price": 48,
+      "retail_price_confirmed": true,
+      "skin_types": [
+        "all — especially dry, sensitive, or dull"
+      ],
+      "key_actives": [
+        {
+          "name": "Super Floral Complex (rose, orchid stem cells, daisy extract)",
+          "function": "Brightens, calms, and helps fade dark spots."
+        },
+        {
+          "name": "Triple HA Complex (three molecular weights of hyaluronic acid)",
+          "function": "Multi-depth hydration and plumping."
+        },
+        {
+          "name": "Luminescine®",
+          "function": "Absorbs UV energy and re-emits it as visible light, giving an immediate luminous effect."
+        }
+      ],
+      "how_to_use": "Apply a generous layer after cleansing, avoiding the eye area. Leave on 10–15 minutes and rinse with lukewarm water, or apply thinly as an overnight treatment. Use 1–3 times per week.",
+      "conditions_addressed": [
+        "dryness",
+        "dullness",
+        "sensitivity",
+        "uneven tone"
+      ],
+      "description_short": "A hyaluronic-acid-rich hydrating mask built around a rose, orchid, and daisy botanical complex.",
+      "images": [
+        "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__01__primary.webp",
+        "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__02__swatch.webp"
+      ],
+      "image_alt": "Skin Script Botanical Bloom Hydrating Mask product photo",
+      "image_webp": "/images/products/skin-script/botanical-bloom-hydrating-mask/botanical-bloom-hydrating-mask__01__primary.webp",
+      "skin_script_sku": "2110640",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 48,
+      "computed_2x_wholesale": 48,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "ageless-moisturizer",
+      "name": "Ageless Moisturizer",
+      "category": "Moisturizer",
+      "size": "2 oz",
+      "wholesale_price": 15,
+      "retail_price": 30,
+      "retail_price_confirmed": true,
+      "skin_types": [
+        "normal",
+        "combination",
+        "sensitive"
+      ],
+      "key_actives": [
+        {
+          "name": "Aloe Barbadensis Leaf Juice",
+          "function": "Hydrates, soothes, calms irritation."
+        },
+        {
+          "name": "Sodium Hyaluronate",
+          "function": "Humectant; binds moisture and builds a hydration reservoir in the skin."
+        },
+        {
+          "name": "Ubiquinone (CoQ10)",
+          "function": "Antioxidant; reduces lipid peroxidation and visible wrinkle depth."
+        },
+        {
+          "name": "AD-RESYL® (Ophiopogon Japonicus Root Extract)",
+          "function": "Barrier support and redness reduction."
+        }
+      ],
+      "how_to_use": "After cleansing and toning, apply a thin layer to face, neck, and chest morning and evening.",
+      "conditions_addressed": [
+        "dehydration",
+        "oil/water imbalance",
+        "early signs of aging"
+      ],
+      "description_short": "A lightweight, fast-absorbing daily moisturizer with a satin, matte-leaning finish.",
+      "images": [
+        "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__01__primary.webp",
+        "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__02__gallery02.webp",
+        "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__03__swatch.webp"
+      ],
+      "image_alt": "Skin Script Ageless Moisturizer product photo",
+      "image_webp": "/images/products/skin-script/ageless-moisturizer/ageless-moisturizer__01__primary.webp",
+      "skin_script_sku": "1510240",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 30,
+      "computed_2x_wholesale": 30,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "hydrating-skin-serum",
+      "name": "Hydrating Skin Serum",
+      "category": "Serum",
+      "manufacturer_name_note": "Sold by Skin Script as 'Ageless Skin Hydrating Serum' — matched via a second retailer's product-page URL. Confirm this is the intended item, not the similarly named Ageless Moisturizer.",
+      "size": "1 oz",
+      "wholesale_price": 22.5,
+      "retail_price": 45,
+      "retail_price_confirmed": true,
+      "skin_types": [
+        "dry",
+        "dehydrated",
+        "mature",
+        "combination",
+        "acneic/milia-prone"
+      ],
+      "key_actives": [
+        {
+          "name": "Hyaluronic Acid + Sodium Hyaluronate",
+          "function": "Multi-depth hydration, plumping."
+        },
+        {
+          "name": "Phospholipids + Sphingolipids",
+          "function": "Restore the skin's lipid barrier."
+        },
+        {
+          "name": "Palmitoyl Tripeptide-38 (Matrixyl Synthe'6)",
+          "function": "Signals collagen and hyaluronic acid production; smooths fine lines."
+        },
+        {
+          "name": "Cassia Alata Leaf Extract (DN-AGE)",
+          "function": "Protects against UV-related DNA damage; supports cellular repair."
+        }
+      ],
+      "how_to_use": "After cleansing and toning, apply 1–2 pumps to the face morning and evening, then follow with moisturizer. Pairs well with retinol or exfoliating acids — apply after those actives have absorbed.",
+      "conditions_addressed": [
+        "dehydration",
+        "fine lines",
+        "compromised barrier",
+        "dryness from active ingredients"
+      ],
+      "description_short": "A barrier-focused hydrating serum combining hyaluronic acid with skin-identical lipids and a peptide complex.",
+      "images": [
+        "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__01__primary.webp",
+        "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__02__gallery02.webp",
+        "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__03__swatch.webp"
+      ],
+      "image_alt": "Skin Script Hydrating Skin Serum product photo",
+      "image_webp": "/images/products/skin-script/hydrating-skin-serum/hydrating-skin-serum__01__primary.webp",
+      "skin_script_sku": "1310340",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 45,
+      "computed_2x_wholesale": 45,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "lip-treatment-peppermint",
+      "name": "Ageless Lip Treatment — Peppermint",
+      "category": "Lip Treatment",
+      "manufacturer_name_note": "Split from combined Peppermint/Pomegranate listing per official SRP SKUs 1410240 / 1410340.",
+      "size": "0.27 oz",
+      "wholesale_price": 8,
+      "retail_price": 16,
+      "retail_price_confirmed": true,
+      "variants": [
+        "Peppermint"
+      ],
+      "skin_types": [
+        "all"
+      ],
+      "key_actives": [
+        {
+          "name": "Maxi-Lip™ (Palmitoyl Tripeptide-1)",
+          "function": "Biomimetic peptide; stimulates collagen synthesis for firmness."
+        },
+        {
+          "name": "HydraSynol®",
+          "function": "Deep, long-lasting hydration."
+        },
+        {
+          "name": "Dermaxyl™ (ceramide + peptide complex)",
+          "function": "Repairs and strengthens the lip barrier."
+        },
+        {
+          "name": "Synoxyl® AZ (Acetyl Zingerone)",
+          "function": "Antioxidant; firming."
+        }
+      ],
+      "how_to_use": "Glide a small amount onto lips. Reapply as needed.",
+      "conditions_addressed": [
+        "dry or chapped lips",
+        "fine vertical lip lines",
+        "thinning lips"
+      ],
+      "description_short": "A peptide lip treatment that plumps and hydrates rather than just coating — available in Peppermint or Pomegranate.",
+      "images": [
+        "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__01__primary.webp",
+        "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__02__gallery02.webp",
+        "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__03__gallery03.webp",
+        "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__04__swatch.webp"
+      ],
+      "image_alt": "Skin Script Ageless Lip Treatment — Peppermint product photo",
+      "image_webp": "/images/products/skin-script/lip-treatment-peppermint/lip-treatment-peppermint__01__primary.webp",
+      "skin_script_sku": "1410240",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 16,
+      "computed_2x_wholesale": 16,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "lip-treatment-pomegranate",
+      "name": "Ageless Lip Treatment — Pomegranate",
+      "category": "Lip Treatment",
+      "manufacturer_name_note": "Split from combined Peppermint/Pomegranate listing per official SRP SKUs 1410240 / 1410340.",
+      "size": "0.27 oz",
+      "wholesale_price": 8,
+      "retail_price": 16,
+      "retail_price_confirmed": true,
+      "variants": [
+        "Pomegranate"
+      ],
+      "skin_types": [
+        "all"
+      ],
+      "key_actives": [
+        {
+          "name": "Maxi-Lip™ (Palmitoyl Tripeptide-1)",
+          "function": "Biomimetic peptide; stimulates collagen synthesis for firmness."
+        },
+        {
+          "name": "HydraSynol®",
+          "function": "Deep, long-lasting hydration."
+        },
+        {
+          "name": "Dermaxyl™ (ceramide + peptide complex)",
+          "function": "Repairs and strengthens the lip barrier."
+        },
+        {
+          "name": "Synoxyl® AZ (Acetyl Zingerone)",
+          "function": "Antioxidant; firming."
+        }
+      ],
+      "how_to_use": "Glide a small amount onto lips. Reapply as needed.",
+      "conditions_addressed": [
+        "dry or chapped lips",
+        "fine vertical lip lines",
+        "thinning lips"
+      ],
+      "description_short": "A peptide lip treatment that plumps and hydrates rather than just coating — available in Peppermint or Pomegranate.",
+      "images": [
+        "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__01__primary.webp",
+        "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__02__gallery02.webp",
+        "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__03__gallery03.webp",
+        "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__04__swatch.webp"
+      ],
+      "image_alt": "Skin Script Ageless Lip Treatment — Pomegranate product photo",
+      "image_webp": "/images/products/skin-script/lip-treatment-pomegranate/lip-treatment-pomegranate__01__primary.webp",
+      "skin_script_sku": "1410340",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 16,
+      "computed_2x_wholesale": 16,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "sheer-protection-spf",
+      "name": "Sheer Protection SPF 30",
+      "category": "SPF",
+      "size": "2 oz",
+      "wholesale_price": 17,
+      "retail_price": 34,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [
+        "all — best for normal, dry, combination, sensitive; less ideal for acne-prone due to nut oils"
+      ],
+      "key_actives": [
+        {
+          "name": "Zinc Oxide (13.5%)",
+          "function": "Mineral, broad-spectrum UVA/UVB filter; sits on the skin's surface rather than being absorbed."
+        },
+        {
+          "name": "Kukui Nut Oil & Macadamia Oil",
+          "function": "Fatty acids; nourishing, easily absorbed."
+        },
+        {
+          "name": "Bisabolol, Sandalwood Extract, Phellodendron Amurense Bark Extract",
+          "function": "Calming, anti-inflammatory."
+        }
+      ],
+      "how_to_use": "Apply in the morning after moisturizer, at least 30 minutes before sun exposure. Reapply every 2 hours. Not waterproof or sweatproof.",
+      "conditions_addressed": [
+        "daily sun protection",
+        "redness-prone skin"
+      ],
+      "description_short": "A mineral, zinc-oxide sunscreen formulated to sit sheer rather than leave a white cast.",
+      "source_conflict_note": "One lower-authority source described a chemical-filter (octinoxate/octocrylene) version of this product. The large majority of sources — including the manufacturer's own product page — describe a 13.5% zinc-oxide-only mineral formula. This entry follows the majority/manufacturer version; flagged in case Skin Script has multiple SPF 30 SKUs.",
+      "images": [
+        "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__01__primary.webp",
+        "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__02__gallery03.webp",
+        "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__03__swatch.webp"
+      ],
+      "image_alt": "Skin Script Sheer Protection SPF 30 product photo",
+      "image_webp": "/images/products/skin-script/sheer-protection-spf/sheer-protection-spf__01__primary.webp",
+      "skin_script_sku": "1610140",
+      "official_srp": 34,
+      "computed_2x_wholesale": 34,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "cucumber-hydration-toner",
+      "name": "Cucumber Hydration Toner",
+      "category": "Toner",
+      "size": "3.3 oz",
+      "wholesale_price": 14,
+      "retail_price": 28,
+      "retail_price_confirmed": true,
+      "skin_types": [
+        "all"
+      ],
+      "key_actives": [
+        {
+          "name": "Cucumber (Cucumis Sativus) Fruit Extract & Seed Oil",
+          "function": "Cooling, soothing."
+        },
+        {
+          "name": "Deuterium Oxide (Heavy Water)",
+          "function": "High molecular weight; reduces trans-epidermal water loss."
+        },
+        {
+          "name": "Sodium PCA",
+          "function": "Natural moisturizing factor component; humectant."
+        },
+        {
+          "name": "Hyaluronic Acid + Honey + Fructooligosaccharides",
+          "function": "Hydration plus prebiotic microbiome support."
+        }
+      ],
+      "how_to_use": "After cleansing and exfoliating, spritz onto skin or apply with a cotton round, morning and evening.",
+      "conditions_addressed": [
+        "dehydration",
+        "irritation",
+        "poor serum absorption"
+      ],
+      "description_short": "A cucumber-based hydrating toner that preps skin to absorb the serums and moisturizer that follow it.",
+      "images": [
+        "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__01__primary.webp",
+        "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__02__gallery01.webp",
+        "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__03__gallery02.webp"
+      ],
+      "image_alt": "Skin Script Cucumber Hydration Toner product photo",
+      "image_webp": "/images/products/skin-script/cucumber-hydration-toner/cucumber-hydration-toner__01__primary.webp",
+      "skin_script_sku": "1210140",
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "official_srp": 28,
+      "computed_2x_wholesale": 28,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "acai-berry-moisturizer",
+      "name": "Acai Berry Moisturizer",
+      "category": "Moisturizer",
+      "size": "1.7 oz",
+      "size_confirmed": true,
+      "wholesale_price": 20.5,
+      "retail_price": 41,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1510440",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__01__primary.webp",
+        "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__02__gallery02.webp",
+        "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/acai-berry-moisturizer/acai-berry-moisturizer__01__primary.webp",
+      "image_alt": "Skin Script Acai Berry Moisturizer product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 41,
+      "computed_2x_wholesale": 41,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "advanced-renewal-serum",
+      "name": "Advanced Renewal Serum",
+      "category": "Serum",
+      "size": "1 oz",
+      "size_confirmed": true,
+      "wholesale_price": 35,
+      "retail_price": 70,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Advanced Renewal Serum — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1310540",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__01__primary.webp",
+        "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__02__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/advanced-renewal-serum/advanced-renewal-serum__01__primary.webp",
+      "image_alt": "Skin Script Advanced Renewal Serum product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 70,
+      "computed_2x_wholesale": 70,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "barrier-balancing-moisturizer",
+      "name": "Barrier Balancing Moisturizer",
+      "category": "Moisturizer",
+      "size": "1.7 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Barrier Balancing Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1510740",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__01__primary.webp",
+        "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__02__swatch.webp",
+        "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__03__pump.webp"
+      ],
+      "image_webp": "/images/products/skin-script/barrier-balancing-moisturizer/barrier-balancing-moisturizer__01__primary.webp",
+      "image_alt": "Skin Script Barrier Balancing Moisturizer product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "blemish-spot-treatment",
+      "name": "Blemish Spot Treatment",
+      "category": "Spot Treatment",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 14,
+      "retail_price": 28,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Blemish Spot Treatment — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "out_of_stock",
+      "skin_script_sku": "1310840",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__01__primary.webp",
+        "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__02__gallery02.webp",
+        "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/blemish-spot-treatment/blemish-spot-treatment__01__primary.webp",
+      "image_alt": "Skin Script Blemish Spot Treatment product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 28,
+      "computed_2x_wholesale": 28,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "charcoal-clay-cleanser",
+      "name": "Charcoal Clay Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Charcoal Clay Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1010340",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__01__primary.webp",
+        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__02__gallery02.webp",
+        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__03__gallery04.webp",
+        "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__04__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/charcoal-clay-cleanser/charcoal-clay-cleanser__01__primary.webp",
+      "image_alt": "Skin Script Charcoal Clay Cleanser product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "citrus-c-nourishing-cream",
+      "name": "Citrus-C Nourishing Cream",
+      "category": "Serum",
+      "size": "1 oz",
+      "size_confirmed": true,
+      "wholesale_price": 26,
+      "retail_price": 52,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Citrus-C Nourishing Cream — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1310140",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__01__primary.webp",
+        "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__02__gallery02.webp",
+        "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/citrus-c-nourishing-cream/citrus-c-nourishing-cream__01__primary.webp",
+      "image_alt": "Skin Script Citrus-C Nourishing Cream product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 52,
+      "computed_2x_wholesale": 52,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "clarifying-toner-pads",
+      "name": "Clarifying Toner Pads",
+      "category": "Exfoliant",
+      "size": "2 oz",
+      "size_confirmed": true,
+      "wholesale_price": 14,
+      "retail_price": 28,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Clarifying Toner Pads — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1110240",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__01__primary.webp",
+        "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__02__gallery01.webp"
+      ],
+      "image_webp": "/images/products/skin-script/clarifying-toner-pads/clarifying-toner-pads__01__primary.webp",
+      "image_alt": "Skin Script Clarifying Toner Pads product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 28,
+      "computed_2x_wholesale": 28,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "discovery-kit",
+      "name": "Discovery Kit",
+      "category": "Kit",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 75,
+      "retail_price": 150,
+      "retail_price_confirmed": false,
+      "retail_price_note": "Discovery Kit not on official August 2026 SRP list — blocked from checkout until official SRP confirmed.",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Discovery Kit — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "5010420",
+      "active": false,
+      "images": [
+        "/images/products/skin-script/discovery-kit/discovery-kit__01__primary.webp",
+        "/images/products/skin-script/discovery-kit/discovery-kit__02__gallery01.webp",
+        "/images/products/skin-script/discovery-kit/discovery-kit__03__gallery02.webp"
+      ],
+      "image_webp": "/images/products/skin-script/discovery-kit/discovery-kit__01__primary.webp",
+      "image_alt": "Skin Script Discovery Kit product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "checkout_eligible": false,
+      "publish_status": "BLOCKED_MISSING_OFFICIAL_SRP"
+    },
+    {
+      "id": "everyday-balance-travel-kit",
+      "name": "Everyday Balance Travel Kit",
+      "category": "Kit",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 32.5,
+      "retail_price": 65,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Everyday Balance Travel Kit — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "4010900",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__01__primary.webp",
+        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__02__gallery01.webp",
+        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__03__gallery02.webp",
+        "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__04__gallery03.webp"
+      ],
+      "image_webp": "/images/products/skin-script/everyday-balance-travel-kit/everyday-balance-travel-kit__01__primary.webp",
+      "image_alt": "Skin Script Everyday Balance Travel Kit product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 65,
+      "computed_2x_wholesale": 65,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "fresh-face-travel-kit",
+      "name": "Fresh Face Travel Kit",
+      "category": "Kit",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 31,
+      "retail_price": 62,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Fresh Face Travel Kit — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "4010800",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__01__primary.webp",
+        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__02__gallery01.webp",
+        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__03__gallery02.webp",
+        "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__04__gallery03.webp"
+      ],
+      "image_webp": "/images/products/skin-script/fresh-face-travel-kit/fresh-face-travel-kit__01__primary.webp",
+      "image_alt": "Skin Script Fresh Face Travel Kit product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 62,
+      "computed_2x_wholesale": 62,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "fully-quenched-travel-kit",
+      "name": "Fully Quenched Travel Kit",
+      "category": "Kit",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 35,
+      "retail_price": 70,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Fully Quenched Travel Kit — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "4011000",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__01__primary.webp",
+        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__02__gallery01.webp",
+        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__03__gallery02.webp",
+        "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__04__gallery03.webp"
+      ],
+      "image_webp": "/images/products/skin-script/fully-quenched-travel-kit/fully-quenched-travel-kit__01__primary.webp",
+      "image_alt": "Skin Script Fully Quenched Travel Kit product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 70,
+      "computed_2x_wholesale": 70,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "glycolic-and-retinol-pads",
+      "name": "Glycolic and Retinol Pads",
+      "category": "Exfoliant",
+      "size": "2 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Glycolic and Retinol Pads — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1110140",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__01__primary.webp",
+        "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__02__back.webp",
+        "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__03__gallery01.webp"
+      ],
+      "image_webp": "/images/products/skin-script/glycolic-and-retinol-pads/glycolic-and-retinol-pads__01__primary.webp",
+      "image_alt": "Skin Script Glycolic and Retinol Pads product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "glycolic-cleanser",
+      "name": "Glycolic Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 oz",
+      "size_confirmed": true,
+      "wholesale_price": 20,
+      "retail_price": 40,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Glycolic Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1010440",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__01__primary.webp",
+        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__02__gallery02.webp",
+        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__03__gallery03.webp",
+        "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__04__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/glycolic-cleanser/glycolic-cleanser__01__primary.webp",
+      "image_alt": "Skin Script Glycolic Cleanser product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 40,
+      "computed_2x_wholesale": 40,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "honey-brightening-cleanser",
+      "name": "Honey Brightening Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 oz",
+      "size_confirmed": true,
+      "wholesale_price": 21,
+      "retail_price": 42,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Honey Brightening Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1010640",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__01__primary.webp",
+        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__02__gallery02.webp",
+        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__03__gallery03.webp",
+        "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__04__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/honey-brightening-cleanser/honey-brightening-cleanser__01__primary.webp",
+      "image_alt": "Skin Script Honey Brightening Cleanser product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 42,
+      "computed_2x_wholesale": 42,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "hydrating-moisturizer",
+      "name": "Hydrating Moisturizer",
+      "category": "Moisturizer",
+      "size": "1.7 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Hydrating Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1510640",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__01__primary.webp",
+        "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__02__gallery02.webp",
+        "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/hydrating-moisturizer/hydrating-moisturizer__01__primary.webp",
+      "image_alt": "Skin Script Hydrating Moisturizer product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "light-aloe-moisturizer",
+      "name": "Light Aloe Moisturizer",
+      "category": "Moisturizer",
+      "size": "2 oz",
+      "size_confirmed": true,
+      "wholesale_price": 13,
+      "retail_price": 26,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Light Aloe Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1510140",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__01__primary.webp",
+        "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__02__gallery02.webp",
+        "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/light-aloe-moisturizer/light-aloe-moisturizer__01__primary.webp",
+      "image_alt": "Skin Script Light Aloe Moisturizer product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 26,
+      "computed_2x_wholesale": 26,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "lip-balm-with-spf-15",
+      "name": "Lip Balm with SPF 15",
+      "category": "Lip Treatment",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 3.25,
+      "retail_price": 6.5,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Lip Balm with SPF 15 — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1410140",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__01__primary.webp",
+        "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__02__gallery01.webp",
+        "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__03__gallery02.webp"
+      ],
+      "image_webp": "/images/products/skin-script/lip-balm-with-spf-15/lip-balm-with-spf-15__01__primary.webp",
+      "image_alt": "Skin Script Lip Balm with SPF 15 product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 6.5,
+      "computed_2x_wholesale": 6.5,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "mint-refining-toner",
+      "name": "Mint Refining Toner",
+      "category": "Toner",
+      "size": "3.3 oz",
+      "size_confirmed": true,
+      "wholesale_price": 14,
+      "retail_price": 28,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Mint Refining Toner — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1210240",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/mint-refining-toner/mint-refining-toner__01__primary.webp",
+        "/images/products/skin-script/mint-refining-toner/mint-refining-toner__02__gallery01.webp",
+        "/images/products/skin-script/mint-refining-toner/mint-refining-toner__03__gallery02.webp"
+      ],
+      "image_webp": "/images/products/skin-script/mint-refining-toner/mint-refining-toner__01__primary.webp",
+      "image_alt": "Skin Script Mint Refining Toner product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 28,
+      "computed_2x_wholesale": 28,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "peptide-eye-serum",
+      "name": "Peptide Eye Serum",
+      "category": "Eye Treatment",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 20,
+      "retail_price": 40,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Peptide Eye Serum — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1310640",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__01__primary.webp",
+        "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__02__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/peptide-eye-serum/peptide-eye-serum__01__primary.webp",
+      "image_alt": "Skin Script Peptide Eye Serum product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 40,
+      "computed_2x_wholesale": 40,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "peptide-moisturizer",
+      "name": "Peptide Moisturizer",
+      "category": "Moisturizer",
+      "size": "1.7 oz",
+      "size_confirmed": true,
+      "wholesale_price": 30.5,
+      "retail_price": 61,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Peptide Moisturizer — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1510540",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__01__primary.webp",
+        "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__02__gallery02.webp",
+        "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/peptide-moisturizer/peptide-moisturizer__01__primary.webp",
+      "image_alt": "Skin Script Peptide Moisturizer product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 61,
+      "computed_2x_wholesale": 61,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "pomegranate-antioxidant-cleanser",
+      "name": "Pomegranate Antioxidant Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Pomegranate Antioxidant Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1010140",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__01__primary.webp",
+        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__02__gallery03.webp",
+        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__03__gallery04.webp",
+        "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__04__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/pomegranate-antioxidant-cleanser/pomegranate-antioxidant-cleanser__01__primary.webp",
+      "image_alt": "Skin Script Pomegranate Antioxidant Cleanser product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "raspberry-refining-cleanser",
+      "name": "Raspberry Refining Cleanser",
+      "category": "Cleanser",
+      "size": "6.4 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18.5,
+      "retail_price": 37,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Raspberry Refining Cleanser — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1010540",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__01__primary.webp",
+        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__02__gallery02.webp",
+        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__03__gallery03.webp",
+        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__04__swatch.webp",
+        "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__05__pump.webp"
+      ],
+      "image_webp": "/images/products/skin-script/raspberry-refining-cleanser/raspberry-refining-cleanser__01__primary.webp",
+      "image_alt": "Skin Script Raspberry Refining Cleanser product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 37,
+      "computed_2x_wholesale": 37,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "raspberry-scrub",
+      "name": "Raspberry Scrub",
+      "category": "Exfoliant",
+      "size": "4 oz",
+      "size_confirmed": true,
+      "wholesale_price": 18,
+      "retail_price": 36,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Raspberry Scrub — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1110540",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/raspberry-scrub/raspberry-scrub__01__primary.webp",
+        "/images/products/skin-script/raspberry-scrub/raspberry-scrub__02__gallery02.webp",
+        "/images/products/skin-script/raspberry-scrub/raspberry-scrub__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/raspberry-scrub/raspberry-scrub__01__primary.webp",
+      "image_alt": "Skin Script Raspberry Scrub product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 36,
+      "computed_2x_wholesale": 36,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "retinol-exfoliating-scrub",
+      "name": "Retinol Exfoliating Scrub",
+      "category": "Exfoliant",
+      "size": "1.7 oz",
+      "size_confirmed": true,
+      "wholesale_price": 24.5,
+      "retail_price": 49,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Retinol Exfoliating Scrub — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1110440",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__01__primary.webp",
+        "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__02__gallery02.webp",
+        "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/retinol-exfoliating-scrub/retinol-exfoliating-scrub__01__primary.webp",
+      "image_alt": "Skin Script Retinol Exfoliating Scrub product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 49,
+      "computed_2x_wholesale": 49,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "revitalizing-cucumber-treatment",
+      "name": "Revitalizing Cucumber Treatment",
+      "category": "Exfoliant",
+      "size": "2 oz",
+      "size_confirmed": true,
+      "wholesale_price": 26,
+      "retail_price": 52,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Revitalizing Cucumber Treatment — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1110640",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__01__primary.webp",
+        "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__02__gallery02.webp",
+        "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/revitalizing-cucumber-treatment/revitalizing-cucumber-treatment__01__primary.webp",
+      "image_alt": "Skin Script Revitalizing Cucumber Treatment product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 52,
+      "computed_2x_wholesale": 52,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "tri-peptide-eye-cream",
+      "name": "Tri-Peptide Eye Cream",
+      "category": "Eye Treatment",
+      "size": "",
+      "size_confirmed": false,
+      "wholesale_price": 20,
+      "retail_price": 40,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Tri-Peptide Eye Cream — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1310740",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__01__primary.webp",
+        "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__02__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/tri-peptide-eye-cream/tri-peptide-eye-cream__01__primary.webp",
+      "image_alt": "Skin Script Tri-Peptide Eye Cream product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 40,
+      "computed_2x_wholesale": 40,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    },
+    {
+      "id": "triple-c-serum",
+      "name": "Triple C Serum",
+      "category": "Serum",
+      "size": "1 oz",
+      "size_confirmed": true,
+      "wholesale_price": 24,
+      "retail_price": 48,
+      "retail_price_confirmed": true,
+      "retail_price_note": "Official Skin Script Suggested Retail Price List August 2026",
+      "skin_types": [],
+      "key_actives": [],
+      "how_to_use": "",
+      "conditions_addressed": [],
+      "description_short": "Triple C Serum — Skin Script professional formula, sold retail at Dew Theory.",
+      "stock_status": "in_stock",
+      "skin_script_sku": "1310940",
+      "active": true,
+      "images": [
+        "/images/products/skin-script/triple-c-serum/triple-c-serum__01__primary.webp",
+        "/images/products/skin-script/triple-c-serum/triple-c-serum__02__gallery02.webp",
+        "/images/products/skin-script/triple-c-serum/triple-c-serum__03__swatch.webp"
+      ],
+      "image_webp": "/images/products/skin-script/triple-c-serum/triple-c-serum__01__primary.webp",
+      "image_alt": "Skin Script Triple C Serum product photo",
+      "source": "skin-script-portal-verified-2026-09-20",
+      "official_srp": 48,
+      "computed_2x_wholesale": 48,
+      "price_reconciled": true,
+      "shipping_policy": "dropship_standard_12_under_49"
+    }
+  ]
+}

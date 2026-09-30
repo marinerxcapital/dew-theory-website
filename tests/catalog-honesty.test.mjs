@@ -45,31 +45,27 @@ const FORBIDDEN_STOREFRONT = [
 ];
 
 describe('catalog honesty flags (2026-09-19 confirmation still pending)', () => {
-  it('keeps Sheer Protection SPF retail at $30 and unconfirmed', () => {
+  it('uses official August 2026 SRP for Sheer Protection SPF', () => {
     const spf = catalog.products.find((p) => p.id === 'sheer-protection-spf');
     assert.ok(spf, 'SPF product missing');
-    assert.equal(spf.wholesale_price, 15);
-    assert.equal(spf.retail_price, 30);
-    assert.equal(spf.retail_price_confirmed, false);
-    assert.match(String(spf.retail_price_note), /Emily still must confirm/i);
-    assert.doesNotMatch(String(spf.retail_price_note), /Emily (approved|confirmed)/i);
+    assert.equal(spf.wholesale_price, 17);
+    assert.equal(spf.retail_price, 34);
+    assert.equal(spf.official_srp, 34);
+    assert.equal(spf.retail_price_confirmed, true);
+    assert.match(String(spf.retail_price_note), /Suggested Retail Price List August 2026/i);
   });
 
-  it('keeps lip treatment as one product with Peppermint/Pomegranate variants', () => {
-    const lip = catalog.products.find((p) => p.id === 'lip-treatment-peppermint-pomegranate');
-    assert.ok(lip, 'lip treatment missing');
-    assert.deepEqual(lip.variants, ['Peppermint', 'Pomegranate']);
-    assert.match(String(lip.manufacturer_name_note), /OPEN_ITEMS\.md/);
-    assert.match(String(lip.manufacturer_name_note), /2026-09-19/);
+  it('publishes Peppermint and Pomegranate lip treatments as separate official SKUs', () => {
+    const pep = catalog.products.find((p) => p.id === 'lip-treatment-peppermint');
+    const pom = catalog.products.find((p) => p.id === 'lip-treatment-pomegranate');
+    assert.ok(pep && pom, 'split lip products missing');
+    assert.equal(pep.skin_script_sku, '1410240');
+    assert.equal(pom.skin_script_sku, '1410340');
+    assert.equal(pep.retail_price, 16);
+    assert.equal(pom.retail_price, 16);
     assert.equal(
       catalog.products.filter((p) => p.id === 'lip-treatment-peppermint-pomegranate').length,
-      1,
-      'keep a single Peppermint/Pomegranate lip treatment product id'
-    );
-    assert.equal(
-      catalog.products.filter((p) => /pomegranate lip treatment$/i.test(p.name) && p.id !== 'lip-treatment-peppermint-pomegranate').length,
-      0,
-      'do not add a separate Pomegranate-only Ageless Lip SKU without Emily'
+      0
     );
   });
 

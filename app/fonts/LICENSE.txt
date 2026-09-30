@@ -1,0 +1,2 @@
+Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)
+https://scripts.sil.org/OFL

@@ -25,12 +25,12 @@ describe('order path — cart → paid order → fulfillment status', () => {
     ];
     const priced = validateAndPriceItems(raw, SEED_PRODUCTS);
     assert.equal(priced.ok, true);
-    assert.equal(priced.items[0].unit_price, 32);
-    assert.equal(priced.items[1].unit_price, 24);
+    assert.equal(priced.items[0].unit_price, 36); // official SRP Aug 2026
+    assert.equal(priced.items[1].unit_price, 30); // official SRP Aug 2026
     const totals = priceCart(priced.items, null);
-    assert.equal(totals.subtotal, 56);
+    assert.equal(totals.subtotal, 66);
     assert.equal(totals.shipping_fee, 0); // free at $49+
-    assert.equal(totals.total, 56);
+    assert.equal(totals.total, 66);
   });
 
   it('rejects unknown SKU', () => {
@@ -42,13 +42,13 @@ describe('order path — cart → paid order → fulfillment status', () => {
     assert.equal(priced.code, 'unknown_sku');
   });
 
-  it('requires variant for lip treatment', () => {
+  it('prices Peppermint lip treatment at official SRP', () => {
     const priced = validateAndPriceItems(
-      [{ product_id: 'lip-treatment-peppermint-pomegranate', quantity: 1 }],
+      [{ product_id: 'lip-treatment-peppermint', quantity: 1, variant: 'Peppermint' }],
       SEED_PRODUCTS
     );
-    assert.equal(priced.ok, false);
-    assert.equal(priced.code, 'variant_required');
+    assert.equal(priced.ok, true);
+    assert.equal(priced.items[0].unit_price, 16);
   });
 
   it('writes mock paid order and transitions admin fulfillment status', () => {
@@ -93,7 +93,7 @@ describe('order path — cart → paid order → fulfillment status', () => {
     let found = readStore().orders.find((o) => o.id === orderId);
     assert.ok(found);
     assert.equal(found.status, 'paid');
-    assert.equal(found.items[0].unit_price, 32);
+    assert.equal(found.items[0].unit_price, 36); // official August 2026 SRP
 
     // Admin status transition (same mutation path as PATCH /api/admin/orders/[id])
     const before = found.status;

@@ -1,0 +1,159 @@
+{
+  "time": "2026-09-30T14:16:58.444Z",
+  "releaseReady": false,
+  "checks": [
+    {
+      "name": "complete route/viewport crawl",
+      "pass": true,
+      "detail": {
+        "routes": 98,
+        "cases": 294
+      }
+    },
+    {
+      "name": "render, accessibility, metadata and chrome",
+      "pass": false,
+      "detail": [
+        {
+          "route": "/help",
+          "width": 390,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/help",
+          "expectedCanonical": "https://dewtheoryco.com/help"
+        },
+        {
+          "route": "/admin/analytics",
+          "width": 1440,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/admin/login",
+          "expectedCanonical": "https://dewtheoryco.com/admin/login"
+        },
+        {
+          "route": "/shop/charcoal-clay-cleanser",
+          "width": 1440,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/shop/charcoal-clay-cleanser",
+          "expectedCanonical": "https://dewtheoryco.com/shop/charcoal-clay-cleanser"
+        },
+        {
+          "route": "/shop/lip-balm-with-spf-15",
+          "width": 390,
+          "status": 200,
+          "errors": [
+            "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+          ],
+          "missing": [],
+          "axe": 0,
+          "canonical": "https://dewtheoryco.com/shop/lip-balm-with-spf-15",
+          "expectedCanonical": "https://dewtheoryco.com/shop/lip-balm-with-spf-15"
+        }
+      ]
+    },
+    {
+      "name": "active UI has no raw hex outside token file",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "release assets and privacy",
+      "pass": true,
+      "detail": {
+        "references": 115,
+        "missing": [],
+        "altered": [],
+        "runtimeFiles": [],
+        "legalAltered": []
+      }
+    },
+    {
+      "name": "concurrent source and protected data preserved",
+      "pass": true,
+      "detail": {
+        "sourceChanges": []
+      }
+    },
+    {
+      "name": "local commerce smoke",
+      "pass": true,
+      "detail": {
+        "checks": 22
+      }
+    },
+    {
+      "name": "real Stripe test handoff",
+      "pass": true,
+      "detail": {
+        "base": "https://dewtheoryco.com",
+        "externalStripe": true,
+        "testMode": true,
+        "charged": false,
+        "apiStatus": 200,
+        "checkoutHost": "checkout.stripe.com",
+        "liveMode": false,
+        "mockMode": false,
+        "hostedTitle": "Dew Theory sandbox",
+        "hostedTestBanner": false,
+        "hostedPageLoaded": true
+      }
+    },
+    {
+      "name": "mobile Lighthouse release targets",
+      "pass": false,
+      "detail": [
+        {
+          "page": "home",
+          "performance": 87,
+          "accessibility": 100,
+          "lcpMs": 3396.46,
+          "cls": 0,
+          "tbtMs": 224
+        },
+        {
+          "page": "shop",
+          "performance": 82,
+          "accessibility": 100,
+          "lcpMs": 3234.8125,
+          "cls": 0,
+          "tbtMs": 385
+        },
+        {
+          "page": "product",
+          "performance": 86,
+          "accessibility": 100,
+          "lcpMs": 3236.2380000000003,
+          "cls": 0,
+          "tbtMs": 270
+        }
+      ]
+    },
+    {
+      "name": "unit recorded test gate",
+      "pass": true,
+      "detail": {
+        "expectedPass": 396
+      }
+    },
+    {
+      "name": "contrast recorded test gate",
+      "pass": true,
+      "detail": {
+        "expectedPass": 20
+      }
+    }
+  ]
+}

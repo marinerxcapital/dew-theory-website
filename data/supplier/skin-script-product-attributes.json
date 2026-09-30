@@ -1,0 +1,473 @@
+{
+  "revision": "ProductAllergyList_2026",
+  "semantics": {
+    "source": "ProductAllergyList_2026.pdf",
+    "revision": "ProductAllergyList_2026",
+    "positive_list_rule": "Attributes are positive-list only: true if the product name appears under that column on the allergy sheet (or under an explicit blanket claim); null if not listed. Absence is never encoded as false.",
+    "columns": {
+      "without_animal_derivatives": "FORMULATED WITHOUT ANIMAL DERIVATIVES",
+      "without_nuts": "FORMULATED WITHOUT NUTS",
+      "without_soy_derivatives": "FORMULATED WITHOUT SOY DERIVATIVES",
+      "without_acids_or_retinoids": "FORMULATED WITHOUT ACIDS OR RETINOIDS"
+    },
+    "blanket_claims": {
+      "without_acids_or_retinoids": "All Moisturizers & Masks"
+    },
+    "disclaimer": "Disclaimer: This is not a complete list of products that are free of these ingredients. If you have questions regarding ingredients, please contact us.",
+    "disclaimer_source": "Printed on ProductAllergyList_2026.pdf",
+    "lip_treatments_note": "Allergy sheet lists 'Ageless Lip Treatments' (plural). Training Manual June 2026 documents Peppermint Ageless Lip Treatment and Pomegranate Ageless Lip Treatment.",
+    "not_a_guarantee": "These flags only reflect Skin Script's printed positive lists for the stated revision; they are not a complete allergen analysis and must not be presented as medical advice."
+  },
+  "products": [
+    {
+      "official_name": "10% TCA Peel",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "20% Lactic Peel",
+      "without_animal_derivatives": true,
+      "without_nuts": null,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "30% Glycolic Peel",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Acai Berry Moisturizer",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Advanced Renewal Serum",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Ageless Lip Treatments",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": "Allergy list uses plural 'Ageless Lip Treatments'; Training Manual lists 'Peppermint Ageless Lip Treatment' and 'Pomegranate Ageless Lip Treatment'.",
+      "notes": "Applies to Peppermint and Pomegranate Ageless Lip Treatment variants per Training Manual."
+    },
+    {
+      "official_name": "Ageless Skin Hydrating Serum",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Ageless Skin Moisturizer",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Barrier Balancing Moisturizer",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Blemish Spot Treatment",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Blueberry Enzyme",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Botanical Bloom Hydrating Mask",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Charcoal Clay Cleanser",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Charcoal Refining Mask",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Cherry Enzyme",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Citrus-C Nourishing Cream",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Clarifying Toner Pads",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Coconut Papaya Enzyme",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Cranberry Peel",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": "Allergy list prints 'Cranberry Peel'; Training Manual lists 'Cranberry Peel with 20% Salicylic'.",
+      "notes": ""
+    },
+    {
+      "official_name": "Cucumber Hydration Toner",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Eucalyptus Enzyme",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Glycolic and Retinol Pads",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Glycolic Cleanser",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Goji Berry Yogurt Mask",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Golden Honey Nourishing Mask",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Green Tea Citrus Cleanser",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Honey Brightening Cleanser",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Hydrating Moisturizer",
+      "without_animal_derivatives": null,
+      "without_nuts": null,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Lemon Zest Enzyme",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Light Aloe Moisturizer",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Mandelic Brightening Serum",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Mint Refining Toner",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Peptide Eye Serum",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Peptide Moisturizer",
+      "without_animal_derivatives": true,
+      "without_nuts": null,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Pineapple Enzyme",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Pomegranate Antioxidant Cleanser",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Pomegranate Enzyme",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Pumpkin Enzyme",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Pumpkin Peel",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": "Allergy list prints 'Pumpkin Peel'; Training Manual lists 'Pumpkin Peel with 15% Lactic'.",
+      "notes": ""
+    },
+    {
+      "official_name": "Raspberry Refining Cleanser",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Raspberry Refining Scrub",
+      "without_animal_derivatives": null,
+      "without_nuts": null,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": "Allergy list prints 'Raspberry Refining Scrub' under without-acids-or-retinoids; Training Manual has 'Raspberry Scrub' and 'Raspberry Refining Cleanser' as distinct products.",
+      "notes": ""
+    },
+    {
+      "official_name": "Raspberry Scrub",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Retinol Exfoliating Scrub",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": null,
+      "name_conflict": "Allergy list prints this name under nuts/soy columns, but prints 'Retinol Exfoliating Serum' under without-animal-derivatives; Training Manual retail name is 'Retinol Exfoliating Scrub'.",
+      "notes": "Not printed on without-animal list; nearby list name is 'Retinol Exfoliating Serum'."
+    },
+    {
+      "official_name": "Retinol Exfoliating Serum",
+      "without_animal_derivatives": true,
+      "without_nuts": null,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": null,
+      "name_conflict": "Allergy list prints 'Retinol Exfoliating Serum' under without-animal-derivatives; Training Manual June 2026 retail name is 'Retinol Exfoliating Scrub'.",
+      "notes": ""
+    },
+    {
+      "official_name": "Revitalizing Cucumber Treatment",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Sea Mineral Mask",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Sheer Protection SPF 30",
+      "without_animal_derivatives": true,
+      "without_nuts": null,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": null,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Strawberry Spearmint Mask",
+      "without_animal_derivatives": null,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": "Included under allergy-sheet blanket claim 'All Moisturizers & Masks' for formulated-without acids or retinoids."
+    },
+    {
+      "official_name": "Tri-Peptide Eye Cream",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": null,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    },
+    {
+      "official_name": "Triple C Serum",
+      "without_animal_derivatives": true,
+      "without_nuts": true,
+      "without_soy_derivatives": true,
+      "without_acids_or_retinoids": true,
+      "name_conflict": null,
+      "notes": ""
+    }
+  ]
+}

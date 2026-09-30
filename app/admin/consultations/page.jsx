@@ -49,7 +49,7 @@ export default async function AdminConsultationsPage({ searchParams }) {
   return (
     <div>
       <h1 className="font-display text-3xl font-normal text-graphite">Virtual consultations</h1>
-      <p className="mt-2 font-body text-sm font-light text-charcoal/70">
+      <p className="mt-2 font-body text-sm font-light text-charcoal">
         Paid Zoom consultations, intake, photos, and skincare plans.
       </p>
 
@@ -58,7 +58,7 @@ export default async function AdminConsultationsPage({ searchParams }) {
           <Link
             key={id}
             href={id === 'all' ? '/admin/consultations' : `/admin/consultations?filter=${id}`}
-            className={`rounded-[2px] px-3 py-2 font-label text-[0.62rem] font-light uppercase tracking-lockup ${
+            className={`rounded-card px-3 py-2 font-label text-[0.62rem] font-light uppercase tracking-lockup ${
               filter === id
                 ? 'border border-graphite/30 bg-pearl text-graphite'
                 : 'border border-transparent text-chrome hover:text-charcoal'
@@ -79,7 +79,7 @@ export default async function AdminConsultationsPage({ searchParams }) {
               >
                 {c.client_name || 'Unnamed'} · {c.public_ref}
               </Link>
-              <p className="mt-1 font-body text-xs font-light text-charcoal/65">
+              <p className="mt-1 font-body text-xs font-light text-charcoal">
                 {c.client_email}
                 {c.appointment_start
                   ? ` · ${new Date(c.appointment_start).toLocaleString()}`
@@ -90,7 +90,7 @@ export default async function AdminConsultationsPage({ searchParams }) {
               <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
                 {c.payment_status} · {c.status}
               </p>
-              <p className="mt-1 font-body text-xs font-light text-charcoal/60">
+              <p className="mt-1 font-body text-xs font-light text-charcoal">
                 Next: {nextActionLabel(c)}
               </p>
             </div>
@@ -103,7 +103,7 @@ export default async function AdminConsultationsPage({ searchParams }) {
           </li>
         ))}
         {!items.length && (
-          <li className="py-8 font-body text-sm font-light text-charcoal/50">
+          <li className="py-8 font-body text-sm font-light text-charcoal">
             No consultations in this filter.
           </li>
         )}

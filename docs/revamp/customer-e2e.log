@@ -1,0 +1,11 @@
+ok   A registers and lands on /account  http://localhost:3101/account
+ok   A account page shows own email
+ok   A can save a product (persisted server-side)  saved=["green-tea-citrus-cleanser"]
+ok   A favorites page lists the saved product
+ok   A account page shows the favorites count
+ok   signed-out /favorites redirects to sign-in  http://localhost:3101/account/login?next=%2Ffavorites
+ok   signed-out favorites API returns 401  status=401
+ok   B favorites list is empty (cross-account isolation)
+ok   B never sees A saved product
+
+9/9 customer E2E checks passed

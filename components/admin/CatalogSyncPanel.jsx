@@ -59,7 +59,7 @@ export default function CatalogSyncPanel({
     <div className="space-y-8">
       <div className="glass-1 p-8">
         <h2 className="font-display text-xl font-normal text-graphite">Autonomy status</h2>
-        <dl className="mt-4 grid gap-3 font-body text-sm font-light text-charcoal/80 sm:grid-cols-2">
+        <dl className="mt-4 grid gap-3 font-body text-sm font-light text-charcoal sm:grid-cols-2">
           <div>
             <dt className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">Last run</dt>
             <dd>{formatWhen(latest?.last_run_at)}</dd>
@@ -84,19 +84,19 @@ export default function CatalogSyncPanel({
           </div>
         </dl>
         {ready?.reason && (
-          <p className="mt-4 font-body text-sm font-light text-charcoal/70">{ready.reason}</p>
+          <p className="mt-4 font-body text-sm font-light text-charcoal">{ready.reason}</p>
         )}
       </div>
 
       <div className="glass-1 p-8">
         <h2 className="font-display text-xl font-normal text-graphite">Allowlist</h2>
-        <p className="mt-2 max-w-2xl font-body text-sm font-light text-charcoal/70">
+        <p className="mt-2 max-w-2xl font-body text-sm font-light text-charcoal">
           {enabledCount} of {rows.length} curated SKUs are sync-enabled. Adding a ninth SKU is a
           data change in <code className="text-xs">data/catalog-allowlist.json</code> — not a code
           rewrite. SKUs off this list are never published.
         </p>
         <div className="mt-6 overflow-x-auto">
-          <table className="w-full min-w-[36rem] text-left font-body text-xs font-light text-charcoal/85">
+          <table className="w-full min-w-[36rem] text-left font-body text-xs font-light text-charcoal">
             <thead>
               <tr className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
                 <th className="pb-2 pr-4">Dew product id</th>
@@ -119,7 +119,7 @@ export default function CatalogSyncPanel({
 
       <div className="glass-1 p-8">
         <h2 className="font-display text-xl font-normal text-graphite">Run sync</h2>
-        <p className="mt-2 max-w-2xl font-body text-sm font-light text-charcoal/70">
+        <p className="mt-2 max-w-2xl font-body text-sm font-light text-charcoal">
           Dry-run first. Apply writes wholesale / retail / availability / SKU on allowlisted
           products only and revalidates the storefront. Production apply is refused unless the
           chosen source is configured — mock is never treated as live.
@@ -152,7 +152,7 @@ export default function CatalogSyncPanel({
             type="button"
             disabled={loading}
             onClick={() => run(false)}
-            className="border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-60"
+            className="border border-graphite bg-green-300 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink disabled:opacity-60"
           >
             Apply sync
           </button>
@@ -170,7 +170,7 @@ export default function CatalogSyncPanel({
               {result.dry_run ? 'Dry-run plan' : result.applied ? 'Applied' : 'Result'} ·{' '}
               {result.adapter || result.code || 'sync'}
             </p>
-            <ul className="grid gap-2 font-body text-sm font-light text-charcoal/80 sm:grid-cols-2 lg:grid-cols-5">
+            <ul className="grid gap-2 font-body text-sm font-light text-charcoal sm:grid-cols-2 lg:grid-cols-5">
               <li>Create: {result.totals?.create ?? 0}</li>
               <li>Update: {result.totals?.update ?? 0}</li>
               <li>Skip: {result.totals?.skip ?? 0}</li>
@@ -225,7 +225,7 @@ export default function CatalogSyncPanel({
                 <p className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
                   Failed
                 </p>
-                <ul className="mt-2 max-h-40 overflow-auto font-body text-xs font-light text-charcoal/80">
+                <ul className="mt-2 max-h-40 overflow-auto font-body text-xs font-light text-charcoal">
                   {result.error.map((r, i) => (
                     <li key={i}>
                       {r.sku || r.id || '—'} · {r.reason} {r.error ? `· ${r.error}` : ''}

@@ -1,0 +1,36 @@
+
+> dew-theory@0.1.0 contrast
+> node --test tests/green-system.test.mjs
+
+▶ green token WCAG contrast
+  ✔ 900 on 50: 13.61 >= 4.5 (1.7333ms)
+  ✔ 900 on 100: 12.21 >= 4.5 (0.3755ms)
+  ✔ 900 on 200: 10.76 >= 4.5 (0.2096ms)
+  ✔ 900 on 300: 8.92 >= 4.5 (0.2059ms)
+  ✔ 900 on 400: 6.56 >= 4.5 (0.2866ms)
+  ✔ 700 on 50: 6.99 >= 4.5 (0.2691ms)
+  ✔ 700 on 100: 6.26 >= 4.5 (0.2767ms)
+  ✔ 700 on 200: 5.52 >= 4.5 (0.288ms)
+  ✔ 50 on 700: 6.99 >= 4.5 (0.3193ms)
+  ✔ 50 on 900: 13.61 >= 4.5 (0.5208ms)
+  ✔ 700 on 50: 6.99 >= 3 (0.2662ms)
+  ✔ 700 on 100: 6.26 >= 3 (0.1309ms)
+  ✔ 700 on 200: 5.52 >= 3 (0.1965ms)
+  ✔ 700 on 300: 4.58 >= 3 (0.2389ms)
+✔ green token WCAG contrast (9.5029ms)
+▶ green release integrity
+  ✔ every catalog record has real required fields and resolvable images (15.3764ms)
+  ✔ shipping rules remain $12 below $49 (0.5796ms)
+  ✔ sizes and alt text are normalized without inventing missing sizes (0.615ms)
+  ✔ Acai placeholder is hidden (0.2616ms)
+  ✔ header and footer are shared by every public route (0.8908ms)
+  ✔ developer booking notes are production guarded (0.8059ms)
+✔ green release integrity (19.0272ms)
+ℹ tests 20
+ℹ suites 2
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 209.037

@@ -24,7 +24,7 @@ const INITIAL_IDS = [
   'botanical-bloom-hydrating-mask',
   'ageless-moisturizer',
   'hydrating-skin-serum',
-  'lip-treatment-peppermint-pomegranate',
+  'lip-treatment-peppermint','lip-treatment-pomegranate',
   'sheer-protection-spf',
   'cucumber-hydration-toner'
 ];

@@ -1,3 +1,4 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import LegalPdfActions from '@/components/LegalPdfActions';
@@ -8,18 +9,18 @@ import {
 } from '@/lib/shipping';
 import { getCustomerFulfillmentCopy } from '@/lib/admin/dashboard';
 
-export const metadata = {
+export const metadata = withPageMetadata('/shipping', {
   title: 'Shipping',
   description:
-    'Dew Theory shipping: $7 flat rate, free at $49+ order subtotal (before discounts). View or download the full Shipping & Delivery Policy PDF.',
+    `Dew Theory shipping: ${formatMoney(FLAT_SHIPPING_USD)} flat rate, free at ${formatMoney(FREE_SHIPPING_THRESHOLD_USD)}+ order subtotal (before discounts). View or download the full Shipping & Delivery Policy PDF.`,
   alternates: { canonical: '/shipping' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function ShippingPage() {
   const fulfillmentCopy = getCustomerFulfillmentCopy();
   return (
-    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
+    <section className="mx-auto max-w-measure px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="ship-head">
         <Rule left="Policies" right="Shipping" data-reveal />
         <h1
@@ -43,11 +44,11 @@ export default function ShippingPage() {
           <h2 className="font-display text-xl font-normal text-ink">Rates</h2>
           <ul className="mt-4 max-w-2xl space-y-3 font-body text-sm font-normal leading-relaxed text-muted">
             <li>
-              <span className="text-ink/90">Flat shipping:</span>{' '}
+              <span className="text-ink">Flat shipping:</span>{' '}
               {formatMoney(FLAT_SHIPPING_USD)} per order when the free threshold is not met.
             </li>
             <li>
-              <span className="text-ink/90">Free shipping:</span> waived when the product
+              <span className="text-ink">Free shipping:</span> waived when the product
               subtotal is {formatMoney(FREE_SHIPPING_THRESHOLD_USD)} or more, before promo codes.
             </li>
           </ul>

@@ -1,0 +1,2378 @@
+[
+  {
+    "path": "app\\globals.css",
+    "sha256": "f476b013c0a16543b07e2c2e54d464d25fbeadd9033e6c7171528f3a9f30a694"
+  },
+  {
+    "path": "app\\layout.jsx",
+    "sha256": "c630ccc0a210125c7241c242c6e5975f12bee9556bc4df769068889bdb571e08"
+  },
+  {
+    "path": "app\\not-found.jsx",
+    "sha256": "152b337f8705ed0eaca7ede77252a13e6a7dfa9a0814a9007e38a7d6585c3a0a"
+  },
+  {
+    "path": "app\\page.jsx",
+    "sha256": "dcbedf9873f73dbac94cc4ce5a554cdfac1e91191af214b2901adf5857748a94"
+  },
+  {
+    "path": "app\\robots.js",
+    "sha256": "1c12d2b4b77f0ad356f32804df5ba4996c8bf97fb7f4bd11faba5d98da1bacf6"
+  },
+  {
+    "path": "app\\sitemap.js",
+    "sha256": "50917554f268a555fee246fc1341b2aaa0f33ddd24417d31b38170c7cc8031b5"
+  },
+  {
+    "path": "app\\about\\page.jsx",
+    "sha256": "dc4fde2838fe181f1bd13a82a1c3d469c29da47132a23e2335409af8ea7e084e"
+  },
+  {
+    "path": "app\\accessibility\\page.jsx",
+    "sha256": "2aa9321fe176f88c493c7d7065d9bca10288a11e0425ff809cdfb94b0d6bd359"
+  },
+  {
+    "path": "app\\account\\page.jsx",
+    "sha256": "beca70403da7abfe91e33e4ca3d6879901498a7339d592e6918dc2f87e4db43c"
+  },
+  {
+    "path": "app\\admin\\layout.jsx",
+    "sha256": "46b38b3e2248df94aa114b2c273df5c40312731cb1a2391d0c6ab10577d3df29"
+  },
+  {
+    "path": "app\\admin\\page.jsx",
+    "sha256": "56accb33bf7660e3ba4c22c365fd02a2b051ebbf545d45b947caeea8568b20a2"
+  },
+  {
+    "path": "app\\aesthetic-disclaimer\\page.jsx",
+    "sha256": "515a865b75fb511eeeeb825eacd30b202c4652d38edc19e228e3a8bdabdccf4d"
+  },
+  {
+    "path": "app\\booking-policy\\page.jsx",
+    "sha256": "94b774d22dbe439b000e691ad18e032d2cff099b6ee6928b5017c959aa9c6781"
+  },
+  {
+    "path": "app\\cart\\page.jsx",
+    "sha256": "a7f54d73342054d3fb5b83bc9063d00797b2aa9c63bd10eb20803a6dafb3122b"
+  },
+  {
+    "path": "app\\consultation\\page.jsx",
+    "sha256": "89eadc18b7a90d42b592009d1cc94047ec192befb4509e16af2fc90cf756c995"
+  },
+  {
+    "path": "app\\contact\\page.jsx",
+    "sha256": "73f7cfb2746f8b9805e9ff0b3d352bcb02495aa15380feb79cf2297bdfb4983f"
+  },
+  {
+    "path": "app\\cookies\\page.jsx",
+    "sha256": "28b00176336c93b32ba61ec906f405e61bed3b800b63ae01fef07b4f63a3a980"
+  },
+  {
+    "path": "app\\favorites\\page.jsx",
+    "sha256": "c11c17272ad87d1d05ce8bb7949edbec35bdb5a657c4d5c38efb118ac1fe53e3"
+  },
+  {
+    "path": "app\\help\\page.jsx",
+    "sha256": "92072dc99b5463780c4d94558d5ae86d789ef2410ef3ec75690732187d2cc257"
+  },
+  {
+    "path": "app\\how-it-works\\page.jsx",
+    "sha256": "e2d15b2c7bb2666efcfecf5eb4eb66f9af9062187b02b2bb8c32bfd4c08cf283"
+  },
+  {
+    "path": "app\\ingredients\\page.jsx",
+    "sha256": "caec8fc3365241b24c72b75d36a83430994d8cbd76b732bba7ee2bcca3bb7ce8"
+  },
+  {
+    "path": "app\\journal\\page.jsx",
+    "sha256": "f1c6326330732835e4e5a8ec20f345106085c06f3d87ffef5464d60c385c30b4"
+  },
+  {
+    "path": "app\\privacy\\page.jsx",
+    "sha256": "73386a9f4f808bb0e4697a1d0f543559993c37e47bc3957a8ff827740aba8233"
+  },
+  {
+    "path": "app\\quiz\\page.jsx",
+    "sha256": "fcf11bcc2a26a3234f94bb6a4935837f59af430c7dbdae8d84a81b3a48e7d876"
+  },
+  {
+    "path": "app\\returns\\page.jsx",
+    "sha256": "7a6c413569718d61f5440881c9e29453b95a792d3c9e36f1b2fa1c1c54bd32b6"
+  },
+  {
+    "path": "app\\routine\\page.jsx",
+    "sha256": "8fe45927c384367fd6e59b5f554553972a666a02acb8a6f877b00bb1b6c66fa4"
+  },
+  {
+    "path": "app\\search\\page.jsx",
+    "sha256": "8c728368756a847bab8af07ba9380a37a5755f07cc91c4131261b64060ef8d01"
+  },
+  {
+    "path": "app\\shipping\\page.jsx",
+    "sha256": "ca0d166815f86403ffaf8b124bbec04de6ff88a4d83ed42b5590c6eb60ea7eb5"
+  },
+  {
+    "path": "app\\shop\\page.jsx",
+    "sha256": "8188d6012eba2c09c229d4d50d5d64f1b4d308ae96c35d1ec68fd0db035286b6"
+  },
+  {
+    "path": "app\\skin-concerns\\page.jsx",
+    "sha256": "c4d05e2c27155d5316c023d7432b6c785d2c071efdca9bf157d1fd4150671796"
+  },
+  {
+    "path": "app\\skin-quiz\\page.jsx",
+    "sha256": "5c67302398b68834910f64639e722968a6dafd7a269038f58be75d7c6297ba7b"
+  },
+  {
+    "path": "app\\terms\\page.jsx",
+    "sha256": "4f08aa865cff44461e7692e25948f8eb6eaf02e228178c35d9ba96f0877339c9"
+  },
+  {
+    "path": "app\\virtual-consultation\\page.jsx",
+    "sha256": "987596d49f02588a69868e4801dbc1393142df21aaefd6df4fafd8e00efc24d7"
+  },
+  {
+    "path": "app\\virtual-consultation\\success\\page.jsx",
+    "sha256": "cf38034c79686ee4e9fea9d621e97b81ae32b2f7abf2d5c2f2d9662e907247ca"
+  },
+  {
+    "path": "app\\virtual-consultation\\plan\\[token]\\page.jsx",
+    "sha256": "3c39d980cbc5f41f02aa4cbd89ce335ff1f54d02cfa9cc8b48ed742638893c69"
+  },
+  {
+    "path": "app\\virtual-consultation\\intake\\[token]\\page.jsx",
+    "sha256": "4c150ead030a058bcec7298967abdd8e2a3e21a2e1b20c93f9b3040fb1130eff"
+  },
+  {
+    "path": "app\\skin-concerns\\[slug]\\page.jsx",
+    "sha256": "cdce4a38f24a250518eacdbbe6d32ffabcc6485587464eb1af229fbc2e90c15b"
+  },
+  {
+    "path": "app\\shop\\[id]\\page.jsx",
+    "sha256": "f80a35ae6d1679d31e3727318d6630c61d62c78c048c51485b6b67b03f2965a2"
+  },
+  {
+    "path": "app\\journal\\[slug]\\page.jsx",
+    "sha256": "583452c90a039f7c3feb36eaed2830508d7d087032d4be6f3596e0c36af6b313"
+  },
+  {
+    "path": "app\\consultation\\results\\page.jsx",
+    "sha256": "35fd7aa9f760644a64cf15e91dc4cf354ac5a2714251bbc3c693c7bd5fa81905"
+  },
+  {
+    "path": "app\\consultation\\[step]\\page.jsx",
+    "sha256": "d7a0751c8ce0dfceb2197d99991df22855fe93ddad1c1ccf974a77c732027e41"
+  },
+  {
+    "path": "app\\cart\\confirmation\\page.jsx",
+    "sha256": "3425d9faa5f5c2ade13a7d1499788f096102fb05b6b146e7eeea39e2a777b149"
+  },
+  {
+    "path": "app\\api\\availability\\route.js",
+    "sha256": "2295dae6432fd6cf033e1c6be25a0b79ef43f9f683497b1e4d011ff676d5477a"
+  },
+  {
+    "path": "app\\api\\book\\route.js",
+    "sha256": "d3ff364685d4a4f4a20d10a1bf35b4eeae23f5b32a66344d66feef9691d55e5e"
+  },
+  {
+    "path": "app\\api\\checkout\\route.js",
+    "sha256": "b90c53219d03d0ac8482363511ebfc208cfe53658057a378e60914f236497532"
+  },
+  {
+    "path": "app\\api\\contact\\route.js",
+    "sha256": "ea0c5034530b838dbaad9f8d28522aca5c5a495b9eb6800a6b72f1ac4d19b6af"
+  },
+  {
+    "path": "app\\api\\events\\route.js",
+    "sha256": "e2debd58c344c8c3acf8d0022e736b9ea24289ed416a913e0dd367f3888aea28"
+  },
+  {
+    "path": "app\\api\\webhooks\\stripe\\route.js",
+    "sha256": "af42862265c82993dcca2204eb2a9911c763f5c359df211e4fc7fb66a0b79b81"
+  },
+  {
+    "path": "app\\api\\membership\\interest\\route.js",
+    "sha256": "c8bd945ca0048a7112df28c65640fc08e0a8c202342dc518fe02e37d0830f25c"
+  },
+  {
+    "path": "app\\api\\discount\\validate\\route.js",
+    "sha256": "ad2771e34f7b52ab9752ffbb06427af68bdaaf02d9be2517a8ccaa1f177ef533"
+  },
+  {
+    "path": "app\\api\\customer\\favorites\\route.js",
+    "sha256": "72cf3d3eb04ca3fd3bf120c9b7e69a9c5a32efef10e8ff74849dd276167f6371"
+  },
+  {
+    "path": "app\\api\\customer\\login\\route.js",
+    "sha256": "944fa5378aed4b72a081c637023b1b5166e8fb7be4d126215d6f3644e37cee97"
+  },
+  {
+    "path": "app\\api\\customer\\logout\\route.js",
+    "sha256": "a80281ce88a29e3cabdbfd87c422285a64b1194c2a198b8eac6526b69cc04d08"
+  },
+  {
+    "path": "app\\api\\customer\\recover\\route.js",
+    "sha256": "578b5af77c23b015789be2ff1b2078b893a9e8aa3e3242295aab82b096148366"
+  },
+  {
+    "path": "app\\api\\customer\\register\\route.js",
+    "sha256": "1a25baac7fbc97798debe9bb77e3ac639c1275405abe9e929698a5c5c349c01c"
+  },
+  {
+    "path": "app\\api\\customer\\reset\\route.js",
+    "sha256": "7064f3bf0231630eb173432bc61b3cc363daba0150c0d72e283b66e0a53ef6d4"
+  },
+  {
+    "path": "app\\api\\cron\\catalog-sync\\route.js",
+    "sha256": "a6623636d2cf7956da0d5a5ee94f14022cdaeff9ddd3a396d72a4df610314e92"
+  },
+  {
+    "path": "app\\api\\consultations\\checkout\\route.js",
+    "sha256": "138b611127202fad9b133e8c7f9c2006dd8772c7bf99d1d473b23669b531634d"
+  },
+  {
+    "path": "app\\api\\consultations\\photos\\upload\\route.js",
+    "sha256": "4f0f3bff6449a9fee8ca20fb620f7e46eadc9204e37fb4a592aa0037e4c44d0a"
+  },
+  {
+    "path": "app\\api\\consultations\\photos\\[id]\\route.js",
+    "sha256": "b7b92110a5353552a4f538460f3c8736163930d13dfebd6c323e7210e2a8737a"
+  },
+  {
+    "path": "app\\api\\consultations\\intake\\[token]\\route.js",
+    "sha256": "ab701cb24580ad64e14b683bd8ad9c8dfacadf69d20656013ef8443d90049122"
+  },
+  {
+    "path": "app\\api\\checkout\\session\\route.js",
+    "sha256": "94e4001a78c028ef6ce06c8ab75807e133972fd498ede8527cd4502ef5010c51"
+  },
+  {
+    "path": "app\\api\\admin\\consultations\\route.js",
+    "sha256": "c463fede989300508d1d0db60fdbe1bc16f0d30e838a55bb100b69ae9ab3fe96"
+  },
+  {
+    "path": "app\\api\\admin\\discounts\\route.js",
+    "sha256": "50ac46e175b0e110dc2778b195a847950e0bfb768974d412dca004a16ccafe84"
+  },
+  {
+    "path": "app\\api\\admin\\import\\route.js",
+    "sha256": "033d0546984d4b1a7ae8f067b11456709965bc31665b4e2a3266f35c927c53f1"
+  },
+  {
+    "path": "app\\api\\admin\\login\\route.js",
+    "sha256": "c0d8dede200a53b8b6cc7498220c1ea1832bf169c564cc5e25952c3682f25fe9"
+  },
+  {
+    "path": "app\\api\\admin\\logout\\route.js",
+    "sha256": "6f61bace8d550d14c00d661851c9761cd5f4563a66d58468d823c073b5f404ef"
+  },
+  {
+    "path": "app\\api\\admin\\products\\route.js",
+    "sha256": "deb76b4dc568b53579be0a7c5d74d652aebc470c5cf6b2867af8232da9ff012b"
+  },
+  {
+    "path": "app\\api\\admin\\sync\\catalog\\route.js",
+    "sha256": "cd412b2665101267630dab831de97da39e6f6cab4d423a80bec0ec5f58ef9aff"
+  },
+  {
+    "path": "app\\api\\admin\\products\\[id]\\route.js",
+    "sha256": "fbd2142c82e03a86eb7efd56aa4f976cbba54202f51cf7581e79285626140c8f"
+  },
+  {
+    "path": "app\\api\\admin\\orders\\[id]\\route.js",
+    "sha256": "a71c4e061b3a2941d33098868dc90562b0d73be823a4caa92785429d8e5b34fc"
+  },
+  {
+    "path": "app\\api\\admin\\orders\\[id]\\fulfill\\route.js",
+    "sha256": "61ce84a0303362cd7a4f19c7718af8b56d46d8fd0f2e60c7e1e138318a6af7d2"
+  },
+  {
+    "path": "app\\api\\admin\\orders\\[id]\\fulfillment\\route.js",
+    "sha256": "e40c3fcce53c3b8bf5d8138c36e8df13aa591bda71c9191c13c43eb86ddfebfc"
+  },
+  {
+    "path": "app\\api\\admin\\orders\\[id]\\manual-fulfill\\route.js",
+    "sha256": "c08d53e31156c49e4b722f5f53c792be22f6793af94a0563b62e3ba591927a37"
+  },
+  {
+    "path": "app\\api\\admin\\discounts\\[id]\\route.js",
+    "sha256": "23efcf3973f523146aedf59100f5388eec018a56fb5f45808918292db0d7874e"
+  },
+  {
+    "path": "app\\api\\admin\\consultations\\[id]\\route.js",
+    "sha256": "41375699bb97bce2f00f2c00ff0c44edb1fc453eac0313446d0e51c186d670e3"
+  },
+  {
+    "path": "app\\api\\admin\\appointments\\[id]\\route.js",
+    "sha256": "9b527f02f3f7e0c08c27a2789685d9615fa71678136ee88e6538afb4cba90281"
+  },
+  {
+    "path": "app\\admin\\analytics\\page.jsx",
+    "sha256": "882ef12c48766be222588b2ebb563cc4eee1b50185a994802a4e3972c343133b"
+  },
+  {
+    "path": "app\\admin\\appointments\\page.jsx",
+    "sha256": "6012be3a2aa09a188921473da3afaf51375523cf85d0f1cbdbc684f2462394e5"
+  },
+  {
+    "path": "app\\admin\\consultations\\page.jsx",
+    "sha256": "41a560ae02fa0f51707011aee469c28971e3aa40c4c2b27a42c1372401d6cafa"
+  },
+  {
+    "path": "app\\admin\\discounts\\page.jsx",
+    "sha256": "e5e70946aa030f59fb0be224bf0dbba3aa975c081f4d7f04d20c9236ad61daf8"
+  },
+  {
+    "path": "app\\admin\\emails\\page.jsx",
+    "sha256": "d3b3773f8ea3879a04f5610a51182a387f2b598f80134dcded6f1d60a51cad7a"
+  },
+  {
+    "path": "app\\admin\\fulfillment\\page.jsx",
+    "sha256": "316d90b168a37e090085870de5b25bd5cac732f284634f2cab81451fb8e96c7f"
+  },
+  {
+    "path": "app\\admin\\import\\page.jsx",
+    "sha256": "621028726be973a447477eeb69b869479b7291c0616d8e99d77ec70062c1f1ff"
+  },
+  {
+    "path": "app\\admin\\integrations\\page.jsx",
+    "sha256": "4fb116aeae820ebd5a294ca69dd9d76b31c9a483ef5296a5409fe97c93fb4c70"
+  },
+  {
+    "path": "app\\admin\\login\\page.jsx",
+    "sha256": "0e3821aa68dfc5b55f72c1e0bd1f2441d41ea8d9e8eb0041533e89504ebec73d"
+  },
+  {
+    "path": "app\\admin\\orders\\page.jsx",
+    "sha256": "8302f6ca2c67aabca37a943f258c27be7c1501cff5128d09ae02065628b1897d"
+  },
+  {
+    "path": "app\\admin\\products\\page.jsx",
+    "sha256": "4dad680123d282223c9c3a57609380585825b80473c29e7b5e15b748453c136f"
+  },
+  {
+    "path": "app\\admin\\sync\\page.jsx",
+    "sha256": "77adb783f83c356265281b755b4c1c103a69c9145124b18aa1141946ee2a4f96"
+  },
+  {
+    "path": "app\\admin\\system\\page.jsx",
+    "sha256": "0eb4c9d799038425fd84e7252441b17a7b3903c92711da894be8ce29d2ec69a8"
+  },
+  {
+    "path": "app\\admin\\products\\new\\page.jsx",
+    "sha256": "86d83140b5a45d6ee773288da0612702e30480b9636017de2f6e73e54942fcd0"
+  },
+  {
+    "path": "app\\admin\\products\\[id]\\page.jsx",
+    "sha256": "82318edaa7a9a64c5da82503d4ecbbcc46dc64ac3ccb5aa7a999d4e8a54bb1e9"
+  },
+  {
+    "path": "app\\admin\\orders\\[id]\\page.jsx",
+    "sha256": "078e1e2ba3a37e2cd3e475a37ad36f6797ca0a01e84d346989b0205d10d98fb0"
+  },
+  {
+    "path": "app\\admin\\consultations\\[id]\\page.jsx",
+    "sha256": "0a3ab09fee7cdb653889dc5b14fb322d73df5005908ad018b155765ff37c31f7"
+  },
+  {
+    "path": "app\\account\\login\\page.jsx",
+    "sha256": "f5ac00865c6e4a02abc436917de4b632feb94fd8cce37edfd5ac916d6e119dc4"
+  },
+  {
+    "path": "app\\account\\reset\\page.jsx",
+    "sha256": "9ede834db9ef2ee12c5037add9d36257294aba06361c59d781d61f3167c91701"
+  },
+  {
+    "path": "components\\Accordion.jsx",
+    "sha256": "986b5d45f0b870acc327417b222ee8610f6ce4b8b788a596b4a6b0339dfe1a73"
+  },
+  {
+    "path": "components\\AddAllToBag.jsx",
+    "sha256": "b89ae178750b6c9b2788108e117ab67f2267556221b7af532b22add265a8b6c5"
+  },
+  {
+    "path": "components\\AddRoutineKit.jsx",
+    "sha256": "2060b9bc724fdfc5286fd128f5a4268a83e38abfaa49fa31a61b347da0001bc2"
+  },
+  {
+    "path": "components\\AddToCart.jsx",
+    "sha256": "76ac50311edfe55206c314ea044d2c7fef33295258c938760ce11506359ebfcf"
+  },
+  {
+    "path": "components\\AidesignerRuntime.jsx",
+    "sha256": "246a89cce72aa8a6ada44d7304eb6a7d21ff3ab60b1af86b07b0ef74a07458ee"
+  },
+  {
+    "path": "components\\AmbientField.jsx",
+    "sha256": "df1f78bff8fb314d7b50795aeebd4489d0879368b85334170340f8e2e87860fb"
+  },
+  {
+    "path": "components\\AmbientGlow.jsx",
+    "sha256": "8a0792a3975f55b4d98b19146f92756ed1ac9513124bdbfb76507b9afeccd916"
+  },
+  {
+    "path": "components\\AnnouncementBar.jsx",
+    "sha256": "1593acc98a83d675b910d645026fe33e71aee3771212dd604096b3c337299e20"
+  },
+  {
+    "path": "components\\bag-signal.js",
+    "sha256": "aa948bce48f65bd7de2086ae0c8e0e9e79f9d30b797830e29c3e5f9e8d273265"
+  },
+  {
+    "path": "components\\BookingFlow.jsx",
+    "sha256": "ad06807b0705b27fd686fdb76e1c3353aaf4115884f04dad39e0cb46139574c7"
+  },
+  {
+    "path": "components\\CardTilt.jsx",
+    "sha256": "48a14fd880505961013b662bf05a875b6ec252bcedeb3ea78338f3219aaa0e80"
+  },
+  {
+    "path": "components\\CartConfirmation.jsx",
+    "sha256": "9a2d303ab9174e2d9427c653819b0c232c5f9084c493449c05f8b4a57523839a"
+  },
+  {
+    "path": "components\\CartProvider.jsx",
+    "sha256": "02f617377048bd2f7b2b985a00fbe55d863bd5032db6dacbaacb40b88960e413"
+  },
+  {
+    "path": "components\\CartView.jsx",
+    "sha256": "77e792158cb69bc81f302baceb3351713e063eba871bc86f6e83b4e8de8987da"
+  },
+  {
+    "path": "components\\CategoryNav.jsx",
+    "sha256": "ffad79bf63f661deaa1c767788247d4ca5d4aea79074886571caae5091dc7450"
+  },
+  {
+    "path": "components\\CategoryProductCarousel.jsx",
+    "sha256": "f66d7249368f71475368dcec4d10ee5c85b14e866b22f72a428963d63ea573f3"
+  },
+  {
+    "path": "components\\Concierge.jsx",
+    "sha256": "86fae56af8edbc8855b776eead6429db706491bf7aa8aa421b04a3bd01b3d363"
+  },
+  {
+    "path": "components\\ContactForm.jsx",
+    "sha256": "468d41ff1e7a5cbbca281cb460ac666f910e0f3dfc6d766ac0ab7f01c9ffaf72"
+  },
+  {
+    "path": "components\\EmilyPairsWith.jsx",
+    "sha256": "96b1bbc708e0996ef1390219994f58b80cd485ca7057f86dae269b3243646b3f"
+  },
+  {
+    "path": "components\\Footer.jsx",
+    "sha256": "1d2bf70b48abbd9181bc2964de4bce2813a5b4e8f432d7dda31760335c18f379"
+  },
+  {
+    "path": "components\\FreeShippingMeter.jsx",
+    "sha256": "88e83b4ad1595e5a4afe064d87de63e28dc67aeea5b63c7910563428a0c566f4"
+  },
+  {
+    "path": "components\\GlobalSearch.jsx",
+    "sha256": "a8bf3e790efdb6e14852e46cadc857d45211f5b330e7c1e454861269894985e0"
+  },
+  {
+    "path": "components\\Hero.jsx",
+    "sha256": "49457203f00fde376f9d28c8129a43792f9d77e2e84f0944c74cd6407c1cc2a3"
+  },
+  {
+    "path": "components\\Icons.jsx",
+    "sha256": "fba786a6bc2e2a7e24263f6efbda950c99c813d7a36f0989f3384a7e38911f28"
+  },
+  {
+    "path": "components\\IntakeForm.jsx",
+    "sha256": "7a0f0a37e1fad8207a4a80310e31a1bcc1d60d530d8d458fe732917e3805ae69"
+  },
+  {
+    "path": "components\\JsonLd.jsx",
+    "sha256": "4e675d6f9ec2afb5d15d02e70a3a30b097178eb26315437bf6483f6784eef861"
+  },
+  {
+    "path": "components\\LegalDocLinks.jsx",
+    "sha256": "4297414a2d8410dedd12c82a032f6365fe8c573d0abfe5b3b9191c0c206d533f"
+  },
+  {
+    "path": "components\\LegalPageShell.jsx",
+    "sha256": "19facef83417705696c3a549b003b6d8476b2d1937bd2aacbe136c44ae69444e"
+  },
+  {
+    "path": "components\\LegalPdfActions.jsx",
+    "sha256": "0b1300905dfc3b5c1a329cdb9fd33ec4c1365339dbc3a33178708f1da5910b23"
+  },
+  {
+    "path": "components\\MembershipInterestForm.jsx",
+    "sha256": "7ca63f672d23b2cf4a8463250220ac9c33b2de8e9b553992f98bca0c8c5fdcb8"
+  },
+  {
+    "path": "components\\MotionBackground.jsx",
+    "sha256": "2f6b20a97336bac879a6cc903bae3267fb03a20f298b86317d9bcc0c3ae432a1"
+  },
+  {
+    "path": "components\\MotionRoot.jsx",
+    "sha256": "89e122ac21aa3aacfc11e4a1713f49854edad3f68939b30fd81201861a0bc963"
+  },
+  {
+    "path": "components\\Nav.jsx",
+    "sha256": "4359aad31b15d7308e61bcc54c9ef007f712c3160deb806bec9ef0f4c304de77"
+  },
+  {
+    "path": "components\\PageShell.jsx",
+    "sha256": "d4231ae8cc2d63ea4729d09cb42bd5c101218dbd6fbae71e932ba22a03f5eb98"
+  },
+  {
+    "path": "components\\PdpMediaStage.jsx",
+    "sha256": "038c25355eaaf541c1fdd21bc66e7b951a2c745e289ce76f6acc642fda4d6141"
+  },
+  {
+    "path": "components\\ProductCard.jsx",
+    "sha256": "6786d7ed5b59a248b2e388d637fdfb8108ad2f147405d577e1a48e72ab71ea4b"
+  },
+  {
+    "path": "components\\ProductGallery.jsx",
+    "sha256": "e631f0bee4205b6e082d4fb2844cf42439f90aec83b68c1e382eed669164cac6"
+  },
+  {
+    "path": "components\\ProductImage.jsx",
+    "sha256": "3c771f50d76d83083aa2bcdcb25702c291b513caed841035287a9244d8af8364"
+  },
+  {
+    "path": "components\\ProductRail.jsx",
+    "sha256": "f46d8905ac60897bf3e7aed48207d9a5854b2853309a911a5e598644cc95a44f"
+  },
+  {
+    "path": "components\\ProductViewTracker.jsx",
+    "sha256": "3b24c9305fe65b5c082d720a8a5660b01439b99d87ab1b845ff3861278a204e3"
+  },
+  {
+    "path": "components\\QuickAdd.jsx",
+    "sha256": "92ccbee371367d5484ae34c94ea0fb86eb977bf301c3df2d878c77fb5d18cfdb"
+  },
+  {
+    "path": "components\\RoutineBuilder.jsx",
+    "sha256": "1ac98ef7bb8ad4d2af2538a9cef67d0d78224908c887b47eab3af5c03d5aefe3"
+  },
+  {
+    "path": "components\\RoutinePlacement.jsx",
+    "sha256": "aeb3c4a5a8e6b750838de80d1f48896a784e70bc92857fba10d0fc5bb900486b"
+  },
+  {
+    "path": "components\\Rule.jsx",
+    "sha256": "a938317767df3a67fd2ee0799c8e5573b659fff9a3d7c99eee38bc583ff3e28a"
+  },
+  {
+    "path": "components\\ScrollTop.jsx",
+    "sha256": "dbf6aeb6516603ddf4588ff8f5e589bf46c8d2e02b836efb5e9369dbd2d91085"
+  },
+  {
+    "path": "components\\SearchResults.jsx",
+    "sha256": "e26129a8b384f902dd7e6693a7724c20735e79f98cfb9199297cb0026a5410c0"
+  },
+  {
+    "path": "components\\ShopGrid.jsx",
+    "sha256": "e45e11da7ce7f2c5830286ef80cdec583115930fa43c09f5b675668ffae53378"
+  },
+  {
+    "path": "components\\SkinQuiz.jsx",
+    "sha256": "a1dc5ac59303026575350f4bdae62985443efb40e022972f1db02765c91acd6e"
+  },
+  {
+    "path": "components\\StickyCtaBar.jsx",
+    "sha256": "1750638c3f89b426a6412b4eb94480c529e1863eccb08ba8af33a8aea8c8065a"
+  },
+  {
+    "path": "components\\Stub.jsx",
+    "sha256": "d770f6d188ab93b18a9e32c193f33c71b3bbd5451f8c4317d46c637a4fef28cc"
+  },
+  {
+    "path": "components\\TextFilterList.jsx",
+    "sha256": "9c11f5879dbbc610bb211e538af43e4422f4b90b5aafd84167cdaf573743d552"
+  },
+  {
+    "path": "components\\TrustStrip.jsx",
+    "sha256": "848da3257963e639ae741c43ef9fdf767ceb6e5583356feff46209850b4c5625"
+  },
+  {
+    "path": "components\\VirtualConsultationCheckout.jsx",
+    "sha256": "a473d30430522516fe0162e0789ecf9bb229691b382a57fef7a4cd72fe5942bd"
+  },
+  {
+    "path": "components\\Wordmark.jsx",
+    "sha256": "423bb5377b22c7ed5223488742f7b6f80ed455d424038fa4bfc9fafc75cbacbf"
+  },
+  {
+    "path": "components\\admin\\AdminLoginForm.jsx",
+    "sha256": "8ce2c2ee51aad4cc97af1f62a113a765348beb4c3a000a72f2709ff078b91783"
+  },
+  {
+    "path": "components\\admin\\AdminNav.jsx",
+    "sha256": "619242d20513ab32056a75dcc152864f58a4b9641c05dd77862f94946387ac26"
+  },
+  {
+    "path": "components\\admin\\AdminPageHeader.jsx",
+    "sha256": "848e9c6d196e0ed657216140969e6ae696d612bba4bb5d3b6eedb822d67d06f7"
+  },
+  {
+    "path": "components\\admin\\AdminShell.jsx",
+    "sha256": "61982ba5398d09300afa945551ee14cf6eb0a97f5673cc977fb6c095f4f382a4"
+  },
+  {
+    "path": "components\\admin\\AppointmentStatusForm.jsx",
+    "sha256": "b3c0831611f119482d3a703c2db4bfb03932a10cc14757c0a0654058825ba571"
+  },
+  {
+    "path": "components\\admin\\CatalogSyncPanel.jsx",
+    "sha256": "36bfab38d9a3676de29dc0c1f60d069bbc278553b318208a8a3f06ef541acf8c"
+  },
+  {
+    "path": "components\\admin\\ConnectionPanel.jsx",
+    "sha256": "8b46e1d20a7363204fe2ff53fb2e720043e4bcf80df281d027cc2a2cf80efc10"
+  },
+  {
+    "path": "components\\admin\\ConsultationDetail.jsx",
+    "sha256": "76f300237f3fb6638f82cb05f775bbf2299c873f2b3408238be6ac721aae187c"
+  },
+  {
+    "path": "components\\admin\\CsvImport.jsx",
+    "sha256": "ccbd6e3e7aa849aabecd2d8590b6180a09dfe5684e4d503b4332b92f38525c17"
+  },
+  {
+    "path": "components\\admin\\DiscountManager.jsx",
+    "sha256": "ac107116df92c0b818655bda7374d43e88019dd3ba868a3b9b9d9d66e67b3298"
+  },
+  {
+    "path": "components\\admin\\ManualFulfillmentPanel.jsx",
+    "sha256": "be6ec1b638ab7c89dc0cbe03e843405f1c40594113c33181589566a708d636f4"
+  },
+  {
+    "path": "components\\admin\\MetricCard.jsx",
+    "sha256": "0a0436a3816a918a4f1b0b59e6092aea04e594c8adfb7af6715f054dcbdd03b6"
+  },
+  {
+    "path": "components\\admin\\OrderStatusForm.jsx",
+    "sha256": "ea32e7472f7d14f7306dc990e6d930e21ab0f8874ff5ab2e07c02494cd9d8e49"
+  },
+  {
+    "path": "components\\admin\\ProductForm.jsx",
+    "sha256": "dfb7d2bcde48ea52868432e1811edbf0cfdfb5d6e4e151fbad6395b5e2ae97e8"
+  },
+  {
+    "path": "components\\admin\\ProductStockToggle.jsx",
+    "sha256": "973157a86e055fce9223686d53a0ad996d1068cd3919ecf4c9b586530f08bf64"
+  },
+  {
+    "path": "components\\admin\\SystemStatusBadge.jsx",
+    "sha256": "ccb22b1b3d0ad1163c7541a66a53ae321bfef37bc7274152f1ad060ec70d1999"
+  },
+  {
+    "path": "components\\consultation\\Questionnaire.jsx",
+    "sha256": "f95306c21bf45068fd7555fffc8954eedd350fde811137408aee47ccc0444469"
+  },
+  {
+    "path": "components\\customer\\AccountAuthForms.jsx",
+    "sha256": "3a5378e7c8e2385da80fd25e5ead1faee392d66cb42befb8295baf86c059e441"
+  },
+  {
+    "path": "components\\customer\\FavoriteActions.jsx",
+    "sha256": "3323ee94538309fd2d5c9e28996c6f3a912d72206ef23198736997b49f03b877"
+  },
+  {
+    "path": "components\\customer\\FavoriteToggle.jsx",
+    "sha256": "2361571e1c6deb80f986e86181a32cb045bc98a24f487f2a0c82b060b079714c"
+  },
+  {
+    "path": "components\\customer\\ResetPasswordForm.jsx",
+    "sha256": "f5338a2e38f5485dc9cc82bbd7e3146efe81aaec38363e8212946853044b7566"
+  },
+  {
+    "path": "components\\customer\\SignOutButton.jsx",
+    "sha256": "7b5696b6d7e6a9290a3baaada752288c0ed8798a68a7ce75ebffc5413e9390db"
+  },
+  {
+    "path": "components\\home\\BestSellers.jsx",
+    "sha256": "63b6e9aa6686fa7b9500ad71c8e2e582532c58ea8554d7d4c36388e085112093"
+  },
+  {
+    "path": "components\\home\\Education.jsx",
+    "sha256": "f275dec524a871815c76d8f8dd48f5a3e6f7f4b2e770783d2418f5c878db5d7c"
+  },
+  {
+    "path": "components\\home\\FeaturedProductStory.jsx",
+    "sha256": "d9e239c7b24aae30effa26d044c1a68b30a2718412189f409c4f64a4fb77f422"
+  },
+  {
+    "path": "components\\home\\FinalConsultationCta.jsx",
+    "sha256": "58701382bcf2b0a94b7256f4250a923e5e22bf8d5d881d7cbc8faf7bec5b9946"
+  },
+  {
+    "path": "components\\home\\HowConsultationWorks.jsx",
+    "sha256": "02b1c419828a2954bf480d66225379bf349bfe103d61255c06f309c8f0a54002"
+  },
+  {
+    "path": "components\\home\\MeetEmily.jsx",
+    "sha256": "0aed50600d48018989dc1979e84fe8b85970ccd263095301925d3b96239c0716"
+  },
+  {
+    "path": "components\\home\\PersonalizationHub.jsx",
+    "sha256": "be2256ba9e9443688f314f4421603f1d161c8f4b5c3b326676d7d617562f441a"
+  },
+  {
+    "path": "components\\home\\ShopByConcern.jsx",
+    "sha256": "05032cc8f8f03890f71ae5e5e819b840c067f114c256966514300717303107d1"
+  },
+  {
+    "path": "components\\home\\WaysToStart.jsx",
+    "sha256": "7ab173578619ef5bd870828a606e4bbfb50cba895fd37ab29c43c06bf2c709aa"
+  },
+  {
+    "path": "lib\\admin-auth-policy.js",
+    "sha256": "7347765a982761018fad0fbc54428071f7e1f5477ebf707e03a0d3fcdbf6c349"
+  },
+  {
+    "path": "lib\\admin-auth.js",
+    "sha256": "2bd6e90ac19e48ca5937ae4fcb15e3d1b26b9e1e1c0885f60d94ace468df7432"
+  },
+  {
+    "path": "lib\\analytics.js",
+    "sha256": "4d07ded80fe4db08ea0aa3fdd9a23abcaa35099e1eff4432b7d61757c30df535"
+  },
+  {
+    "path": "lib\\appointment-status.js",
+    "sha256": "4bdeb5d62451b93bb9b6a617e125d09966de5559e08c7aa6ff0bf57dc42f6d26"
+  },
+  {
+    "path": "lib\\availability.js",
+    "sha256": "f51c7d87a1a7f8efd1bafeab48542b794408a2b8a4a5f4c60504cafedac21c28"
+  },
+  {
+    "path": "lib\\booking.js",
+    "sha256": "b7c4a141161e0c6ca29d25d7252388bcb4cf25951e2c56187826cde2d887631a"
+  },
+  {
+    "path": "lib\\catalog-allowlist.js",
+    "sha256": "af252a03362798a9df65e6165131439cdbd700cc9b1d0b3187a12c682d94acff"
+  },
+  {
+    "path": "lib\\catalog-sync-cron.js",
+    "sha256": "8c801a09309754f2f2adc5fe25da137d5682959ff49e7c425eb128b0172c4b8f"
+  },
+  {
+    "path": "lib\\catalog-sync-readiness.js",
+    "sha256": "0e1df4e247d80846b7988d6d759008666c5e8312e077063e06a6d85d85b32372"
+  },
+  {
+    "path": "lib\\catalog-sync.js",
+    "sha256": "c7b398bad92172b0edebe58035ebba5d8a59fb71491cbfc83ce138b99ec09c4d"
+  },
+  {
+    "path": "lib\\checkout.js",
+    "sha256": "1fe0a337569483cc67b70278e8bea9af682e361cf9a1b2dce1df7ce0ec8a5cad"
+  },
+  {
+    "path": "lib\\concerns.js",
+    "sha256": "237591b6eaf4f7614e1c3e259884545204a76153ef9677090a50999138297641"
+  },
+  {
+    "path": "lib\\consultation-questions.js",
+    "sha256": "324f81a1bf429d3684d62364d1912b5f4a2ede1e1624d12dc1be3defac236276"
+  },
+  {
+    "path": "lib\\csv-import.js",
+    "sha256": "3efad3f20a45281e749efbfbe9d15b52d92f705f6d1a4f81dba75d924b00ff4d"
+  },
+  {
+    "path": "lib\\discounts.js",
+    "sha256": "2f8ef84e947904461110955654cf532b98e23f3d130c10cf685bc4cf542dfc24"
+  },
+  {
+    "path": "lib\\email.js",
+    "sha256": "65939b17ac8bf55896b4b8d0bdf0e3f4a3910e38d8a4cf8ba101ddc1c104782c"
+  },
+  {
+    "path": "lib\\journal.js",
+    "sha256": "bc070f294974a039285efa18d27339889c35e51cef9bdd90e497739f5eba23cf"
+  },
+  {
+    "path": "lib\\legal-documents.js",
+    "sha256": "1de117db0761f0d33f3e51d8d101d264b6f75fd7423ecb109c43893760b11aee"
+  },
+  {
+    "path": "lib\\log.js",
+    "sha256": "a39f1d706622a4cea072b6a4feb56ecb0c691186442f340df09af5fd4debb38a"
+  },
+  {
+    "path": "lib\\membership.js",
+    "sha256": "bd1fe0863927cd96f1820d2f3e39b7151d01a13220d4b80e1d40525d4110427e"
+  },
+  {
+    "path": "lib\\order-status.js",
+    "sha256": "891d9d03af3d2529aaae1ed6fcbd1eddf8010660481ae5fbe9649263992f75ff"
+  },
+  {
+    "path": "lib\\product-admin.js",
+    "sha256": "9496b801a026c9dcfa9997c8fe32055b4b79a7cd6ab9ab6bd1305208f9c7f902"
+  },
+  {
+    "path": "lib\\product-image.js",
+    "sha256": "486c67ab143b99471fd55caf86d67117ac9644fa33807c4c6c706e7aa4e054d6"
+  },
+  {
+    "path": "lib\\products-server.js",
+    "sha256": "fdbe87084a700628eebae02b7dd3893cc7b933a28b0747412418fa1f7c4d1fbf"
+  },
+  {
+    "path": "lib\\products.js",
+    "sha256": "faf5ff4f94886ea308aab8b6d4ee17daaa9a086e24d7f5d6e776ab7f22e77adf"
+  },
+  {
+    "path": "lib\\require-admin.js",
+    "sha256": "228d8a916880d3008e552ebefddd15151abe85342dd2d52acd0a2f4d2d676413"
+  },
+  {
+    "path": "lib\\revalidate-storefront.js",
+    "sha256": "1a1d479af338cfe0afc02bd44dd3b18e60edd5009955dc1bcd40dc7f800e2052"
+  },
+  {
+    "path": "lib\\routine-kits.js",
+    "sha256": "07cc06c6aad71d83906d7d32fc90eb93941496827d95df5e39ea857fa0e61bb3"
+  },
+  {
+    "path": "lib\\routine.js",
+    "sha256": "cc79c31176f4b6e618739aade3b4c21d8bca76d2bef72ea4681cda2acd1584bc"
+  },
+  {
+    "path": "lib\\search.js",
+    "sha256": "cedf14f96f1b059159adea1e20a89d5ce7854039ac74ef40fcb5020bfae9c3fd"
+  },
+  {
+    "path": "lib\\services.js",
+    "sha256": "6f36a26e73f99e71cbcb77f11d50804a2a6382b248550ff0055997227a261334"
+  },
+  {
+    "path": "lib\\shipping.js",
+    "sha256": "40fbb983ea39f9ecd897f1b099379b417daaa3f4ca701f66c32cdc1b8db4df33"
+  },
+  {
+    "path": "lib\\shop-filters.js",
+    "sha256": "321141e78fef9694e7bc42818e0c70a182660d6516169ab07553e49f20fdbd7b"
+  },
+  {
+    "path": "lib\\shop.js",
+    "sha256": "c92544c74291dfa4b4d393cde96a1c4bf2c08ae5189677e08b61a9332fb460c1"
+  },
+  {
+    "path": "lib\\skin-quiz.js",
+    "sha256": "8bb77ec3cffcecd255ff773fed270db535eec49c58bfff99aa9e6dc2f0455e28"
+  },
+  {
+    "path": "lib\\skin-script-discount-guard.js",
+    "sha256": "d9d0115610b886e301a61922c7fec838390ca9776dd44903c35b5a4993a64eab"
+  },
+  {
+    "path": "lib\\spectral.js",
+    "sha256": "d48010f33d6305251da97222066473d8cced1f72b2d4a13db15de1da32697bfa"
+  },
+  {
+    "path": "lib\\store.js",
+    "sha256": "a754477e17c3af2925cacacd8060268e17fd28091231af75a92488d93b5a19b5"
+  },
+  {
+    "path": "lib\\stripe-orders.js",
+    "sha256": "3df7c7f0764f259560ce05c5db8fcebc80fb57699a5deceb51ce84557ffeb616"
+  },
+  {
+    "path": "lib\\totp.js",
+    "sha256": "36606b91063715a80b40edeaee764197e29f5c76571cc4df37625f545b3d2fdb"
+  },
+  {
+    "path": "lib\\admin\\attention.js",
+    "sha256": "d694f22c863f416dd62965068851798fe67cb3b8e3468f09cf9ffca5ebd2adcb"
+  },
+  {
+    "path": "lib\\admin\\dashboard.js",
+    "sha256": "9591b02f055e7bbd152eea57c6df31081d7122d0f7e889a77b962bfb228dacf7"
+  },
+  {
+    "path": "lib\\admin\\date-range.js",
+    "sha256": "2487e81da7d1534b405b178636761543e3e31ee19c8b599d2335b76299fdde8d"
+  },
+  {
+    "path": "lib\\admin\\manual-fulfillment.js",
+    "sha256": "85f132492476a24c38a2d4498c597e1e025c18c9542abd8140436cfdf3681d84"
+  },
+  {
+    "path": "lib\\admin\\metrics.js",
+    "sha256": "539d838b9d5e2134306a7c7b8633d28d717fd4cbf673f52eb33b74bc60500698"
+  },
+  {
+    "path": "lib\\admin\\rpa-health.js",
+    "sha256": "a841abcae2a13907eb9fd18414df2168f5df9b153a7aa26cae6d8f8709a9aac7"
+  },
+  {
+    "path": "lib\\admin\\status.js",
+    "sha256": "74349b907d6d39bb12f0276f811c607e455ef292d2670c8a6882d0020d844dfc"
+  },
+  {
+    "path": "lib\\admin\\stripe-health.js",
+    "sha256": "88590e4979f713612e4b36eea6333af266c907b8a76f3abcb5bf5e04e05fa6a1"
+  },
+  {
+    "path": "lib\\ai\\map-catalog-rows.js",
+    "sha256": "ccd521eecfafd05e3f2796af2e7296868dfc155bb5120a6639d347c2673db909"
+  },
+  {
+    "path": "lib\\ai\\xai-client.js",
+    "sha256": "ea7efcb6865e8bbfc674de59d67e3e171d71512713e6391ba7a03a937c8b80e3"
+  },
+  {
+    "path": "lib\\cloudflare\\scheduled-catalog-sync.js",
+    "sha256": "3ab5cf740197206c4d6f0af14d0eebc1f452e00b8d1581d8b1eecc521c366858"
+  },
+  {
+    "path": "lib\\commerce\\d1-backend.js",
+    "sha256": "0e9d29c79cbc2bdecbd79edc9436c4387a72a2d953bd76d390893483b04ce613"
+  },
+  {
+    "path": "lib\\commerce\\file-backend.js",
+    "sha256": "4c820c45fda1945de1e19bd43c04ea4ae9c01fc0bfacb212c48bb66d3318e2bd"
+  },
+  {
+    "path": "lib\\commerce\\index.js",
+    "sha256": "3452377bb2e02d8d30bc129c1b4c98a2a77b36ebc9c596f1219912fec3b1222e"
+  },
+  {
+    "path": "lib\\commerce\\schema.js",
+    "sha256": "29ea01d41070f03d0b80b95809704d5e6c0e8a4088ef91e05db0922a4dd8392c"
+  },
+  {
+    "path": "lib\\consultations\\config.js",
+    "sha256": "8f9e8361df9917bd11931c69cc8ba74bbec20d02e6d3db0f6458c8a6672ee4e2"
+  },
+  {
+    "path": "lib\\consultations\\emails.js",
+    "sha256": "d3c8b15bd6530a9e785569a26d143b8e4570870a2e2f10bee2faca3444c4214e"
+  },
+  {
+    "path": "lib\\consultations\\intake-schema.js",
+    "sha256": "589f9db60a4846a1c41e339a52266e6e13e7c2be4f467d6a54ebf824451e786b"
+  },
+  {
+    "path": "lib\\consultations\\photo-storage.js",
+    "sha256": "8e1f1672434524fbf300be5adcd5d9bd64de0663b270693ed9fdfd7089d4e1bc"
+  },
+  {
+    "path": "lib\\consultations\\photos.js",
+    "sha256": "a1c0fa58e6fec40fcd9fc99ccdbebea870475b76757beb23b8113fac2ebb1d1f"
+  },
+  {
+    "path": "lib\\consultations\\service.js",
+    "sha256": "2b52d123854e89122865fbaa54cb1418aa89bce50806dc097b847714f10d1492"
+  },
+  {
+    "path": "lib\\consultations\\statuses.js",
+    "sha256": "a0cdd19d38997827981f33ba1804ac1b09a5676d679f93f0da15b001109a4aae"
+  },
+  {
+    "path": "lib\\consultations\\tokens.js",
+    "sha256": "a10972fe6777c1ced286310b6f1497efb3d5d05a29bdb057c85a6945ff1c85b3"
+  },
+  {
+    "path": "lib\\customers\\auth.js",
+    "sha256": "f09f9df22fc032d2a73f906178330119991db365fc3d944a8e9c29644194b09b"
+  },
+  {
+    "path": "lib\\customers\\guards.js",
+    "sha256": "de40af9df8d1a0721ec8e84591eb6ebccc344f4b7e0938cc499f30fdde158adb"
+  },
+  {
+    "path": "lib\\customers\\passwords.js",
+    "sha256": "ab90753f6ea78c9e16a0a317993236d64dd3bb9083f694a2f4587882b2270f56"
+  },
+  {
+    "path": "lib\\customers\\schema.js",
+    "sha256": "35644e90bd3d2b7f1218ed5ee64986a09a93823c6f1912261965708f4d3aa444"
+  },
+  {
+    "path": "lib\\customers\\store.js",
+    "sha256": "adccba343e678b8f0d52f2c3dd29a2df305f014081c35919035b8260add0f6a7"
+  },
+  {
+    "path": "lib\\customers\\throttle.js",
+    "sha256": "dcc36e24d1d408d8d5d91f25f0f0ccd1e0c3542e07d91221665607c9a1344dea"
+  },
+  {
+    "path": "lib\\dropship\\fulfill-order.js",
+    "sha256": "1da805ff380de17f33fc809e008de2dc7ac53c916e7f83274e0623a22a98a874"
+  },
+  {
+    "path": "lib\\fulfillment\\alerts.js",
+    "sha256": "4c10d2f1e1098eaedfa03b682045d521b2d7544589893395baf2c5d5f77dda83"
+  },
+  {
+    "path": "lib\\fulfillment\\jobs.js",
+    "sha256": "4558ce203df238f667c32dc6a7480a09548d5f356be7ba31161be06898dc0449"
+  },
+  {
+    "path": "lib\\fulfillment\\state-machine.js",
+    "sha256": "01c400dc40ccb0e9b7705d31e7007c8a83fd56a37dec2688ee9988313f74d3f2"
+  },
+  {
+    "path": "lib\\internal\\hmac-auth.js",
+    "sha256": "fe15a471d1afd1ff0022a635a45f4f0014e5c99f95927af9728f8985ee068278"
+  },
+  {
+    "path": "lib\\stripe\\config.js",
+    "sha256": "9846cd9e1a7ed13770afa11fc2fe06e1e637896a9010c546ccb942c5d7244ba8"
+  },
+  {
+    "path": "lib\\suppliers\\types.js",
+    "sha256": "972853671648f15f8addb12e8e2a567a24590c8fa0548b45471aa7135f084460"
+  },
+  {
+    "path": "lib\\suppliers\\skin-script\\csv-feed-adapter.js",
+    "sha256": "3db29bc72fae69ab068041c50aa9c2544130d183494ccc9ff5eb949756341983"
+  },
+  {
+    "path": "lib\\suppliers\\skin-script\\http-adapter.js",
+    "sha256": "a214b316ebe8ac4707932975eeb335f72bdf4c9e5d7e0f6174364e5b5b0ac475"
+  },
+  {
+    "path": "lib\\suppliers\\skin-script\\index.js",
+    "sha256": "1cd53ce3110846816dda94bea25746704f19ffcfd08ce1873a0322aed66b3e66"
+  },
+  {
+    "path": "lib\\suppliers\\skin-script\\mapping.js",
+    "sha256": "49ce0b14a85cdd079ec0505811db5f0ae6add3f65e3a5cc13f5af32692a532c8"
+  },
+  {
+    "path": "lib\\suppliers\\skin-script\\mock-adapter.js",
+    "sha256": "48baec0ba3a5662d34acd24a8c5a763705135c771f9630498c23040a25874515"
+  },
+  {
+    "path": "lib\\suppliers\\skin-script\\rpa-adapter.js",
+    "sha256": "24892fd175ede86f96882e091ff43a7944c9425757912bab7057dde4274f3514"
+  },
+  {
+    "path": "data\\catalog-allowlist.json",
+    "sha256": "f7480d3c0c271bd6545726e56f0885d7cf515c9e9fbfc78dcc6f2ebc8074dc80"
+  },
+  {
+    "path": "data\\products.json",
+    "sha256": "aab04321cbd4ad2819e16a0456b71e5dfb7d25f09f7d0e2db46f07cfc6d8c81a"
+  },
+  {
+    "path": "data\\sample-import.csv",
+    "sha256": "78226c8ba4cae1629f06d288a661b5ca5bd31ab481164e389600c2181914de89"
+  },
+  {
+    "path": "data\\SCHEMA.md",
+    "sha256": "0c9faf4f2dc71c6ace84270b4f72766068cf1e59d2962ed32b155eb64717c48e"
+  },
+  {
+    "path": "data\\supplier\\skin-script-portal-urls.json",
+    "sha256": "ddd0140436e8f8c2ccd497ec50da0d3b0cabb7d7df8688fc0864c0d88c6c1e38"
+  },
+  {
+    "path": "data\\supplier\\skin-script-product-attributes.json",
+    "sha256": "d99c4a34e44c63fb0e6561138a7c36817b405173059f17450c0c1b6d714f504a"
+  },
+  {
+    "path": "data\\supplier\\skin-script-product-content.json",
+    "sha256": "0fcb62970c99b6ee94b367be8a4e998dd62340fe651ba525eda51c910aa500c3"
+  },
+  {
+    "path": "public\\hero-original.mp4",
+    "sha256": "eff9f20d8f73fae3a04ba1e4b56f8e66e84da5ed972cd2a03a849e8b7d49bced"
+  },
+  {
+    "path": "public\\hero-poster.webp",
+    "sha256": "8860ba73d2ecca724b2394170cffe2786528921b1e94f11ba43fe5e328956a9a"
+  },
+  {
+    "path": "public\\hero.mp4",
+    "sha256": "bb6fb17b87c1a5701b47981396947252bd4fffe5337509ccbca0c25c422efbeb"
+  },
+  {
+    "path": "public\\logo-dewtheory-20260825.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\logo-dewtheory-glass-20260928.png",
+    "sha256": "a6232596c034c18e3cba661a916f1d1158dfbda2f4d2172363982d968c5ae635"
+  },
+  {
+    "path": "public\\logo-dewtheory-glass-20260928.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\logo-dewtheory-glass-wordmark-transparent.png",
+    "sha256": "a6232596c034c18e3cba661a916f1d1158dfbda2f4d2172363982d968c5ae635"
+  },
+  {
+    "path": "public\\logo-dewtheory-glass-wordmark-transparent.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\logo-dewtheory-ivory-20260825.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\logo-dewtheory-mark-20260825.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\logo-dewtheory-og-20260825.png",
+    "sha256": "a6232596c034c18e3cba661a916f1d1158dfbda2f4d2172363982d968c5ae635"
+  },
+  {
+    "path": "public\\logo-mark.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\logo.png",
+    "sha256": "a6232596c034c18e3cba661a916f1d1158dfbda2f4d2172363982d968c5ae635"
+  },
+  {
+    "path": "public\\logo.webp",
+    "sha256": "693682d6f7762e51c4fee8ff4769073ac1f0e3b82edacd59881a93f87b58c579"
+  },
+  {
+    "path": "public\\site.webmanifest",
+    "sha256": "6d5cb32b136501be3595a5b4fe73e095e15c260ee004dda8f95987afc36dfb40"
+  },
+  {
+    "path": "public\\_headers",
+    "sha256": "c901bfc91a50233b2a080c03aa5b0c4c968baa044977b0836d7292673d6f7268"
+  },
+  {
+    "path": "public\\products\\placeholders\\cleanser.svg",
+    "sha256": "6dd4452ef37a90fe955075f90c7ddd2c5b646fda314939e9b8fcedc953106e70"
+  },
+  {
+    "path": "public\\products\\placeholders\\default.svg",
+    "sha256": "04ee38f55c9974c0a355487919b237bcb3fbc3fc949de05cffabe6652c776fcb"
+  },
+  {
+    "path": "public\\products\\placeholders\\exfoliant.svg",
+    "sha256": "1d40c1cd57c1b71dbdf9e1a31519e13ae9e8ee3f69aab0656a33a2bdc0cdc1b5"
+  },
+  {
+    "path": "public\\products\\placeholders\\lip-treatment.svg",
+    "sha256": "3cbc9aabb30e3ebf0dfab5c4cdd04895a8521ec7a3b5d9bdbae2e95e5c714369"
+  },
+  {
+    "path": "public\\products\\placeholders\\mask.svg",
+    "sha256": "d64f29bc4d0784b4ea0138767afa6f505245017bbf3554bb9738d72a3067215d"
+  },
+  {
+    "path": "public\\products\\placeholders\\moisturizer.svg",
+    "sha256": "bcb0122db4c7df0eead0a5f6eef0dc270e1e35a4bc7c7504421bde2e22d5e20c"
+  },
+  {
+    "path": "public\\products\\placeholders\\serum.svg",
+    "sha256": "8a1cdc01c171fc07c2d6534e385eff46cde300523c04711a3ed24bc002bd27cc"
+  },
+  {
+    "path": "public\\products\\placeholders\\spf.svg",
+    "sha256": "9187820867d903435571d5022445a9054f8f11835afbdb90743ea6b765566e58"
+  },
+  {
+    "path": "public\\products\\placeholders\\toner.svg",
+    "sha256": "e2f7aa7814af2a286b3f13c7158ac19e06af20da3e81e825cef4fb2208ca17dd"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_ACCESSIBILITY_STATEMENT.pdf",
+    "sha256": "1b267e6cc9dac9fb9d172cc5251faf5d111b63a21bc6a0776fd9077500d9eed6"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_AESTHETIC_SERVICES_AND_SKINCARE_DISCLAIMER.pdf",
+    "sha256": "49d4b9361588d756f3c99f347753eec6e928f77a306af0da686b32d9e2e1bb54"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_AESTHETIC_TREATMENT_INFORMED_CONSENT.pdf",
+    "sha256": "7618a39b1f7f3c97153db8d53bf16da19fffcc2192594f4d5d570c245b5e1eaf"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_BOOKING_CANCELLATION_AND_NO_SHOW_POLICY.pdf",
+    "sha256": "8f45b3e010629ca2a597a1e5e92b53c3f7df83df764c592f10f71e4f7f0a7cb5"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_CONSULTATION_PHOTO_AND_INTAKE_AUTHORIZATION.pdf",
+    "sha256": "ed08375ae1898d53df8da7ed0fcf1f41523aacf3d346c667e36b59006e985ab1"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_CONSUMER_HEALTH_DATA_PRIVACY_POLICY.pdf",
+    "sha256": "8d57a5dd7f3f9a694ec3f30b2bb734a68c44483ff065b2bd1bdc0ee9a48d5d4f"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_COOKIE_AND_TRACKING_TECHNOLOGIES_NOTICE.pdf",
+    "sha256": "f4360a27ae4079d5760282262a2af0c63127d2f913b84567a599eb8438eea762"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_MEMBERSHIP_AND_AUTOMATIC_RENEWAL_TERMS.pdf",
+    "sha256": "9e733ae92b7ef46b11450213a3c493df9f73dea2c56b4551d8ac3d4dd6cb5c72"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_MINOR_CLIENT_PARENT_GUARDIAN_CONSENT.pdf",
+    "sha256": "0defdc09581baff901741cbf05b35c213fd80d48f5f2638f8216737667ccc546"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_PRIVACY_POLICY.pdf",
+    "sha256": "6ec99dbc3b610576c30653e15d09adfc37b6655c58dee5531fa31d5ae06dd1a8"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_RETURNS_REFUNDS_AND_EXCHANGES_POLICY.pdf",
+    "sha256": "c290320f75fac6e782815b14a2e9f3a7f14a2eb2760ccba5f2ca4b887e3a0687"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_SHIPPING_AND_DELIVERY_POLICY.pdf",
+    "sha256": "c58e89f76fc7a80f60e7f47eb47e511f42b2653ff411a39f56b72a899740da7a"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_TERMS_OF_USE_AND_SALE.pdf",
+    "sha256": "565330513fb8cee58421c51aba53d2f81a0e79fe9fd30c27b341c2aefb356222"
+  },
+  {
+    "path": "public\\legal\\pdfs\\DEW_THEORY_VIRTUAL_CONSULTATION_TERMS_AND_INFORMED_CONSENT.pdf",
+    "sha256": "06510d1a1e6ffb104e31beedcc085c3811cc484a620941be781c27ae046ca5ac"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\product-image-manifest.json",
+    "sha256": "040021e3c7f7e4dfec66ca32436f66b4c002cc251499a2e0cdaad6c3c29a5b76"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\acai-berry-moisturizer\\acai-berry-moisturizer__01__primary.webp",
+    "sha256": "95c4e6306c3c3dec019bea85301bd6beb6fd99197e734dbe8498fb1de7afe56f"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\acai-berry-moisturizer\\acai-berry-moisturizer__02__gallery02.webp",
+    "sha256": "8faedeb603ee718963a50951a9c1a76d91f4d24f1e6af97edf3e65693ab586c4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\acai-berry-moisturizer\\acai-berry-moisturizer__03__swatch.webp",
+    "sha256": "bf3faa1443a6b64af038b412a1f7057f3938b02fafd72a71402cd7958c3c3b43"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\advanced-renewal-serum\\advanced-renewal-serum__01__primary.webp",
+    "sha256": "f493f493bf7c3da5107dbda469992af62e5166dc25517d66f9fa5d2634e520e2"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\advanced-renewal-serum\\advanced-renewal-serum__02__swatch.webp",
+    "sha256": "e7dd1699d975ce38f1e0a61dc304db5e213164c020aa29b11d33fb0bd6478745"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\ageless-moisturizer\\ageless-moisturizer__01__primary.webp",
+    "sha256": "08bdf7981e321460f24751ef211702bf1dc82ec3a8e847fb72133a3a8f8842be"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\ageless-moisturizer\\ageless-moisturizer__02__gallery02.webp",
+    "sha256": "a8a43d95f29456c3794adbd28f1585d27f9575e7521017e3371f6721f70ada26"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\ageless-moisturizer\\ageless-moisturizer__03__swatch.webp",
+    "sha256": "eb5b566a03217bb5ebff54d5aa299d6862f4cb44a42536b479b0082274222dd8"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\barrier-balancing-moisturizer\\barrier-balancing-moisturizer__01__primary.webp",
+    "sha256": "715e1c2dc4e7f74f522e68ea9898149fc2c1f9b0e9d581dd9c2c75b9ae58deb3"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\barrier-balancing-moisturizer\\barrier-balancing-moisturizer__02__swatch.webp",
+    "sha256": "2744cddd477bf927ab971eb01de512a3e11384e3e9b7158fae3cb4371433f434"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\barrier-balancing-moisturizer\\barrier-balancing-moisturizer__03__pump.webp",
+    "sha256": "7752463f2f2a032b26fd3824ace49820ff403788ffd3235d8efdf746e34eed79"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\blemish-spot-treatment\\blemish-spot-treatment__01__primary.webp",
+    "sha256": "07d8e7fc815b586f4727f36bc7246aaa022b39327283f809d775bdb62a7098c1"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\blemish-spot-treatment\\blemish-spot-treatment__02__gallery02.webp",
+    "sha256": "e4add18aea8d704f2cbe025987fe4bc0398514b83af164ab36eb308d06bf2bf3"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\blemish-spot-treatment\\blemish-spot-treatment__03__swatch.webp",
+    "sha256": "b3f08d1ab3497a7a6d7001a5f9e93685ac58182b97684ed9e510d74036e64f79"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\botanical-bloom-hydrating-mask\\botanical-bloom-hydrating-mask__01__primary.webp",
+    "sha256": "4f8ca4fd1374dcadf4ec7a131dd4bcf2354a85f2c87d055173ff8d67549e59ec"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\botanical-bloom-hydrating-mask\\botanical-bloom-hydrating-mask__02__swatch.webp",
+    "sha256": "4cbf7351d94f419e83bd4cb58c9f55f9083007c9b36cdd852f2fe4806df047e0"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\charcoal-clay-cleanser\\charcoal-clay-cleanser__01__primary.webp",
+    "sha256": "1670f76adcd1c6a200a89690dcc099c129f2ff3e26436a565a025f8fba3dbd66"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\charcoal-clay-cleanser\\charcoal-clay-cleanser__02__gallery02.webp",
+    "sha256": "a9028a058e8288c9554e3eba56a55cf143774d29c4cd991999c68f1001ded0f8"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\charcoal-clay-cleanser\\charcoal-clay-cleanser__03__gallery04.webp",
+    "sha256": "d03c58c2493044979d8bbfe8f2c26d61d86665e5253d4fc75b4cbd3a545d5c1a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\charcoal-clay-cleanser\\charcoal-clay-cleanser__04__swatch.webp",
+    "sha256": "044d1d924a3817e936aa8f4054248e3c58291e1d467ec4e2612b9860be3767bc"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\citrus-c-nourishing-cream\\citrus-c-nourishing-cream__01__primary.webp",
+    "sha256": "d53a9e8fb5af3f85191c8012b7780dfa7d6a0990e0ddd654e148ebec272bc1a6"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\citrus-c-nourishing-cream\\citrus-c-nourishing-cream__02__gallery02.webp",
+    "sha256": "f5cc262488cad52301d2ab3a82a9292af7b52207835e9756b9908b9acc2821b4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\citrus-c-nourishing-cream\\citrus-c-nourishing-cream__03__swatch.webp",
+    "sha256": "3f530c0313f7c695e5df7466621dff8b730d2c2c2337f1c89fe75437343dfcdb"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\clarifying-toner-pads\\clarifying-toner-pads__01__primary.webp",
+    "sha256": "986fa391c4004d4cde156e33a20d12ceee8b0c5f947f6400b04fdbb39aa925e0"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\clarifying-toner-pads\\clarifying-toner-pads__02__gallery01.webp",
+    "sha256": "5449c50a77325d533638d8255f423e3a7c664effb973e3df1704224630009266"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\cucumber-hydration-toner\\cucumber-hydration-toner__01__primary.webp",
+    "sha256": "cd3dcd6e4af78f3defda75be41895b9b05376eb4e22e8c15c281339dbd59be7c"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\cucumber-hydration-toner\\cucumber-hydration-toner__02__gallery01.webp",
+    "sha256": "d2a1dd36ac06a40675362f4f7226e81ba0b40e147f698fa68c88a1418abea25e"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\cucumber-hydration-toner\\cucumber-hydration-toner__03__gallery02.webp",
+    "sha256": "c845026e38faac24a119247bffb427f76d7b32a44885a5ecd3f5becde4c0a9bb"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\discovery-kit\\discovery-kit__01__primary.webp",
+    "sha256": "be9b0579cd942b6a3463425659f5ff811a7be87a76d120132c6dddfc0639d964"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\discovery-kit\\discovery-kit__02__gallery01.webp",
+    "sha256": "e089d91f487411b44f9c6e34ff89f9217e65a01dc56634ebd57559976845fad1"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\discovery-kit\\discovery-kit__03__gallery02.webp",
+    "sha256": "d1745e0ef4e36d64c2b659bcb5d92e951e2b8a4cad655828a538a53bc02a259f"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\everyday-balance-travel-kit\\everyday-balance-travel-kit__01__primary.webp",
+    "sha256": "8ce2b01d7918656818cdaea2a7c73fc036298e9cdc8c3c8ad0011a8b52bc2670"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\everyday-balance-travel-kit\\everyday-balance-travel-kit__02__gallery01.webp",
+    "sha256": "24a3255ab030c9beabccbad5d86243785e9278b31d9f572b5eaadee77bbabc27"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\everyday-balance-travel-kit\\everyday-balance-travel-kit__03__gallery02.webp",
+    "sha256": "a2608d3d5e131d443ac91f2eeb68624af7c497ce66008e67db9f9a93942006af"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\everyday-balance-travel-kit\\everyday-balance-travel-kit__04__gallery03.webp",
+    "sha256": "599266f4d47ff401f68ff5b63ead17715bf57d3a630d93597e162dad12fff699"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fresh-face-travel-kit\\fresh-face-travel-kit__01__primary.webp",
+    "sha256": "5b7f411488a3449dd026edc1c0d7fec76110e44907217987f3f52ccfd2b9dcf2"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fresh-face-travel-kit\\fresh-face-travel-kit__02__gallery01.webp",
+    "sha256": "fab9c91583049ff5b3d6bd95de38f8ce26df11c5f3cb92a3227e0bf4719456be"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fresh-face-travel-kit\\fresh-face-travel-kit__03__gallery02.webp",
+    "sha256": "6a76f2f062ab7953d840333a4635e1c37793296d76dfb54918e959d32eeda30a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fresh-face-travel-kit\\fresh-face-travel-kit__04__gallery03.webp",
+    "sha256": "a956b6583712bf1bd30056775df1f82341d50880187ea9bb6bfcfe2b8367d41d"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fully-quenched-travel-kit\\fully-quenched-travel-kit__01__primary.webp",
+    "sha256": "171f69877df1b2826859df75a771a6fc5ce49b6eb90a45311cfbf3c161099b41"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fully-quenched-travel-kit\\fully-quenched-travel-kit__02__gallery01.webp",
+    "sha256": "6722fbdcd9093f6ce2bc07ed7d0bc210c6b4ad24a1971ba76a7e149283205b89"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fully-quenched-travel-kit\\fully-quenched-travel-kit__03__gallery02.webp",
+    "sha256": "6f91cb9055fc291206261b227a06c551bd8eeddf8f798ea767885fd4f0e1238b"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\fully-quenched-travel-kit\\fully-quenched-travel-kit__04__gallery03.webp",
+    "sha256": "40fbcaaf2a50e8e43ca943fc5b0ac9ec54125933285102979b3ce36186227f4a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-and-retinol-pads\\glycolic-and-retinol-pads__01__primary.webp",
+    "sha256": "bdcb5f6aa5399bde6a16b97979e9a27656c64e116178406f1f76fed875121969"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-and-retinol-pads\\glycolic-and-retinol-pads__02__back.webp",
+    "sha256": "b1a9a05aa9ad5974191d07c7470b6e867dbe63988f3ab62d48a42131790792bc"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-and-retinol-pads\\glycolic-and-retinol-pads__03__gallery01.webp",
+    "sha256": "c0c0d2e465e335acd9171a1787ff300688341e5a6579667a3ac4b4b264a6ee68"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-cleanser\\glycolic-cleanser__01__primary.webp",
+    "sha256": "b35ab5054b5cf77f7c718a05729ad1923cfc9f940d3c57b7b46392f73c88b948"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-cleanser\\glycolic-cleanser__02__gallery02.webp",
+    "sha256": "3a7a29f70ba7ea55f29e5616f0ded13ecc4b4beb34d101f90141aefb282bc034"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-cleanser\\glycolic-cleanser__03__gallery03.webp",
+    "sha256": "08e384f86d4746623fba4eb5800283260d1b1236c002380c0f0c372990b5e4df"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\glycolic-cleanser\\glycolic-cleanser__04__swatch.webp",
+    "sha256": "221b907df16cec4f7811be47ff1897abf74d9e1de56917b2e1cb19ee07608740"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\green-tea-citrus-cleanser\\green-tea-citrus-cleanser__01__primary.webp",
+    "sha256": "60d293aca1ad3999459d3d2db9dbc73b38c951ff34c456aeed729427196b94b4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\green-tea-citrus-cleanser\\green-tea-citrus-cleanser__02__gallery02.webp",
+    "sha256": "9ccb92fc0faf2ffeff5d408380b3716497f9c4e22953683486e3c5b36d036934"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\green-tea-citrus-cleanser\\green-tea-citrus-cleanser__03__gallery04.webp",
+    "sha256": "b71ae7c002ffd14271edef12311093bb47b6086f1f7e4226a9c912fcfc173f06"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\green-tea-citrus-cleanser\\green-tea-citrus-cleanser__04__swatch.webp",
+    "sha256": "3262f40f1f50bd18db220ab6e4cad70bfc4108be9cc40fee54a5ec4ee22f35ab"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\honey-brightening-cleanser\\honey-brightening-cleanser__01__primary.webp",
+    "sha256": "e3d79469b53f8576686ab0b4ca47e32d21d520e32316781be141cfd322160771"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\honey-brightening-cleanser\\honey-brightening-cleanser__02__gallery02.webp",
+    "sha256": "6c33a8dc4cd15136de853c8beec18e647e97875a03afebf53f2a495385a2f1d8"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\honey-brightening-cleanser\\honey-brightening-cleanser__03__gallery03.webp",
+    "sha256": "67814821c70e1c56055f0d00902ae671a59f4ff11e2c3388781a1a2eebc97e85"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\honey-brightening-cleanser\\honey-brightening-cleanser__04__swatch.webp",
+    "sha256": "970515f877b620c2bd0cadb206616d26ef9c736caf119cf3fbb41e2ddd89f86f"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\hydrating-moisturizer\\hydrating-moisturizer__01__primary.webp",
+    "sha256": "a0af8da141c65ced0e3a5f638222b1cc2edd4b24aa0405ab3e9b68b4d83444d2"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\hydrating-moisturizer\\hydrating-moisturizer__02__gallery02.webp",
+    "sha256": "9b72f52da5e3cb63bdbc7100c64c0876d905180bcdabd71bdada6f4a8c382173"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\hydrating-moisturizer\\hydrating-moisturizer__03__swatch.webp",
+    "sha256": "995afb5a02aad9645b47294eb28cba1e0c83e289989b95966a380c030014c8f6"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\hydrating-skin-serum\\hydrating-skin-serum__01__primary.webp",
+    "sha256": "9cbc8b81e0076603a209ee41078d6f310bff2c2f2515cf723a7653d641043d92"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\hydrating-skin-serum\\hydrating-skin-serum__02__gallery02.webp",
+    "sha256": "c08b82c032ac86f9f262bc3d57d0c56aee566fee7b18be6a868193f1b0ae59c0"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\hydrating-skin-serum\\hydrating-skin-serum__03__swatch.webp",
+    "sha256": "68bc7195327a10c750b28456bb65dca1d0a5124f62feea090c443760d79471d4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\light-aloe-moisturizer\\light-aloe-moisturizer__01__primary.webp",
+    "sha256": "edf64a78332bf1dd7774d7b28e09a86c7f856885dc075b0a0afbdbc484d49441"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\light-aloe-moisturizer\\light-aloe-moisturizer__02__gallery02.webp",
+    "sha256": "696c6e3971ee0d012eca25f1590772556903dd5565c3123cde2e83962358a988"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\light-aloe-moisturizer\\light-aloe-moisturizer__03__swatch.webp",
+    "sha256": "97d226ec1acc2d9e879eb83ae14ada323a43f73c237f3b874d31c04a37f6f8ac"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-balm-with-spf-15\\lip-balm-with-spf-15__01__primary.webp",
+    "sha256": "1f7c63f6c6a252393d4a9bdae9bc7187aa2f1ab650c29be0a97e4ee172c72de6"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-balm-with-spf-15\\lip-balm-with-spf-15__02__gallery01.webp",
+    "sha256": "f2ad85d85e3033429da42c15f4f97959131ab4217751951feaf18a08a876238f"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-balm-with-spf-15\\lip-balm-with-spf-15__03__gallery02.webp",
+    "sha256": "f14776aafb7b4f348db3aaa42fe9a6ed0cb37b025ae4acc65f85a2064334a71c"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint\\lip-treatment-peppermint__01__primary.webp",
+    "sha256": "db18cdac73f95275309dc92a1cbec5410c8dcf5512e6aa60a5a40ef2793cd9bd"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint\\lip-treatment-peppermint__02__gallery02.webp",
+    "sha256": "1875007077537e87aa8fc7a35925fbcc7f44b2bcdac043809051146c10f5ed1e"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint\\lip-treatment-peppermint__03__gallery03.webp",
+    "sha256": "634f255517c65c4b3ebff85f26b0a07d02307535fd109ee58cf0d00275665ef4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint\\lip-treatment-peppermint__04__swatch.webp",
+    "sha256": "caf298f54843431a46f7dd031177f8b03f3673fac7ae88175195b9174748568a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint-pomegranate\\lip-treatment-peppermint-pomegranate__01__primary.webp",
+    "sha256": "db18cdac73f95275309dc92a1cbec5410c8dcf5512e6aa60a5a40ef2793cd9bd"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint-pomegranate\\lip-treatment-peppermint-pomegranate__02__gallery02.webp",
+    "sha256": "1875007077537e87aa8fc7a35925fbcc7f44b2bcdac043809051146c10f5ed1e"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint-pomegranate\\lip-treatment-peppermint-pomegranate__03__gallery03.webp",
+    "sha256": "634f255517c65c4b3ebff85f26b0a07d02307535fd109ee58cf0d00275665ef4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-peppermint-pomegranate\\lip-treatment-peppermint-pomegranate__04__swatch.webp",
+    "sha256": "caf298f54843431a46f7dd031177f8b03f3673fac7ae88175195b9174748568a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-pomegranate\\lip-treatment-pomegranate__01__primary.webp",
+    "sha256": "db18cdac73f95275309dc92a1cbec5410c8dcf5512e6aa60a5a40ef2793cd9bd"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-pomegranate\\lip-treatment-pomegranate__02__gallery02.webp",
+    "sha256": "1875007077537e87aa8fc7a35925fbcc7f44b2bcdac043809051146c10f5ed1e"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-pomegranate\\lip-treatment-pomegranate__03__gallery03.webp",
+    "sha256": "634f255517c65c4b3ebff85f26b0a07d02307535fd109ee58cf0d00275665ef4"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\lip-treatment-pomegranate\\lip-treatment-pomegranate__04__swatch.webp",
+    "sha256": "caf298f54843431a46f7dd031177f8b03f3673fac7ae88175195b9174748568a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\mandelic-brightening-serum\\mandelic-brightening-serum__01__primary.webp",
+    "sha256": "5c318cd365d447fe50b6bb580abe7aa695031fdf74e9b26e67c6b82483185a65"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\mandelic-brightening-serum\\mandelic-brightening-serum__02__gallery02.webp",
+    "sha256": "f0b4eb5196e1f703c0a33c6ce19fe39fbde1be7224d159e9d3d976b23b0b5c25"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\mandelic-brightening-serum\\mandelic-brightening-serum__03__swatch.webp",
+    "sha256": "9c06eab63616b6442f98b4444a432f1b438109020dcce62e402dcab7dcdd9c83"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\mint-refining-toner\\mint-refining-toner__01__primary.webp",
+    "sha256": "98a727ca9fcf76f661882d16d290e09db24897e5ffb8786fa4cae38771f46ecf"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\mint-refining-toner\\mint-refining-toner__02__gallery01.webp",
+    "sha256": "f0d2b59bdf63b1cd4fcc50871b4a5dc40fefb0eb8a8626e93f104d749ed3cf17"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\mint-refining-toner\\mint-refining-toner__03__gallery02.webp",
+    "sha256": "a75f6a9e58e6ebd5376bdd0b852eb9c293eb2ee746f9a45e085259c99eec5948"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\peptide-eye-serum\\peptide-eye-serum__01__primary.webp",
+    "sha256": "ce3df16853b7366deafb02e2bfe9686df9baac41b9b65905bcd5755d7aff9cdc"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\peptide-eye-serum\\peptide-eye-serum__02__swatch.webp",
+    "sha256": "2af322c36470b7bc9c3f00366ed942698b83ab58e70df66b87c7a7048f6cfa36"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\peptide-moisturizer\\peptide-moisturizer__01__primary.webp",
+    "sha256": "7d2ecf7ae02cc2d9c1d331dd2adf6f22ede06a6d5988442b09d41754eceb9691"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\peptide-moisturizer\\peptide-moisturizer__02__gallery02.webp",
+    "sha256": "e454650717f289b9df60ec3fc4f35e1e3b8674d97f59bdb16c1778cdd15814fb"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\peptide-moisturizer\\peptide-moisturizer__03__swatch.webp",
+    "sha256": "9ea9f958c7cf4cac0c3deda93080001903c27b5364a60afc918b5098672d103c"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\pomegranate-antioxidant-cleanser\\pomegranate-antioxidant-cleanser__01__primary.webp",
+    "sha256": "e07960155d339d75f78fbe771d5c005f7099286a6c23881c24471d8b0f55961b"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\pomegranate-antioxidant-cleanser\\pomegranate-antioxidant-cleanser__02__gallery03.webp",
+    "sha256": "77e8bdfb31fc4c2ad416bd24675835b1a5cb1f09c2a188188aa713626e75280a"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\pomegranate-antioxidant-cleanser\\pomegranate-antioxidant-cleanser__03__gallery04.webp",
+    "sha256": "8de7e5639083384c6c84fe0b239e301296df280a180e1b9834ca4a4d9b371b76"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\pomegranate-antioxidant-cleanser\\pomegranate-antioxidant-cleanser__04__swatch.webp",
+    "sha256": "641b99bc17cf6e4388223eefa6bacab506135dab3ddd7b175ba68e22f87a3bd0"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-refining-cleanser\\raspberry-refining-cleanser__01__primary.webp",
+    "sha256": "14965376bf5009c1c794c404f3c8ef4f9796a0614c54875039eab4e781a64e32"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-refining-cleanser\\raspberry-refining-cleanser__02__gallery02.webp",
+    "sha256": "1d663b39b7dacad43fa039e0f437204e744d5f2ec9c1112056f6a605e1b91c64"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-refining-cleanser\\raspberry-refining-cleanser__03__gallery03.webp",
+    "sha256": "4aa8ea055ee0ab6243daeaf9fef881fa7d826801fe361217748d0d02a37d1955"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-refining-cleanser\\raspberry-refining-cleanser__04__swatch.webp",
+    "sha256": "2525749f6c26e96773943af8d17d79da1b9dd83b172928d8e3ad1614cef0a9a2"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-refining-cleanser\\raspberry-refining-cleanser__05__pump.webp",
+    "sha256": "bbd04aac3deeff8eeb5dc8aa31954f5c6304ac2fa821a31b5022c0415ba663ba"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-scrub\\raspberry-scrub__01__primary.webp",
+    "sha256": "0d26672f778e5bab7b89f15d24c0f2ca3af5a0282cdbcfb5e7ed32fe29f8054e"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-scrub\\raspberry-scrub__02__gallery02.webp",
+    "sha256": "3f5deba31aeda91aa4e7e2b89568e0a511074eb6304e6c77eab09f19be23c51f"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\raspberry-scrub\\raspberry-scrub__03__swatch.webp",
+    "sha256": "5c1978334a30bc4c52de70590b02f75eeea17612e40bc54bd7cb7f1070b0e1d0"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\retinol-exfoliating-scrub\\retinol-exfoliating-scrub__01__primary.webp",
+    "sha256": "1f699120726f95659f347ce2b17805334ecf0b56d00fdc8968f834710fda8824"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\retinol-exfoliating-scrub\\retinol-exfoliating-scrub__02__gallery02.webp",
+    "sha256": "26000457df75e12283855f999df13c7b1fb21f6bc8fd80d704d97f746880e502"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\retinol-exfoliating-scrub\\retinol-exfoliating-scrub__03__swatch.webp",
+    "sha256": "f9bb8f61271e1d7a02f13b28a53f86b8085527992731dfe2f6c79de62b9c1640"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\revitalizing-cucumber-treatment\\revitalizing-cucumber-treatment__01__primary.webp",
+    "sha256": "9f77614034e1c1581330d56d97659861e8bf63eb6a4fb310439e15be82b403d6"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\revitalizing-cucumber-treatment\\revitalizing-cucumber-treatment__02__gallery02.webp",
+    "sha256": "d507d205e3faf87b2b20dba06622f16cfe3c8ff7d627184cdc7379828583a4ed"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\revitalizing-cucumber-treatment\\revitalizing-cucumber-treatment__03__swatch.webp",
+    "sha256": "8b25df2f89f2436970447f3293c7e9160845086cbeeb50ed5f90ea832314ea05"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\sheer-protection-spf\\sheer-protection-spf__01__primary.webp",
+    "sha256": "b86c8abca475eb1eee0b8f7061f24d2f755e3b40ad77ab84a055091ec07c8777"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\sheer-protection-spf\\sheer-protection-spf__02__gallery03.webp",
+    "sha256": "281c6b7ee078f833b4419ff6d7cd553e7d1b47c4bb4aceb212c30352aeda5b64"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\sheer-protection-spf\\sheer-protection-spf__03__swatch.webp",
+    "sha256": "995615dedcc1c65be21948b836184f5614cf8bd29c12e084244cf7c4d1b80aba"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\tri-peptide-eye-cream\\tri-peptide-eye-cream__01__primary.webp",
+    "sha256": "3fcd993ecb92c32ae0e00c8fe17e0891fa0cd193f6147b3f2429ec45ef79051b"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\tri-peptide-eye-cream\\tri-peptide-eye-cream__02__swatch.webp",
+    "sha256": "92259a33a95b74e7ca61d4c1fb4742b657ff78c7d59eb2c58ddd512eda44e8e9"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\triple-c-serum\\triple-c-serum__01__primary.webp",
+    "sha256": "83d6594a4e228a9127c157e7ba138f08208435aa365724f801edb653b6ba4b87"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\triple-c-serum\\triple-c-serum__02__gallery02.webp",
+    "sha256": "8247b772555f7c9f1b68dbb6541b2a95026cf2d677fd9091372787b65b171540"
+  },
+  {
+    "path": "public\\images\\products\\skin-script\\triple-c-serum\\triple-c-serum__03__swatch.webp",
+    "sha256": "5b808247ea51233a87c331519bbb1a2914665f602db92b06214479dda1e1ae74"
+  },
+  {
+    "path": "tests\\admin-auth.test.mjs",
+    "sha256": "bc6c481c970a6b9d703a80c62a8929f2ff9e10b4068dfdbace5d9ead46cdfd71"
+  },
+  {
+    "path": "tests\\admin-command-center.test.mjs",
+    "sha256": "607407466907fdba153d16267ec76e82e8231872262f72cd16792e789505cc54"
+  },
+  {
+    "path": "tests\\analytics-log.test.mjs",
+    "sha256": "3e94b17621120cd9628860bff016c1f95cd0289394a15613df2bd0d21c0a8e94"
+  },
+  {
+    "path": "tests\\appointment-status.test.mjs",
+    "sha256": "ae420a98ad9a9895c9141ea4e5b59cf4e20e2ef849fc47e73c8989fd850b4824"
+  },
+  {
+    "path": "tests\\availability.test.mjs",
+    "sha256": "bf05e0a3bc872755f0763b371c490071a731e091d525b52725f2ef7907645212"
+  },
+  {
+    "path": "tests\\booking.test.mjs",
+    "sha256": "60ffbe76d3a52aee71f231fdf05270418c38952dc7cf55316cb8fb0dee40f9dc"
+  },
+  {
+    "path": "tests\\catalog-allowlist.test.mjs",
+    "sha256": "0efe1378c1442b8346cea2ac1c75546113f73d7f5ec225886aad657eb51f41da"
+  },
+  {
+    "path": "tests\\catalog-honesty.test.mjs",
+    "sha256": "9d3084a63e38159d004f1d7c562f78cb03ab11d740fa398158ece034e5eced56"
+  },
+  {
+    "path": "tests\\catalog-sync-cron.test.mjs",
+    "sha256": "832fe97f9e7574402696bf310f3a567ea9781b01307fe9c1e2eabb9362a80c16"
+  },
+  {
+    "path": "tests\\catalog-sync.test.mjs",
+    "sha256": "4e8e7a2ba959f104152459b6b3a832d4a5b5042478b6637068d976a208bd4eae"
+  },
+  {
+    "path": "tests\\category-product-carousel.test.mjs",
+    "sha256": "adff45d3723502d03d593cd5bc684e8c074adaa1228a86dccb9c249b181099b4"
+  },
+  {
+    "path": "tests\\checkout-validation.test.mjs",
+    "sha256": "c9125bb96aed8e501f89afa20f388607b5950c32b0de03ea0ae5441748826809"
+  },
+  {
+    "path": "tests\\commerce-failure-injection.test.mjs",
+    "sha256": "28f353e050d9aad3b716bdd41980836c950f6710fe42f90b54d251362c2ad048"
+  },
+  {
+    "path": "tests\\commerce-fulfillment.test.mjs",
+    "sha256": "a98fe43f63fba2030b45b6cd5ad2d06717e83da79ca59855cea18be7738d9579"
+  },
+  {
+    "path": "tests\\consultation-photos.test.mjs",
+    "sha256": "348eb67498f5b96e83095adb7a12ae0dcc92569c8bc68fe8a91a1538e73ee199"
+  },
+  {
+    "path": "tests\\consultation.test.mjs",
+    "sha256": "25b08d6f68362a60d0e117500c874aa0185f7127351e02c90072bcdf756d9b32"
+  },
+  {
+    "path": "tests\\consultations.test.mjs",
+    "sha256": "55a8bae576a4b03766bce0aa48a440c2ff52ea02962eca5112d0bd0c76374983"
+  },
+  {
+    "path": "tests\\csv-import.test.mjs",
+    "sha256": "ea77420f131445d48c4dd2b1907d61d6f85b465ba9f75b4d115fc30a5381d073"
+  },
+  {
+    "path": "tests\\customers.test.mjs",
+    "sha256": "300c7d59c1014cc9d4972442e91e61646a8029964fe4c304cdc0ef58db659da3"
+  },
+  {
+    "path": "tests\\discounts.test.mjs",
+    "sha256": "b6e3071df34b7e2c781bcba1430f891ec9641cce3829bdf6f30155c56494a391"
+  },
+  {
+    "path": "tests\\dropship.test.mjs",
+    "sha256": "dd67955e8b152510f7279e9d07ff0ca067956996681befcd1f9f2ca8a7b8285c"
+  },
+  {
+    "path": "tests\\email-policy.test.mjs",
+    "sha256": "9fa10562b97cc7f89f8c445f4ed1f39eb746a6970ee829d7c669acd0f38002f7"
+  },
+  {
+    "path": "tests\\google-calendar-adapter.test.mjs",
+    "sha256": "0d8da35acbafd138b2c11110f4cd25cb2fbb9450147c3651b8cca763085be195"
+  },
+  {
+    "path": "tests\\home-structure.test.mjs",
+    "sha256": "93ac639648df3251dc76de45f705d96c6d01e4805b392fa4199d403d35c41c56"
+  },
+  {
+    "path": "tests\\journal.test.mjs",
+    "sha256": "9eb569265dbc1f7cdb6628792008b077781b704f046dd421b4207e741ae949bb"
+  },
+  {
+    "path": "tests\\legal-documents.test.mjs",
+    "sha256": "720b103c6581546799ca4afe34d743615cc47bb30acd97e11b8b154ddcd816fe"
+  },
+  {
+    "path": "tests\\manual-fulfillment.test.mjs",
+    "sha256": "bcdacf65fbda3e96a1d20a8d92d8fe91cbeda5184b70eaf2b84aa8ea31ed79be"
+  },
+  {
+    "path": "tests\\membership.test.mjs",
+    "sha256": "5705f3e446910f05d35a7b8ced61bf9083e69b5e822376d8257da991bd15119a"
+  },
+  {
+    "path": "tests\\order-path.test.mjs",
+    "sha256": "d3b61b9a9f47d88dce992e0c38de0b5fe82ae030c329c1f6ffc4282a3ad26e5f"
+  },
+  {
+    "path": "tests\\order-status.test.mjs",
+    "sha256": "8bff79d2d27dfd64b38bec9df82370f876eb5e1587a38847be3524e0773b595c"
+  },
+  {
+    "path": "tests\\pdp-routine-and-filters.test.mjs",
+    "sha256": "885a3a1e22e87b8de8771437317e1771e0d7163d4fa583efffc8f236238af729"
+  },
+  {
+    "path": "tests\\product-admin.test.mjs",
+    "sha256": "0b28c7bdd7ccd17062a33a184744f7808156bbaf89f6fca9b961ad1623453f51"
+  },
+  {
+    "path": "tests\\product-image.test.mjs",
+    "sha256": "9e8370e0dec37160802fe552dbd31d79a93fe531c4f2f8e2db191f567d0c76bf"
+  },
+  {
+    "path": "tests\\product-imagery.test.mjs",
+    "sha256": "dd83c00f1d5245b89b11db3f6b3ed18828ecb44a4e822f7a490203cc9cdf095d"
+  },
+  {
+    "path": "tests\\public-removals.test.mjs",
+    "sha256": "717913020ca07b5fcfebed71b19f3e8d96630d21593fb7e1931e8ee11da3ffa3"
+  },
+  {
+    "path": "tests\\routine-kits.test.mjs",
+    "sha256": "33d91609414e19b6b796fc8d58d5e8ee90159eead37ca63f4398be813eec844e"
+  },
+  {
+    "path": "tests\\routine.test.mjs",
+    "sha256": "f7c0b1f7351fb8e7fe6624e8af508abaaf8d26634dd37dfa902cd647b3755ffb"
+  },
+  {
+    "path": "tests\\rpa-adapter-integration.test.mjs",
+    "sha256": "4ecb7d7bf52bcbe99a45023ed4eb830efe2cbc90f95bcd7921f82123796a1f0c"
+  },
+  {
+    "path": "tests\\search-shop-filters.test.mjs",
+    "sha256": "97bf9e220c58ccad51d9e73b96e22d091c2436e1630827c632a8e186764e9fce"
+  },
+  {
+    "path": "tests\\shipping.test.mjs",
+    "sha256": "562b282d1e3f886b64cf517bdd31a77a887c324e7ccf9c9247c65af920c0046a"
+  },
+  {
+    "path": "tests\\site-polish.test.mjs",
+    "sha256": "cddae2a9d783d12c8764d7bdfcb66942c76007309e7fcd3b7a00993f7ec360ed"
+  },
+  {
+    "path": "tests\\skin-concerns.test.mjs",
+    "sha256": "2a7ba298e649e0cb7e6794636dae6df2de0e164eed2f000f994f57b0986c67ea"
+  },
+  {
+    "path": "tests\\skin-quiz.test.mjs",
+    "sha256": "1515deefdec8d77f4889203dc561aeb5fe58edc36d51f8ad8dc5da349fe25a58"
+  },
+  {
+    "path": "tests\\stripe-commerce-integration.test.mjs",
+    "sha256": "2e76061101b7892e1f01f032322f71aef55896e1197616a92a573dd7cb63a639"
+  },
+  {
+    "path": "tests\\stripe-config.test.mjs",
+    "sha256": "9bc512de3cd992043232df1fb70482656c79f575c240e28384b76141e03af20e"
+  },
+  {
+    "path": "tests\\supplier-portal-urls.test.mjs",
+    "sha256": "981832b245340ccf02fbfec2e287253869b361954c44040e0f112ddf4e8da8bb"
+  },
+  {
+    "path": "tests\\totp.test.mjs",
+    "sha256": "355a6440181facf1390e57d1925d7437628ba314e505a62d7a4e1b97d150e3d5"
+  },
+  {
+    "path": "tests\\helpers\\mock-rpa-server.mjs",
+    "sha256": "f1f5853924c66a6f48f9e35679e4bca808508406498c6a555177302fff579a52"
+  },
+  {
+    "path": "scripts\\apply-official-srp-and-policy.mjs",
+    "sha256": "d074adf4904f2a5089a8f89e5f23e9eb6a2cd5bb01f87c722062f3216efcc598"
+  },
+  {
+    "path": "scripts\\attach-scheduled-handler.mjs",
+    "sha256": "6e5cd5d121f33de2a15d30331cc30446deeb27a217eee7c341e137f4efc07128"
+  },
+  {
+    "path": "scripts\\build-skin-script-image-package.mjs",
+    "sha256": "be4a7850d728386cd361ad45a10b7a7784adc5a47826fb65e38ddcec72b2cd47"
+  },
+  {
+    "path": "scripts\\check-project-continuity.mjs",
+    "sha256": "c9b02ea5014f3a9c14f4abe4b9da7b4d75d0911af6951ec07e8db15bac4c21d5"
+  },
+  {
+    "path": "scripts\\e2e-rpa-live-stack.mjs",
+    "sha256": "2b4ad1eabf8dac3f7f6dabd4472501739b894ee96c597d0d2141af05204dea1a"
+  },
+  {
+    "path": "scripts\\expand-verified-catalog.mjs",
+    "sha256": "f0aa87d1c746028973b7670f89b00948141dbbcf6f8639deaad585adf72eed3d"
+  },
+  {
+    "path": "scripts\\fix-product-alt-text.mjs",
+    "sha256": "f2b36fc0b12a2997688c4077f4eca29457eec093a8bd08d5cbd41f13ed1e66ed"
+  },
+  {
+    "path": "scripts\\install-all-sage-media.mjs",
+    "sha256": "1c4a299389c76af06d3bc7078106763671ae11f6df7b4911813c34278ca2ba07"
+  },
+  {
+    "path": "scripts\\install-sage-storefront-media.mjs",
+    "sha256": "a3b637182c7438565654b0e24fb92eb36cd3c1fc06583bf07213dcd0e4991a20"
+  },
+  {
+    "path": "scripts\\local-release-gate.mjs",
+    "sha256": "7b186b0348c7cad442db5065d69329ae824ce6bc6a1a128a379516b4a120efd1"
+  },
+  {
+    "path": "scripts\\noir_product_imagery.py",
+    "sha256": "d9dc58e335c67e72b556c53ca011dfceb6745e5f1d9b98daea151a989d680c97"
+  },
+  {
+    "path": "scripts\\patch-shipping-tests.mjs",
+    "sha256": "26a73e2827e4cec94389f0d2e36c62eac748f0584e6ab48faf9669213738b951"
+  },
+  {
+    "path": "scripts\\pearl_product_imagery.py",
+    "sha256": "38fe1e9556f3084169197128b701397eab737dd2dc55292c7ede8be98e69c65d"
+  },
+  {
+    "path": "scripts\\qa-services-artifact.mjs",
+    "sha256": "a317d0e838a2ed042e79012eda51a9e3bba1311de04be72b97460fd23181e7ff"
+  },
+  {
+    "path": "scripts\\seed-portal-url-mappings.mjs",
+    "sha256": "cc3ff6bdae79bb035c0eff19e721863fc26f7b08f8aecee7e2195758148927ba"
+  },
+  {
+    "path": "scripts\\seed-supplier-mapping-templates.mjs",
+    "sha256": "6f45882d6b71623f4a9606860be94510e82157958f132e873742ecd9e996044d"
+  },
+  {
+    "path": "scripts\\seed-verified-mappings-d1.mjs",
+    "sha256": "f24588d0d19508d9e80e0880d23ebb9fb7dfe67f843343fcec24fe1fc3ed6671"
+  },
+  {
+    "path": "scripts\\seed-verified-supplier-mappings.mjs",
+    "sha256": "f3f93b7e241f3101a263cf785c951dce40f036cc67097baf2a9dda30b8cda1ed"
+  },
+  {
+    "path": "scripts\\setup-d1-commerce.mjs",
+    "sha256": "1bd32ebee7e5748ae14db336b42f08db5a1e987f2cb340ed2fc74eda19148bb2"
+  },
+  {
+    "path": "scripts\\skin-script-checkout-probe.py",
+    "sha256": "3e4da8baa9c18fba6786f5381174b882cbed72f32dfcacfeb35c2d8fa8dd8a51"
+  },
+  {
+    "path": "scripts\\skin-script-login-verify.py",
+    "sha256": "2868bfa48d5559568c007885187ffb172d856d8c47070b9f12796f220490843f"
+  },
+  {
+    "path": "scripts\\skin-script-portal-recon.py",
+    "sha256": "b996ab77eedfea359a0ad2a83870c6c752ab130a8c60a4d7301c601cf0cac50d"
+  },
+  {
+    "path": "scripts\\smoke-checkout.mjs",
+    "sha256": "9234a03803cc47913677e10c5cdfeba105de44d5734cd19e5c0cb3a3359b0ef5"
+  },
+  {
+    "path": "scripts\\smoke-routes.mjs",
+    "sha256": "40dd1557c64327dc2d71e0f44063428187d946fbcbd225c6ba2f0cf197ef6471"
+  },
+  {
+    "path": "scripts\\stripe-bootstrap.mjs",
+    "sha256": "00b32629f77b8e45e5ff672a84f82e3a59744ad623822bfb0bdfbd2642097e67"
+  },
+  {
+    "path": "scripts\\stripe-sync-product-catalog.mjs",
+    "sha256": "190f109699bbac9b00383ed7a0adc484ebb42e31fda91ef5a9a36d849b0cb046"
+  },
+  {
+    "path": "scripts\\verify-ui.mjs",
+    "sha256": "d8c27f56b9f82aaaf55023f1eda00bf26930fe5ee767fef763fe4b9dceb8c03b"
+  },
+  {
+    "path": "scripts\\_e2e-customer.mjs",
+    "sha256": "45e3c3d44eaf248ed984ded6b9cfd326deec0311fdba56944fe70241f7be1bd2"
+  },
+  {
+    "path": "scripts\\_shot-pearl.mjs",
+    "sha256": "cc9e38fa14a2987316aed8e946f869253d2697f3c552fc969e23ccd87f4b1e86"
+  },
+  {
+    "path": "scripts\\_splice-pearl-layer.mjs",
+    "sha256": "b4cbadac17f3c1673c66bee571856688eb4ad1738a60b2d7052f9edda1cc7cff"
+  },
+  {
+    "path": "docs\\ADMIN_COMMAND_CENTER_ARCHITECTURE.md",
+    "sha256": "5d591de3bfe10f985c0a73df77a6cacb4ea6c599f60eb31542ab1b4203187f74"
+  },
+  {
+    "path": "docs\\ADMIN_COMMAND_CENTER_RUNBOOK.md",
+    "sha256": "c8793ae6d90abe432205206c8acbf15b69599d0a6353853555d72e8b760db009"
+  },
+  {
+    "path": "docs\\AUDIT_2026-09-26_FINDINGS.md",
+    "sha256": "3a4661722229403546269e9808fb771147510ce55fe967cccf627857a4e94336"
+  },
+  {
+    "path": "docs\\CODEX_LEGAL_PDFS_DEPLOY_HANDOFF.md",
+    "sha256": "aed4b34ccee39adeb96a31ff1e5ae341aaba9fc527620a8872da813a4da6aae4"
+  },
+  {
+    "path": "docs\\CODEX_PRODUCTION_DEPLOY_HANDOFF.md",
+    "sha256": "7ebca68937f941864873a7f141b374e62502e68af45b754f0942d0b337651361"
+  },
+  {
+    "path": "docs\\CONTINUATION_2026-09-26_PDP_TIMELINE_AND_FILTERS.md",
+    "sha256": "0b9e13321de6f0c73105104cbefa3a3eff61a7c5fca0faf7f84ac35f4a074ac8"
+  },
+  {
+    "path": "docs\\DEPLOY_DEWTHEORYCO.md",
+    "sha256": "88eacb61dbc5e816d14d46fe106bf6c714eaa495186c43f423a60bb6e3919fc3"
+  },
+  {
+    "path": "docs\\DEW-THEORY-FINAL-CODEX-COMPLETION-PROMPT.md",
+    "sha256": "326094557ec3d5edf2de914ac0f03ce0fb69db6144f87c19d7930873a1bba87b"
+  },
+  {
+    "path": "docs\\DEW-THEORY-STRIPE-WORKER-SECRETS-CODEX-PROMPT.md",
+    "sha256": "3632e1dc08164f65d36d9a73360c6e436763e8dc07451b6b50c6e096ea950d6a"
+  },
+  {
+    "path": "docs\\DROPSHIP_BUILD_REPORT.md",
+    "sha256": "ad2a30abde95b3d4e1c161832b6357b7251cc150b3b212da2342403679653fe1"
+  },
+  {
+    "path": "docs\\EDGE_CACHE.md",
+    "sha256": "15f847a5d777b5f5d9579c5bedfc8cff8f290baf7598a24982a63e3b48b6d62a"
+  },
+  {
+    "path": "docs\\LANDING_HERO_MOTION_2026-08.md",
+    "sha256": "9e139956e4fcaa78a88cd4df53569608b9fb6b2763cd67eab082faadea168463"
+  },
+  {
+    "path": "docs\\MOTION_BACKGROUND.md",
+    "sha256": "d7ad78f0bbc54eaad926fd104d62c39db1eb217b8369923a5f473a4911b51fbd"
+  },
+  {
+    "path": "docs\\OPTIMIZATION_REPORT.md",
+    "sha256": "7beed1a720b34541e9a6e289736b0d63505b96dd5720409f34ab9acb5de03439"
+  },
+  {
+    "path": "docs\\ORDER_PATH.md",
+    "sha256": "b1f8e349f07736b2581bacff99270d6386f03ef596b1c6f60fbe9020948457f6"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-08-16.md",
+    "sha256": "4d00bea1865edd071710306489ef4830dbd5efa7c16bd40c884548199ba48c0e"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-08-25.md",
+    "sha256": "72e86f6f5a98e723112090b887dcedebbc2351e56229a76f2d963f79dacd6b8f"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-08-26-correction.md",
+    "sha256": "4db43def7be354d175f67a20a166c3503902122e78dcddfe383925726768ed70"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-08-26.md",
+    "sha256": "b51e93c377b3943cb50d068ba327908fbb545079b455b52353a338c0a470999b"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-08-29.md",
+    "sha256": "75f2b1046e2439f796b7eb64a94ce1b71757212a1c30fe36e80117a87445ef3f"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-09-26.md",
+    "sha256": "ecb7142acb1af1ed41f78ecce902b43519f488d002a309095aa1af2c7f0a0552"
+  },
+  {
+    "path": "docs\\PRODUCTION_DEPLOY_LOG_2026-09-28.md",
+    "sha256": "ebe886b3aed0dbae3ee4c39508501289eccc7b282bf71c59ffaf29f383bcb8f6"
+  },
+  {
+    "path": "docs\\PRODUCT_IMAGES.md",
+    "sha256": "fb525f7f31b75c49923048dba295f4202eb1364bfeeca6023d56a73828f3256f"
+  },
+  {
+    "path": "docs\\PRODUCT_IMAGE_IMPLEMENTATION_REPORT.md",
+    "sha256": "225ff7612f91f139f6dfe272dc1b77ecd263967fa4869c610f41e66fd8ad6a10"
+  },
+  {
+    "path": "docs\\SEPHORA_INSPIRED_REDESIGN_2026-08.md",
+    "sha256": "2bb647e6242fc1f7412d782f440a417ab6cf5f2d5813b9c3fb198e1f4b32f606"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_RPA_ARCHITECTURE.md",
+    "sha256": "0549a3b4d7766201fcc3041da6ee0e8a94cc21b0eaed22aa6ba7626c147eff2e"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_RPA_DEPLOYMENT.md",
+    "sha256": "3b89a65dcb7f370fda330941ebd39682efb9a0ff1fd723674e3788b0d122469f"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_RPA_RUNBOOK.md",
+    "sha256": "7233c60950e79f05881afb15f8e6a07f47038c08995401ed21d86c88b613aab0"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_RPA_SECURITY.md",
+    "sha256": "2cf1792ed98435a245312c28ab6366b5cc76496c534171103fd66dc6652cfbe4"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_RPA_TESTING.md",
+    "sha256": "405d240d600d6516997b2c7220e79fc4bd91d51cc9420e401a4e132956f88f56"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_RPA_TROUBLESHOOTING.md",
+    "sha256": "25d701e1d3a6bead70b8512bbcfb6b33ab88d7f4a105d89a53d749d4b17cf4ca"
+  },
+  {
+    "path": "docs\\SKIN_SCRIPT_SYNC.md",
+    "sha256": "2b44da70b10d100c50b745bded461b0a6b2407c8aba02fd37bf42441b8380935"
+  },
+  {
+    "path": "docs\\STRIPE.md",
+    "sha256": "3d7821fa2304ef31c7c2ad063f2500c6fc7007414ce081985b89ebf4d7e2d442"
+  },
+  {
+    "path": "docs\\decisions\\ADR-001-SKIN-SCRIPT-RPA.md",
+    "sha256": "190fe7b6a056de65468493b25c8634b475cb9dbf221b99a091d138078086c858"
+  },
+  {
+    "path": "docs\\deploy\\ADMIN_COMMAND_CENTER_DEPLOYMENT_LOG.md",
+    "sha256": "83d64273410e017551e8121850f03f7d24a65506da9bfaaa1c47a12d5bb41537"
+  },
+  {
+    "path": "docs\\deploy\\SKIN_SCRIPT_IMAGE_DEPLOYMENT_LOG_2026-09-29.md",
+    "sha256": "5e952433c874af3f6e298d96c06ba3e823c16b2a9594abd93dff527a2fb2136f"
+  },
+  {
+    "path": "docs\\deploy\\SKIN_SCRIPT_RPA_DEPLOYMENT_LOG.md",
+    "sha256": "dafb2cd4dc225fb5dab3d120f139d4d57a8f80ca0c1070d90d013cd38ca974ce"
+  },
+  {
+    "path": "docs\\deploy\\SKIN_SCRIPT_RPA_GO_LIVE.md",
+    "sha256": "8571804a74f9623ee30dbb37f16952c715dbf3fa6e53fdf560c7d5d376b3d7e0"
+  },
+  {
+    "path": "docs\\implementation\\DEW_THEORY_ADMIN_COMMAND_CENTER_IMPLEMENTATION_LOG.md",
+    "sha256": "f71bca9b12f92298af9d5db2e94e651464652d49d31a7e8c14a3a7ed47aabb86"
+  },
+  {
+    "path": "docs\\implementation\\SKIN_SCRIPT_AUTONOMOUS_CATALOG_LOG_2026-09-29.md",
+    "sha256": "6ec67aaaefa3ddf6388684a15a0d398db4a65b7e95f3ec76f6aa116a89bac4be"
+  },
+  {
+    "path": "docs\\implementation\\SKIN_SCRIPT_RPA_IMPLEMENTATION_LOG.md",
+    "sha256": "631ae74c5f07cedf8b1514e91abe8817b3b1aafa6d4090fecd97d2ba37e13590"
+  },
+  {
+    "path": "docs\\implementation\\STRIPE_WIRE_IMPLEMENTATION_LOG.md",
+    "sha256": "e51e9367d22b8d5ff98ef2b71eac404a279beebbd9a07c007b23a88e9ce9d9a1"
+  },
+  {
+    "path": "docs\\implementation\\SUPERGROK_EXECUTION_LOG.md",
+    "sha256": "2196f89d0e7eeac70b3958228c85b3bc932a13ffa6c9401c637c9b134740a9d8"
+  },
+  {
+    "path": "docs\\implementation\\SUPERGROK_FINAL_REPORT.md",
+    "sha256": "fd43006e6b1f020586c8b60705dece23f597a7b8918085ee020ae16da26f5a82"
+  },
+  {
+    "path": "docs\\lighthouse\\home.report.html",
+    "sha256": "ddc2d4aad0e1c63faa362aa920e132b13c6fa629b988af8f35f3b2941521283a"
+  },
+  {
+    "path": "docs\\lighthouse\\home.report.json",
+    "sha256": "0257327c889b57fcaffa87b8914e8a16d88517d7fb28c199c18e9f382e271de6"
+  },
+  {
+    "path": "docs\\lighthouse\\pdp.report.html",
+    "sha256": "f20ebf4678c08d232bc294515868142a8c6eec7ee19bf25dd23bab4ce7a56c0b"
+  },
+  {
+    "path": "docs\\lighthouse\\pdp.report.json",
+    "sha256": "f2526244784f0c389c5c67dda9ba6a37e5924105eb4999a849f90c8b0ec06145"
+  },
+  {
+    "path": "docs\\lighthouse\\shop.report.html",
+    "sha256": "b106783ff46f4d0880fb54ce48529d28ded1326944c952e9df0882294521145c"
+  },
+  {
+    "path": "docs\\lighthouse\\shop.report.json",
+    "sha256": "bd1b1d915d5dd923e27d5cc0ba6eacce0fed8d3f811223176ff72ecb5819206d"
+  },
+  {
+    "path": "docs\\memory\\ACTIVE_WORK.md",
+    "sha256": "0ce48e53546e7f695a4738ebc4ac1fafead0f172ad776a8ec63387680c68e885"
+  },
+  {
+    "path": "docs\\memory\\README.md",
+    "sha256": "92b9907db5905e5a88df2b32ac65bc3c96252129af57e0779612c80a1a9c7726"
+  },
+  {
+    "path": "docs\\qa\\services-after-1440x900.png",
+    "sha256": "9b9476e102f19864fd25d63a3dc0c7a80d28f4d9cbb8221df7d53acfbe3750a6"
+  },
+  {
+    "path": "docs\\qa\\services-after-375x812.png",
+    "sha256": "0f692558a6ec73dfcda67fe3aaf274504b7ee49f49fa9f8c116c5e2971eedc66"
+  },
+  {
+    "path": "docs\\qa\\services-after-390x844.png",
+    "sha256": "dec12e530fa34a0bcc5ceee222153371dafe929300dc9422f295a762f35855d0"
+  },
+  {
+    "path": "docs\\qa\\services-after-393x852.png",
+    "sha256": "a566c92778c64c68a09cec6e38005fb0e49b680112d65e58b7e4dbebae887c34"
+  },
+  {
+    "path": "docs\\qa\\services-after-430x932.png",
+    "sha256": "d20c03d7e0209a10d3eeb12e94ab6ed7840220937befae9e061f5e81243eeb0b"
+  },
+  {
+    "path": "docs\\qa\\services-after-first-card-390x844.png",
+    "sha256": "b3557f487e9c8844662508892d9c6311e4552b776f57b446e264c984088e6204"
+  },
+  {
+    "path": "docs\\qa\\services-after-list-390x844.png",
+    "sha256": "71cfeb4332811fb8ea588732410f2acd2ef66338f6dff3dedcbc46bdf1054526"
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "293a2165f8b11d5b345b1f216d3b4c4823ebe3093c2bc459ae24df9f4dfd96a6"
+  },
+  {
+    "path": "AGENTS.md",
+    "sha256": "ec911cc2c8bba6d8156fb7480fceb803b62626b79ee75dd5460de4fc417d49d9"
+  },
+  {
+    "path": "AI_PROJECT_INSTRUCTIONS.md",
+    "sha256": "81fd64806ecfa0f6a916a2ba0db4fc6c8f75344fd499ad53057edbf8261ff438"
+  },
+  {
+    "path": "DEPENDENCY_AUDIT.md",
+    "sha256": "bfbb22b3ad3faa26e09721e293b4d89feb8287a56f8153156beb4f31ecf6b6e4"
+  },
+  {
+    "path": "DEW-THEORY-CODEX-DEEPSEEK-REMAINING-WORK-PROMPT.md",
+    "sha256": "f78e7073a0b73e01ce09be78bfe1df61e721561f362ed429ee07710e62db2bed"
+  },
+  {
+    "path": "DEW-THEORY-CODEX-PRODUCTION-DEPLOYMENT-HANDOFF.md",
+    "sha256": "76cd739760c381bea1155ba8e67b1f006598c6fe9fe2f9a0295d00a5762d4c57"
+  },
+  {
+    "path": "DEW-THEORY-CURRENT-STATUS.md",
+    "sha256": "c58f70018c85ce701661c2c9eb98479ea4831c8863870d4cc87184540899891b"
+  },
+  {
+    "path": "DEW-THEORY-CURSOR-TO-CODEX-HANDOFF.md",
+    "sha256": "16eab937566b8e1d2972cfccce1f9211c1ca2f2c094dd6337c304ba8453b0522"
+  },
+  {
+    "path": "DEW_THEORY_AUTONOMOUS_BUILD_LOOP.md",
+    "sha256": "083eb7590a79c2b3fe04f1cd3861254b0161b6a5674dc32b2a436bf87ebe2d17"
+  },
+  {
+    "path": "DEW_THEORY_BUILD_PROMPT.md",
+    "sha256": "930e1f8f466ba35cd73d165e499f89485d305ec57fb15632a22a15febe78e983"
+  },
+  {
+    "path": "DEW_THEORY_BUILD_PROMPT_ADDENDUM.md",
+    "sha256": "21c01d81ef6af1cfa1a8f70a6aa36014dcf80ecf1473f36c35c88da6d9bdfe84"
+  },
+  {
+    "path": "DEW_THEORY_LOCAL_ORCHESTRATION.md",
+    "sha256": "a514e997e006b4a25731e97dc18c58ca98fff6d6612e5fe12158348087eeccd7"
+  },
+  {
+    "path": "DEW_THEORY_LOOP_PROMPT.md",
+    "sha256": "e822aa6eb882a6a179c65c898dbc502de3ae35e329b2a8b2bbbdba187ff7899a"
+  },
+  {
+    "path": "DEW_THEORY_OVERNIGHT_POLISH_LOOP.md",
+    "sha256": "f7f185524347bc528d03b450aad9e546fea45ecee9f5c4411ba6a863288ee89a"
+  },
+  {
+    "path": "ENV.md",
+    "sha256": "b17ecd6b7249cc681812afbf8016224f3ad40b033fc35190d7b26f71e8bf5d08"
+  },
+  {
+    "path": "jsconfig.json",
+    "sha256": "6f91e33bf35fd4a4132e4d9428bed848df6eef73ec2586fd6abe2c0c50ed7c78"
+  },
+  {
+    "path": "middleware.js",
+    "sha256": "37b5f225311391508a25ab5cc779fb56e3eaa45715adbad0607c7b91b62eb23f"
+  },
+  {
+    "path": "next.config.mjs",
+    "sha256": "f53dfd4fc50b4aef6a306cebdecf7d84f3ae1d54c1ad822ae7291041bb77a41e"
+  },
+  {
+    "path": "open-next.config.ts",
+    "sha256": "b59454f7e9ab82df19ee9c7f693ab51e57585a29cb2a3c9710eef1209c924cd4"
+  },
+  {
+    "path": "OPEN_ITEMS.md",
+    "sha256": "9ae9bd4dbeb272c1253e5548eae6e3dc162bb5ea766c9e6fc0705c2cda308520"
+  },
+  {
+    "path": "package-lock.json",
+    "sha256": "54cac5a05f2870ba4ce239ed9d7efa545a3012f41ce73b240a5eaf89805effc2"
+  },
+  {
+    "path": "package.json",
+    "sha256": "a1d2ec3862fd285c041f0f201f5043e1a36ed57ca675079185770e625073f5d0"
+  },
+  {
+    "path": "POLISH_PROGRESS.md",
+    "sha256": "6bb33b57f9a336085f82bc7a7fe8e4739018f57ab96d22338c18f8d768bb4f0b"
+  },
+  {
+    "path": "POLISH_REPORT.md",
+    "sha256": "84d0f4f910e36ff3fae003e2d052fc2e3b54c733904110d546d9c8443f3d403b"
+  },
+  {
+    "path": "postcss.config.mjs",
+    "sha256": "66b7f2e4108d42359ecc183c1efb8cead02ea91817024011d11b3c8216382223"
+  },
+  {
+    "path": "README.md",
+    "sha256": "6bd8bf9d673e5551dab86e5542f9f51c4d12cbd44e9f49cd48024daaa8379a23"
+  },
+  {
+    "path": "tailwind.config.js",
+    "sha256": "8a03d108f1838fa19383c8ca861fc6dd3507fad2393af76ca468403452b75281"
+  },
+  {
+    "path": "wrangler.jsonc",
+    "sha256": "c6fc6906b1689330ecc354af2d2300dfc2f0e22ce78bee1d49b175f3b9b8f3e7"
+  }
+]

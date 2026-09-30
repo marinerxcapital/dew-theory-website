@@ -259,3 +259,77 @@ polish pass **D5** — elevated and minimal, not salesy. **Facts below remain un
 - Newly added storefront products use portal-verified wholesale x 2 retail with retail_price_confirmed=false until Emily approves.
 - Ageless Lip Treatment remains one product (Peppermint/Pomegranate variants); Lip Balm with SPF 15 is a separate verified SKU.
 - AUTO_FULFILL remains false; RPA live order remains owner-gated.
+
+## 2026-09-21 zero-touch notes
+
+- Official SRP now authoritative for customer prices (August 2026 list).
+- Shipping is $12 under $49 per Skin Script drop-ship policy.
+- Ageless Lip Treatment split into Peppermint/Pomegranate SKUs per official SRP.
+- Stripe Product/Price sync script exists but requires STRIPE_SECRET_KEY_TEST/LIVE in local env (BLOCKED_EXTERNAL until provided).
+- Temporary release model: local Git + verified bundles + local release gate + Cloudflare direct deploy.
+
+## 2026-09-29 — Skin Script image deployment blockers (control package)
+
+Control package: `Desktop\DewTheory_SkinScript_CODEX_ALL_IN_ONE_PARTIAL.zip` (43 approved PNGs,
+252 source rows, 209 missing/unapproved, 87 canonical SKU groups). Prep complete in
+`work\skinscript-image-deployment-20260929\`; deployment BLOCKED by package gates. Full log:
+`docs/deploy/SKIN_SCRIPT_IMAGE_DEPLOYMENT_LOG_2026-09-29.md`.
+
+- **BLOCKED — 209 missing approved PNGs.** Sources 1–70 and 114–252 must be supplied as approved
+  finals with source/QA provenance. Generation/regeneration not authorized. The 2026-09-29 morning
+  session's 252-PNG catalog (`work\dewtheory-codex-package-20260928\...\output\final_catalog`)
+  is session-generated and NOT approved by the control package — do not deploy.
+- **BLOCKED — 76 of 87 canonical SKU groups are not sold by the storefront.** The approved enzyme /
+  pro-kit / training-manual imagery (Sources 71–102) has no site product to bind to. Owner decision
+  needed: should the storefront ever sell these SKUs?
+- **BLOCKED — 39 of 43 approved images lack a proven site binding.** 32 belong to unsold products;
+  7 are alternate-size/sample views (2 oz / 16 oz / sample toners, .25 oz SPF sample) with no
+  sellable variant record on the site.
+- **BLOCKED — Source 82** (single Golden Honey Nourishing Mask jar inside Lemon Honey kit folder):
+  no evidenced kit/standalone relationship exists (neither 3010108 nor 2110300 is sold).
+- **BLOCKED — Source 94** (Pomegranate Enzyme label printed 8 fl oz / 120 ml): no site-side size
+  reconciliation possible; label must not be corrected.
+- **BLOCKED — Sources 72/75** (Desert Collection kit): size_verified not recorded in the control
+  manifest.
+- **Decision needed at release — dimension translation.** Approved PNGs are 1536×2048 (3:4); the
+  serving architecture is 832×1232 (52:77). A no-crop aspect/container strategy (or an approved
+  resizing directive) must be chosen; no re-encoding authorized by the current package.
+- **Not run (release-only) —** card/PDP enumeration, desktop/mobile visual QA, storefront-flow
+  regression, obsolete-reference/cache audit. A partial catalog must not be published; these run
+  when approved coverage is complete.
+
+## 2026-09-29 (eve) — supply response applied; blockers unchanged
+
+ChatGPT supply package received and verified (D7 fulfilled: 43 approved finals + updated
+88,696-byte ledger; catalog byte-identical to prior control). No new approved images for the
+209 missing sources. Decision register status after this session:
+
+- **D1** catalog expansion: OPEN_BUSINESS_DECISION (operating rule: stage, don't create products).
+- **D2** aspect: IMPLEMENTATION_DIRECTIVE_NO_CROP — prepared, NOT applied
+  (`work\skinscript-image-deployment-20260929\D2_NO_CROP_STAGED_PATCH.md`). Applies at release.
+- **D3** alt sizes/samples: OPEN_MERCHANDISING_DECISION (104-106, 108-110, 113 stay staged).
+- **D4** Source 82: OPEN_SUPPLIER_RECONCILIATION (parent SKU 3010108 retained).
+- **D5** Source 94: OPEN_SUPPLIER_RECONCILIATION (printed 8 fl oz / 120 ml preserved).
+- **D6** Sources 72/75: OPEN_SIZE_VERIFICATION (visual approval retained; size NOT_VERIFIED).
+- **D7** later ChatGPT outputs: SUPPLIED_43_APPROVED_FINALS.
+
+Gate remains exit 2 / BLOCKED: 209 missing approved PNGs (Sources 1-70, 114-252 — supply
+required, never generated), 72/75 size evidence, 248 unproven source bindings (only 103, 107,
+111, 112 verified), and five release-only validation gates NOT_RUN.
+
+## September 2026 — Green system revamp
+
+Authoritative active colors live in app/globals.css (dt-green 50, 100, 200, 300, 400, 700, 900); Tailwind reads their RGB channels. Page 100; raised cards and photos 50; bands 100/200; panels 300; body 900; controls and links 700. Strong decorative borders 400, input boundaries 700 for AA. Hairline uses green 900 at 14%; green shadows 6–12%; frosted surfaces 50 at 68%; radius 10/16/24/pill; 2px green-700 focus with green-50 offset.
+
+Use the single root Nav, announcement and four-column Footer on every route, including shop and admin; admin keeps its authenticated owner navigation inside the shared shell. Tagline Clinical · Precise · Personal. Consultation nav points to /virtual-consultation; /consultation permanently redirects. Shared ProductCard, MeetEmily, button/chip/form roles and loading/error components must remain shared.
+
+Typography: next/font Fraunces variable SOFT 100 for display/product names; Figtree for UI/body/tabular prices; Newsreader for journal prose only. Roman preload; swap. US English. Respect reduced motion; continuous loaded-image animation is avoided, glass hover interaction retained.
+
+Never fabricate reviews, ratings, medical claims, stock people, awards or results. Preserve product names, IDs/slugs, prices, stock, ingredient facts, shipping ($12 below $49 product subtotal), Stripe/checkout/secrets/webhooks. Do not rewrite legal/policy wording or PDFs. Existing missing manufacturer facts remain empty. Sizes normalize oz without trailing period or duplicates; no size is invented. Alt: Skin Script [Name] product photo. Image cache revision green-20260929; original product artwork and logo originals unchanged. Staged catalog artwork is excluded from this release.
+
+Worktree C:\Users\Skyler B. Brown\Desktop\dew-theory-codex; branch revamp/green-system. A DeepSeek V4 Pro session was active in the canonical main source. Never edit/clean/install/kill processes there. Local Git objects live on C using scripts/git-green.ps1 because D is full. Main serving source: Desktop\DewTheory\working\dew-theory-wt-zero-touch, with orphaned Git metadata; old valid Git hub is D:\OffloadedProjects\dew-theory and has dirty work. Preserve both. Hash manifest and concurrency comparisons are in docs/revamp. Route list: docs/revamp/routes.json, including 35 visible products, 7 concern details, 4 journal articles, protected/post-checkout states and intentional 404.
+
+Deployment path: Cloudflare Worker dew-theory via OpenNext/Wrangler. Verified rollback Worker version 2815c88a-6d37-4ead-b0e6-c6bbde9da72f (100%, 2026-09-28T21:03:41Z). Do not deploy a missing-image build or a stale source over concurrent work. Verify 115 catalog references in final .open-next/assets; read back active version after deployment. Roll back to the recorded version if production fails. No environment/secrets changes are part of the revamp. Latest resume authorizes the specifically listed branch/PR/main release actions; do not add unrelated GitHub work.
+
+Open owner items: Shipping operations wording; Returns placeholders; Acai Berry manufacturer description hidden until supplied; consultation price display; hello@dewtheory.studio versus dewtheoryco.com; 27 records lack supplied concern/active content; authentic Stripe test-account handoff is unavailable without test credentials. Authenticated admin production content needs appropriate access. Cart drawer and cookie banner are absent from canonical source; do not invent consent/legal behavior. Consult resume-state.md and executed reports for current gates; unfinished tests are not passing evidence.
+

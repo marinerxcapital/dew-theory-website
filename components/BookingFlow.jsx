@@ -208,7 +208,7 @@ export default function BookingFlow({
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-6 max-w-lg font-body text-base font-light leading-relaxed text-charcoal"
         >
           <strong className="font-normal text-graphite">{service?.name}</strong>
           {slot && (
@@ -239,7 +239,7 @@ export default function BookingFlow({
           data-reveal
           className="mt-8 max-w-lg space-y-3 border border-chrome/20 bg-pearl/40 p-5"
         >
-          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
               Prep · 1
             </span>
@@ -247,7 +247,7 @@ export default function BookingFlow({
               Arrive with a clean face when possible — skip heavy makeup the morning of.
             </span>
           </li>
-          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
               Prep · 2
             </span>
@@ -256,7 +256,7 @@ export default function BookingFlow({
               adjust the plan.
             </span>
           </li>
-          <li className="font-body text-sm font-light leading-relaxed text-charcoal/75">
+          <li className="font-body text-sm font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.58rem] uppercase tracking-lockup text-chrome">
               Prep · 3
             </span>
@@ -269,7 +269,7 @@ export default function BookingFlow({
         <div data-reveal className="mt-10 flex flex-wrap gap-4">
           <Link
             href="/shop"
-            className="sweep border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl"
+            className="sweep border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink"
           >
             Start a home routine
           </Link>
@@ -302,7 +302,7 @@ export default function BookingFlow({
         </h1>
         <p
           data-reveal
-          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75"
+          className="mt-6 max-w-xl font-body text-base font-light leading-relaxed text-charcoal"
         >
           Service, then time, then your details. Times come from the availability adapter
           (mock schedule until Google Calendar credentials are connected).
@@ -318,7 +318,7 @@ export default function BookingFlow({
           <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
             Link not recognized
           </p>
-          <p className="mt-2 font-body text-sm font-light text-charcoal/75">
+          <p className="mt-2 font-body text-sm font-light text-charcoal">
             That service link was not recognized. Choose from the menu below.
           </p>
           <button
@@ -348,7 +348,7 @@ export default function BookingFlow({
                   right={formatServicePrice(s.price)}
                   className="mt-4"
                 />
-                <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/70">
+                <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal">
                   {s.note}
                 </p>
               </button>
@@ -371,7 +371,7 @@ export default function BookingFlow({
             ← Change service
           </button>
           <p className="mt-4 font-display text-2xl font-normal text-graphite">{service.name}</p>
-          <p className="mt-2 font-body text-sm font-light text-charcoal/60">
+          <p className="mt-2 font-body text-sm font-light text-charcoal">
             {formatDuration(service.duration_minutes)} · {formatServicePrice(service.price)}
           </p>
 
@@ -384,7 +384,7 @@ export default function BookingFlow({
               <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
                 Availability
               </p>
-              <p className="mt-2 font-body text-sm font-light text-charcoal/70">
+              <p className="mt-2 font-body text-sm font-light text-charcoal">
                 Loading open times…
               </p>
             </div>
@@ -393,7 +393,7 @@ export default function BookingFlow({
               <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
                 Times unavailable
               </p>
-              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/75">
+              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal">
                 We couldn&apos;t load open slots right now. Retry, or write us on the contact form
                 with your preferred times.
               </p>
@@ -401,7 +401,7 @@ export default function BookingFlow({
                 <button
                   type="button"
                   onClick={retrySlots}
-                  className="sweep border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl"
+                  className="sweep border border-graphite bg-green-300 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink"
                 >
                   Retry times
                 </button>
@@ -418,7 +418,7 @@ export default function BookingFlow({
               <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
                 No open slots
               </p>
-              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/75">
+              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal">
                 Nothing open in the next two weeks for this service. Try another treatment, or
                 message the studio with dates that work for you.
               </p>
@@ -429,7 +429,7 @@ export default function BookingFlow({
                     setStep(1);
                     setSlot(null);
                   }}
-                  className="sweep border border-graphite bg-graphite px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-pearl"
+                  className="sweep border border-graphite bg-green-300 px-6 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup text-ink"
                 >
                   Other services
                 </button>
@@ -447,7 +447,7 @@ export default function BookingFlow({
                 <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
                   Source · {slotSource}
                 </p>
-                <p className="font-body text-xs font-light text-charcoal/55">
+                <p className="font-body text-xs font-light text-charcoal">
                   Double-book guarded at confirm — taken slots are rejected even if still shown.
                 </p>
               </div>
@@ -471,7 +471,7 @@ export default function BookingFlow({
                           aria-pressed={active}
                           className={`min-h-[44px] border px-4 py-3 font-label text-[0.66rem] font-light uppercase tracking-lockup transition-colors ${
                             active
-                              ? 'border-graphite bg-graphite text-pearl'
+                              ? 'border-graphite bg-green-300 text-ink'
                               : 'border-graphite/25 text-charcoal hover:border-graphite/60'
                           }`}
                         >
@@ -489,7 +489,7 @@ export default function BookingFlow({
             type="button"
             disabled={!slot || slotsLoading || slotsLoadFailed}
             onClick={() => setStep(3)}
-            className="sweep mt-12 min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:opacity-40"
+            className="sweep mt-12 min-h-[48px] border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink disabled:opacity-40"
           >
             Continue
           </button>
@@ -512,7 +512,7 @@ export default function BookingFlow({
           >
             ← Change time
           </button>
-          <p className="font-body text-sm font-light text-charcoal/75">
+          <p className="font-body text-sm font-light text-charcoal">
             {service.name} ·{' '}
             {new Date(slot).toLocaleString('en-US', {
               weekday: 'short',
@@ -554,7 +554,7 @@ export default function BookingFlow({
             <p className="font-label text-[0.62rem] font-light uppercase tracking-lockup text-chrome">
               Deposit &amp; cancellation
             </p>
-            <p className="mt-3 font-body text-xs font-light leading-relaxed text-charcoal/70">
+            <p className="mt-3 font-body text-xs font-light leading-relaxed text-charcoal">
               A deposit may apply when Emily publishes the policy. Percentage and cancellation
               cutoff are not set yet — no amount is charged at booking in this build. Review the
               booking and aesthetic policies below before confirming.
@@ -566,7 +566,7 @@ export default function BookingFlow({
             />
           </div>
 
-          <p className="font-body text-xs font-light leading-relaxed text-charcoal/55">
+          <p className="font-body text-xs font-light leading-relaxed text-charcoal">
             Slot uniqueness is checked when you confirm (double-book guarded in store). Google
             Calendar live sync is separate and only active once credentials are connected.
           </p>
@@ -577,7 +577,7 @@ export default function BookingFlow({
                 Booking issue
                 {errorCode ? ` · ${errorCode}` : ''}
               </p>
-              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/80">
+              <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal">
                 {error}
               </p>
               {(errorCode === 'slot_taken' || errorCode === '409') && (
@@ -602,7 +602,7 @@ export default function BookingFlow({
           <button
             type="submit"
             disabled={status === 'loading' || submitting.current}
-            className="sweep w-full min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            className="sweep w-full min-h-[48px] border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
             {status === 'loading' ? 'Confirming…' : 'Confirm booking'}
           </button>

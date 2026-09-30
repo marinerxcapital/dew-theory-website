@@ -120,7 +120,7 @@ export default function SkinQuiz({ catalog = [] }) {
               role="option"
               aria-selected={selected}
               onClick={() => select(opt.value)}
-              className={`group flex min-h-[72px] w-full flex-col items-start rounded-[3px] border px-5 py-5 text-left transition-all duration-300 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6 ${
+              className={`group flex min-h-[72px] w-full flex-col items-start rounded-card border px-5 py-5 text-left transition-all duration-300 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6 ${
                 selected
                   ? 'border-dew bg-dew text-white shadow-card'
                   : 'border-border bg-white text-ink shadow-card hover:-translate-y-0.5 hover:border-dew/50 hover:shadow-card-hover'
@@ -159,7 +159,7 @@ export default function SkinQuiz({ catalog = [] }) {
           type="button"
           onClick={back}
           disabled={step === 0}
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink/70 transition-colors hover:text-ink disabled:opacity-30"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink transition-colors hover:text-ink disabled:opacity-30"
         >
           ← Back
         </button>
@@ -182,7 +182,7 @@ function QuizResults({ result, onRestart }) {
       <h2 className="mt-5 font-display text-[clamp(2rem,5vw,3.1rem)] font-normal leading-[1.1] text-ink">
         {result.headline}
       </h2>
-      <p className="mt-5 max-w-2xl font-body text-base font-normal leading-relaxed text-ink/80 sm:text-[1.05rem]">
+      <p className="mt-5 max-w-2xl font-body text-base font-normal leading-relaxed text-ink sm:text-[1.05rem]">
         {result.emilyNote}
       </p>
 
@@ -191,7 +191,7 @@ function QuizResults({ result, onRestart }) {
           {result.notes?.map((n) => (
             <p
               key={n}
-              className="dew-panel rounded-[3px] px-5 py-4 font-body text-sm font-normal leading-relaxed text-ink/80"
+              className="dew-panel rounded-card px-5 py-4 font-body text-sm font-normal leading-relaxed text-ink"
             >
               {n}
             </p>
@@ -199,7 +199,7 @@ function QuizResults({ result, onRestart }) {
           {result.cautions?.map((n) => (
             <p
               key={n}
-              className="rounded-[3px] border border-promo/25 bg-promo/5 px-5 py-4 font-body text-sm font-normal leading-relaxed text-ink/85"
+              className="rounded-card border border-promo/25 bg-promo/5 px-5 py-4 font-body text-sm font-normal leading-relaxed text-ink"
             >
               {n}
             </p>
@@ -213,7 +213,7 @@ function QuizResults({ result, onRestart }) {
         <RoutineColumn title="Weekly ritual" eyebrow="1–2× per week" products={result.weekly} />
       )}
 
-      <div className="mt-12 flex flex-col gap-6 rounded-[3px] border border-border bg-white p-8 shadow-card sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-12 flex flex-col gap-6 rounded-card border border-border bg-white p-8 shadow-card sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-label text-[0.62rem] font-normal uppercase tracking-lockup text-muted">
             Full routine · retail
@@ -250,12 +250,12 @@ function QuizResults({ result, onRestart }) {
         <button
           type="button"
           onClick={onRestart}
-          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink/70 hover:text-ink"
+          className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-ink hover:text-ink"
         >
           Retake quiz
         </button>
         <Link
-          href={`/quiz?r=${encodeURIComponent(shareCode)}`}
+          href={`/skin-quiz?r=${encodeURIComponent(shareCode)}`}
           className="font-label text-[0.68rem] font-normal uppercase tracking-lockup text-muted hover:text-ink"
         >
           Result code: {shareCode}
@@ -278,9 +278,9 @@ function RoutineColumn({ title, eyebrow, products }) {
           <li key={p.id}>
             <Link
               href={`/shop/${p.id}`}
-              className="group flex gap-4 rounded-[3px] border border-border bg-white p-4 transition-shadow hover:shadow-card-hover sm:gap-5 sm:p-5"
+              className="group flex gap-4 rounded-card border border-border bg-white p-4 transition-shadow hover:shadow-card-hover sm:gap-5 sm:p-5"
             >
-              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-[2px] bg-surface-light sm:h-28 sm:w-20">
+              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-card bg-surface-light sm:h-28 sm:w-20">
                 <ProductImage
                   product={p}
                   sizes="80px"
@@ -292,7 +292,7 @@ function RoutineColumn({ title, eyebrow, products }) {
                 <p className="font-label text-[0.58rem] font-normal uppercase tracking-lockup text-muted">
                   Step {i + 1} · {p.category}
                 </p>
-                <p className="mt-1 font-display text-lg font-normal text-ink group-hover:text-ink/80 sm:text-xl">
+                <p className="mt-1 font-display text-lg font-normal text-ink group-hover:text-ink sm:text-xl">
                   {p.name}
                 </p>
                 <p className="mt-1 line-clamp-2 font-body text-sm font-normal text-muted">

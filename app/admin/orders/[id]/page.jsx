@@ -116,7 +116,7 @@ export default async function AdminOrderDetailPage({ params }) {
               </li>
             ))}
           </ul>
-          <dl className="mt-6 space-y-2 text-sm text-forest/80">
+          <dl className="mt-6 space-y-2 text-sm text-forest">
             <div className="flex justify-between">
               <dt>Subtotal</dt>
               <dd>{formatMoney(order.subtotal)}</dd>

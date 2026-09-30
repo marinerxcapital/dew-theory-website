@@ -1,0 +1,20 @@
+[
+  {
+    "name": "NEXT_PUBLIC_SITE_URL",
+    "present": true,
+    "equal": true,
+    "type": "plain_text"
+  },
+  {
+    "name": "SKIN_SCRIPT_MODE",
+    "present": true,
+    "equal": true,
+    "type": "plain_text"
+  },
+  {
+    "name": "AUTO_FULFILL",
+    "present": true,
+    "equal": true,
+    "type": "plain_text"
+  }
+]

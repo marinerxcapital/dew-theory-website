@@ -35,7 +35,7 @@ export default function MembershipInterestForm() {
 
   if (status === 'done') {
     return (
-      <p className="mt-6 font-body text-sm font-light text-charcoal/75" role="status">
+      <p className="mt-6 font-body text-sm font-light text-charcoal" role="status">
         Interest recorded. We will reach out when Emily publishes membership terms — nothing was
         charged.
       </p>
@@ -76,7 +76,7 @@ export default function MembershipInterestForm() {
         />
       </div>
       {error && (
-        <p className="font-body text-xs font-light text-charcoal/70" role="alert">
+        <p className="font-body text-xs font-light text-charcoal" role="alert">
           {error}
         </p>
       )}

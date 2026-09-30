@@ -1,6 +1,13 @@
 import { NextResponse } from 'next/server';
 
 const COOKIE = 'dew_admin_session';
+const CUSTOMER_COOKIE = 'dew_customer_session';
+
+/**
+ * Customer routes that stay reachable while signed out: sign-in, registration
+ * and the emailed password-reset link all have to work without a session.
+ */
+const CUSTOMER_PUBLIC = ['/account/login', '/account/reset'];
 
 /**
  * Defense in depth for /admin:
@@ -53,9 +60,30 @@ export function middleware(request) {
     }
   }
 
+  /*
+   * --- Customer UI gate (defence in depth) ---
+   *
+   * Cookie presence only. The authoritative check is `requireCustomer()` /
+   * `requireCustomerApi()` on the server, which verifies the session against D1
+   * and fails closed. This exists so an unauthenticated visitor gets a redirect
+   * rather than a rendered shell.
+   */
+  const needsCustomer =
+    pathname.startsWith('/favorites') ||
+    (pathname.startsWith('/account') && !CUSTOMER_PUBLIC.includes(pathname));
+
+  if (needsCustomer) {
+    const token = request.cookies.get(CUSTOMER_COOKIE)?.value;
+    if (!token) {
+      const login = new URL('/account/login', request.url);
+      login.searchParams.set('next', pathname);
+      return NextResponse.redirect(login);
+    }
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*']
+  matcher: ['/admin/:path*', '/api/admin/:path*', '/account/:path*', '/favorites/:path*']
 };

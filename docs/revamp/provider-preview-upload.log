@@ -1,0 +1,95 @@
+
+ ⛅️ wrangler 4.112.0
+────────────────────
+🌀 Building list of assets...
+✨ Read 452 files from the assets directory C:\Users\Skyler B. Brown\Desktop\dew-theory-codex\.open-next\assets
+🌀 Starting asset upload...
+🌀 Found 58 new or modified static assets to upload. Proceeding with upload...
++ /BUILD_ID
++ /_next/static/chunks/app/loading-7945718259bcd91e.js
++ /_next/static/chunks/app/error-5554440b0bb92b35.js
++ /favicon-green.png
++ /_next/static/chunks/app/account/reset/page-75f50ae24230c956.js
++ /_next/static/css/00885e766e9104e3.css
++ /_next/static/chunks/app/account/login/page-c4c3e66d00d41abb.js
++ /_next/static/chunks/app/consultation/results/page-cbdcb658423a8c69.js
++ /_next/static/chunks/app/routine/page-7bee68b08b54defa.js
++ /_next/static/chunks/3875-ed0715c7362d99fb.js
++ /_next/static/chunks/app/admin/import/page-99be95155c6a60c8.js
++ /_next/static/chunks/9439-a3d75fd2d53f2f93.js
++ /_next/static/chunks/app/admin/orders/[id]/page-91b88ddb0a609ce4.js
++ /_next/static/chunks/app/cart/confirmation/page-a06f4b56edeb25d9.js
++ /_next/static/chunks/app/virtual-consultation/page-f01c1f7899eaa046.js
++ /_next/static/chunks/app/virtual-consultation/intake/[token]/page-8b79a94a86762307.js
++ /_next/static/chunks/app/cart/page-4f7efe6ccd8a8292.js
++ /icon-green-512.png
++ /_next/static/media/5611c55482296524-s.woff2
++ /og-green.png
++ /_next/static/chunks/app/skin-concerns/page-c2c33a691a58cb63.js
++ /_next/static/chunks/main-app-059ce4206f2980f8.js
++ /_next/static/chunks/app/account/page-ff8fd91f11ebd4d9.js
++ /_next/static/chunks/app/admin/appointments/page-7e66352aefbc0f4a.js
++ /_next/static/chunks/app/admin/login/page-dc2a2d2cd86119dc.js
++ /_next/static/chunks/app/admin/layout-8fbb10441be1a92e.js
++ /_next/static/chunks/app/skin-concerns/[slug]/page-f10c373056beda3a.js
++ /_next/static/chunks/app/favorites/page-d3b513224e5fcbcb.js
++ /_next/static/chunks/527-0bc4b3268cf857bf.js
++ /apple-touch-icon-green.png
++ /_next/static/chunks/app/skin-quiz/page-7492ad2cb07bc602.js
++ /icon-green-192.png
++ /_next/static/media/d9fef5bf2f64cf9a-s.woff2
++ /_next/static/media/7088c2b12ccac062-s.woff2
++ /_next/static/media/26fcc9d6e27dc2d8-s.woff2
++ /_next/static/chunks/app/shop/page-fe43e4a7feb31258.js
++ /_next/static/media/665e920483964785-s.woff2
++ /_next/static/chunks/8563-ee7320dd183ce943.js
++ /_next/static/media/0f11e6657d2eaeee-s.p.woff2
++ /_next/static/chunks/app/not-found-b816fe89d906de29.js
++ /site.webmanifest
++ /_next/static/chunks/app/admin/products/page-c979bbb2ba8597b6.js
++ /_next/static/chunks/app/ingredients/page-a7174d6c0a538c33.js
++ /_next/static/chunks/webpack-e1b9c986ceabd653.js
++ /_next/static/chunks/app/contact/page-368d7265e80c49db.js
++ /_next/static/chunks/app/admin/products/[id]/page-dcf091e631d33f6f.js
++ /_next/static/chunks/app/admin/discounts/page-a5fd5e342ded5a39.js
++ /_next/static/chunks/app/search/page-6522c66f4e282458.js
++ /_next/static/chunks/app/admin/sync/page-d31b2a3ab7a3fa13.js
++ /_next/static/chunks/app/consultation/[step]/page-86a62af80e9a2cf2.js
++ /_next/static/chunks/app/page-ed1ffaf4856d9d71.js
++ /_next/static/chunks/app/admin/consultations/[id]/page-111b1295593a9df6.js
++ /_next/static/chunks/app/shop/[id]/page-6e6b9288f482dee1.js
++ /_next/static/media/de42cfb9a3b980ae-s.p.woff2
++ /logo-dewtheory-glass-mask.webp
++ /_next/static/chunks/app/layout-11a411645e06012d.js
++ /_next/static/media/699881471f8203de-s.woff2
++ /_next/static/css/0a2e018ec8d117ed.css
+Uploaded 19 of 58 assets
+Uploaded 38 of 58 assets
+Uploaded 58 of 58 assets
+✨ Success! Uploaded 58 files (234 already uploaded) (1.82 sec)
+
+Total Upload: 9702.82 KiB / gzip: 1640.49 KiB
+Worker Startup Time: 20 ms
+Your Worker has access to the following bindings:
+Binding                                                            Resource                  
+env.NEXT_CACHE_DO_QUEUE (DOQueueHandler)                           Durable Object            
+env.NEXT_TAG_CACHE_D1 (dew-theory-tag-cache)                       D1 Database               
+env.DEW_THEORY_D1 (dew-theory-commerce)                            D1 Database               
+env.NEXT_INC_CACHE_R2_BUCKET (dew-theory-opennext-cache)           R2 Bucket                 
+env.CONSULTATION_PHOTOS_R2 (dew-theory-consultation-photos)        R2 Bucket                 
+env.WORKER_SELF_REFERENCE (dew-theory)                             Worker                    
+env.IMAGES                                                         Images                    
+env.ASSETS                                                         Assets                    
+env.NEXT_PUBLIC_SITE_URL ("https://dewtheoryco.com")               Environment Variable      
+env.SKIN_SCRIPT_MODE ("mock")                                      Environment Variable      
+env.AUTO_FULFILL ("false")                                         Environment Variable      
+
+Uploaded dew-theory (13.57 sec)
+Worker Version ID: 80cb3f90-9c21-4f11-a94b-3cf4b292e906
+
+To deploy this version to production traffic use the command wrangler versions deploy
+
+Changes to non-versioned settings (config properties 'logpush' or 'tail_consumers') take effect after your next deployment using the command wrangler versions deploy
+
+Changes to triggers (routes, custom domains, cron schedules, etc) must be applied with the command wrangler triggers deploy
+

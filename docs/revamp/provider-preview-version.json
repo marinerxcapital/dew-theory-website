@@ -1,0 +1,304 @@
+{
+  "id": "80cb3f90-9c21-4f11-a94b-3cf4b292e906",
+  "number": 88,
+  "metadata": {
+    "created_on": "2026-09-30T06:33:35.457981Z",
+    "source": "wrangler",
+    "author_id": "171431c8910e4bba4d4d4c7264ab0002",
+    "author_email": "skyler@marinerxcapital.com",
+    "has_preview": false
+  },
+  "annotations": {
+    "workers/alias": "green-revamp",
+    "workers/message": "Green system QA preview; production traffic unchanged",
+    "workers/tag": "green-system",
+    "workers/triggered_by": "version_upload"
+  },
+  "resources": {
+    "script": {
+      "etag": "13f98ccef7a0bbfe10ce59210ad6dce2f6d160dff43b8a45248e4efe250143fb",
+      "handlers": [
+        "scheduled",
+        "fetch"
+      ],
+      "named_handlers": [
+        {
+          "name": "BucketCachePurge",
+          "handlers": [
+            "class"
+          ]
+        },
+        {
+          "name": "DOQueueHandler",
+          "handlers": [
+            "class"
+          ]
+        },
+        {
+          "name": "DOShardedTagCache",
+          "handlers": [
+            "class"
+          ]
+        }
+      ],
+      "last_deployed_from": "wrangler"
+    },
+    "script_runtime": {
+      "migration_tag": "v1",
+      "assets": {
+        "headers": {
+          "version": 2,
+          "rules": {
+            "/*.avif": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/*.mp4": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/*.png": {
+              "set": {
+                "cache-control": "public,max-age=86400"
+              },
+              "unset": []
+            },
+            "/*.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/_next/static/*": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/hero-original.mp4": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/hero-poster.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/hero.mp4": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/images/*": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-20260825.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-glass-20260928.png": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-glass-20260928.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-glass-wordmark-transparent.png": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-glass-wordmark-transparent.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-ivory-20260825.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-mark-20260825.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo-dewtheory-og-20260825.png": {
+              "set": {
+                "cache-control": "public,max-age=86400"
+              },
+              "unset": []
+            },
+            "/logo-mark.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/logo.png": {
+              "set": {
+                "cache-control": "public,max-age=86400"
+              },
+              "unset": []
+            },
+            "/logo.webp": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            },
+            "/products/*": {
+              "set": {
+                "cache-control": "public,max-age=31536000,immutable"
+              },
+              "unset": []
+            }
+          }
+        },
+        "raw_headers": "# Cloudflare Workers Static Assets custom headers\r\n# https://developers.cloudflare.com/workers/static-assets/headers\r\n# https://opennext.js.org/cloudflare/caching#static-assets-caching\r\n#\r\n# Note: next.config headers do NOT apply to public/ or _next/static\r\n# (the worker does not sit in front of Static Assets).\r\n\r\n# Next.js immutable build assets (hashed filenames)\r\n/_next/static/*\r\n  Cache-Control: public,max-age=31536000,immutable\r\n\r\n# Public brand / media assets (long-lived; rename file to bust cache)\r\n/logo.webp\r\n  Cache-Control: public,max-age=31536000,immutable\r\n/logo.png\r\n  Cache-Control: public,max-age=86400\r\n/logo-mark.webp\r\n  Cache-Control: public,max-age=31536000,immutable\r\n/logo-dewtheory-20260825.webp\r\n  Cache-Control: public,max-age=31536000,immutable\r\n/logo-dewtheory-mark-20260825.webp\r\n  Cache-Control: public,max-age=31536000,immutable\r\n/logo-dewtheory-ivory-20260825.webp\r\n  Cache-Control: public,max-age=31536000,immutable\r\n/logo-dewtheory-og-20260825.png\n  Cache-Control: public,max-age=86400\n/logo-dewtheory-glass-20260928.png\n  Cache-Control: public,max-age=31536000,immutable\n/logo-dewtheory-glass-20260928.webp\n  Cache-Control: public,max-age=31536000,immutable\n/logo-dewtheory-glass-wordmark-transparent.png\n  Cache-Control: public,max-age=31536000,immutable\n/logo-dewtheory-glass-wordmark-transparent.webp\n  Cache-Control: public,max-age=31536000,immutable\n/hero-poster.webp\n  Cache-Control: public,max-age=31536000,immutable\r\n/hero.mp4\r\n  Cache-Control: public,max-age=31536000,immutable\r\n/hero-original.mp4\r\n  Cache-Control: public,max-age=31536000,immutable\r\n\r\n# Product photography — aggressive cache (WebP primary path)\r\n/images/*\r\n  Cache-Control: public,max-age=31536000,immutable\r\n\r\n# Extension wildcards (static assets under public/)\r\n/*.webp\r\n  Cache-Control: public,max-age=31536000,immutable\r\n\r\n/*.avif\r\n  Cache-Control: public,max-age=31536000,immutable\r\n\r\n/*.mp4\r\n  Cache-Control: public,max-age=31536000,immutable\r\n\r\n/*.png\r\n  Cache-Control: public,max-age=86400\r\n\r\n# Product placeholders + future product media\r\n/products/*\r\n  Cache-Control: public,max-age=31536000,immutable\r\n",
+        "serve_directly": true,
+        "raw_run_worker_first": false,
+        "base_path": "/"
+      },
+      "compatibility_date": "2026-06-05",
+      "compatibility_flags": [
+        "nodejs_compat",
+        "global_fetch_strictly_public"
+      ],
+      "usage_model": "standard"
+    },
+    "bindings": [
+      {
+        "name": "ADMIN_EMAIL",
+        "type": "secret_text"
+      },
+      {
+        "name": "ADMIN_OWNER_EMAIL",
+        "type": "secret_text"
+      },
+      {
+        "name": "ADMIN_PASSWORD",
+        "type": "secret_text"
+      },
+      {
+        "name": "ADMIN_SESSION_SECRET",
+        "type": "secret_text"
+      },
+      {
+        "name": "ASSETS",
+        "type": "assets"
+      },
+      {
+        "name": "AUTO_FULFILL",
+        "text": "false",
+        "type": "plain_text"
+      },
+      {
+        "name": "CONSULTATION_ADMIN_EMAIL",
+        "type": "secret_text"
+      },
+      {
+        "bucket_name": "dew-theory-consultation-photos",
+        "name": "CONSULTATION_PHOTOS_R2",
+        "type": "r2_bucket"
+      },
+      {
+        "name": "CRON_SECRET",
+        "type": "secret_text"
+      },
+      {
+        "database_id": "cd55d01f-2c27-4b53-a8aa-9b10555d3b17",
+        "id": "cd55d01f-2c27-4b53-a8aa-9b10555d3b17",
+        "name": "DEW_THEORY_D1",
+        "type": "d1"
+      },
+      {
+        "name": "IMAGES",
+        "type": "images"
+      },
+      {
+        "class_name": "DOQueueHandler",
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "namespace_id": "210e87c9cbc04605852c2dc629b134e0",
+        "type": "durable_object_namespace"
+      },
+      {
+        "bucket_name": "dew-theory-opennext-cache",
+        "name": "NEXT_INC_CACHE_R2_BUCKET",
+        "type": "r2_bucket"
+      },
+      {
+        "name": "NEXT_PUBLIC_SITE_URL",
+        "text": "https://dewtheoryco.com",
+        "type": "plain_text"
+      },
+      {
+        "name": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "type": "secret_text"
+      },
+      {
+        "database_id": "dc68ec21-ebc6-4800-9432-59357e3d6553",
+        "id": "dc68ec21-ebc6-4800-9432-59357e3d6553",
+        "name": "NEXT_TAG_CACHE_D1",
+        "type": "d1"
+      },
+      {
+        "name": "SKIN_SCRIPT_MODE",
+        "text": "mock",
+        "type": "plain_text"
+      },
+      {
+        "name": "SKIN_SCRIPT_RPA_HMAC_SECRET",
+        "type": "secret_text"
+      },
+      {
+        "name": "SKIN_SCRIPT_RPA_SERVICE_URL",
+        "type": "secret_text"
+      },
+      {
+        "name": "STRIPE_SECRET_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "STRIPE_TAX_ENABLED",
+        "type": "secret_text"
+      },
+      {
+        "name": "STRIPE_VIRTUAL_CONSULTATION_PRICE_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "STRIPE_WEBHOOK_SECRET",
+        "type": "secret_text"
+      },
+      {
+        "environment": "production",
+        "name": "WORKER_SELF_REFERENCE",
+        "service": "dew-theory",
+        "type": "service"
+      }
+    ]
+  }
+}

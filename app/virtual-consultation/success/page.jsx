@@ -1,3 +1,4 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import {
   getConsultationByStripeSession,
@@ -9,10 +10,10 @@ import { mutateStore } from '@/lib/store.js';
 import { sendPaymentReceivedEmail } from '@/lib/consultations/emails.js';
 import { getStripeClient } from '@/lib/stripe/config.js';
 
-export const metadata = {
+export const metadata = withPageMetadata('/virtual-consultation/success', {
   title: 'Consultation confirmed',
   robots: { index: false, follow: false }
-};
+});
 
 async function resolveConsultation(sessionId) {
   if (!sessionId) return null;
@@ -62,8 +63,8 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
   const sp = await searchParams;
   const sessionId = sp?.session_id || '';
   const isMock =
-    sp?.mock === '1' ||
-    String(sessionId).startsWith('cs_mock_');
+    process.env.NODE_ENV !== 'production' && (sp?.mock === '1' ||
+    String(sessionId).startsWith('cs_mock_'));
   const consultation = await resolveConsultation(sessionId);
   const summary = consultationPublicSummary(consultation);
   const cfg = getConsultationConfig();
@@ -84,7 +85,7 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
   // Intake link only via email for security; success page points to schedule + contact
   return (
     <section className="mx-auto max-w-shell px-6 pb-24 pt-32 sm:pt-36 lg:px-10">
-      <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal/70">
+      <p className="eyebrow-line font-label text-[0.68rem] font-light uppercase tracking-[0.28em] text-charcoal">
         {isMock ? 'Dev / simulated' : 'Confirmed'}
       </p>
       <h1 className="mt-6 font-display text-[clamp(2rem,4.5vw,3rem)] font-normal text-graphite">
@@ -92,7 +93,7 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
       </h1>
       {isMock ? (
         <p
-          className="mt-5 max-w-xl border border-chrome/25 bg-pearl/50 px-5 py-4 font-body text-sm font-light leading-relaxed text-charcoal/80"
+          className="mt-5 max-w-xl border border-chrome/25 bg-pearl/50 px-5 py-4 font-body text-sm font-light leading-relaxed text-charcoal"
           role="status"
         >
           This was a <strong className="font-normal">mock checkout</strong> — no card was charged.
@@ -100,7 +101,7 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
           for local testing.
         </p>
       ) : null}
-      <p className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal/75">
+      <p className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-charcoal">
         {summary
           ? `Thank you${summary.client_name ? `, ${summary.client_name.split(' ')[0]}` : ''}. Your virtual consultation is ${isMock ? 'marked paid for testing' : 'paid'}${summary.public_ref ? ` (ref ${summary.public_ref})` : ''}.`
           : isMock
@@ -119,19 +120,19 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
             Schedule your Zoom appointment
           </a>
         ) : (
-          <div className="glass-1 rounded-[3px] p-6">
+          <div className="glass-1 rounded-card p-6">
             <p className="font-display text-lg font-normal text-graphite">Scheduling</p>
-            <p className="mt-2 font-body text-sm font-light text-charcoal/70">
-              Emily will confirm your Zoom time via email. Scheduling link configuration is pending
-              on the server (
-              <code className="text-xs">CONSULTATION_SCHEDULING_URL</code>).
+            <p className="mt-2 font-body text-sm font-light text-charcoal">
+              Emily will confirm your Zoom time via email.
+              {process.env.NODE_ENV !== 'production' ? (<> Scheduling link configuration is pending
+              on the server (<code className="text-xs">CONSULTATION_SCHEDULING_URL</code>).</>) : null}
             </p>
           </div>
         )}
 
-        <div className="glass-1 rounded-[3px] p-6">
+        <div className="glass-1 rounded-card p-6">
           <p className="font-display text-lg font-normal text-graphite">Secure intake</p>
-          <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal/70">
+          <p className="mt-2 font-body text-sm font-light leading-relaxed text-charcoal">
             Check your email for a private intake link. Complete the form and photo upload at least
             24 hours before your appointment. The link is unique to you—do not share it.
           </p>
@@ -141,24 +142,24 @@ export default async function VirtualConsultationSuccessPage({ searchParams }) {
       <div className="mt-12 flex flex-wrap gap-4">
         <Link
           href="/virtual-consultation"
-          className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:text-charcoal"
         >
           ← Back to consultation info
         </Link>
         <Link
           href="mailto:hello@dewtheory.studio"
-          className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:text-charcoal"
         >
           Email
         </Link>
         <Link
           href="/shop"
-          className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal/70 hover:text-charcoal"
+          className="font-label text-[0.7rem] font-light uppercase tracking-lockup text-charcoal hover:text-charcoal"
         >
           Shop
         </Link>
       </div>
-      <p className="mt-10 max-w-md font-body text-xs font-light text-charcoal/55">
+      <p className="mt-10 max-w-md font-body text-xs font-light text-charcoal">
         Site: {site.replace(/^https?:\/\//, '')}
       </p>
     </section>

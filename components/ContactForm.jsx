@@ -43,12 +43,12 @@ export default function ContactForm() {
           Sent
         </p>
         <h2 className="mt-3 font-display text-2xl font-normal text-graphite">Message received</h2>
-        <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal/75">
+        <p className="mt-4 font-body text-sm font-light leading-relaxed text-charcoal">
           Emily or the studio will reply to the email you left. For appointment changes or order
           questions, include your booking or order reference if you have one.
         </p>
         <ol className="mt-6 space-y-2 border border-chrome/20 bg-pearl/40 p-4">
-          <li className="font-body text-xs font-light leading-relaxed text-charcoal/70">
+          <li className="font-body text-xs font-light leading-relaxed text-charcoal">
             <span className="font-label text-[0.55rem] uppercase tracking-lockup text-chrome">
               Next
             </span>
@@ -145,7 +145,7 @@ export default function ContactForm() {
           <p className="font-label text-[0.58rem] font-light uppercase tracking-lockup text-chrome">
             Send failed
           </p>
-          <p className="mt-2 font-body text-xs font-light leading-relaxed text-charcoal/80">
+          <p className="mt-2 font-body text-xs font-light leading-relaxed text-charcoal">
             {error}
           </p>
         </div>
@@ -153,7 +153,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="sweep min-h-[48px] border border-graphite bg-graphite px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-pearl disabled:cursor-not-allowed disabled:opacity-60"
+        className="sweep min-h-[48px] border border-graphite bg-green-300 px-8 py-4 font-label text-[0.7rem] font-light uppercase tracking-lockup text-ink disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading ? 'Sending…' : 'Send message'}
       </button>

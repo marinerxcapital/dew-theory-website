@@ -1,18 +1,19 @@
+import { withPageMetadata } from '@/lib/page-metadata';
 import Link from 'next/link';
 import Rule from '@/components/Rule';
 import LegalPdfActions from '@/components/LegalPdfActions';
 
-export const metadata = {
+export const metadata = withPageMetadata('/privacy', {
   title: 'Privacy',
   description:
     'How Dew Theory handles cart data, payments, admin sessions, and consultation photos. View or download the full Privacy Policy PDF.',
   alternates: { canonical: '/privacy' },
   robots: { index: true, follow: true }
-};
+});
 
 export default function PrivacyPage() {
   return (
-    <section className="mx-auto max-w-shell px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
+    <section className="mx-auto max-w-measure px-5 py-12 sm:px-6 sm:py-16 lg:px-10">
       <div data-reveal-group="privacy-head">
         <Rule left="Policies" right="Privacy" data-reveal />
         <h1
@@ -36,7 +37,7 @@ export default function PrivacyPage() {
           <h2 className="font-display text-xl font-normal text-ink">Cart on your device</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             Your shopping cart and any promo code you apply are stored in your browser&apos;s{' '}
-            <span className="text-ink/90">localStorage</span> so the bag persists between
+            <span className="text-ink">localStorage</span> so the bag persists between
             visits. That data stays on your device until you clear site data or empty the cart. At
             checkout, line items are re-priced on the server so totals match current catalog prices.
           </p>
@@ -46,7 +47,7 @@ export default function PrivacyPage() {
           <h2 className="font-display text-xl font-normal text-ink">Orders &amp; payments</h2>
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             When payment processing is configured, checkout runs through{' '}
-            <span className="text-ink/90">Stripe</span>. Card numbers and payment credentials
+            <span className="text-ink">Stripe</span>. Card numbers and payment credentials
             are handled by Stripe — Dew Theory does not store full card data on this site. Order
             records keep what is needed to fulfill and support the purchase (items, totals, shipping
             address you provide, and status). Without Stripe keys, checkout can still run in a local
@@ -81,7 +82,7 @@ export default function PrivacyPage() {
           <p className="mt-4 max-w-2xl font-body text-sm font-normal leading-relaxed text-muted">
             Transactional messages related to orders or consultations may be sent by email when
             delivery is enabled for the studio. Questions reach Emily by email at{' '}
-            <span className="text-ink/90">hello@dewtheory.studio</span> so she can reply directly.
+            <span className="text-ink">hello@dewtheory.studio</span> so she can reply directly.
           </p>
         </div>
 

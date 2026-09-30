@@ -31,7 +31,7 @@ export async function GET(request, { params }) {
   if (!rateLimitOk(request)) {
     return NextResponse.json({ error: 'Too many requests', code: 'rate_limited' }, { status: 429 });
   }
-  const token = params?.token;
+  const { token } = await params;
   const consultation = getConsultationByIntakeToken(token);
   if (!consultation) {
     return NextResponse.json({ error: 'Not found', code: 'intake_not_found' }, { status: 404 });
@@ -71,7 +71,7 @@ export async function POST(request, { params }) {
   if (!rateLimitOk(request)) {
     return NextResponse.json({ error: 'Too many requests', code: 'rate_limited' }, { status: 429 });
   }
-  const token = params?.token;
+  const { token } = await params;
   let body;
   try {
     body = await request.json();

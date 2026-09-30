@@ -1,0 +1,1066 @@
+[
+  {
+    "name": "Charcoal Clay Cleanser",
+    "sku": "1010320",
+    "size": ".5 oz",
+    "wholesale_usd": 2.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Charcoal Clay Cleanser",
+    "sku": "1010330",
+    "size": "2 oz",
+    "wholesale_usd": 7.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Charcoal Clay Cleanser",
+    "sku": "1010340",
+    "size": "6.4 oz",
+    "wholesale_usd": 18.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Charcoal Clay Cleanser",
+    "sku": "1010350",
+    "size": "16 oz",
+    "wholesale_usd": 36.0,
+    "section": "Cleansers",
+    "notes": "BB"
+  },
+  {
+    "name": "Glycolic Cleanser",
+    "sku": "1010420",
+    "size": ".5 oz",
+    "wholesale_usd": 2.25,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Glycolic Cleanser",
+    "sku": "1010430",
+    "size": "2 oz",
+    "wholesale_usd": 7.5,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Glycolic Cleanser",
+    "sku": "1010440",
+    "size": "6.4 oz",
+    "wholesale_usd": 20.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Glycolic Cleanser",
+    "sku": "1010450",
+    "size": "16 oz",
+    "wholesale_usd": 38.0,
+    "section": "Cleansers",
+    "notes": "BB"
+  },
+  {
+    "name": "Green Tea Citrus Cleanser",
+    "sku": "1010220",
+    "size": ".5 oz",
+    "wholesale_usd": 2.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Green Tea Citrus Cleanser",
+    "sku": "1010230",
+    "size": "2 oz",
+    "wholesale_usd": 7.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Green Tea Citrus Cleanser",
+    "sku": "1010240",
+    "size": "6.4 oz",
+    "wholesale_usd": 18.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Green Tea Citrus Cleanser",
+    "sku": "1010250",
+    "size": "16 oz",
+    "wholesale_usd": 36.0,
+    "section": "Cleansers",
+    "notes": "BB"
+  },
+  {
+    "name": "Honey Brightening Cleanser",
+    "sku": "1010620",
+    "size": ".5 oz",
+    "wholesale_usd": 2.5,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Honey Brightening Cleanser",
+    "sku": "1010630",
+    "size": "2 oz",
+    "wholesale_usd": 8.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Honey Brightening Cleanser",
+    "sku": "1010640",
+    "size": "6.4 oz",
+    "wholesale_usd": 21.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Honey Brightening Cleanser",
+    "sku": "1010650",
+    "size": "16 oz",
+    "wholesale_usd": 39.0,
+    "section": "Cleansers",
+    "notes": "BB"
+  },
+  {
+    "name": "Pomegranate Antioxidant Cleanser",
+    "sku": "1010120",
+    "size": ".5 oz",
+    "wholesale_usd": 2.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Pomegranate Antioxidant Cleanser",
+    "sku": "1010130",
+    "size": "2 oz",
+    "wholesale_usd": 7.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Pomegranate Antioxidant Cleanser",
+    "sku": "1010140",
+    "size": "6.4 oz",
+    "wholesale_usd": 18.0,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Pomegranate Antioxidant Cleanser",
+    "sku": "1010150",
+    "size": "16 oz",
+    "wholesale_usd": 36.0,
+    "section": "Cleansers",
+    "notes": "BB"
+  },
+  {
+    "name": "Raspberry Refining Cleanser",
+    "sku": "1010520",
+    "size": ".5 oz",
+    "wholesale_usd": 2.25,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Raspberry Refining Cleanser",
+    "sku": "1010530",
+    "size": "2 oz",
+    "wholesale_usd": 7.25,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Raspberry Refining Cleanser",
+    "sku": "1010540",
+    "size": "6.4 oz",
+    "wholesale_usd": 18.5,
+    "section": "Cleansers",
+    "notes": null
+  },
+  {
+    "name": "Raspberry Refining Cleanser",
+    "sku": "1010550",
+    "size": "16 oz",
+    "wholesale_usd": 36.5,
+    "section": "Cleansers",
+    "notes": "BB"
+  },
+  {
+    "name": "Clarifying Toner Pads",
+    "sku": "1110220",
+    "size": ".25 oz",
+    "wholesale_usd": 2.0,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Clarifying Toner Pads",
+    "sku": "1110240",
+    "size": "2 oz",
+    "wholesale_usd": 14.0,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Glycolic and Retinol Pads",
+    "sku": "1110120",
+    "size": ".25 oz",
+    "wholesale_usd": 2.5,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Glycolic and Retinol Pads",
+    "sku": "1110140",
+    "size": "2 oz",
+    "wholesale_usd": 18.0,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Raspberry Scrub",
+    "sku": "1110520",
+    "size": ".25 oz",
+    "wholesale_usd": 1.5,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Raspberry Scrub",
+    "sku": "1110540",
+    "size": "4 oz",
+    "wholesale_usd": 18.0,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Retinol Exfoliating Scrub",
+    "sku": "1110420",
+    "size": ".25 oz",
+    "wholesale_usd": 4.5,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Retinol Exfoliating Scrub",
+    "sku": "1110440",
+    "size": "1.7 oz",
+    "wholesale_usd": 24.5,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Retinol Exfoliating Scrub",
+    "sku": "1110450",
+    "size": "8 oz",
+    "wholesale_usd": 90.0,
+    "section": "Exfoliants",
+    "notes": "BB"
+  },
+  {
+    "name": "Revitalizing Cucumber Treatment",
+    "sku": "1110620",
+    "size": ".25 oz",
+    "wholesale_usd": 5.0,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Revitalizing Cucumber Treatment",
+    "sku": "1110640",
+    "size": "2 oz",
+    "wholesale_usd": 26.0,
+    "section": "Exfoliants",
+    "notes": null
+  },
+  {
+    "name": "Cucumber Hydration Toner",
+    "sku": "1210120",
+    "size": ".25 oz",
+    "wholesale_usd": 1.75,
+    "section": "Toners",
+    "notes": null
+  },
+  {
+    "name": "Cucumber Hydration Toner",
+    "sku": "1210130",
+    "size": "2 oz",
+    "wholesale_usd": 9.0,
+    "section": "Toners",
+    "notes": null
+  },
+  {
+    "name": "Cucumber Hydration Toner",
+    "sku": "1210140",
+    "size": "3.3 oz",
+    "wholesale_usd": 14.0,
+    "section": "Toners",
+    "notes": null
+  },
+  {
+    "name": "Cucumber Hydration Toner",
+    "sku": "1210150",
+    "size": "16 oz",
+    "wholesale_usd": 52.0,
+    "section": "Toners",
+    "notes": "BB"
+  },
+  {
+    "name": "Mint Refining Toner",
+    "sku": "1210220",
+    "size": ".25 oz",
+    "wholesale_usd": 1.75,
+    "section": "Toners",
+    "notes": null
+  },
+  {
+    "name": "Mint Refining Toner",
+    "sku": "1210230",
+    "size": "2 oz",
+    "wholesale_usd": 9.0,
+    "section": "Toners",
+    "notes": null
+  },
+  {
+    "name": "Mint Refining Toner",
+    "sku": "1210240",
+    "size": "3.3 oz",
+    "wholesale_usd": 14.0,
+    "section": "Toners",
+    "notes": null
+  },
+  {
+    "name": "Mint Refining Toner",
+    "sku": "1210250",
+    "size": "16 oz",
+    "wholesale_usd": 52.0,
+    "section": "Toners",
+    "notes": "BB"
+  },
+  {
+    "name": "Advanced Renewal Serum",
+    "sku": "1310520",
+    "size": ".25 oz",
+    "wholesale_usd": 10.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Advanced Renewal Serum",
+    "sku": "1310540",
+    "size": "1 oz",
+    "wholesale_usd": 35.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Ageless Skin Hydrating Serum",
+    "sku": "1310320",
+    "size": ".25 oz",
+    "wholesale_usd": 7.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Ageless Skin Hydrating Serum",
+    "sku": "1310340",
+    "size": "1 oz",
+    "wholesale_usd": 22.5,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Ageless Skin Hydrating Serum",
+    "sku": "1310350",
+    "size": "4 oz",
+    "wholesale_usd": 68.0,
+    "section": "Serums",
+    "notes": "BB"
+  },
+  {
+    "name": "Blemish Spot Treatment",
+    "sku": "1310840",
+    "size": ".5 oz",
+    "wholesale_usd": 14.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Citrus C Nourishing Cream",
+    "sku": "1310120",
+    "size": ".25 oz",
+    "wholesale_usd": 7.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Citrus C Nourishing Cream",
+    "sku": "1310140",
+    "size": "1 oz",
+    "wholesale_usd": 26.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Citrus C Nourishing Cream",
+    "sku": "1310150",
+    "size": "4 oz",
+    "wholesale_usd": 80.0,
+    "section": "Serums",
+    "notes": "BB"
+  },
+  {
+    "name": "Mandelic Brightening Serum",
+    "sku": "1310420",
+    "size": ".25 oz",
+    "wholesale_usd": 7.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Mandelic Brightening Serum",
+    "sku": "1310440",
+    "size": "1 oz",
+    "wholesale_usd": 24.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Peptide Eye Serum",
+    "sku": "1310640",
+    "size": ".5 oz",
+    "wholesale_usd": 20.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Tri-Peptide Eye Cream",
+    "sku": "1310740",
+    "size": ".5 oz",
+    "wholesale_usd": 20.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Triple C Serum",
+    "sku": "1310220",
+    "size": ".25 oz",
+    "wholesale_usd": 6.5,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Triple C Serum",
+    "sku": "1310240",
+    "size": "1 oz",
+    "wholesale_usd": 24.0,
+    "section": "Serums",
+    "notes": null
+  },
+  {
+    "name": "Triple C Serum",
+    "sku": "1310250",
+    "size": "4 oz",
+    "wholesale_usd": 76.0,
+    "section": "Serums",
+    "notes": "BB"
+  },
+  {
+    "name": "Acai Berry Moisturizer",
+    "sku": "1510420",
+    "size": ".25 oz",
+    "wholesale_usd": 4.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Acai Berry Moisturizer",
+    "sku": "1510440",
+    "size": "1.7 oz",
+    "wholesale_usd": 20.5,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Acai Berry Moisturizer",
+    "sku": "1510450",
+    "size": "8 oz",
+    "wholesale_usd": 74.0,
+    "section": "Moisturizers",
+    "notes": "BB"
+  },
+  {
+    "name": "Ageless Skin Moisturizer",
+    "sku": "1510220",
+    "size": ".25 oz",
+    "wholesale_usd": 2.5,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Ageless Skin Moisturizer",
+    "sku": "1510240",
+    "size": "2 oz",
+    "wholesale_usd": 15.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Ageless Skin Moisturizer",
+    "sku": "1510250",
+    "size": "8 oz",
+    "wholesale_usd": 42.0,
+    "section": "Moisturizers",
+    "notes": "BB"
+  },
+  {
+    "name": "Barrier Balancing Moisturizer",
+    "sku": "1510320",
+    "size": ".25 oz",
+    "wholesale_usd": 3.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Barrier Balancing Moisturizer",
+    "sku": "1510340",
+    "size": "1.7 oz",
+    "wholesale_usd": 18.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Barrier Balancing Moisturizer",
+    "sku": "1510350",
+    "size": "8 oz",
+    "wholesale_usd": 62.0,
+    "section": "Moisturizers",
+    "notes": "BB"
+  },
+  {
+    "name": "Hydrating Moisturizer",
+    "sku": "1510620",
+    "size": ".25 oz",
+    "wholesale_usd": 3.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Hydrating Moisturizer",
+    "sku": "1510640",
+    "size": "1.7 oz",
+    "wholesale_usd": 18.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Hydrating Moisturizer",
+    "sku": "1510650",
+    "size": "8 oz",
+    "wholesale_usd": 62.0,
+    "section": "Moisturizers",
+    "notes": "BB"
+  },
+  {
+    "name": "Light Aloe Moisturizer",
+    "sku": "1510120",
+    "size": ".25 oz",
+    "wholesale_usd": 2.5,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Light Aloe Moisturizer",
+    "sku": "1510140",
+    "size": "2 oz",
+    "wholesale_usd": 13.0,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Light Aloe Moisturizer",
+    "sku": "1510150",
+    "size": "8 oz",
+    "wholesale_usd": 38.0,
+    "section": "Moisturizers",
+    "notes": "BB"
+  },
+  {
+    "name": "Peptide Moisturizer",
+    "sku": "1510520",
+    "size": ".25 oz",
+    "wholesale_usd": 5.5,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Peptide Moisturizer",
+    "sku": "1510540",
+    "size": "1.7 oz",
+    "wholesale_usd": 30.5,
+    "section": "Moisturizers",
+    "notes": null
+  },
+  {
+    "name": "Peptide Moisturizer",
+    "sku": "1510550",
+    "size": "8 oz",
+    "wholesale_usd": 110.0,
+    "section": "Moisturizers",
+    "notes": "BB"
+  },
+  {
+    "name": "Lip Treatment Peppermint",
+    "sku": "1410240",
+    "size": ".27 oz",
+    "wholesale_usd": 8.0,
+    "section": "Lips",
+    "notes": null
+  },
+  {
+    "name": "Lip Treatment Pomegranate",
+    "sku": "1410340",
+    "size": ".27 oz",
+    "wholesale_usd": 8.0,
+    "section": "Lips",
+    "notes": null
+  },
+  {
+    "name": "Lip Balm SPF 15",
+    "sku": "1410140",
+    "size": null,
+    "wholesale_usd": 3.25,
+    "section": "Lips",
+    "notes": null
+  },
+  {
+    "name": "Botanical Bloom Hydrating Mask",
+    "sku": "2110620",
+    "size": ".25 oz",
+    "wholesale_usd": 5.0,
+    "section": "Retail Mask",
+    "notes": null
+  },
+  {
+    "name": "Botanical Bloom Hydrating Mask",
+    "sku": "2110640",
+    "size": "2 oz",
+    "wholesale_usd": 24.0,
+    "section": "Retail Mask",
+    "notes": null
+  },
+  {
+    "name": "Sheer Protection SPF 30",
+    "sku": "1610120",
+    "size": ".25 oz",
+    "wholesale_usd": 3.25,
+    "section": "SPF",
+    "notes": null
+  },
+  {
+    "name": "Sheer Protection SPF 30",
+    "sku": "1610140",
+    "size": "2 oz",
+    "wholesale_usd": 17.0,
+    "section": "SPF",
+    "notes": null
+  },
+  {
+    "name": "Blueberry Enzyme",
+    "sku": "2010104",
+    "size": "4 oz",
+    "wholesale_usd": 47.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Blueberry Enzyme",
+    "sku": "2010108",
+    "size": "8 oz",
+    "wholesale_usd": 75.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Cherry Enzyme",
+    "sku": "2010204",
+    "size": "4 oz",
+    "wholesale_usd": 47.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Cherry Enzyme",
+    "sku": "2010208",
+    "size": "8 oz",
+    "wholesale_usd": 75.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Coconut Papaya Enzyme",
+    "sku": "2010304",
+    "size": "4 oz",
+    "wholesale_usd": 43.5,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Coconut Papaya Enzyme",
+    "sku": "2010308",
+    "size": "8 oz",
+    "wholesale_usd": 68.5,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Eucalyptus Enzyme",
+    "sku": "2011004",
+    "size": "4 oz",
+    "wholesale_usd": 48.75,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Eucalyptus Enzyme",
+    "sku": "2011008",
+    "size": "8 oz",
+    "wholesale_usd": 76.5,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Lemon Zest Enzyme",
+    "sku": "2010404",
+    "size": "4 oz",
+    "wholesale_usd": 45.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Pineapple Enzyme",
+    "sku": "2010604",
+    "size": "4 oz",
+    "wholesale_usd": 47.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Pineapple Enzyme",
+    "sku": "2010608",
+    "size": "8 oz",
+    "wholesale_usd": 75.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Pomegranate Enzyme",
+    "sku": "2010704",
+    "size": "4 oz",
+    "wholesale_usd": 45.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Pomegranate Enzyme",
+    "sku": "2010708",
+    "size": "8 oz",
+    "wholesale_usd": 72.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Pumpkin Enzyme",
+    "sku": "2010904",
+    "size": "4 oz",
+    "wholesale_usd": 47.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Pumpkin Enzyme",
+    "sku": "2010908",
+    "size": "8 oz",
+    "wholesale_usd": 75.0,
+    "section": "Enzymes",
+    "notes": null
+  },
+  {
+    "name": "Charcoal Refining Mask",
+    "sku": "2110104",
+    "size": "4 oz",
+    "wholesale_usd": 30.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Charcoal Refining Mask",
+    "sku": "2110116",
+    "size": "16 oz",
+    "wholesale_usd": 95.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Goji Berry Yogurt Mask",
+    "sku": "2110204",
+    "size": "4 oz",
+    "wholesale_usd": 30.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Goji Berry Yogurt Mask",
+    "sku": "2110216",
+    "size": "16 oz",
+    "wholesale_usd": 95.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Golden Honey Nourishing Mask",
+    "sku": "2110304",
+    "size": "4 oz",
+    "wholesale_usd": 30.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Golden Honey Nourishing Mask",
+    "sku": "2110316",
+    "size": "16 oz",
+    "wholesale_usd": 95.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Sea Mineral Mask",
+    "sku": "2110404",
+    "size": "4 oz",
+    "wholesale_usd": 26.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Sea Mineral Mask",
+    "sku": "2110416",
+    "size": "16 oz",
+    "wholesale_usd": 73.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Strawberry Spearmint Mask",
+    "sku": "2110504",
+    "size": "4 oz",
+    "wholesale_usd": 30.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Strawberry Spearmint Mask",
+    "sku": "2110516",
+    "size": "16 oz",
+    "wholesale_usd": 95.0,
+    "section": "Masks",
+    "notes": null
+  },
+  {
+    "name": "Pineapple Honey Signature Facial",
+    "sku": "3010208",
+    "size": null,
+    "wholesale_usd": 69.5,
+    "section": "Signature Facials",
+    "notes": null
+  },
+  {
+    "name": "Lemon Honey Signature Facial",
+    "sku": "3010108",
+    "size": null,
+    "wholesale_usd": 67.5,
+    "section": "Signature Facials",
+    "notes": null
+  },
+  {
+    "name": "Cranberry Peel (20% salicylic)",
+    "sku": "2210104",
+    "size": "4 oz",
+    "wholesale_usd": 40.0,
+    "section": "Chemical Peels",
+    "notes": null
+  },
+  {
+    "name": "Pumpkin Peel with 15% Lactic",
+    "sku": "2210504",
+    "size": "4 oz",
+    "wholesale_usd": 50.0,
+    "section": "Chemical Peels",
+    "notes": null
+  },
+  {
+    "name": "Glycolic Peel (30%)",
+    "sku": "2210204",
+    "size": "4 oz",
+    "wholesale_usd": 35.0,
+    "section": "Chemical Peels",
+    "notes": null
+  },
+  {
+    "name": "Lactic Peel (20%)",
+    "sku": "2210304",
+    "size": "4 oz",
+    "wholesale_usd": 40.0,
+    "section": "Chemical Peels",
+    "notes": null
+  },
+  {
+    "name": "TCA Peel (10%)",
+    "sku": "2210404",
+    "size": "4 oz",
+    "wholesale_usd": 74.0,
+    "section": "Chemical Peels",
+    "notes": null
+  },
+  {
+    "name": "The Vitals",
+    "sku": "4110100",
+    "size": null,
+    "wholesale_usd": 330.0,
+    "section": "Pro Bundles",
+    "notes": "NO OTHER DISCOUNTS APPLY"
+  },
+  {
+    "name": "The Fundamentals",
+    "sku": "4110200",
+    "size": null,
+    "wholesale_usd": 490.0,
+    "section": "Pro Bundles",
+    "notes": "NO OTHER DISCOUNTS APPLY"
+  },
+  {
+    "name": "The Power Pack",
+    "sku": "4110300",
+    "size": null,
+    "wholesale_usd": 850.0,
+    "section": "Pro Bundles",
+    "notes": "NO OTHER DISCOUNTS APPLY"
+  },
+  {
+    "name": "The Peels",
+    "sku": "4110400",
+    "size": null,
+    "wholesale_usd": 155.0,
+    "section": "Pro Bundles",
+    "notes": "NO OTHER DISCOUNTS APPLY"
+  },
+  {
+    "name": "Discovery Kit",
+    "sku": "5010420",
+    "size": "Enzm/Msk",
+    "wholesale_usd": 75.0,
+    "section": "Discovery Kit",
+    "notes": null
+  },
+  {
+    "name": "Fresh Face Travel Kit",
+    "sku": "4010800",
+    "size": null,
+    "wholesale_usd": 31.0,
+    "section": "Travel Kits",
+    "notes": null
+  },
+  {
+    "name": "Everyday Balance Travel Kit",
+    "sku": "4010900",
+    "size": null,
+    "wholesale_usd": 32.5,
+    "section": "Travel Kits",
+    "notes": null
+  },
+  {
+    "name": "Fully Quenched Travel Kit",
+    "sku": "4011000",
+    "size": null,
+    "wholesale_usd": 35.0,
+    "section": "Travel Kits",
+    "notes": null
+  },
+  {
+    "name": "Fan Brush",
+    "sku": "6010800",
+    "size": null,
+    "wholesale_usd": 10.0,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "2-in-1 Silicone Facial Brush",
+    "sku": "6011100",
+    "size": null,
+    "wholesale_usd": 10.0,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Headband-Purple",
+    "sku": "6010900",
+    "size": null,
+    "wholesale_usd": 6.0,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Pre/Post Peel Rack Card",
+    "sku": "6010512",
+    "size": "12 Pack",
+    "wholesale_usd": 3.0,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Prescription Pad",
+    "sku": "6010600",
+    "size": "25 Sht/Pck",
+    "wholesale_usd": 4.0,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Retail Shopping Bag (Small)",
+    "sku": "6010325",
+    "size": "25 Pack",
+    "wholesale_usd": 12.5,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Shelf Talkers (Product descriptions)",
+    "sku": "6010700",
+    "size": null,
+    "wholesale_usd": 6.0,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Silver Pump for Retail Cleansers",
+    "sku": "9010140",
+    "size": null,
+    "wholesale_usd": 0.55,
+    "section": "Marketing Materials",
+    "notes": null
+  },
+  {
+    "name": "Training/Reference Manual",
+    "sku": "6012200",
+    "size": null,
+    "wholesale_usd": 15.0,
+    "section": "Marketing Materials",
+    "notes": null
+  }
+]

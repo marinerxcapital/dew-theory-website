@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/components/CartProvider';
+import { signalBagAdded } from '@/components/bag-signal';
 import { isOutOfStock } from '@/lib/shop';
 
 /**
@@ -12,6 +13,7 @@ import { isOutOfStock } from '@/lib/shop';
 export default function QuickAdd({ product, className = '' }) {
   const { addItem } = useCart();
   const [status, setStatus] = useState('');
+  const [pulse, setPulse] = useState(false);
   const oos = isOutOfStock(product);
   const discontinued = product?.stock_status === 'discontinued' || product?.active === false;
   const needsVariant = Array.isArray(product?.variants) && product.variants.length > 0;
@@ -34,21 +36,27 @@ export default function QuickAdd({ product, className = '' }) {
 
   return (
     <div className={className}>
-      <button
-        type="button"
-        disabled={oos}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          if (oos) return;
-          addItem(product.id, { quantity: 1 });
-          setStatus('Added');
-          window.setTimeout(() => setStatus(''), 1600);
-        }}
-        className="btn-primary w-full px-3 py-2.5 font-label text-[0.62rem] font-normal uppercase tracking-lockup disabled:cursor-not-allowed disabled:opacity-45"
-      >
-        {oos ? 'Out of stock' : status || 'Add to Bag'}
-      </button>
+      <div className="relative">
+        <button
+          type="button"
+          disabled={oos}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (oos) return;
+            addItem(product.id, { quantity: 1 });
+            signalBagAdded();
+            setStatus('Added');
+            setPulse(true);
+            window.setTimeout(() => setPulse(false), 640);
+            window.setTimeout(() => setStatus(''), 1600);
+          }}
+          className="btn-primary w-full px-3 py-2.5 font-body text-[0.62rem] font-medium uppercase tracking-lockup transition-transform duration-150 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {oos ? 'Out of stock' : status || 'Add to Bag'}
+        </button>
+        {pulse ? <span className="pulse-ring" aria-hidden="true" /> : null}
+      </div>
       <span className="sr-only" role="status" aria-live="polite">
         {status ? `${product.name} added to bag` : ''}
       </span>

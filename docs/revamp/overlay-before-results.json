@@ -1,0 +1,196 @@
+[
+  {
+    "state": "search",
+    "width": 390,
+    "violations": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": [
+          [
+            ".fixed"
+          ]
+        ]
+      },
+      {
+        "id": "aria-required-children",
+        "nodes": [
+          [
+            "#_r_0_"
+          ]
+        ]
+      },
+      {
+        "id": "aria-required-parent",
+        "nodes": [
+          [
+            "#_r_0_-opt-0"
+          ],
+          [
+            "#_r_0_-opt-1"
+          ],
+          [
+            "#_r_0_-opt-2"
+          ],
+          [
+            "#_r_0_-opt-3"
+          ]
+        ]
+      },
+      {
+        "id": "list",
+        "nodes": [
+          [
+            ".last\\:border-0 > ul"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "state": "mobile-menu",
+    "width": 390,
+    "violations": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": [
+          [
+            ".fixed"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "state": "mobile-focus-trap",
+    "width": 390,
+    "pass": true
+  },
+  {
+    "state": "concierge",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "state": "search",
+    "width": 768,
+    "violations": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": [
+          [
+            ".fixed"
+          ]
+        ]
+      },
+      {
+        "id": "aria-required-children",
+        "nodes": [
+          [
+            "#_r_0_"
+          ]
+        ]
+      },
+      {
+        "id": "aria-required-parent",
+        "nodes": [
+          [
+            "#_r_0_-opt-0"
+          ],
+          [
+            "#_r_0_-opt-1"
+          ],
+          [
+            "#_r_0_-opt-2"
+          ],
+          [
+            "#_r_0_-opt-3"
+          ]
+        ]
+      },
+      {
+        "id": "list",
+        "nodes": [
+          [
+            ".last\\:border-0 > ul"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "state": "mobile-menu",
+    "width": 768,
+    "violations": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": [
+          [
+            ".fixed"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "state": "mobile-focus-trap",
+    "width": 768,
+    "pass": true
+  },
+  {
+    "state": "concierge",
+    "width": 768,
+    "violations": []
+  },
+  {
+    "state": "search",
+    "width": 1440,
+    "violations": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": [
+          [
+            ".fixed"
+          ]
+        ]
+      },
+      {
+        "id": "aria-required-children",
+        "nodes": [
+          [
+            "#_r_0_"
+          ]
+        ]
+      },
+      {
+        "id": "aria-required-parent",
+        "nodes": [
+          [
+            "#_r_0_-opt-0"
+          ],
+          [
+            "#_r_0_-opt-1"
+          ],
+          [
+            "#_r_0_-opt-2"
+          ],
+          [
+            "#_r_0_-opt-3"
+          ]
+        ]
+      },
+      {
+        "id": "list",
+        "nodes": [
+          [
+            ".last\\:border-0 > ul"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "state": "concierge",
+    "width": 1440,
+    "violations": []
+  }
+]
